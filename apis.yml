@@ -19,6 +19,31 @@ tags:
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
+common:
+  - url: https://www.activecampaign.com/pricing
+    name: Platform Pricing & Features | ActiveCampaign
+    type: Pricing
+    description: 'null'
+  - url: https://www.activecampaign.com/blog
+    name: Blog | ActiveCampaign
+    type: Blog
+    description: 'null'
+  - url: https://www.activecampaign.com/about/faq
+    name: ActiveCampaign FAQs & Common Questions
+    type: FAQ
+    description: 'null'
+  - url: https://www.activecampaign.com/apps
+    name: Apps & Integrations | ActiveCampaign
+    type: Integrations
+    description: 'null'
+  - url: https://community.activecampaign.com/latest
+    name: Latest topics - Community
+    type: Forums
+    description: 'null'
+  - name: Postman Workspace
+    url: >-
+      https://www.postman.com/acdevrel/activecampaign-developer-relations/overview
+    type: PostmanWorkspace
 created: '2025-02-17'
 modified: '2025-02-19'
 position: Consumer
@@ -38,24 +63,3 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 specificationVersion: '0.19'
-common:
-  - name: Platform Pricing & Features | ActiveCampaign
-    description: 'null'
-    url: https://www.activecampaign.com/pricing
-    type: Pricing
-  - name: Blog | ActiveCampaign
-    description: 'null'
-    url: https://www.activecampaign.com/blog
-    type: Blog
-  - name: ActiveCampaign FAQs & Common Questions
-    description: 'null'
-    url: https://www.activecampaign.com/about/faq
-    type: FAQ
-  - name: Apps & Integrations | ActiveCampaign
-    description: 'null'
-    url: https://www.activecampaign.com/apps
-    type: Integrations
-  - name: Latest topics - Community
-    description: 'null'
-    url: https://community.activecampaign.com/latest
-    type: Forums
