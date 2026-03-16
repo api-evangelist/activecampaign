@@ -45,7 +45,7 @@ common:
       https://www.postman.com/acdevrel/activecampaign-developer-relations/overview
     type: PostmanWorkspace
 created: '2025-02-17'
-modified: '2025-02-19'
+modified: '2026-03-16'
 position: Consumer
 description: >-
   ActiveCampaign is a leading marketing automation platform that helps
@@ -61,5 +61,5 @@ description: >-
   with your audience and grow your business.
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
