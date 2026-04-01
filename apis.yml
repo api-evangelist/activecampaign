@@ -6,10 +6,13 @@ apis:
     name: ActiveCampaign
     tags:
       - API
-    humanURL: ' https://www.activecampaign.com/'
+    humanURL: https://developers.activecampaign.com/reference/overview
+    baseURL: https://youraccountname.api-us1.com/api/3
     properties:
-      - url: ' https://www.activecampaign.com/'
+      - url: https://developers.activecampaign.com/reference/overview
         type: Documentation
+      - url: https://developers.activecampaign.com/reference/authentication
+        type: Authentication
     description: >-
       Grow your business with AI-powered automations that suggest, personalize,
       and validate your marketing campaigns. 
@@ -44,8 +47,14 @@ common:
     url: >-
       https://www.postman.com/acdevrel/activecampaign-developer-relations/overview
     type: PostmanWorkspace
+  - type: Portal
+    url: https://developers.activecampaign.com/
+  - type: Getting Started
+    url: https://help.activecampaign.com/hc/en-us/articles/207317590-Getting-started-with-the-API
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
 created: '2025-02-17'
-modified: '2026-03-16'
+modified: '2026-04-01'
 position: Consumer
 description: >-
   ActiveCampaign is a leading marketing automation platform that helps
