@@ -4,8 +4,7 @@ url: >-
 apis:
   - aid: activecampaign:activecampaign
     name: ActiveCampaign
-    tags:
-      - API
+    tags: []
     humanURL: https://developers.activecampaign.com/reference/overview
     baseURL: https://youraccountname.api-us1.com/api/3
     properties:
@@ -50,8 +49,7 @@ common:
   - type: Portal
     url: https://developers.activecampaign.com/
   - type: Getting Started
-    url: 
-      https://help.activecampaign.com/hc/en-us/articles/207317590-Getting-started-with-the-API
+    url: https://help.activecampaign.com/hc/en-us/articles/207317590-Getting-started-with-the-API
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
 created: '2025-02-17'
