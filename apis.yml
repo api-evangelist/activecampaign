@@ -14,8 +14,8 @@ apis:
       - url: https://developers.activecampaign.com/reference/authentication
         type: Authentication
     description: >-
-      Grow your business with AI-powered automations that suggest, personalize,
-      and validate your marketing campaigns. 
+      Grow your business with AI-powered automations that suggest, personalize, and
+      validate your marketing campaigns.
 name: ActiveCampaign
 tags:
   - Marketing Automation
@@ -50,24 +50,18 @@ common:
   - type: Portal
     url: https://developers.activecampaign.com/
   - type: Getting Started
-    url: https://help.activecampaign.com/hc/en-us/articles/207317590-Getting-started-with-the-API
+    url: 
+      https://help.activecampaign.com/hc/en-us/articles/207317590-Getting-started-with-the-API
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
 created: '2025-02-17'
 modified: '2026-04-01'
 position: Consumer
 description: >-
-  ActiveCampaign is a leading marketing automation platform that helps
-  businesses of all sizes seamlessly engage with their customers. With its
-  user-friendly interface and powerful features, ActiveCampaign allows
-  businesses to create personalized email campaigns, automate workflows, and
-  track customer interactions in real-time. This platform also offers advanced
-  CRM capabilities, segmentation tools, and integrations with other popular
-  marketing tools to help businesses optimize their marketing efforts and drive
-  conversions. Whether you're a small business looking to streamline your
-  marketing processes or a large enterprise seeking to scale your campaigns,
-  ActiveCampaign provides the tools and insights needed to successfully engage
-  with your audience and grow your business.
+  ActiveCampaign is a leading marketing automation platform that helps businesses
+  of all sizes seamlessly engage with their customers. With its user-friendly interface
+  and powerful features, ActiveCampaign allows businesses to create personalized email
+  campaigns, automate workflows, and track customer interactions in real-time.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
