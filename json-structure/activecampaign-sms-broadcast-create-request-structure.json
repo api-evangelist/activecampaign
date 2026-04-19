@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-structure/activecampaign-sms-broadcast-create-request-structure.json",
+  "name": "BroadcastCreateRequest",
+  "description": "BroadcastCreateRequest schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the broadcast"
+    },
+    "address_id": {
+      "type": "int32",
+      "nullable": true,
+      "description": "ID for sender name"
+    },
+    "body": {
+      "type": "string",
+      "description": "SMS message content"
+    },
+    "media_urls": {
+      "type": "array",
+      "items": {
+        "type": "uri"
+      },
+      "description": "Media URLs for MMS"
+    },
+    "preview_url": {
+      "type": "uri"
+    },
+    "shorten_track_links_enabled": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft"
+      ]
+    },
+    "scheduled_date": {
+      "type": "datetime"
+    },
+    "sent_to_count": {
+      "type": "int32"
+    },
+    "list_ids": {
+      "type": "array",
+      "items": {
+        "type": "int32"
+      }
+    },
+    "segment_id": {
+      "type": "string"
+    },
+    "custom_segment_id": {
+      "type": "uuid",
+      "description": "custom segment id generated from segmentsV2 endpoint and passing in a valid audience",
+      "nullable": true
+    },
+    "label_ids": {
+      "type": "array",
+      "items": {
+        "type": "int32"
+      }
+    }
+  },
+  "required": [
+    "name",
+    "body"
+  ]
+}

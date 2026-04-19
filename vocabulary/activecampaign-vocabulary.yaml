@@ -1,0 +1,244 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "ActiveCampaign"
+  description: "Unified taxonomy mapping operational (OpenAPI) and capability (Naftiko) dimensions for ActiveCampaign's marketing automation and CRM platform."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - name: ActiveCampaign API v3
+      namespace: activecampaign-v3
+      version: "3"
+      baseUrl: "https://{yourAccountName}.api-us1.com/api/3"
+      status: active
+    - name: ActiveCampaign SMS Broadcast API
+      namespace: activecampaign-sms
+      version: "3.0.0"
+      baseUrl: "https://{yourAccountName}.api-us1.com/api/3"
+      status: active
+
+  resources:
+    - name: contacts
+      api: activecampaign-v3
+      description: "People being marketed to or sold to; center of all platform activity"
+      actions: [list, create, get, update, delete, sync, merge]
+    - name: deals
+      api: activecampaign-v3
+      description: "Sales opportunities tracked through pipeline stages"
+      actions: [list, create, get, update, delete, bulk-update]
+    - name: accounts
+      api: activecampaign-v3
+      description: "Company or organization records associated with contacts"
+      actions: [list, create, get, update, delete]
+    - name: automations
+      api: activecampaign-v3
+      description: "Automated marketing workflows triggered by contact behavior"
+      actions: [list, get]
+    - name: campaigns
+      api: activecampaign-v3
+      description: "Email marketing campaigns sent to contact lists"
+      actions: [list, get, create, copy]
+    - name: messages
+      api: activecampaign-v3
+      description: "Email message templates used in campaigns"
+      actions: [list, create, get, update, delete]
+    - name: lists
+      api: activecampaign-v3
+      description: "Subscriber lists for organizing and segmenting contacts"
+      actions: [list, create, get, update, delete]
+    - name: tags
+      api: activecampaign-v3
+      description: "Labels applied to contacts for segmentation"
+      actions: [list, create, get, update, delete]
+    - name: webhooks
+      api: activecampaign-v3
+      description: "Event-driven HTTP callbacks for contact and campaign activity"
+      actions: [list, create, get, update, delete]
+    - name: custom-objects
+      api: activecampaign-v3
+      description: "Custom data schemas for extending contact and deal data"
+      actions: [list-schemas, create-schema, get-schema, update-schema, delete-schema, create-record, get-record, update-record, delete-record]
+    - name: forms
+      api: activecampaign-v3
+      description: "Lead capture forms for collecting contact information"
+      actions: [list, get]
+    - name: segments
+      api: activecampaign-v3
+      description: "Dynamic contact segments based on behavioral criteria"
+      actions: [list, create, get, update, delete]
+    - name: sms-broadcasts
+      api: activecampaign-sms
+      description: "SMS broadcast campaigns sent to subscriber lists"
+      actions: [list, create, get, update, delete, schedule, export]
+
+  actions:
+    - name: list
+      httpMethod: GET
+      pattern: read
+      description: "Retrieve a collection of resources with optional filtering and pagination"
+    - name: create
+      httpMethod: POST
+      pattern: write
+      description: "Create a new resource"
+    - name: get
+      httpMethod: GET
+      pattern: read
+      description: "Retrieve a single resource by ID"
+    - name: update
+      httpMethod: PUT
+      pattern: write
+      description: "Update an existing resource"
+    - name: delete
+      httpMethod: DELETE
+      pattern: destructive
+      description: "Delete a resource"
+    - name: sync
+      httpMethod: POST
+      pattern: write
+      description: "Upsert a resource - create if not exists, update if exists"
+    - name: bulk-update
+      httpMethod: PUT
+      pattern: write
+      description: "Update multiple resources in a single request"
+
+  schemas:
+    core:
+      - name: Contact
+        properties: [email, firstName, lastName, phone, fieldValues, tags, lists]
+        description: "A contact/person record"
+      - name: Deal
+        properties: [title, value, currency, stage, owner, contact, account]
+        description: "A sales deal record"
+      - name: Account
+        properties: [name, accountUrl, owner, customFieldValues]
+        description: "A company/account record"
+    messaging:
+      - name: Campaign
+        properties: [name, type, status, senddate, subject, fromname, fromemail]
+        description: "An email campaign"
+      - name: BroadcastMessage
+        properties: [id, name, body, status, scheduled_date, sent_date, list_ids]
+        description: "An SMS broadcast"
+
+  parameters:
+    pagination:
+      - name: limit
+        type: integer
+        description: "Number of results to return per page"
+      - name: offset
+        type: integer
+        description: "Number of results to skip for pagination"
+    identifiers:
+      - name: id
+        type: string
+        description: "Unique identifier for a resource"
+      - name: contactId
+        type: string
+        description: "Contact unique identifier"
+    filters:
+      - name: email
+        type: string
+        description: "Filter contacts by email address"
+      - name: search
+        type: string
+        description: "Search term for filtering results"
+
+  authentication:
+    schemes:
+      - name: ApiToken
+        type: apiKey
+        in: header
+        headerName: Api-Token
+        description: "API token found in account settings under Developer tab"
+        apis: [activecampaign-v3, activecampaign-sms]
+
+capability:
+  workflows:
+    - name: Marketing Automation
+      file: capabilities/marketing-automation.yaml
+      description: "Orchestrate contact journeys, campaigns, automations, and list management"
+      apis: [activecampaign-v3]
+      tools: 8
+      personas: [Marketing Manager, Growth Engineer, Email Marketer]
+      domains: [Marketing, Customer Engagement]
+    - name: CRM and Sales
+      file: capabilities/crm-sales.yaml
+      description: "Manage sales pipeline, deals, accounts, and tasks"
+      apis: [activecampaign-v3]
+      tools: 5
+      personas: [Sales Representative, Revenue Operations, Account Manager]
+      domains: [Sales, CRM]
+
+  personas:
+    - id: marketing-manager
+      name: Marketing Manager
+      description: "Manages email campaigns, automations, and contact segmentation"
+      workflows: [Marketing Automation]
+    - id: growth-engineer
+      name: Growth Engineer
+      description: "Builds integrations, automation workflows, and uses the API directly"
+      workflows: [Marketing Automation, CRM and Sales]
+    - id: sales-representative
+      name: Sales Representative
+      description: "Tracks deals, manages accounts, and uses CRM features"
+      workflows: [CRM and Sales]
+
+  domains:
+    - name: Marketing
+      description: "Email, SMS, and multi-channel marketing automation"
+      resources: [contacts, campaigns, automations, lists, tags, segments, forms]
+    - name: Sales
+      description: "CRM, pipeline management, and revenue operations"
+      resources: [deals, accounts, tasks]
+    - name: Customer Engagement
+      description: "Cross-channel contact engagement and personalization"
+      resources: [contacts, automations, webhooks, custom-objects]
+
+  namespaces:
+    - name: activecampaign-v3
+      type: consumed
+      description: "ActiveCampaign REST API v3"
+    - name: marketing-automation-api
+      type: rest-exposed
+      port: 8080
+    - name: marketing-automation-mcp
+      type: mcp-exposed
+      port: 9090
+    - name: crm-sales-api
+      type: rest-exposed
+      port: 8081
+    - name: crm-sales-mcp
+      type: mcp-exposed
+      port: 9091
+
+  binds:
+    - name: ACTIVECAMPAIGN_API_TOKEN
+      description: "ActiveCampaign API token from account Developer settings"
+      workflows: [Marketing Automation, CRM and Sales]
+    - name: ACTIVECAMPAIGN_API_URL
+      description: "Account-specific API base URL"
+      workflows: [Marketing Automation, CRM and Sales]
+
+crossReference:
+  - resource: contacts
+    operations: [list-contacts, create-contact, get-contact, update-contact, delete-contact, sync-contact]
+    workflows: [Marketing Automation]
+    personas: [Marketing Manager, Growth Engineer]
+  - resource: deals
+    operations: [list-deals, create-deal, get-deal, update-deal]
+    workflows: [CRM and Sales]
+    personas: [Sales Representative, Revenue Operations]
+  - resource: accounts
+    operations: [list-accounts, create-account, get-account]
+    workflows: [CRM and Sales]
+    personas: [Sales Representative, Account Manager]
+  - resource: campaigns
+    operations: [list-campaigns]
+    workflows: [Marketing Automation]
+    personas: [Marketing Manager, Email Marketer]
+  - resource: automations
+    operations: [list-automations]
+    workflows: [Marketing Automation]
+    personas: [Marketing Manager, Growth Engineer]

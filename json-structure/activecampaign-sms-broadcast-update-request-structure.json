@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-structure/activecampaign-sms-broadcast-update-request-structure.json",
+  "name": "BroadcastUpdateRequest",
+  "description": "BroadcastUpdateRequest schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "address_id": {
+      "type": "int32",
+      "nullable": true
+    },
+    "body": {
+      "type": "string"
+    },
+    "media_urls": {
+      "type": "array",
+      "items": {
+        "type": "uri"
+      }
+    },
+    "preview_url": {
+      "type": "uri"
+    },
+    "shorten_track_links_enabled": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string",
+      "description": "Status of the broadcast. pending_review starts kicks off the broadcast to be sent",
+      "enum": [
+        "draft",
+        "pending_review"
+      ]
+    },
+    "scheduled_date": {
+      "type": "datetime"
+    },
+    "sent_to_count": {
+      "type": "int32"
+    },
+    "list_ids": {
+      "type": "array",
+      "items": {
+        "type": "int32"
+      }
+    },
+    "segment_id": {
+      "type": "string"
+    },
+    "custom_run_id": {
+      "type": "uuid",
+      "description": "custom run id generated from segmentMatchSome endpoint and passing a valid segment id",
+      "nullable": true
+    },
+    "custom_segment_id": {
+      "type": "uuid",
+      "description": "custom segment id generated from segmentsV2 endpoint and passing in a valid audience",
+      "nullable": true
+    },
+    "label_ids": {
+      "type": "array",
+      "items": {
+        "type": "int32"
+      }
+    }
+  }
+}

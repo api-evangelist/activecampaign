@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-structure/activecampaign-sms-failure-details-response-structure.json",
+  "name": "FailureDetailsResponse",
+  "description": "FailureDetailsResponse schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "failures": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/FailureDetail"
+      }
+    }
+  }
+}

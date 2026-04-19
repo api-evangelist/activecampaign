@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-schema/activecampaign-sms-ai-broadcast-request-schema.json",
+  "title": "AIBroadcastRequest",
+  "description": "AIBroadcastRequest schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "source": {
+      "type": "string",
+      "enum": [
+        "ai_index",
+        "sms_index",
+        "ai_builder"
+      ]
+    },
+    "prompt": {
+      "type": "string",
+      "description": "User prompt for AI generation"
+    },
+    "tone": {
+      "type": "string",
+      "description": "Desired tone for the message"
+    }
+  },
+  "required": [
+    "source",
+    "prompt",
+    "tone"
+  ]
+}

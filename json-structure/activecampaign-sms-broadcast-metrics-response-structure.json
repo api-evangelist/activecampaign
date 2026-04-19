@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-structure/activecampaign-sms-broadcast-metrics-response-structure.json",
+  "name": "BroadcastMetricsResponse",
+  "description": "BroadcastMetricsResponse schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "metrics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/BroadcastMetrics"
+      }
+    }
+  }
+}

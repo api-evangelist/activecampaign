@@ -1,0 +1,238 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "activecampaign": "https://developers.activecampaign.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "BroadcastListsResponse": "activecampaign:BroadcastListsResponse",
+    "BroadcastUpdateRequest": "activecampaign:BroadcastUpdateRequest",
+    "AIBroadcastRequest": "activecampaign:AIBroadcastRequest",
+    "BroadcastMetrics": "activecampaign:BroadcastMetrics",
+    "BroadcastList": "activecampaign:BroadcastList",
+    "BroadcastMessage": "activecampaign:BroadcastMessage",
+    "SnapshotResponse": "activecampaign:SnapshotResponse",
+    "BroadcastCreateRequest": "activecampaign:BroadcastCreateRequest",
+    "BroadcastMetricsResponse": "activecampaign:BroadcastMetricsResponse",
+    "CreditsResponse": "activecampaign:CreditsResponse",
+    "RecipientsResponse": "activecampaign:RecipientsResponse",
+    "FailureDetail": "activecampaign:FailureDetail",
+    "AIBroadcastUpdateRequest": "activecampaign:AIBroadcastUpdateRequest",
+    "AIBroadcastStatus": "activecampaign:AIBroadcastStatus",
+    "BroadcastListResponse": "activecampaign:BroadcastListResponse",
+    "AIBroadcastResponse": "activecampaign:AIBroadcastResponse",
+    "FailureDetailsResponse": "activecampaign:FailureDetailsResponse",
+    "Recipient": "activecampaign:Recipient",
+    "lists": {
+      "@id": "activecampaign:lists",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "meta": {
+      "@id": "activecampaign:meta",
+      "@type": "@id"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "addressId": {
+      "@id": "activecampaign:address_id",
+      "@type": "xsd:integer"
+    },
+    "body": {
+      "@id": "activecampaign:body",
+      "@type": "xsd:string"
+    },
+    "mediaUrls": {
+      "@id": "activecampaign:media_urls",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "previewUrl": {
+      "@id": "activecampaign:preview_url",
+      "@type": "@id"
+    },
+    "shortenTrackLinksEnabled": {
+      "@id": "activecampaign:shorten_track_links_enabled",
+      "@type": "xsd:boolean"
+    },
+    "status": {
+      "@id": "activecampaign:status",
+      "@type": "xsd:string"
+    },
+    "scheduledDate": {
+      "@id": "activecampaign:scheduled_date",
+      "@type": "xsd:dateTime"
+    },
+    "sentToCount": {
+      "@id": "activecampaign:sent_to_count",
+      "@type": "xsd:integer"
+    },
+    "listIds": {
+      "@id": "activecampaign:list_ids",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "segmentId": {
+      "@id": "activecampaign:segment_id",
+      "@type": "xsd:string"
+    },
+    "customRunId": {
+      "@id": "activecampaign:custom_run_id",
+      "@type": "xsd:string"
+    },
+    "customSegmentId": {
+      "@id": "activecampaign:custom_segment_id",
+      "@type": "xsd:string"
+    },
+    "labelIds": {
+      "@id": "activecampaign:label_ids",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "source": {
+      "@id": "activecampaign:source",
+      "@type": "xsd:string"
+    },
+    "prompt": {
+      "@id": "activecampaign:prompt",
+      "@type": "xsd:string"
+    },
+    "tone": {
+      "@id": "activecampaign:tone",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "activecampaign:id",
+      "@type": "xsd:integer"
+    },
+    "sends": {
+      "@id": "activecampaign:sends",
+      "@type": "xsd:integer"
+    },
+    "deliveries": {
+      "@id": "activecampaign:deliveries",
+      "@type": "xsd:integer"
+    },
+    "replies": {
+      "@id": "activecampaign:replies",
+      "@type": "xsd:integer"
+    },
+    "failures": {
+      "@id": "activecampaign:failures",
+      "@type": "xsd:integer"
+    },
+    "optOuts": {
+      "@id": "activecampaign:optOuts",
+      "@type": "xsd:integer"
+    },
+    "clicks": {
+      "@id": "activecampaign:clicks",
+      "@type": "xsd:integer"
+    },
+    "subscriberCount": {
+      "@id": "activecampaign:subscriber_count",
+      "@type": "xsd:integer"
+    },
+    "sentDate": {
+      "@id": "activecampaign:sentDate",
+      "@type": "xsd:dateTime"
+    },
+    "scheduledBy": {
+      "@id": "activecampaign:scheduled_by",
+      "@type": "xsd:integer"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "createdBy": {
+      "@id": "activecampaign:created_by",
+      "@type": "xsd:integer"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "updatedBy": {
+      "@id": "activecampaign:updated_by",
+      "@type": "xsd:integer"
+    },
+    "deletedAt": {
+      "@id": "activecampaign:deleted_at",
+      "@type": "xsd:dateTime"
+    },
+    "siftApproved": {
+      "@id": "activecampaign:sift_approved",
+      "@type": "xsd:integer"
+    },
+    "arcApproved": {
+      "@id": "activecampaign:arc_approved",
+      "@type": "xsd:integer"
+    },
+    "quietHoursEnabled": {
+      "@id": "activecampaign:quiet_hours_enabled",
+      "@type": "xsd:integer"
+    },
+    "snapshot": {
+      "@id": "activecampaign:snapshot",
+      "@type": "@id"
+    },
+    "metrics": {
+      "@id": "activecampaign:metrics",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "smsCredits": {
+      "@id": "activecampaign:smsCredits",
+      "@type": "@id"
+    },
+    "recipients": {
+      "@id": "activecampaign:recipients",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "errorCode": {
+      "@id": "activecampaign:errorCode",
+      "@type": "xsd:string"
+    },
+    "errorSource": {
+      "@id": "activecampaign:errorSource",
+      "@type": "xsd:string"
+    },
+    "count": {
+      "@id": "activecampaign:count",
+      "@type": "xsd:integer"
+    },
+    "broadcastId": {
+      "@id": "activecampaign:broadcastId",
+      "@type": "xsd:integer"
+    },
+    "broadcasts": {
+      "@id": "activecampaign:broadcasts",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "requestId": {
+      "@id": "activecampaign:requestId",
+      "@type": "xsd:string"
+    },
+    "phoneNumber": {
+      "@id": "activecampaign:phoneNumber",
+      "@type": "xsd:string"
+    },
+    "deliverability": {
+      "@id": "activecampaign:deliverability",
+      "@type": "xsd:string"
+    },
+    "optOut": {
+      "@id": "activecampaign:optOut",
+      "@type": "xsd:string"
+    },
+    "details": {
+      "@id": "activecampaign:details",
+      "@type": "@id"
+    }
+  }
+}

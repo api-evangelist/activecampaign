@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-schema/activecampaign-sms-recipient-schema.json",
+  "title": "Recipient",
+  "description": "Recipient schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Contact ID"
+    },
+    "name": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "sentDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp in CST"
+    },
+    "clicks": {
+      "type": "integer"
+    },
+    "deliverability": {
+      "type": "string",
+      "enum": [
+        "delivered",
+        "failed"
+      ]
+    },
+    "replies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp in CST"
+          }
+        }
+      }
+    },
+    "optOut": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no"
+      ]
+    },
+    "details": {
+      "type": "object",
+      "properties": {
+        "errorCode": {
+          "type": "string"
+        },
+        "errorSource": {
+          "type": "string",
+          "enum": [
+            "ac",
+            "twilio"
+          ]
+        }
+      }
+    }
+  }
+}

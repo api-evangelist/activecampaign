@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-structure/activecampaign-sms-credits-response-structure.json",
+  "name": "CreditsResponse",
+  "description": "CreditsResponse schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "smsCredits": {
+      "type": "object",
+      "properties": {
+        "period": {
+          "type": "string",
+          "example": "month"
+        },
+        "nextRefillDate": {
+          "type": "string",
+          "example": "2026-02-26 15:06:25"
+        },
+        "includedThisPeriod": {
+          "type": "int32",
+          "example": 1000
+        },
+        "usedThisPeriod": {
+          "type": "int32",
+          "example": 71
+        },
+        "extra": {
+          "type": "int32",
+          "example": 9040
+        },
+        "available": {
+          "type": "int32",
+          "example": 9969
+        }
+      }
+    }
+  }
+}

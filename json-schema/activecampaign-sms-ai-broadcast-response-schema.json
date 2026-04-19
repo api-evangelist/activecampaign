@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-schema/activecampaign-sms-ai-broadcast-response-schema.json",
+  "title": "AIBroadcastResponse",
+  "description": "AIBroadcastResponse schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "External identifier to track the request"
+    }
+  }
+}

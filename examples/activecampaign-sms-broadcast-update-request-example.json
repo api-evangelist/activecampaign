@@ -1,0 +1,22 @@
+{
+  "name": "Example Name",
+  "address_id": 42,
+  "body": "example-value",
+  "media_urls": [
+    "https://example.com/path/abc123"
+  ],
+  "preview_url": "https://example.com/path/abc123",
+  "shorten_track_links_enabled": true,
+  "status": "draft",
+  "scheduled_date": "2025-03-15T14:30:00Z",
+  "sent_to_count": 42,
+  "list_ids": [
+    42
+  ],
+  "segment_id": "500123",
+  "custom_run_id": "550e8400-e29b-41d4-a716-446655440000",
+  "custom_segment_id": "550e8400-e29b-41d4-a716-446655440000",
+  "label_ids": [
+    42
+  ]
+}

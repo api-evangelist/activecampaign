@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-structure/activecampaign-sms-broadcast-metrics-structure.json",
+  "name": "BroadcastMetrics",
+  "description": "BroadcastMetrics schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32"
+    },
+    "sends": {
+      "type": "int32"
+    },
+    "deliveries": {
+      "type": "int32"
+    },
+    "replies": {
+      "type": "int32"
+    },
+    "failures": {
+      "type": "int32"
+    },
+    "optOuts": {
+      "type": "int32"
+    },
+    "clicks": {
+      "type": "int32"
+    }
+  }
+}

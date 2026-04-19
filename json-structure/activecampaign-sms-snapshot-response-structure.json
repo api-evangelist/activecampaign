@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-structure/activecampaign-sms-snapshot-response-structure.json",
+  "name": "SnapshotResponse",
+  "description": "SnapshotResponse schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "snapshot": {
+      "type": "object",
+      "properties": {
+        "campaigns": {
+          "type": "int32"
+        },
+        "sends": {
+          "type": "int32"
+        },
+        "deliveries": {
+          "type": "int32"
+        },
+        "clicks": {
+          "type": "int32"
+        },
+        "replies": {
+          "type": "int32"
+        },
+        "failures": {
+          "type": "int32"
+        },
+        "optOuts": {
+          "type": "int32"
+        }
+      }
+    }
+  }
+}

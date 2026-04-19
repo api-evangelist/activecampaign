@@ -1,0 +1,9 @@
+{
+  "smsCredits": {
+    "period": "month",
+    "nextRefillDate": "2026-02-26 15:06:25",
+    "includedThisPeriod": 1000,
+    "usedThisPeriod": 71,
+    "extra": 9040
+  }
+}

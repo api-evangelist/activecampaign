@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-schema/activecampaign-sms-ai-broadcast-status-schema.json",
+  "title": "AIBroadcastStatus",
+  "description": "AIBroadcastStatus schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "source": {
+      "type": "string",
+      "enum": [
+        "ai_index",
+        "sms_index",
+        "ai_builder"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "in_progress",
+        "error",
+        "success"
+      ]
+    },
+    "broadcastId": {
+      "type": "integer",
+      "nullable": true
+    }
+  }
+}

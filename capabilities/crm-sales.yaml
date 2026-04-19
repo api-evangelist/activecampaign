@@ -1,0 +1,121 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "ActiveCampaign CRM and Sales"
+  description: "Workflow capability for CRM and sales pipeline management including deals, accounts, tasks, and pipeline stages. Used by sales teams and revenue operations to track and advance deals."
+  tags:
+    - ActiveCampaign
+    - CRM
+    - Sales
+    - Deals
+    - Accounts
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ACTIVECAMPAIGN_API_TOKEN: ACTIVECAMPAIGN_API_TOKEN
+      ACTIVECAMPAIGN_API_URL: ACTIVECAMPAIGN_API_URL
+
+capability:
+  consumes:
+    - import: activecampaign-v3
+      location: ./shared/activecampaign-v3.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: crm-sales-api
+      description: "Unified REST API for CRM and sales pipeline workflows."
+      resources:
+        - path: /v1/deals
+          name: deals
+          description: "Sales deal management"
+          operations:
+            - method: GET
+              name: list-deals
+              description: "List all deals"
+              call: "activecampaign-v3.list-deals"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-deal
+              description: "Create a new deal"
+              call: "activecampaign-v3.create-deal"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/accounts
+          name: accounts
+          description: "Company account management"
+          operations:
+            - method: GET
+              name: list-accounts
+              description: "List all accounts"
+              call: "activecampaign-v3.list-accounts"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-account
+              description: "Create a new account"
+              call: "activecampaign-v3.create-account"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9091
+      namespace: crm-sales-mcp
+      transport: http
+      description: "MCP server for AI-assisted CRM and sales pipeline management."
+      tools:
+        - name: list-deals
+          description: "List all sales deals in ActiveCampaign CRM"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "activecampaign-v3.list-deals"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-deal
+          description: "Create a new sales deal in ActiveCampaign CRM"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "activecampaign-v3.create-deal"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-deal
+          description: "Retrieve a specific deal by ID"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "activecampaign-v3.get-deal"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-accounts
+          description: "List all company accounts in ActiveCampaign CRM"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "activecampaign-v3.list-accounts"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-account
+          description: "Create a new company account in ActiveCampaign CRM"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "activecampaign-v3.create-account"
+          outputParameters:
+            - type: object
+              mapping: "$."

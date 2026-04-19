@@ -1,0 +1,19 @@
+{
+  "id": 42,
+  "name": "Example Name",
+  "phoneNumber": "example-value",
+  "sentDate": "2025-03-15T14:30:00Z",
+  "clicks": 42,
+  "deliverability": "delivered",
+  "replies": [
+    {
+      "message": "Example description text.",
+      "date": "2025-03-15T14:30:00Z"
+    }
+  ],
+  "optOut": "yes",
+  "details": {
+    "errorCode": "example-value",
+    "errorSource": "ac"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "recipients": [
+    "example-value"
+  ],
+  "meta": {
+    "total": 42,
+    "limit": 42,
+    "offset": 42
+  }
+}

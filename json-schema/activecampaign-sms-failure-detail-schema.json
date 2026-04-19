@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-schema/activecampaign-sms-failure-detail-schema.json",
+  "title": "FailureDetail",
+  "description": "FailureDetail schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "errorCode": {
+      "type": "string"
+    },
+    "errorSource": {
+      "type": "string",
+      "enum": [
+        "ac",
+        "twilio"
+      ]
+    },
+    "count": {
+      "type": "integer"
+    }
+  }
+}

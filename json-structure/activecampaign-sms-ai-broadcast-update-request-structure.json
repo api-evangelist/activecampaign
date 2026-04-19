@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-structure/activecampaign-sms-ai-broadcast-update-request-structure.json",
+  "name": "AIBroadcastUpdateRequest",
+  "description": "AIBroadcastUpdateRequest schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "source": {
+      "type": "string",
+      "enum": [
+        "ai_index",
+        "sms_index",
+        "ai_builder"
+      ]
+    },
+    "prompt": {
+      "type": "string"
+    },
+    "tone": {
+      "type": "string"
+    },
+    "broadcastId": {
+      "type": "int32"
+    }
+  },
+  "required": [
+    "source",
+    "prompt",
+    "tone",
+    "broadcastId"
+  ]
+}

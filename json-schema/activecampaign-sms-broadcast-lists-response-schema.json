@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-schema/activecampaign-sms-broadcast-lists-response-schema.json",
+  "title": "BroadcastListsResponse",
+  "description": "BroadcastListsResponse schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "lists": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/BroadcastList"
+      }
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

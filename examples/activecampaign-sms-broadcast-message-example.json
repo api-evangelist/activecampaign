@@ -1,0 +1,33 @@
+{
+  "id": 42,
+  "name": "Example Name",
+  "address_id": 42,
+  "body": "example-value",
+  "media_urls": [
+    "https://example.com/path/abc123"
+  ],
+  "preview_url": "https://example.com/path/abc123",
+  "shorten_track_links_enabled": true,
+  "status": "draft",
+  "sent_date": "2025-03-15T14:30:00Z",
+  "scheduled_date": "2025-03-15T14:30:00Z",
+  "custom_run_id": "550e8400-e29b-41d4-a716-446655440000",
+  "custom_segment_id": "550e8400-e29b-41d4-a716-446655440000",
+  "scheduled_by": 42,
+  "sent_to_count": 42,
+  "created_at": "2025-03-15T14:30:00Z",
+  "created_by": 42,
+  "updated_at": "2025-03-15T14:30:00Z",
+  "updated_by": 42,
+  "deleted_at": "2025-03-15T14:30:00Z",
+  "sift_approved": 42,
+  "arc_approved": 42,
+  "quiet_hours_enabled": 42,
+  "list_ids": [
+    42
+  ],
+  "segment_id": "500123",
+  "label_ids": [
+    42
+  ]
+}

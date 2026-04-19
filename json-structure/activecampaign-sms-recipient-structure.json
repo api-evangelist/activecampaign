@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-structure/activecampaign-sms-recipient-structure.json",
+  "name": "Recipient",
+  "description": "Recipient schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": "Contact ID"
+    },
+    "name": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "sentDate": {
+      "type": "datetime",
+      "description": "Timestamp in CST"
+    },
+    "clicks": {
+      "type": "int32"
+    },
+    "deliverability": {
+      "type": "string",
+      "enum": [
+        "delivered",
+        "failed"
+      ]
+    },
+    "replies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "date": {
+            "type": "datetime",
+            "description": "Timestamp in CST"
+          }
+        }
+      }
+    },
+    "optOut": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no"
+      ]
+    },
+    "details": {
+      "type": "object",
+      "properties": {
+        "errorCode": {
+          "type": "string"
+        },
+        "errorSource": {
+          "type": "string",
+          "enum": [
+            "ac",
+            "twilio"
+          ]
+        }
+      }
+    }
+  }
+}

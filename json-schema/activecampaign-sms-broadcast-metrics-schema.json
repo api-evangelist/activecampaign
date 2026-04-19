@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-schema/activecampaign-sms-broadcast-metrics-schema.json",
+  "title": "BroadcastMetrics",
+  "description": "BroadcastMetrics schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "sends": {
+      "type": "integer"
+    },
+    "deliveries": {
+      "type": "integer"
+    },
+    "replies": {
+      "type": "integer"
+    },
+    "failures": {
+      "type": "integer"
+    },
+    "optOuts": {
+      "type": "integer"
+    },
+    "clicks": {
+      "type": "integer"
+    }
+  }
+}

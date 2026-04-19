@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/json-structure/activecampaign-sms-recipients-response-structure.json",
+  "name": "RecipientsResponse",
+  "description": "RecipientsResponse schema from ActiveCampaign API",
+  "type": "object",
+  "properties": {
+    "recipients": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Recipient"
+      }
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "int32"
+        },
+        "limit": {
+          "type": "int32"
+        },
+        "offset": {
+          "type": "int32"
+        }
+      }
+    }
+  }
+}
