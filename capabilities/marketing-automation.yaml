@@ -1,187 +1,470 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "ActiveCampaign Marketing Automation"
-  description: "Unified workflow capability for marketing automation, contact management, campaign execution, and list segmentation. Used by marketing teams and growth engineers to orchestrate multi-channel customer journeys."
+  label: ActiveCampaign Marketing Automation
+  description: Unified workflow capability for marketing automation, contact management, campaign execution, and list segmentation.
+    Used by marketing teams and growth engineers to orchestrate multi-channel customer journeys.
   tags:
-    - ActiveCampaign
-    - Marketing Automation
-    - Email Marketing
-    - Contacts
-    - Campaigns
-  created: "2026-04-19"
-  modified: "2026-04-19"
-
+  - ActiveCampaign
+  - Marketing Automation
+  - Email Marketing
+  - Contacts
+  - Campaigns
+  created: '2026-04-19'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      ACTIVECAMPAIGN_API_TOKEN: ACTIVECAMPAIGN_API_TOKEN
-      ACTIVECAMPAIGN_API_URL: ACTIVECAMPAIGN_API_URL
-
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_TOKEN: ACTIVECAMPAIGN_API_TOKEN
+    ACTIVECAMPAIGN_API_URL: ACTIVECAMPAIGN_API_URL
 capability:
   consumes:
-    - import: activecampaign-v3
-      location: ./shared/activecampaign-v3.yaml
-
+  - type: http
+    namespace: activecampaign-v3
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign REST API v3
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{ACTIVECAMPAIGN_API_TOKEN}}'
+      placement: header
+    resources:
+    - name: contacts
+      path: /contacts
+      description: Manage contacts - the center of all ActiveCampaign activity
+      operations:
+      - name: list-contacts
+        method: GET
+        description: List, search, and filter contacts
+        inputParameters:
+        - name: email
+          in: query
+          type: string
+          required: false
+          description: Filter contacts by email
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Number of results to return
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Offset for pagination
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-contact
+        method: POST
+        description: Create a new contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            contact: '{{tools.contact}}'
+      - name: get-contact
+        method: GET
+        description: Retrieve a contact by ID
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Contact ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-contact
+        method: PUT
+        description: Update a contact
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Contact ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-contact
+        method: DELETE
+        description: Delete a contact
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Contact ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: sync-contact
+        method: POST
+        description: Sync a contact's data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: deals
+      path: /deals
+      description: Manage sales deals and pipeline
+      operations:
+      - name: list-deals
+        method: GET
+        description: List all deals
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Number of results
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Pagination offset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-deal
+        method: POST
+        description: Create a new deal
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-deal
+        method: GET
+        description: Retrieve a deal by ID
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Deal ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-deal
+        method: PUT
+        description: Update a deal
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Deal ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts
+      path: /accounts
+      description: Manage company accounts
+      operations:
+      - name: list-accounts
+        method: GET
+        description: Retrieve all accounts
+        inputParameters:
+        - name: search
+          in: query
+          type: string
+          required: false
+          description: Search term
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-account
+        method: POST
+        description: Create a new account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-account
+        method: GET
+        description: Retrieve an account
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Account ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: automations
+      path: /automations
+      description: Manage marketing automations
+      operations:
+      - name: list-automations
+        method: GET
+        description: List all automations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: campaigns
+      path: /campaigns
+      description: Manage email campaigns
+      operations:
+      - name: list-campaigns
+        method: GET
+        description: List all campaigns
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Number of results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: lists
+      path: /lists
+      description: Manage contact lists
+      operations:
+      - name: list-lists
+        method: GET
+        description: Retrieve all lists
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-list
+        method: POST
+        description: Create a new list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tags
+      path: /tags
+      description: Manage contact tags
+      operations:
+      - name: list-tags
+        method: GET
+        description: List all tags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-tag
+        method: POST
+        description: Create a new tag
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: webhooks
+      path: /webhooks
+      description: Manage event webhooks
+      operations:
+      - name: list-webhooks
+        method: GET
+        description: List all webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-webhook
+        method: POST
+        description: Create a new webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: marketing-automation-api
-      description: "Unified REST API for marketing automation workflows."
-      resources:
-        - path: /v1/contacts
-          name: contacts
-          description: "Contact lifecycle management"
-          operations:
-            - method: GET
-              name: list-contacts
-              description: "List and search contacts"
-              call: "activecampaign-v3.list-contacts"
-              with:
-                email: "rest.email"
-                limit: "rest.limit"
-                offset: "rest.offset"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-contact
-              description: "Create a new contact"
-              call: "activecampaign-v3.create-contact"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/campaigns
-          name: campaigns
-          description: "Email campaign management"
-          operations:
-            - method: GET
-              name: list-campaigns
-              description: "List all campaigns"
-              call: "activecampaign-v3.list-campaigns"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/automations
-          name: automations
-          description: "Marketing automation workflows"
-          operations:
-            - method: GET
-              name: list-automations
-              description: "List all automations"
-              call: "activecampaign-v3.list-automations"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/lists
-          name: lists
-          description: "Contact list management"
-          operations:
-            - method: GET
-              name: list-lists
-              description: "List all contact lists"
-              call: "activecampaign-v3.list-lists"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-list
-              description: "Create a new contact list"
-              call: "activecampaign-v3.create-list"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/tags
-          name: tags
-          description: "Contact tag management"
-          operations:
-            - method: GET
-              name: list-tags
-              description: "List all tags"
-              call: "activecampaign-v3.list-tags"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: marketing-automation-mcp
-      transport: http
-      description: "MCP server for AI-assisted marketing automation with ActiveCampaign."
-      tools:
-        - name: list-contacts
-          description: "List and search ActiveCampaign contacts by email, name, or other criteria"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "activecampaign-v3.list-contacts"
-          with:
-            email: "tools.email"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-contact
-          description: "Create a new contact in ActiveCampaign"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "activecampaign-v3.create-contact"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: sync-contact
-          description: "Sync a contact's data to ActiveCampaign, creating or updating as needed"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "activecampaign-v3.sync-contact"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-campaigns
-          description: "List all email campaigns in ActiveCampaign"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "activecampaign-v3.list-campaigns"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-automations
-          description: "List all marketing automations in ActiveCampaign"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "activecampaign-v3.list-automations"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-contact-lists
-          description: "List all contact lists in ActiveCampaign"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "activecampaign-v3.list-lists"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-tags
-          description: "List all contact tags in ActiveCampaign"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "activecampaign-v3.list-tags"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-tag
-          description: "Create a new contact tag in ActiveCampaign"
-          hints:
-            readOnly: false
-            destructive: false
-          call: "activecampaign-v3.create-tag"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: marketing-automation-api
+    description: Unified REST API for marketing automation workflows.
+    resources:
+    - path: /v1/contacts
+      name: contacts
+      description: Contact lifecycle management
+      operations:
+      - method: GET
+        name: list-contacts
+        description: List and search contacts
+        call: activecampaign-v3.list-contacts
+        with:
+          email: rest.email
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-contact
+        description: Create a new contact
+        call: activecampaign-v3.create-contact
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/campaigns
+      name: campaigns
+      description: Email campaign management
+      operations:
+      - method: GET
+        name: list-campaigns
+        description: List all campaigns
+        call: activecampaign-v3.list-campaigns
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations
+      name: automations
+      description: Marketing automation workflows
+      operations:
+      - method: GET
+        name: list-automations
+        description: List all automations
+        call: activecampaign-v3.list-automations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/lists
+      name: lists
+      description: Contact list management
+      operations:
+      - method: GET
+        name: list-lists
+        description: List all contact lists
+        call: activecampaign-v3.list-lists
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-list
+        description: Create a new contact list
+        call: activecampaign-v3.create-list
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tags
+      name: tags
+      description: Contact tag management
+      operations:
+      - method: GET
+        name: list-tags
+        description: List all tags
+        call: activecampaign-v3.list-tags
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: marketing-automation-mcp
+    transport: http
+    description: MCP server for AI-assisted marketing automation with ActiveCampaign.
+    tools:
+    - name: list-contacts
+      description: List and search ActiveCampaign contacts by email, name, or other criteria
+      hints:
+        readOnly: true
+        openWorld: true
+      call: activecampaign-v3.list-contacts
+      with:
+        email: tools.email
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-contact
+      description: Create a new contact in ActiveCampaign
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: activecampaign-v3.create-contact
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: sync-contact
+      description: Sync a contact's data to ActiveCampaign, creating or updating as needed
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: activecampaign-v3.sync-contact
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-campaigns
+      description: List all email campaigns in ActiveCampaign
+      hints:
+        readOnly: true
+        openWorld: true
+      call: activecampaign-v3.list-campaigns
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-automations
+      description: List all marketing automations in ActiveCampaign
+      hints:
+        readOnly: true
+        openWorld: true
+      call: activecampaign-v3.list-automations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-contact-lists
+      description: List all contact lists in ActiveCampaign
+      hints:
+        readOnly: true
+        openWorld: true
+      call: activecampaign-v3.list-lists
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-tags
+      description: List all contact tags in ActiveCampaign
+      hints:
+        readOnly: true
+        openWorld: true
+      call: activecampaign-v3.list-tags
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-tag
+      description: Create a new contact tag in ActiveCampaign
+      hints:
+        readOnly: false
+        destructive: false
+      call: activecampaign-v3.create-tag
+      outputParameters:
+      - type: object
+        mapping: $.
