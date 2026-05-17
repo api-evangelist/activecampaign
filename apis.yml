@@ -123,7 +123,7 @@ common:
     type: NaftikoCapability
     title: CRM and Sales Workflow
   - url: json-ld/activecampaign-sms-context.jsonld
-    type: JSON-LD
+    type: JSONLD
     title: SMS API Context
   - type: Features
     data:
