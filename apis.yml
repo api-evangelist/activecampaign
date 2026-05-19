@@ -83,6 +83,8 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/activecampaign
   - url: https://developers.activecampaign.com/
     type: Portal
   - url: https://help.activecampaign.com/hc/en-us/articles/207317590-Getting-started-with-the-API
@@ -195,8 +197,14 @@ common:
         description: Advanced plan with predictive content, advanced segmentation, and 3 users.
       - name: Enterprise
         description: Full-featured plan with custom objects, dedicated account team, and premium segmentation.
+  - name: MCP Server
+    url: https://github.com/ActiveCampaign/postmark-mcp
+    type: MCPServer
+  - name: Agent Skills
+    url: https://github.com/ActiveCampaign/postmark-skills
+    type: AgentSkill
 created: '2025-02-17'
-modified: '2026-04-19'
+modified: '2026-05-19'
 position: Consumer
 description: >-
   ActiveCampaign is a leading marketing automation platform that helps businesses
