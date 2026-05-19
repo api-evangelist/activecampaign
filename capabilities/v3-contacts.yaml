@@ -1,0 +1,1667 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign API v3 — Contacts
+  description: 'ActiveCampaign API v3 — Contacts. 36 operations. Lead operation: ActiveCampaign Sync a Contact''s Data. Self-contained
+    Naftiko capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - Contacts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v3-contacts
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign API v3 — Contacts business capability. Self-contained, no shared references.
+    resources:
+    - name: contact-sync
+      path: /contact/sync
+      operations:
+      - name: syncacontactsdata
+        method: POST
+        description: ActiveCampaign Sync a Contact's Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: contactAutomations
+      path: /contactAutomations
+      operations:
+      - name: createnewcontactautomation
+        method: POST
+        description: ActiveCampaign Add a Contact to an Automation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listallcontactautomations
+        method: GET
+        description: ActiveCampaign List All Automations a Contact is in
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contactAutomations-id
+      path: /contactAutomations/{id}
+      operations:
+      - name: retrieveacontactautomation
+        method: GET
+        description: ActiveCampaign Retrieve an Automation a Contact is in
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contactAutomation to retrieve
+          required: true
+      - name: deleteacontactautomation
+        method: DELETE
+        description: ActiveCampaign Remove a Contact from an Automation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contactAutomation to delete
+          required: true
+    - name: contactDeals
+      path: /contactDeals
+      operations:
+      - name: createasecondarycontact
+        method: POST
+        description: ActiveCampaign Create a Secondary Contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listallsecondarycontacts
+        method: GET
+        description: ActiveCampaign List All Secondary Contacts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contactDeals-id
+      path: /contactDeals/{id}
+      operations:
+      - name: retrieveasecondarycontact
+        method: GET
+        description: ActiveCampaign Retrieve a Secondary Contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Secondary Contact's id
+          required: true
+      - name: updateasecondarycontact
+        method: PUT
+        description: ActiveCampaign Update a Secondary Contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Secondary Contact's id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteasecondarycontact
+        method: DELETE
+        description: ActiveCampaign Delete a Secondary Contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Secondary Contact's id
+          required: true
+    - name: contactLists
+      path: /contactLists
+      operations:
+      - name: updateliststatusforcontact
+        method: POST
+        description: ActiveCampaign Update List Status for a Contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: contactTags
+      path: /contactTags
+      operations:
+      - name: createcontacttag
+        method: POST
+        description: ActiveCampaign Add a Tag to Contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: contactTags-id
+      path: /contactTags/{id}
+      operations:
+      - name: removeacontactstag
+        method: DELETE
+        description: ActiveCampaign Remove a Tag from a Contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: The contactTag id
+          required: true
+    - name: contacts
+      path: /contacts
+      operations:
+      - name: createanewcontact
+        method: POST
+        description: ActiveCampaign Create a Contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listallcontacts
+        method: GET
+        description: ActiveCampaign List, Search, and Filter Contacts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: 'Filter contacts by ID. Can be repeated for multiple IDs. Example: ids[]=1&ids[]=2&ids[]=42'
+        - name: email
+          in: query
+          type: string
+          description: Email address of the contact you want to get
+        - name: email_like
+          in: query
+          type: string
+          description: Filter contacts that contain the given value in the email address
+        - name: exclude
+          in: query
+          type: integer
+          description: Exclude from the response the contact with the given ID
+        - name: formid
+          in: query
+          type: integer
+          description: Filter contacts associated with the given form
+        - name: id_greater
+          in: query
+          type: integer
+          description: Only include contacts with an ID greater than the given ID
+        - name: id_less
+          in: query
+          type: integer
+          description: Only include contacts with an ID less than the given ID
+        - name: listid
+          in: query
+          type: string
+          description: Filter contacts associated with the given list
+        - name: phone
+          in: query
+          type: string
+          description: Filter contacts where the phone number starts with the given value
+        - name: organization
+          in: query
+          type: integer
+          description: (Deprecated) Please use Account-Contact end points. Filter contacts associated with the given organization
+            ID
+        - name: search
+          in: query
+          type: string
+          description: Filter contacts that match the given value in the contact names, organization, phone or email
+        - name: segmentid
+          in: query
+          type: string
+          description: Return only contacts that match a list segment. The first API call within 1 hour or an API call with
+            the param `forceQuery=1` will kick off an new segment reque
+        - name: seriesid
+          in: query
+          type: integer
+          description: Filter contacts associated with the given automation
+        - name: status
+          in: query
+          type: integer
+          description: See [available values](https://developers.activecampaign.com/reference/contact)
+        - name: tagid
+          in: query
+          type: integer
+          description: Filter contacts associated with the given tag
+        - name: filters[created_before]
+          in: query
+          type: string
+          description: Filter contacts that were created prior to this date
+        - name: filters[created_after]
+          in: query
+          type: string
+          description: Filter contacts that were created after this date
+        - name: filters[updated_before]
+          in: query
+          type: string
+          description: Filter contacts that were updated before this date
+        - name: filters[updated_after]
+          in: query
+          type: string
+          description: Filter contacts that were updated after this date
+        - name: waitid
+          in: query
+          type: integer
+          description: Filter by contacts in the wait queue of an automation block
+        - name: orders[id]
+          in: query
+          type: string
+          description: Order contacts by unique ID
+        - name: orders[cdate]
+          in: query
+          type: string
+          description: Order contacts by creation date
+        - name: orders[email]
+          in: query
+          type: string
+          description: Order contacts by email
+        - name: orders[first_name]
+          in: query
+          type: string
+          description: Order contacts by first name
+        - name: orders[last_name]
+          in: query
+          type: string
+          description: Order contacts by last name
+        - name: orders[name]
+          in: query
+          type: string
+          description: Order contacts by full name
+        - name: orders[score]
+          in: query
+          type: string
+          description: Order contacts by score. Must be used in conjunction with the `sortId` parameter
+        - name: in_group_lists
+          in: query
+          type: string
+          description: Set this to "true" in order to return only contacts that the current user has permissions to see.
+        - name: forceQuery
+          in: query
+          type: number
+          description: If present and equal to 1, a new segment request is kicked off which will return an updated result
+            set. Otherwise, a segmented API request with a consistent sor
+        - name: sortId
+          in: query
+          type: number
+          description: If sorting results by a score or custom field, this parameter holds the id of the score or custom field
+            respectively
+    - name: contacts-contactId-trackingLogs
+      path: /contacts/{contactId}/trackingLogs
+      operations:
+      - name: getcontactstrackinglogsevents
+        method: GET
+        description: ActiveCampaign Get Contact's Tracking Logs/Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: contactId
+          in: path
+          type: string
+          description: The Contact's ID
+          required: true
+    - name: contacts-id
+      path: /contacts/{id}
+      operations:
+      - name: getcontact
+        method: GET
+        description: ActiveCampaign Retrieve a Contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+      - name: updateacontactnew
+        method: PUT
+        description: ActiveCampaign Update a Contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletecontact
+        method: DELETE
+        description: ActiveCampaign Delete a Contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: The contact id
+          required: true
+    - name: contacts-id-accountContacts
+      path: /contacts/{id}/accountContacts
+      operations:
+      - name: retrievecontactaccountcontacts
+        method: GET
+        description: ActiveCampaign Retrieve a Contacts Account Contacts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-automationEntryCounts
+      path: /contacts/{id}/automationEntryCounts
+      operations:
+      - name: retrievecontactautomationentrycounts
+        method: GET
+        description: ActiveCampaign Retrieve a Contacts Automation Entry Counts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-bounceLogs
+      path: /contacts/{id}/bounceLogs
+      operations:
+      - name: retrievecontactbouncelogs
+        method: GET
+        description: ActiveCampaign Retrieve a Contact's Bounce Logs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-contactAutomations
+      path: /contacts/{id}/contactAutomations
+      operations:
+      - name: listallcontactautomationsforcontact
+        method: GET
+        description: ActiveCampaign List All Automations the Contact is in
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact to receive automations for
+          required: true
+    - name: contacts-id-contactData
+      path: /contacts/{id}/contactData
+      operations:
+      - name: retrievecontactdata
+        method: GET
+        description: ActiveCampaign Retrieve a Contact's Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-contactDeals
+      path: /contacts/{id}/contactDeals
+      operations:
+      - name: retrievecontactdealslist
+        method: GET
+        description: ActiveCampaign Retrieve a List of Contact's Deals
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-contactGoals
+      path: /contacts/{id}/contactGoals
+      operations:
+      - name: retrievecontactgoals
+        method: GET
+        description: ActiveCampaign Retrieve a Contact's Goals
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-contactLists
+      path: /contacts/{id}/contactLists
+      operations:
+      - name: retrievecontactlistmemberships
+        method: GET
+        description: ActiveCampaign Retrieve a Contact's List Memberships
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-contactLogs
+      path: /contacts/{id}/contactLogs
+      operations:
+      - name: retrievecontactlogs
+        method: GET
+        description: ActiveCampaign Retrieve a Contact's Logs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-deals
+      path: /contacts/{id}/deals
+      operations:
+      - name: retrievecontactdeals
+        method: GET
+        description: ActiveCampaign Retrieve a Contact's Deals
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-fieldValues
+      path: /contacts/{id}/fieldValues
+      operations:
+      - name: retrievecontactfieldvalues
+        method: GET
+        description: ActiveCampaign Retrieve a Contact's Field Values
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-geoIps
+      path: /contacts/{id}/geoIps
+      operations:
+      - name: retrievecontactgeoips
+        method: GET
+        description: ActiveCampaign Retrieve a Contacts List of Geo-ips
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-notes
+      path: /contacts/{id}/notes
+      operations:
+      - name: retrievecontactnotes
+        method: GET
+        description: ActiveCampaign Retrieve a Contacts Notes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-organization
+      path: /contacts/{id}/organization
+      operations:
+      - name: retrievecontactorganization
+        method: GET
+        description: ActiveCampaign Retrieve a Contacts Organization
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-plusAppend
+      path: /contacts/{id}/plusAppend
+      operations:
+      - name: retrievecontactplusappend
+        method: GET
+        description: ActiveCampaign Retrieve a Contacts Plus Append
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: contacts-id-scoreValues
+      path: /contacts/{id}/scoreValues
+      operations:
+      - name: retrieveacontactsscorevalue
+        method: GET
+        description: ActiveCampaign Retrieve a Contact's Score Value
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: id of the Contact
+          required: true
+    - name: contacts-id-trackingLogs
+      path: /contacts/{id}/trackingLogs
+      operations:
+      - name: retrievecontacttrackinglogs
+        method: GET
+        description: ActiveCampaign Retrieve a Contacts Tracking Logs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: v3-contacts-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign API v3 — Contacts. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/contact/sync
+      name: contact-sync
+      description: REST surface for contact-sync.
+      operations:
+      - method: POST
+        name: syncacontactsdata
+        description: ActiveCampaign Sync a Contact's Data
+        call: v3-contacts.syncacontactsdata
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contactautomations
+      name: contactautomations
+      description: REST surface for contactAutomations.
+      operations:
+      - method: POST
+        name: createnewcontactautomation
+        description: ActiveCampaign Add a Contact to an Automation
+        call: v3-contacts.createnewcontactautomation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallcontactautomations
+        description: ActiveCampaign List All Automations a Contact is in
+        call: v3-contacts.listallcontactautomations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contactautomations/{id}
+      name: contactautomations-id
+      description: REST surface for contactAutomations-id.
+      operations:
+      - method: GET
+        name: retrieveacontactautomation
+        description: ActiveCampaign Retrieve an Automation a Contact is in
+        call: v3-contacts.retrieveacontactautomation
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteacontactautomation
+        description: ActiveCampaign Remove a Contact from an Automation
+        call: v3-contacts.deleteacontactautomation
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contactdeals
+      name: contactdeals
+      description: REST surface for contactDeals.
+      operations:
+      - method: POST
+        name: createasecondarycontact
+        description: ActiveCampaign Create a Secondary Contact
+        call: v3-contacts.createasecondarycontact
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallsecondarycontacts
+        description: ActiveCampaign List All Secondary Contacts
+        call: v3-contacts.listallsecondarycontacts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contactdeals/{id}
+      name: contactdeals-id
+      description: REST surface for contactDeals-id.
+      operations:
+      - method: GET
+        name: retrieveasecondarycontact
+        description: ActiveCampaign Retrieve a Secondary Contact
+        call: v3-contacts.retrieveasecondarycontact
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateasecondarycontact
+        description: ActiveCampaign Update a Secondary Contact
+        call: v3-contacts.updateasecondarycontact
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteasecondarycontact
+        description: ActiveCampaign Delete a Secondary Contact
+        call: v3-contacts.deleteasecondarycontact
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contactlists
+      name: contactlists
+      description: REST surface for contactLists.
+      operations:
+      - method: POST
+        name: updateliststatusforcontact
+        description: ActiveCampaign Update List Status for a Contact
+        call: v3-contacts.updateliststatusforcontact
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacttags
+      name: contacttags
+      description: REST surface for contactTags.
+      operations:
+      - method: POST
+        name: createcontacttag
+        description: ActiveCampaign Add a Tag to Contact
+        call: v3-contacts.createcontacttag
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacttags/{id}
+      name: contacttags-id
+      description: REST surface for contactTags-id.
+      operations:
+      - method: DELETE
+        name: removeacontactstag
+        description: ActiveCampaign Remove a Tag from a Contact
+        call: v3-contacts.removeacontactstag
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts
+      name: contacts
+      description: REST surface for contacts.
+      operations:
+      - method: POST
+        name: createanewcontact
+        description: ActiveCampaign Create a Contact
+        call: v3-contacts.createanewcontact
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallcontacts
+        description: ActiveCampaign List, Search, and Filter Contacts
+        call: v3-contacts.listallcontacts
+        with:
+          ids: rest.ids
+          email: rest.email
+          email_like: rest.email_like
+          exclude: rest.exclude
+          formid: rest.formid
+          id_greater: rest.id_greater
+          id_less: rest.id_less
+          listid: rest.listid
+          phone: rest.phone
+          organization: rest.organization
+          search: rest.search
+          segmentid: rest.segmentid
+          seriesid: rest.seriesid
+          status: rest.status
+          tagid: rest.tagid
+          filters[created_before]: rest.filters[created_before]
+          filters[created_after]: rest.filters[created_after]
+          filters[updated_before]: rest.filters[updated_before]
+          filters[updated_after]: rest.filters[updated_after]
+          waitid: rest.waitid
+          orders[id]: rest.orders[id]
+          orders[cdate]: rest.orders[cdate]
+          orders[email]: rest.orders[email]
+          orders[first_name]: rest.orders[first_name]
+          orders[last_name]: rest.orders[last_name]
+          orders[name]: rest.orders[name]
+          orders[score]: rest.orders[score]
+          in_group_lists: rest.in_group_lists
+          forceQuery: rest.forceQuery
+          sortId: rest.sortId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{contactid}/trackinglogs
+      name: contacts-contactid-trackinglogs
+      description: REST surface for contacts-contactId-trackingLogs.
+      operations:
+      - method: GET
+        name: getcontactstrackinglogsevents
+        description: ActiveCampaign Get Contact's Tracking Logs/Events
+        call: v3-contacts.getcontactstrackinglogsevents
+        with:
+          contactId: rest.contactId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}
+      name: contacts-id
+      description: REST surface for contacts-id.
+      operations:
+      - method: GET
+        name: getcontact
+        description: ActiveCampaign Retrieve a Contact
+        call: v3-contacts.getcontact
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateacontactnew
+        description: ActiveCampaign Update a Contact
+        call: v3-contacts.updateacontactnew
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecontact
+        description: ActiveCampaign Delete a Contact
+        call: v3-contacts.deletecontact
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/accountcontacts
+      name: contacts-id-accountcontacts
+      description: REST surface for contacts-id-accountContacts.
+      operations:
+      - method: GET
+        name: retrievecontactaccountcontacts
+        description: ActiveCampaign Retrieve a Contacts Account Contacts
+        call: v3-contacts.retrievecontactaccountcontacts
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/automationentrycounts
+      name: contacts-id-automationentrycounts
+      description: REST surface for contacts-id-automationEntryCounts.
+      operations:
+      - method: GET
+        name: retrievecontactautomationentrycounts
+        description: ActiveCampaign Retrieve a Contacts Automation Entry Counts
+        call: v3-contacts.retrievecontactautomationentrycounts
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/bouncelogs
+      name: contacts-id-bouncelogs
+      description: REST surface for contacts-id-bounceLogs.
+      operations:
+      - method: GET
+        name: retrievecontactbouncelogs
+        description: ActiveCampaign Retrieve a Contact's Bounce Logs
+        call: v3-contacts.retrievecontactbouncelogs
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/contactautomations
+      name: contacts-id-contactautomations
+      description: REST surface for contacts-id-contactAutomations.
+      operations:
+      - method: GET
+        name: listallcontactautomationsforcontact
+        description: ActiveCampaign List All Automations the Contact is in
+        call: v3-contacts.listallcontactautomationsforcontact
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/contactdata
+      name: contacts-id-contactdata
+      description: REST surface for contacts-id-contactData.
+      operations:
+      - method: GET
+        name: retrievecontactdata
+        description: ActiveCampaign Retrieve a Contact's Data
+        call: v3-contacts.retrievecontactdata
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/contactdeals
+      name: contacts-id-contactdeals
+      description: REST surface for contacts-id-contactDeals.
+      operations:
+      - method: GET
+        name: retrievecontactdealslist
+        description: ActiveCampaign Retrieve a List of Contact's Deals
+        call: v3-contacts.retrievecontactdealslist
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/contactgoals
+      name: contacts-id-contactgoals
+      description: REST surface for contacts-id-contactGoals.
+      operations:
+      - method: GET
+        name: retrievecontactgoals
+        description: ActiveCampaign Retrieve a Contact's Goals
+        call: v3-contacts.retrievecontactgoals
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/contactlists
+      name: contacts-id-contactlists
+      description: REST surface for contacts-id-contactLists.
+      operations:
+      - method: GET
+        name: retrievecontactlistmemberships
+        description: ActiveCampaign Retrieve a Contact's List Memberships
+        call: v3-contacts.retrievecontactlistmemberships
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/contactlogs
+      name: contacts-id-contactlogs
+      description: REST surface for contacts-id-contactLogs.
+      operations:
+      - method: GET
+        name: retrievecontactlogs
+        description: ActiveCampaign Retrieve a Contact's Logs
+        call: v3-contacts.retrievecontactlogs
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/deals
+      name: contacts-id-deals
+      description: REST surface for contacts-id-deals.
+      operations:
+      - method: GET
+        name: retrievecontactdeals
+        description: ActiveCampaign Retrieve a Contact's Deals
+        call: v3-contacts.retrievecontactdeals
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/fieldvalues
+      name: contacts-id-fieldvalues
+      description: REST surface for contacts-id-fieldValues.
+      operations:
+      - method: GET
+        name: retrievecontactfieldvalues
+        description: ActiveCampaign Retrieve a Contact's Field Values
+        call: v3-contacts.retrievecontactfieldvalues
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/geoips
+      name: contacts-id-geoips
+      description: REST surface for contacts-id-geoIps.
+      operations:
+      - method: GET
+        name: retrievecontactgeoips
+        description: ActiveCampaign Retrieve a Contacts List of Geo-ips
+        call: v3-contacts.retrievecontactgeoips
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/notes
+      name: contacts-id-notes
+      description: REST surface for contacts-id-notes.
+      operations:
+      - method: GET
+        name: retrievecontactnotes
+        description: ActiveCampaign Retrieve a Contacts Notes
+        call: v3-contacts.retrievecontactnotes
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/organization
+      name: contacts-id-organization
+      description: REST surface for contacts-id-organization.
+      operations:
+      - method: GET
+        name: retrievecontactorganization
+        description: ActiveCampaign Retrieve a Contacts Organization
+        call: v3-contacts.retrievecontactorganization
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/plusappend
+      name: contacts-id-plusappend
+      description: REST surface for contacts-id-plusAppend.
+      operations:
+      - method: GET
+        name: retrievecontactplusappend
+        description: ActiveCampaign Retrieve a Contacts Plus Append
+        call: v3-contacts.retrievecontactplusappend
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/scorevalues
+      name: contacts-id-scorevalues
+      description: REST surface for contacts-id-scoreValues.
+      operations:
+      - method: GET
+        name: retrieveacontactsscorevalue
+        description: ActiveCampaign Retrieve a Contact's Score Value
+        call: v3-contacts.retrieveacontactsscorevalue
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{id}/trackinglogs
+      name: contacts-id-trackinglogs
+      description: REST surface for contacts-id-trackingLogs.
+      operations:
+      - method: GET
+        name: retrievecontacttrackinglogs
+        description: ActiveCampaign Retrieve a Contacts Tracking Logs
+        call: v3-contacts.retrievecontacttrackinglogs
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v3-contacts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign API v3 — Contacts. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: activecampaign-sync-contact-s-data
+      description: ActiveCampaign Sync a Contact's Data
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-contacts.syncacontactsdata
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-add-contact-automation
+      description: ActiveCampaign Add a Contact to an Automation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-contacts.createnewcontactautomation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-automations-contact
+      description: ActiveCampaign List All Automations a Contact is in
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.listallcontactautomations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-automation-contact-is
+      description: ActiveCampaign Retrieve an Automation a Contact is in
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrieveacontactautomation
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-remove-contact-automation
+      description: ActiveCampaign Remove a Contact from an Automation
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-contacts.deleteacontactautomation
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-secondary-contact
+      description: ActiveCampaign Create a Secondary Contact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-contacts.createasecondarycontact
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-secondary-contacts
+      description: ActiveCampaign List All Secondary Contacts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.listallsecondarycontacts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-secondary-contact
+      description: ActiveCampaign Retrieve a Secondary Contact
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrieveasecondarycontact
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-secondary-contact
+      description: ActiveCampaign Update a Secondary Contact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-contacts.updateasecondarycontact
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-secondary-contact
+      description: ActiveCampaign Delete a Secondary Contact
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-contacts.deleteasecondarycontact
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-list-status-contact
+      description: ActiveCampaign Update List Status for a Contact
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: v3-contacts.updateliststatusforcontact
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-add-tag-contact
+      description: ActiveCampaign Add a Tag to Contact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-contacts.createcontacttag
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-remove-tag-contact
+      description: ActiveCampaign Remove a Tag from a Contact
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-contacts.removeacontactstag
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-contact
+      description: ActiveCampaign Create a Contact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-contacts.createanewcontact
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-search-and-filter
+      description: ActiveCampaign List, Search, and Filter Contacts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.listallcontacts
+      with:
+        ids: tools.ids
+        email: tools.email
+        email_like: tools.email_like
+        exclude: tools.exclude
+        formid: tools.formid
+        id_greater: tools.id_greater
+        id_less: tools.id_less
+        listid: tools.listid
+        phone: tools.phone
+        organization: tools.organization
+        search: tools.search
+        segmentid: tools.segmentid
+        seriesid: tools.seriesid
+        status: tools.status
+        tagid: tools.tagid
+        filters[created_before]: tools.filters[created_before]
+        filters[created_after]: tools.filters[created_after]
+        filters[updated_before]: tools.filters[updated_before]
+        filters[updated_after]: tools.filters[updated_after]
+        waitid: tools.waitid
+        orders[id]: tools.orders[id]
+        orders[cdate]: tools.orders[cdate]
+        orders[email]: tools.orders[email]
+        orders[first_name]: tools.orders[first_name]
+        orders[last_name]: tools.orders[last_name]
+        orders[name]: tools.orders[name]
+        orders[score]: tools.orders[score]
+        in_group_lists: tools.in_group_lists
+        forceQuery: tools.forceQuery
+        sortId: tools.sortId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-get-contact-s-tracking-logs
+      description: ActiveCampaign Get Contact's Tracking Logs/Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.getcontactstrackinglogsevents
+      with:
+        contactId: tools.contactId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contact
+      description: ActiveCampaign Retrieve a Contact
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.getcontact
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-contact
+      description: ActiveCampaign Update a Contact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-contacts.updateacontactnew
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-contact
+      description: ActiveCampaign Delete a Contact
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-contacts.deletecontact
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contacts-account-contacts
+      description: ActiveCampaign Retrieve a Contacts Account Contacts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactaccountcontacts
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contacts-automation-entry
+      description: ActiveCampaign Retrieve a Contacts Automation Entry Counts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactautomationentrycounts
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contact-s-bounce-logs
+      description: ActiveCampaign Retrieve a Contact's Bounce Logs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactbouncelogs
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-automations-contact-2
+      description: ActiveCampaign List All Automations the Contact is in
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.listallcontactautomationsforcontact
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contact-s-data
+      description: ActiveCampaign Retrieve a Contact's Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactdata
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-list-contact-s-deals
+      description: ActiveCampaign Retrieve a List of Contact's Deals
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactdealslist
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contact-s-goals
+      description: ActiveCampaign Retrieve a Contact's Goals
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactgoals
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contact-s-list-memberships
+      description: ActiveCampaign Retrieve a Contact's List Memberships
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactlistmemberships
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contact-s-logs
+      description: ActiveCampaign Retrieve a Contact's Logs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactlogs
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contact-s-deals
+      description: ActiveCampaign Retrieve a Contact's Deals
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactdeals
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contact-s-field-values
+      description: ActiveCampaign Retrieve a Contact's Field Values
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactfieldvalues
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contacts-list-geo
+      description: ActiveCampaign Retrieve a Contacts List of Geo-ips
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactgeoips
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contacts-notes
+      description: ActiveCampaign Retrieve a Contacts Notes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactnotes
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contacts-organization
+      description: ActiveCampaign Retrieve a Contacts Organization
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactorganization
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contacts-plus-append
+      description: ActiveCampaign Retrieve a Contacts Plus Append
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontactplusappend
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contact-s-score-value
+      description: ActiveCampaign Retrieve a Contact's Score Value
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrieveacontactsscorevalue
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contacts-tracking-logs
+      description: ActiveCampaign Retrieve a Contacts Tracking Logs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-contacts.retrievecontacttrackinglogs
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

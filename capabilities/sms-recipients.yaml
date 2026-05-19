@@ -1,0 +1,179 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign SMS Broadcast API — Recipients
+  description: 'ActiveCampaign SMS Broadcast API — Recipients. 2 operations. Lead operation: ActiveCampaign Get Broadcast
+    Recipients. Self-contained Naftiko capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - Recipients
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sms-recipients
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign SMS Broadcast API — Recipients business capability. Self-contained, no shared references.
+    resources:
+    - name: sms-broadcasts-broadcastId-recipients
+      path: /sms/broadcasts/{broadcastId}/recipients
+      operations:
+      - name: getbroadcastrecipients
+        method: GET
+        description: ActiveCampaign Get Broadcast Recipients
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcastId
+          in: path
+          type: integer
+          description: Broadcast ID
+          required: true
+        - name: start_date
+          in: query
+          type: string
+          description: Start date (YYYY-MM-DD)
+        - name: end_date
+          in: query
+          type: string
+          description: End date (YYYY-MM-DD)
+        - name: filters[deliverability][]
+          in: query
+          type: array
+          description: Filter by deliverability status
+        - name: filters[engagement][]
+          in: query
+          type: array
+          description: Filter by engagement type
+        - name: search
+          in: query
+          type: string
+          description: Search contacts by name or phone
+        - name: order[field]
+          in: query
+          type: string
+          description: Order by field
+        - name: offset
+          in: query
+          type: integer
+          description: Offset for pagination
+        - name: limit
+          in: query
+          type: integer
+          description: Number of items to return
+    - name: sms-broadcasts-broadcastId-recipients-export
+      path: /sms/broadcasts/{broadcastId}/recipients/export
+      operations:
+      - name: exportbroadcastrecipients
+        method: POST
+        description: ActiveCampaign Export Broadcast Recipients
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcastId
+          in: path
+          type: integer
+          description: Broadcast ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: sms-recipients-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign SMS Broadcast API — Recipients. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/sms/broadcasts/{broadcastid}/recipients
+      name: sms-broadcasts-broadcastid-recipients
+      description: REST surface for sms-broadcasts-broadcastId-recipients.
+      operations:
+      - method: GET
+        name: getbroadcastrecipients
+        description: ActiveCampaign Get Broadcast Recipients
+        call: sms-recipients.getbroadcastrecipients
+        with:
+          broadcastId: rest.broadcastId
+          start_date: rest.start_date
+          end_date: rest.end_date
+          filters[deliverability][]: rest.filters[deliverability][]
+          filters[engagement][]: rest.filters[engagement][]
+          search: rest.search
+          order[field]: rest.order[field]
+          offset: rest.offset
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sms/broadcasts/{broadcastid}/recipients/export
+      name: sms-broadcasts-broadcastid-recipients-export
+      description: REST surface for sms-broadcasts-broadcastId-recipients-export.
+      operations:
+      - method: POST
+        name: exportbroadcastrecipients
+        description: ActiveCampaign Export Broadcast Recipients
+        call: sms-recipients.exportbroadcastrecipients
+        with:
+          broadcastId: rest.broadcastId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sms-recipients-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign SMS Broadcast API — Recipients. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: activecampaign-get-broadcast-recipients
+      description: ActiveCampaign Get Broadcast Recipients
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sms-recipients.getbroadcastrecipients
+      with:
+        broadcastId: tools.broadcastId
+        start_date: tools.start_date
+        end_date: tools.end_date
+        filters[deliverability][]: tools.filters[deliverability][]
+        filters[engagement][]: tools.filters[engagement][]
+        search: tools.search
+        order[field]: tools.order[field]
+        offset: tools.offset
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-export-broadcast-recipients
+      description: ActiveCampaign Export Broadcast Recipients
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: sms-recipients.exportbroadcastrecipients
+      with:
+        broadcastId: tools.broadcastId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

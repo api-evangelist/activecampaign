@@ -1,0 +1,249 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign API v3 — Tags
+  description: 'ActiveCampaign API v3 — Tags. 5 operations. Lead operation: ActiveCampaign Create a Tag. Self-contained Naftiko
+    capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - Tags
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v3-tags
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign API v3 — Tags business capability. Self-contained, no shared references.
+    resources:
+    - name: tags
+      path: /tags
+      operations:
+      - name: createanewtag
+        method: POST
+        description: ActiveCampaign Create a Tag
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: retrievealltags
+        method: GET
+        description: ActiveCampaign List All Tags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: search
+          in: query
+          type: string
+          description: Filter by name of tag(s); "contains" operator is assumed.
+        - name: filters[search][<operator>]
+          in: query
+          type: string
+          description: 'Filters tags by tag name according to the operator specified. Operators currently supported: `eq`,
+            `neq`, `lt`, `lte`, `gt`, `gte`, `contains`, `starts_with`'
+        - name: orders[search]
+          in: query
+          type: string
+          description: Orders filtered results by weight, ascending order, or descending order. If `weight` is used, exact
+            matches are returned first, followed by matches starting wit
+    - name: tags-id
+      path: /tags/{id}
+      operations:
+      - name: retrieveatag
+        method: GET
+        description: ActiveCampaign Retrieve a Tag
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the tag to retrieve
+          required: true
+      - name: updateatag
+        method: PUT
+        description: ActiveCampaign Update a Tag
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the tag to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteatag
+        method: DELETE
+        description: ActiveCampaign Delete a Tag
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the tag to remove
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: v3-tags-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign API v3 — Tags. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tags
+      name: tags
+      description: REST surface for tags.
+      operations:
+      - method: POST
+        name: createanewtag
+        description: ActiveCampaign Create a Tag
+        call: v3-tags.createanewtag
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: retrievealltags
+        description: ActiveCampaign List All Tags
+        call: v3-tags.retrievealltags
+        with:
+          search: rest.search
+          filters[search][<operator>]: rest.filters[search][<operator>]
+          orders[search]: rest.orders[search]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tags/{id}
+      name: tags-id
+      description: REST surface for tags-id.
+      operations:
+      - method: GET
+        name: retrieveatag
+        description: ActiveCampaign Retrieve a Tag
+        call: v3-tags.retrieveatag
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateatag
+        description: ActiveCampaign Update a Tag
+        call: v3-tags.updateatag
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteatag
+        description: ActiveCampaign Delete a Tag
+        call: v3-tags.deleteatag
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v3-tags-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign API v3 — Tags. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: activecampaign-create-tag
+      description: ActiveCampaign Create a Tag
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-tags.createanewtag
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-tags
+      description: ActiveCampaign List All Tags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-tags.retrievealltags
+      with:
+        search: tools.search
+        filters[search][<operator>]: tools.filters[search][<operator>]
+        orders[search]: tools.orders[search]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-tag
+      description: ActiveCampaign Retrieve a Tag
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-tags.retrieveatag
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-tag
+      description: ActiveCampaign Update a Tag
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-tags.updateatag
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-tag
+      description: ActiveCampaign Delete a Tag
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-tags.deleteatag
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

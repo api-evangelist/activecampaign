@@ -1,0 +1,159 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign SMS Broadcast API — AI
+  description: 'ActiveCampaign SMS Broadcast API — AI. 3 operations. Lead operation: ActiveCampaign Create AI-generated Broadcast.
+    Self-contained Naftiko capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - AI
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sms-ai
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign SMS Broadcast API — AI business capability. Self-contained, no shared references.
+    resources:
+    - name: sms-broadcasts-ai
+      path: /sms/broadcasts/ai
+      operations:
+      - name: createaibroadcast
+        method: POST
+        description: ActiveCampaign Create AI-generated Broadcast
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updateaibroadcast
+        method: PUT
+        description: ActiveCampaign Update Broadcast with AI
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: sms-broadcasts-ai-Id
+      path: /sms/broadcasts/ai/{Id}
+      operations:
+      - name: getaibroadcaststatus
+        method: GET
+        description: ActiveCampaign Get AI Broadcast Request Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Id
+          in: path
+          type: string
+          description: Request ID from AI broadcast creation
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: sms-ai-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign SMS Broadcast API — AI. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/sms/broadcasts/ai
+      name: sms-broadcasts-ai
+      description: REST surface for sms-broadcasts-ai.
+      operations:
+      - method: POST
+        name: createaibroadcast
+        description: ActiveCampaign Create AI-generated Broadcast
+        call: sms-ai.createaibroadcast
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateaibroadcast
+        description: ActiveCampaign Update Broadcast with AI
+        call: sms-ai.updateaibroadcast
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sms/broadcasts/ai/{id}
+      name: sms-broadcasts-ai-id
+      description: REST surface for sms-broadcasts-ai-Id.
+      operations:
+      - method: GET
+        name: getaibroadcaststatus
+        description: ActiveCampaign Get AI Broadcast Request Status
+        call: sms-ai.getaibroadcaststatus
+        with:
+          Id: rest.Id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sms-ai-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign SMS Broadcast API — AI. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: activecampaign-create-ai-generated-broadcast
+      description: ActiveCampaign Create AI-generated Broadcast
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: sms-ai.createaibroadcast
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-broadcast-ai
+      description: ActiveCampaign Update Broadcast with AI
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: sms-ai.updateaibroadcast
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-get-ai-broadcast-request
+      description: ActiveCampaign Get AI Broadcast Request Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sms-ai.getaibroadcaststatus
+      with:
+        Id: tools.Id
+      outputParameters:
+      - type: object
+        mapping: $.

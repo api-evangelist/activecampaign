@@ -1,0 +1,226 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign API v3 — Saved Responses
+  description: 'ActiveCampaign API v3 — Saved Responses. 5 operations. Lead operation: ActiveCampaign Create a Saved Response.
+    Self-contained Naftiko capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - Saved Responses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v3-saved-responses
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign API v3 — Saved Responses business capability. Self-contained, no shared references.
+    resources:
+    - name: savedResponses
+      path: /savedResponses
+      operations:
+      - name: savedresponses
+        method: POST
+        description: ActiveCampaign Create a Saved Response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listallsavedresponses
+        method: GET
+        description: ActiveCampaign List All Saved Responses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: savedResponses-id
+      path: /savedResponses/{id}
+      operations:
+      - name: getasavedresponse
+        method: GET
+        description: ActiveCampaign Retrieve a Saved Response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the saved Response to recieve
+          required: true
+      - name: updateasavedresponse
+        method: PUT
+        description: ActiveCampaign Update a Saved Response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the saved response to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: retrieveasavedresponse
+        method: DELETE
+        description: ActiveCampaign Delete a Saved Response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the saved response to remove
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: v3-saved-responses-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign API v3 — Saved Responses. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/savedresponses
+      name: savedresponses
+      description: REST surface for savedResponses.
+      operations:
+      - method: POST
+        name: savedresponses
+        description: ActiveCampaign Create a Saved Response
+        call: v3-saved-responses.savedresponses
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallsavedresponses
+        description: ActiveCampaign List All Saved Responses
+        call: v3-saved-responses.listallsavedresponses
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/savedresponses/{id}
+      name: savedresponses-id
+      description: REST surface for savedResponses-id.
+      operations:
+      - method: GET
+        name: getasavedresponse
+        description: ActiveCampaign Retrieve a Saved Response
+        call: v3-saved-responses.getasavedresponse
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateasavedresponse
+        description: ActiveCampaign Update a Saved Response
+        call: v3-saved-responses.updateasavedresponse
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: retrieveasavedresponse
+        description: ActiveCampaign Delete a Saved Response
+        call: v3-saved-responses.retrieveasavedresponse
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v3-saved-responses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign API v3 — Saved Responses. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: activecampaign-create-saved-response
+      description: ActiveCampaign Create a Saved Response
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-saved-responses.savedresponses
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-saved-responses
+      description: ActiveCampaign List All Saved Responses
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-saved-responses.listallsavedresponses
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-saved-response
+      description: ActiveCampaign Retrieve a Saved Response
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-saved-responses.getasavedresponse
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-saved-response
+      description: ActiveCampaign Update a Saved Response
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-saved-responses.updateasavedresponse
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-saved-response
+      description: ActiveCampaign Delete a Saved Response
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-saved-responses.retrieveasavedresponse
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

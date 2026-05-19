@@ -1,0 +1,810 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign API v3 — Other
+  description: 'ActiveCampaign API v3 — Other. 18 operations. Lead operation: ActiveCampaign List a Contact''s Activities.
+    Self-contained Naftiko capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - Other
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v3-other
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign API v3 — Other business capability. Self-contained, no shared references.
+    resources:
+    - name: activities
+      path: /activities
+      operations:
+      - name: listcontactactivities
+        method: GET
+        description: ActiveCampaign List a Contact's Activities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: contact
+          in: query
+          type: integer
+          description: Required Contact ID
+        - name: after
+          in: query
+          type: string
+          description: Filter for activities after a specific DateTime
+        - name: include
+          in: query
+          type: string
+          description: 'Activities to include: notes, notes.user, recipients, recipients.recipient, reference, reference.automation,
+            reference.campaign, reference.campaign.campaignList'
+        - name: orders[tstamp]
+          in: query
+          type: string
+          description: Order activities by tstamp
+        - name: emails
+          in: query
+          type: boolean
+          description: 'FALSE: Excludes email data fields under each activity. No specific connection to emails is mentioned
+            in the JSON data.​ TRUE: Returns deal activities that inclu'
+    - name: configs-id
+      path: /configs/{id}
+      operations:
+      - name: setconfig
+        method: PUT
+        description: ActiveCampaign Update Settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: ID of the config to edit
+          required: true
+    - name: connections
+      path: /connections
+      operations:
+      - name: createconnection
+        method: POST
+        description: ActiveCampaign Create a Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listallconnections
+        method: GET
+        description: ActiveCampaign List All Connections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters[service]
+          in: query
+          type: string
+          description: Filter by the external service name.
+        - name: filters[externalid]
+          in: query
+          type: string
+          description: Filter by the external id associated with a connection.
+    - name: connections-id
+      path: /connections/{id}
+      operations:
+      - name: getconnection
+        method: GET
+        description: ActiveCampaign Retrieve a Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The id of the connection to retrieve
+          required: true
+      - name: updateconnection
+        method: PUT
+        description: ActiveCampaign Update a Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The id of the connection to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteconnection
+        method: DELETE
+        description: ActiveCampaign Delete a Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The id of the connection to delete.
+          required: true
+    - name: content-editorMarkup-messageId
+      path: /content/editorMarkup/{messageId}
+      operations:
+      - name: geteditormarkup
+        method: GET
+        description: ActiveCampaign Get Editor Markup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: messageId
+          in: path
+          type: integer
+          description: required
+          required: true
+    - name: emailActivities
+      path: /emailActivities
+      operations:
+      - name: listallemailactivities
+        method: GET
+        description: ActiveCampaign List All Email Activities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters[subscriberid]
+          in: query
+          type: integer
+          description: Set this parameter to return only email activities belonging to a given subscriber.
+        - name: filters[dealId]
+          in: query
+          type: integer
+          description: Set this parameter to return only email activities belonging to a given deal.
+    - name: geoIps-geoAddressID-geoAddress
+      path: /geoIps/{geoAddressID}/geoAddress
+      operations:
+      - name: retrieveacontactsgeoipaddress
+        method: GET
+        description: ActiveCampaign Retrieve a Contacts Geo IP Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: geoAddressID
+          in: path
+          type: integer
+          description: ID of the contact
+          required: true
+    - name: localevent
+      path: /localevent
+      operations:
+      - name: localevents
+        method: POST
+        description: ActiveCampaign Local Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: prism-urlWhitelistings
+      path: /prism/urlWhitelistings
+      operations:
+      - name: adddomaintowhitelist
+        method: POST
+        description: ActiveCampaign Add Domain to Whitelist
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listallwhitelisteddomains
+        method: GET
+        description: ActiveCampaign List All Whitelisted Domains
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: prism-urlWhitelistings-domain_id
+      path: /prism/urlWhitelistings/{domain_id}
+      operations:
+      - name: removedomainfromwhitelist
+        method: DELETE
+        description: ActiveCampaign Remove Domain from Whitelist
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: domain_id
+          in: path
+          type: string
+          description: The id of the whitelisted domain. Can be retrieved using the GET /prism/urlWhitelistings endpoint
+          required: true
+    - name: records-schemdId-external-externalId
+      path: /records/{schemdId}/external/{externalId}
+      operations:
+      - name: getasinglerecordusingexternalid
+        method: GET
+        description: ActiveCampaign Get a Record by External Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: schemdId
+          in: path
+          type: string
+          description: ID of schema
+          required: true
+        - name: externalId
+          in: path
+          type: string
+          description: External ID for record
+          required: true
+    - name: stripo-config
+      path: /stripo/config
+      operations:
+      - name: stripoconfig
+        method: GET
+        description: ActiveCampaign Stripo Config
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: campaignId
+          in: query
+          type: integer
+    - name: stripo-personalizationTags
+      path: /stripo/personalizationTags
+      operations:
+      - name: personalizationtags
+        method: GET
+        description: ActiveCampaign Personalization Tags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scope
+          in: query
+          type: string
+          description: '(optional) Comma separated values: contacts,accounts,deals,customobjects,message,messageVariables,social,surveymonkey,dropbox,ecom'
+        - name: campaignId
+          in: query
+          type: integer
+          description: (optional)
+    - name: trackingLogs-eventId-contact
+      path: /trackingLogs/{eventId}/contact
+      operations:
+      - name: getcontactbyeventid
+        method: GET
+        description: ActiveCampaign Get Contact by Event ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: eventId
+          in: path
+          type: string
+          description: The Event's ID
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: v3-other-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign API v3 — Other. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/activities
+      name: activities
+      description: REST surface for activities.
+      operations:
+      - method: GET
+        name: listcontactactivities
+        description: ActiveCampaign List a Contact's Activities
+        call: v3-other.listcontactactivities
+        with:
+          contact: rest.contact
+          after: rest.after
+          include: rest.include
+          orders[tstamp]: rest.orders[tstamp]
+          emails: rest.emails
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/configs/{id}
+      name: configs-id
+      description: REST surface for configs-id.
+      operations:
+      - method: PUT
+        name: setconfig
+        description: ActiveCampaign Update Settings
+        call: v3-other.setconfig
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/connections
+      name: connections
+      description: REST surface for connections.
+      operations:
+      - method: POST
+        name: createconnection
+        description: ActiveCampaign Create a Connection
+        call: v3-other.createconnection
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallconnections
+        description: ActiveCampaign List All Connections
+        call: v3-other.listallconnections
+        with:
+          filters[service]: rest.filters[service]
+          filters[externalid]: rest.filters[externalid]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/connections/{id}
+      name: connections-id
+      description: REST surface for connections-id.
+      operations:
+      - method: GET
+        name: getconnection
+        description: ActiveCampaign Retrieve a Connection
+        call: v3-other.getconnection
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateconnection
+        description: ActiveCampaign Update a Connection
+        call: v3-other.updateconnection
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteconnection
+        description: ActiveCampaign Delete a Connection
+        call: v3-other.deleteconnection
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/content/editormarkup/{messageid}
+      name: content-editormarkup-messageid
+      description: REST surface for content-editorMarkup-messageId.
+      operations:
+      - method: GET
+        name: geteditormarkup
+        description: ActiveCampaign Get Editor Markup
+        call: v3-other.geteditormarkup
+        with:
+          messageId: rest.messageId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/emailactivities
+      name: emailactivities
+      description: REST surface for emailActivities.
+      operations:
+      - method: GET
+        name: listallemailactivities
+        description: ActiveCampaign List All Email Activities
+        call: v3-other.listallemailactivities
+        with:
+          filters[subscriberid]: rest.filters[subscriberid]
+          filters[dealId]: rest.filters[dealId]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/geoips/{geoaddressid}/geoaddress
+      name: geoips-geoaddressid-geoaddress
+      description: REST surface for geoIps-geoAddressID-geoAddress.
+      operations:
+      - method: GET
+        name: retrieveacontactsgeoipaddress
+        description: ActiveCampaign Retrieve a Contacts Geo IP Address
+        call: v3-other.retrieveacontactsgeoipaddress
+        with:
+          geoAddressID: rest.geoAddressID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/localevent
+      name: localevent
+      description: REST surface for localevent.
+      operations:
+      - method: POST
+        name: localevents
+        description: ActiveCampaign Local Events
+        call: v3-other.localevents
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/prism/urlwhitelistings
+      name: prism-urlwhitelistings
+      description: REST surface for prism-urlWhitelistings.
+      operations:
+      - method: POST
+        name: adddomaintowhitelist
+        description: ActiveCampaign Add Domain to Whitelist
+        call: v3-other.adddomaintowhitelist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallwhitelisteddomains
+        description: ActiveCampaign List All Whitelisted Domains
+        call: v3-other.listallwhitelisteddomains
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/prism/urlwhitelistings/{domain-id}
+      name: prism-urlwhitelistings-domain-id
+      description: REST surface for prism-urlWhitelistings-domain_id.
+      operations:
+      - method: DELETE
+        name: removedomainfromwhitelist
+        description: ActiveCampaign Remove Domain from Whitelist
+        call: v3-other.removedomainfromwhitelist
+        with:
+          domain_id: rest.domain_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/records/{schemdid}/external/{externalid}
+      name: records-schemdid-external-externalid
+      description: REST surface for records-schemdId-external-externalId.
+      operations:
+      - method: GET
+        name: getasinglerecordusingexternalid
+        description: ActiveCampaign Get a Record by External Id
+        call: v3-other.getasinglerecordusingexternalid
+        with:
+          schemdId: rest.schemdId
+          externalId: rest.externalId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stripo/config
+      name: stripo-config
+      description: REST surface for stripo-config.
+      operations:
+      - method: GET
+        name: stripoconfig
+        description: ActiveCampaign Stripo Config
+        call: v3-other.stripoconfig
+        with:
+          campaignId: rest.campaignId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stripo/personalizationtags
+      name: stripo-personalizationtags
+      description: REST surface for stripo-personalizationTags.
+      operations:
+      - method: GET
+        name: personalizationtags
+        description: ActiveCampaign Personalization Tags
+        call: v3-other.personalizationtags
+        with:
+          scope: rest.scope
+          campaignId: rest.campaignId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/trackinglogs/{eventid}/contact
+      name: trackinglogs-eventid-contact
+      description: REST surface for trackingLogs-eventId-contact.
+      operations:
+      - method: GET
+        name: getcontactbyeventid
+        description: ActiveCampaign Get Contact by Event ID
+        call: v3-other.getcontactbyeventid
+        with:
+          eventId: rest.eventId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v3-other-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign API v3 — Other. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: activecampaign-list-contact-s-activities
+      description: ActiveCampaign List a Contact's Activities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-other.listcontactactivities
+      with:
+        contact: tools.contact
+        after: tools.after
+        include: tools.include
+        orders[tstamp]: tools.orders[tstamp]
+        emails: tools.emails
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-settings
+      description: ActiveCampaign Update Settings
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-other.setconfig
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-connection
+      description: ActiveCampaign Create a Connection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-other.createconnection
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-connections
+      description: ActiveCampaign List All Connections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-other.listallconnections
+      with:
+        filters[service]: tools.filters[service]
+        filters[externalid]: tools.filters[externalid]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-connection
+      description: ActiveCampaign Retrieve a Connection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-other.getconnection
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-connection
+      description: ActiveCampaign Update a Connection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-other.updateconnection
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-connection
+      description: ActiveCampaign Delete a Connection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-other.deleteconnection
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-get-editor-markup
+      description: ActiveCampaign Get Editor Markup
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-other.geteditormarkup
+      with:
+        messageId: tools.messageId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-email-activities
+      description: ActiveCampaign List All Email Activities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-other.listallemailactivities
+      with:
+        filters[subscriberid]: tools.filters[subscriberid]
+        filters[dealId]: tools.filters[dealId]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-contacts-geo-ip
+      description: ActiveCampaign Retrieve a Contacts Geo IP Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-other.retrieveacontactsgeoipaddress
+      with:
+        geoAddressID: tools.geoAddressID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-local-events
+      description: ActiveCampaign Local Events
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-other.localevents
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-add-domain-whitelist
+      description: ActiveCampaign Add Domain to Whitelist
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-other.adddomaintowhitelist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-whitelisted-domains
+      description: ActiveCampaign List All Whitelisted Domains
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-other.listallwhitelisteddomains
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-remove-domain-whitelist
+      description: ActiveCampaign Remove Domain from Whitelist
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-other.removedomainfromwhitelist
+      with:
+        domain_id: tools.domain_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-get-record-external-id
+      description: ActiveCampaign Get a Record by External Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-other.getasinglerecordusingexternalid
+      with:
+        schemdId: tools.schemdId
+        externalId: tools.externalId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-stripo-config
+      description: ActiveCampaign Stripo Config
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-other.stripoconfig
+      with:
+        campaignId: tools.campaignId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-personalization-tags
+      description: ActiveCampaign Personalization Tags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-other.personalizationtags
+      with:
+        scope: tools.scope
+        campaignId: tools.campaignId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-get-contact-event-id
+      description: ActiveCampaign Get Contact by Event ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-other.getcontactbyeventid
+      with:
+        eventId: tools.eventId
+      outputParameters:
+      - type: object
+        mapping: $.

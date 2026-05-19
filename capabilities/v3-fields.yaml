@@ -1,0 +1,568 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign API v3 — Fields
+  description: 'ActiveCampaign API v3 — Fields. 13 operations. Lead operation: ActiveCampaign Create Custom Field Options.
+    Self-contained Naftiko capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - Fields
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v3-fields
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign API v3 — Fields business capability. Self-contained, no shared references.
+    resources:
+    - name: fieldOption-bulk
+      path: /fieldOption/bulk
+      operations:
+      - name: createcustomfieldoptions
+        method: POST
+        description: ActiveCampaign Create Custom Field Options
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: fieldRels
+      path: /fieldRels
+      operations:
+      - name: createacustomfieldrelationshiptolists
+        method: POST
+        description: ActiveCampaign Create a Custom Field Relationship to List(s)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: fieldRels-fieldRelId
+      path: /fieldRels/{fieldRelId}
+      operations:
+      - name: deleteacustomfieldrelationshiptolists
+        method: DELETE
+        description: ActiveCampaign Delete a Custom Field Relationship to List(s)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fieldRelId
+          in: path
+          type: integer
+          description: Field relationship ID to be deleted
+          required: true
+    - name: fieldValues
+      path: /fieldValues
+      operations:
+      - name: createfieldvalue
+        method: POST
+        description: ActiveCampaign Create a Custom Field Value
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listallcustomfieldvalues
+        method: GET
+        description: ActiveCampaign List All Custom Field Values
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters[fieldid]
+          in: query
+          type: string
+          description: ID of the field the value belongs to.
+        - name: filters[val]
+          in: query
+          type: string
+          description: Value of the custom field for a specific contact
+    - name: fieldValues-id
+      path: /fieldValues/{id}
+      operations:
+      - name: retrieveafieldvalues
+        method: GET
+        description: ActiveCampaign Retrieve a Custom Field Value
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: ID of the fieldValue to retrieve
+          required: true
+      - name: updateacustomfieldvalueforcontact
+        method: PUT
+        description: ActiveCampaign Update a Custom Field Value for Contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: ID of the fieldValue to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteafieldvalue1
+        method: DELETE
+        description: ActiveCampaign Delete a Custom Field Value
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the fieldValue to delete
+          required: true
+    - name: fields
+      path: /fields
+      operations:
+      - name: createacontactcustomfield
+        method: POST
+        description: ActiveCampaign Create a Custom Field
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: retrievefields
+        method: GET
+        description: ActiveCampaign List All Custom Fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: The number of fields returned per request.
+        - name: filters[perstag]
+          in: query
+          type: string
+          description: 'The custom field''s persistant tag to filter by (Ex: CUSTOMER_GROUP)'
+    - name: fields-id
+      path: /fields/{id}
+      operations:
+      - name: updateafield
+        method: PUT
+        description: ActiveCampaign Update a Custom Field
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the field to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: retrieveacustomfieldcontact
+        method: GET
+        description: ActiveCampaign Get a Custom Field by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the field to retrieve
+          required: true
+      - name: deleteafield
+        method: DELETE
+        description: ActiveCampaign Delete a Custom Field
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the field option to delete
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: v3-fields-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign API v3 — Fields. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/fieldoption/bulk
+      name: fieldoption-bulk
+      description: REST surface for fieldOption-bulk.
+      operations:
+      - method: POST
+        name: createcustomfieldoptions
+        description: ActiveCampaign Create Custom Field Options
+        call: v3-fields.createcustomfieldoptions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/fieldrels
+      name: fieldrels
+      description: REST surface for fieldRels.
+      operations:
+      - method: POST
+        name: createacustomfieldrelationshiptolists
+        description: ActiveCampaign Create a Custom Field Relationship to List(s)
+        call: v3-fields.createacustomfieldrelationshiptolists
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/fieldrels/{fieldrelid}
+      name: fieldrels-fieldrelid
+      description: REST surface for fieldRels-fieldRelId.
+      operations:
+      - method: DELETE
+        name: deleteacustomfieldrelationshiptolists
+        description: ActiveCampaign Delete a Custom Field Relationship to List(s)
+        call: v3-fields.deleteacustomfieldrelationshiptolists
+        with:
+          fieldRelId: rest.fieldRelId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/fieldvalues
+      name: fieldvalues
+      description: REST surface for fieldValues.
+      operations:
+      - method: POST
+        name: createfieldvalue
+        description: ActiveCampaign Create a Custom Field Value
+        call: v3-fields.createfieldvalue
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallcustomfieldvalues
+        description: ActiveCampaign List All Custom Field Values
+        call: v3-fields.listallcustomfieldvalues
+        with:
+          filters[fieldid]: rest.filters[fieldid]
+          filters[val]: rest.filters[val]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/fieldvalues/{id}
+      name: fieldvalues-id
+      description: REST surface for fieldValues-id.
+      operations:
+      - method: GET
+        name: retrieveafieldvalues
+        description: ActiveCampaign Retrieve a Custom Field Value
+        call: v3-fields.retrieveafieldvalues
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateacustomfieldvalueforcontact
+        description: ActiveCampaign Update a Custom Field Value for Contact
+        call: v3-fields.updateacustomfieldvalueforcontact
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteafieldvalue1
+        description: ActiveCampaign Delete a Custom Field Value
+        call: v3-fields.deleteafieldvalue1
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/fields
+      name: fields
+      description: REST surface for fields.
+      operations:
+      - method: POST
+        name: createacontactcustomfield
+        description: ActiveCampaign Create a Custom Field
+        call: v3-fields.createacontactcustomfield
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: retrievefields
+        description: ActiveCampaign List All Custom Fields
+        call: v3-fields.retrievefields
+        with:
+          limit: rest.limit
+          filters[perstag]: rest.filters[perstag]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/fields/{id}
+      name: fields-id
+      description: REST surface for fields-id.
+      operations:
+      - method: PUT
+        name: updateafield
+        description: ActiveCampaign Update a Custom Field
+        call: v3-fields.updateafield
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: retrieveacustomfieldcontact
+        description: ActiveCampaign Get a Custom Field by ID
+        call: v3-fields.retrieveacustomfieldcontact
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteafield
+        description: ActiveCampaign Delete a Custom Field
+        call: v3-fields.deleteafield
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v3-fields-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign API v3 — Fields. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: activecampaign-create-custom-field-options
+      description: ActiveCampaign Create Custom Field Options
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-fields.createcustomfieldoptions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-custom-field-relationship
+      description: ActiveCampaign Create a Custom Field Relationship to List(s)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-fields.createacustomfieldrelationshiptolists
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-custom-field-relationship
+      description: ActiveCampaign Delete a Custom Field Relationship to List(s)
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-fields.deleteacustomfieldrelationshiptolists
+      with:
+        fieldRelId: tools.fieldRelId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-custom-field-value
+      description: ActiveCampaign Create a Custom Field Value
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-fields.createfieldvalue
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-custom-field
+      description: ActiveCampaign List All Custom Field Values
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-fields.listallcustomfieldvalues
+      with:
+        filters[fieldid]: tools.filters[fieldid]
+        filters[val]: tools.filters[val]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-custom-field-value
+      description: ActiveCampaign Retrieve a Custom Field Value
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-fields.retrieveafieldvalues
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-custom-field-value
+      description: ActiveCampaign Update a Custom Field Value for Contact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-fields.updateacustomfieldvalueforcontact
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-custom-field-value
+      description: ActiveCampaign Delete a Custom Field Value
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-fields.deleteafieldvalue1
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-custom-field
+      description: ActiveCampaign Create a Custom Field
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-fields.createacontactcustomfield
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-custom-fields
+      description: ActiveCampaign List All Custom Fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-fields.retrievefields
+      with:
+        limit: tools.limit
+        filters[perstag]: tools.filters[perstag]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-custom-field
+      description: ActiveCampaign Update a Custom Field
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-fields.updateafield
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-get-custom-field-id
+      description: ActiveCampaign Get a Custom Field by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-fields.retrieveacustomfieldcontact
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-custom-field
+      description: ActiveCampaign Delete a Custom Field
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-fields.deleteafield
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

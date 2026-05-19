@@ -1,0 +1,2223 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign API v3 — Deals
+  description: 'ActiveCampaign API v3 — Deals. 47 operations. Lead operation: ActiveCampaign List All Deal Activities. Self-contained
+    Naftiko capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - Deals
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v3-deals
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign API v3 — Deals business capability. Self-contained, no shared references.
+    resources:
+    - name: dealActivities
+      path: /dealActivities
+      operations:
+      - name: listalldealactivities
+        method: GET
+        description: ActiveCampaign List All Deal Activities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: exclude
+          in: query
+          type: string
+          description: Include this param to exclude "email", "connection_email", and "LinkData" activity types
+        - name: deal
+          in: query
+          type: string
+          description: Filter by deal ID
+        - name: filters[data_type]
+          in: query
+          type: string
+          description: 'Enter any dataType (see Response Details) to filter by that type. Examples: "userid" or task" or "note"'
+        - name: filters[data_id]
+          in: query
+          type: string
+          description: Enter any dataId (see Response details) to filter by related object. Example "291" for a note with
+            ID 291
+    - name: dealCustomFieldData
+      path: /dealCustomFieldData
+      operations:
+      - name: createcustomdealfieldvalue
+        method: POST
+        description: ActiveCampaign Create a Custom Field Value
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listallcustomfielddatafieldvalues
+        method: GET
+        description: ActiveCampaign List All Custom Field Values
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters[dealId]
+          in: query
+          type: string
+          description: Filter results by a specific deal (note that Id uses a capital I)
+    - name: dealCustomFieldData-bulkCreate
+      path: /dealCustomFieldData/bulkCreate
+      operations:
+      - name: bulkcreateacustomdealfieldvalue
+        method: POST
+        description: ActiveCampaign Bulk Create a Custom Deal Field Value
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: dealCustomFieldData-bulkUpdate
+      path: /dealCustomFieldData/bulkUpdate
+      operations:
+      - name: bulkupdateacustomfieldvalue
+        method: PATCH
+        description: ActiveCampaign Bulk Update a Custom Field Value
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: dealCustomFieldData-id
+      path: /dealCustomFieldData/{id}
+      operations:
+      - name: retrieveacustomdealfieldvalue
+        method: GET
+        description: ActiveCampaign Retrieve a Custom Field Value
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the dealCustomFieldData to retrieve
+          required: true
+      - name: updateacustomdealfieldvalue
+        method: PUT
+        description: ActiveCampaign Update a Custom Field Value
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the custom fields value to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteacustomdealfielddata
+        method: DELETE
+        description: ActiveCampaign Delete a Custom Field Value
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the dealCustomFieldData to retrieve
+          required: true
+    - name: dealCustomFieldMeta
+      path: /dealCustomFieldMeta
+      operations:
+      - name: createcustomdealfieldmeta
+        method: POST
+        description: ActiveCampaign Create a Custom Field Meta
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: retrieveallcustomdealfieldmeta
+        method: GET
+        description: ActiveCampaign List All Custom Fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: The number of fields returned per request.
+    - name: dealCustomFieldMeta-id
+      path: /dealCustomFieldMeta/{id}
+      operations:
+      - name: retrieveacustomdealfieldmeta
+        method: GET
+        description: ActiveCampaign Retrieve a Custom Field
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the field to retrieve
+          required: true
+      - name: updateacustomdealfieldmeta
+        method: PUT
+        description: ActiveCampaign Update a Custom Field
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the custom field to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteacustomdealfieldmeta
+        method: DELETE
+        description: ActiveCampaign Delete a Custom Field
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the field to delete
+          required: true
+    - name: dealGroup-get_inaccessible_deal_groups
+      path: /dealGroup/get_inaccessible_deal_groups
+      operations:
+      - name: retrieveinaccessiblepipelinesbyuser
+        method: GET
+        description: ActiveCampaign Retrieve Inaccessible Pipelines by User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: dealIds[]
+          in: query
+          type: array
+          description: Deal Ids
+          required: true
+        - name: userId
+          in: query
+          type: integer
+          description: User's Id
+          required: true
+    - name: dealGroups
+      path: /dealGroups
+      operations:
+      - name: createapipeline
+        method: POST
+        description: ActiveCampaign Create a Pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listallpipelines
+        method: GET
+        description: ActiveCampaign List All Pipelines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters[title]
+          in: query
+          type: string
+          description: Filter by pipeline's title. The filter matches any pipeline titles that contain the provided title
+            (i.e. "Contact" matches all of "In Contact", "To Contact", an
+        - name: filters[have_stages]
+          in: query
+          type: integer
+          description: Filter by whether pipelines have deal stages. Can be either `1` or `0`. If `1`, only pipelines with
+            at least one stage will be returned.
+        - name: orders[title]
+          in: query
+          type: string
+          description: Order by Pipeline's title
+        - name: orders[popular]
+          in: query
+          type: string
+          description: Order by number of deals each pipeline has. If pipelines have same number of deals, pipelines' created
+            dates are used to determine the order.
+    - name: dealGroups-id
+      path: /dealGroups/{id}
+      operations:
+      - name: retrieveapipeline
+        method: GET
+        description: ActiveCampaign Retrieve a Pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Pipeline's id
+          required: true
+      - name: updateapipeline
+        method: PUT
+        description: ActiveCampaign Update a Pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Pipeline's id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteapipeline
+        method: DELETE
+        description: ActiveCampaign Delete a Pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Pipeline's id
+          required: true
+    - name: dealRoles
+      path: /dealRoles
+      operations:
+      - name: listalldealroles
+        method: GET
+        description: ActiveCampaign List All Deal Roles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: search
+          in: query
+          type: string
+          description: (optional string used to search for matching titles)
+      - name: createadealrole
+        method: POST
+        description: ActiveCampaign Create a Deal Role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: dealRoles-id
+      path: /dealRoles/{id}
+      operations:
+      - name: deleteadealrole
+        method: DELETE
+        description: ActiveCampaign Delete a Deal Role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Deal role's id
+          required: true
+    - name: dealStages
+      path: /dealStages
+      operations:
+      - name: createadealstage
+        method: POST
+        description: ActiveCampaign Create a Stage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reorder
+          in: query
+          type: integer
+          description: Whether to reorder stages within the pipeline after creating a new deal stage. Can be one of `0` and
+            `1`. If set to `1`, new order values will be assigned to al
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listalldealstages
+        method: GET
+        description: ActiveCampaign List All Stages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters[title]
+          in: query
+          type: string
+          description: Filter by deal stages' titles. Any stages whose titles partial-match the filter value are returned
+        - name: filters[d_groupid]
+          in: query
+          type: string
+          description: Filter by pipeline's id
+        - name: orders[title]
+          in: query
+          type: string
+          description: Order by deal stage's title
+    - name: dealStages-id
+      path: /dealStages/{id}
+      operations:
+      - name: retrieveadealstage
+        method: GET
+        description: ActiveCampaign Retrieve a Stage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Deal stage's id
+          required: true
+      - name: updateadealstage
+        method: PUT
+        description: ActiveCampaign Update a Stage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Deal stage's id
+          required: true
+        - name: reorder
+          in: query
+          type: integer
+          description: Whether to reorder stages within the pipeline after creating a new deal stage. Can be one of `0` and
+            `1`. If set to `1`, new order values will be assigned to al
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteadealstage
+        method: DELETE
+        description: ActiveCampaign Delete a Stage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Deal stage's id
+          required: true
+    - name: dealStages-id-deals
+      path: /dealStages/{id}/deals
+      operations:
+      - name: movedealstoanotherdealstage
+        method: PUT
+        description: ActiveCampaign Move Deals to Another Stage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Deal stage's id whose deals are to be moved to another deal stage
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: dealTasks
+      path: /dealTasks
+      operations:
+      - name: createtask
+        method: POST
+        description: ActiveCampaign Create a Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listalltasks
+        method: GET
+        description: ActiveCampaign List All Tasks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters[title]
+          in: query
+          type: string
+          description: The title to be assigned to the task
+        - name: filters[reltype]
+          in: query
+          type: string
+          description: The name of the relating object (see relationships table)
+        - name: filters[relid]
+          in: query
+          type: integer
+          description: The id of the relational object for this task
+        - name: filters[status]
+          in: query
+          type: integer
+          description: Task status means complete or incomplete. 1 is complete and 0 is incomplete.
+        - name: filters[note]
+          in: query
+          type: string
+          description: The content describing the task
+        - name: filters[duedate]
+          in: query
+          type: string
+          description: Due date of the task
+        - name: filters[d_tasktypeid]
+          in: query
+          type: integer
+          description: The type of the task based on the available Task Types in the account
+        - name: filters[userid]
+          in: query
+          type: integer
+          description: User ID this task belongs to
+        - name: filters[due_after]
+          in: query
+          type: string
+          description: Filter deal tasks that are due after a specific date
+        - name: Fitlers[due_before]
+          in: query
+          type: string
+          description: Filter deal tasks that are due before a specific date
+        - name: filters[duedate_range]
+          in: query
+          type: string
+          description: Filter deal tasks that are due between specific date range (YYYY-MM-DD+YYYY-MM-DD format) or get categorized
+            tasks (upcoming, scheduled, overdue values)
+        - name: filters[assignee_userid]
+          in: query
+          type: integer
+          description: The id of the user a task is assigned to
+        - name: filters[outcome_id]
+          in: query
+          type: integer
+          description: The id of a task outcome that the task belongs to.
+    - name: dealTasks-id
+      path: /dealTasks/{id}
+      operations:
+      - name: gettask
+        method: GET
+        description: ActiveCampaign Retrieve a Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: The ID of the task
+          required: true
+      - name: updatetask
+        method: PUT
+        description: ActiveCampaign Update a Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: The ID of the task
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletetask
+        method: DELETE
+        description: ActiveCampaign Delete a Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: The task id
+          required: true
+    - name: dealTasktypes
+      path: /dealTasktypes
+      operations:
+      - name: createadealtasktype
+        method: POST
+        description: ActiveCampaign Create a Task Type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listalldealtasktypes
+        method: GET
+        description: ActiveCampaign List All Task Types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: dealTasktypes-id
+      path: /dealTasktypes/{id}
+      operations:
+      - name: retrieveadealtasktype
+        method: GET
+        description: ActiveCampaign Retrieve a Task Type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Deal task type's id
+          required: true
+      - name: updateadealtasktype
+        method: PUT
+        description: ActiveCampaign Update a Task Type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Deal task type's id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteadealtasktype
+        method: DELETE
+        description: ActiveCampaign Delete a Task Type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Deal task type's id
+          required: true
+    - name: dealTasktypes-id-dealTasks
+      path: /dealTasktypes/{id}/dealTasks
+      operations:
+      - name: movedealtaskstoanotherdealtasktype
+        method: PUT
+        description: ActiveCampaign Move Tasks to Another Task Type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Deal task type's id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: deals
+      path: /deals
+      operations:
+      - name: createadealnew
+        method: POST
+        description: ActiveCampaign Create a Deal
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listalldeals
+        method: GET
+        description: ActiveCampaign List All Deals
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters[search]
+          in: query
+          type: string
+          description: Search text to use with `search_field` parameter.
+        - name: filters[search_field]
+          in: query
+          type: string
+          description: Field to search for. See [available values](https://developers.activecampaign.com/reference/deal#deals-parameters-available-values).
+        - name: filters[title]
+          in: query
+          type: string
+          description: Filter by deal's title
+        - name: filters[stage]
+          in: query
+          type: integer
+          description: Filter by deal's stage
+        - name: filters[group]
+          in: query
+          type: integer
+          description: Filter by deal's pipeline
+        - name: filters[status]
+          in: query
+          type: integer
+          description: Filter by deal's status.  See [available values](https://developers.activecampaign.com/reference/deal#deals-parameters-available-values)
+        - name: filters[owner]
+          in: query
+          type: integer
+          description: Filter by deal's owner
+        - name: filters[nextdate_range]
+          in: query
+          type: string
+          description: Filter by deal's tasks due dates. See [available values](https://developers.activecampaign.com/reference/deal#deals-parameters-available-values)
+        - name: filters[tag]
+          in: query
+          type: string
+          description: Filter by tag names associated with deal's primary contact. See [available values](https://developers.activecampaign.com/reference/deal#deals-parameters-availab
+        - name: filters[tasktype]
+          in: query
+          type: string
+          description: Filter by deals that have tasks with given type
+        - name: filters[created_before]
+          in: query
+          type: string
+          description: Returns deals that are created less than given date
+        - name: filters[created_after]
+          in: query
+          type: string
+          description: Returns deals that are created greater than or equal to given date
+        - name: filters[updated_before]
+          in: query
+          type: string
+          description: Returns deals that are updated less than given date
+        - name: filters[updated_after]
+          in: query
+          type: string
+          description: Returns deals that are updated greater than or equal to given date
+        - name: filters[organization]
+          in: query
+          type: integer
+          description: Filter by deal's primary contact's organization's id
+        - name: filters[minimum_value]
+          in: query
+          type: integer
+          description: In USD with dollar portion. Returns deals whose values are greater than or equal to given value
+        - name: filters[maximum_value]
+          in: query
+          type: integer
+          description: In USD with dollar portion. Returns deals whose values are less than or equal to given value
+        - name: filters[score_greater_than]
+          in: query
+          type: string
+          description: In a format of `<score_id>:<score_value>`. Returns deals whose score value is greater than given value
+        - name: filters[score_less_than]
+          in: query
+          type: string
+          description: In a format of `<score_id>:<score_value>`. Returns deals whose score value is less than given value
+        - name: filters[score]
+          in: query
+          type: string
+          description: In a format of `<score_id>:<score_value>`. Returns deals whose score value is equal to given value
+        - name: orders[title]
+          in: query
+          type: string
+          description: Order by deal's title.
+        - name: orders[value]
+          in: query
+          type: string
+          description: Order by deal's value.
+        - name: orders[cdate]
+          in: query
+          type: string
+          description: Order by deal's created date.
+        - name: orders[contact_name]
+          in: query
+          type: string
+          description: Order by deal's primary contact's first name.
+        - name: orders[contact_orgname]
+          in: query
+          type: string
+          description: Order by deal's primary contact's organization name.
+        - name: orders[next-action]
+          in: query
+          type: string
+          description: 'Order by deal''s next task''s due date first. Then append deals with no next task. Lastly append deals
+            with overdue tasks. If dates are the same, order by deal''s '
+    - name: deals-bulkUpdate
+      path: /deals/bulkUpdate
+      operations:
+      - name: bulkupdatedealowners
+        method: PATCH
+        description: ActiveCampaign Bulk Update Deal Owners
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: deals-id
+      path: /deals/{id}
+      operations:
+      - name: retrieveadeal
+        method: GET
+        description: ActiveCampaign Retrieve a Deal
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: The Deal's id
+          required: true
+      - name: updateadealnew
+        method: PUT
+        description: ActiveCampaign Update a Deal
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: The Deal's id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteadeal
+        method: DELETE
+        description: ActiveCampaign Delete a Deal
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: The Deal's id
+          required: true
+    - name: deals-id-notes
+      path: /deals/{id}/notes
+      operations:
+      - name: createadealnote
+        method: POST
+        description: ActiveCampaign Create a Deal Note
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The Deal's id to assign new note to
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: deals-id-notes-noteId
+      path: /deals/{id}/notes/{noteId}
+      operations:
+      - name: updateadealnote
+        method: PUT
+        description: ActiveCampaign Update a Deal Note
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Deal's id to assign new note to
+          required: true
+        - name: noteId
+          in: path
+          type: string
+          description: Deal note's id to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: v3-deals-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign API v3 — Deals. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/dealactivities
+      name: dealactivities
+      description: REST surface for dealActivities.
+      operations:
+      - method: GET
+        name: listalldealactivities
+        description: ActiveCampaign List All Deal Activities
+        call: v3-deals.listalldealactivities
+        with:
+          exclude: rest.exclude
+          deal: rest.deal
+          filters[data_type]: rest.filters[data_type]
+          filters[data_id]: rest.filters[data_id]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealcustomfielddata
+      name: dealcustomfielddata
+      description: REST surface for dealCustomFieldData.
+      operations:
+      - method: POST
+        name: createcustomdealfieldvalue
+        description: ActiveCampaign Create a Custom Field Value
+        call: v3-deals.createcustomdealfieldvalue
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallcustomfielddatafieldvalues
+        description: ActiveCampaign List All Custom Field Values
+        call: v3-deals.listallcustomfielddatafieldvalues
+        with:
+          filters[dealId]: rest.filters[dealId]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealcustomfielddata/bulkcreate
+      name: dealcustomfielddata-bulkcreate
+      description: REST surface for dealCustomFieldData-bulkCreate.
+      operations:
+      - method: POST
+        name: bulkcreateacustomdealfieldvalue
+        description: ActiveCampaign Bulk Create a Custom Deal Field Value
+        call: v3-deals.bulkcreateacustomdealfieldvalue
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealcustomfielddata/bulkupdate
+      name: dealcustomfielddata-bulkupdate
+      description: REST surface for dealCustomFieldData-bulkUpdate.
+      operations:
+      - method: PATCH
+        name: bulkupdateacustomfieldvalue
+        description: ActiveCampaign Bulk Update a Custom Field Value
+        call: v3-deals.bulkupdateacustomfieldvalue
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealcustomfielddata/{id}
+      name: dealcustomfielddata-id
+      description: REST surface for dealCustomFieldData-id.
+      operations:
+      - method: GET
+        name: retrieveacustomdealfieldvalue
+        description: ActiveCampaign Retrieve a Custom Field Value
+        call: v3-deals.retrieveacustomdealfieldvalue
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateacustomdealfieldvalue
+        description: ActiveCampaign Update a Custom Field Value
+        call: v3-deals.updateacustomdealfieldvalue
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteacustomdealfielddata
+        description: ActiveCampaign Delete a Custom Field Value
+        call: v3-deals.deleteacustomdealfielddata
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealcustomfieldmeta
+      name: dealcustomfieldmeta
+      description: REST surface for dealCustomFieldMeta.
+      operations:
+      - method: POST
+        name: createcustomdealfieldmeta
+        description: ActiveCampaign Create a Custom Field Meta
+        call: v3-deals.createcustomdealfieldmeta
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: retrieveallcustomdealfieldmeta
+        description: ActiveCampaign List All Custom Fields
+        call: v3-deals.retrieveallcustomdealfieldmeta
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealcustomfieldmeta/{id}
+      name: dealcustomfieldmeta-id
+      description: REST surface for dealCustomFieldMeta-id.
+      operations:
+      - method: GET
+        name: retrieveacustomdealfieldmeta
+        description: ActiveCampaign Retrieve a Custom Field
+        call: v3-deals.retrieveacustomdealfieldmeta
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateacustomdealfieldmeta
+        description: ActiveCampaign Update a Custom Field
+        call: v3-deals.updateacustomdealfieldmeta
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteacustomdealfieldmeta
+        description: ActiveCampaign Delete a Custom Field
+        call: v3-deals.deleteacustomdealfieldmeta
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealgroup/get-inaccessible-deal-groups
+      name: dealgroup-get-inaccessible-deal-groups
+      description: REST surface for dealGroup-get_inaccessible_deal_groups.
+      operations:
+      - method: GET
+        name: retrieveinaccessiblepipelinesbyuser
+        description: ActiveCampaign Retrieve Inaccessible Pipelines by User
+        call: v3-deals.retrieveinaccessiblepipelinesbyuser
+        with:
+          dealIds[]: rest.dealIds[]
+          userId: rest.userId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealgroups
+      name: dealgroups
+      description: REST surface for dealGroups.
+      operations:
+      - method: POST
+        name: createapipeline
+        description: ActiveCampaign Create a Pipeline
+        call: v3-deals.createapipeline
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallpipelines
+        description: ActiveCampaign List All Pipelines
+        call: v3-deals.listallpipelines
+        with:
+          filters[title]: rest.filters[title]
+          filters[have_stages]: rest.filters[have_stages]
+          orders[title]: rest.orders[title]
+          orders[popular]: rest.orders[popular]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealgroups/{id}
+      name: dealgroups-id
+      description: REST surface for dealGroups-id.
+      operations:
+      - method: GET
+        name: retrieveapipeline
+        description: ActiveCampaign Retrieve a Pipeline
+        call: v3-deals.retrieveapipeline
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateapipeline
+        description: ActiveCampaign Update a Pipeline
+        call: v3-deals.updateapipeline
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapipeline
+        description: ActiveCampaign Delete a Pipeline
+        call: v3-deals.deleteapipeline
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealroles
+      name: dealroles
+      description: REST surface for dealRoles.
+      operations:
+      - method: GET
+        name: listalldealroles
+        description: ActiveCampaign List All Deal Roles
+        call: v3-deals.listalldealroles
+        with:
+          search: rest.search
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createadealrole
+        description: ActiveCampaign Create a Deal Role
+        call: v3-deals.createadealrole
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealroles/{id}
+      name: dealroles-id
+      description: REST surface for dealRoles-id.
+      operations:
+      - method: DELETE
+        name: deleteadealrole
+        description: ActiveCampaign Delete a Deal Role
+        call: v3-deals.deleteadealrole
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealstages
+      name: dealstages
+      description: REST surface for dealStages.
+      operations:
+      - method: POST
+        name: createadealstage
+        description: ActiveCampaign Create a Stage
+        call: v3-deals.createadealstage
+        with:
+          reorder: rest.reorder
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listalldealstages
+        description: ActiveCampaign List All Stages
+        call: v3-deals.listalldealstages
+        with:
+          filters[title]: rest.filters[title]
+          filters[d_groupid]: rest.filters[d_groupid]
+          orders[title]: rest.orders[title]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealstages/{id}
+      name: dealstages-id
+      description: REST surface for dealStages-id.
+      operations:
+      - method: GET
+        name: retrieveadealstage
+        description: ActiveCampaign Retrieve a Stage
+        call: v3-deals.retrieveadealstage
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateadealstage
+        description: ActiveCampaign Update a Stage
+        call: v3-deals.updateadealstage
+        with:
+          id: rest.id
+          reorder: rest.reorder
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteadealstage
+        description: ActiveCampaign Delete a Stage
+        call: v3-deals.deleteadealstage
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealstages/{id}/deals
+      name: dealstages-id-deals
+      description: REST surface for dealStages-id-deals.
+      operations:
+      - method: PUT
+        name: movedealstoanotherdealstage
+        description: ActiveCampaign Move Deals to Another Stage
+        call: v3-deals.movedealstoanotherdealstage
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealtasks
+      name: dealtasks
+      description: REST surface for dealTasks.
+      operations:
+      - method: POST
+        name: createtask
+        description: ActiveCampaign Create a Task
+        call: v3-deals.createtask
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listalltasks
+        description: ActiveCampaign List All Tasks
+        call: v3-deals.listalltasks
+        with:
+          filters[title]: rest.filters[title]
+          filters[reltype]: rest.filters[reltype]
+          filters[relid]: rest.filters[relid]
+          filters[status]: rest.filters[status]
+          filters[note]: rest.filters[note]
+          filters[duedate]: rest.filters[duedate]
+          filters[d_tasktypeid]: rest.filters[d_tasktypeid]
+          filters[userid]: rest.filters[userid]
+          filters[due_after]: rest.filters[due_after]
+          Fitlers[due_before]: rest.Fitlers[due_before]
+          filters[duedate_range]: rest.filters[duedate_range]
+          filters[assignee_userid]: rest.filters[assignee_userid]
+          filters[outcome_id]: rest.filters[outcome_id]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealtasks/{id}
+      name: dealtasks-id
+      description: REST surface for dealTasks-id.
+      operations:
+      - method: GET
+        name: gettask
+        description: ActiveCampaign Retrieve a Task
+        call: v3-deals.gettask
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatetask
+        description: ActiveCampaign Update a Task
+        call: v3-deals.updatetask
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetask
+        description: ActiveCampaign Delete a Task
+        call: v3-deals.deletetask
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealtasktypes
+      name: dealtasktypes
+      description: REST surface for dealTasktypes.
+      operations:
+      - method: POST
+        name: createadealtasktype
+        description: ActiveCampaign Create a Task Type
+        call: v3-deals.createadealtasktype
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listalldealtasktypes
+        description: ActiveCampaign List All Task Types
+        call: v3-deals.listalldealtasktypes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealtasktypes/{id}
+      name: dealtasktypes-id
+      description: REST surface for dealTasktypes-id.
+      operations:
+      - method: GET
+        name: retrieveadealtasktype
+        description: ActiveCampaign Retrieve a Task Type
+        call: v3-deals.retrieveadealtasktype
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateadealtasktype
+        description: ActiveCampaign Update a Task Type
+        call: v3-deals.updateadealtasktype
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteadealtasktype
+        description: ActiveCampaign Delete a Task Type
+        call: v3-deals.deleteadealtasktype
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dealtasktypes/{id}/dealtasks
+      name: dealtasktypes-id-dealtasks
+      description: REST surface for dealTasktypes-id-dealTasks.
+      operations:
+      - method: PUT
+        name: movedealtaskstoanotherdealtasktype
+        description: ActiveCampaign Move Tasks to Another Task Type
+        call: v3-deals.movedealtaskstoanotherdealtasktype
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/deals
+      name: deals
+      description: REST surface for deals.
+      operations:
+      - method: POST
+        name: createadealnew
+        description: ActiveCampaign Create a Deal
+        call: v3-deals.createadealnew
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listalldeals
+        description: ActiveCampaign List All Deals
+        call: v3-deals.listalldeals
+        with:
+          filters[search]: rest.filters[search]
+          filters[search_field]: rest.filters[search_field]
+          filters[title]: rest.filters[title]
+          filters[stage]: rest.filters[stage]
+          filters[group]: rest.filters[group]
+          filters[status]: rest.filters[status]
+          filters[owner]: rest.filters[owner]
+          filters[nextdate_range]: rest.filters[nextdate_range]
+          filters[tag]: rest.filters[tag]
+          filters[tasktype]: rest.filters[tasktype]
+          filters[created_before]: rest.filters[created_before]
+          filters[created_after]: rest.filters[created_after]
+          filters[updated_before]: rest.filters[updated_before]
+          filters[updated_after]: rest.filters[updated_after]
+          filters[organization]: rest.filters[organization]
+          filters[minimum_value]: rest.filters[minimum_value]
+          filters[maximum_value]: rest.filters[maximum_value]
+          filters[score_greater_than]: rest.filters[score_greater_than]
+          filters[score_less_than]: rest.filters[score_less_than]
+          filters[score]: rest.filters[score]
+          orders[title]: rest.orders[title]
+          orders[value]: rest.orders[value]
+          orders[cdate]: rest.orders[cdate]
+          orders[contact_name]: rest.orders[contact_name]
+          orders[contact_orgname]: rest.orders[contact_orgname]
+          orders[next-action]: rest.orders[next-action]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/deals/bulkupdate
+      name: deals-bulkupdate
+      description: REST surface for deals-bulkUpdate.
+      operations:
+      - method: PATCH
+        name: bulkupdatedealowners
+        description: ActiveCampaign Bulk Update Deal Owners
+        call: v3-deals.bulkupdatedealowners
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/deals/{id}
+      name: deals-id
+      description: REST surface for deals-id.
+      operations:
+      - method: GET
+        name: retrieveadeal
+        description: ActiveCampaign Retrieve a Deal
+        call: v3-deals.retrieveadeal
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateadealnew
+        description: ActiveCampaign Update a Deal
+        call: v3-deals.updateadealnew
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteadeal
+        description: ActiveCampaign Delete a Deal
+        call: v3-deals.deleteadeal
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/deals/{id}/notes
+      name: deals-id-notes
+      description: REST surface for deals-id-notes.
+      operations:
+      - method: POST
+        name: createadealnote
+        description: ActiveCampaign Create a Deal Note
+        call: v3-deals.createadealnote
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/deals/{id}/notes/{noteid}
+      name: deals-id-notes-noteid
+      description: REST surface for deals-id-notes-noteId.
+      operations:
+      - method: PUT
+        name: updateadealnote
+        description: ActiveCampaign Update a Deal Note
+        call: v3-deals.updateadealnote
+        with:
+          id: rest.id
+          noteId: rest.noteId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v3-deals-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign API v3 — Deals. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: activecampaign-list-all-deal-activities
+      description: ActiveCampaign List All Deal Activities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.listalldealactivities
+      with:
+        exclude: tools.exclude
+        deal: tools.deal
+        filters[data_type]: tools.filters[data_type]
+        filters[data_id]: tools.filters[data_id]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-custom-field-value
+      description: ActiveCampaign Create a Custom Field Value
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-deals.createcustomdealfieldvalue
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-custom-field
+      description: ActiveCampaign List All Custom Field Values
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.listallcustomfielddatafieldvalues
+      with:
+        filters[dealId]: tools.filters[dealId]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-bulk-create-custom-deal
+      description: ActiveCampaign Bulk Create a Custom Deal Field Value
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-deals.bulkcreateacustomdealfieldvalue
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-bulk-update-custom-field
+      description: ActiveCampaign Bulk Update a Custom Field Value
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-deals.bulkupdateacustomfieldvalue
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-custom-field-value
+      description: ActiveCampaign Retrieve a Custom Field Value
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.retrieveacustomdealfieldvalue
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-custom-field-value
+      description: ActiveCampaign Update a Custom Field Value
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-deals.updateacustomdealfieldvalue
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-custom-field-value
+      description: ActiveCampaign Delete a Custom Field Value
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-deals.deleteacustomdealfielddata
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-custom-field-meta
+      description: ActiveCampaign Create a Custom Field Meta
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-deals.createcustomdealfieldmeta
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-custom-fields
+      description: ActiveCampaign List All Custom Fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.retrieveallcustomdealfieldmeta
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-custom-field
+      description: ActiveCampaign Retrieve a Custom Field
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.retrieveacustomdealfieldmeta
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-custom-field
+      description: ActiveCampaign Update a Custom Field
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-deals.updateacustomdealfieldmeta
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-custom-field
+      description: ActiveCampaign Delete a Custom Field
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-deals.deleteacustomdealfieldmeta
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-inaccessible-pipelines-user
+      description: ActiveCampaign Retrieve Inaccessible Pipelines by User
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.retrieveinaccessiblepipelinesbyuser
+      with:
+        dealIds[]: tools.dealIds[]
+        userId: tools.userId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-pipeline
+      description: ActiveCampaign Create a Pipeline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-deals.createapipeline
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-pipelines
+      description: ActiveCampaign List All Pipelines
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.listallpipelines
+      with:
+        filters[title]: tools.filters[title]
+        filters[have_stages]: tools.filters[have_stages]
+        orders[title]: tools.orders[title]
+        orders[popular]: tools.orders[popular]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-pipeline
+      description: ActiveCampaign Retrieve a Pipeline
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.retrieveapipeline
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-pipeline
+      description: ActiveCampaign Update a Pipeline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-deals.updateapipeline
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-pipeline
+      description: ActiveCampaign Delete a Pipeline
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-deals.deleteapipeline
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-deal-roles
+      description: ActiveCampaign List All Deal Roles
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.listalldealroles
+      with:
+        search: tools.search
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-deal-role
+      description: ActiveCampaign Create a Deal Role
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-deals.createadealrole
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-deal-role
+      description: ActiveCampaign Delete a Deal Role
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-deals.deleteadealrole
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-stage
+      description: ActiveCampaign Create a Stage
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-deals.createadealstage
+      with:
+        reorder: tools.reorder
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-stages
+      description: ActiveCampaign List All Stages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.listalldealstages
+      with:
+        filters[title]: tools.filters[title]
+        filters[d_groupid]: tools.filters[d_groupid]
+        orders[title]: tools.orders[title]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-stage
+      description: ActiveCampaign Retrieve a Stage
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.retrieveadealstage
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-stage
+      description: ActiveCampaign Update a Stage
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-deals.updateadealstage
+      with:
+        id: tools.id
+        reorder: tools.reorder
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-stage
+      description: ActiveCampaign Delete a Stage
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-deals.deleteadealstage
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-move-deals-another-stage
+      description: ActiveCampaign Move Deals to Another Stage
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-deals.movedealstoanotherdealstage
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-task
+      description: ActiveCampaign Create a Task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-deals.createtask
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-tasks
+      description: ActiveCampaign List All Tasks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.listalltasks
+      with:
+        filters[title]: tools.filters[title]
+        filters[reltype]: tools.filters[reltype]
+        filters[relid]: tools.filters[relid]
+        filters[status]: tools.filters[status]
+        filters[note]: tools.filters[note]
+        filters[duedate]: tools.filters[duedate]
+        filters[d_tasktypeid]: tools.filters[d_tasktypeid]
+        filters[userid]: tools.filters[userid]
+        filters[due_after]: tools.filters[due_after]
+        Fitlers[due_before]: tools.Fitlers[due_before]
+        filters[duedate_range]: tools.filters[duedate_range]
+        filters[assignee_userid]: tools.filters[assignee_userid]
+        filters[outcome_id]: tools.filters[outcome_id]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-task
+      description: ActiveCampaign Retrieve a Task
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.gettask
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-task
+      description: ActiveCampaign Update a Task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-deals.updatetask
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-task
+      description: ActiveCampaign Delete a Task
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-deals.deletetask
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-task-type
+      description: ActiveCampaign Create a Task Type
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-deals.createadealtasktype
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-task-types
+      description: ActiveCampaign List All Task Types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.listalldealtasktypes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-task-type
+      description: ActiveCampaign Retrieve a Task Type
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.retrieveadealtasktype
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-task-type
+      description: ActiveCampaign Update a Task Type
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-deals.updateadealtasktype
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-task-type
+      description: ActiveCampaign Delete a Task Type
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-deals.deleteadealtasktype
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-move-tasks-another-task
+      description: ActiveCampaign Move Tasks to Another Task Type
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-deals.movedealtaskstoanotherdealtasktype
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-deal
+      description: ActiveCampaign Create a Deal
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-deals.createadealnew
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-deals
+      description: ActiveCampaign List All Deals
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.listalldeals
+      with:
+        filters[search]: tools.filters[search]
+        filters[search_field]: tools.filters[search_field]
+        filters[title]: tools.filters[title]
+        filters[stage]: tools.filters[stage]
+        filters[group]: tools.filters[group]
+        filters[status]: tools.filters[status]
+        filters[owner]: tools.filters[owner]
+        filters[nextdate_range]: tools.filters[nextdate_range]
+        filters[tag]: tools.filters[tag]
+        filters[tasktype]: tools.filters[tasktype]
+        filters[created_before]: tools.filters[created_before]
+        filters[created_after]: tools.filters[created_after]
+        filters[updated_before]: tools.filters[updated_before]
+        filters[updated_after]: tools.filters[updated_after]
+        filters[organization]: tools.filters[organization]
+        filters[minimum_value]: tools.filters[minimum_value]
+        filters[maximum_value]: tools.filters[maximum_value]
+        filters[score_greater_than]: tools.filters[score_greater_than]
+        filters[score_less_than]: tools.filters[score_less_than]
+        filters[score]: tools.filters[score]
+        orders[title]: tools.orders[title]
+        orders[value]: tools.orders[value]
+        orders[cdate]: tools.orders[cdate]
+        orders[contact_name]: tools.orders[contact_name]
+        orders[contact_orgname]: tools.orders[contact_orgname]
+        orders[next-action]: tools.orders[next-action]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-bulk-update-deal-owners
+      description: ActiveCampaign Bulk Update Deal Owners
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-deals.bulkupdatedealowners
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-deal
+      description: ActiveCampaign Retrieve a Deal
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-deals.retrieveadeal
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-deal
+      description: ActiveCampaign Update a Deal
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-deals.updateadealnew
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-deal
+      description: ActiveCampaign Delete a Deal
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-deals.deleteadeal
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-deal-note
+      description: ActiveCampaign Create a Deal Note
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-deals.createadealnote
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-deal-note
+      description: ActiveCampaign Update a Deal Note
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-deals.updateadealnote
+      with:
+        id: tools.id
+        noteId: tools.noteId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

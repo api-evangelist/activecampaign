@@ -1,0 +1,412 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign API v3 — Personalizations
+  description: 'ActiveCampaign API v3 — Personalizations. 8 operations. Lead operation: ActiveCampaign List Variables. Self-contained
+    Naftiko capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - Personalizations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v3-personalizations
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign API v3 — Personalizations business capability. Self-contained, no shared references.
+    resources:
+    - name: personalizations
+      path: /personalizations
+      operations:
+      - name: listvariables
+        method: GET
+        description: ActiveCampaign List Variables
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orders[format]
+          in: query
+          type: string
+          description: Order variables by format (ASC/DESC)
+        - name: orders[tag]
+          in: query
+          type: string
+          description: Order variables by tag (ASC/DESC)
+        - name: orders[name]
+          in: query
+          type: string
+          description: Order variables by name (ASC/DESC)
+        - name: orders[content]
+          in: query
+          type: string
+          description: Order variables by content (ASC/DESC)
+        - name: filter[name]
+          in: query
+          type: string
+          description: Filter by variable name
+        - name: filter[tag]
+          in: query
+          type: string
+          description: Filter by variable tag
+        - name: filter[listName]
+          in: query
+          type: string
+          description: Filter by name of list
+        - name: filter[content]
+          in: query
+          type: string
+          description: Contents of variable
+        - name: filter[format]
+          in: query
+          type: string
+          description: Filter by tag format (html, text)
+        - name: limit
+          in: query
+          type: integer
+          description: 'Result limit (Default: 20)'
+      - name: createvariable
+        method: POST
+        description: ActiveCampaign Create a Variable
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: personalizations-bulkdelete
+      path: /personalizations/bulkdelete
+      operations:
+      - name: bulkdeletevariables
+        method: DELETE
+        description: ActiveCampaign Bulk Delete Variables
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: 'List of variables to be deleted, ie: 1,2,3'
+    - name: personalizations-variableID
+      path: /personalizations/{variableID}
+      operations:
+      - name: retrievevariable
+        method: GET
+        description: ActiveCampaign Retrieve a Variable
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: variableID
+          in: path
+          type: integer
+          description: ID (int) of variable
+          required: true
+      - name: editvariable
+        method: PUT
+        description: ActiveCampaign Edit a Variable
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: variableID
+          in: path
+          type: integer
+          description: ID (int) of personalization/variable
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletevariable
+        method: DELETE
+        description: ActiveCampaign Delete a Variable
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: variableID
+          in: path
+          type: integer
+          description: ID (int) of personalization/variable
+          required: true
+    - name: personalizations-variableID-lock
+      path: /personalizations/{variableID}/lock
+      operations:
+      - name: getpersonalizationidlock
+        method: PATCH
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: variableID
+          in: path
+          type: string
+          required: true
+    - name: personalizations-variableID-unlock
+      path: /personalizations/{variableID}/unlock
+      operations:
+      - name: patchnewendpoint
+        method: PATCH
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: variableID
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: v3-personalizations-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign API v3 — Personalizations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/personalizations
+      name: personalizations
+      description: REST surface for personalizations.
+      operations:
+      - method: GET
+        name: listvariables
+        description: ActiveCampaign List Variables
+        call: v3-personalizations.listvariables
+        with:
+          orders[format]: rest.orders[format]
+          orders[tag]: rest.orders[tag]
+          orders[name]: rest.orders[name]
+          orders[content]: rest.orders[content]
+          filter[name]: rest.filter[name]
+          filter[tag]: rest.filter[tag]
+          filter[listName]: rest.filter[listName]
+          filter[content]: rest.filter[content]
+          filter[format]: rest.filter[format]
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createvariable
+        description: ActiveCampaign Create a Variable
+        call: v3-personalizations.createvariable
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/personalizations/bulkdelete
+      name: personalizations-bulkdelete
+      description: REST surface for personalizations-bulkdelete.
+      operations:
+      - method: DELETE
+        name: bulkdeletevariables
+        description: ActiveCampaign Bulk Delete Variables
+        call: v3-personalizations.bulkdeletevariables
+        with:
+          ids: rest.ids
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/personalizations/{variableid}
+      name: personalizations-variableid
+      description: REST surface for personalizations-variableID.
+      operations:
+      - method: GET
+        name: retrievevariable
+        description: ActiveCampaign Retrieve a Variable
+        call: v3-personalizations.retrievevariable
+        with:
+          variableID: rest.variableID
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: editvariable
+        description: ActiveCampaign Edit a Variable
+        call: v3-personalizations.editvariable
+        with:
+          variableID: rest.variableID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletevariable
+        description: ActiveCampaign Delete a Variable
+        call: v3-personalizations.deletevariable
+        with:
+          variableID: rest.variableID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/personalizations/{variableid}/lock
+      name: personalizations-variableid-lock
+      description: REST surface for personalizations-variableID-lock.
+      operations:
+      - method: PATCH
+        name: getpersonalizationidlock
+        description: getpersonalizationidlock
+        call: v3-personalizations.getpersonalizationidlock
+        with:
+          variableID: rest.variableID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/personalizations/{variableid}/unlock
+      name: personalizations-variableid-unlock
+      description: REST surface for personalizations-variableID-unlock.
+      operations:
+      - method: PATCH
+        name: patchnewendpoint
+        description: patchnewendpoint
+        call: v3-personalizations.patchnewendpoint
+        with:
+          variableID: rest.variableID
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v3-personalizations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign API v3 — Personalizations. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: activecampaign-list-variables
+      description: ActiveCampaign List Variables
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-personalizations.listvariables
+      with:
+        orders[format]: tools.orders[format]
+        orders[tag]: tools.orders[tag]
+        orders[name]: tools.orders[name]
+        orders[content]: tools.orders[content]
+        filter[name]: tools.filter[name]
+        filter[tag]: tools.filter[tag]
+        filter[listName]: tools.filter[listName]
+        filter[content]: tools.filter[content]
+        filter[format]: tools.filter[format]
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-variable
+      description: ActiveCampaign Create a Variable
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-personalizations.createvariable
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-bulk-delete-variables
+      description: ActiveCampaign Bulk Delete Variables
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-personalizations.bulkdeletevariables
+      with:
+        ids: tools.ids
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-variable
+      description: ActiveCampaign Retrieve a Variable
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-personalizations.retrievevariable
+      with:
+        variableID: tools.variableID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-edit-variable
+      description: ActiveCampaign Edit a Variable
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-personalizations.editvariable
+      with:
+        variableID: tools.variableID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-variable
+      description: ActiveCampaign Delete a Variable
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-personalizations.deletevariable
+      with:
+        variableID: tools.variableID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getpersonalizationidlock
+      description: getpersonalizationidlock
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-personalizations.getpersonalizationidlock
+      with:
+        variableID: tools.variableID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: patchnewendpoint
+      description: patchnewendpoint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-personalizations.patchnewendpoint
+      with:
+        variableID: tools.variableID
+      outputParameters:
+      - type: object
+        mapping: $.

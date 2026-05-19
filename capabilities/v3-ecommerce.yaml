@@ -1,0 +1,644 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign API v3 — Ecommerce
+  description: 'ActiveCampaign API v3 — Ecommerce. 13 operations. Lead operation: ActiveCampaign Create a Customer. Self-contained
+    Naftiko capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - Ecommerce
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v3-ecommerce
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign API v3 — Ecommerce business capability. Self-contained, no shared references.
+    resources:
+    - name: ecomCustomers
+      path: /ecomCustomers
+      operations:
+      - name: createcustomer
+        method: POST
+        description: ActiveCampaign Create a Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listallcustomers
+        method: GET
+        description: ActiveCampaign List All Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters[email]
+          in: query
+          type: string
+          description: Filter by the email address of a customer.
+        - name: filters[externalid]
+          in: query
+          type: string
+          description: Filter by the id of the customer in the external service.
+        - name: filters[connectionid]
+          in: query
+          type: string
+          description: Filter by the id of the connection object for the service where the customer originates.
+    - name: ecomCustomers-id
+      path: /ecomCustomers/{id}
+      operations:
+      - name: getcustomer
+        method: GET
+        description: ActiveCampaign Retrieve a Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The id of the customer to retrieve
+          required: true
+      - name: updatecustomer
+        method: PUT
+        description: ActiveCampaign Update a Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The id of the customer to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletecustomer
+        method: DELETE
+        description: ActiveCampaign Delete a Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The id of the customer to delete.
+          required: true
+    - name: ecomOrderProducts
+      path: /ecomOrderProducts
+      operations:
+      - name: listecomorderproducts
+        method: GET
+        description: ActiveCampaign List EcomOrderProducts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: ecomOrderProducts-id
+      path: /ecomOrderProducts/{id}
+      operations:
+      - name: retrieveanecomorderproduct
+        method: GET
+        description: ActiveCampaign Retrieve an EcomOrderProduct
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the product you'd like returned.
+          required: true
+    - name: ecomOrders
+      path: /ecomOrders
+      operations:
+      - name: createorder
+        method: POST
+        description: ActiveCampaign Create an Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listallorders
+        method: GET
+        description: ActiveCampaign List All Orders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters[connectionid]
+          in: query
+          type: integer
+          description: Filter by the connection id. Must be greater than 0.
+        - name: filters[externalid]
+          in: query
+          type: integer
+          description: Filter by the external id of the order.
+        - name: filters[externalcheckoutid]
+          in: query
+          type: string
+          description: Filter by the external checkout id
+        - name: filters[email]
+          in: query
+          type: string
+          description: Filter by the customer email address.
+        - name: filters[state]
+          in: query
+          type: integer
+          description: Filter by the state of the order. 0 = Pending, 1 = Completed, 2 = Abandoned, 3 = Recovered, 4 = Waiting
+            (Customer checked out but payment is not yet completed)
+        - name: filters[customerid]
+          in: query
+          type: string
+          description: Filter by the customer id
+        - name: filters[external_created_date]
+          in: query
+          type: string
+          description: Filter by the external created date
+        - name: orders[connectionid]
+          in: query
+          type: integer
+          description: Order by connection ID. Accepted values are ASC or DESC.
+        - name: orders[externalid]
+          in: query
+          type: integer
+          description: Order by external ID. Accepted values are ASC or DESC.
+        - name: orders[externalcheckoutid]
+          in: query
+          type: string
+          description: Order by external checkout ID. Accepted values are ASC or DESC.
+        - name: orders[email]
+          in: query
+          type: string
+          description: Order by email. Accepted values are ASC or DESC.
+        - name: orders[state]
+          in: query
+          type: integer
+          description: Order by state. Accepted values are ASC or DESC.
+        - name: orders[customerid]
+          in: query
+          type: string
+          description: Order by customer ID. Accepted values are ASC or DESC.
+        - name: orders[external_created_date]
+          in: query
+          type: string
+          description: Order by external created date. Accepted values are ASC or DESC.
+    - name: ecomOrders-ecomOrderId
+      path: /ecomOrders/{ecomOrderId}
+      operations:
+      - name: getorder
+        method: GET
+        description: ActiveCampaign Retrieve an Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ecomOrderId
+          in: path
+          type: integer
+          description: The id of the order to retrieve.
+          required: true
+      - name: deleteorder
+        method: DELETE
+        description: ActiveCampaign Delete an Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ecomOrderId
+          in: path
+          type: integer
+          description: The id of the order to delete.
+          required: true
+    - name: ecomOrders-id
+      path: /ecomOrders/{id}
+      operations:
+      - name: updateorder
+        method: PUT
+        description: ActiveCampaign Update an Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the order to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: ecomOrders-id-orderProducts
+      path: /ecomOrders/{id}/orderProducts
+      operations:
+      - name: listproductsfororder
+        method: GET
+        description: ActiveCampaign List EcomOrderProducts for a Specific EcomOrder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the order whose products you'd like returned.
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: v3-ecommerce-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign API v3 — Ecommerce. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/ecomcustomers
+      name: ecomcustomers
+      description: REST surface for ecomCustomers.
+      operations:
+      - method: POST
+        name: createcustomer
+        description: ActiveCampaign Create a Customer
+        call: v3-ecommerce.createcustomer
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallcustomers
+        description: ActiveCampaign List All Customers
+        call: v3-ecommerce.listallcustomers
+        with:
+          filters[email]: rest.filters[email]
+          filters[externalid]: rest.filters[externalid]
+          filters[connectionid]: rest.filters[connectionid]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecomcustomers/{id}
+      name: ecomcustomers-id
+      description: REST surface for ecomCustomers-id.
+      operations:
+      - method: GET
+        name: getcustomer
+        description: ActiveCampaign Retrieve a Customer
+        call: v3-ecommerce.getcustomer
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecustomer
+        description: ActiveCampaign Update a Customer
+        call: v3-ecommerce.updatecustomer
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecustomer
+        description: ActiveCampaign Delete a Customer
+        call: v3-ecommerce.deletecustomer
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecomorderproducts
+      name: ecomorderproducts
+      description: REST surface for ecomOrderProducts.
+      operations:
+      - method: GET
+        name: listecomorderproducts
+        description: ActiveCampaign List EcomOrderProducts
+        call: v3-ecommerce.listecomorderproducts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecomorderproducts/{id}
+      name: ecomorderproducts-id
+      description: REST surface for ecomOrderProducts-id.
+      operations:
+      - method: GET
+        name: retrieveanecomorderproduct
+        description: ActiveCampaign Retrieve an EcomOrderProduct
+        call: v3-ecommerce.retrieveanecomorderproduct
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecomorders
+      name: ecomorders
+      description: REST surface for ecomOrders.
+      operations:
+      - method: POST
+        name: createorder
+        description: ActiveCampaign Create an Order
+        call: v3-ecommerce.createorder
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallorders
+        description: ActiveCampaign List All Orders
+        call: v3-ecommerce.listallorders
+        with:
+          filters[connectionid]: rest.filters[connectionid]
+          filters[externalid]: rest.filters[externalid]
+          filters[externalcheckoutid]: rest.filters[externalcheckoutid]
+          filters[email]: rest.filters[email]
+          filters[state]: rest.filters[state]
+          filters[customerid]: rest.filters[customerid]
+          filters[external_created_date]: rest.filters[external_created_date]
+          orders[connectionid]: rest.orders[connectionid]
+          orders[externalid]: rest.orders[externalid]
+          orders[externalcheckoutid]: rest.orders[externalcheckoutid]
+          orders[email]: rest.orders[email]
+          orders[state]: rest.orders[state]
+          orders[customerid]: rest.orders[customerid]
+          orders[external_created_date]: rest.orders[external_created_date]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecomorders/{ecomorderid}
+      name: ecomorders-ecomorderid
+      description: REST surface for ecomOrders-ecomOrderId.
+      operations:
+      - method: GET
+        name: getorder
+        description: ActiveCampaign Retrieve an Order
+        call: v3-ecommerce.getorder
+        with:
+          ecomOrderId: rest.ecomOrderId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteorder
+        description: ActiveCampaign Delete an Order
+        call: v3-ecommerce.deleteorder
+        with:
+          ecomOrderId: rest.ecomOrderId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecomorders/{id}
+      name: ecomorders-id
+      description: REST surface for ecomOrders-id.
+      operations:
+      - method: PUT
+        name: updateorder
+        description: ActiveCampaign Update an Order
+        call: v3-ecommerce.updateorder
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecomorders/{id}/orderproducts
+      name: ecomorders-id-orderproducts
+      description: REST surface for ecomOrders-id-orderProducts.
+      operations:
+      - method: GET
+        name: listproductsfororder
+        description: ActiveCampaign List EcomOrderProducts for a Specific EcomOrder
+        call: v3-ecommerce.listproductsfororder
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v3-ecommerce-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign API v3 — Ecommerce. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: activecampaign-create-customer
+      description: ActiveCampaign Create a Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-ecommerce.createcustomer
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-customers
+      description: ActiveCampaign List All Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-ecommerce.listallcustomers
+      with:
+        filters[email]: tools.filters[email]
+        filters[externalid]: tools.filters[externalid]
+        filters[connectionid]: tools.filters[connectionid]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-customer
+      description: ActiveCampaign Retrieve a Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-ecommerce.getcustomer
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-customer
+      description: ActiveCampaign Update a Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-ecommerce.updatecustomer
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-customer
+      description: ActiveCampaign Delete a Customer
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-ecommerce.deletecustomer
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-ecomorderproducts
+      description: ActiveCampaign List EcomOrderProducts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-ecommerce.listecomorderproducts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-ecomorderproduct
+      description: ActiveCampaign Retrieve an EcomOrderProduct
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-ecommerce.retrieveanecomorderproduct
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-order
+      description: ActiveCampaign Create an Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-ecommerce.createorder
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-orders
+      description: ActiveCampaign List All Orders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-ecommerce.listallorders
+      with:
+        filters[connectionid]: tools.filters[connectionid]
+        filters[externalid]: tools.filters[externalid]
+        filters[externalcheckoutid]: tools.filters[externalcheckoutid]
+        filters[email]: tools.filters[email]
+        filters[state]: tools.filters[state]
+        filters[customerid]: tools.filters[customerid]
+        filters[external_created_date]: tools.filters[external_created_date]
+        orders[connectionid]: tools.orders[connectionid]
+        orders[externalid]: tools.orders[externalid]
+        orders[externalcheckoutid]: tools.orders[externalcheckoutid]
+        orders[email]: tools.orders[email]
+        orders[state]: tools.orders[state]
+        orders[customerid]: tools.orders[customerid]
+        orders[external_created_date]: tools.orders[external_created_date]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-order
+      description: ActiveCampaign Retrieve an Order
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-ecommerce.getorder
+      with:
+        ecomOrderId: tools.ecomOrderId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-order
+      description: ActiveCampaign Delete an Order
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-ecommerce.deleteorder
+      with:
+        ecomOrderId: tools.ecomOrderId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-order
+      description: ActiveCampaign Update an Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-ecommerce.updateorder
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-ecomorderproducts-specific-ecomorder
+      description: ActiveCampaign List EcomOrderProducts for a Specific EcomOrder
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-ecommerce.listproductsfororder
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

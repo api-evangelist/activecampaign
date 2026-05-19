@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign SMS Broadcast API — Credits
+  description: 'ActiveCampaign SMS Broadcast API — Credits. 1 operations. Lead operation: ActiveCampaign Get Current Sms Credit
+    Use Data. Self-contained Naftiko capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - Credits
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sms-credits
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign SMS Broadcast API — Credits business capability. Self-contained, no shared references.
+    resources:
+    - name: sms-credits
+      path: /sms/credits
+      operations:
+      - name: getsmscreditdata
+        method: GET
+        description: ActiveCampaign Get Current Sms Credit Use Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: sms-credits-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign SMS Broadcast API — Credits. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/sms/credits
+      name: sms-credits
+      description: REST surface for sms-credits.
+      operations:
+      - method: GET
+        name: getsmscreditdata
+        description: ActiveCampaign Get Current Sms Credit Use Data
+        call: sms-credits.getsmscreditdata
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sms-credits-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign SMS Broadcast API — Credits. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: activecampaign-get-current-sms-credit
+      description: ActiveCampaign Get Current Sms Credit Use Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sms-credits.getsmscreditdata
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,310 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign API v3 — Addresses
+  description: 'ActiveCampaign API v3 — Addresses. 7 operations. Lead operation: ActiveCampaign Delete Address Associated
+    with a Specific User Group. Self-contained Naftiko capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - Addresses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v3-addresses
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign API v3 — Addresses business capability. Self-contained, no shared references.
+    resources:
+    - name: addressGroups-id
+      path: /addressGroups/{id}
+      operations:
+      - name: deleteanaddressgroup
+        method: DELETE
+        description: ActiveCampaign Delete Address Associated with a Specific User Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the AddressGroup to delete
+          required: true
+    - name: addressLists-id
+      path: /addressLists/{id}
+      operations:
+      - name: deleteanaddresslist
+        method: DELETE
+        description: ActiveCampaign Delete Address Associated with a Specific List
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the AddressList to delete
+          required: true
+    - name: addresses
+      path: /addresses
+      operations:
+      - name: createanaddress
+        method: POST
+        description: ActiveCampaign Create an Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listalladdresses
+        method: GET
+        description: ActiveCampaign List All Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: addresses-id
+      path: /addresses/{id}
+      operations:
+      - name: retrieveanaddress
+        method: GET
+        description: ActiveCampaign Retrieve an Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the Address to retrieve
+          required: true
+      - name: updateanaddress
+        method: PUT
+        description: ActiveCampaign Update an Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the Address being changed
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteanaddress
+        method: DELETE
+        description: ActiveCampaign Delete an Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: ID of the Address to delete
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: v3-addresses-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign API v3 — Addresses. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/addressgroups/{id}
+      name: addressgroups-id
+      description: REST surface for addressGroups-id.
+      operations:
+      - method: DELETE
+        name: deleteanaddressgroup
+        description: ActiveCampaign Delete Address Associated with a Specific User Group
+        call: v3-addresses.deleteanaddressgroup
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/addresslists/{id}
+      name: addresslists-id
+      description: REST surface for addressLists-id.
+      operations:
+      - method: DELETE
+        name: deleteanaddresslist
+        description: ActiveCampaign Delete Address Associated with a Specific List
+        call: v3-addresses.deleteanaddresslist
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/addresses
+      name: addresses
+      description: REST surface for addresses.
+      operations:
+      - method: POST
+        name: createanaddress
+        description: ActiveCampaign Create an Address
+        call: v3-addresses.createanaddress
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listalladdresses
+        description: ActiveCampaign List All Addresses
+        call: v3-addresses.listalladdresses
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/addresses/{id}
+      name: addresses-id
+      description: REST surface for addresses-id.
+      operations:
+      - method: GET
+        name: retrieveanaddress
+        description: ActiveCampaign Retrieve an Address
+        call: v3-addresses.retrieveanaddress
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateanaddress
+        description: ActiveCampaign Update an Address
+        call: v3-addresses.updateanaddress
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteanaddress
+        description: ActiveCampaign Delete an Address
+        call: v3-addresses.deleteanaddress
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v3-addresses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign API v3 — Addresses. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: activecampaign-delete-address-associated-specific
+      description: ActiveCampaign Delete Address Associated with a Specific User Group
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-addresses.deleteanaddressgroup
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-address-associated-specific-2
+      description: ActiveCampaign Delete Address Associated with a Specific List
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-addresses.deleteanaddresslist
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-create-address
+      description: ActiveCampaign Create an Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-addresses.createanaddress
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-addresses
+      description: ActiveCampaign List All Addresses
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-addresses.listalladdresses
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-address
+      description: ActiveCampaign Retrieve an Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-addresses.retrieveanaddress
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-address
+      description: ActiveCampaign Update an Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-addresses.updateanaddress
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-address
+      description: ActiveCampaign Delete an Address
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-addresses.deleteanaddress
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,164 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign API v3 — Branding
+  description: 'ActiveCampaign API v3 — Branding. 3 operations. Lead operation: ActiveCampaign List All Brandings. Self-contained
+    Naftiko capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - Branding
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v3-branding
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign API v3 — Branding business capability. Self-contained, no shared references.
+    resources:
+    - name: brandings
+      path: /brandings
+      operations:
+      - name: brandings
+        method: GET
+        description: ActiveCampaign List All Brandings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: api_key
+          in: query
+          type: string
+          description: ActiveCampaign API key
+    - name: brandings-id
+      path: /brandings/{id}
+      operations:
+      - name: getbranding
+        method: GET
+        description: ActiveCampaign Retrieve a Branding
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+      - name: updatebranding
+        method: PUT
+        description: ActiveCampaign Update a Branding
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Branding ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: v3-branding-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign API v3 — Branding. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/brandings
+      name: brandings
+      description: REST surface for brandings.
+      operations:
+      - method: GET
+        name: brandings
+        description: ActiveCampaign List All Brandings
+        call: v3-branding.brandings
+        with:
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/brandings/{id}
+      name: brandings-id
+      description: REST surface for brandings-id.
+      operations:
+      - method: GET
+        name: getbranding
+        description: ActiveCampaign Retrieve a Branding
+        call: v3-branding.getbranding
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatebranding
+        description: ActiveCampaign Update a Branding
+        call: v3-branding.updatebranding
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v3-branding-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign API v3 — Branding. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: activecampaign-list-all-brandings
+      description: ActiveCampaign List All Brandings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-branding.brandings
+      with:
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-branding
+      description: ActiveCampaign Retrieve a Branding
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-branding.getbranding
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-branding
+      description: ActiveCampaign Update a Branding
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-branding.updatebranding
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

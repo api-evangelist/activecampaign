@@ -1,0 +1,226 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ActiveCampaign API v3 — Messages
+  description: 'ActiveCampaign API v3 — Messages. 5 operations. Lead operation: ActiveCampaign Create a Message. Self-contained
+    Naftiko capability covering one Activecampaign business surface.'
+  tags:
+  - Activecampaign
+  - Messages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACTIVECAMPAIGN_API_KEY: ACTIVECAMPAIGN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v3-messages
+    baseUri: https://{yourAccountName}.api-us1.com/api/3
+    description: ActiveCampaign API v3 — Messages business capability. Self-contained, no shared references.
+    resources:
+    - name: messages
+      path: /messages
+      operations:
+      - name: createanewmessage
+        method: POST
+        description: ActiveCampaign Create a Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: listallmessages
+        method: GET
+        description: ActiveCampaign List All Messages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: messages-id
+      path: /messages/{id}
+      operations:
+      - name: retrieveamessage
+        method: GET
+        description: ActiveCampaign Retrieve a Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: ID of the message to retrieve
+          required: true
+      - name: updateamessage
+        method: PUT
+        description: ActiveCampaign Update a Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: ID of the message to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteamessage
+        method: DELETE
+        description: ActiveCampaign Delete a Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: ID of the message to delete
+          required: true
+    authentication:
+      type: apikey
+      key: Api-Token
+      value: '{{env.ACTIVECAMPAIGN_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: v3-messages-rest
+    port: 8080
+    description: REST adapter for ActiveCampaign API v3 — Messages. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/messages
+      name: messages
+      description: REST surface for messages.
+      operations:
+      - method: POST
+        name: createanewmessage
+        description: ActiveCampaign Create a Message
+        call: v3-messages.createanewmessage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listallmessages
+        description: ActiveCampaign List All Messages
+        call: v3-messages.listallmessages
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/messages/{id}
+      name: messages-id
+      description: REST surface for messages-id.
+      operations:
+      - method: GET
+        name: retrieveamessage
+        description: ActiveCampaign Retrieve a Message
+        call: v3-messages.retrieveamessage
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateamessage
+        description: ActiveCampaign Update a Message
+        call: v3-messages.updateamessage
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteamessage
+        description: ActiveCampaign Delete a Message
+        call: v3-messages.deleteamessage
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v3-messages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ActiveCampaign API v3 — Messages. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: activecampaign-create-message
+      description: ActiveCampaign Create a Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v3-messages.createanewmessage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-list-all-messages
+      description: ActiveCampaign List All Messages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-messages.listallmessages
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-retrieve-message
+      description: ActiveCampaign Retrieve a Message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v3-messages.retrieveamessage
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-update-message
+      description: ActiveCampaign Update a Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: v3-messages.updateamessage
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activecampaign-delete-message
+      description: ActiveCampaign Delete a Message
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v3-messages.deleteamessage
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
