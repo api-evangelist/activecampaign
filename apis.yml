@@ -262,6 +262,8 @@ common:
 - name: Agent Skills
   url: https://github.com/ActiveCampaign/postmark-skills
   type: AgentSkill
+- type: LLMsTxt
+  url: https://developers.activecampaign.com/llms.txt
 created: '2025-02-17'
 modified: '2026-05-19'
 position: Consumer
