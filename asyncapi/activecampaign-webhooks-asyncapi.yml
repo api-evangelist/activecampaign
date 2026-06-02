@@ -1,0 +1,771 @@
+asyncapi: 2.6.0
+info:
+  title: ActiveCampaign Webhooks
+  version: '1.0.0'
+  description: |-
+    AsyncAPI description of ActiveCampaign's outbound webhook surface. When a
+    webhook is configured (via the dashboard or the REST API at
+    POST /api/3/webhooks), ActiveCampaign delivers events as HTTP POST requests
+    with an application/x-www-form-urlencoded body to a customer-controlled URL.
+
+    Every event body includes a `type` discriminator field that identifies the
+    event class, plus `date_time`, `initiated_by`, `initiated_from` (where
+    applicable) and `list` (the account/list id the event was scoped to). Some
+    events also include the standard `contact[...]` block. Field names use
+    bracketed PHP-style keys (for example `contact[email]`, `deal[id]`,
+    `campaign[message][subject]`).
+
+    Source documentation:
+      - Webhooks reference:    https://developers.activecampaign.com/reference/webhooks
+      - Webhook payload page:  https://developers.activecampaign.com/page/webhooks
+      - Manage webhooks (API): https://developers.activecampaign.com/reference/list-all-webhooks
+
+    Delivery characteristics (per ActiveCampaign docs):
+      - At-least-once delivery: subscribers must be idempotent.
+      - Webhooks are not retried on failure.
+      - A webhook is automatically deactivated when the subscriber returns HTTP 410.
+      - Mass operations (e.g. contact imports) do not fire webhooks.
+
+    Security:
+      ActiveCampaign does not publish an HMAC signature header for outbound
+      webhooks. Subscribers should rely on HTTPS plus a hard-to-guess URL path
+      (or HTTP Basic credentials embedded in the configured URL) to authenticate
+      inbound calls.
+  contact:
+    name: ActiveCampaign Developers
+    url: https://developers.activecampaign.com/
+  license:
+    name: ActiveCampaign Terms of Service
+    url: https://www.activecampaign.com/legal/terms
+
+defaultContentType: application/x-www-form-urlencoded
+
+servers:
+  subscriber:
+    url: '{webhookUrl}'
+    protocol: https
+    description: |-
+      Customer-hosted HTTPS endpoint registered with ActiveCampaign that
+      receives webhook POSTs. The URL is configured per webhook via the
+      dashboard or the Webhooks REST API.
+    variables:
+      webhookUrl:
+        default: https://example.com/activecampaign/webhook
+        description: Fully-qualified HTTPS URL of the subscriber endpoint.
+
+channels:
+  /activecampaign/webhook:
+    description: |-
+      Single subscriber endpoint that receives every ActiveCampaign webhook
+      event configured for the registered URL. The `type` field on the form
+      body identifies the event class. ActiveCampaign sends one event per
+      HTTP POST.
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: receiveActiveCampaignWebhook
+      summary: Receive an ActiveCampaign webhook event
+      description: |-
+        ActiveCampaign POSTs a form-encoded event to the subscriber endpoint.
+        Subscribers should respond with a 2xx status code; webhooks are not
+        retried. Returning HTTP 410 will permanently disable the webhook.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/Subscribe'
+          - $ref: '#/components/messages/Unsubscribe'
+          - $ref: '#/components/messages/ContactUpdate'
+          - $ref: '#/components/messages/SubscriberNote'
+          - $ref: '#/components/messages/ContactTaskAdd'
+          - $ref: '#/components/messages/AccountAdd'
+          - $ref: '#/components/messages/AccountUpdate'
+          - $ref: '#/components/messages/AccountContactAdd'
+          - $ref: '#/components/messages/AccountContactUpdate'
+          - $ref: '#/components/messages/ListAdd'
+          - $ref: '#/components/messages/CampaignSent'
+          - $ref: '#/components/messages/CampaignOpen'
+          - $ref: '#/components/messages/CampaignClick'
+          - $ref: '#/components/messages/CampaignReply'
+          - $ref: '#/components/messages/CampaignForward'
+          - $ref: '#/components/messages/CampaignShare'
+          - $ref: '#/components/messages/CampaignBounce'
+          - $ref: '#/components/messages/DealAdd'
+          - $ref: '#/components/messages/DealUpdate'
+          - $ref: '#/components/messages/DealNoteAdd'
+          - $ref: '#/components/messages/DealPipelineAdd'
+          - $ref: '#/components/messages/DealStageAdd'
+          - $ref: '#/components/messages/DealTaskAdd'
+          - $ref: '#/components/messages/DealTaskTypeAdd'
+          - $ref: '#/components/messages/SmsSent'
+          - $ref: '#/components/messages/SmsReply'
+          - $ref: '#/components/messages/SmsUnsub'
+
+components:
+  messages:
+    Subscribe:
+      name: subscribe
+      title: Contact subscribed
+      summary: A new contact is subscribed to a list.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/SubscribePayload'
+    Unsubscribe:
+      name: unsubscribe
+      title: Contact unsubscribed
+      summary: A contact unsubscribed from a list (optionally tied to a campaign).
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/UnsubscribePayload'
+    ContactUpdate:
+      name: update
+      title: Contact updated
+      summary: A contact's details (fields, name, phone, etc.) were updated.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/ContactUpdatePayload'
+    SubscriberNote:
+      name: subscriber_note
+      title: Contact note added
+      summary: A new note was added to a contact.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/SubscriberNotePayload'
+    ContactTaskAdd:
+      name: contact_task_add
+      title: Contact task added
+      summary: A new task was assigned to a contact.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/ContactTaskAddPayload'
+    AccountAdd:
+      name: account_add
+      title: Account added
+      summary: A new account record was created.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/AccountAddPayload'
+    AccountUpdate:
+      name: account_update
+      title: Account updated
+      summary: An existing account record was updated.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/AccountUpdatePayload'
+    AccountContactAdd:
+      name: account_contact_add
+      title: Account contact added
+      summary: A contact was associated with an account.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/AccountContactPayload'
+    AccountContactUpdate:
+      name: account_contact_update
+      title: Account contact updated
+      summary: An account contact association was updated.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/AccountContactPayload'
+    ListAdd:
+      name: list_add
+      title: List created
+      summary: A new list was created.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/ListAddPayload'
+    CampaignSent:
+      name: sent
+      title: Campaign sent
+      summary: A campaign starts sending.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/CampaignSentPayload'
+    CampaignOpen:
+      name: open
+      title: Campaign opened
+      summary: A campaign message was opened by a contact.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/CampaignOpenPayload'
+    CampaignClick:
+      name: click
+      title: Campaign link clicked
+      summary: A link in a campaign message was clicked by a contact.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/CampaignClickPayload'
+    CampaignReply:
+      name: reply
+      title: Campaign reply
+      summary: A contact replied to a campaign message.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/CampaignReplyPayload'
+    CampaignForward:
+      name: forward
+      title: Campaign forwarded
+      summary: A contact forwarded a campaign using the built-in forward feature.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/CampaignForwardPayload'
+    CampaignShare:
+      name: share
+      title: Campaign shared
+      summary: A contact shared a campaign to a social network.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/CampaignSharePayload'
+    CampaignBounce:
+      name: bounce
+      title: Campaign bounce
+      summary: A campaign message bounced.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/CampaignBouncePayload'
+    DealAdd:
+      name: deal_add
+      title: Deal created
+      summary: A new deal was created.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/DealAddPayload'
+    DealUpdate:
+      name: deal_update
+      title: Deal updated
+      summary: An existing deal was updated.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/DealUpdatePayload'
+    DealNoteAdd:
+      name: deal_note_add
+      title: Deal note added
+      summary: A note was attached to a deal.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/DealNoteAddPayload'
+    DealPipelineAdd:
+      name: deal_pipeline_add
+      title: Deal pipeline created
+      summary: A new sales pipeline was created.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/DealPipelineAddPayload'
+    DealStageAdd:
+      name: deal_stage_add
+      title: Deal stage created
+      summary: A new pipeline stage was created.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/DealStageAddPayload'
+    DealTaskAdd:
+      name: deal_task_add
+      title: Deal task added
+      summary: A task was added against a deal.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/DealTaskAddPayload'
+    DealTaskTypeAdd:
+      name: deal_tasktype_add
+      title: Deal task type added
+      summary: A new task type was defined for deals.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/DealTaskTypeAddPayload'
+    SmsSent:
+      name: sms_sent
+      title: SMS sent
+      summary: An SMS message was sent.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/SmsSentPayload'
+    SmsReply:
+      name: sms_reply
+      title: SMS reply received
+      summary: A recipient replied to an SMS message.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/SmsReplyPayload'
+    SmsUnsub:
+      name: sms_unsub
+      title: SMS unsubscribe
+      summary: A contact unsubscribed via SMS.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/SmsUnsubPayload'
+
+  schemas:
+    EventEnvelope:
+      type: object
+      description: |-
+        Common fields present on every ActiveCampaign webhook delivery. The
+        `type` field is the event discriminator; `list` is the list id (or `0`
+        for account-scoped events) and `initiated_*` describes the actor that
+        triggered the event.
+      properties:
+        type:
+          type: string
+          description: Event type discriminator (e.g. subscribe, click, deal_add).
+        date_time:
+          type: string
+          description: ISO 8601 timestamp at which the event was generated.
+        initiated_from:
+          type: string
+          description: Origin of the action — public, admin, api, or system.
+          enum: [public, admin, api, system]
+        initiated_by:
+          type: string
+          description: Identifier (user id, contact id, system) for the actor.
+        list:
+          type: string
+          description: List id the event was scoped to (or 0 for account-level events).
+      required: [type, date_time]
+
+    ContactBlock:
+      type: object
+      description: Standard contact block included with most contact-scoped events.
+      properties:
+        'contact[id]': { type: string, description: Contact id. }
+        'contact[email]': { type: string, format: email, description: Contact email address. }
+        'contact[first_name]': { type: string }
+        'contact[last_name]': { type: string }
+        'contact[phone]': { type: string }
+        'contact[tags]': { type: string, description: Comma-separated tag list. }
+        'contact[orgname]': { type: string }
+        'contact[ip]': { type: string }
+        'contact[customer_acct_name]': { type: string }
+        'contact[fields][*]':
+          type: string
+          description: |-
+            Custom contact field values, keyed by personalisation tag —
+            e.g. contact[fields][favourite_color]. One key per custom field.
+
+    AccountBlock:
+      type: object
+      description: Standard account block included with account-scoped events.
+      properties:
+        'account[id]': { type: string }
+        'account[name]': { type: string }
+        'account[account_url]': { type: string, format: uri }
+        'account[created_timestamp]': { type: string }
+        'account[updated_timestamp]': { type: string }
+        'account[fields][*]':
+          type: string
+          description: |-
+            Custom account field values keyed by field name (e.g.
+            account[fields][Description], account[fields][Industry/Vertical]).
+
+    CampaignBlock:
+      type: object
+      description: Standard campaign block included with campaign-scoped events.
+      properties:
+        'campaign[id]': { type: string }
+        'campaign[name]': { type: string }
+        'campaign[status]': { type: string }
+        'campaign[type]': { type: string }
+        'campaign[recipients]': { type: string }
+        'campaign[message][id]': { type: string }
+        'campaign[message][subject]': { type: string }
+        'campaign[webcopy_url]': { type: string, format: uri }
+
+    DealBlock:
+      type: object
+      description: Standard deal block included with deal-scoped events.
+      properties:
+        'deal[id]': { type: string }
+        'deal[title]': { type: string }
+        'deal[create_date]': { type: string }
+        'deal[orgid]': { type: string }
+        'deal[orgname]': { type: string }
+        'deal[stageid]': { type: string }
+        'deal[stage_title]': { type: string }
+        'deal[pipelineid]': { type: string }
+        'deal[pipeline_title]': { type: string }
+        'deal[value]': { type: string }
+        'deal[currency]': { type: string }
+        'deal[currency_symbol]': { type: string }
+        'deal[owner]': { type: string }
+        'deal[owner_firstname]': { type: string }
+        'deal[owner_lastname]': { type: string }
+        'deal[contactid]': { type: string }
+        'deal[contact_email]': { type: string, format: email }
+        'deal[contact_firstname]': { type: string }
+        'deal[contact_lastname]': { type: string }
+        'deal[status]': { type: string }
+
+    SubscribePayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: subscribe
+            'form[id]':
+              type: string
+              description: Id of the form that captured the subscription (if any).
+
+    UnsubscribePayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - $ref: '#/components/schemas/CampaignBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: unsubscribe
+            'list[][id]':
+              type: string
+              description: Id of each list the contact was removed from.
+            'form[id]':
+              type: string
+            'unsubscribe[reason]':
+              type: string
+              description: Reason the contact unsubscribed (where supplied).
+            'active_subscriptions[0]':
+              type: string
+              description: First remaining active subscription id (if any).
+            customer_acct_name:
+              type: string
+            customer_acct_id:
+              type: string
+            orgname:
+              type: string
+            account_id:
+              type: string
+
+    ContactUpdatePayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: update
+
+    SubscriberNotePayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: subscriber_note
+            note:
+              type: string
+              description: Note text attached to the contact.
+
+    ContactTaskAddPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: contact_task_add
+            customer_acct_name: { type: string }
+            customer_account_id: { type: string }
+            orgname: { type: string }
+            'task[id]': { type: string }
+            'task[type_id]': { type: string }
+            'task[title]': { type: string }
+            'task[note]': { type: string }
+            'task[dueDate]': { type: string }
+            'task[duedate_iso]': { type: string, format: date-time }
+            'task[edate]': { type: string }
+            'task[edate_iso]': { type: string, format: date-time }
+            'task[type_title]': { type: string }
+
+    AccountAddPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/AccountBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: account_add
+
+    AccountUpdatePayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/AccountBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: account_update
+
+    AccountContactPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - $ref: '#/components/schemas/AccountBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum: [account_contact_add, account_contact_update]
+            customer_acct_name: { type: string }
+            customer_account_id: { type: string }
+            orgname: { type: string }
+            'accountContact[id]': { type: string }
+            'accountContact[account]': { type: string }
+            'accountContact[contact]': { type: string }
+            'accountContact[job_title]': { type: string }
+
+    ListAddPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: list_add
+            'list[id]': { type: string }
+            'list[userid]': { type: string }
+            'list[name]': { type: string }
+            'list[sender_addr1]': { type: string }
+            'list[sender_addr2]': { type: string }
+            'list[sender_city]': { type: string }
+            'list[sender_zip]': { type: string }
+            'list[sender_state]': { type: string }
+            'list[sender_country]': { type: string }
+            'list[fulladdress]': { type: string }
+            'list[sender_url]': { type: string, format: uri }
+            'list[sender_reminder]': { type: string }
+
+    CampaignSentPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/CampaignBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: sent
+
+    CampaignOpenPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - $ref: '#/components/schemas/CampaignBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: open
+            User-Agent:
+              type: string
+              description: User-Agent string of the client that opened the message.
+            customer_acct_name: { type: string }
+            customer_acct_id: { type: string }
+            orgname: { type: string }
+            account_id: { type: string }
+
+    CampaignClickPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - $ref: '#/components/schemas/CampaignBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: click
+            'link[id]': { type: string }
+            'link[url]': { type: string, format: uri }
+            customer_acct_name: { type: string }
+            customer_acct_id: { type: string }
+            orgname: { type: string }
+            account_id: { type: string }
+
+    CampaignReplyPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: reply
+            'campaign[id]': { type: string }
+            result:
+              type: string
+              description: Reply processing result.
+            message:
+              type: string
+              description: Reply message text.
+
+    CampaignForwardPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: forward
+            'campaign[id]': { type: string }
+            'forward[count]':
+              type: string
+              description: Number of forwards triggered by this event.
+
+    CampaignSharePayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: share
+            'campaign[id]': { type: string }
+            'share[network]':
+              type: string
+              description: Social network the campaign was shared to (e.g. facebook, twitter).
+            'share[network_id]': { type: string }
+            'share[content]': { type: string }
+
+    CampaignBouncePayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: bounce
+            'campaign[id]': { type: string }
+            'bounce[type]': { type: string }
+            'bounce[code]': { type: string }
+            'bounce[description]': { type: string }
+
+    DealAddPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - $ref: '#/components/schemas/DealBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: deal_add
+
+    DealUpdatePayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - $ref: '#/components/schemas/DealBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: deal_update
+            'updated_fields[*]':
+              type: string
+              description: One key per changed field, named after the field id.
+
+    DealNoteAddPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/DealBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: deal_note_add
+            'note[id]': { type: string }
+            'note[text]': { type: string }
+
+    DealPipelineAddPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: deal_pipeline_add
+            'pipeline[id]': { type: string }
+            'pipeline[title]': { type: string }
+
+    DealStageAddPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: deal_stage_add
+            'stage[id]': { type: string }
+            'stage[title]': { type: string }
+            'stage[color]': { type: string }
+
+    DealTaskAddPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/DealBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: deal_task_add
+            'task[id]': { type: string }
+            'task[type_id]': { type: string }
+            'task[note]': { type: string }
+            'task[duedate]': { type: string }
+
+    DealTaskTypeAddPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: deal_tasktype_add
+            'tasktype[id]': { type: string }
+            'tasktype[title]': { type: string }
+
+    SmsSentPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: sms_sent
+            'sms[id]': { type: string }
+            'sms[recipient]': { type: string }
+            'sms[successful]': { type: string }
+            'sms[comment]': { type: string }
+
+    SmsReplyPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: sms_reply
+            'sms[id]': { type: string }
+            'sms[reply]': { type: string }
+            'sms[result]': { type: string }
+
+    SmsUnsubPayload:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - $ref: '#/components/schemas/ContactBlock'
+        - type: object
+          properties:
+            type:
+              type: string
+              const: sms_unsub
+            'sms[id]': { type: string }
+            'sms[phone]': { type: string }

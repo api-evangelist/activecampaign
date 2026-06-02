@@ -18,6 +18,9 @@ apis:
     type: Authentication
   - url: openapi/activecampaign-v3.json
     type: OpenAPI
+  - url: asyncapi/activecampaign-webhooks-asyncapi.yml
+    type: AsyncAPI
+    title: Webhooks
   - type: NaftikoCapability
     url: capabilities/v3-accounts.yaml
   - type: NaftikoCapability
@@ -265,7 +268,7 @@ common:
 - type: LLMsTxt
   url: https://developers.activecampaign.com/llms.txt
 created: '2025-02-17'
-modified: '2026-05-19'
+modified: '2026-05-30'
 position: Consumer
 description: ActiveCampaign is a leading marketing automation platform that helps businesses of all sizes seamlessly engage
   with their customers. With its user-friendly interface and powerful features, ActiveCampaign allows businesses to create
