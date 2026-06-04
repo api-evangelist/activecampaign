@@ -1,0 +1,76 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Find a Deal by Title and Add a Note
+  summary: Search deals by title then attach a note to the matched deal.
+  description: >-
+    A find-then-annotate flow. The workflow searches deals by title using the
+    deal title filter, confirms a match was returned, and attaches an
+    explanatory note to the matched deal. Every step spells out its request
+    inline, including the Api-Token authentication header, so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: find-deal-add-note
+  summary: Find a deal by title and attach a note to it.
+  description: >-
+    Searches deals by title and attaches an explanatory note to the first
+    matched deal.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - title
+    - note
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      title:
+        type: string
+        description: Title used to search for the deal.
+      note:
+        type: string
+        description: Text of the note to attach to the matched deal.
+  steps:
+  - stepId: findDeal
+    description: Search deals by the supplied title.
+    operationId: list-all-deals
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    - name: filters[title]
+      in: query
+      value: $inputs.title
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.deals.length > 0
+      type: jsonpath
+    outputs:
+      dealId: $response.body#/deals/0/id
+  - stepId: addNote
+    description: Attach an explanatory note to the matched deal.
+    operationId: create-a-deal-note
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    - name: id
+      in: path
+      value: $steps.findDeal.outputs.dealId
+    requestBody:
+      contentType: application/json
+      payload:
+        note:
+          note: $inputs.note
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      dealId: $response.body#/deals/0/id
+  outputs:
+    dealId: $steps.findDeal.outputs.dealId

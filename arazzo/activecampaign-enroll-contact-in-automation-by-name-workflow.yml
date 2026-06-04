@@ -1,0 +1,74 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Resolve Automation by Name and Enroll Contact
+  summary: Find an automation by name then enroll an existing contact into it.
+  description: >-
+    A find-then-act enrollment flow. The workflow lists all automations and
+    matches one by name, then enrolls the supplied contact into the resolved
+    automation. Because the automations list endpoint does not accept a name
+    filter, the match is evaluated client-side from the returned collection.
+    Every step spells out its request inline, including the Api-Token
+    authentication header, so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: enroll-contact-in-automation-by-name
+  summary: Resolve an automation by name and enroll a contact into it.
+  description: >-
+    Lists automations, matches the first one whose name equals the supplied
+    value, and enrolls the supplied contact into that automation.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - automationName
+    - contactId
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      automationName:
+        type: string
+        description: Name of the automation to resolve.
+      contactId:
+        type: integer
+        description: Identifier of the contact to enroll.
+  steps:
+  - stepId: listAutomations
+    description: List all automations so one can be matched by name.
+    operationId: list-all-automations
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.automations[?(@.name == '$inputs.automationName')]
+      type: jsonpath
+    outputs:
+      automationId: $response.body#/automations/0/id
+  - stepId: enrollContact
+    description: Enroll the supplied contact into the resolved automation.
+    operationId: create-new-contactautomation
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contactAutomation:
+          contact: $inputs.contactId
+          automation: $steps.listAutomations.outputs.automationId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactAutomationId: $response.body#/contactAutomation/id
+  outputs:
+    automationId: $steps.listAutomations.outputs.automationId
+    contactAutomationId: $steps.enrollContact.outputs.contactAutomationId

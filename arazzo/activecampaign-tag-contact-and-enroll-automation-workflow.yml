@@ -1,0 +1,79 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Tag a Contact and Enroll in Automation
+  summary: Apply a tag to an existing contact then enroll it in an automation.
+  description: >-
+    A segmentation-plus-nurture flow against an existing contact. A tag is
+    applied to the supplied contact for segmentation, and the same contact is
+    then enrolled into the supplied automation. Every step spells out its
+    request inline, including the Api-Token authentication header, so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: tag-contact-and-enroll-automation
+  summary: Tag an existing contact and enroll it into an automation.
+  description: >-
+    Applies the supplied tag to the supplied contact and then enrolls the same
+    contact into the supplied automation.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - contactId
+    - tagId
+    - automationId
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      contactId:
+        type: integer
+        description: Identifier of the contact to tag and enroll.
+      tagId:
+        type: integer
+        description: Identifier of the tag to apply to the contact.
+      automationId:
+        type: integer
+        description: Identifier of the automation to enroll the contact into.
+  steps:
+  - stepId: applyTag
+    description: Apply the supplied tag to the contact for segmentation.
+    operationId: create-contact-tag
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contactTag:
+          contact: $inputs.contactId
+          tag: $inputs.tagId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactTagId: $response.body#/contactTag/id
+  - stepId: enrollInAutomation
+    description: Enroll the contact into the supplied automation.
+    operationId: create-new-contactautomation
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contactAutomation:
+          contact: $inputs.contactId
+          automation: $inputs.automationId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactAutomationId: $response.body#/contactAutomation/id
+  outputs:
+    contactTagId: $steps.applyTag.outputs.contactTagId
+    contactAutomationId: $steps.enrollInAutomation.outputs.contactAutomationId

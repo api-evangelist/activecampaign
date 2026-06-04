@@ -1,0 +1,118 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Create Pipeline, Stage, and First Deal
+  summary: Stand up a pipeline, add a stage to it, then open the first deal.
+  description: >-
+    A pipeline bootstrapping flow. A new pipeline is created, a stage is added
+    inside that pipeline, and an initial deal is opened into the new stage.
+    Every step spells out its request inline, including the Api-Token
+    authentication header, so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: create-pipeline-stage-deal
+  summary: Create a pipeline, add a stage, then open the first deal.
+  description: >-
+    Creates a pipeline, adds a stage to it, and opens an initial deal into the
+    new stage for the supplied contact.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - pipelineTitle
+    - currency
+    - stageTitle
+    - dealTitle
+    - contactId
+    - value
+    - ownerId
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      pipelineTitle:
+        type: string
+        description: Title of the pipeline to create.
+      currency:
+        type: string
+        description: Three-letter lowercase currency code for the pipeline and deal.
+      stageTitle:
+        type: string
+        description: Title of the stage to add to the pipeline.
+      dealTitle:
+        type: string
+        description: Title of the first deal.
+      contactId:
+        type: string
+        description: Identifier of the primary contact on the deal.
+      value:
+        type: integer
+        description: Deal value in cents.
+      ownerId:
+        type: string
+        description: Identifier of the user who owns the deal.
+  steps:
+  - stepId: createPipeline
+    description: Create the pipeline with the supplied title and currency.
+    operationId: create-a-pipeline
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        dealGroup:
+          title: $inputs.pipelineTitle
+          currency: $inputs.currency
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      pipelineId: $response.body#/dealGroup/id
+  - stepId: createStage
+    description: Add a stage to the newly created pipeline.
+    operationId: create-a-deal-stage
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        dealStage:
+          title: $inputs.stageTitle
+          group: $steps.createPipeline.outputs.pipelineId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      stageId: $response.body#/dealStage/id
+  - stepId: openDeal
+    description: Open the first deal into the new stage of the new pipeline.
+    operationId: create-a-deal-new
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        deal:
+          title: $inputs.dealTitle
+          contact: $inputs.contactId
+          value: $inputs.value
+          currency: $inputs.currency
+          group: $steps.createPipeline.outputs.pipelineId
+          stage: $steps.createStage.outputs.stageId
+          owner: $inputs.ownerId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      dealId: $response.body#/deal/id
+  outputs:
+    pipelineId: $steps.createPipeline.outputs.pipelineId
+    stageId: $steps.createStage.outputs.stageId
+    dealId: $steps.openDeal.outputs.dealId

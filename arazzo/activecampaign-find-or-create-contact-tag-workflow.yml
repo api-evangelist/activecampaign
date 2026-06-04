@@ -1,0 +1,133 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Find or Create Contact, Then Tag
+  summary: Look up a contact by email, create it if missing, then apply a tag.
+  description: >-
+    An idempotent tagging flow. The workflow searches for an existing contact by
+    its email address and branches: when a contact already exists it tags that
+    contact, and when no contact is found it first creates the contact and then
+    applies the tag. Every step spells out its request inline, including the
+    Api-Token authentication header, so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: find-or-create-contact-tag
+  summary: Find a contact by email or create it, then apply a tag.
+  description: >-
+    Searches for a contact by email and either tags the existing contact or
+    creates a new contact before applying the supplied tag.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - email
+    - tagId
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      email:
+        type: string
+        description: Email address used to look up or create the contact.
+      firstName:
+        type: string
+        description: Optional first name used when creating a new contact.
+      lastName:
+        type: string
+        description: Optional last name used when creating a new contact.
+      tagId:
+        type: integer
+        description: Identifier of the tag to apply to the contact.
+  steps:
+  - stepId: findContact
+    description: Search for an existing contact whose email matches the supplied value.
+    operationId: list-all-contacts
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    - name: email
+      in: query
+      value: $inputs.email
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedContactId: $response.body#/contacts/0/id
+    onSuccess:
+    - name: contactExists
+      type: goto
+      stepId: tagExisting
+      criteria:
+      - context: $response.body
+        condition: $.contacts.length > 0
+        type: jsonpath
+    - name: contactMissing
+      type: goto
+      stepId: createContact
+      criteria:
+      - context: $response.body
+        condition: $.contacts.length == 0
+        type: jsonpath
+  - stepId: tagExisting
+    description: Apply the supplied tag to the matched existing contact.
+    operationId: create-contact-tag
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contactTag:
+          contact: $steps.findContact.outputs.matchedContactId
+          tag: $inputs.tagId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactTagId: $response.body#/contactTag/id
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createContact
+    description: Create the contact when no existing match was found.
+    operationId: create-a-new-contact
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contact:
+          email: $inputs.email
+          firstName: $inputs.firstName
+          lastName: $inputs.lastName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/contact/id
+  - stepId: tagNew
+    description: Apply the supplied tag to the newly created contact.
+    operationId: create-contact-tag
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contactTag:
+          contact: $steps.createContact.outputs.contactId
+          tag: $inputs.tagId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactTagId: $response.body#/contactTag/id
+  outputs:
+    contactId: $steps.createContact.outputs.contactId
+    matchedContactId: $steps.findContact.outputs.matchedContactId
+    contactTagId: $steps.tagNew.outputs.contactTagId

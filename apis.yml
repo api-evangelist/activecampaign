@@ -154,6 +154,72 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/activecampaign-create-account-add-contact-workflow.yml
+    name: ActiveCampaign Create Account and Associate a Contact
+    summary: Create an account record then associate an existing contact with it.
+  - url: arazzo/activecampaign-create-account-add-note-workflow.yml
+    name: ActiveCampaign Create Account and Add a Note
+    summary: Create an account record then attach an explanatory note to it.
+  - url: arazzo/activecampaign-create-contact-add-to-automation-workflow.yml
+    name: ActiveCampaign Create Contact and Enroll in Automation
+    summary: Create a contact then enroll it into a marketing automation.
+  - url: arazzo/activecampaign-create-contact-add-to-list-tag-workflow.yml
+    name: ActiveCampaign Create Contact, Subscribe to List, and Tag
+    summary: Create a contact, subscribe it to a list, then apply a tag in one pass.
+  - url: arazzo/activecampaign-create-contact-associate-account-by-name-workflow.yml
+    name: ActiveCampaign Create Contact and Associate to an Account by Name
+    summary: Resolve an account by name, create a contact, then associate them.
+  - url: arazzo/activecampaign-create-contact-set-custom-field-workflow.yml
+    name: ActiveCampaign Create Contact and Set Custom Field Value
+    summary: Create a contact then write a value to one of its custom fields.
+  - url: arazzo/activecampaign-create-custom-field-set-on-contact-workflow.yml
+    name: ActiveCampaign Create Contact Custom Field and Set Its Value
+    summary: Define a new contact custom field then set its value on a contact.
+  - url: arazzo/activecampaign-create-deal-add-note-workflow.yml
+    name: ActiveCampaign Create Deal and Add a Note
+    summary: Create a deal in a pipeline stage then attach an explanatory note.
+  - url: arazzo/activecampaign-create-deal-add-task-workflow.yml
+    name: ActiveCampaign Create Deal and Schedule a Task
+    summary: Create a deal then schedule a follow-up task against it.
+  - url: arazzo/activecampaign-create-deal-for-contact-by-email-workflow.yml
+    name: ActiveCampaign Find Contact by Email and Create a Deal
+    summary: Resolve a contact by email, creating it if missing, then open a deal.
+  - url: arazzo/activecampaign-create-deal-set-custom-field-workflow.yml
+    name: ActiveCampaign Create Deal and Set Custom Field Value
+    summary: Create a deal then write a value to one of its custom fields.
+  - url: arazzo/activecampaign-create-list-add-contact-workflow.yml
+    name: ActiveCampaign Create List and Subscribe a Contact
+    summary: Create a mailing list then subscribe an existing contact to it.
+  - url: arazzo/activecampaign-create-pipeline-stage-deal-workflow.yml
+    name: ActiveCampaign Create Pipeline, Stage, and First Deal
+    summary: Stand up a pipeline, add a stage to it, then open the first deal.
+  - url: arazzo/activecampaign-enroll-contact-in-automation-by-name-workflow.yml
+    name: ActiveCampaign Resolve Automation by Name and Enroll Contact
+    summary: Find an automation by name then enroll an existing contact into it.
+  - url: arazzo/activecampaign-find-deal-add-note-workflow.yml
+    name: ActiveCampaign Find a Deal by Title and Add a Note
+    summary: Search deals by title then attach a note to the matched deal.
+  - url: arazzo/activecampaign-find-or-create-contact-tag-workflow.yml
+    name: ActiveCampaign Find or Create Contact, Then Tag
+    summary: Look up a contact by email, create it if missing, then apply a tag.
+  - url: arazzo/activecampaign-find-or-create-tag-and-apply-workflow.yml
+    name: ActiveCampaign Find or Create Tag, Then Apply to Contact
+    summary: Resolve a tag by name, creating it if needed, then tag a contact.
+  - url: arazzo/activecampaign-subscribe-contact-to-list-by-name-workflow.yml
+    name: ActiveCampaign Subscribe Contact to a List Resolved by Name
+    summary: Resolve a list by name then subscribe an existing contact to it.
+  - url: arazzo/activecampaign-sync-contact-add-to-list-workflow.yml
+    name: ActiveCampaign Sync Contact and Subscribe to List
+    summary: Upsert a contact by email via sync, then subscribe it to a list.
+  - url: arazzo/activecampaign-sync-contact-set-custom-field-tag-workflow.yml
+    name: ActiveCampaign Sync Contact, Set Custom Field, and Tag
+    summary: Upsert a contact by email, set a custom field, then apply a tag.
+  - url: arazzo/activecampaign-tag-contact-and-enroll-automation-workflow.yml
+    name: ActiveCampaign Tag a Contact and Enroll in Automation
+    summary: Apply a tag to an existing contact then enroll it in an automation.
 - type: LinkedIn
   url: https://www.linkedin.com/company/activecampaign
 - url: https://developers.activecampaign.com/

@@ -1,0 +1,85 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Create Contact Custom Field and Set Its Value
+  summary: Define a new contact custom field then set its value on a contact.
+  description: >-
+    A schema-and-data flow. A new contact custom field is defined with a title
+    and type, then a value for that newly defined field is written to the
+    supplied contact. Every step spells out its request inline, including the
+    Api-Token authentication header, so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: create-custom-field-set-on-contact
+  summary: Define a contact custom field and set its value on a contact.
+  description: >-
+    Creates a contact custom field and then writes the supplied value to that
+    new field for the supplied contact.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - fieldTitle
+    - fieldType
+    - contactId
+    - fieldValue
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      fieldTitle:
+        type: string
+        description: Title of the custom field to create.
+      fieldType:
+        type: string
+        description: Type of the custom field, such as text, textarea, or date.
+      contactId:
+        type: integer
+        description: Identifier of the contact to set the field value on.
+      fieldValue:
+        type: string
+        description: Value to write to the new custom field.
+  steps:
+  - stepId: createField
+    description: Define a new contact custom field with a title and type.
+    operationId: create-a-contact-custom-field
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        field:
+          title: $inputs.fieldTitle
+          type: $inputs.fieldType
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      fieldId: $response.body#/fields/0/id
+  - stepId: setFieldValue
+    description: Write the supplied value to the new field for the contact.
+    operationId: create-fieldvalue
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        fieldValue:
+          contact: $inputs.contactId
+          field: $steps.createField.outputs.fieldId
+          value: $inputs.fieldValue
+        useDefaults: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedContactId: $response.body#/contacts/0/id
+  outputs:
+    fieldId: $steps.createField.outputs.fieldId
+    updatedContactId: $steps.setFieldValue.outputs.updatedContactId

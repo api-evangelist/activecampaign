@@ -1,0 +1,86 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Create Account and Associate a Contact
+  summary: Create an account record then associate an existing contact with it.
+  description: >-
+    A B2B account-building flow. An account is created from a name and URL, then
+    an existing contact is associated with the account along with a job title.
+    Every step spells out its request inline, including the Api-Token
+    authentication header, so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: create-account-add-contact
+  summary: Create an account and associate a contact with it.
+  description: >-
+    Creates an account and then associates the supplied contact with the new
+    account, recording an optional job title.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - name
+    - contactId
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      name:
+        type: string
+        description: Name of the account to create.
+      accountUrl:
+        type: string
+        description: Optional website URL of the account.
+      ownerId:
+        type: integer
+        description: Optional identifier of the user who owns the account.
+      contactId:
+        type: integer
+        description: Identifier of the contact to associate with the account.
+      jobTitle:
+        type: string
+        description: Optional job title of the contact within the account.
+  steps:
+  - stepId: createAccount
+    description: Create the account from the supplied name and URL.
+    operationId: create-an-account-new
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        account:
+          name: $inputs.name
+          accountUrl: $inputs.accountUrl
+          owner: $inputs.ownerId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      accountId: $response.body#/account/id
+  - stepId: associateContact
+    description: Associate the supplied contact with the new account.
+    operationId: create-an-account-1
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        accountContact:
+          account: $steps.createAccount.outputs.accountId
+          contact: $inputs.contactId
+          jobTitle: $inputs.jobTitle
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      accountContactId: $response.body#/accountContact/id
+  outputs:
+    accountId: $steps.createAccount.outputs.accountId
+    accountContactId: $steps.associateContact.outputs.accountContactId

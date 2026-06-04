@@ -1,0 +1,75 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Subscribe Contact to a List Resolved by Name
+  summary: Resolve a list by name then subscribe an existing contact to it.
+  description: >-
+    A find-then-act subscription flow. The workflow searches lists by name,
+    confirms a match was returned, and subscribes the supplied contact to the
+    matched list by activating its list status. Every step spells out its
+    request inline, including the Api-Token authentication header, so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: subscribe-contact-to-list-by-name
+  summary: Resolve a list by name and subscribe a contact to it.
+  description: >-
+    Searches lists by name and subscribes the supplied contact to the first
+    matched list.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - listName
+    - contactId
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      listName:
+        type: string
+        description: Name used to resolve the target list.
+      contactId:
+        type: integer
+        description: Identifier of the contact to subscribe.
+  steps:
+  - stepId: findList
+    description: Search lists by the supplied name.
+    operationId: retrieve-all-lists
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    - name: filters[name]
+      in: query
+      value: $inputs.listName
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.lists.length > 0
+      type: jsonpath
+    outputs:
+      listId: $response.body#/lists/0/id
+  - stepId: subscribeContact
+    description: Subscribe the supplied contact to the matched list.
+    operationId: update-list-status-for-contact
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contactList:
+          list: $steps.findList.outputs.listId
+          contact: $inputs.contactId
+          status: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      contactListId: $response.body#/contacts/0/id
+  outputs:
+    listId: $steps.findList.outputs.listId

@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Sync Contact and Subscribe to List
+  summary: Upsert a contact by email via sync, then subscribe it to a list.
+  description: >-
+    A resilient ingestion flow that avoids duplicate contacts. The workflow
+    syncs a contact by email, which creates the contact if it does not exist or
+    updates it in place if it does, then subscribes the resolved contact to the
+    supplied list by activating its list status. Every step spells out its
+    request inline, including the Api-Token authentication header, so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: sync-contact-add-to-list
+  summary: Upsert a contact by email and subscribe it to a list.
+  description: >-
+    Syncs a contact by email so it is created or updated in place, then
+    subscribes the resolved contact to the supplied list.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - email
+    - listId
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      email:
+        type: string
+        description: Email address used to upsert the contact.
+      firstName:
+        type: string
+        description: Optional first name of the contact.
+      lastName:
+        type: string
+        description: Optional last name of the contact.
+      phone:
+        type: string
+        description: Optional phone number of the contact.
+      listId:
+        type: integer
+        description: Identifier of the list to subscribe the contact to.
+  steps:
+  - stepId: syncContact
+    description: Upsert the contact by email so it is created or updated in place.
+    operationId: sync-a-contacts-data
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contact:
+          email: $inputs.email
+          firstName: $inputs.firstName
+          lastName: $inputs.lastName
+          phone: $inputs.phone
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/contact/id
+  - stepId: subscribeToList
+    description: Subscribe the resolved contact to the supplied list.
+    operationId: update-list-status-for-contact
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contactList:
+          list: $inputs.listId
+          contact: $steps.syncContact.outputs.contactId
+          status: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      contactListId: $response.body#/contacts/0/id
+  outputs:
+    contactId: $steps.syncContact.outputs.contactId

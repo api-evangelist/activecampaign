@@ -1,0 +1,163 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Find Contact by Email and Create a Deal
+  summary: Resolve a contact by email, creating it if missing, then open a deal.
+  description: >-
+    A lead-to-opportunity flow keyed on email. The workflow looks up a contact
+    by email and branches: when the contact exists it opens a deal against that
+    contact, and when no contact is found it creates the contact first and then
+    opens the deal. Every step spells out its request inline, including the
+    Api-Token authentication header, so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: create-deal-for-contact-by-email
+  summary: Resolve a contact by email or create it, then open a deal.
+  description: >-
+    Searches for a contact by email, creates the contact when none is found,
+    and opens a deal against the resolved contact.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - email
+    - title
+    - value
+    - currency
+    - groupId
+    - stageId
+    - ownerId
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      email:
+        type: string
+        description: Email address used to resolve or create the contact.
+      firstName:
+        type: string
+        description: Optional first name used when creating a new contact.
+      lastName:
+        type: string
+        description: Optional last name used when creating a new contact.
+      title:
+        type: string
+        description: Title of the deal.
+      value:
+        type: integer
+        description: Deal value in cents.
+      currency:
+        type: string
+        description: Three-letter lowercase currency code, such as usd.
+      groupId:
+        type: string
+        description: Identifier of the pipeline the deal belongs to.
+      stageId:
+        type: string
+        description: Identifier of the stage the deal starts in.
+      ownerId:
+        type: string
+        description: Identifier of the user who owns the deal.
+  steps:
+  - stepId: findContact
+    description: Search for an existing contact whose email matches the supplied value.
+    operationId: list-all-contacts
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    - name: email
+      in: query
+      value: $inputs.email
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedContactId: $response.body#/contacts/0/id
+    onSuccess:
+    - name: contactExists
+      type: goto
+      stepId: openDealExisting
+      criteria:
+      - context: $response.body
+        condition: $.contacts.length > 0
+        type: jsonpath
+    - name: contactMissing
+      type: goto
+      stepId: createContact
+      criteria:
+      - context: $response.body
+        condition: $.contacts.length == 0
+        type: jsonpath
+  - stepId: openDealExisting
+    description: Open a deal against the matched existing contact.
+    operationId: create-a-deal-new
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        deal:
+          title: $inputs.title
+          contact: $steps.findContact.outputs.matchedContactId
+          value: $inputs.value
+          currency: $inputs.currency
+          group: $inputs.groupId
+          stage: $inputs.stageId
+          owner: $inputs.ownerId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      dealId: $response.body#/deal/id
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createContact
+    description: Create the contact when no existing match was found.
+    operationId: create-a-new-contact
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contact:
+          email: $inputs.email
+          firstName: $inputs.firstName
+          lastName: $inputs.lastName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/contact/id
+  - stepId: openDealNew
+    description: Open a deal against the newly created contact.
+    operationId: create-a-deal-new
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        deal:
+          title: $inputs.title
+          contact: $steps.createContact.outputs.contactId
+          value: $inputs.value
+          currency: $inputs.currency
+          group: $inputs.groupId
+          stage: $inputs.stageId
+          owner: $inputs.ownerId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      dealId: $response.body#/deal/id
+  outputs:
+    matchedContactId: $steps.findContact.outputs.matchedContactId
+    contactId: $steps.createContact.outputs.contactId
+    dealId: $steps.openDealNew.outputs.dealId

@@ -1,0 +1,105 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Create Deal and Add a Note
+  summary: Create a deal in a pipeline stage then attach an explanatory note.
+  description: >-
+    A sales pipeline entry flow. A deal is created against a contact, pipeline
+    group, and stage, then an explanatory note is attached to the new deal.
+    Every step spells out its request inline, including the Api-Token
+    authentication header, so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: create-deal-add-note
+  summary: Create a deal and attach a note to it.
+  description: >-
+    Creates a deal against the supplied contact, pipeline, and stage, then
+    attaches an explanatory note to the new deal.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - title
+    - contactId
+    - value
+    - currency
+    - groupId
+    - stageId
+    - ownerId
+    - note
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      title:
+        type: string
+        description: Title of the deal.
+      contactId:
+        type: string
+        description: Identifier of the primary contact on the deal.
+      value:
+        type: integer
+        description: Deal value in cents.
+      currency:
+        type: string
+        description: Three-letter lowercase currency code, such as usd.
+      groupId:
+        type: string
+        description: Identifier of the pipeline the deal belongs to.
+      stageId:
+        type: string
+        description: Identifier of the stage the deal starts in.
+      ownerId:
+        type: string
+        description: Identifier of the user who owns the deal.
+      note:
+        type: string
+        description: Text of the note to attach to the deal.
+  steps:
+  - stepId: createDeal
+    description: Create the deal against the supplied contact, pipeline, and stage.
+    operationId: create-a-deal-new
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        deal:
+          title: $inputs.title
+          contact: $inputs.contactId
+          value: $inputs.value
+          currency: $inputs.currency
+          group: $inputs.groupId
+          stage: $inputs.stageId
+          owner: $inputs.ownerId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      dealId: $response.body#/deal/id
+  - stepId: addNote
+    description: Attach an explanatory note to the new deal.
+    operationId: create-a-deal-note
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    - name: id
+      in: path
+      value: $steps.createDeal.outputs.dealId
+    requestBody:
+      contentType: application/json
+      payload:
+        note:
+          note: $inputs.note
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      dealId: $response.body#/deals/0/id
+  outputs:
+    dealId: $steps.createDeal.outputs.dealId

@@ -1,0 +1,82 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Create Contact and Enroll in Automation
+  summary: Create a contact then enroll it into a marketing automation.
+  description: >-
+    A nurture-trigger flow. A new contact is created from an email and name and
+    is then enrolled into the supplied automation so it begins receiving the
+    automated series. Every step spells out its request inline, including the
+    Api-Token authentication header, so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: create-contact-add-to-automation
+  summary: Create a contact and enroll it into an automation.
+  description: >-
+    Creates a contact and then enrolls the new contact into the supplied
+    automation.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - email
+    - automationId
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      email:
+        type: string
+        description: Email address of the contact to create.
+      firstName:
+        type: string
+        description: Optional first name of the contact.
+      lastName:
+        type: string
+        description: Optional last name of the contact.
+      automationId:
+        type: integer
+        description: Identifier of the automation to enroll the contact into.
+  steps:
+  - stepId: createContact
+    description: Create the contact from the supplied email and name fields.
+    operationId: create-a-new-contact
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contact:
+          email: $inputs.email
+          firstName: $inputs.firstName
+          lastName: $inputs.lastName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/contact/id
+  - stepId: enrollInAutomation
+    description: Enroll the new contact into the supplied automation.
+    operationId: create-new-contactautomation
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contactAutomation:
+          contact: $steps.createContact.outputs.contactId
+          automation: $inputs.automationId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactAutomationId: $response.body#/contactAutomation/id
+  outputs:
+    contactId: $steps.createContact.outputs.contactId
+    contactAutomationId: $steps.enrollInAutomation.outputs.contactAutomationId

@@ -1,0 +1,130 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Find or Create Tag, Then Apply to Contact
+  summary: Resolve a tag by name, creating it if needed, then tag a contact.
+  description: >-
+    Ensures a tag exists before applying it. The workflow lists existing tags
+    and branches: when a tag matching the supplied name is found it applies that
+    tag, and when no tag is found it creates the tag first and then applies it
+    to the contact. Every step spells out its request inline, including the
+    Api-Token authentication header, so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: find-or-create-tag-and-apply
+  summary: Resolve a tag by name or create it, then apply it to a contact.
+  description: >-
+    Searches tags by name and either uses the matched tag or creates a new
+    contact-type tag, then applies the resolved tag to the supplied contact.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - tagName
+    - contactId
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      tagName:
+        type: string
+        description: Name of the tag to resolve or create.
+      tagDescription:
+        type: string
+        description: Optional description used when creating a new tag.
+      contactId:
+        type: integer
+        description: Identifier of the contact to apply the tag to.
+  steps:
+  - stepId: findTag
+    description: Search existing tags for one matching the supplied name.
+    operationId: retrieve-all-tags
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    - name: search
+      in: query
+      value: $inputs.tagName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedTagId: $response.body#/tags/0/id
+    onSuccess:
+    - name: tagExists
+      type: goto
+      stepId: applyExistingTag
+      criteria:
+      - context: $response.body
+        condition: $.tags.length > 0
+        type: jsonpath
+    - name: tagMissing
+      type: goto
+      stepId: createTag
+      criteria:
+      - context: $response.body
+        condition: $.tags.length == 0
+        type: jsonpath
+  - stepId: applyExistingTag
+    description: Apply the matched existing tag to the contact.
+    operationId: create-contact-tag
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contactTag:
+          contact: $inputs.contactId
+          tag: $steps.findTag.outputs.matchedTagId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactTagId: $response.body#/contactTag/id
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createTag
+    description: Create a new contact-type tag when no match was found.
+    operationId: create-a-new-tag
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        tag:
+          tag: $inputs.tagName
+          tagType: contact
+          description: $inputs.tagDescription
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      tagId: $response.body#/tag/id
+  - stepId: applyNewTag
+    description: Apply the newly created tag to the contact.
+    operationId: create-contact-tag
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contactTag:
+          contact: $inputs.contactId
+          tag: $steps.createTag.outputs.tagId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactTagId: $response.body#/contactTag/id
+  outputs:
+    tagId: $steps.createTag.outputs.tagId
+    matchedTagId: $steps.findTag.outputs.matchedTagId
+    contactTagId: $steps.applyNewTag.outputs.contactTagId

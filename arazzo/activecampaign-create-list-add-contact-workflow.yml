@@ -1,0 +1,89 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Create List and Subscribe a Contact
+  summary: Create a mailing list then subscribe an existing contact to it.
+  description: >-
+    A list provisioning flow. A new mailing list is created with its required
+    sender details, then an existing contact is subscribed to the list by
+    activating its list status. Every step spells out its request inline,
+    including the Api-Token authentication header, so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: activecampaignApi
+  url: ../openapi/activecampaign-v3.json
+  type: openapi
+workflows:
+- workflowId: create-list-add-contact
+  summary: Create a mailing list and subscribe a contact to it.
+  description: >-
+    Creates a mailing list with the required sender details, then subscribes
+    the supplied contact to the new list.
+  inputs:
+    type: object
+    required:
+    - apiToken
+    - name
+    - stringid
+    - senderUrl
+    - senderReminder
+    - contactId
+    properties:
+      apiToken:
+        type: string
+        description: ActiveCampaign API token sent in the Api-Token header.
+      name:
+        type: string
+        description: Display name of the list.
+      stringid:
+        type: string
+        description: URL-safe string identifier of the list.
+      senderUrl:
+        type: string
+        description: Sender URL required on every list.
+      senderReminder:
+        type: string
+        description: Reminder text explaining why recipients are on the list.
+      contactId:
+        type: integer
+        description: Identifier of the contact to subscribe to the new list.
+  steps:
+  - stepId: createList
+    description: Create the mailing list with its required sender details.
+    operationId: create-new-list
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        list:
+          name: $inputs.name
+          stringid: $inputs.stringid
+          sender_url: $inputs.senderUrl
+          sender_reminder: $inputs.senderReminder
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      listId: $response.body#/list/id
+  - stepId: subscribeContact
+    description: Subscribe the supplied contact to the new list.
+    operationId: update-list-status-for-contact
+    parameters:
+    - name: Api-Token
+      in: header
+      value: $inputs.apiToken
+    requestBody:
+      contentType: application/json
+      payload:
+        contactList:
+          list: $steps.createList.outputs.listId
+          contact: $inputs.contactId
+          status: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      contactListId: $response.body#/contacts/0/id
+  outputs:
+    listId: $steps.createList.outputs.listId
