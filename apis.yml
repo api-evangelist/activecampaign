@@ -1,346 +1,278 @@
 aid: activecampaign
 url: https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/apis.yml
 apis:
-- aid: activecampaign:activecampaign-v3
-  name: ActiveCampaign API v3
-  tags:
-  - Marketing Automation
-  - CRM
-  - Email Marketing
-  - Contacts
-  - Deals
-  humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
-  properties:
-  - url: https://developers.activecampaign.com/reference/overview
-    type: Documentation
-  - url: https://developers.activecampaign.com/reference/authentication
-    type: Authentication
-  - url: openapi/activecampaign-v3.json
-    type: OpenAPI
-  - url: asyncapi/activecampaign-webhooks-asyncapi.yml
-    type: AsyncAPI
-    title: Webhooks
-  - type: NaftikoCapability
-    url: capabilities/v3-accounts.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-addresses.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-automations.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-branding.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-bulk-import.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-calendars.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-campaigns.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-contacts.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-custom-objects.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-deals.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-ecommerce.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-event-tracking.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-fields.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-forms.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-groups.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-lists.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-messages.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-notes.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-other.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-personalizations.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-saved-responses.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-scores.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-site-tracking.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-tags.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-tasks.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-templates.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-users.yaml
-  - type: NaftikoCapability
-    url: capabilities/v3-webhooks.yaml
-  description: The primary REST API for ActiveCampaign, organized around resources such as contacts, deals, accounts, automations,
-    campaigns, messages, lists, tags, webhooks, custom objects, and ecommerce entities. Uses API key header authentication.
-- aid: activecampaign:activecampaign-sms
-  name: ActiveCampaign SMS Broadcast API
-  tags:
-  - SMS
-  - Marketing Automation
-  - Messaging
-  humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
-  properties:
-  - url: https://developers.activecampaign.com/reference/overview
-    type: Documentation
-  - url: openapi/activecampaign-sms.json
-    type: OpenAPI
-  - url: json-schema/activecampaign-sms-broadcast-message-schema.json
-    type: JSONSchema
-    title: Broadcast Message
-  - url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
-    type: JSONSchema
-    title: Broadcast Create Request
-  - url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
-    type: JSONSchema
-    title: Broadcast Update Request
-  - url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
-    type: JSONSchema
-    title: Broadcast Metrics
-  - url: json-schema/activecampaign-sms-recipient-schema.json
-    type: JSONSchema
-    title: Recipient
-  - url: json-schema/activecampaign-sms-credits-response-schema.json
-    type: JSONSchema
-    title: Credits Response
-  - url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
-    type: JSONSchema
-    title: AI Broadcast Request
-  - url: json-structure/activecampaign-sms-broadcast-message-structure.json
-    type: JSONStructure
-    title: Broadcast Message
-  - url: json-structure/activecampaign-sms-recipient-structure.json
-    type: JSONStructure
-    title: Recipient
-  - url: examples/activecampaign-sms-broadcast-message-example.json
-    type: Example
-    title: Broadcast Message Example
-  - url: examples/activecampaign-sms-recipient-example.json
-    type: Example
-    title: Recipient Example
-  - type: NaftikoCapability
-    url: capabilities/sms-ai.yaml
-  - type: NaftikoCapability
-    url: capabilities/sms-broadcasts.yaml
-  - type: NaftikoCapability
-    url: capabilities/sms-credits.yaml
-  - type: NaftikoCapability
-    url: capabilities/sms-exports.yaml
-  - type: NaftikoCapability
-    url: capabilities/sms-failures.yaml
-  - type: NaftikoCapability
-    url: capabilities/sms-metrics.yaml
-  - type: NaftikoCapability
-    url: capabilities/sms-recipients.yaml
-  - type: NaftikoCapability
-    url: capabilities/sms-snapshots.yaml
-  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign. Supports
-    creating, scheduling, and tracking SMS broadcast campaigns.
+  - aid: activecampaign:activecampaign-v3
+    name: ActiveCampaign API v3
+    tags:
+      - Marketing Automation
+      - CRM
+      - Email Marketing
+      - Contacts
+      - Deals
+    humanURL: https://developers.activecampaign.com/reference/overview
+    baseURL: https://youraccountname.api-us1.com/api/3
+    properties:
+      - url: https://developers.activecampaign.com/reference/overview
+        type: Documentation
+      - url: https://developers.activecampaign.com/reference/authentication
+        type: Authentication
+      - url: openapi/activecampaign-v3.json
+        type: OpenAPI
+      - url: asyncapi/activecampaign-webhooks-asyncapi.yml
+        type: AsyncAPI
+        title: Webhooks
+    description: >-
+      The primary REST API for ActiveCampaign, organized around resources such as contacts, deals, accounts,
+      automations, campaigns, messages, lists, tags, webhooks, custom objects, and ecommerce entities. Uses API key
+      header authentication.
+  - aid: activecampaign:activecampaign-sms
+    name: ActiveCampaign SMS Broadcast API
+    tags:
+      - SMS
+      - Marketing Automation
+      - Messaging
+    humanURL: https://developers.activecampaign.com/reference/overview
+    baseURL: https://youraccountname.api-us1.com/api/3
+    properties:
+      - url: https://developers.activecampaign.com/reference/overview
+        type: Documentation
+      - url: openapi/activecampaign-sms.json
+        type: OpenAPI
+      - url: json-schema/activecampaign-sms-broadcast-message-schema.json
+        type: JSONSchema
+        title: Broadcast Message
+      - url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+        type: JSONSchema
+        title: Broadcast Create Request
+      - url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+        type: JSONSchema
+        title: Broadcast Update Request
+      - url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+        type: JSONSchema
+        title: Broadcast Metrics
+      - url: json-schema/activecampaign-sms-recipient-schema.json
+        type: JSONSchema
+        title: Recipient
+      - url: json-schema/activecampaign-sms-credits-response-schema.json
+        type: JSONSchema
+        title: Credits Response
+      - url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+        type: JSONSchema
+        title: AI Broadcast Request
+      - url: json-structure/activecampaign-sms-broadcast-message-structure.json
+        type: JSONStructure
+        title: Broadcast Message
+      - url: json-structure/activecampaign-sms-recipient-structure.json
+        type: JSONStructure
+        title: Recipient
+      - url: examples/activecampaign-sms-broadcast-message-example.json
+        type: Example
+        title: Broadcast Message Example
+      - url: examples/activecampaign-sms-recipient-example.json
+        type: Example
+        title: Recipient Example
+    description: >-
+      API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign. Supports
+      creating, scheduling, and tracking SMS broadcast campaigns.
 name: ActiveCampaign
 tags:
-- Marketing Automation
-- Email Marketing
-- CRM
-- Sales Automation
-- Customer Experience
+  - Marketing Automation
+  - Email Marketing
+  - CRM
+  - Sales Automation
+  - Customer Experience
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/activecampaign-create-account-add-contact-workflow.yml
-    name: ActiveCampaign Create Account and Associate a Contact
-    summary: Create an account record then associate an existing contact with it.
-  - url: arazzo/activecampaign-create-account-add-note-workflow.yml
-    name: ActiveCampaign Create Account and Add a Note
-    summary: Create an account record then attach an explanatory note to it.
-  - url: arazzo/activecampaign-create-contact-add-to-automation-workflow.yml
-    name: ActiveCampaign Create Contact and Enroll in Automation
-    summary: Create a contact then enroll it into a marketing automation.
-  - url: arazzo/activecampaign-create-contact-add-to-list-tag-workflow.yml
-    name: ActiveCampaign Create Contact, Subscribe to List, and Tag
-    summary: Create a contact, subscribe it to a list, then apply a tag in one pass.
-  - url: arazzo/activecampaign-create-contact-associate-account-by-name-workflow.yml
-    name: ActiveCampaign Create Contact and Associate to an Account by Name
-    summary: Resolve an account by name, create a contact, then associate them.
-  - url: arazzo/activecampaign-create-contact-set-custom-field-workflow.yml
-    name: ActiveCampaign Create Contact and Set Custom Field Value
-    summary: Create a contact then write a value to one of its custom fields.
-  - url: arazzo/activecampaign-create-custom-field-set-on-contact-workflow.yml
-    name: ActiveCampaign Create Contact Custom Field and Set Its Value
-    summary: Define a new contact custom field then set its value on a contact.
-  - url: arazzo/activecampaign-create-deal-add-note-workflow.yml
-    name: ActiveCampaign Create Deal and Add a Note
-    summary: Create a deal in a pipeline stage then attach an explanatory note.
-  - url: arazzo/activecampaign-create-deal-add-task-workflow.yml
-    name: ActiveCampaign Create Deal and Schedule a Task
-    summary: Create a deal then schedule a follow-up task against it.
-  - url: arazzo/activecampaign-create-deal-for-contact-by-email-workflow.yml
-    name: ActiveCampaign Find Contact by Email and Create a Deal
-    summary: Resolve a contact by email, creating it if missing, then open a deal.
-  - url: arazzo/activecampaign-create-deal-set-custom-field-workflow.yml
-    name: ActiveCampaign Create Deal and Set Custom Field Value
-    summary: Create a deal then write a value to one of its custom fields.
-  - url: arazzo/activecampaign-create-list-add-contact-workflow.yml
-    name: ActiveCampaign Create List and Subscribe a Contact
-    summary: Create a mailing list then subscribe an existing contact to it.
-  - url: arazzo/activecampaign-create-pipeline-stage-deal-workflow.yml
-    name: ActiveCampaign Create Pipeline, Stage, and First Deal
-    summary: Stand up a pipeline, add a stage to it, then open the first deal.
-  - url: arazzo/activecampaign-enroll-contact-in-automation-by-name-workflow.yml
-    name: ActiveCampaign Resolve Automation by Name and Enroll Contact
-    summary: Find an automation by name then enroll an existing contact into it.
-  - url: arazzo/activecampaign-find-deal-add-note-workflow.yml
-    name: ActiveCampaign Find a Deal by Title and Add a Note
-    summary: Search deals by title then attach a note to the matched deal.
-  - url: arazzo/activecampaign-find-or-create-contact-tag-workflow.yml
-    name: ActiveCampaign Find or Create Contact, Then Tag
-    summary: Look up a contact by email, create it if missing, then apply a tag.
-  - url: arazzo/activecampaign-find-or-create-tag-and-apply-workflow.yml
-    name: ActiveCampaign Find or Create Tag, Then Apply to Contact
-    summary: Resolve a tag by name, creating it if needed, then tag a contact.
-  - url: arazzo/activecampaign-subscribe-contact-to-list-by-name-workflow.yml
-    name: ActiveCampaign Subscribe Contact to a List Resolved by Name
-    summary: Resolve a list by name then subscribe an existing contact to it.
-  - url: arazzo/activecampaign-sync-contact-add-to-list-workflow.yml
-    name: ActiveCampaign Sync Contact and Subscribe to List
-    summary: Upsert a contact by email via sync, then subscribe it to a list.
-  - url: arazzo/activecampaign-sync-contact-set-custom-field-tag-workflow.yml
-    name: ActiveCampaign Sync Contact, Set Custom Field, and Tag
-    summary: Upsert a contact by email, set a custom field, then apply a tag.
-  - url: arazzo/activecampaign-tag-contact-and-enroll-automation-workflow.yml
-    name: ActiveCampaign Tag a Contact and Enroll in Automation
-    summary: Apply a tag to an existing contact then enroll it in an automation.
-- type: LinkedIn
-  url: https://www.linkedin.com/company/activecampaign
-- url: https://developers.activecampaign.com/
-  type: Portal
-- url: https://help.activecampaign.com/hc/en-us/articles/207317590-Getting-started-with-the-API
-  type: GettingStarted
-- url: https://developers.activecampaign.com/reference/authentication
-  type: Authentication
-- url: https://www.activecampaign.com/pricing
-  type: Pricing
-- url: https://www.activecampaign.com/blog
-  type: Blog
-- url: https://www.activecampaign.com/about/faq
-  type: FAQ
-- url: https://community.activecampaign.com/latest
-  type: Forums
-- url: https://status.activecampaign.com/
-  type: StatusPage
-- url: https://www.postman.com/acdevrel/activecampaign-developer-relations/overview
-  type: PostmanWorkspace
-- url: https://github.com/ActiveCampaign
-  type: GitHubOrganization
-- url: https://github.com/ActiveCampaign/activecampaign-api-php
-  type: SDK
-  title: PHP SDK
-- url: https://github.com/ActiveCampaign/activecampaign-api-nodejs
-  type: SDK
-  title: Node.js SDK
-- url: rules/activecampaign-spectral-rules.yml
-  type: SpectralRules
-- url: vocabulary/activecampaign-vocabulary.yaml
-  type: Vocabulary
-- url: json-ld/activecampaign-sms-context.jsonld
-  type: JSONLD
-  title: SMS API Context
-- type: Features
-  data:
-  - name: Email Marketing
-    description: Create and send conversion-focused email campaigns with personalization and segmentation.
-  - name: Marketing Automation
-    description: Build automated customer journeys and workflows triggered by contact behavior and events.
-  - name: CRM
-    description: Built-in sales CRM for managing deals, pipelines, tasks, and customer relationships.
-  - name: SMS Marketing
-    description: Reach contacts via SMS broadcast campaigns with AI-powered content generation.
-  - name: WhatsApp Messaging
-    description: Automate growth and customer engagement through WhatsApp communications.
-  - name: Transactional Email
-    description: Automate transactional alerts, password resets, and notifications via Postmark integration.
-  - name: Custom Objects
-    description: Create custom data schemas to activate complex data for segmentation and personalized automation.
-  - name: Contact Event Tracking
-    description: Track contact behaviors and activities across web properties and integrations.
-  - name: Webhooks
-    description: Receive real-time event notifications for contact, campaign, automation, and custom object activities.
-  - name: Landing Pages
-    description: Deploy conversion-ready landing pages for lead capture and campaigns.
-  - name: Active Intelligence
-    description: AI-powered orchestration and autonomous marketing agents for campaign suggestions and personalization.
+  - type: ArazzoWorkflows
+    url: arazzo/
+    workflows:
+      - url: arazzo/activecampaign-create-account-add-contact-workflow.yml
+        name: ActiveCampaign Create Account and Associate a Contact
+        summary: Create an account record then associate an existing contact with it.
+      - url: arazzo/activecampaign-create-account-add-note-workflow.yml
+        name: ActiveCampaign Create Account and Add a Note
+        summary: Create an account record then attach an explanatory note to it.
+      - url: arazzo/activecampaign-create-contact-add-to-automation-workflow.yml
+        name: ActiveCampaign Create Contact and Enroll in Automation
+        summary: Create a contact then enroll it into a marketing automation.
+      - url: arazzo/activecampaign-create-contact-add-to-list-tag-workflow.yml
+        name: ActiveCampaign Create Contact, Subscribe to List, and Tag
+        summary: Create a contact, subscribe it to a list, then apply a tag in one pass.
+      - url: arazzo/activecampaign-create-contact-associate-account-by-name-workflow.yml
+        name: ActiveCampaign Create Contact and Associate to an Account by Name
+        summary: Resolve an account by name, create a contact, then associate them.
+      - url: arazzo/activecampaign-create-contact-set-custom-field-workflow.yml
+        name: ActiveCampaign Create Contact and Set Custom Field Value
+        summary: Create a contact then write a value to one of its custom fields.
+      - url: arazzo/activecampaign-create-custom-field-set-on-contact-workflow.yml
+        name: ActiveCampaign Create Contact Custom Field and Set Its Value
+        summary: Define a new contact custom field then set its value on a contact.
+      - url: arazzo/activecampaign-create-deal-add-note-workflow.yml
+        name: ActiveCampaign Create Deal and Add a Note
+        summary: Create a deal in a pipeline stage then attach an explanatory note.
+      - url: arazzo/activecampaign-create-deal-add-task-workflow.yml
+        name: ActiveCampaign Create Deal and Schedule a Task
+        summary: Create a deal then schedule a follow-up task against it.
+      - url: arazzo/activecampaign-create-deal-for-contact-by-email-workflow.yml
+        name: ActiveCampaign Find Contact by Email and Create a Deal
+        summary: Resolve a contact by email, creating it if missing, then open a deal.
+      - url: arazzo/activecampaign-create-deal-set-custom-field-workflow.yml
+        name: ActiveCampaign Create Deal and Set Custom Field Value
+        summary: Create a deal then write a value to one of its custom fields.
+      - url: arazzo/activecampaign-create-list-add-contact-workflow.yml
+        name: ActiveCampaign Create List and Subscribe a Contact
+        summary: Create a mailing list then subscribe an existing contact to it.
+      - url: arazzo/activecampaign-create-pipeline-stage-deal-workflow.yml
+        name: ActiveCampaign Create Pipeline, Stage, and First Deal
+        summary: Stand up a pipeline, add a stage to it, then open the first deal.
+      - url: arazzo/activecampaign-enroll-contact-in-automation-by-name-workflow.yml
+        name: ActiveCampaign Resolve Automation by Name and Enroll Contact
+        summary: Find an automation by name then enroll an existing contact into it.
+      - url: arazzo/activecampaign-find-deal-add-note-workflow.yml
+        name: ActiveCampaign Find a Deal by Title and Add a Note
+        summary: Search deals by title then attach a note to the matched deal.
+      - url: arazzo/activecampaign-find-or-create-contact-tag-workflow.yml
+        name: ActiveCampaign Find or Create Contact, Then Tag
+        summary: Look up a contact by email, create it if missing, then apply a tag.
+      - url: arazzo/activecampaign-find-or-create-tag-and-apply-workflow.yml
+        name: ActiveCampaign Find or Create Tag, Then Apply to Contact
+        summary: Resolve a tag by name, creating it if needed, then tag a contact.
+      - url: arazzo/activecampaign-subscribe-contact-to-list-by-name-workflow.yml
+        name: ActiveCampaign Subscribe Contact to a List Resolved by Name
+        summary: Resolve a list by name then subscribe an existing contact to it.
+      - url: arazzo/activecampaign-sync-contact-add-to-list-workflow.yml
+        name: ActiveCampaign Sync Contact and Subscribe to List
+        summary: Upsert a contact by email via sync, then subscribe it to a list.
+      - url: arazzo/activecampaign-sync-contact-set-custom-field-tag-workflow.yml
+        name: ActiveCampaign Sync Contact, Set Custom Field, and Tag
+        summary: Upsert a contact by email, set a custom field, then apply a tag.
+      - url: arazzo/activecampaign-tag-contact-and-enroll-automation-workflow.yml
+        name: ActiveCampaign Tag a Contact and Enroll in Automation
+        summary: Apply a tag to an existing contact then enroll it in an automation.
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/activecampaign
+  - url: https://developers.activecampaign.com/
+    type: Portal
+  - url: https://help.activecampaign.com/hc/en-us/articles/207317590-Getting-started-with-the-API
+    type: GettingStarted
+  - url: https://developers.activecampaign.com/reference/authentication
+    type: Authentication
+  - url: https://www.activecampaign.com/pricing
+    type: Pricing
+  - url: https://www.activecampaign.com/blog
+    type: Blog
+  - url: https://www.activecampaign.com/about/faq
+    type: FAQ
+  - url: https://community.activecampaign.com/latest
+    type: Forums
+  - url: https://status.activecampaign.com/
+    type: StatusPage
+  - url: https://www.postman.com/acdevrel/activecampaign-developer-relations/overview
+    type: PostmanWorkspace
+  - url: https://github.com/ActiveCampaign
+    type: GitHubOrganization
+  - url: https://github.com/ActiveCampaign/activecampaign-api-php
+    type: SDK
+    title: PHP SDK
+  - url: https://github.com/ActiveCampaign/activecampaign-api-nodejs
+    type: SDK
+    title: Node.js SDK
+  - url: rules/activecampaign-spectral-rules.yml
+    type: SpectralRules
+  - url: vocabulary/activecampaign-vocabulary.yaml
+    type: Vocabulary
+  - url: json-ld/activecampaign-sms-context.jsonld
+    type: JSONLD
+    title: SMS API Context
+  - type: Features
+    data:
+      - name: Email Marketing
+        description: Create and send conversion-focused email campaigns with personalization and segmentation.
+      - name: Marketing Automation
+        description: Build automated customer journeys and workflows triggered by contact behavior and events.
+      - name: CRM
+        description: Built-in sales CRM for managing deals, pipelines, tasks, and customer relationships.
+      - name: SMS Marketing
+        description: Reach contacts via SMS broadcast campaigns with AI-powered content generation.
+      - name: WhatsApp Messaging
+        description: Automate growth and customer engagement through WhatsApp communications.
+      - name: Transactional Email
+        description: Automate transactional alerts, password resets, and notifications via Postmark integration.
+      - name: Custom Objects
+        description: Create custom data schemas to activate complex data for segmentation and personalized automation.
+      - name: Contact Event Tracking
+        description: Track contact behaviors and activities across web properties and integrations.
+      - name: Webhooks
+        description: Receive real-time event notifications for contact, campaign, automation, and custom object activities.
+      - name: Landing Pages
+        description: Deploy conversion-ready landing pages for lead capture and campaigns.
+      - name: Active Intelligence
+        description: AI-powered orchestration and autonomous marketing agents for campaign suggestions and personalization.
+      - name: MCP Server
+        description: Connect AI applications to ActiveCampaign using the Model Context Protocol server.
+  - type: UseCases
+    data:
+      - name: Lead Nurturing
+        description: Automate email sequences to nurture leads through the sales funnel based on behavior.
+      - name: E-Commerce Automation
+        description: Trigger post-purchase emails, abandoned cart recovery, and personalized product recommendations.
+      - name: Customer Onboarding
+        description: Automate onboarding sequences for SaaS products to improve activation and retention.
+      - name: Contact Segmentation
+        description: Segment contacts using tags, custom fields, and custom objects for targeted campaigns.
+      - name: Sales Pipeline Management
+        description: Manage deals, tasks, and pipeline stages with CRM and automation integration.
+      - name: SMS Broadcast Campaigns
+        description: Send targeted SMS campaigns to subscriber lists with engagement tracking.
+      - name: Webhook-Driven Integrations
+        description: Build real-time integrations using webhooks for contact and campaign activity events.
+  - type: Integrations
+    data:
+      - name: Salesforce
+        description: Sync contact and deal data between ActiveCampaign and Salesforce CRM.
+      - name: Zapier
+        description: Connect ActiveCampaign to 1000+ apps via Zapier automation workflows.
+      - name: Slack
+        description: Send notifications and trigger automations from Slack using OAuth2 integration.
+      - name: Calendly
+        description: Sync scheduling data and trigger automations with custom objects via OAuth2.
+      - name: Twilio
+        description: Integrate SMS workflows using Twilio with Basic Auth for outbound messaging.
+      - name: Shopify
+        description: Sync ecommerce customers, orders, and products for automated campaigns.
+      - name: WordPress
+        description: Embed forms and capture leads from WordPress sites.
+      - name: Wix
+        description: Connect Wix websites for lead capture and customer journey automation.
+  - type: Solutions
+    data:
+      - name: Starter
+        description: Entry-level plan with marketing automation, up to 5 automation actions, and 1 user.
+      - name: Plus
+        description: Mid-tier plan with unlimited automation actions, landing pages, and standard segmentation.
+      - name: Pro
+        description: Advanced plan with predictive content, advanced segmentation, and 3 users.
+      - name: Enterprise
+        description: Full-featured plan with custom objects, dedicated account team, and premium segmentation.
   - name: MCP Server
-    description: Connect AI applications to ActiveCampaign using the Model Context Protocol server.
-- type: UseCases
-  data:
-  - name: Lead Nurturing
-    description: Automate email sequences to nurture leads through the sales funnel based on behavior.
-  - name: E-Commerce Automation
-    description: Trigger post-purchase emails, abandoned cart recovery, and personalized product recommendations.
-  - name: Customer Onboarding
-    description: Automate onboarding sequences for SaaS products to improve activation and retention.
-  - name: Contact Segmentation
-    description: Segment contacts using tags, custom fields, and custom objects for targeted campaigns.
-  - name: Sales Pipeline Management
-    description: Manage deals, tasks, and pipeline stages with CRM and automation integration.
-  - name: SMS Broadcast Campaigns
-    description: Send targeted SMS campaigns to subscriber lists with engagement tracking.
-  - name: Webhook-Driven Integrations
-    description: Build real-time integrations using webhooks for contact and campaign activity events.
-- type: Integrations
-  data:
-  - name: Salesforce
-    description: Sync contact and deal data between ActiveCampaign and Salesforce CRM.
-  - name: Zapier
-    description: Connect ActiveCampaign to 1000+ apps via Zapier automation workflows.
-  - name: Slack
-    description: Send notifications and trigger automations from Slack using OAuth2 integration.
-  - name: Calendly
-    description: Sync scheduling data and trigger automations with custom objects via OAuth2.
-  - name: Twilio
-    description: Integrate SMS workflows using Twilio with Basic Auth for outbound messaging.
-  - name: Shopify
-    description: Sync ecommerce customers, orders, and products for automated campaigns.
-  - name: WordPress
-    description: Embed forms and capture leads from WordPress sites.
-  - name: Wix
-    description: Connect Wix websites for lead capture and customer journey automation.
-- type: Solutions
-  data:
-  - name: Starter
-    description: Entry-level plan with marketing automation, up to 5 automation actions, and 1 user.
-  - name: Plus
-    description: Mid-tier plan with unlimited automation actions, landing pages, and standard segmentation.
-  - name: Pro
-    description: Advanced plan with predictive content, advanced segmentation, and 3 users.
-  - name: Enterprise
-    description: Full-featured plan with custom objects, dedicated account team, and premium segmentation.
-- name: MCP Server
-  url: https://github.com/ActiveCampaign/postmark-mcp
-  type: MCPServer
-- name: Agent Skills
-  url: https://github.com/ActiveCampaign/postmark-skills
-  type: AgentSkill
-- type: LLMsTxt
-  url: https://developers.activecampaign.com/llms.txt
+    url: https://github.com/ActiveCampaign/postmark-mcp
+    type: MCPServer
+  - name: Agent Skills
+    url: https://github.com/ActiveCampaign/postmark-skills
+    type: AgentSkill
+  - type: LLMsTxt
+    url: https://developers.activecampaign.com/llms.txt
 created: '2025-02-17'
 modified: '2026-05-30'
 position: Consumer
-description: ActiveCampaign is a leading marketing automation platform that helps businesses of all sizes seamlessly engage
-  with their customers. With its user-friendly interface and powerful features, ActiveCampaign allows businesses to create
-  personalized email campaigns, automate workflows, and track customer interactions in real-time. The platform offers a REST
-  API (v3), SMS Broadcast API, webhooks, and custom object schemas for building deep integrations and automations.
+description: >-
+  ActiveCampaign is a leading marketing automation platform that helps businesses of all sizes seamlessly engage with
+  their customers. With its user-friendly interface and powerful features, ActiveCampaign allows businesses to create
+  personalized email campaigns, automate workflows, and track customer interactions in real-time. The platform offers a
+  REST API (v3), SMS Broadcast API, webhooks, and custom object schemas for building deep integrations and automations.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
