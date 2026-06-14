@@ -1,0 +1,1680 @@
+"""
+ActiveCampaign Conceptual GraphQL Schema
+Source: https://developers.activecampaign.com/reference/overview
+Version: v3 REST API translation
+Note: ActiveCampaign does not expose a native GraphQL endpoint.
+      This is a conceptual schema derived from the REST API surface.
+"""
+
+scalar DateTime
+scalar JSON
+scalar URL
+
+# ─────────────────────────────────────────────
+# ROOT TYPES
+# ─────────────────────────────────────────────
+
+type Query {
+  # Contacts
+  contact(id: ID!): Contact
+  contacts(limit: Int, offset: Int, search: String, tag: ID, listId: ID): ContactConnection!
+
+  # Accounts
+  account(id: ID!): Account
+  accounts(limit: Int, offset: Int, search: String): AccountConnection!
+
+  # Automations
+  automation(id: ID!): Automation
+  automations(limit: Int, offset: Int, status: AutomationStatus): AutomationConnection!
+
+  # Campaigns
+  campaign(id: ID!): Campaign
+  campaigns(limit: Int, offset: Int, status: CampaignStatus): CampaignConnection!
+
+  # Lists
+  list(id: ID!): List
+  lists(limit: Int, offset: Int): ListConnection!
+
+  # Tags
+  tag(id: ID!): Tag
+  tags(limit: Int, offset: Int, search: String): TagConnection!
+
+  # Deals
+  deal(id: ID!): Deal
+  deals(limit: Int, offset: Int, stageId: ID, pipelineId: ID): DealConnection!
+
+  # Pipelines
+  dealPipeline(id: ID!): DealPipeline
+  dealPipelines(limit: Int, offset: Int): DealPipelineConnection!
+
+  # Deal Stages
+  dealStage(id: ID!): DealStage
+  dealStages(pipelineId: ID): DealStageConnection!
+
+  # Tasks
+  task(id: ID!): Task
+  tasks(limit: Int, offset: Int, dealId: ID, contactId: ID): TaskConnection!
+
+  # Notes
+  note(id: ID!): Note
+  notes(limit: Int, offset: Int, contactId: ID, dealId: ID): NoteConnection!
+
+  # Custom Fields
+  customField(id: ID!): CustomField
+  customFields(limit: Int, offset: Int, type: CustomFieldType): CustomFieldConnection!
+
+  # Templates
+  template(id: ID!): Template
+  templates(limit: Int, offset: Int): TemplateConnection!
+
+  # Messages
+  message(id: ID!): Message
+  messages(limit: Int, offset: Int): MessageConnection!
+
+  # Conversations
+  conversation(id: ID!): Conversation
+  conversations(limit: Int, offset: Int, status: ConversationStatus): ConversationConnection!
+
+  # Forms
+  form(id: ID!): Form
+  forms(limit: Int, offset: Int): FormConnection!
+
+  # Segments
+  segment(id: ID!): Segment
+  segments(limit: Int, offset: Int): SegmentConnection!
+
+  # Scores
+  score(id: ID!): Score
+  scores(limit: Int, offset: Int): ScoreConnection!
+
+  # Users
+  user(id: ID!): User
+  users(limit: Int, offset: Int): UserConnection!
+
+  # Groups
+  group(id: ID!): Group
+  groups(limit: Int, offset: Int): GroupConnection!
+
+  # Webhooks
+  webhook(id: ID!): Webhook
+  webhooks(limit: Int, offset: Int): WebhookConnection!
+
+  # Tracking
+  siteTracking(id: ID!): SiteTracking
+  siteTrackings(limit: Int, offset: Int): SiteTrackingConnection!
+
+  eventTracking(id: ID!): EventTracking
+  eventTrackings(limit: Int, offset: Int): EventTrackingConnection!
+
+  eventLogs(contactId: ID, limit: Int, offset: Int): EventLogConnection!
+
+  # Reports
+  report(campaignId: ID!): Report
+
+  # Calendar Feeds
+  calendarFeed(id: ID!): CalendarFeed
+  calendarFeeds(limit: Int, offset: Int): CalendarFeedConnection!
+
+  # Branded Links
+  brandedLink(id: ID!): BrandedLink
+  brandedLinks(limit: Int, offset: Int): BrandedLinkConnection!
+
+  # Bounces
+  bounces(limit: Int, offset: Int, contactId: ID): BounceConnection!
+
+  # Import Status
+  importStatus(id: ID!): ImportStatus
+}
+
+type Mutation {
+  # Contacts
+  createContact(input: CreateContactInput!): Contact!
+  updateContact(id: ID!, input: UpdateContactInput!): Contact!
+  deleteContact(id: ID!): DeleteResult!
+  syncContact(input: SyncContactInput!): Contact!
+
+  # Accounts
+  createAccount(input: CreateAccountInput!): Account!
+  updateAccount(id: ID!, input: UpdateAccountInput!): Account!
+  deleteAccount(id: ID!): DeleteResult!
+
+  # AccountContact
+  associateContactWithAccount(contactId: ID!, accountId: ID!): AccountContact!
+  removeContactFromAccount(contactId: ID!, accountId: ID!): DeleteResult!
+
+  # Tags
+  createTag(input: CreateTagInput!): Tag!
+  updateTag(id: ID!, input: UpdateTagInput!): Tag!
+  deleteTag(id: ID!): DeleteResult!
+  addTagToContact(contactId: ID!, tagId: ID!): ContactTag!
+  removeTagFromContact(contactId: ID!, tagId: ID!): DeleteResult!
+
+  # Lists
+  createList(input: CreateListInput!): List!
+  updateList(id: ID!, input: UpdateListInput!): List!
+  deleteList(id: ID!): DeleteResult!
+  subscribeContactToList(contactId: ID!, listId: ID!): Subscription!
+  unsubscribeContactFromList(contactId: ID!, listId: ID!): DeleteResult!
+
+  # Custom Fields
+  createCustomField(input: CreateCustomFieldInput!): CustomField!
+  updateCustomField(id: ID!, input: UpdateCustomFieldInput!): CustomField!
+  deleteCustomField(id: ID!): DeleteResult!
+  setFieldValue(contactId: ID!, fieldId: ID!, value: String!): FieldValue!
+
+  # Deals
+  createDeal(input: CreateDealInput!): Deal!
+  updateDeal(id: ID!, input: UpdateDealInput!): Deal!
+  deleteDeal(id: ID!): DeleteResult!
+
+  # Deal Pipelines
+  createDealPipeline(input: CreateDealPipelineInput!): DealPipeline!
+  updateDealPipeline(id: ID!, input: UpdateDealPipelineInput!): DealPipeline!
+  deleteDealPipeline(id: ID!): DeleteResult!
+
+  # Deal Stages
+  createDealStage(input: CreateDealStageInput!): DealStage!
+  updateDealStage(id: ID!, input: UpdateDealStageInput!): DealStage!
+  deleteDealStage(id: ID!): DeleteResult!
+
+  # Tasks
+  createTask(input: CreateTaskInput!): Task!
+  updateTask(id: ID!, input: UpdateTaskInput!): Task!
+  deleteTask(id: ID!): DeleteResult!
+
+  # Notes
+  createNote(input: CreateNoteInput!): Note!
+  updateNote(id: ID!, input: UpdateNoteInput!): Note!
+  deleteNote(id: ID!): DeleteResult!
+
+  # Automations
+  enrollContactInAutomation(contactId: ID!, automationId: ID!): ContactAutomation!
+  removeContactFromAutomation(contactId: ID!, automationId: ID!): DeleteResult!
+
+  # Campaigns
+  createCampaign(input: CreateCampaignInput!): Campaign!
+  updateCampaign(id: ID!, input: UpdateCampaignInput!): Campaign!
+  deleteCampaign(id: ID!): DeleteResult!
+
+  # Messages
+  createMessage(input: CreateMessageInput!): Message!
+  updateMessage(id: ID!, input: UpdateMessageInput!): Message!
+  deleteMessage(id: ID!): DeleteResult!
+
+  # Templates
+  createTemplate(input: CreateTemplateInput!): Template!
+  updateTemplate(id: ID!, input: UpdateTemplateInput!): Template!
+  deleteTemplate(id: ID!): DeleteResult!
+
+  # Webhooks
+  createWebhook(input: CreateWebhookInput!): Webhook!
+  updateWebhook(id: ID!, input: UpdateWebhookInput!): Webhook!
+  deleteWebhook(id: ID!): DeleteResult!
+
+  # Users
+  createUser(input: CreateUserInput!): User!
+  updateUser(id: ID!, input: UpdateUserInput!): User!
+  deleteUser(id: ID!): DeleteResult!
+
+  # Groups
+  createGroup(input: CreateGroupInput!): Group!
+  updateGroup(id: ID!, input: UpdateGroupInput!): Group!
+  deleteGroup(id: ID!): DeleteResult!
+
+  # Conversations
+  createConversation(input: CreateConversationInput!): Conversation!
+  updateConversation(id: ID!, input: UpdateConversationInput!): Conversation!
+
+  # Conversation Messages
+  createConversationMessage(input: CreateConversationMessageInput!): ConversationMessage!
+
+  # Scores
+  createScore(input: CreateScoreInput!): Score!
+  updateScore(id: ID!, input: UpdateScoreInput!): Score!
+  deleteScore(id: ID!): DeleteResult!
+
+  # Segments
+  createSegment(input: CreateSegmentInput!): Segment!
+  updateSegment(id: ID!, input: UpdateSegmentInput!): Segment!
+  deleteSegment(id: ID!): DeleteResult!
+
+  # Tracking
+  createSiteTracking(input: CreateSiteTrackingInput!): SiteTracking!
+  updateSiteTracking(id: ID!, input: UpdateSiteTrackingInput!): SiteTracking!
+  deleteSiteTracking(id: ID!): DeleteResult!
+
+  createEventTracking(input: CreateEventTrackingInput!): EventTracking!
+  updateEventTracking(id: ID!, input: UpdateEventTrackingInput!): EventTracking!
+  deleteEventTracking(id: ID!): DeleteResult!
+
+  logEvent(input: LogEventInput!): EventLog!
+
+  # Calendar Feeds
+  createCalendarFeed(input: CreateCalendarFeedInput!): CalendarFeed!
+  updateCalendarFeed(id: ID!, input: UpdateCalendarFeedInput!): CalendarFeed!
+  deleteCalendarFeed(id: ID!): DeleteResult!
+
+  # Forms
+  createForm(input: CreateFormInput!): Form!
+  updateForm(id: ID!, input: UpdateFormInput!): Form!
+  deleteForm(id: ID!): DeleteResult!
+
+  # Branded Links
+  createBrandedLink(input: CreateBrandedLinkInput!): BrandedLink!
+  updateBrandedLink(id: ID!, input: UpdateBrandedLinkInput!): BrandedLink!
+  deleteBrandedLink(id: ID!): DeleteResult!
+}
+
+type Subscription {
+  contactCreated: Contact!
+  contactUpdated: Contact!
+  contactDeleted: DeleteResult!
+  dealUpdated: Deal!
+  automationCompleted(automationId: ID!): ContactAutomation!
+  campaignSent(campaignId: ID!): Campaign!
+  webhookTriggered(webhookId: ID!): EventLog!
+  conversationReceived: Conversation!
+}
+
+# ─────────────────────────────────────────────
+# CORE TYPES
+# ─────────────────────────────────────────────
+
+"""A contact record representing a person in the ActiveCampaign database."""
+type Contact {
+  id: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  phone: String
+  orgName: String
+  deleted: Boolean!
+  bounced: Boolean!
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+  tags: [ContactTag!]!
+  lists: [Subscription!]!
+  fieldValues: [FieldValue!]!
+  notes: [Note!]!
+  activities: [Activity!]!
+  automations: [ContactAutomation!]!
+  deals: [DealContact!]!
+  accounts: [AccountContact!]!
+  scores: [Score!]!
+  geolocation: Geolocation
+  ipAddress: String
+  ua: String
+  trackingDomain: String
+}
+
+"""An organization or company that contacts can be associated with."""
+type Account {
+  id: ID!
+  name: String!
+  accountUrl: URL
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+  contacts: [AccountContact!]!
+  deals: [Deal!]!
+  notes: [Note!]!
+  fieldValues: [FieldValue!]!
+}
+
+"""Join type linking a Contact to an Account."""
+type AccountContact {
+  id: ID!
+  contact: Contact!
+  account: Account!
+  jobTitle: String
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A marketing or operational automation workflow."""
+type Automation {
+  id: ID!
+  name: String!
+  cdate: DateTime!
+  mdate: DateTime!
+  status: AutomationStatus!
+  entered: Int!
+  exited: Int!
+  contacts: [ContactAutomation!]!
+  goals: [Goal!]!
+  triggers: [JSON!]!
+}
+
+"""Records a contact's enrollment and progress in an automation."""
+type ContactAutomation {
+  id: ID!
+  contact: Contact!
+  automation: Automation!
+  status: ContactAutomationStatus!
+  currentStep: Int
+  completedSteps: Int
+  startedOn: DateTime
+  completedOn: DateTime
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A checkpoint or objective within an automation workflow."""
+type Goal {
+  id: ID!
+  automation: Automation!
+  title: String!
+  type: String!
+  condition: JSON
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""An email marketing campaign."""
+type Campaign {
+  id: ID!
+  type: CampaignType!
+  name: String!
+  status: CampaignStatus!
+  subject: String
+  fromName: String
+  fromEmail: String
+  replyToEmail: String
+  toName: String
+  list: List
+  message: Message
+  bounceid: ID
+  seriesid: ID
+  responderid: ID
+  sendAmt: Int
+  totalAmt: Int
+  opens: Int
+  uniqueOpens: Int
+  linkClicks: Int
+  uniqueLinkClicks: Int
+  subscriberClicks: Int
+  unsubscribes: Int
+  hardBounces: Int
+  softBounces: Int
+  undeliverable: Int
+  deletedOpens: Int
+  deletedClicks: Int
+  report: Report
+  sdate: DateTime
+  ldate: DateTime
+  mdate: DateTime
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""An email message body / template used in campaigns."""
+type Email {
+  id: ID!
+  name: String!
+  subject: String!
+  body: String!
+  preheaderText: String
+  fromName: String
+  fromEmail: String
+  replyEmail: String
+  charset: String
+  encoding: String
+  htmlconstructor: String
+  textconstructor: String
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A message (email content) associated with a campaign or automation."""
+type Message {
+  id: ID!
+  name: String!
+  subject: String
+  fromName: String
+  fromEmail: String
+  replyEmail: String
+  preheaderText: String
+  body: String
+  htmlBody: String
+  textBody: String
+  campaignType: String
+  template: Template
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A reusable email design template."""
+type Template {
+  id: ID!
+  name: String!
+  subject: String
+  body: String
+  blocks: [TemplateBlock!]!
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A content block within an email template."""
+type TemplateBlock {
+  id: ID!
+  template: Template!
+  type: String!
+  content: String
+  sortOrder: Int
+  settings: JSON
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A subscription mailing list."""
+type List {
+  id: ID!
+  name: String!
+  stringid: String!
+  senderUrl: URL
+  senderReminder: String
+  sendLastBroadcast: Boolean!
+  analyticsGoogleCampaignEnabled: Boolean!
+  analyticsGoogleCampaignSource: String
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+  subscriptions: [Subscription!]!
+  campaigns: [Campaign!]!
+}
+
+"""A contact's subscription record for a list."""
+type Subscription {
+  id: ID!
+  contact: Contact!
+  list: List!
+  status: SubscriptionStatus!
+  responder: Boolean!
+  sync: Boolean!
+  unsubreason: String
+  unsubscribedAt: DateTime
+  firstSent: DateTime
+  lastSent: DateTime
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A freeform label that can be applied to contacts."""
+type Tag {
+  id: ID!
+  tag: String!
+  tagType: TagType!
+  description: String
+  cdate: DateTime!
+  contacts: [ContactTag!]!
+}
+
+"""Join type linking a Tag to a Contact."""
+type ContactTag {
+  id: ID!
+  contact: Contact!
+  tag: Tag!
+  createdAt: DateTime!
+}
+
+"""An opt-in form for capturing contact data."""
+type Form {
+  id: ID!
+  name: String!
+  action: String
+  actionData: JSON
+  submitAction: String
+  submitData: JSON
+  style: JSON
+  parentFormId: ID
+  userId: ID
+  addContactTagIds: [ID!]!
+  removeContactTagIds: [ID!]!
+  listIds: [ID!]!
+  fieldConfig: JSON
+  cdate: DateTime!
+  mdate: DateTime!
+}
+
+"""A CRM deal / sales opportunity."""
+type Deal {
+  id: ID!
+  title: String!
+  description: String
+  value: Float!
+  currency: String!
+  status: DealStatus!
+  stage: DealStage!
+  pipeline: DealPipeline!
+  owner: User
+  contact: Contact
+  organization: Account
+  percent: Int
+  closedate: DateTime
+  won_date: DateTime
+  lost_date: DateTime
+  nextdate: DateTime
+  nexttaskid: ID
+  fieldValues: [FieldValue!]!
+  tasks: [Task!]!
+  notes: [Note!]!
+  contacts: [DealContact!]!
+  activities: [Activity!]!
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A sales pipeline grouping deal stages."""
+type DealPipeline {
+  id: ID!
+  title: String!
+  currency: String!
+  deals: [Deal!]!
+  stages: [DealStage!]!
+  users: [User!]!
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A stage within a deal pipeline."""
+type DealStage {
+  id: ID!
+  title: String!
+  pipeline: DealPipeline!
+  order: Int!
+  dealOrder: String
+  color: String
+  deals: [Deal!]!
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""Join type linking a Deal to a Contact."""
+type DealContact {
+  id: ID!
+  deal: Deal!
+  contact: Contact!
+  role: String
+}
+
+"""A task associated with a deal or contact."""
+type Task {
+  id: ID!
+  title: String!
+  note: String
+  duedate: DateTime
+  edate: DateTime
+  status: TaskStatus!
+  type: TaskType
+  dealId: ID
+  userId: ID
+  automationId: ID
+  relid: ID
+  reltype: String
+  deal: Deal
+  owner: User
+  automation: Automation
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A free-text note attached to a contact or deal."""
+type Note {
+  id: ID!
+  note: String!
+  relid: ID!
+  reltype: NoteRelType!
+  userid: ID
+  owner: User
+  contact: Contact
+  deal: Deal
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A recorded activity or engagement event for a contact or deal."""
+type Activity {
+  id: ID!
+  action: String!
+  type: String
+  contact: Contact
+  deal: Deal
+  automation: Automation
+  campaign: Campaign
+  data: JSON
+  createdTimestamp: DateTime!
+}
+
+"""A contact-level or deal-level custom field definition."""
+type CustomField {
+  id: ID!
+  title: String!
+  type: CustomFieldType!
+  descript: String
+  isRequired: Boolean!
+  perstag: String
+  defval: String
+  show_in_list: Boolean!
+  rows: Int
+  cols: Int
+  visible: Boolean!
+  service: String
+  ordernum: Int
+  options: [CustomFieldOption!]
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""An individual option for select/multiselect custom fields."""
+type CustomFieldOption {
+  id: ID!
+  field: CustomField!
+  label: String!
+  value: String!
+  isDefault: Boolean!
+  orderid: Int!
+}
+
+"""A value for a custom field applied to a contact or deal."""
+type FieldValue {
+  id: ID!
+  contact: Contact
+  deal: Deal
+  field: CustomField!
+  value: String
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""Web-based tracking configuration for a domain."""
+type SiteTracking {
+  id: ID!
+  name: String!
+  domain: String!
+  status: TrackingStatus!
+  code: String
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A custom event type definition for event tracking."""
+type EventTracking {
+  id: ID!
+  name: String!
+  status: TrackingStatus!
+  trackingKey: String
+  key: String
+  actid: ID
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A recorded tracking event for a contact."""
+type EventLog {
+  id: ID!
+  contact: Contact
+  name: String!
+  value: String
+  email: String
+  key: String
+  actid: ID
+  ip: String
+  createdate: DateTime!
+}
+
+"""Top-level tracking metadata for a contact."""
+type Tracking {
+  id: ID!
+  contact: Contact!
+  type: String!
+  value: String
+  timestamp: DateTime!
+}
+
+"""A conversation thread across messaging channels."""
+type Conversation {
+  id: ID!
+  status: ConversationStatus!
+  assignee: User
+  channel: ConversationChannel
+  contact: Contact
+  messages: [ConversationMessage!]!
+  mdate: DateTime!
+  cdate: DateTime!
+}
+
+"""A single message within a Conversation thread."""
+type ConversationMessage {
+  id: ID!
+  conversation: Conversation!
+  body: String!
+  direction: MessageDirection!
+  sender: User
+  contact: Contact
+  cdate: DateTime!
+  mdate: DateTime!
+}
+
+"""A live chat session."""
+type Chat {
+  id: ID!
+  conversation: Conversation
+  contact: Contact
+  startedAt: DateTime!
+  endedAt: DateTime
+  transcript: String
+  status: ChatStatus!
+}
+
+"""A branded / tracking link configuration."""
+type BrandedLink {
+  id: ID!
+  link: URL!
+  brandedUrl: URL
+  name: String!
+  tracked: Boolean!
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A hard or soft bounce record for a contact."""
+type Bounce {
+  id: ID!
+  contact: Contact!
+  email: String!
+  type: BounceType!
+  code: String
+  message: String
+  datetime: DateTime!
+}
+
+"""Status record for a bulk contact import operation."""
+type ImportStatus {
+  id: ID!
+  status: ImportStatusType!
+  filename: String
+  created: DateTime!
+  completed: DateTime
+  importedCount: Int
+  failedCount: Int
+  errors: [String!]
+}
+
+"""An outgoing webhook configured to POST on platform events."""
+type Webhook {
+  id: ID!
+  name: String!
+  url: URL!
+  events: [WebhookEvent!]!
+  sources: [WebhookSource!]!
+  listid: ID
+  contact: Contact
+  updatedTimestamp: DateTime!
+  createdTimestamp: DateTime!
+}
+
+"""A platform user account."""
+type User {
+  id: ID!
+  username: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String
+  lang: String
+  localZoneid: String
+  lastLogin: DateTime
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+  groups: [Group!]!
+  permissions: [Permission!]!
+}
+
+"""A user group for organizing permissions and access."""
+type Group {
+  id: ID!
+  title: String!
+  descript: String
+  unsubscribelink: Boolean!
+  optinoptout: Boolean!
+  users: [User!]!
+  permissions: [Permission!]!
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""An individual permission entry for a user or group."""
+type Permission {
+  id: ID!
+  name: String!
+  granted: Boolean!
+  user: User
+  group: Group
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A numeric score assigned to contacts based on behavior rules."""
+type Score {
+  id: ID!
+  name: String!
+  descript: String
+  status: ScoreStatus!
+  type: ScoreType!
+  contacts: [Contact!]!
+  cdate: DateTime!
+  mdate: DateTime!
+}
+
+"""A dynamic filter set used for segmenting contacts."""
+type Segment {
+  id: ID!
+  name: String!
+  logic: String!
+  hidden: Boolean!
+  conditions: [SegmentCondition!]!
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A single condition within a segment filter."""
+type SegmentCondition {
+  id: ID!
+  segment: Segment!
+  field: String!
+  operator: String!
+  value: String!
+}
+
+"""A calendar feed for scheduling tasks and events."""
+type CalendarFeed {
+  id: ID!
+  title: String!
+  type: CalendarFeedType!
+  token: String
+  url: URL
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""A third-party integration connection."""
+type Integration {
+  id: ID!
+  name: String!
+  logo: URL
+  description: String
+  url: URL
+  authType: String
+  status: IntegrationStatus!
+  createdTimestamp: DateTime!
+  updatedTimestamp: DateTime!
+}
+
+"""Performance metrics report for a campaign."""
+type Report {
+  id: ID!
+  campaign: Campaign!
+  uniqueOpens: Int!
+  opens: Int!
+  linkClicks: Int!
+  uniqueLinkClicks: Int!
+  subscriberClicks: Int!
+  unsubscribes: Int!
+  hardBounces: Int!
+  softBounces: Int!
+  undeliverable: Int!
+  totalSent: Int!
+  openRate: Float!
+  clickRate: Float!
+  unsubscribeRate: Float!
+  bounceRate: Float!
+  generatedAt: DateTime!
+}
+
+"""Geolocation data resolved from a contact's IP address."""
+type Geolocation {
+  city: String
+  state: String
+  country: String
+  zip: String
+  lat: Float
+  lon: Float
+  tz: String
+}
+
+"""Generic delete result."""
+type DeleteResult {
+  id: ID!
+  success: Boolean!
+  message: String
+}
+
+# ─────────────────────────────────────────────
+# CONNECTION / PAGINATION TYPES
+# ─────────────────────────────────────────────
+
+type ContactConnection {
+  nodes: [Contact!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type AccountConnection {
+  nodes: [Account!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type AutomationConnection {
+  nodes: [Automation!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type CampaignConnection {
+  nodes: [Campaign!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type ListConnection {
+  nodes: [List!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type TagConnection {
+  nodes: [Tag!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type DealConnection {
+  nodes: [Deal!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type DealPipelineConnection {
+  nodes: [DealPipeline!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type DealStageConnection {
+  nodes: [DealStage!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type TaskConnection {
+  nodes: [Task!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type NoteConnection {
+  nodes: [Note!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type CustomFieldConnection {
+  nodes: [CustomField!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type TemplateConnection {
+  nodes: [Template!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type MessageConnection {
+  nodes: [Message!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type ConversationConnection {
+  nodes: [Conversation!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type FormConnection {
+  nodes: [Form!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type SegmentConnection {
+  nodes: [Segment!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type ScoreConnection {
+  nodes: [Score!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type UserConnection {
+  nodes: [User!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type GroupConnection {
+  nodes: [Group!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type WebhookConnection {
+  nodes: [Webhook!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type SiteTrackingConnection {
+  nodes: [SiteTracking!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type EventTrackingConnection {
+  nodes: [EventTracking!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type EventLogConnection {
+  nodes: [EventLog!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type CalendarFeedConnection {
+  nodes: [CalendarFeed!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type BrandedLinkConnection {
+  nodes: [BrandedLink!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type BounceConnection {
+  nodes: [Bounce!]!
+  total: Int!
+  limit: Int!
+  offset: Int!
+}
+
+# ─────────────────────────────────────────────
+# ENUMS
+# ─────────────────────────────────────────────
+
+enum AutomationStatus {
+  ACTIVE
+  INACTIVE
+  DRAFT
+}
+
+enum ContactAutomationStatus {
+  ACTIVE
+  COMPLETE
+  PAUSED
+}
+
+enum CampaignType {
+  SINGLE
+  RECURRING
+  SPLIT
+  RESPONDER
+  RSS
+  ACTIVERSS
+  TEXT
+}
+
+enum CampaignStatus {
+  DRAFT
+  SCHEDULED
+  SENDING
+  SENT
+  PAUSED
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  UNSUBSCRIBED
+  BOUNCED
+  UNCONFIRMED
+}
+
+enum TagType {
+  CONTACT
+  TEMPLATE
+}
+
+enum DealStatus {
+  OPEN
+  WON
+  LOST
+}
+
+enum TaskStatus {
+  INCOMPLETE
+  COMPLETE
+}
+
+enum TaskType {
+  CALL
+  EMAIL
+  MEETING
+  LUNCH
+  TEXT
+  OTHER
+}
+
+enum NoteRelType {
+  CONTACT
+  DEAL
+}
+
+enum CustomFieldType {
+  TEXT
+  TEXTAREA
+  DATE
+  DATETIME
+  DROPDOWN
+  CHECKBOX
+  RADIO
+  HIDDEN
+  EMAIL
+  URL
+  CURRENCY
+  NUMBER
+  LISTBOX
+}
+
+enum TrackingStatus {
+  ENABLED
+  DISABLED
+}
+
+enum ConversationStatus {
+  OPEN
+  CLOSED
+  PENDING
+}
+
+enum ConversationChannel {
+  EMAIL
+  CHAT
+  SMS
+  WHATSAPP
+}
+
+enum MessageDirection {
+  INBOUND
+  OUTBOUND
+}
+
+enum ChatStatus {
+  ACTIVE
+  ENDED
+  MISSED
+}
+
+enum BounceType {
+  HARD
+  SOFT
+}
+
+enum ImportStatusType {
+  QUEUED
+  RUNNING
+  COMPLETE
+  FAILED
+}
+
+enum WebhookEvent {
+  SUBSCRIBE
+  UNSUBSCRIBE
+  EMAIL_OPEN
+  EMAIL_LINK
+  BOUNCE
+  FORWARD
+  UNSUB
+  CONTACT_NOTE
+  LIST_ADD
+  CONTACT_TAG_ADDED
+  CONTACT_TAG_REMOVED
+  CONTACT
+  DEAL_NOTE
+  DEAL_TASK_EARLY
+  DEAL_TASKDUEDATE
+  DEAL_STAGE_CHANGED
+  DEAL_PIPELINE_CHANGED
+  DEAL_STATUS_OPENED
+  DEAL_STATUS_WON
+  DEAL_STATUS_LOST
+  DEAL_OWNER_CHANGED
+  DEAL_VALUE_CHANGED
+  AUTOMATION_COMPLETE
+}
+
+enum WebhookSource {
+  PUBLIC
+  ADMIN
+  API
+  SYSTEM
+}
+
+enum ScoreStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum ScoreType {
+  CONTACT
+  DEAL
+}
+
+enum CalendarFeedType {
+  ALL
+  TASKS
+  DEALS
+}
+
+enum IntegrationStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+}
+
+# ─────────────────────────────────────────────
+# INPUT TYPES
+# ─────────────────────────────────────────────
+
+input CreateContactInput {
+  email: String!
+  firstName: String
+  lastName: String
+  phone: String
+  orgName: String
+}
+
+input UpdateContactInput {
+  email: String
+  firstName: String
+  lastName: String
+  phone: String
+  orgName: String
+}
+
+input SyncContactInput {
+  email: String!
+  firstName: String
+  lastName: String
+  phone: String
+  orgName: String
+  fieldValues: [FieldValueInput!]
+}
+
+input FieldValueInput {
+  field: String!
+  value: String!
+}
+
+input CreateAccountInput {
+  name: String!
+  accountUrl: URL
+}
+
+input UpdateAccountInput {
+  name: String
+  accountUrl: URL
+}
+
+input CreateTagInput {
+  tag: String!
+  tagType: TagType
+  description: String
+}
+
+input UpdateTagInput {
+  tag: String
+  tagType: TagType
+  description: String
+}
+
+input CreateListInput {
+  name: String!
+  stringid: String!
+  senderUrl: URL
+  senderReminder: String
+}
+
+input UpdateListInput {
+  name: String
+  senderUrl: URL
+  senderReminder: String
+}
+
+input CreateCustomFieldInput {
+  title: String!
+  type: CustomFieldType!
+  descript: String
+  isRequired: Boolean
+  perstag: String
+  defval: String
+  visible: Boolean
+}
+
+input UpdateCustomFieldInput {
+  title: String
+  descript: String
+  isRequired: Boolean
+  visible: Boolean
+}
+
+input CreateDealInput {
+  title: String!
+  value: Float!
+  currency: String!
+  stageId: ID!
+  ownerId: ID
+  contactId: ID
+  closedate: DateTime
+}
+
+input UpdateDealInput {
+  title: String
+  value: Float
+  currency: String
+  stageId: ID
+  status: DealStatus
+  closedate: DateTime
+}
+
+input CreateDealPipelineInput {
+  title: String!
+  currency: String!
+}
+
+input UpdateDealPipelineInput {
+  title: String
+  currency: String
+}
+
+input CreateDealStageInput {
+  title: String!
+  pipelineId: ID!
+  order: Int
+  color: String
+}
+
+input UpdateDealStageInput {
+  title: String
+  order: Int
+  color: String
+}
+
+input CreateTaskInput {
+  title: String!
+  duedate: DateTime
+  note: String
+  dealId: ID
+  status: TaskStatus
+  type: TaskType
+}
+
+input UpdateTaskInput {
+  title: String
+  duedate: DateTime
+  note: String
+  status: TaskStatus
+  type: TaskType
+}
+
+input CreateNoteInput {
+  note: String!
+  relid: ID!
+  reltype: NoteRelType!
+}
+
+input UpdateNoteInput {
+  note: String!
+}
+
+input CreateMessageInput {
+  name: String!
+  subject: String!
+  fromName: String!
+  fromEmail: String!
+  replyEmail: String
+  preheaderText: String
+  body: String
+  htmlBody: String
+  textBody: String
+}
+
+input UpdateMessageInput {
+  name: String
+  subject: String
+  fromName: String
+  fromEmail: String
+  body: String
+  htmlBody: String
+  textBody: String
+}
+
+input CreateCampaignInput {
+  type: CampaignType!
+  name: String!
+  status: CampaignStatus
+  subject: String
+  fromName: String
+  fromEmail: String
+  listId: ID
+  messageId: ID
+  sdate: DateTime
+}
+
+input UpdateCampaignInput {
+  name: String
+  status: CampaignStatus
+  subject: String
+  fromName: String
+  fromEmail: String
+  sdate: DateTime
+}
+
+input CreateTemplateInput {
+  name: String!
+  subject: String
+  body: String
+}
+
+input UpdateTemplateInput {
+  name: String
+  subject: String
+  body: String
+}
+
+input CreateWebhookInput {
+  name: String!
+  url: URL!
+  events: [WebhookEvent!]!
+  sources: [WebhookSource!]!
+  listid: ID
+}
+
+input UpdateWebhookInput {
+  name: String
+  url: URL
+  events: [WebhookEvent!]
+  sources: [WebhookSource!]
+}
+
+input CreateUserInput {
+  username: String!
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+  role: String
+}
+
+input UpdateUserInput {
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+}
+
+input CreateGroupInput {
+  title: String!
+  descript: String
+}
+
+input UpdateGroupInput {
+  title: String
+  descript: String
+}
+
+input CreateConversationInput {
+  contactId: ID
+  channel: ConversationChannel
+  assigneeId: ID
+}
+
+input UpdateConversationInput {
+  status: ConversationStatus
+  assigneeId: ID
+}
+
+input CreateConversationMessageInput {
+  conversationId: ID!
+  body: String!
+  direction: MessageDirection!
+}
+
+input CreateScoreInput {
+  name: String!
+  descript: String
+  type: ScoreType!
+  status: ScoreStatus
+}
+
+input UpdateScoreInput {
+  name: String
+  descript: String
+  status: ScoreStatus
+}
+
+input CreateSegmentInput {
+  name: String!
+  logic: String!
+  hidden: Boolean
+}
+
+input UpdateSegmentInput {
+  name: String
+  logic: String
+  hidden: Boolean
+}
+
+input CreateSiteTrackingInput {
+  name: String!
+  domain: String!
+  status: TrackingStatus
+}
+
+input UpdateSiteTrackingInput {
+  name: String
+  domain: String
+  status: TrackingStatus
+}
+
+input CreateEventTrackingInput {
+  name: String!
+  status: TrackingStatus
+}
+
+input UpdateEventTrackingInput {
+  name: String
+  status: TrackingStatus
+}
+
+input LogEventInput {
+  email: String!
+  event: String!
+  eventData: String
+  actid: ID
+}
+
+input CreateCalendarFeedInput {
+  title: String!
+  type: CalendarFeedType!
+}
+
+input UpdateCalendarFeedInput {
+  title: String
+  type: CalendarFeedType
+}
+
+input CreateFormInput {
+  name: String!
+  action: String
+  submitAction: String
+}
+
+input UpdateFormInput {
+  name: String
+  action: String
+  submitAction: String
+}
+
+input CreateBrandedLinkInput {
+  link: URL!
+  name: String!
+  tracked: Boolean
+}
+
+input UpdateBrandedLinkInput {
+  link: URL
+  name: String
+  tracked: Boolean
+}
