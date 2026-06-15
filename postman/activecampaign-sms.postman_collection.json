@@ -1,0 +1,2535 @@
+{
+  "info": {
+    "_postman_id": "afa872f0-461b-4b59-9f5d-76101ddc25b3",
+    "name": "ActiveCampaign SMS Broadcast API",
+    "description": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:02:45.000Z",
+    "updatedAt": "2026-06-05T15:02:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-afa872f0-461b-4b59-9f5d-76101ddc25b3"
+  },
+  "item": [
+    {
+      "name": "sms",
+      "item": [
+        {
+          "name": "credits",
+          "item": [
+            {
+              "name": "ActiveCampaign Get Current Sms Credit Use Data",
+              "id": "66ba5b00-4660-4e63-9d99-4f43d9df4900",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sms/credits",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sms",
+                    "credits"
+                  ]
+                },
+                "description": "Retrieve the current period's sms credit usage and remaining balance"
+              },
+              "response": [
+                {
+                  "id": "00a0485e-a4aa-4ee8-b634-389c489bd296",
+                  "name": "Sms Credits for this period",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/credits",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "credits"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"smsCredits\": {\n    \"period\": \"<string>\",\n    \"nextRefillDate\": \"<string>\",\n    \"includedThisPeriod\": \"<integer>\",\n    \"usedThisPeriod\": \"<integer>\",\n    \"extra\": \"<integer>\",\n    \"available\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-00a0485e-a4aa-4ee8-b634-389c489bd296"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:46.000Z",
+              "updatedAt": "2026-06-05T15:02:46.000Z",
+              "uid": "35240-66ba5b00-4660-4e63-9d99-4f43d9df4900"
+            }
+          ],
+          "id": "c8cb42df-74bd-4057-8c3a-22b6ebcddbb5",
+          "createdAt": "2026-06-05T15:02:46.000Z",
+          "updatedAt": "2026-06-05T15:02:46.000Z",
+          "uid": "35240-c8cb42df-74bd-4057-8c3a-22b6ebcddbb5"
+        },
+        {
+          "name": "broadcasts",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "ActiveCampaign Get Broadcast Message",
+                  "id": "c4246319-b22a-4f96-9482-33b4b4c1931b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/broadcasts/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "broadcasts",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4918f2f3-bb1b-475a-b1c5-5ebe2ec9f2c0",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) Broadcast ID"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the full details for one broadcast message"
+                  },
+                  "response": [
+                    {
+                      "id": "85b5b4c1-11e1-4c2f-b4b2-0ad2492d4694",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Api-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"address_id\": \"<integer>\",\n  \"body\": \"<string>\",\n  \"media_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"preview_url\": \"<uri>\",\n  \"shorten_track_links_enabled\": \"<boolean>\",\n  \"status\": \"draft\",\n  \"sent_date\": \"<dateTime>\",\n  \"scheduled_date\": \"<dateTime>\",\n  \"custom_run_id\": \"<uuid>\",\n  \"custom_segment_id\": \"<uuid>\",\n  \"scheduled_by\": \"<integer>\",\n  \"sent_to_count\": \"<integer>\",\n  \"created_at\": \"<dateTime>\",\n  \"created_by\": \"<integer>\",\n  \"updated_at\": \"<dateTime>\",\n  \"updated_by\": \"<integer>\",\n  \"deleted_at\": \"<dateTime>\",\n  \"sift_approved\": \"<integer>\",\n  \"arc_approved\": \"<integer>\",\n  \"quiet_hours_enabled\": \"<integer>\",\n  \"list_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"label_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-85b5b4c1-11e1-4c2f-b4b2-0ad2492d4694"
+                    },
+                    {
+                      "id": "70883541-f55b-4e99-83fc-35eec8164a71",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Api-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-70883541-f55b-4e99-83fc-35eec8164a71"
+                    },
+                    {
+                      "id": "f3871cb1-deb0-47e6-bc3c-5a0431e3fe04",
+                      "name": "Broadcast not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Api-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-f3871cb1-deb0-47e6-bc3c-5a0431e3fe04"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-c4246319-b22a-4f96-9482-33b4b4c1931b"
+                },
+                {
+                  "name": "ActiveCampaign Update Broadcast Message",
+                  "id": "29f2b660-2773-4ba4-912d-95f1bc628ae4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"address_id\": \"<integer>\",\n  \"body\": \"<string>\",\n  \"media_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"preview_url\": \"<uri>\",\n  \"shorten_track_links_enabled\": \"<boolean>\",\n  \"status\": \"draft\",\n  \"scheduled_date\": \"<dateTime>\",\n  \"sent_to_count\": \"<integer>\",\n  \"list_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"custom_run_id\": \"<uuid>\",\n  \"custom_segment_id\": \"<uuid>\",\n  \"label_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/broadcasts/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "broadcasts",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "86d6c3d9-1e9a-4370-970e-9e919c444a6a",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) Broadcast ID"
+                        }
+                      ]
+                    },
+                    "description": "Updates an existing broadcast message"
+                  },
+                  "response": [
+                    {
+                      "id": "b6e72004-bac6-4113-b388-d2d8eb51e8d0",
+                      "name": "Broadcast updated successfully",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Api-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"address_id\": \"<integer>\",\n  \"body\": \"<string>\",\n  \"media_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"preview_url\": \"<uri>\",\n  \"shorten_track_links_enabled\": \"<boolean>\",\n  \"status\": \"draft\",\n  \"scheduled_date\": \"<dateTime>\",\n  \"sent_to_count\": \"<integer>\",\n  \"list_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"custom_run_id\": \"<uuid>\",\n  \"custom_segment_id\": \"<uuid>\",\n  \"label_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"address_id\": \"<integer>\",\n  \"body\": \"<string>\",\n  \"media_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"preview_url\": \"<uri>\",\n  \"shorten_track_links_enabled\": \"<boolean>\",\n  \"status\": \"draft\",\n  \"sent_date\": \"<dateTime>\",\n  \"scheduled_date\": \"<dateTime>\",\n  \"custom_run_id\": \"<uuid>\",\n  \"custom_segment_id\": \"<uuid>\",\n  \"scheduled_by\": \"<integer>\",\n  \"sent_to_count\": \"<integer>\",\n  \"created_at\": \"<dateTime>\",\n  \"created_by\": \"<integer>\",\n  \"updated_at\": \"<dateTime>\",\n  \"updated_by\": \"<integer>\",\n  \"deleted_at\": \"<dateTime>\",\n  \"sift_approved\": \"<integer>\",\n  \"arc_approved\": \"<integer>\",\n  \"quiet_hours_enabled\": \"<integer>\",\n  \"list_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"label_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-b6e72004-bac6-4113-b388-d2d8eb51e8d0"
+                    },
+                    {
+                      "id": "6d066612-6b62-412f-962a-89f0ae9f85c9",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Api-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"address_id\": \"<integer>\",\n  \"body\": \"<string>\",\n  \"media_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"preview_url\": \"<uri>\",\n  \"shorten_track_links_enabled\": \"<boolean>\",\n  \"status\": \"draft\",\n  \"scheduled_date\": \"<dateTime>\",\n  \"sent_to_count\": \"<integer>\",\n  \"list_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"custom_run_id\": \"<uuid>\",\n  \"custom_segment_id\": \"<uuid>\",\n  \"label_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-6d066612-6b62-412f-962a-89f0ae9f85c9"
+                    },
+                    {
+                      "id": "413d546e-1299-4c88-bae3-45e6bee25ad0",
+                      "name": "Broadcast not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Api-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"address_id\": \"<integer>\",\n  \"body\": \"<string>\",\n  \"media_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"preview_url\": \"<uri>\",\n  \"shorten_track_links_enabled\": \"<boolean>\",\n  \"status\": \"draft\",\n  \"scheduled_date\": \"<dateTime>\",\n  \"sent_to_count\": \"<integer>\",\n  \"list_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"custom_run_id\": \"<uuid>\",\n  \"custom_segment_id\": \"<uuid>\",\n  \"label_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-413d546e-1299-4c88-bae3-45e6bee25ad0"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-29f2b660-2773-4ba4-912d-95f1bc628ae4"
+                },
+                {
+                  "name": "ActiveCampaign Delete Broadcast Message",
+                  "id": "10326bfd-d1ea-4bcd-80b4-c32aa9a35f94",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/broadcasts/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "broadcasts",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "20910239-44cd-417a-be67-bc7ade6a7233",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) Broadcast ID"
+                        }
+                      ]
+                    },
+                    "description": "Performs a soft-delete on the requested message"
+                  },
+                  "response": [
+                    {
+                      "id": "4694e816-6c25-4cf2-92de-cf1a2f5f5b9f",
+                      "name": "Broadcast deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Api-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"address_id\": \"<integer>\",\n  \"body\": \"<string>\",\n  \"media_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"preview_url\": \"<uri>\",\n  \"shorten_track_links_enabled\": \"<boolean>\",\n  \"status\": \"draft\",\n  \"sent_date\": \"<dateTime>\",\n  \"scheduled_date\": \"<dateTime>\",\n  \"custom_run_id\": \"<uuid>\",\n  \"custom_segment_id\": \"<uuid>\",\n  \"scheduled_by\": \"<integer>\",\n  \"sent_to_count\": \"<integer>\",\n  \"created_at\": \"<dateTime>\",\n  \"created_by\": \"<integer>\",\n  \"updated_at\": \"<dateTime>\",\n  \"updated_by\": \"<integer>\",\n  \"deleted_at\": \"<dateTime>\",\n  \"sift_approved\": \"<integer>\",\n  \"arc_approved\": \"<integer>\",\n  \"quiet_hours_enabled\": \"<integer>\",\n  \"list_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"label_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-4694e816-6c25-4cf2-92de-cf1a2f5f5b9f"
+                    },
+                    {
+                      "id": "07f90dab-6c4a-4e44-83aa-db38db205765",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Api-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-07f90dab-6c4a-4e44-83aa-db38db205765"
+                    },
+                    {
+                      "id": "309dc07f-6c75-4fe6-baad-e66dd36ca105",
+                      "name": "Broadcast not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Api-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-309dc07f-6c75-4fe6-baad-e66dd36ca105"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-10326bfd-d1ea-4bcd-80b4-c32aa9a35f94"
+                }
+              ],
+              "id": "1b2a7c9d-a015-42d6-82ed-23b2cc458a27",
+              "createdAt": "2026-06-05T15:02:46.000Z",
+              "updatedAt": "2026-06-05T15:02:46.000Z",
+              "uid": "35240-1b2a7c9d-a015-42d6-82ed-23b2cc458a27"
+            },
+            {
+              "name": "ai",
+              "item": [
+                {
+                  "name": "{Id}",
+                  "item": [
+                    {
+                      "name": "ActiveCampaign Get AI Broadcast Request Status",
+                      "id": "1fcd235c-61dd-4ec0-a49e-46153df122b4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/ai/:Id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            "ai",
+                            ":Id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "83d855eb-2fcc-4009-8b00-878fa93e0fdf",
+                              "key": "Id",
+                              "value": "<string>",
+                              "description": "(Required) Request ID from AI broadcast creation"
+                            }
+                          ]
+                        },
+                        "description": "Returns the current status of the AI process execution"
+                      },
+                      "response": [
+                        {
+                          "id": "cd369926-ed07-4559-9860-1a4b6d83463a",
+                          "name": "Status retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Api-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sms/broadcasts/ai/:Id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sms",
+                                "broadcasts",
+                                "ai",
+                                ":Id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "Id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"source\": \"ai_builder\",\n  \"status\": \"in_progress\",\n  \"broadcastId\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T15:02:46.000Z",
+                          "updatedAt": "2026-06-05T15:02:46.000Z",
+                          "uid": "35240-cd369926-ed07-4559-9860-1a4b6d83463a"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-1fcd235c-61dd-4ec0-a49e-46153df122b4"
+                    }
+                  ],
+                  "id": "51769763-7fbf-452d-9a13-0569dccba720",
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-51769763-7fbf-452d-9a13-0569dccba720"
+                },
+                {
+                  "name": "ActiveCampaign Create AI-generated Broadcast",
+                  "id": "f70fc66d-8585-40c9-ab7f-cea385241933",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"source\": \"sms_index\",\n  \"prompt\": \"<string>\",\n  \"tone\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/broadcasts/ai",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "broadcasts",
+                        "ai"
+                      ]
+                    },
+                    "description": "Creates a broadcast using AI based on prompt and tone"
+                  },
+                  "response": [
+                    {
+                      "id": "e1aeea13-356e-4caa-be64-7944f2ed8fa4",
+                      "name": "AI broadcast request initiated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Api-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"source\": \"sms_index\",\n  \"prompt\": \"<string>\",\n  \"tone\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/ai",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            "ai"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-e1aeea13-356e-4caa-be64-7944f2ed8fa4"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-f70fc66d-8585-40c9-ab7f-cea385241933"
+                },
+                {
+                  "name": "ActiveCampaign Update Broadcast with AI",
+                  "id": "6266b63f-36e0-4fdf-b05e-f5c087e7f699",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"source\": \"ai_builder\",\n  \"prompt\": \"<string>\",\n  \"tone\": \"<string>\",\n  \"broadcastId\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/broadcasts/ai",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "broadcasts",
+                        "ai"
+                      ]
+                    },
+                    "description": "Updates an existing broadcast using AI"
+                  },
+                  "response": [
+                    {
+                      "id": "17a3f1c1-40d6-4c13-abda-ecde0d6824d8",
+                      "name": "AI broadcast update request initiated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Api-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"source\": \"ai_builder\",\n  \"prompt\": \"<string>\",\n  \"tone\": \"<string>\",\n  \"broadcastId\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/ai",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            "ai"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-17a3f1c1-40d6-4c13-abda-ecde0d6824d8"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-6266b63f-36e0-4fdf-b05e-f5c087e7f699"
+                }
+              ],
+              "id": "919a6d1a-3316-462b-96fd-c93de05779c7",
+              "createdAt": "2026-06-05T15:02:46.000Z",
+              "updatedAt": "2026-06-05T15:02:46.000Z",
+              "uid": "35240-919a6d1a-3316-462b-96fd-c93de05779c7"
+            },
+            {
+              "name": "metrics",
+              "item": [
+                {
+                  "name": "snapshot",
+                  "item": [
+                    {
+                      "name": "ActiveCampaign Get Broadcast Snapshot",
+                      "id": "20d3273d-b33a-4466-8a2f-7a32b83af2c9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/metrics/snapshot?start_date=<date>&end_date=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            "metrics",
+                            "snapshot"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start date for snapshot (YYYY-MM-DD)",
+                              "key": "start_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "End date for snapshot (YYYY-MM-DD)",
+                              "key": "end_date",
+                              "value": "<date>"
+                            }
+                          ]
+                        },
+                        "description": "Returns snapshot data for all broadcasts"
+                      },
+                      "response": [
+                        {
+                          "id": "c16fd905-1d45-4b35-8693-706a5034fa01",
+                          "name": "Snapshot retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Api-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sms/broadcasts/metrics/snapshot?start_date=<date>&end_date=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sms",
+                                "broadcasts",
+                                "metrics",
+                                "snapshot"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start date for snapshot (YYYY-MM-DD)",
+                                  "key": "start_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "End date for snapshot (YYYY-MM-DD)",
+                                  "key": "end_date",
+                                  "value": "<date>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"snapshot\": {\n    \"campaigns\": \"<integer>\",\n    \"sends\": \"<integer>\",\n    \"deliveries\": \"<integer>\",\n    \"clicks\": \"<integer>\",\n    \"replies\": \"<integer>\",\n    \"failures\": \"<integer>\",\n    \"optOuts\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-06-05T15:02:46.000Z",
+                          "updatedAt": "2026-06-05T15:02:46.000Z",
+                          "uid": "35240-c16fd905-1d45-4b35-8693-706a5034fa01"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-20d3273d-b33a-4466-8a2f-7a32b83af2c9"
+                    },
+                    {
+                      "name": "ActiveCampaign Get Broadcast Snapshot",
+                      "id": "c76abda4-9ecc-4cb6-8ae1-17ef8039ff4c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/metrics/snapshot",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            "metrics",
+                            "snapshot"
+                          ]
+                        },
+                        "description": "Returns snapshot for specified broadcast IDs"
+                      },
+                      "response": [
+                        {
+                          "id": "00c3438a-8afd-489d-8f6e-1577fa97c6e5",
+                          "name": "Snapshot retrieved successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Api-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/sms/broadcasts/metrics/snapshot",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sms",
+                                "broadcasts",
+                                "metrics",
+                                "snapshot"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"snapshot\": {\n    \"campaigns\": \"<integer>\",\n    \"sends\": \"<integer>\",\n    \"deliveries\": \"<integer>\",\n    \"clicks\": \"<integer>\",\n    \"replies\": \"<integer>\",\n    \"failures\": \"<integer>\",\n    \"optOuts\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-06-05T15:02:46.000Z",
+                          "updatedAt": "2026-06-05T15:02:46.000Z",
+                          "uid": "35240-00c3438a-8afd-489d-8f6e-1577fa97c6e5"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-c76abda4-9ecc-4cb6-8ae1-17ef8039ff4c"
+                    }
+                  ],
+                  "id": "1724ed8a-092d-4558-8aea-9f89b6c74c2d",
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-1724ed8a-092d-4558-8aea-9f89b6c74c2d"
+                },
+                {
+                  "name": "{broadcastId}",
+                  "item": [
+                    {
+                      "name": "failures",
+                      "item": [
+                        {
+                          "name": "ActiveCampaign Get Broadcast Failure Details",
+                          "id": "a279fb7d-8318-48f0-aedb-0908cb998a57",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sms/broadcasts/metrics/:broadcastId/failures?start_date=<date>&end_date=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sms",
+                                "broadcasts",
+                                "metrics",
+                                ":broadcastId",
+                                "failures"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start date (YYYY-MM-DD)",
+                                  "key": "start_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "End date (YYYY-MM-DD)",
+                                  "key": "end_date",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6cd00627-be2c-4efb-a491-525f3e64b444",
+                                  "key": "broadcastId",
+                                  "value": "<integer>",
+                                  "description": "(Required) Broadcast ID"
+                                }
+                              ]
+                            },
+                            "description": "Returns grouping and counts of failures for the broadcast"
+                          },
+                          "response": [
+                            {
+                              "id": "02f1acc4-ea9e-4830-8a6f-453ef3472b10",
+                              "name": "Failure details retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Api-Token",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sms/broadcasts/metrics/:broadcastId/failures?start_date=<date>&end_date=<date>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sms",
+                                    "broadcasts",
+                                    "metrics",
+                                    ":broadcastId",
+                                    "failures"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Start date (YYYY-MM-DD)",
+                                      "key": "start_date",
+                                      "value": "<date>"
+                                    },
+                                    {
+                                      "description": "End date (YYYY-MM-DD)",
+                                      "key": "end_date",
+                                      "value": "<date>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "broadcastId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"failures\": [\n    {\n      \"errorCode\": \"<string>\",\n      \"errorSource\": \"twilio\",\n      \"count\": \"<integer>\"\n    },\n    {\n      \"errorCode\": \"<string>\",\n      \"errorSource\": \"twilio\",\n      \"count\": \"<integer>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T15:02:46.000Z",
+                              "updatedAt": "2026-06-05T15:02:46.000Z",
+                              "uid": "35240-02f1acc4-ea9e-4830-8a6f-453ef3472b10"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:02:46.000Z",
+                          "updatedAt": "2026-06-05T15:02:46.000Z",
+                          "uid": "35240-a279fb7d-8318-48f0-aedb-0908cb998a57"
+                        }
+                      ],
+                      "id": "ef65bf0f-be4a-495a-821f-19743fb4d9bb",
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-ef65bf0f-be4a-495a-821f-19743fb4d9bb"
+                    }
+                  ],
+                  "id": "dca06255-f816-4717-a639-959b811d3281",
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-dca06255-f816-4717-a639-959b811d3281"
+                },
+                {
+                  "name": "ActiveCampaign Get All Broadcast Metrics",
+                  "id": "a6692507-6770-4ae4-b049-e7024e3cfdc9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/broadcasts/metrics?start_date=<date>&end_date=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "broadcasts",
+                        "metrics"
+                      ],
+                      "query": [
+                        {
+                          "description": "Start date for metrics (YYYY-MM-DD)",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "End date for metrics (YYYY-MM-DD)",
+                          "key": "end_date",
+                          "value": "<date>"
+                        }
+                      ]
+                    },
+                    "description": "Returns metrics for specified broadcast IDs"
+                  },
+                  "response": [
+                    {
+                      "id": "71ff7157-08ca-417f-9be0-6e33a3b4f429",
+                      "name": "Metrics retrieved successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Api-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/metrics?start_date=<date>&end_date=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            "metrics"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start date for metrics (YYYY-MM-DD)",
+                              "key": "start_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "End date for metrics (YYYY-MM-DD)",
+                              "key": "end_date",
+                              "value": "<date>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"metrics\": [\n    {\n      \"id\": \"<integer>\",\n      \"sends\": \"<integer>\",\n      \"deliveries\": \"<integer>\",\n      \"replies\": \"<integer>\",\n      \"failures\": \"<integer>\",\n      \"optOuts\": \"<integer>\",\n      \"clicks\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"sends\": \"<integer>\",\n      \"deliveries\": \"<integer>\",\n      \"replies\": \"<integer>\",\n      \"failures\": \"<integer>\",\n      \"optOuts\": \"<integer>\",\n      \"clicks\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-71ff7157-08ca-417f-9be0-6e33a3b4f429"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-a6692507-6770-4ae4-b049-e7024e3cfdc9"
+                }
+              ],
+              "id": "2a18516e-2565-4c9c-8687-9f8cc83a0b46",
+              "createdAt": "2026-06-05T15:02:46.000Z",
+              "updatedAt": "2026-06-05T15:02:46.000Z",
+              "uid": "35240-2a18516e-2565-4c9c-8687-9f8cc83a0b46"
+            },
+            {
+              "name": "{broadcastId}",
+              "item": [
+                {
+                  "name": "recipients",
+                  "item": [
+                    {
+                      "name": "export",
+                      "item": [
+                        {
+                          "name": "ActiveCampaign Export Broadcast Recipients",
+                          "id": "bf11797a-b0a4-44a4-a4e3-19aace50971b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/csv"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"engagement\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deliverability\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search\": \"<string>\",\n  \"order\": {}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/sms/broadcasts/:broadcastId/recipients/export",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sms",
+                                "broadcasts",
+                                ":broadcastId",
+                                "recipients",
+                                "export"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8cdb1078-754f-4a74-a50a-f19cb6bcc555",
+                                  "key": "broadcastId",
+                                  "value": "<integer>",
+                                  "description": "(Required) Broadcast ID"
+                                }
+                              ]
+                            },
+                            "description": "Export recipient data as CSV including full contact records"
+                          },
+                          "response": [
+                            {
+                              "id": "dd1a645c-a112-4aee-a0d2-7a1b9edd8987",
+                              "name": "Export generated successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/csv"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Api-Token",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"engagement\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deliverability\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search\": \"<string>\",\n  \"order\": {}\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/sms/broadcasts/:broadcastId/recipients/export",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sms",
+                                    "broadcasts",
+                                    ":broadcastId",
+                                    "recipients",
+                                    "export"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "broadcastId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/csv"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<string>",
+                              "createdAt": "2026-06-05T15:02:46.000Z",
+                              "updatedAt": "2026-06-05T15:02:46.000Z",
+                              "uid": "35240-dd1a645c-a112-4aee-a0d2-7a1b9edd8987"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:02:46.000Z",
+                          "updatedAt": "2026-06-05T15:02:46.000Z",
+                          "uid": "35240-bf11797a-b0a4-44a4-a4e3-19aace50971b"
+                        }
+                      ],
+                      "id": "1657e590-4ef6-4dd9-b2d7-e6c81c29f5c9",
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-1657e590-4ef6-4dd9-b2d7-e6c81c29f5c9"
+                    },
+                    {
+                      "name": "ActiveCampaign Get Broadcast Recipients",
+                      "id": "d6e25f27-ae86-4b92-ac94-4eb0e27be55e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/:broadcastId/recipients?start_date=<date>&end_date=<date>&filters[deliverability][]=failures&filters[deliverability][]=deliveries&filters[engagement][]=optOuts&filters[engagement][]=replies&search=<string>&order[field]=deliverability&offset=0&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            ":broadcastId",
+                            "recipients"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start date (YYYY-MM-DD)",
+                              "key": "start_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "End date (YYYY-MM-DD)",
+                              "key": "end_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Filter by deliverability status",
+                              "key": "filters[deliverability][]",
+                              "value": "failures"
+                            },
+                            {
+                              "description": "Filter by deliverability status",
+                              "key": "filters[deliverability][]",
+                              "value": "deliveries"
+                            },
+                            {
+                              "description": "Filter by engagement type",
+                              "key": "filters[engagement][]",
+                              "value": "optOuts"
+                            },
+                            {
+                              "description": "Filter by engagement type",
+                              "key": "filters[engagement][]",
+                              "value": "replies"
+                            },
+                            {
+                              "description": "Search contacts by name or phone",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Order by field",
+                              "key": "order[field]",
+                              "value": "deliverability"
+                            },
+                            {
+                              "description": "Offset for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Number of items to return",
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "87b83c5a-6d4a-43ef-a2fa-919c41a289a4",
+                              "key": "broadcastId",
+                              "value": "<integer>",
+                              "description": "(Required) Broadcast ID"
+                            }
+                          ]
+                        },
+                        "description": "Fetch all contacts who were sent a specific broadcast"
+                      },
+                      "response": [
+                        {
+                          "id": "5602f4df-ac07-4025-86ea-ecdc5db242d3",
+                          "name": "Recipients retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Api-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sms/broadcasts/:broadcastId/recipients?start_date=<date>&end_date=<date>&filters[deliverability][]=deliveries&filters[engagement][]=replies&search=<string>&order[field]=deliverability&offset=0&limit=20",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sms",
+                                "broadcasts",
+                                ":broadcastId",
+                                "recipients"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start date (YYYY-MM-DD)",
+                                  "key": "start_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "End date (YYYY-MM-DD)",
+                                  "key": "end_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "Filter by deliverability status",
+                                  "key": "filters[deliverability][]",
+                                  "value": "deliveries"
+                                },
+                                {
+                                  "description": "Filter by engagement type",
+                                  "key": "filters[engagement][]",
+                                  "value": "replies"
+                                },
+                                {
+                                  "description": "Search contacts by name or phone",
+                                  "key": "search",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Order by field",
+                                  "key": "order[field]",
+                                  "value": "deliverability"
+                                },
+                                {
+                                  "description": "Offset for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Number of items to return",
+                                  "key": "limit",
+                                  "value": "20"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "broadcastId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"recipients\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"sentDate\": \"<dateTime>\",\n      \"clicks\": \"<integer>\",\n      \"deliverability\": \"delivered\",\n      \"replies\": [\n        {\n          \"message\": \"<string>\",\n          \"date\": \"<dateTime>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"date\": \"<dateTime>\"\n        }\n      ],\n      \"optOut\": \"no\",\n      \"details\": {\n        \"errorCode\": \"<string>\",\n        \"errorSource\": \"twilio\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"sentDate\": \"<dateTime>\",\n      \"clicks\": \"<integer>\",\n      \"deliverability\": \"delivered\",\n      \"replies\": [\n        {\n          \"message\": \"<string>\",\n          \"date\": \"<dateTime>\"\n        },\n        {\n          \"message\": \"<string>\",\n          \"date\": \"<dateTime>\"\n        }\n      ],\n      \"optOut\": \"no\",\n      \"details\": {\n        \"errorCode\": \"<string>\",\n        \"errorSource\": \"twilio\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"total\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-06-05T15:02:46.000Z",
+                          "updatedAt": "2026-06-05T15:02:46.000Z",
+                          "uid": "35240-5602f4df-ac07-4025-86ea-ecdc5db242d3"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-d6e25f27-ae86-4b92-ac94-4eb0e27be55e"
+                    }
+                  ],
+                  "id": "19afa003-3462-4a25-b663-b3d5e28fc5ba",
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-19afa003-3462-4a25-b663-b3d5e28fc5ba"
+                }
+              ],
+              "id": "d4128059-a499-47c2-ab17-41eef77c1ac1",
+              "createdAt": "2026-06-05T15:02:46.000Z",
+              "updatedAt": "2026-06-05T15:02:46.000Z",
+              "uid": "35240-d4128059-a499-47c2-ab17-41eef77c1ac1"
+            },
+            {
+              "name": "export",
+              "item": [
+                {
+                  "name": "ActiveCampaign Export Broadcast Metrics",
+                  "id": "895ec3b7-a2cb-4b13-8c8d-b17e391d8edb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/csv"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/broadcasts/export",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "broadcasts",
+                        "export"
+                      ]
+                    },
+                    "description": "Export broadcast performance metrics as CSV"
+                  },
+                  "response": [
+                    {
+                      "id": "acad6943-40a9-4165-a7df-43d998e4d364",
+                      "name": "Export generated successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/csv"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Api-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sms/broadcasts/export",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sms",
+                            "broadcasts",
+                            "export"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/csv"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-06-05T15:02:46.000Z",
+                      "updatedAt": "2026-06-05T15:02:46.000Z",
+                      "uid": "35240-acad6943-40a9-4165-a7df-43d998e4d364"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-895ec3b7-a2cb-4b13-8c8d-b17e391d8edb"
+                }
+              ],
+              "id": "dac321d4-65d4-40e2-9450-3e977868857e",
+              "createdAt": "2026-06-05T15:02:46.000Z",
+              "updatedAt": "2026-06-05T15:02:46.000Z",
+              "uid": "35240-dac321d4-65d4-40e2-9450-3e977868857e"
+            },
+            {
+              "name": "ActiveCampaign Get All Broadcast Messages",
+              "id": "5eae7162-0f38-4f73-ac5d-f63f006e9a3d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sms/broadcasts?offset=0&limit=20&filters[name]=<string>&filters[status]=scheduled&filters[type]=<string>&orders[field]=ASC&start_date=<date>&end_date=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sms",
+                    "broadcasts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Offset for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Filter by broadcast name",
+                      "key": "filters[name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by broadcast status",
+                      "key": "filters[status]",
+                      "value": "scheduled"
+                    },
+                    {
+                      "description": "Filter by broadcast type (future feature)",
+                      "key": "filters[type]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Order results by field (ASC or DESC)",
+                      "key": "orders[field]",
+                      "value": "ASC"
+                    },
+                    {
+                      "description": "Filter by start date (YYYY-MM-DD)",
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Filter by end date (YYYY-MM-DD)",
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ]
+                },
+                "description": "Gets a paged list of all of a customer's broadcast messages with optional filtering"
+              },
+              "response": [
+                {
+                  "id": "c9f171cd-ab05-4e25-ba90-79b016db1357",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/broadcasts?offset=0&limit=20&filters[name]=<string>&filters[status]=scheduled&filters[type]=<string>&orders[field]=ASC&start_date=<date>&end_date=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "broadcasts"
+                      ],
+                      "query": [
+                        {
+                          "description": "Offset for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Number of items to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Filter by broadcast name",
+                          "key": "filters[name]",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by broadcast status",
+                          "key": "filters[status]",
+                          "value": "scheduled"
+                        },
+                        {
+                          "description": "Filter by broadcast type (future feature)",
+                          "key": "filters[type]",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Order results by field (ASC or DESC)",
+                          "key": "orders[field]",
+                          "value": "ASC"
+                        },
+                        {
+                          "description": "Filter by start date (YYYY-MM-DD)",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Filter by end date (YYYY-MM-DD)",
+                          "key": "end_date",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"broadcasts\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"address_id\": \"<integer>\",\n      \"body\": \"<string>\",\n      \"media_urls\": [\n        \"<uri>\",\n        \"<uri>\"\n      ],\n      \"preview_url\": \"<uri>\",\n      \"shorten_track_links_enabled\": \"<boolean>\",\n      \"status\": \"sent\",\n      \"sent_date\": \"<dateTime>\",\n      \"scheduled_date\": \"<dateTime>\",\n      \"custom_run_id\": \"<uuid>\",\n      \"custom_segment_id\": \"<uuid>\",\n      \"scheduled_by\": \"<integer>\",\n      \"sent_to_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"created_by\": \"<integer>\",\n      \"updated_at\": \"<dateTime>\",\n      \"updated_by\": \"<integer>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"sift_approved\": \"<integer>\",\n      \"arc_approved\": \"<integer>\",\n      \"quiet_hours_enabled\": \"<integer>\",\n      \"list_ids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"segment_id\": \"<string>\",\n      \"label_ids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"address_id\": \"<integer>\",\n      \"body\": \"<string>\",\n      \"media_urls\": [\n        \"<uri>\",\n        \"<uri>\"\n      ],\n      \"preview_url\": \"<uri>\",\n      \"shorten_track_links_enabled\": \"<boolean>\",\n      \"status\": \"scheduled\",\n      \"sent_date\": \"<dateTime>\",\n      \"scheduled_date\": \"<dateTime>\",\n      \"custom_run_id\": \"<uuid>\",\n      \"custom_segment_id\": \"<uuid>\",\n      \"scheduled_by\": \"<integer>\",\n      \"sent_to_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"created_by\": \"<integer>\",\n      \"updated_at\": \"<dateTime>\",\n      \"updated_by\": \"<integer>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"sift_approved\": \"<integer>\",\n      \"arc_approved\": \"<integer>\",\n      \"quiet_hours_enabled\": \"<integer>\",\n      \"list_ids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"segment_id\": \"<string>\",\n      \"label_ids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"meta\": {\n    \"total\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-c9f171cd-ab05-4e25-ba90-79b016db1357"
+                },
+                {
+                  "id": "2fa40b42-dfee-4138-9070-27a347232736",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/broadcasts?offset=0&limit=20&filters[name]=<string>&filters[status]=scheduled&filters[type]=<string>&orders[field]=ASC&start_date=<date>&end_date=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "broadcasts"
+                      ],
+                      "query": [
+                        {
+                          "description": "Offset for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Number of items to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Filter by broadcast name",
+                          "key": "filters[name]",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by broadcast status",
+                          "key": "filters[status]",
+                          "value": "scheduled"
+                        },
+                        {
+                          "description": "Filter by broadcast type (future feature)",
+                          "key": "filters[type]",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Order results by field (ASC or DESC)",
+                          "key": "orders[field]",
+                          "value": "ASC"
+                        },
+                        {
+                          "description": "Filter by start date (YYYY-MM-DD)",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Filter by end date (YYYY-MM-DD)",
+                          "key": "end_date",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-2fa40b42-dfee-4138-9070-27a347232736"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:46.000Z",
+              "updatedAt": "2026-06-05T15:02:46.000Z",
+              "uid": "35240-5eae7162-0f38-4f73-ac5d-f63f006e9a3d"
+            },
+            {
+              "name": "ActiveCampaign Create a New Broadcast Message",
+              "id": "9ace00e1-f3c3-4df6-b4ef-82fa64b58ccd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"body\": \"<string>\",\n  \"address_id\": \"<integer>\",\n  \"media_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"preview_url\": \"<uri>\",\n  \"shorten_track_links_enabled\": \"<boolean>\",\n  \"status\": \"draft\",\n  \"scheduled_date\": \"<dateTime>\",\n  \"sent_to_count\": \"<integer>\",\n  \"list_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"custom_segment_id\": \"<uuid>\",\n  \"label_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sms/broadcasts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sms",
+                    "broadcasts"
+                  ]
+                },
+                "description": "Creates a new SMS broadcast message"
+              },
+              "response": [
+                {
+                  "id": "913800c6-f5be-4c2d-b894-75749bb4b65a",
+                  "name": "Broadcast created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"body\": \"<string>\",\n  \"address_id\": \"<integer>\",\n  \"media_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"preview_url\": \"<uri>\",\n  \"shorten_track_links_enabled\": \"<boolean>\",\n  \"status\": \"draft\",\n  \"scheduled_date\": \"<dateTime>\",\n  \"sent_to_count\": \"<integer>\",\n  \"list_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"custom_segment_id\": \"<uuid>\",\n  \"label_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/broadcasts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "broadcasts"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"address_id\": \"<integer>\",\n  \"body\": \"<string>\",\n  \"media_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"preview_url\": \"<uri>\",\n  \"shorten_track_links_enabled\": \"<boolean>\",\n  \"status\": \"draft\",\n  \"sent_date\": \"<dateTime>\",\n  \"scheduled_date\": \"<dateTime>\",\n  \"custom_run_id\": \"<uuid>\",\n  \"custom_segment_id\": \"<uuid>\",\n  \"scheduled_by\": \"<integer>\",\n  \"sent_to_count\": \"<integer>\",\n  \"created_at\": \"<dateTime>\",\n  \"created_by\": \"<integer>\",\n  \"updated_at\": \"<dateTime>\",\n  \"updated_by\": \"<integer>\",\n  \"deleted_at\": \"<dateTime>\",\n  \"sift_approved\": \"<integer>\",\n  \"arc_approved\": \"<integer>\",\n  \"quiet_hours_enabled\": \"<integer>\",\n  \"list_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"label_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-913800c6-f5be-4c2d-b894-75749bb4b65a"
+                },
+                {
+                  "id": "051c4485-4b84-46aa-80b1-545dd03d9703",
+                  "name": "Invalid request data",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"body\": \"<string>\",\n  \"address_id\": \"<integer>\",\n  \"media_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"preview_url\": \"<uri>\",\n  \"shorten_track_links_enabled\": \"<boolean>\",\n  \"status\": \"draft\",\n  \"scheduled_date\": \"<dateTime>\",\n  \"sent_to_count\": \"<integer>\",\n  \"list_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"custom_segment_id\": \"<uuid>\",\n  \"label_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/broadcasts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "broadcasts"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-051c4485-4b84-46aa-80b1-545dd03d9703"
+                },
+                {
+                  "id": "1c19760a-d351-4e1b-ab97-2becbfc03be2",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"body\": \"<string>\",\n  \"address_id\": \"<integer>\",\n  \"media_urls\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"preview_url\": \"<uri>\",\n  \"shorten_track_links_enabled\": \"<boolean>\",\n  \"status\": \"draft\",\n  \"scheduled_date\": \"<dateTime>\",\n  \"sent_to_count\": \"<integer>\",\n  \"list_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"custom_segment_id\": \"<uuid>\",\n  \"label_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/broadcasts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "broadcasts"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-1c19760a-d351-4e1b-ab97-2becbfc03be2"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:46.000Z",
+              "updatedAt": "2026-06-05T15:02:46.000Z",
+              "uid": "35240-9ace00e1-f3c3-4df6-b4ef-82fa64b58ccd"
+            }
+          ],
+          "id": "af8dbb12-5e1c-40e6-a99c-6f262b1bc772",
+          "createdAt": "2026-06-05T15:02:46.000Z",
+          "updatedAt": "2026-06-05T15:02:46.000Z",
+          "uid": "35240-af8dbb12-5e1c-40e6-a99c-6f262b1bc772"
+        },
+        {
+          "name": "lists",
+          "item": [
+            {
+              "name": "ActiveCampaign Get All Broadcast Lists",
+              "id": "8fe6c55e-95fd-426c-bd60-e3223a7d2ed8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sms/lists?offset=0&limit=20&filters[name]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sms",
+                    "lists"
+                  ],
+                  "query": [
+                    {
+                      "description": "Offset for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Filter by list name",
+                      "key": "filters[name]",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Gets a paged list of all broadcast lists (SMS channel)"
+              },
+              "response": [
+                {
+                  "id": "26d18272-cdf3-43bc-a732-ad258b7bbc08",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Api-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sms/lists?offset=0&limit=20&filters[name]=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sms",
+                        "lists"
+                      ],
+                      "query": [
+                        {
+                          "description": "Offset for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Number of items to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Filter by list name",
+                          "key": "filters[name]",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"lists\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"subscriber_count\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"subscriber_count\": \"<integer>\"\n    }\n  ],\n  \"meta\": {\n    \"total\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:02:46.000Z",
+                  "updatedAt": "2026-06-05T15:02:46.000Z",
+                  "uid": "35240-26d18272-cdf3-43bc-a732-ad258b7bbc08"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:46.000Z",
+              "updatedAt": "2026-06-05T15:02:46.000Z",
+              "uid": "35240-8fe6c55e-95fd-426c-bd60-e3223a7d2ed8"
+            }
+          ],
+          "id": "4ee6425c-12dc-45ba-a342-f70e1cf6aa1b",
+          "createdAt": "2026-06-05T15:02:46.000Z",
+          "updatedAt": "2026-06-05T15:02:46.000Z",
+          "uid": "35240-4ee6425c-12dc-45ba-a342-f70e1cf6aa1b"
+        }
+      ],
+      "id": "3e069c1d-6642-49fa-9ba3-f114f85a469a",
+      "createdAt": "2026-06-05T15:02:46.000Z",
+      "updatedAt": "2026-06-05T15:02:46.000Z",
+      "uid": "35240-3e069c1d-6642-49fa-9ba3-f114f85a469a"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "yourAccountName",
+      "value": "yourAccountName"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3"
+    }
+  ]
+}

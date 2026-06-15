@@ -1,0 +1,499 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Credits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Get Current Sms Credit Use Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/credits"
+          },
+          "docs": "Retrieve the current period's sms credit usage and remaining balance"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Broadcasts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Get All Broadcast Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "filters[name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by broadcast name"
+              },
+              {
+                "name": "filters[status]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by broadcast status"
+              },
+              {
+                "name": "filters[type]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by broadcast type (future feature)"
+              },
+              {
+                "name": "orders[field]",
+                "value": "",
+                "type": "query",
+                "description": "Order results by field (ASC or DESC)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter by start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter by end date (YYYY-MM-DD)"
+              }
+            ]
+          },
+          "docs": "Gets a paged list of all of a customer's broadcast messages with optional filtering"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a New Broadcast Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new SMS broadcast message"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get Broadcast Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Broadcast ID"
+              }
+            ]
+          },
+          "docs": "Retrieves the full details for one broadcast message"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update Broadcast Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Broadcast ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing broadcast message"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete Broadcast Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Broadcast ID"
+              }
+            ]
+          },
+          "docs": "Performs a soft-delete on the requested message"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get All Broadcast Lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/lists",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "filters[name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by list name"
+              }
+            ]
+          },
+          "docs": "Gets a paged list of all broadcast lists (SMS channel)"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "AI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Create AI-generated Broadcast",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/ai",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a broadcast using AI based on prompt and tone"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update Broadcast with AI",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/ai",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing broadcast using AI"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get AI Broadcast Request Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/ai/:Id",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Request ID from AI broadcast creation"
+              }
+            ]
+          },
+          "docs": "Returns the current status of the AI process execution"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Get All Broadcast Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/metrics",
+            "params": [
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date for metrics (YYYY-MM-DD)"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date for metrics (YYYY-MM-DD)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns metrics for specified broadcast IDs"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get Broadcast Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/metrics/snapshot",
+            "params": [
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date for snapshot (YYYY-MM-DD)"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date for snapshot (YYYY-MM-DD)"
+              }
+            ]
+          },
+          "docs": "Returns snapshot data for all broadcasts"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get Broadcast Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/metrics/snapshot",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns snapshot for specified broadcast IDs"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Export Broadcast Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export broadcast performance metrics as CSV"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Failures",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Get Broadcast Failure Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/metrics/:broadcastId/failures",
+            "params": [
+              {
+                "name": "broadcastId",
+                "value": "",
+                "type": "path",
+                "description": "Broadcast ID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              }
+            ]
+          },
+          "docs": "Returns grouping and counts of failures for the broadcast"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recipients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Get Broadcast Recipients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/:broadcastId/recipients",
+            "params": [
+              {
+                "name": "broadcastId",
+                "value": "",
+                "type": "path",
+                "description": "Broadcast ID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              },
+              {
+                "name": "filters[deliverability][]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deliverability status"
+              },
+              {
+                "name": "filters[engagement][]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by engagement type"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search contacts by name or phone"
+              },
+              {
+                "name": "order[field]",
+                "value": "",
+                "type": "query",
+                "description": "Order by field"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              }
+            ]
+          },
+          "docs": "Fetch all contacts who were sent a specific broadcast"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Export Broadcast Recipients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/:broadcastId/recipients/export",
+            "params": [
+              {
+                "name": "broadcastId",
+                "value": "",
+                "type": "path",
+                "description": "Broadcast ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export recipient data as CSV including full contact records"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

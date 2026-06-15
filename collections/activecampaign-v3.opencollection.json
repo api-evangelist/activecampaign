@@ -1,0 +1,6204 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign API v3",
+    "version": "3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accounts",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by name"
+              },
+              {
+                "name": "count_deals",
+                "value": "",
+                "type": "query",
+                "description": "Whether to compute the contactCount and dealCount counts for the number of contacts/deals associated with each account. Set it to true to include the right counts. If set to false or omitted from the call, then contactCount and dealCount will not be counted and be simply displayed as 0."
+              }
+            ]
+          },
+          "docs": "Retrieve all existing account"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create an Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new account"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve an Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account's ID"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing account"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update an Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing account"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete an Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing account"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create an Account Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accounts/:id/notes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account's id to assign new note to"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new note for an account"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update an Account Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accounts/:id/notes/:noteid",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account's id to assign new note to"
+              },
+              {
+                "name": "noteid",
+                "value": "",
+                "type": "path",
+                "description": "Account note's id to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing note for a account"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Delete Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accounts/bulk_delete",
+            "params": [
+              {
+                "name": "[]ids",
+                "value": "",
+                "type": "query",
+                "description": "An integer id of the account to be deleted"
+              }
+            ]
+          },
+          "docs": "Delete an existing account"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Associations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountContacts",
+            "params": [
+              {
+                "name": "filters[contact]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Contact ID"
+              },
+              {
+                "name": "filters[account]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Account ID"
+              }
+            ]
+          },
+          "docs": "Retrieve all existing account association"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create an Association",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountContacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new account association"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve an Association",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountContacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Association's ID"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing account association"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update an Association",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountContacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Association's ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing account association"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete an Association",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountContacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Association's ID"
+              }
+            ]
+          },
+          "docs": "Delete an existing account association"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Custom Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountCustomFieldMeta",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of fields returned per request."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Custom Fields"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountCustomFieldMeta",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountCustomFieldMeta/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the field to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountCustomFieldMeta/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the custom field to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountCustomFieldMeta/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the field to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Custom Field Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountCustomFieldData",
+            "params": [
+              {
+                "name": "filters[customerAccountId]",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by a specific account (note that Id uses a capital I)"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Custom Field Values"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountCustomFieldData",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Create a Custom Account Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountCustomFieldData/bulkCreate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Bulk Create a Custom Account Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountCustomFieldData/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the dealCustomFieldData to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountCustomFieldData/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the custom fields value to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountCustomFieldData/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the dealCustomFieldData to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Update a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/accountCustomFieldData/bulkUpdate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Bulk Update a Custom Field Value"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Addresses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addresses"
+          },
+          "docs": "ActiveCampaign List All Addresses"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create an Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addresses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create an Address"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve an Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addresses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Address to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve an Address"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update an Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addresses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Address being changed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update an Address"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete an Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addresses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Address to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete an Address"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete Address Associated with a Specific User Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addressGroups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the AddressGroup to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete Address Associated with a Specific User Group"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete Address Associated with a Specific List",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addressLists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the AddressList to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete Address Associated with a Specific List"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Automations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Automations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/automations"
+          },
+          "docs": "ActiveCampaign List All Automations"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Copy of List All Automations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/automations/:automationId",
+            "params": [
+              {
+                "name": "automationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Copy of List All Automations"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Copy of List All Automations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/automations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Copy of List All Automations"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Branding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Branding",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/brandings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing branding resource"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Branding",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/brandings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Branding ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing branding resource"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Brandings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/brandings",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "ActiveCampaign API key"
+              }
+            ]
+          },
+          "docs": "List all existing branding resources"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Calendars",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Calendar Feeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/calendars"
+          },
+          "docs": "ActiveCampaign List All Calendar Feeds"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Calendar Feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/calendars",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Calendar Feed"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Calendar Feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/calendars/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the calendar feed to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Calendar Feed"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Calendar Feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/calendars/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the calendar feed to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Calendar Feed"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Calendar Feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/calendars/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the calendar feed to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Calendar Feed"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/campaigns",
+            "params": [
+              {
+                "name": "orders[sdate]",
+                "value": "",
+                "type": "query",
+                "description": "Order campaigns by send date"
+              },
+              {
+                "name": "orders[ldate]",
+                "value": "",
+                "type": "query",
+                "description": "Order campaigns by last send date"
+              },
+              {
+                "name": "filters[seriesid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter to return the campaigns from the targeted automationId/seriesIds"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Campaigns"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve Links Associated to Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/campaigns/:id/links",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of campaign to retrieve Links for"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve Links Associated to Campaign"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/campaigns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of campaign to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Campaign"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Edit Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/campaigns/:id/edit",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Edit Campaign"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/campaign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create Campaign"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Duplicate Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/campaigns/:id/copy",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the source campaign"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Duplicate Campaign"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/messages"
+          },
+          "docs": "ActiveCampaign List All Messages"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Message"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/messages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the message to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Message"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/messages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the message to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Message"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/messages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the message to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Message"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Personalizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations",
+            "params": [
+              {
+                "name": "orders[format]",
+                "value": "",
+                "type": "query",
+                "description": "Order variables by format (ASC/DESC)"
+              },
+              {
+                "name": "orders[tag]",
+                "value": "",
+                "type": "query",
+                "description": "Order variables by tag (ASC/DESC)"
+              },
+              {
+                "name": "orders[name]",
+                "value": "",
+                "type": "query",
+                "description": "Order variables by name (ASC/DESC)"
+              },
+              {
+                "name": "orders[content]",
+                "value": "",
+                "type": "query",
+                "description": "Order variables by content (ASC/DESC)"
+              },
+              {
+                "name": "filter[name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by variable name"
+              },
+              {
+                "name": "filter[tag]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by variable tag"
+              },
+              {
+                "name": "filter[listName]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name of list"
+              },
+              {
+                "name": "filter[content]",
+                "value": "",
+                "type": "query",
+                "description": "Contents of variable"
+              },
+              {
+                "name": "filter[format]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tag format (html, text)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result limit (Default: 20)"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of personalization variables"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a personalization variable"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations/:variableID",
+            "params": [
+              {
+                "name": "variableID",
+                "value": "",
+                "type": "path",
+                "description": "ID (int) of variable"
+              }
+            ]
+          },
+          "docs": "Retrieve an individual personalization variable"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Edit a Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations/:variableID",
+            "params": [
+              {
+                "name": "variableID",
+                "value": "",
+                "type": "path",
+                "description": "ID (int) of personalization/variable"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit a personalization variable"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations/:variableID",
+            "params": [
+              {
+                "name": "variableID",
+                "value": "",
+                "type": "path",
+                "description": "ID (int) of personalization/variable"
+              }
+            ]
+          },
+          "docs": "Delete a personalization variable"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Delete Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations/bulkdelete",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "List of variables to be deleted, ie: 1,2,3"
+              }
+            ]
+          },
+          "docs": "Bulk delete personalization variables"
+        },
+        {
+          "info": {
+            "name": "get_{personalizationId}lock",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations/:variableID/lock",
+            "params": [
+              {
+                "name": "variableID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "patch_new-endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations/:variableID/unlock",
+            "params": [
+              {
+                "name": "variableID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List, Search, and Filter Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts by ID. Can be repeated for multiple IDs. Example: ids[]=1&ids[]=2&ids[]=42"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email address of the contact you want to get"
+              },
+              {
+                "name": "email_like",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts that contain the given value in the email address"
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Exclude from the response the contact with the given ID"
+              },
+              {
+                "name": "formid",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts associated with the given form"
+              },
+              {
+                "name": "id_greater",
+                "value": "",
+                "type": "query",
+                "description": "Only include contacts with an ID greater than the given ID"
+              },
+              {
+                "name": "id_less",
+                "value": "",
+                "type": "query",
+                "description": "Only include contacts with an ID less than the given ID"
+              },
+              {
+                "name": "listid",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts associated with the given list"
+              },
+              {
+                "name": "phone",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts where the phone number starts with the given value"
+              },
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "(Deprecated) Please use Account-Contact end points. Filter contacts associated with the given organization ID"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts that match the given value in the contact names, organization, phone or email"
+              },
+              {
+                "name": "segmentid",
+                "value": "",
+                "type": "query",
+                "description": "Return only contacts that match a list segment. The first API call within 1 hour or an API call with the param `forceQuery=1` will kick off an new segment request. When the segment results are ready, subsequent API calls without the `forceQuery` param will return contacts that match the segment - timeout 1hr)"
+              },
+              {
+                "name": "seriesid",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts associated with the given automation"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "See [available values](https://developers.activecampaign.com/reference/contact)"
+              },
+              {
+                "name": "tagid",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts associated with the given tag"
+              },
+              {
+                "name": "filters[created_before]",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts that were created prior to this date"
+              },
+              {
+                "name": "filters[created_after]",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts that were created after this date"
+              },
+              {
+                "name": "filters[updated_before]",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts that were updated before this date"
+              },
+              {
+                "name": "filters[updated_after]",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts that were updated after this date"
+              },
+              {
+                "name": "waitid",
+                "value": "",
+                "type": "query",
+                "description": "Filter by contacts in the wait queue of an automation block"
+              },
+              {
+                "name": "orders[id]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by unique ID"
+              },
+              {
+                "name": "orders[cdate]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by creation date"
+              },
+              {
+                "name": "orders[email]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by email"
+              },
+              {
+                "name": "orders[first_name]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by first name"
+              },
+              {
+                "name": "orders[last_name]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by last name"
+              },
+              {
+                "name": "orders[name]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by full name"
+              },
+              {
+                "name": "orders[score]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by score. Must be used in conjunction with the `sortId` parameter"
+              },
+              {
+                "name": "in_group_lists",
+                "value": "",
+                "type": "query",
+                "description": "Set this to \"true\" in order to return only contacts that the current user has permissions to see."
+              },
+              {
+                "name": "forceQuery",
+                "value": "",
+                "type": "query",
+                "description": "If present and equal to 1, a new segment request is kicked off which will return an updated result set. Otherwise, a segmented API request with a consistent sorting will return the same results for 1 hour. Note that re-ordering the results will also cause an updated result set to be returned."
+              },
+              {
+                "name": "sortId",
+                "value": "",
+                "type": "query",
+                "description": "If sorting results by a score or custom field, this parameter holds the id of the score or custom field respectively"
+              }
+            ]
+          },
+          "docs": "Use this API endpoint to list all contacts, search contacts, or filter contacts by many criteria. For example, search for specific contacts by email, list, account."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Sync a Contact's Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contact/sync",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Sync a Contact's Data"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The contact id"
+              }
+            ]
+          },
+          "docs": "Delete an existing contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update List Status for a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactLists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribe a contact to a list or unsubscribe a contact from a list."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Automations the Contact is in",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/contactAutomations",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact to receive automations for"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Automations the Contact is in"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Score Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/scoreValues",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the Contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Score Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Bounce Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/bounceLogs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Bounce Logs"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/contactData",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Data"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Goals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/contactGoals",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Goals"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's List Memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/contactLists",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's List Memberships"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/contactLogs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Logs"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a List of Contact's Deals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/contactDeals",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a List of Contact's Deals"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Deals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/deals",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Deals"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Field Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/fieldValues",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Field Values"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts List of Geo-ips",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/geoIps",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts List of Geo-ips"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/notes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Notes"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/organization",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Organization"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Plus Append",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/plusAppend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Plus Append"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Tracking Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/trackingLogs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Tracking Logs"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Account Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/accountContacts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Account Contacts"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Automation Entry Counts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/automationEntryCounts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Automation Entry Counts"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Automations a Contact is in",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactAutomations"
+          },
+          "docs": "ActiveCampaign List All Automations a Contact is in"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Add a Contact to an Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactAutomations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Add a Contact to an Automation"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve an Automation a Contact is in",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactAutomations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contactAutomation to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve an Automation a Contact is in"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Remove a Contact from an Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactAutomations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contactAutomation to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Remove a Contact from an Automation"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Add a Tag to Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactTags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a contact tag object"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Remove a Tag from a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactTags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The contactTag id"
+              }
+            ]
+          },
+          "docs": "Delete a contact tag object"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Secondary Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactDeals"
+          },
+          "docs": "Retrieve all secondary contacts"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Secondary Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactDeals",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new secondary contact for a deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Secondary Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactDeals/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Secondary Contact's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing secondary contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Secondary Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactDeals/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Secondary Contact's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing secondary contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Secondary Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactDeals/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Secondary Contact's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing secondary contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get Contact's Tracking Logs/Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:contactId/trackingLogs",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The Contact's ID"
+              }
+            ]
+          },
+          "docs": "Get a log of events for a Contact"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bulk Import",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Import Status List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/import/bulk_import"
+          },
+          "docs": "ActiveCampaign Bulk Import Status List"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Import Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/import/bulk_import",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Api-Token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Bulk Import Contacts"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Import Status Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/import/info",
+            "params": [
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Bulk Import Status Info"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Other",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List a Contact's Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/activities",
+            "params": [
+              {
+                "name": "contact",
+                "value": "",
+                "type": "query",
+                "description": "Required Contact ID"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Filter for activities after a specific DateTime"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Activities to include: notes, notes.user, recipients, recipients.recipient, reference, reference.automation, reference.campaign, reference.campaign.campaignList, reference.campaign.campaignMessage, reference.campaignMessage, reference.contact, reference.contactList, reference.contactList.list, reference.deal, reference.deal.contact, reference.dealTasktype, reference.link, reference.list, reference.log, reference.log.campaign, reference.log.contact, reference.log.message, reference.message, reference.note, reference.sms, reference.sms.automation, user"
+              },
+              {
+                "name": "orders[tstamp]",
+                "value": "",
+                "type": "query",
+                "description": "Order activities by tstamp"
+              },
+              {
+                "name": "emails",
+                "value": "",
+                "type": "query",
+                "description": "FALSE: Excludes email data fields under each activity. No specific connection to emails is mentioned in the JSON data.​ TRUE: Returns deal activities that include email data fields like \"connection_email.\" Each deal activity specifies the addition of email connection information along with timestamps and relevant metadata."
+              }
+            ]
+          },
+          "docs": "View your contact's recent activity. The activity is generated when a contact is retrieved via /api/3/contacts/[contactID]. This endpoint should be used after retrieving a contact to obtain the latest data. This is useful for searching for contacts that match certain criteria - such as being part of a certain list, or having a specific custom field value."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Geo IP Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/geoIps/:geoAddressID/geoAddress",
+            "params": [
+              {
+                "name": "geoAddressID",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Geo IP Address"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Email Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/emailActivities",
+            "params": [
+              {
+                "name": "filters[subscriberid]",
+                "value": "",
+                "type": "query",
+                "description": "Set this parameter to return only email activities belonging to a given subscriber."
+              },
+              {
+                "name": "filters[dealId]",
+                "value": "",
+                "type": "query",
+                "description": "Set this parameter to return only email activities belonging to a given deal."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Email Activities"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get a Record by External Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/records/:schemdId/external/:externalId",
+            "params": [
+              {
+                "name": "schemdId",
+                "value": "",
+                "type": "path",
+                "description": "ID of schema"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path",
+                "description": "External ID for record"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Get a Record by External Id"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/connections",
+            "params": [
+              {
+                "name": "filters[service]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the external service name."
+              },
+              {
+                "name": "filters[externalid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the external id associated with a connection."
+              }
+            ]
+          },
+          "docs": "List all existing connection resources."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/connections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new connection resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/connections/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the connection to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing connection resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/connections/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the connection to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing connection resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/connections/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the connection to delete."
+              }
+            ]
+          },
+          "docs": "Delete an existing connection resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/configs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the config to edit"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Update Settings"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get Contact by Event ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/trackingLogs/:eventId/contact",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "The Event's ID"
+              }
+            ]
+          },
+          "docs": "Get the contact that was involved in an event."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Local Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/localevent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Published by TrackCmp. Creates an em_local_event row in production database."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Personalization Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/stripo/personalizationTags",
+            "params": [
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "(optional) Comma separated values: contacts,accounts,deals,customobjects,message,messageVariables,social,surveymonkey,dropbox,ecom"
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query",
+                "description": "(optional)"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Personalization Tags"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Stripo Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/stripo/config",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Stripo Config"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get Editor Markup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/content/editorMarkup/:messageId",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path",
+                "description": "required"
+              }
+            ]
+          },
+          "docs": "Get Editor Markup"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Whitelisted Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/prism/urlWhitelistings"
+          },
+          "docs": "List of all whitelisted site tracking domains"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Add Domain to Whitelist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/prism/urlWhitelistings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a domain to the site tracking whitelist"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Remove Domain from Whitelist",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/prism/urlWhitelistings/:domain_id",
+            "params": [
+              {
+                "name": "domain_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the whitelisted domain. Can be retrieved using the GET /prism/urlWhitelistings endpoint"
+              }
+            ]
+          },
+          "docs": "Remove a domain from the site tracking whitelist"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve List of All Notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/notes"
+          },
+          "docs": "ActiveCampaign Retrieve List of All Notes"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/notes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Note"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/notes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the note to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Note"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/notes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the note to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Note"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/notes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the note to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Note"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Custom Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fields",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of fields returned per request."
+              },
+              {
+                "name": "filters[perstag]",
+                "value": "",
+                "type": "query",
+                "description": "The custom field's persistant tag to filter by (Ex: CUSTOMER_GROUP)"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Custom Fields"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fields",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get a Custom Field by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fields/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the field to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Get a Custom Field by ID"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fields/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the field to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fields/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the field option to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Custom Field Relationship to List(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldRels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Custom Field Relationship to List(s)"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create Custom Field Options",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldOption/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create Custom Field Options"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Custom Field Relationship to List(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldRels/:fieldRelId",
+            "params": [
+              {
+                "name": "fieldRelId",
+                "value": "",
+                "type": "path",
+                "description": "Field relationship ID to be deleted"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Custom Field Relationship to List(s)"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Custom Field Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldValues",
+            "params": [
+              {
+                "name": "filters[fieldid]",
+                "value": "",
+                "type": "query",
+                "description": "ID of the field the value belongs to."
+              },
+              {
+                "name": "filters[val]",
+                "value": "",
+                "type": "query",
+                "description": "Value of the custom field for a specific contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Custom Field Values"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldValues",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldValues/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the fieldValue to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Custom Field Value for Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldValues/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the fieldValue to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Custom Field Value for Contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldValues/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the fieldValue to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Custom Field Value"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Get All Custom Field Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/groupMembers"
+          },
+          "docs": "ActiveCampaign Get All Custom Field Groups"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Add Custom Field to Field Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/groupMembers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Add Custom Field to Field Group"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get Custom Field Group by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/groupMembers/:groupID",
+            "params": [
+              {
+                "name": "groupID",
+                "value": "",
+                "type": "path",
+                "description": "Group ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Get Custom Field Group by ID"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete Custom Field Field Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/groupMembers/:groupID",
+            "params": [
+              {
+                "name": "groupID",
+                "value": "",
+                "type": "path",
+                "description": "Group ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Delete Custom Field Field Group"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Custom Field Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/groupDefinitions",
+            "params": [
+              {
+                "name": "groupDefinition.label",
+                "value": "",
+                "type": "query",
+                "description": "Field Group Name"
+              },
+              {
+                "name": "groupDefinition.ordernum",
+                "value": "",
+                "type": "query",
+                "description": "The order the custom field group will be shown"
+              },
+              {
+                "name": "groupDefinition.groupType",
+                "value": "",
+                "type": "query",
+                "description": "The group type (see note)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Custom Field Group"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update Custom Field Field Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/groupMembers/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Field group ID (see notes)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update Custom Field Field Group"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/groups"
+          },
+          "docs": "ActiveCampaign List All Groups"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Group"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the group to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Group"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the group to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Group"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the group to be deleted"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Group"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Group Limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/groupLimits"
+          },
+          "docs": "ActiveCampaign List All Group Limits"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Custom Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of schemas to retrieve for each API call. Maximum value is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset index of items to return"
+              },
+              {
+                "name": "orders",
+                "value": "",
+                "type": "query",
+                "description": "Array of sorting criteria to fetch items"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filters schemas by different criteria"
+              },
+              {
+                "name": "showFields",
+                "value": "",
+                "type": "query",
+                "description": "Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default."
+              }
+            ]
+          },
+          "docs": "Retrieve all schemas available within an account.\n\nUsers are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Schema"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Schema"
+              },
+              {
+                "name": "showFields",
+                "value": "",
+                "type": "query",
+                "description": "Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default."
+              }
+            ]
+          },
+          "docs": "Retrieve a specific schema by id.\n\nUsers are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of schema to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Schema"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas/:schemaId",
+            "headers": [
+              {
+                "name": "validateOnly",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "Id of Schema being updated"
+              },
+              {
+                "name": "showFields",
+                "value": "",
+                "type": "query",
+                "description": "Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Make an update to a given schema.\n\nTo delete a schema field, reference the field delete endpoint: https://developers.activecampaign.com/reference/delete-a-field-1\n\nUsers are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas/:schemaId/fields/:fieldId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "Schema ID of the field to be deleted"
+              },
+              {
+                "name": "fieldId",
+                "value": "",
+                "type": "path",
+                "description": "Field ID of the field to be deleted"
+              },
+              {
+                "name": "showFields",
+                "value": "",
+                "type": "query",
+                "description": "Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default."
+              }
+            ]
+          },
+          "docs": "Deleting a schema field is an irreversible process.\n\nAssuming a valid `202 Accepted` response is received, any associated field data on associated records will immediately be unavailable to the user. There may be a small delay if record requests are in the midst of processing when the field delete request is issued.\n\nThe deleted field id will *not* be immediately recycled for reuse. Users are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema f"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Public Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas/public",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Public Schema"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Child Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas/:id/child",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the parent schema the new child schema will extend"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Create a Child Schema"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List Records by Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/records/:schemaId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "ID of schema"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to return for each call. Maximum value is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset index of records to return"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Use ?filters[relationships.{your-contact-relationship}][eq]={contactId} to filter records to a specific contact."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List Records by Schema"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create or Update Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/records/:schemaId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "ID of schema"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create or Update Record"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get a Record by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/records/:schemaId/:recordId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "ID of schema"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "ID of record"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Get a Record by Id"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Record by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/records/:schemaId/:recordId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "ID of schema"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "ID of record"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Record by Id"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Record by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/records/:schemaId/external/:externalId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "ID of schema"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path",
+                "description": "External ID of record"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Record by External ID"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Deals",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Deals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals",
+            "params": [
+              {
+                "name": "filters[search]",
+                "value": "",
+                "type": "query",
+                "description": "Search text to use with `search_field` parameter."
+              },
+              {
+                "name": "filters[search_field]",
+                "value": "",
+                "type": "query",
+                "description": "Field to search for. See [available values](https://developers.activecampaign.com/reference/deal#deals-parameters-available-values)."
+              },
+              {
+                "name": "filters[title]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's title"
+              },
+              {
+                "name": "filters[stage]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's stage"
+              },
+              {
+                "name": "filters[group]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's pipeline"
+              },
+              {
+                "name": "filters[status]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's status.  See [available values](https://developers.activecampaign.com/reference/deal#deals-parameters-available-values)"
+              },
+              {
+                "name": "filters[owner]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's owner"
+              },
+              {
+                "name": "filters[nextdate_range]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's tasks due dates. See [available values](https://developers.activecampaign.com/reference/deal#deals-parameters-available-values)"
+              },
+              {
+                "name": "filters[tag]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tag names associated with deal's primary contact. See [available values](https://developers.activecampaign.com/reference/deal#deals-parameters-available-values)."
+              },
+              {
+                "name": "filters[tasktype]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deals that have tasks with given type"
+              },
+              {
+                "name": "filters[created_before]",
+                "value": "",
+                "type": "query",
+                "description": "Returns deals that are created less than given date"
+              },
+              {
+                "name": "filters[created_after]",
+                "value": "",
+                "type": "query",
+                "description": "Returns deals that are created greater than or equal to given date"
+              },
+              {
+                "name": "filters[updated_before]",
+                "value": "",
+                "type": "query",
+                "description": "Returns deals that are updated less than given date"
+              },
+              {
+                "name": "filters[updated_after]",
+                "value": "",
+                "type": "query",
+                "description": "Returns deals that are updated greater than or equal to given date"
+              },
+              {
+                "name": "filters[organization]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's primary contact's organization's id"
+              },
+              {
+                "name": "filters[minimum_value]",
+                "value": "",
+                "type": "query",
+                "description": "In USD with dollar portion. Returns deals whose values are greater than or equal to given value"
+              },
+              {
+                "name": "filters[maximum_value]",
+                "value": "",
+                "type": "query",
+                "description": "In USD with dollar portion. Returns deals whose values are less than or equal to given value"
+              },
+              {
+                "name": "filters[score_greater_than]",
+                "value": "",
+                "type": "query",
+                "description": "In a format of `<score_id>:<score_value>`. Returns deals whose score value is greater than given value"
+              },
+              {
+                "name": "filters[score_less_than]",
+                "value": "",
+                "type": "query",
+                "description": "In a format of `<score_id>:<score_value>`. Returns deals whose score value is less than given value"
+              },
+              {
+                "name": "filters[score]",
+                "value": "",
+                "type": "query",
+                "description": "In a format of `<score_id>:<score_value>`. Returns deals whose score value is equal to given value"
+              },
+              {
+                "name": "orders[title]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal's title."
+              },
+              {
+                "name": "orders[value]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal's value."
+              },
+              {
+                "name": "orders[cdate]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal's created date."
+              },
+              {
+                "name": "orders[contact_name]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal's primary contact's first name."
+              },
+              {
+                "name": "orders[contact_orgname]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal's primary contact's organization name."
+              },
+              {
+                "name": "orders[next-action]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal's next task's due date first. Then append deals with no next task. Lastly append deals with overdue tasks. If dates are the same, order by deal's id."
+              }
+            ]
+          },
+          "docs": "Retrieve all existing deals"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Deal's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Deal's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Deal's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Deal Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals/:id/notes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Deal's id to assign new note to"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new note for a deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Deal Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals/:id/notes/:noteId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal's id to assign new note to"
+              },
+              {
+                "name": "noteId",
+                "value": "",
+                "type": "path",
+                "description": "Deal note's id to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing note for a deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Update Deal Owners",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals/bulkUpdate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Deal Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealActivities",
+            "params": [
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Include this param to exclude \"email\", \"connection_email\", and \"LinkData\" activity types"
+              },
+              {
+                "name": "deal",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal ID"
+              },
+              {
+                "name": "filters[data_type]",
+                "value": "",
+                "type": "query",
+                "description": "Enter any dataType (see Response Details) to filter by that type. Examples: \"userid\" or task\" or \"note\""
+              },
+              {
+                "name": "filters[data_id]",
+                "value": "",
+                "type": "query",
+                "description": "Enter any dataId (see Response details) to filter by related object. Example \"291\" for a note with ID 291"
+              }
+            ]
+          },
+          "docs": "View a recent activity for Deals. A specific deal's activity can also be viewed using /api/3/deals/[dealID]/dealActivities."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealGroups",
+            "params": [
+              {
+                "name": "filters[title]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by pipeline's title. The filter matches any pipeline titles that contain the provided title (i.e. \"Contact\" matches all of \"In Contact\", \"To Contact\", and \"Contact Pipeline\")."
+              },
+              {
+                "name": "filters[have_stages]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by whether pipelines have deal stages. Can be either `1` or `0`. If `1`, only pipelines with at least one stage will be returned."
+              },
+              {
+                "name": "orders[title]",
+                "value": "",
+                "type": "query",
+                "description": "Order by Pipeline's title"
+              },
+              {
+                "name": "orders[popular]",
+                "value": "",
+                "type": "query",
+                "description": "Order by number of deals each pipeline has. If pipelines have same number of deals, pipelines' created dates are used to determine the order."
+              }
+            ]
+          },
+          "docs": "Retrieve all existing pipelines"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealGroups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new pipeline"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealGroups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing pipeline"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealGroups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing pipeline"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealGroups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing pipeline"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve Inaccessible Pipelines by User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealGroup/get_inaccessible_deal_groups",
+            "params": [
+              {
+                "name": "dealIds[]",
+                "value": "",
+                "type": "query",
+                "description": "Deal Ids"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "User's Id"
+              }
+            ]
+          },
+          "docs": "Retrieve pipelines that given user doesn't have access to"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Stages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealStages",
+            "params": [
+              {
+                "name": "filters[title]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal stages' titles. Any stages whose titles partial-match the filter value are returned"
+              },
+              {
+                "name": "filters[d_groupid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by pipeline's id"
+              },
+              {
+                "name": "orders[title]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal stage's title"
+              }
+            ]
+          },
+          "docs": "Retrieve all existing stages"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealStages",
+            "params": [
+              {
+                "name": "reorder",
+                "value": "",
+                "type": "query",
+                "description": "Whether to reorder stages within the pipeline after creating a new deal stage. Can be one of `0` and `1`. If set to `1`, new order values will be assigned to all stages within the same pipeline. If deal stages with the same order exists, the stage with the highest `id` will be assigned with the lowest `order`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new stage for a pipeline"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealStages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal stage's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing stage"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealStages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal stage's id"
+              },
+              {
+                "name": "reorder",
+                "value": "",
+                "type": "query",
+                "description": "Whether to reorder stages within the pipeline after creating a new deal stage. Can be one of `0` and `1`. If set to `1`, new order values will be assigned to all stages within the same pipeline. If deal stages with the same order exists, the stage with the highest `id` will be assigned with the lowest `order`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing stage"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealStages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal stage's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing stage"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Move Deals to Another Stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealStages/:id/deals",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal stage's id whose deals are to be moved to another deal stage"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Move all deals in one stage to another stage"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Custom Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldMeta",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of fields returned per request."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Custom Fields"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Custom Field Meta",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldMeta",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Custom Field Meta"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldMeta/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the field to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldMeta/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the custom field to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldMeta/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the field to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Custom Field Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData",
+            "params": [
+              {
+                "name": "filters[dealId]",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by a specific deal (note that Id uses a capital I)"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Custom Field Values"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Create a Custom Deal Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData/bulkCreate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Bulk Create a Custom Deal Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the dealCustomFieldData to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the custom fields value to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the dealCustomFieldData to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Update a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData/bulkUpdate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Bulk Update a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Deal Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealRoles",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "(optional string used to search for matching titles)"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Deal Roles"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Deal Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealRoles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Deal Role"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Deal Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealRoles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal role's id"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Deal Role"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasks",
+            "params": [
+              {
+                "name": "filters[title]",
+                "value": "",
+                "type": "query",
+                "description": "The title to be assigned to the task"
+              },
+              {
+                "name": "filters[reltype]",
+                "value": "",
+                "type": "query",
+                "description": "The name of the relating object (see relationships table)"
+              },
+              {
+                "name": "filters[relid]",
+                "value": "",
+                "type": "query",
+                "description": "The id of the relational object for this task"
+              },
+              {
+                "name": "filters[status]",
+                "value": "",
+                "type": "query",
+                "description": "Task status means complete or incomplete. 1 is complete and 0 is incomplete."
+              },
+              {
+                "name": "filters[note]",
+                "value": "",
+                "type": "query",
+                "description": "The content describing the task"
+              },
+              {
+                "name": "filters[duedate]",
+                "value": "",
+                "type": "query",
+                "description": "Due date of the task"
+              },
+              {
+                "name": "filters[d_tasktypeid]",
+                "value": "",
+                "type": "query",
+                "description": "The type of the task based on the available Task Types in the account"
+              },
+              {
+                "name": "filters[userid]",
+                "value": "",
+                "type": "query",
+                "description": "User ID this task belongs to"
+              },
+              {
+                "name": "filters[due_after]",
+                "value": "",
+                "type": "query",
+                "description": "Filter deal tasks that are due after a specific date"
+              },
+              {
+                "name": "Fitlers[due_before]",
+                "value": "",
+                "type": "query",
+                "description": "Filter deal tasks that are due before a specific date"
+              },
+              {
+                "name": "filters[duedate_range]",
+                "value": "",
+                "type": "query",
+                "description": "Filter deal tasks that are due between specific date range (YYYY-MM-DD+YYYY-MM-DD format) or get categorized tasks (upcoming, scheduled, overdue values)"
+              },
+              {
+                "name": "filters[assignee_userid]",
+                "value": "",
+                "type": "query",
+                "description": "The id of the user a task is assigned to"
+              },
+              {
+                "name": "filters[outcome_id]",
+                "value": "",
+                "type": "query",
+                "description": "The id of a task outcome that the task belongs to."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of existing tasks"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new task"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the task"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing task"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the task"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing task"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The task id"
+              }
+            ]
+          },
+          "docs": "Delete an existing task"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Task Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasktypes"
+          },
+          "docs": "Retrieve all existing task types"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Task Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasktypes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new task type"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Task Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasktypes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal task type's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing task type"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Task Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasktypes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal task type's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing task type"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Task Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasktypes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal task type's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing task type"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Move Tasks to Another Task Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasktypes/:id/dealTasks",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal task type's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Move tasks to a different task type"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ecommerce",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomCustomers",
+            "params": [
+              {
+                "name": "filters[email]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the email address of a customer."
+              },
+              {
+                "name": "filters[externalid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the id of the customer in the external service."
+              },
+              {
+                "name": "filters[connectionid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the id of the connection object for the service where the customer originates."
+              }
+            ]
+          },
+          "docs": "List all e-commerce customer resources."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomCustomers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new e-commerce customer resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomCustomers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing e-commerce customer resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomCustomers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing e-commerce customer resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomCustomers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer to delete."
+              }
+            ]
+          },
+          "docs": "Delete an existing e-commerce customer resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrders",
+            "params": [
+              {
+                "name": "filters[connectionid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the connection id. Must be greater than 0."
+              },
+              {
+                "name": "filters[externalid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the external id of the order."
+              },
+              {
+                "name": "filters[externalcheckoutid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the external checkout id"
+              },
+              {
+                "name": "filters[email]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the customer email address."
+              },
+              {
+                "name": "filters[state]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the state of the order. 0 = Pending, 1 = Completed, 2 = Abandoned, 3 = Recovered, 4 = Waiting (Customer checked out but payment is not yet completed)"
+              },
+              {
+                "name": "filters[customerid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the customer id"
+              },
+              {
+                "name": "filters[external_created_date]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the external created date"
+              },
+              {
+                "name": "orders[connectionid]",
+                "value": "",
+                "type": "query",
+                "description": "Order by connection ID. Accepted values are ASC or DESC."
+              },
+              {
+                "name": "orders[externalid]",
+                "value": "",
+                "type": "query",
+                "description": "Order by external ID. Accepted values are ASC or DESC."
+              },
+              {
+                "name": "orders[externalcheckoutid]",
+                "value": "",
+                "type": "query",
+                "description": "Order by external checkout ID. Accepted values are ASC or DESC."
+              },
+              {
+                "name": "orders[email]",
+                "value": "",
+                "type": "query",
+                "description": "Order by email. Accepted values are ASC or DESC."
+              },
+              {
+                "name": "orders[state]",
+                "value": "",
+                "type": "query",
+                "description": "Order by state. Accepted values are ASC or DESC."
+              },
+              {
+                "name": "orders[customerid]",
+                "value": "",
+                "type": "query",
+                "description": "Order by customer ID. Accepted values are ASC or DESC."
+              },
+              {
+                "name": "orders[external_created_date]",
+                "value": "",
+                "type": "query",
+                "description": "Order by external created date. Accepted values are ASC or DESC."
+              }
+            ]
+          },
+          "docs": "List all existing e-commerce order resources."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create an Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new e-commerce order resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve an Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrders/:ecomOrderId",
+            "params": [
+              {
+                "name": "ecomOrderId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the order to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieve an existing e-commerce order resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete an Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrders/:ecomOrderId",
+            "params": [
+              {
+                "name": "ecomOrderId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the order to delete."
+              }
+            ]
+          },
+          "docs": "Delete an existing e-commerce order resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update an Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing ecommerce order/cart resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List EcomOrderProducts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrderProducts"
+          },
+          "docs": "ActiveCampaign List EcomOrderProducts"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List EcomOrderProducts for a Specific EcomOrder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrders/:id/orderProducts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order whose products you'd like returned."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List EcomOrderProducts for a Specific EcomOrder"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve an EcomOrderProduct",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrderProducts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product you'd like returned."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve an EcomOrderProduct"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Forms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the form to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Form"
+        },
+        {
+          "info": {
+            "name": "put_forms{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_forms{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "form id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/forms"
+          },
+          "docs": "ActiveCampaign List All Forms"
+        },
+        {
+          "info": {
+            "name": "post_forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/forms"
+          }
+        },
+        {
+          "info": {
+            "name": "post_formoptin",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/form/optin"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve All Lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists",
+            "params": [
+              {
+                "name": "filters[name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the name of the list"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of returned results"
+              },
+              {
+                "name": "filters[name][<operator>]",
+                "value": "",
+                "type": "query",
+                "description": "Filters lists by list name according to the operator specified. (See supported operators below)"
+              },
+              {
+                "name": "orders[name]",
+                "value": "",
+                "type": "query",
+                "description": "Orders filtered results by weight, ascending order, or descending order. If weight is used, exact matches are returned first, followed by matches starting with what was filtered by, followed by the rest of the results."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve All Lists"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a List"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the lists to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a List"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a List",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the list to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a List"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a List Group Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/listGroups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a List Group Permission"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve an Exclusion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists/exclusions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the exclusion to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve an Exclusion"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update an Exclusion",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists/exclusions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Exclusion's ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update an Exclusion"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve Exclusions List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists/exclusions",
+            "params": [
+              {
+                "name": "filters[matchPhrase]",
+                "value": "",
+                "type": "query",
+                "description": "Filters by the match phrase, for example `filters[matchPhrase]=.com`"
+              },
+              {
+                "name": "filters[lists]",
+                "value": "",
+                "type": "query",
+                "description": "Filters by the list ID, for example `filters[lists][]=1`. You can filter by many list IDs"
+              },
+              {
+                "name": "orders[matchPhrase]",
+                "value": "",
+                "type": "query",
+                "description": "Sort by the matchPhrase"
+              },
+              {
+                "name": "orders[lists]",
+                "value": "",
+                "type": "query",
+                "description": "Sort by lists IDs"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve Exclusions List"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Saved Responses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Saved Responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/savedResponses"
+          },
+          "docs": "ActiveCampaign List All Saved Responses"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Saved Response",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/savedResponses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Saved Response"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Saved Response",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/savedResponses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the saved Response to recieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Saved Response"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Saved Response",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/savedResponses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the saved response to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Saved Response"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Saved Response",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/savedResponses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the saved response to remove"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Saved Response"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scores",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Score",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/scores/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the score to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Score"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Scores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/scores"
+          },
+          "docs": "ActiveCampaign List All Scores"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Event Tracking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Events (names Only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/eventTrackingEvents"
+          },
+          "docs": "List the names of tracked events"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a New Event (name Only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/eventTrackingEvents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new event tracking event (name only)"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve Event Tracking Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/eventTracking"
+          },
+          "docs": "Get event tracking status (enabled or disabled)"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Enable/disable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/eventTracking",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable or disable event tracking"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete Event (name Only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/eventTrackingEvents/:eventName",
+            "params": [
+              {
+                "name": "eventName",
+                "value": "",
+                "type": "path",
+                "description": "Name of event to delete. Spaces in names are allowed, but must be encoded (for example, \"my%20event\")."
+              }
+            ]
+          },
+          "docs": "Remove an existing event tracking event (name only)"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Site Tracking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve Site Tracking Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/siteTracking/code"
+          },
+          "docs": "Get site tracking code"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/siteTracking"
+          },
+          "docs": "Get site tracking status (enabled or disabled)"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Enable/disable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/siteTracking",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable or disable site tracking"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tags",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name of tag(s); \"contains\" operator is assumed."
+              },
+              {
+                "name": "filters[search][<operator>]",
+                "value": "",
+                "type": "query",
+                "description": "Filters tags by tag name according to the operator specified. Operators currently supported: `eq`, `neq`, `lt`, `lte`, `gt`, `gte`, `contains`, `starts_with`"
+              },
+              {
+                "name": "orders[search]",
+                "value": "",
+                "type": "query",
+                "description": "Orders filtered results by weight, ascending order, or descending order. If `weight` is used, exact matches are returned first, followed by matches starting with what was filtered by, followed by the rest of the results."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Tags"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Tag"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the tag to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Tag"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the tag to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Tag"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the tag to remove"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Tag"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Task Outcomes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/taskOutcomes",
+            "params": [
+              {
+                "name": "filters[sentiment]",
+                "value": "",
+                "type": "query",
+                "description": "1 is for Negative, 2 is for Neutral and 3 is for Positive"
+              }
+            ]
+          },
+          "docs": "Retrieve all existing task outcomes"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Task Outcome",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/taskOutcomes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new task outcome"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Task Outcome",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/taskOutcomes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Task outcome's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing task outcome"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Task Outcome",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/taskOutccomes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Task outcome's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing task outcome"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Task Outcome",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/taskOutccomes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Task outcome's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing task outcome"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Task Type - Outcome Relations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tasktypeOutcomeRels"
+          },
+          "docs": "Retrieve all existing task type - outcome relations"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign WIP Create a Task Type - Outcome Relation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tasktypeOutcomeRels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new task type"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Task Type - Outcome Relation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tasktypeOutcomeRels/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Task type - outcome relation's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing task type - outcome relation"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign WIP Update a Task Type - Outcome Relation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tasktypeOutcomeRels/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Task type - outcome relation's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing task type"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Task Type - Outcome Relation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tasktypeOutcomeRels/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Task type - outcome relation's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing task type - outcome relation"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Task Reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/taskNotifications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new task reminder"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/templates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the template to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Template"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users"
+          },
+          "docs": "List all existing users"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user you want to view"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing user"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing user"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user you wish to delete"
+              }
+            ]
+          },
+          "docs": "Delete an existing user"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a User by Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users/email/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "Email address of the user you want to view"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing user by looking up their email address"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a User by Username",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users/username/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username of the user you want to view"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing user by looking up their username"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve Logged-in User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users/me"
+          },
+          "docs": "Retrieve the logged-in user"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/webhooks",
+            "params": [
+              {
+                "name": "filters[name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by webhook name"
+              },
+              {
+                "name": "filters[url]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by webhook url"
+              },
+              {
+                "name": "filters[listid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by webhook's associated list"
+              }
+            ]
+          },
+          "docs": "List all existing webhooks"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing webhook"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The webhook id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing webhook"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The webhook id"
+              }
+            ]
+          },
+          "docs": "Delete an existing webhook"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Webhook Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/webhook/events"
+          },
+          "docs": "List all available webhook events"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
