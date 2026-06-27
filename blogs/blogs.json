@@ -3,12 +3,12 @@
   "feeds": [
     {
       "source": "https://www.activecampaign.com/blog",
-      "feed_url": "https://www.activecampaign.com/blog",
-      "title": "ActiveCampaign Blog",
+      "feed_url": "",
       "saved": 0,
-      "method": "html"
+      "method": "agent-scrape"
     }
   ],
   "post_count": 2,
-  "fetched": "2026-06-21T17:00:00Z"
+  "fetched": "2026-06-27T12:21:46Z",
+  "agent_pulled": "2026-06-27"
 }
