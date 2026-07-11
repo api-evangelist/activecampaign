@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/activecampaign-sms.json, openapi/activecampaign-v3.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiToken
+  type: apiKey
+  in: header
+  parameter: Api-Token
+  description: Your ActiveCampaign API token
+  sources:
+  - openapi/activecampaign-sms.json
+  - openapi/activecampaign-v3.json
