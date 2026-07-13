@@ -3,12 +3,19 @@
   "feeds": [
     {
       "source": "https://www.activecampaign.com/blog",
-      "feed_url": "",
+      "feed_url": "https://www.activecampaign.com/blog",
+      "title": "",
       "saved": 0,
-      "method": "agent-scrape"
+      "method": "none"
+    },
+    {
+      "source": "https://developers.activecampaign.com/llms.txt",
+      "feed_url": "https://developers.activecampaign.com/llms.txt",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 2,
-  "fetched": "2026-06-27T12:21:46Z",
-  "agent_pulled": "2026-06-27"
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 15
 }
