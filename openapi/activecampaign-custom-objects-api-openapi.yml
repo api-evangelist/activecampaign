@@ -1,0 +1,2139 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Custom Objects API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Custom Objects
+paths:
+  /customObjects/schemas:
+    get:
+      summary: ActiveCampaign List All Schemas
+      description: 'Retrieve all schemas available within an account.
+
+
+        Users are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute.'
+      operationId: list-all-schemas
+      parameters:
+      - name: limit
+        in: query
+        description: The number of schemas to retrieve for each API call. Maximum value is 100.
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: offset
+        in: query
+        description: Offset index of items to return
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: orders
+        in: query
+        description: Array of sorting criteria to fetch items
+        schema:
+          type: array
+          items:
+            type: string
+      - name: filters
+        in: query
+        description: Filters schemas by different criteria
+        schema:
+          type: string
+      - name: showFields
+        in: query
+        description: Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default.
+        schema:
+          type: string
+          default: all
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"schemas\": [\n    {\n      \"id\": \"6449c3f3-b68d-46d1-850b-c8aea998ce1b\",\n      \"slug\": \"my-object\",\n      \"visibility\": \"private\",\n      \"labels\": {\n        \"singular\": \"My Object\",\n        \"plural\": \"My Objects\"\n      },\n      \"description\": \"Sample Schema\",\n      \"createdTimestamp\": \"2021-04-16T15:08:25.783751329Z\",\n      \"updatedTimestamp\": \"2021-04-16T15:08:25.783751329Z\",\n      \"fields\": [\n        {\n          \"id\": \"my-number-field\",\n          \"labels\": {\n            \"singular\": \"Number\",\n            \"plural\": \"Numbers\"\n          },\n          \"type\": \"number\",\n          \"required\": false,\n          \"scale\": 0\n        }\n      ],\n      \"icons\": {\n        \"default\": \"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\"\n      },\n      \"relationships\": [\n        {\n          \"id\": \"primary-contact\",\n          \"labels\": {\n            \"singular\": \"Primary Contact\",\n            \"plural\": \"Primary Contacts\"\n          },\n          \"description\": \"Primary contact to this object\",\n          \"namespace\": \"contacts\",\n          \"hasMany\": false\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"total\": 1,\n    \"count\": 1,\n    \"limit\": 20,\n    \"offset\": 0\n  }\n}\n"
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 6449c3f3-b68d-46d1-850b-c8aea998ce1b
+                        slug:
+                          type: string
+                          example: my-object
+                        visibility:
+                          type: string
+                          example: private
+                        labels:
+                          type: object
+                          properties:
+                            singular:
+                              type: string
+                              example: My Object
+                            plural:
+                              type: string
+                              example: My Objects
+                        description:
+                          type: string
+                          example: Sample Schema
+                        createdTimestamp:
+                          type: string
+                          example: '2021-04-16T15:08:25.783751329Z'
+                        updatedTimestamp:
+                          type: string
+                          example: '2021-04-16T15:08:25.783751329Z'
+                        fields:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: my-number-field
+                              labels:
+                                type: object
+                                properties:
+                                  singular:
+                                    type: string
+                                    example: Number
+                                  plural:
+                                    type: string
+                                    example: Numbers
+                              type:
+                                type: string
+                                example: number
+                              required:
+                                type: boolean
+                                example: false
+                                default: true
+                              scale:
+                                type: integer
+                                example: 0
+                                default: 0
+                        icons:
+                          type: object
+                          properties:
+                            default:
+                              type: string
+                              example: https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png
+                        relationships:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: primary-contact
+                              labels:
+                                type: object
+                                properties:
+                                  singular:
+                                    type: string
+                                    example: Primary Contact
+                                  plural:
+                                    type: string
+                                    example: Primary Contacts
+                              description:
+                                type: string
+                                example: Primary contact to this object
+                              namespace:
+                                type: string
+                                example: contacts
+                              hasMany:
+                                type: boolean
+                                example: false
+                                default: true
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 1
+                        default: 0
+                      count:
+                        type: integer
+                        example: 1
+                        default: 0
+                      limit:
+                        type: integer
+                        example: 20
+                        default: 0
+                      offset:
+                        type: integer
+                        example: 0
+                        default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Custom Objects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      summary: ActiveCampaign Create a Schema
+      description: ''
+      operationId: create-a-schema
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schema:
+                  properties:
+                    slug:
+                      type: string
+                    labels:
+                      properties:
+                        singular:
+                          type: string
+                          description: Singular label for Schema
+                        plural:
+                          type: string
+                          description: Plural label for Schema
+                      required: []
+                      type: object
+                    description:
+                      type: string
+                      description: Description of the Schema
+                    fields:
+                      type: array
+                      description: List of Schema fields
+                      items:
+                        properties:
+                          id:
+                            type: string
+                          slug:
+                            type: string
+                          labels:
+                            type: object
+                            properties:
+                              singular:
+                                type: string
+                                description: human-readable singular name
+                              plural:
+                                type: string
+                                description: human-readable plural name
+                          type:
+                            type: string
+                          scale:
+                            type: integer
+                            format: int32
+                          isRequired:
+                            type: boolean
+                        type: object
+                    relationships:
+                      type: array
+                      items:
+                        properties:
+                          id:
+                            type: string
+                          labels:
+                            type: object
+                            properties:
+                              singular:
+                                type: string
+                                description: human-readable singular name
+                              plural:
+                                type: string
+                                description: human-readable plural name
+                          description:
+                            type: string
+                          namespace:
+                            type: string
+                          hasMany:
+                            type: boolean
+                        type: object
+                  required: []
+                  type: object
+            examples:
+              A single field with a relationship to the contact:
+                value:
+                  schema:
+                    slug: my-object
+                    labels:
+                      singular: My Object
+                      plural: My Objects
+                    description: Sample Schema
+                    fields:
+                    - id: my-number-field
+                      labels:
+                        singular: Number
+                        plural: Numbers
+                      type: number
+                      required: false
+                      scale: 0
+                    relationships:
+                    - id: primary-contact
+                      labels:
+                        singular: Primary Contact
+                        plural: Primary Contacts
+                      description: Primary contact to this object
+                      namespace: contacts
+                      hasMany: false
+              A single field with a relationship to an account:
+                value:
+                  schema:
+                    slug: my-object
+                    labels:
+                      singular: My Object
+                      plural: My Objects
+                    description: Sample Schema
+                    fields:
+                    - id: my-number-field
+                      labels:
+                        singular: Number
+                        plural: Numbers
+                      type: number
+                      required: false
+                      scale: 0
+                    relationships:
+                    - id: account
+                      labels:
+                        singular: Account
+                        plural: Accounts
+                      description: Accounts related to this object
+                      namespace: accounts
+                      hasMany: false
+              A single field with a relationship to a deal:
+                value:
+                  schema:
+                    slug: my-object
+                    labels:
+                      singular: My Object
+                      plural: My Objects
+                    description: Sample Schema
+                    fields:
+                    - id: my-number-field
+                      labels:
+                        singular: Number
+                        plural: Numbers
+                      type: number
+                      required: false
+                      scale: 0
+                    relationships:
+                    - id: deal
+                      labels:
+                        singular: Deal
+                        plural: Deals
+                      description: Deals related to this object
+                      namespace: deals
+                      hasMany: false
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"schema\": {\n        \"id\": \"2123028c-64e6-40e2-97bc-9d63a2ca920b\",\n        \"slug\": \"my-object\",\n        \"visibility\": \"private\",\n        \"labels\": {\n            \"singular\": \"My Object\",\n            \"plural\": \"My Objects\"\n        },\n        \"description\": \"Sample Schema\",\n        \"createdTimestamp\": \"2021-03-19T18:23:17.153996399Z\",\n        \"updatedTimestamp\": \"2021-03-19T18:23:17.153996399Z\",\n        \"fields\": [{\n            \"id\": \"my-number-field\",\n            \"labels\": {\n                \"singular\": \"Number\",\n                \"plural\": \"Numbers\"\n            },\n            \"type\": \"number\",\n            \"required\": false,\n            \"scale\": 0\n        }],\n        \"icons\": {\n            \"default\": \"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\"\n        },\n        \"relationships\": [{\n            \"id\": \"primary-contact\",\n            \"labels\": {\n                \"singular\": \"Primary Contact\",\n                \"plural\": \"Primary Contacts\"\n            },\n            \"description\": \"Primary contact to this object\",\n            \"namespace\": \"contacts\",\n            \"hasMany\": false\n        }]\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 2123028c-64e6-40e2-97bc-9d63a2ca920b
+                      slug:
+                        type: string
+                        example: my-object
+                      visibility:
+                        type: string
+                        example: private
+                      labels:
+                        type: object
+                        properties:
+                          singular:
+                            type: string
+                            example: My Object
+                          plural:
+                            type: string
+                            example: My Objects
+                      description:
+                        type: string
+                        example: Sample Schema
+                      createdTimestamp:
+                        type: string
+                        example: '2021-03-19T18:23:17.153996399Z'
+                      updatedTimestamp:
+                        type: string
+                        example: '2021-03-19T18:23:17.153996399Z'
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: my-number-field
+                            labels:
+                              type: object
+                              properties:
+                                singular:
+                                  type: string
+                                  example: Number
+                                plural:
+                                  type: string
+                                  example: Numbers
+                            type:
+                              type: string
+                              example: number
+                            required:
+                              type: boolean
+                              example: false
+                              default: true
+                            scale:
+                              type: integer
+                              example: 0
+                              default: 0
+                      icons:
+                        type: object
+                        properties:
+                          default:
+                            type: string
+                            example: https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png
+                      relationships:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: primary-contact
+                            labels:
+                              type: object
+                              properties:
+                                singular:
+                                  type: string
+                                  example: Primary Contact
+                                plural:
+                                  type: string
+                                  example: Primary Contacts
+                            description:
+                              type: string
+                              example: Primary contact to this object
+                            namespace:
+                              type: string
+                              example: contacts
+                            hasMany:
+                              type: boolean
+                              example: false
+                              default: true
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                invalid field value:
+                  value: "{\n  \"errors\": [\n    {\n      \"title\": \"Invalid value for field \\\"schema.fields.labels\\\"\",\n      \"detail\": \"Schema fields must provide labels\",\n      \"source\": {\n        \"type\": \"pointer\",\n        \"value\": \"/data/attributes/schema/fields/labels\"\n      }\n    }\n  ]\n}"
+                slug conflict:
+                  value: "{\n    \"errors\": [\n        {\n            \"title\": \"Invalid value for field \\\"schema.slug\\\"\",\n            \"detail\": \"Schema slug must be unique\",\n            \"source\": {\n                \"type\": \"pointer\",\n                \"value\": \"/data/attributes/schema/slug\"\n            }\n        }\n    ]\n}"
+              schema:
+                oneOf:
+                - title: invalid field value
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            example: Invalid value for field "schema.fields.labels"
+                          detail:
+                            type: string
+                            example: Schema fields must provide labels
+                          source:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                example: pointer
+                              value:
+                                type: string
+                                example: /data/attributes/schema/fields/labels
+                - title: slug conflict
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            example: Invalid value for field "schema.slug"
+                          detail:
+                            type: string
+                            example: Schema slug must be unique
+                          source:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                example: pointer
+                              value:
+                                type: string
+                                example: /data/attributes/schema/slug
+      deprecated: false
+      tags:
+      - Custom Objects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /customObjects/schemas/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Schema
+      description: 'Retrieve a specific schema by id.
+
+
+        Users are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute.'
+      operationId: retrieve-a-schema
+      parameters:
+      - name: id
+        in: path
+        description: Id of the Schema
+        schema:
+          type: string
+        required: true
+      - name: showFields
+        in: query
+        description: Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default.
+        schema:
+          type: string
+          default: all
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"schema\": {\n    \"id\": \"6449c3f3-b68d-46d1-850b-c8aea998ce1b\",\n    \"slug\": \"my-object\",\n    \"visibility\": \"private\",\n    \"labels\": {\n      \"singular\": \"My Object\",\n      \"plural\": \"My Objects\"\n    },\n    \"description\": \"Sample Schema\",\n    \"createdTimestamp\": \"2021-04-16T15:08:25.783751329Z\",\n    \"updatedTimestamp\": \"2021-04-16T15:08:25.783751329Z\",\n    \"fields\": [\n      {\n        \"id\": \"my-number-field\",\n        \"labels\": {\n          \"singular\": \"Number\",\n          \"plural\": \"Numbers\"\n        },\n        \"type\": \"number\",\n        \"required\": false,\n        \"scale\": 0\n      }\n    ],\n    \"icons\": {\n      \"default\": \"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\"\n    },\n    \"relationships\": [\n      {\n        \"id\": \"primary-contact\",\n        \"labels\": {\n          \"singular\": \"Primary Contact\",\n          \"plural\": \"Primary Contacts\"\n        },\n        \"description\": \"Primary contact to this object\",\n        \"namespace\": \"contacts\",\n        \"hasMany\": false\n      }\n    ]\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 6449c3f3-b68d-46d1-850b-c8aea998ce1b
+                      slug:
+                        type: string
+                        example: my-object
+                      visibility:
+                        type: string
+                        example: private
+                      labels:
+                        type: object
+                        properties:
+                          singular:
+                            type: string
+                            example: My Object
+                          plural:
+                            type: string
+                            example: My Objects
+                      description:
+                        type: string
+                        example: Sample Schema
+                      createdTimestamp:
+                        type: string
+                        example: '2021-04-16T15:08:25.783751329Z'
+                      updatedTimestamp:
+                        type: string
+                        example: '2021-04-16T15:08:25.783751329Z'
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: my-number-field
+                            labels:
+                              type: object
+                              properties:
+                                singular:
+                                  type: string
+                                  example: Number
+                                plural:
+                                  type: string
+                                  example: Numbers
+                            type:
+                              type: string
+                              example: number
+                            required:
+                              type: boolean
+                              example: false
+                              default: true
+                            scale:
+                              type: integer
+                              example: 0
+                              default: 0
+                      icons:
+                        type: object
+                        properties:
+                          default:
+                            type: string
+                            example: https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png
+                      relationships:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: primary-contact
+                            labels:
+                              type: object
+                              properties:
+                                singular:
+                                  type: string
+                                  example: Primary Contact
+                                plural:
+                                  type: string
+                                  example: Primary Contacts
+                            description:
+                              type: string
+                              example: Primary contact to this object
+                            namespace:
+                              type: string
+                              example: contacts
+                            hasMany:
+                              type: boolean
+                              example: false
+                              default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"message\": \"Not Found\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Not Found
+      deprecated: false
+      tags:
+      - Custom Objects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a Schema
+      description: ''
+      operationId: delete-a-schema
+      parameters:
+      - name: id
+        in: path
+        description: Id of schema to delete
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"message\": \"Not Found\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Not Found
+      deprecated: false
+      tags:
+      - Custom Objects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /customObjects/schemas/{schemaId}:
+    put:
+      summary: ActiveCampaign Update a Schema
+      description: 'Make an update to a given schema.
+
+
+        To delete a schema field, reference the field delete endpoint: https://developers.activecampaign.com/reference/delete-a-field-1
+
+
+        Users are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute.'
+      operationId: update-a-schema
+      parameters:
+      - name: schemaId
+        in: path
+        description: Id of Schema being updated
+        schema:
+          type: string
+        required: true
+      - name: validateOnly
+        in: header
+        description: When set to `true` the API will validate the schema update without saving changes
+        schema:
+          type: boolean
+          default: false
+      - name: showFields
+        in: query
+        description: Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default.
+        schema:
+          type: string
+          default: all
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schema:
+                  properties:
+                    slug:
+                      type: string
+                    labels:
+                      properties:
+                        singular:
+                          type: string
+                          description: Singular label for Schema
+                        plural:
+                          type: string
+                          description: Plural label for Schema
+                      required: []
+                      type: object
+                    description:
+                      type: string
+                      description: Text description of the Schema
+                    appId:
+                      type: string
+                    fields:
+                      type: array
+                      items:
+                        properties:
+                          id:
+                            type: string
+                            description: id of the field
+                          value:
+                            type: string
+                            description: Data type, appropriate for the field
+                        type: object
+                    icons:
+                      properties:
+                        default:
+                          type: string
+                          description: URI location of the default icon shown on Schema
+                      required: []
+                      type: object
+                    relationships:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        labels:
+                          type: object
+                          properties:
+                            singular:
+                              type: string
+                              description: human-readable singular name
+                            plural:
+                              type: string
+                              description: human-readable plural name
+                        description:
+                          type: string
+                        namespace:
+                          type: string
+                        hasMany:
+                          type: boolean
+                  required: []
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  schema:
+                    slug: stripe-order
+                    labels:
+                      singular: Stripe Order
+                      plural: Stripe Orders
+                    description: Orders placed through the Stripe integration
+                    appId: '123456'
+                    fields:
+                    - id: name
+                      labels:
+                        singular: Product Name
+                        plural: Product Name
+                      description: Name of the product from the Stripe integration
+                      isRequired: true
+                      origin: stripe
+                      type: text
+                    - id: total
+                      labels:
+                        singular: Order Total
+                        plural: Order Totals
+                      description: Total cost of the order
+                      isRequired: true
+                      origin: stripe
+                      type: currency
+                      defaultCurrency: USD
+                    - id: status
+                      labels:
+                        singular: Order Status
+                        plural: Order Statuses
+                      description: Status of the order
+                      isRequired: true
+                      origin: stripe
+                      type: dropdown
+                      options:
+                      - value: Processed
+                    - id: features
+                      labels:
+                        singular: Order Feature
+                        plural: Order Features
+                      description: Extra features for the order
+                      isRequired: true
+                      origin: stripe
+                      type: multiselect
+                      options:
+                      - value: Expedited Shipping
+                    - id: rating
+                      labels:
+                        singular: Order Rating
+                        plural: Order Ratings
+                      description: Customer satisfaction rating
+                      isRequired: true
+                      origin: stripe
+                      type: decimal
+                      scale: 2
+                    icons:
+                      default: https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png
+                    relationships:
+                    - id: primary-contact
+                      labels:
+                        singular: Primary Contact
+                        plural: Primary Contacts
+                      description: Products purchased in this Stripe order
+                      namespace: contacts
+                      hasMany: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"schema\": {\n    \"id\": \"schema-9999-9999\",\n    \"slug\": \"stripe-order\",\n    \"labels\": {\n      \"singular\": \"Stripe Order\",\n      \"plural\": \"Stripe Orders\"\n    },\n    \"description\": \"Orders placed through the Stripe integration\",\n    \"appId\": \"123456\",\n    \"fields\": [\n      {\n        \"id\": \"name\",\n        \"labels\": {\n          \"singular\": \"Product Name\",\n          \"plural\": \"Product Name\"\n        },\n        \"description\": \"Name of the product from the Stripe integration\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"text\"\n      },\n      {\n        \"id\": \"total\",\n        \"labels\": {\n          \"singular\": \"Order Total\",\n          \"plural\": \"Order Totals\"\n        },\n        \"description\": \"Total cost of the order\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"currency\",\n        \"defaultCurrency\": \"USD\"\n      },\n      {\n        \"id\": \"status\",\n        \"labels\": {\n          \"singular\": \"Order Status\",\n          \"plural\": \"Order Statuses\"\n        },\n        \"description\": \"Status of the order\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"dropdown\",\n        \"options\": [\n          {\n            \"id\": \"264d3b73-069e-4ca1-b270-dbfa3137b541\",\n            \"value\": \"Processed\"\n          }\n        ]\n      },\n      {\n        \"id\": \"features\",\n        \"labels\": {\n          \"singular\": \"Order Feature\",\n          \"plural\": \"Order Features\"\n        },\n        \"description\": \"Extra features for the order\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"multiselect\",\n        \"options\": [\n          {\n            \"id\": \"041ef416-a85b-678f-4a15-5dd481dad123\",\n            \"value\": \"Expedited Shipping\"\n          }\n        ]\n      },\n      {\n        \"id\": \"rating\",\n        \"labels\": {\n          \"singular\": \"Order Rating\",\n          \"plural\": \"Order Ratings\"\n        },\n        \"description\": \"Customer satisfaction rating\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"decimal\",\n        \"scale\": 2\n      }\n    ],\n    \"icons\": {\n      \"default\": \"https://activehosted.com/temp-placeholder.svg\"\n    },\n    \"relationships\": [\n      {\n        \"id\": \"primary-contact\",\n        \"labels\": {\n          \"singular\": \"Primary Contact\",\n          \"plural\": \"Primary Contacts\"\n        },\n        \"description\": \"Products purchased in this Stripe order\",\n        \"namespace\": \"contacts\",\n        \"hasMany\": false\n      }\n    ],\n    \"createdTimestamp\": \"2021-04-13T21:12:53.390Z\",\n    \"updatedTimestamp\": \"2021-04-13T21:12:53.390Z\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: schema-9999-9999
+                      slug:
+                        type: string
+                        example: stripe-order
+                      labels:
+                        type: object
+                        properties:
+                          singular:
+                            type: string
+                            example: Stripe Order
+                          plural:
+                            type: string
+                            example: Stripe Orders
+                      description:
+                        type: string
+                        example: Orders placed through the Stripe integration
+                      appId:
+                        type: string
+                        example: '123456'
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: name
+                            labels:
+                              type: object
+                              properties:
+                                singular:
+                                  type: string
+                                  example: Product Name
+                                plural:
+                                  type: string
+                                  example: Product Name
+                            description:
+                              type: string
+                              example: Name of the product from the Stripe integration
+                            isRequired:
+                              type: boolean
+                              example: true
+                              default: true
+                            origin:
+                              type: string
+                              example: stripe
+                            type:
+                              type: string
+                              example: text
+                      icons:
+                        type: object
+                        properties:
+                          default:
+                            type: string
+                            example: https://activehosted.com/temp-placeholder.svg
+                      relationships:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: primary-contact
+                            labels:
+                              type: object
+                              properties:
+                                singular:
+                                  type: string
+                                  example: Primary Contact
+                                plural:
+                                  type: string
+                                  example: Primary Contacts
+                            description:
+                              type: string
+                              example: Products purchased in this Stripe order
+                            namespace:
+                              type: string
+                              example: contacts
+                            hasMany:
+                              type: boolean
+                              example: false
+                              default: true
+                      createdTimestamp:
+                        type: string
+                        example: '2021-04-13T21:12:53.390Z'
+                      updatedTimestamp:
+                        type: string
+                        example: '2021-04-13T21:12:53.390Z'
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"errors\": [\n    {\n      \"title\": \"Invalid value for field \\\"{field_name}\\\"\",\n      \"detail\": \"{description}\",\n      \"source\": {\n        \"type\": \"pointer\",\n        \"value\": \"/data/attributes/{field_name}\"\n      }\n    }\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: Invalid value for field "{field_name}"
+                        detail:
+                          type: string
+                          example: '{description}'
+                        source:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: pointer
+                            value:
+                              type: string
+                              example: /data/attributes/{field_name}
+      deprecated: false
+      tags:
+      - Custom Objects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /customObjects/schemas/{schemaId}/fields/{fieldId}:
+    delete:
+      summary: ActiveCampaign Delete a Field
+      description: 'Deleting a schema field is an irreversible process.
+
+
+        Assuming a valid `202 Accepted` response is received, any associated field data on associated records will immediately be unavailable to the user. There may be a small delay if record requests are in the midst of processing when the field delete request is issued.
+
+
+        The deleted field id will *not* be immediately recycled for reuse. Users are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute.
+
+
+        The field delete operation is only permitted for admin users.
+
+        Field deletion is not permitted on public or child schemas (private schemas only).'
+      operationId: delete-a-field-1
+      parameters:
+      - name: schemaId
+        in: path
+        description: Schema ID of the field to be deleted
+        schema:
+          type: string
+        required: true
+      - name: fieldId
+        in: path
+        description: Field ID of the field to be deleted
+        schema:
+          type: string
+        required: true
+      - name: showFields
+        in: query
+        description: Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default.
+        schema:
+          type: string
+          default: all
+      responses:
+        '202':
+          description: '202'
+          content:
+            application/json:
+              examples:
+                Accepted:
+                  value: "{\n    \"schema\": {\n        \"id\": \"82ec659f-8283-4e88-9df3-26f4585fec02\",\n        \"slug\": \"my-object\",\n        \"visibility\": \"private\",\n        \"labels\": {\n            \"singular\": \"My Object\",\n            \"plural\": \"My Objects\"\n        },\n        \"description\": \"Sample Schema\",\n        \"createdTimestamp\": \"2021-10-04T20:08:09.574382410Z\",\n        \"updatedTimestamp\": \"2022-06-10T14:19:06.834158129Z\",\n        \"fields\": [\n            {\n                \"id\": \"my-number-field\",\n                \"labels\": {\n                    \"singular\": \"Number\",\n                    \"plural\": \"Numbers\"\n                },\n                \"type\": \"number\",\n                \"required\": false,\n                \"scale\": 0,\n                \"inherited\": false\n            },\n            {\n                \"id\": \"multiselect\",\n                \"labels\": {\n                    \"singular\": \"Multiselect\",\n                    \"plural\": \"Multiselect\"\n                },\n                \"type\": \"multiselect\",\n                \"required\": false,\n                \"options\": [\n                    {\n                        \"id\": \"c56d7f15-d61d-46a6-9b7e-edec21192cd5\",\n                        \"value\": \"Option 4\"\n                    },\n                    {\n                        \"id\": \"91fa9499-c08d-4b24-97c7-04a7fcf5d0dc\",\n                        \"value\": \"Option 5\"\n                    },\n                    {\n                        \"id\": \"42bc2e29-eab5-40ff-85cb-b703c7bc9fd9\",\n                        \"value\": \"Option 6\"\n                    }\n                ],\n                \"inherited\": false,\n                \"status\": \"marked_for_deletion\"\n            },\n            {\n                \"id\": \"test-field-1\",\n                \"labels\": {\n                    \"singular\": \"test field\",\n                    \"plural\": \"test field\"\n                },\n                \"type\": \"text\",\n                \"required\": false,\n                \"inherited\": false,\n                \"status\": \"marked_for_deletion\"\n            },\n            {\n                \"id\": \"test-field\",\n                \"labels\": {\n                    \"singular\": \"test field\",\n                    \"plural\": \"test field\"\n                },\n                \"type\": \"text\",\n                \"required\": false,\n                \"inherited\": false,\n                \"status\": \"marked_for_deletion\"\n            },\n            {\n                \"id\": \"dropdown\",\n                \"labels\": {\n                    \"singular\": \"Dropdown\",\n                    \"plural\": \"Dropdown\"\n                },\n                \"type\": \"dropdown\",\n                \"required\": false,\n                \"options\": [\n                    {\n                        \"id\": \"81529d6b-b5f5-4b13-a3d7-f00b62f1072f\",\n                        \"value\": \"Option 1\"\n                    },\n                    {\n                        \"id\": \"0a9d10a0-a3ea-4247-a2ef-0ed990e2d908\",\n                        \"value\": \"Option 2\"\n                    },\n                    {\n                        \"id\": \"d60f84cf-cca5-4284-97fd-fdc833caa82b\",\n                        \"value\": \"Option 3\"\n                    }\n                ],\n                \"inherited\": false,\n                \"status\": \"marked_for_deletion\"\n            }\n        ],\n        \"icons\": {\n            \"default\": \"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\"\n        },\n        \"relationships\": [\n            {\n                \"id\": \"primary-contact\",\n                \"labels\": {\n                    \"singular\": \"Primary Contact\",\n                    \"plural\": \"Primary Contacts\"\n                },\n                \"description\": \"Primary contact to this object\",\n                \"namespace\": \"contacts\",\n                \"hasMany\": false,\n                \"inherited\": false\n            }\n        ]\n    }\n}"
+                Result:
+                  value: "{\n    \"schema\": {\n        \"id\": \"82ec659f-8283-4e88-9df3-26f4585fec02\",\n        \"slug\": \"my-object\",\n        \"visibility\": \"private\",\n        \"labels\": {\n            \"singular\": \"My Object\",\n            \"plural\": \"My Objects\"\n        },\n        \"description\": \"Sample Schema\",\n        \"createdTimestamp\": \"2021-10-04T20:08:09.574382410Z\",\n        \"updatedTimestamp\": \"2022-06-10T14:19:06.834158129Z\",\n        \"fields\": [\n            {\n                \"id\": \"my-number-field\",\n                \"labels\": {\n                    \"singular\": \"Number\",\n                    \"plural\": \"Numbers\"\n                },\n                \"type\": \"number\",\n                \"required\": false,\n                \"scale\": 0,\n                \"inherited\": false\n            },\n            {\n                \"id\": \"multiselect\",\n                \"labels\": {\n                    \"singular\": \"Multiselect\",\n                    \"plural\": \"Multiselect\"\n                },\n                \"type\": \"multiselect\",\n                \"required\": false,\n                \"options\": [\n                    {\n                        \"id\": \"c56d7f15-d61d-46a6-9b7e-edec21192cd5\",\n                        \"value\": \"Option 4\"\n                    },\n                    {\n                        \"id\": \"91fa9499-c08d-4b24-97c7-04a7fcf5d0dc\",\n                        \"value\": \"Option 5\"\n                    },\n                    {\n                        \"id\": \"42bc2e29-eab5-40ff-85cb-b703c7bc9fd9\",\n                        \"value\": \"Option 6\"\n                    }\n                ],\n                \"inherited\": false,\n                \"status\": \"marked_for_deletion\"\n            },\n            {\n                \"id\": \"test-field-1\",\n                \"labels\": {\n                    \"singular\": \"test field\",\n                    \"plural\": \"test field\"\n                },\n                \"type\": \"text\",\n                \"required\": false,\n                \"inherited\": false,\n                \"status\": \"marked_for_deletion\"\n            },\n            {\n                \"id\": \"test-field\",\n                \"labels\": {\n                    \"singular\": \"test field\",\n                    \"plural\": \"test field\"\n                },\n                \"type\": \"text\",\n                \"required\": false,\n                \"inherited\": false,\n                \"status\": \"marked_for_deletion\"\n            },\n            {\n                \"id\": \"dropdown\",\n                \"labels\": {\n                    \"singular\": \"Dropdown\",\n                    \"plural\": \"Dropdown\"\n                },\n                \"type\": \"dropdown\",\n                \"required\": false,\n                \"options\": [\n                    {\n                        \"id\": \"81529d6b-b5f5-4b13-a3d7-f00b62f1072f\",\n                        \"value\": \"Option 1\"\n                    },\n                    {\n                        \"id\": \"0a9d10a0-a3ea-4247-a2ef-0ed990e2d908\",\n                        \"value\": \"Option 2\"\n                    },\n                    {\n                        \"id\": \"d60f84cf-cca5-4284-97fd-fdc833caa82b\",\n                        \"value\": \"Option 3\"\n                    }\n                ],\n                \"inherited\": false,\n                \"status\": \"marked_for_deletion\"\n            }\n        ],\n        \"icons\": {\n            \"default\": \"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\"\n        },\n        \"relationships\": [\n            {\n                \"id\": \"primary-contact\",\n                \"labels\": {\n                    \"singular\": \"Primary Contact\",\n                    \"plural\": \"Primary Contacts\"\n                },\n                \"description\": \"Primary contact to this object\",\n                \"namespace\": \"contacts\",\n                \"hasMany\": false,\n                \"inherited\": false\n            }\n        ]\n    }\n}"
+              schema:
+                oneOf:
+                - title: Accepted
+                  type: object
+                  properties:
+                    schema:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 82ec659f-8283-4e88-9df3-26f4585fec02
+                        slug:
+                          type: string
+                          example: my-object
+                        visibility:
+                          type: string
+                          example: private
+                        labels:
+                          type: object
+                          properties:
+                            singular:
+                              type: string
+                              example: My Object
+                            plural:
+                              type: string
+                              example: My Objects
+                        description:
+                          type: string
+                          example: Sample Schema
+                        createdTimestamp:
+                          type: string
+                          example: '2021-10-04T20:08:09.574382410Z'
+                        updatedTimestamp:
+                          type: string
+                          example: '2022-06-10T14:19:06.834158129Z'
+                        fields:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: my-number-field
+                              labels:
+                                type: object
+                                properties:
+                                  singular:
+                                    type: string
+                                    example: Number
+                                  plural:
+                                    type: string
+                                    example: Numbers
+                              type:
+                                type: string
+                                example: number
+                              required:
+                                type: boolean
+                                example: false
+                                default: true
+                              scale:
+                                type: integer
+                                example: 0
+                                default: 0
+                              inherited:
+                                type: boolean
+                                example: false
+                                default: true
+                        icons:
+                          type: object
+                          properties:
+                            default:
+                              type: string
+                              example: https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png
+                        relationships:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: primary-contact
+                              labels:
+                                type: object
+                                properties:
+                                  singular:
+                                    type: string
+                                    example: Primary Contact
+                                  plural:
+                                    type: string
+                                    example: Primary Contacts
+                              description:
+                                type: string
+                                example: Primary contact to this object
+                              namespace:
+                                type: string
+                                example: contacts
+                              hasMany:
+                                type: boolean
+                                example: false
+                                default: true
+                              inherited:
+                                type: boolean
+                                example: false
+                                default: true
+                - type: object
+                  properties:
+                    schema:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 82ec659f-8283-4e88-9df3-26f4585fec02
+                        slug:
+                          type: string
+                          example: my-object
+                        visibility:
+                          type: string
+                          example: private
+                        labels:
+                          type: object
+                          properties:
+                            singular:
+                              type: string
+                              example: My Object
+                            plural:
+                              type: string
+                              example: My Objects
+                        description:
+                          type: string
+                          example: Sample Schema
+                        createdTimestamp:
+                          type: string
+                          example: '2021-10-04T20:08:09.574382410Z'
+                        updatedTimestamp:
+                          type: string
+                          example: '2022-06-10T14:19:06.834158129Z'
+                        fields:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: my-number-field
+                              labels:
+                                type: object
+                                properties:
+                                  singular:
+                                    type: string
+                                    example: Number
+                                  plural:
+                                    type: string
+                                    example: Numbers
+                              type:
+                                type: string
+                                example: number
+                              required:
+                                type: boolean
+                                example: false
+                                default: true
+                              scale:
+                                type: integer
+                                example: 0
+                                default: 0
+                              inherited:
+                                type: boolean
+                                example: false
+                                default: true
+                        icons:
+                          type: object
+                          properties:
+                            default:
+                              type: string
+                              example: https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png
+                        relationships:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: primary-contact
+                              labels:
+                                type: object
+                                properties:
+                                  singular:
+                                    type: string
+                                    example: Primary Contact
+                                  plural:
+                                    type: string
+                                    example: Primary Contacts
+                              description:
+                                type: string
+                                example: Primary contact to this object
+                              namespace:
+                                type: string
+                                example: contacts
+                              hasMany:
+                                type: boolean
+                                example: false
+                                default: true
+                              inherited:
+                                type: boolean
+                                example: false
+                                default: true
+      deprecated: false
+      tags:
+      - Custom Objects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /customObjects/schemas/public:
+    post:
+      summary: ActiveCampaign Create a Public Schema
+      description: ''
+      operationId: create-a-public-schema
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schema:
+                  properties:
+                    slug:
+                      type: string
+                    appId:
+                      type: string
+                    labels:
+                      type: object
+                      properties:
+                        singular:
+                          type: string
+                          description: human-readable singular name
+                        plural:
+                          type: string
+                          description: human-readable plural name
+                    description:
+                      type: string
+                    fields:
+                      type: array
+                      items:
+                        properties:
+                          id:
+                            type: string
+                          slug:
+                            type: string
+                          labels:
+                            type: object
+                            properties:
+                              singular:
+                                type: string
+                                description: human-readable singular name
+                              plural:
+                                type: string
+                                description: human-readable plural name
+                          type:
+                            type: string
+                          scale:
+                            type: integer
+                            format: int32
+                          isRequired:
+                            type: boolean
+                        type: object
+                    relationships:
+                      type: array
+                      items:
+                        properties:
+                          id:
+                            type: string
+                          labels:
+                            type: object
+                            properties:
+                              singular:
+                                type: string
+                                description: human-readable singular name
+                              plural:
+                                type: string
+                                description: human-readable plural name
+                          description:
+                            type: string
+                          namespace:
+                            type: string
+                          hasMany:
+                            type: boolean
+                        type: object
+                  required: []
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  schema:
+                    slug: event-tickets
+                    appId: cxapp-studio-app-id
+                    labels:
+                      singular: Event Ticket
+                      plural: Event Tickets
+                    description: Event Tickets
+                    fields:
+                    - id: name
+                      labels:
+                        singular: Name
+                        plural: Names
+                      type: textarea
+                    relationships:
+                    - id: primary-contact
+                      labels:
+                        singular: Primary Contact
+                        plural: Primary Contacts
+                      description: Primary contact that owns a ticket
+                      namespace: contacts
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"schema\": {\n    \"id\": \"230f6065-a8e5-4df2-a70a-f6832d004d8d\",\n    \"slug\": \"app-230f6065-a8e5-4df2-a70a-f6832d004d8d-event-tickets\",\n    \"visibility\": \"public\",\n    \"labels\": {\"singular\": \"Event Ticket\", \"plural\": \"Event Tickets\"},\n    \"description\": \"Event Tickets\",\n    \"appId\": \"cxapp-studio-app-id\",\n    \"fields\": [\n        {\n            \"id\": \"name\",\n            \"labels\": {\"singular\": \"Name\", \"plural\": \"Names\"},\n            \"type\": \"textarea\"\n        }\n    ],\n    \"relationships\": [\n      {\n        \"id\": \"primary-contact\",\n        \"labels\": {\n          \"singular\": \"Primary Contact\",\n          \"plural\": \"Primary Contacts\"\n        },\n        \"description\": \"Primary contact that owns a ticket\",\n        \"namespace\": \"contacts\",\n        \"hasMany\": false,\n        \"inherited\": false\n      }\n    ],\n    \"icons\": {\n        \"default\": \"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\"\n    }\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 230f6065-a8e5-4df2-a70a-f6832d004d8d
+                      slug:
+                        type: string
+                        example: app-230f6065-a8e5-4df2-a70a-f6832d004d8d-event-tickets
+                      visibility:
+                        type: string
+                        example: public
+                      labels:
+                        type: object
+                        properties:
+                          singular:
+                            type: string
+                            example: Event Ticket
+                          plural:
+                            type: string
+                            example: Event Tickets
+                      description:
+                        type: string
+                        example: Event Tickets
+                      appId:
+                        type: string
+                        example: cxapp-studio-app-id
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: name
+                            labels:
+                              type: object
+                              properties:
+                                singular:
+                                  type: string
+                                  example: Name
+                                plural:
+                                  type: string
+                                  example: Names
+                            type:
+                              type: string
+                              example: textarea
+                      relationships:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: primary-contact
+                            labels:
+                              type: object
+                              properties:
+                                singular:
+                                  type: string
+                                  example: Primary Contact
+                                plural:
+                                  type: string
+                                  example: Primary Contacts
+                            description:
+                              type: string
+                              example: Primary contact that owns a ticket
+                            namespace:
+                              type: string
+                              example: contacts
+                            hasMany:
+                              type: boolean
+                              example: false
+                              default: true
+                            inherited:
+                              type: boolean
+                              example: false
+                              default: true
+                      icons:
+                        type: object
+                        properties:
+                          default:
+                            type: string
+                            example: https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Custom Objects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /customObjects/schemas/{id}/child:
+    post:
+      summary: ActiveCampaign Create a Child Schema
+      description: ''
+      operationId: create-a-child-schema
+      parameters:
+      - name: id
+        in: path
+        description: Id of the parent schema the new child schema will extend
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"schema\": {\n    \"id\": \"475c4ea7-65cc-4d59-a690-6ac232633fca\",\n    \"parentId\": \"230f6065-a8e5-4df2-a70a-f6832d004d8d\",\n    \"slug\": \"app-cxapp-studio-app-id-event-tickets\",\n    \"appId\": \"cxapp-studio-app-id\",\n    \"visibility\": \"private\",\n    \"labels\": {\"singular\": \"Event Ticket\", \"plural\": \"Event Tickets\"},\n    \"description\": \"Event Tickets\",\n    \"fields\": [\n        {\n            \"id\": \"name\",\n            \"labels\": {\"singular\": \"Name\", \"plural\": \"Names\"},\n            \"type\": \"textarea\",\n            \"inherited\": true\n        }\n    ],\n    \"relationships\": [\n      {\n        \"id\": \"primary-contact\",\n        \"labels\": {\n          \"singular\": \"Primary Contact\",\n          \"plural\": \"Primary Contacts\"\n        },\n        \"description\": \"Primary contact that owns a ticket\",\n        \"namespace\": \"contacts\",\n        \"inherited\": true\n      }\n    ],\n    \"icons\": {\n        \"default\": \"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\"\n    }\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 475c4ea7-65cc-4d59-a690-6ac232633fca
+                      parentId:
+                        type: string
+                        example: 230f6065-a8e5-4df2-a70a-f6832d004d8d
+                      slug:
+                        type: string
+                        example: app-cxapp-studio-app-id-event-tickets
+                      appId:
+                        type: string
+                        example: cxapp-studio-app-id
+                      visibility:
+                        type: string
+                        example: private
+                      labels:
+                        type: object
+                        properties:
+                          singular:
+                            type: string
+                            example: Event Ticket
+                          plural:
+                            type: string
+                            example: Event Tickets
+                      description:
+                        type: string
+                        example: Event Tickets
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: name
+                            labels:
+                              type: object
+                              properties:
+                                singular:
+                                  type: string
+                                  example: Name
+                                plural:
+                                  type: string
+                                  example: Names
+                            type:
+                              type: string
+                              example: textarea
+                            inherited:
+                              type: boolean
+                              example: true
+                              default: true
+                      relationships:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: primary-contact
+                            labels:
+                              type: object
+                              properties:
+                                singular:
+                                  type: string
+                                  example: Primary Contact
+                                plural:
+                                  type: string
+                                  example: Primary Contacts
+                            description:
+                              type: string
+                              example: Primary contact that owns a ticket
+                            namespace:
+                              type: string
+                              example: contacts
+                            inherited:
+                              type: boolean
+                              example: true
+                              default: true
+                      icons:
+                        type: object
+                        properties:
+                          default:
+                            type: string
+                            example: https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Custom Objects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /customObjects/records/{schemaId}:
+    get:
+      summary: ActiveCampaign List Records by Schema
+      description: ''
+      operationId: list-records-created-from-a-schema
+      parameters:
+      - name: schemaId
+        in: path
+        description: ID of schema
+        schema:
+          type: string
+        required: true
+      - name: limit
+        in: query
+        description: The number of records to return for each call. Maximum value is 100.
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: offset
+        in: query
+        description: Offset index of records to return
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: filters
+        in: query
+        description: Use ?filters[relationships.{your-contact-relationship}][eq]={contactId} to filter records to a specific contact.
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '200':
+                  value: "{\n  \"records\": [\n    {\n      \"id\": \"1fba439a-208e-48e6-bd23-f6c97c3e0519\",\n      \"externalId\": \"test-obj-1\",\n      \"schemaId\": \"6449c3f3-b68d-46d1-850b-c8aea998ce1b\",\n      \"fields\": [\n        {\n          \"id\": \"my-number-field\",\n          \"value\": 100\n        }\n      ],\n      \"relationships\": {\n        \"primary-contact\": [\n          \"14\"\n        ]\n      },\n      \"createdTimestamp\": \"2021-04-16T16:12:22.222685095Z\",\n      \"updatedTimestamp\": \"2021-04-16T16:13:12.022671090Z\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 1,\n    \"count\": 1,\n    \"limit\": 20,\n    \"offset\": 0\n  }\n}\n"
+              schema:
+                type: object
+                properties:
+                  records:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 1fba439a-208e-48e6-bd23-f6c97c3e0519
+                        externalId:
+                          type: string
+                          example: test-obj-1
+                        schemaId:
+                          type: string
+                          example: 6449c3f3-b68d-46d1-850b-c8aea998ce1b
+                        fields:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: my-number-field
+                              value:
+                                type: integer
+                                example: 100
+                                default: 0
+                        relationships:
+                          type: object
+                          properties:
+                            primary-contact:
+                              type: array
+                              items:
+                                type: string
+                                example: '14'
+                        createdTimestamp:
+                          type: string
+                          example: '2021-04-16T16:12:22.222685095Z'
+                        updatedTimestamp:
+                          type: string
+                          example: '2021-04-16T16:13:12.022671090Z'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 1
+                        default: 0
+                      count:
+                        type: integer
+                        example: 1
+                        default: 0
+                      limit:
+                        type: integer
+                        example: 20
+                        default: 0
+                      offset:
+                        type: integer
+                        example: 0
+                        default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"errors\": [\n    {\n      \"status\":400,\n      \"title\":\"Bad Request\"\n    }\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          default: 0
+                        title:
+                          type: string
+                          example: Bad Request
+        '404':
+          description: '404'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"Not Found\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Not Found
+      deprecated: false
+      tags:
+      - Custom Objects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      summary: ActiveCampaign Create or Update Record
+      description: ''
+      operationId: create-or-update-record
+      parameters:
+      - name: schemaId
+        in: path
+        description: ID of schema
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                record:
+                  properties:
+                    id:
+                      type: string
+                      description: The Record's id
+                    externalId:
+                      type: string
+                      description: The Record's external id
+                    fields:
+                      type: array
+                      items:
+                        properties:
+                          id:
+                            type: string
+                            description: id of the field
+                          value:
+                            type: string
+                            description: Data type, appropriate for the field
+                        type: object
+                    relationships:
+                      type: array
+                      items:
+                        properties:
+                          primary-contact:
+                            type: array
+                            description: List of Contact integers
+                            default: []
+                            items:
+                              type: integer
+                              format: int32
+                        type: object
+                  required: []
+                  type: object
+            examples:
+              Create with Contact:
+                value:
+                  record:
+                    schemaId: 6449c3f3-b68d-46d1-850b-c8aea998ce1b
+                    id: test-obj-1
+                    externalId: test-obj-1
+                    fields:
+                    - id: my-number-field
+                      value: 100
+                    relationships:
+                      primary-contact:
+                      - 14
+              Create with Deal:
+                value:
+                  record:
+                    schemaId: 6449c3f3-b68d-46d1-850b-c8aea998ce1b
+                    id: test-obj-1
+                    externalId: test-obj-1
+                    fields:
+                    - id: my-number-field
+                      value: 100
+                    relationships:
+                      deal:
+                      - 22
+              Create with Account:
+                value:
+                  record:
+                    schemaId: 6449c3f3-b68d-46d1-850b-c8aea998ce1b
+                    id: test-obj-1
+                    externalId: test-obj-1
+                    fields:
+                    - id: my-number-field
+                      value: 100
+                    relationships:
+                      account:
+                      - 123
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"record\": {\n    \t\"id\": \"test-obj-1\",\n    \t\"externalId\": \"test-obj-1\",\n        \"schemaId\": \"6449c3f3-b68d-46d1-850b-c8aea998ce1b\",\n        \"fields\": [\n            {\n                \"id\": \"my-number-field\",\n                \"value\": 100\n            }\n        ],\n        \"relationships\": {\n            \"account\": [123]\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  record:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: test-obj-1
+                      externalId:
+                        type: string
+                        example: test-obj-1
+                      schemaId:
+                        type: string
+                        example: 6449c3f3-b68d-46d1-850b-c8aea998ce1b
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: my-number-field
+                            value:
+                              type: integer
+                              example: 100
+                              default: 0
+                      relationships:
+                        type: object
+                        properties:
+                          account:
+                            type: array
+                            items:
+                              type: integer
+                              example: 123
+                              default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"errors":[{"status":400,"title":"Bad Request"}]}'
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          default: 0
+                        title:
+                          type: string
+                          example: Bad Request
+        '422':
+          description: '422'
+          content:
+            text/plain:
+              examples:
+                invalid field value:
+                  value: "{\n  \"errors\": [\n    {\n      \"title\": \"Invalid value for field \\\"{field_name}\\\"\",\n      \"detail\": \"{field_name} cannot accept a value that is not defined in the schema.\",\n      \"source\": {\n        \"type\": \"pointer\",\n        \"value\": \"/data/attributes/{field_name}\"\n      }\n    }\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: Invalid value for field "{field_name}"
+                        detail:
+                          type: string
+                          example: '{field_name} cannot accept a value that is not defined in the schema.'
+                        source:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: pointer
+                            value:
+                              type: string
+                              example: /data/attributes/{field_name}
+      deprecated: false
+      tags:
+      - Custom Objects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /customObjects/records/{schemaId}/{recordId}:
+    get:
+      summary: ActiveCampaign Get a Record by Id
+      description: ''
+      operationId: get-a-single-record
+      parameters:
+      - name: schemaId
+        in: path
+        description: ID of schema
+        schema:
+          type: string
+        required: true
+      - name: recordId
+        in: path
+        description: ID of record
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"record\": {\n        \"id\": \"1fba439a-208e-48e6-bd23-f6c97c3e0519\",\n        \"externalId\": \"test-obj-1\",\n        \"schemaId\": \"6449c3f3-b68d-46d1-850b-c8aea998ce1b\",\n        \"fields\": [\n            {\n                \"id\": \"my-number-field\",\n                \"value\": 100\n            }\n        ],\n        \"relationships\": {\n            \"primary-contact\": [\n                \"14\"\n            ]\n        },\n        \"createdTimestamp\": \"2021-04-16T16:12:22.222685095Z\",\n        \"updatedTimestamp\": \"2021-04-16T16:13:12.022671090Z\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  record:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 1fba439a-208e-48e6-bd23-f6c97c3e0519
+                      externalId:
+                        type: string
+                        example: test-obj-1
+                      schemaId:
+                        type: string
+                        example: 6449c3f3-b68d-46d1-850b-c8aea998ce1b
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: my-number-field
+                            value:
+                              type: integer
+                              example: 100
+                              default: 0
+                      relationships:
+                        type: object
+                        properties:
+                          primary-contact:
+                            type: array
+                            items:
+                              type: string
+                              example: '14'
+                      createdTimestamp:
+                        type: string
+                        example: '2021-04-16T16:12:22.222685095Z'
+                      updatedTimestamp:
+                        type: string
+                        example: '2021-04-16T16:13:12.022671090Z'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"errors\": [\n    {\n      \"status\":400,\n      \"title\":\"Bad Request\"\n    }\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          default: 0
+                        title:
+                          type: string
+                          example: Bad Request
+      deprecated: false
+      tags:
+      - Custom Objects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a Record by Id
+      description: ''
+      operationId: delete-a-record
+      parameters:
+      - name: schemaId
+        in: path
+        description: ID of schema
+        schema:
+          type: string
+        required: true
+      - name: recordId
+        in: path
+        description: ID of record
+        schema:
+          type: string
+        required: true
+      responses:
+        '202':
+          description: '202'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"errors\": [\n    {\n      \"status\":400,\n      \"title\":\"Bad Request\"\n    }\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          default: 0
+                        title:
+                          type: string
+                          example: Bad Request
+      deprecated: false
+      tags:
+      - Custom Objects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /customObjects/records/{schemaId}/external/{externalId}:
+    delete:
+      summary: ActiveCampaign Delete a Record by External ID
+      description: ''
+      operationId: delete-a-record-by-external-id
+      parameters:
+      - name: schemaId
+        in: path
+        description: ID of schema
+        schema:
+          type: string
+        required: true
+      - name: externalId
+        in: path
+        description: External ID of record
+        schema:
+          type: string
+        required: true
+      responses:
+        '202':
+          description: '202'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"errors\": [\n    {\n      \"status\":400,\n      \"title\":\"Bad Request\"\n    }\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          default: 0
+                        title:
+                          type: string
+                          example: Bad Request
+      deprecated: false
+      tags:
+      - Custom Objects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

@@ -1,0 +1,340 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Bulk Import API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Bulk Import
+paths:
+  /import/bulk_import:
+    post:
+      summary: ActiveCampaign Bulk Import Contacts
+      description: ''
+      operationId: bulk-import-contacts
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      - name: Api-Token
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - contacts
+              properties:
+                contacts:
+                  type: array
+                  description: An array of objects containing information about a single contact. Up to 250 contacts may be included in a single request. The suggested minimum number of contacts is 10. If less than that, then contact/sync api request should be used.
+                  items:
+                    properties:
+                      email:
+                        type: string
+                        description: The contact's email.
+                      first_name:
+                        type: string
+                        description: The contact's first name
+                      last_name:
+                        type: string
+                        description: The contact's last name.
+                      phone:
+                        type: string
+                        description: The contact’s phone number.
+                      customer_acct_name:
+                        type: string
+                        description: The name of the contact’s account.
+                      tags:
+                        type: array
+                        description: Each string in the array will be added as a single tag to the contact. New tags will be created if they do not already exist.
+                        default: []
+                        items:
+                          type: string
+                      fields:
+                        type: array
+                        description: 'A list of custom fields to apply to the contact. Each field must contain two fields: Each contact may have up to N custom fields.'
+                        items:
+                          properties:
+                            id:
+                              type: integer
+                              description: The ID of the custom field. Custom fields must be referenced by the ID that ActiveCampaign assigns to them. You can retrieve the ID number for a custom field by using the "List all custom fields" API call.
+                              format: int32
+                            value:
+                              type: string
+                              description: The value of the custom field. Multiple values may be populated for multi-value fields by separating the different values by the double-pipe delimiter (“||”).
+                          required:
+                          - id
+                          - value
+                          type: object
+                      subscribe:
+                        type: array
+                        description: An array of lists to subscribe the contact to. Contacts may not be subscribed to lists which they have previously unsubscribed from. Each list object contains a single field.
+                        items:
+                          properties:
+                            listid:
+                              type: string
+                              description: 'The ID of the list to subscribe the contact to or unsubscribe the contact from. Lists must be referenced by the ID that ActiveCampaign assigns to them.  You can find the list ID by clicking the list in your ActiveCampaign account then viewing the URL bar. It will look something like this: /app/contacts/?listid=19&status=1  You can also retrieve the ID number for a list by using the "Retrieve all lists" API call.'
+                          type: object
+                      unsubscribe:
+                        type: array
+                        description: An array of lists to unsubscribe the contact to. Each list object contains a single field.
+                        items:
+                          properties:
+                            listid:
+                              type: string
+                              description: 'The ID of the list to subscribe the contact to or unsubscribe the contact from. Lists must be referenced by the ID that ActiveCampaign assigns to them.  You can find the list ID by clicking the list in your ActiveCampaign account then viewing the URL bar. It will look something like this: /app/contacts/?listid=19&status=1  You can also retrieve the ID number for a list by using the "Retrieve all lists" API call.'
+                          type: object
+                    required:
+                    - email
+                    type: object
+                callback:
+                  type: object
+                  description: Callback function to notify users when an import is complete.
+                  required:
+                  - url
+                  - requestType
+                  properties:
+                    url:
+                      type: string
+                      description: The URL endpoint which the importer will make a request to once the import has completed.
+                    requestType:
+                      type: string
+                      description: Can be set to either “GET” or “POST”. Determines the type of HTTP request which will be sent to the specified endpoint.
+                      default: POST
+                    detailed_results:
+                      type: string
+                      description: When set to “true” and the requestType parameter is set to “POST”, the callback will include the number of successes and failures in the originating request, as well as an array of error messages for each failed contact.
+                      default: 'true'
+                    params:
+                      type: array
+                      description: A list of parameters to include in the callback request. Add each parameter in the form of a key-value pair. For a GET request, each parameter will be appended to the end of the URL in a query string. For a POST request, parameters will be included in the body of the request.
+                      items:
+                        properties:
+                          key:
+                            type: string
+                          value:
+                            type: string
+                        type: object
+                    headers:
+                      type: array
+                      description: A list of headers to include in the callback request. Add each header in the form of a key-value pair.
+                      items:
+                        properties:
+                          key:
+                            type: string
+                          value:
+                            type: string
+                        type: object
+            examples:
+              Request Example:
+                value:
+                  contacts:
+                  - email: someone@somewhere.com
+                    first_name: Jane
+                    last_name: Doe
+                    phone: 123-456-7890
+                    customer_acct_name: ActiveCampaign
+                    exclude_automations: false
+                    tags:
+                    - dictumst
+                    - aliquam
+                    - augue quam
+                    - sollicitudin rutrum
+                    fields:
+                    - id: 1
+                      value: foo
+                    - id: 2
+                      value: '||foo||bar||baz||'
+                    subscribe:
+                    - listid: 1
+                    - listid: 2
+                    unsubscribe:
+                    - listid: 3
+                  callback:
+                    url: www.your_web_server.com
+                    requestType: POST
+                    detailed_results: 'true'
+                    params:
+                    - key: ''
+                      value: ''
+                    headers:
+                    - key: ''
+                      value: ''
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"Success\":1,\n   \"queued_contacts\":1,\n   \"batchId\":\"0641fbdd-f62f-4c2c-ba02-3a83d5d11ac9\",\n   \"message\":\"Contact import queued\"\n}"
+              schema:
+                type: object
+                properties:
+                  Success:
+                    type: integer
+                    example: 1
+                    default: 0
+                  queued_contacts:
+                    type: integer
+                    example: 1
+                    default: 0
+                  batchId:
+                    type: string
+                    example: 0641fbdd-f62f-4c2c-ba02-3a83d5d11ac9
+                  message:
+                    type: string
+                    example: Contact import queued
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Contact Create Fail:
+                  value: "{\n\t\"success\": 0,\n\t\"message\": \"JSON payload did not pass validation. Please fix failure Reasons and retry. The import was not queued for processing.\",\n\t\"failureReasons\": [{\n\t\t\"contact\": 230,\n\t\t\"failureReason\": \"Field‘ email’ incorrect format\"\n\t}]\n}"
+                Other Error:
+                  value: "{\n\t\"success\": 0,\n\t\"message\": \"Rate limit exceeded.\",\n\t\"failureReasons\": [\"Up to 100 imports may be requested per minute.Please batch contacts into larger requests, or retry this request in a minute.\"]\n}"
+              schema:
+                oneOf:
+                - title: Contact Create Fail
+                  type: object
+                  properties:
+                    success:
+                      type: integer
+                      example: 0
+                      default: 0
+                    message:
+                      type: string
+                      example: JSON payload did not pass validation. Please fix failure Reasons and retry. The import was not queued for processing.
+                    failureReasons:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          contact:
+                            type: integer
+                            example: 230
+                            default: 0
+                          failureReason:
+                            type: string
+                            example: Field‘ email’ incorrect format
+                - title: Other Error
+                  type: object
+                  properties:
+                    success:
+                      type: integer
+                      example: 0
+                      default: 0
+                    message:
+                      type: string
+                      example: Rate limit exceeded.
+                    failureReasons:
+                      type: array
+                      items:
+                        type: string
+                        example: Up to 100 imports may be requested per minute.Please batch contacts into larger requests, or retry this request in a minute.
+      deprecated: false
+      tags:
+      - Bulk Import
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign Bulk Import Status List
+      description: ''
+      operationId: bulk-import-status-list
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"outstanding\":[\n    {\"forDate\":\"2021-06-01\",\"batches\":\"333\",\"contacts\":\"83250\"}\n  ],\n  \"recentlyCompleted\":[\n    {\"forDate\":\"2021-06-01\",\"batches\":\"17\",\"contacts\":\"4250\"},\n    {\"forDate\":\"2021-06-02\",\"batches\":\"50\",\"contacts\":\"12500\"}\n  ]\n}"
+      deprecated: false
+      tags:
+      - Bulk Import
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /import/info:
+    get:
+      summary: ActiveCampaign Bulk Import Status Info
+      description: ''
+      operationId: bulk-import-status-info
+      parameters:
+      - name: batchId
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\":\"completed\",\n  \"success\":[\"123\",\"124\",\"125\",\"126\"],\n  \"failure\":[\n    \"invalid.email@invalidDomain\", \n    \"invalid'character@example.com\"\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: completed
+                  success:
+                    type: array
+                    items:
+                      type: string
+                      example: '123'
+                  failure:
+                    type: array
+                    items:
+                      type: string
+                      example: invalid.email@invalidDomain
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: '{"success":0,"message":"''batchId'' is a required field."}'
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: integer
+                    example: 0
+                    default: 0
+                  message:
+                    type: string
+                    example: '''batchId'' is a required field.'
+      deprecated: false
+      tags:
+      - Bulk Import
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

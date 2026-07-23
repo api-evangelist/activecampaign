@@ -1,0 +1,404 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Webhooks API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Webhooks
+paths:
+  /webhooks:
+    post:
+      summary: ActiveCampaign Create a Webhook
+      description: Create a new webhook
+      operationId: create-webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                webhook:
+                  properties:
+                    name:
+                      type: string
+                      description: A name (or label) to give this webhook.
+                    url:
+                      type: string
+                      description: The URL where the webhook will send the POST request when the event occurs. Note that for https endpoints, we only can send webhooks on port 443, the default https port.
+                    events:
+                      type: array
+                      description: The [event(s)](#section-events) that will trigger the webhook to fire.
+                      items:
+                        type: string
+                    sources:
+                      type: array
+                      description: The [source(s)](#section-sources) causing an event to occur.
+                      items:
+                        type: string
+                    listid:
+                      type: integer
+                      description: 'The id of a list associated with an event. If set, only events happening on this list id will trigger the webhook. This parameter has no effect on the following webhook events:     "subscriber_note",    "contact_tag_added",    "contact_tag_removed",    "contact_task_add",    "list_add",    "sms_sent",    "sms_reply",    "sms_unsub",    "deal_add",    "deal_update",    "deal_note_add",    "deal_pipeline_add",    "deal_stage_add",    "deal_task_add",    "deal_tasktype_add",    "deal_task_complete",    "account_add",    "account_update",    "account_contact_add",    "account_contact_update",'
+                      format: int32
+                  required:
+                  - name
+                  - url
+                  - events
+                  - sources
+                  type: object
+            examples:
+              JSON:
+                value:
+                  webhook:
+                    name: My Hook
+                    url: http://example.com/my-hook
+                    events:
+                    - subscribe
+                    - unsubscribe
+                    - sent
+                    sources:
+                    - public
+                    - system
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"webhook\": {\n    \"cdate\": \"2016-01-01T12:00:00-00:00\",\n    \"listid\": \"0\",\n    \"name\": \"My Hook\",\n    \"url\": \"http://example.com/my-hook\",\n    \"events\": [\n      \"subscribe\",\n      \"unsubscribe\",\n      \"sent\"\n    ],\n    \"sources\": [\n      \"public\",\n      \"system\"\n    ],\n    \"links\": [],\n    \"id\": \"1\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  webhook:
+                    type: object
+                    properties:
+                      cdate:
+                        type: string
+                        example: '2016-01-01T12:00:00-00:00'
+                      listid:
+                        type: string
+                        example: '0'
+                      name:
+                        type: string
+                        example: My Hook
+                      url:
+                        type: string
+                        example: http://example.com/my-hook
+                      events:
+                        type: array
+                        items:
+                          type: string
+                          example: subscribe
+                      sources:
+                        type: array
+                        items:
+                          type: string
+                          example: public
+                      links:
+                        type: array
+                      id:
+                        type: string
+                        example: '1'
+      deprecated: false
+      tags:
+      - Webhooks
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign List All Webhooks
+      description: List all existing webhooks
+      operationId: get-a-list-of-webhooks
+      parameters:
+      - name: filters[name]
+        in: query
+        description: Filter by webhook name
+        schema:
+          type: string
+      - name: filters[url]
+        in: query
+        description: Filter by webhook url
+        schema:
+          type: string
+      - name: filters[listid]
+        in: query
+        description: Filter by webhook's associated list
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"webhooks\": [\n    {\n      \"cdate\": \"2016-01-01T12:00:00-00:00\",\n      \"listid\": \"0\",\n      \"name\": \"My Hook\",\n      \"url\": \"http://example.com/my-hook\",\n      \"events\": [\n        \"subscribe\",\n        \"unsubscribe\",\n        \"sent\"\n      ],\n      \"sources\": [\n        \"public\",\n        \"system\"\n      ],\n      \"links\": [],\n      \"id\": \"1\"\n    },\n    {\n      \"cdate\": \"2016-01-01T12:00:00-00:00\",\n      \"listid\": \"0\",\n      \"name\": \"My Hook 2\",\n      \"url\": \"http://example.com/my-hook-2\",\n      \"events\": [\n        \"subscribe\"\n      ],\n      \"sources\": [\n        \"admin\"\n      ],\n      \"links\": [],\n      \"id\": \"2\"\n    },\n  ],\n  \"meta\": {\n    \"total\": \"2\"\n  }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Webhooks
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /webhooks/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Webhook
+      description: Retrieve an existing webhook
+      operationId: get-webhook
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"webhook\": {\n    \"cdate\": \"2016-01-01T12:00:00-00:00\",\n    \"listid\": \"0\",\n    \"name\": \"My hook\",\n    \"url\": \"http://example.com/my-hook\",\n    \"events\": [\n      \"subscribe\",\n      \"unsubscribe\",\n      \"sent\"\n    ],\n    \"sources\": [\n      \"admin\",\n      \"api\",\n      \"system\"\n    ],\n    \"links\": [],\n    \"id\": \"1\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  webhook:
+                    type: object
+                    properties:
+                      cdate:
+                        type: string
+                        example: '2016-01-01T12:00:00-00:00'
+                      listid:
+                        type: string
+                        example: '0'
+                      name:
+                        type: string
+                        example: My hook
+                      url:
+                        type: string
+                        example: http://example.com/my-hook
+                      events:
+                        type: array
+                        items:
+                          type: string
+                          example: subscribe
+                      sources:
+                        type: array
+                        items:
+                          type: string
+                          example: admin
+                      links:
+                        type: array
+                      id:
+                        type: string
+                        example: '1'
+      deprecated: false
+      tags:
+      - Webhooks
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Update a Webhook
+      description: Update an existing webhook
+      operationId: update-webhook
+      parameters:
+      - name: id
+        in: path
+        description: The webhook id
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                webhook:
+                  properties:
+                    name:
+                      type: string
+                      description: A name (or label) to give the webhook.
+                    url:
+                      type: string
+                      description: The URL where the webhook will send the POST request when the event occurs.
+                    events:
+                      type: array
+                      description: The The [event(s)](#section-events) that will trigger the webhook to fire. that will trigger the webhook to fire.
+                      items:
+                        type: string
+                    sources:
+                      type: array
+                      description: The [source(s)](#section-sources) causing an event to occur.
+                      items:
+                        type: string
+                    listid:
+                      type: integer
+                      description: The id of a list associated with an event (required for some events).
+                      format: int32
+                  required: []
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  webhook:
+                    name: My Hook
+                    url: http://example.com/my-hook
+                    events:
+                    - subscribe
+                    - unsubscribe
+                    - sent
+                    sources:
+                    - public
+                    - system
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"webhook\": {\n    \"cdate\": \"2016-01-01T12:00:00-00:00\",\n    \"listid\": \"0\",\n    \"name\": \"My Hook\",\n    \"url\": \"http://example.com/my-hook\",\n    \"events\": [\n      \"subscribe\",\n      \"unsubscribe\",\n      \"sent\"\n    ],\n    \"sources\": [\n      \"public\",\n      \"system\"\n    ],\n    \"links\": [],\n    \"id\": \"1\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  webhook:
+                    type: object
+                    properties:
+                      cdate:
+                        type: string
+                        example: '2016-01-01T12:00:00-00:00'
+                      listid:
+                        type: string
+                        example: '0'
+                      name:
+                        type: string
+                        example: My Hook
+                      url:
+                        type: string
+                        example: http://example.com/my-hook
+                      events:
+                        type: array
+                        items:
+                          type: string
+                          example: subscribe
+                      sources:
+                        type: array
+                        items:
+                          type: string
+                          example: public
+                      links:
+                        type: array
+                      id:
+                        type: string
+                        example: '1'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Webhooks
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a Webhook
+      description: Delete an existing webhook
+      operationId: delete-webhook
+      parameters:
+      - name: id
+        in: path
+        description: The webhook id
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Webhooks
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /webhook/events:
+    get:
+      summary: ActiveCampaign List All Webhook Events
+      description: List all available webhook events
+      operationId: get-a-list-of-webhook-events
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"webhookEvents\": [\n    \"bounce\",\n    \"click\",\n    \"contact_tag_added\",\n    \"contact_tag_removed\",\n    \"deal_add\",\n    \"deal_note_add\",\n    \"deal_pipeline_add\",\n    \"deal_stage_add\",\n    \"deal_task_add\",\n    \"deal_task_complete\",\n    \"deal_tasktype_add\",\n    \"deal_update\",\n    \"forward\",\n    \"list_add\",\n    \"open\",\n    \"reply\",\n    \"sent\",\n    \"share\",\n    \"sms_reply\",\n    \"sms_sent\",\n    \"sms_unsub\",\n    \"subscribe\",\n    \"subscriber_note\",\n    \"unsubscribe\",\n    \"update\"\n  ],\n  \"meta\": {\n    \"total\": 25\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  webhookEvents:
+                    type: array
+                    items:
+                      type: string
+                      example: bounce
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 25
+                        default: 0
+      deprecated: false
+      tags:
+      - Webhooks
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

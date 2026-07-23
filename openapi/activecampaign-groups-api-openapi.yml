@@ -1,0 +1,2170 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Groups API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Groups
+paths:
+  /groupMembers:
+    post:
+      summary: ActiveCampaign Add Custom Field to Field Group
+      description: ''
+      operationId: add-custom-field-to-field-group
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                groupMember:
+                  properties:
+                    rel_id:
+                      type: integer
+                      description: Custom field ID
+                      format: int32
+                    ordernum:
+                      type: integer
+                      description: Order within the field group, use null to append
+                      format: int32
+                    group_id:
+                      type: integer
+                      default: null
+                      format: int32
+                  required: []
+                  type: object
+            examples:
+              POST:
+                value:
+                  groupMember:
+                    rel_id: '10'
+                    ordernum: null
+                    group_id: '1'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"groupMember\": {\n        \"id\": 87,\n        \"group_id\": 1,\n        \"rel_id\": 10,\n        \"ordernum\": 18,\n        \"created_by\": 1,\n        \"updated_by\": 1,\n        \"links\": {\n            \"groupDefinition\": \"https://yourAccounut.api-us1.com/api/3/groupDefinitions/1\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  groupMember:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 87
+                        default: 0
+                      group_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      rel_id:
+                        type: integer
+                        example: 10
+                        default: 0
+                      ordernum:
+                        type: integer
+                        example: 18
+                        default: 0
+                      created_by:
+                        type: integer
+                        example: 1
+                        default: 0
+                      updated_by:
+                        type: integer
+                        example: 1
+                        default: 0
+                      links:
+                        type: object
+                        properties:
+                          groupDefinition:
+                            type: string
+                            example: https://yourAccounut.api-us1.com/api/3/groupDefinitions/1
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                rel_id left blank:
+                  value: "{\n    \"message\": \"Client error: `POST https://escape-velocity-grouper.cluster-private.app-us1.com/member` resulted in a `400 Bad Request` response:\\n{\\\"message\\\": {\\\"rel_id\\\": \\\"rel_id is required\\\"}}\\n\\n\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Client error: `POST https://escape-velocity-grouper.cluster-private.app-us1.com/member` resulted in a `400 Bad Request` response:
+
+                      {"message": {"rel_id": "rel_id is required"}}
+
+
+                      '
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for GroupDefinition with id 94\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for GroupDefinition with id 94
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"title\": \"The field title was not provided.\",\n            \"detail\": \"\",\n            \"code\": \"field_missing\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: The field title was not provided.
+                        detail:
+                          type: string
+                          example: ''
+                        code:
+                          type: string
+                          example: field_missing
+      deprecated: false
+      tags:
+      - Groups
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign Get All Custom Field Groups
+      description: ''
+      operationId: get-all-custom-field-groups
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"groupDefinitions\": [\n        {\n            \"id\": 1,\n            \"type_id\": 1,\n            \"label\": \"{**DEFAULT**}\",\n            \"ordernum\": 1,\n            \"links\": {\n                \"groupMembers\": \"https://account.api-us1.com/api/3/groupMembers?group_id=1\",\n                \"groupType\": \"https://account.api-us1.com/api/3/groupTypes/1\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"type_id\": 2,\n            \"label\": \"{**DEAL_DEFAULT**}\",\n            \"ordernum\": 2,\n            \"links\": {\n                \"groupMembers\": \"https://account.api-us1.com/api/3/groupMembers?group_id=2\",\n                \"groupType\": \"https://account.api-us1.com/api/3/groupTypes/2\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"type_id\": 3,\n            \"label\": \"{**ACCOUNT_DEFAULT**}\",\n            \"ordernum\": 3,\n            \"links\": {\n                \"groupMembers\": \"https://account.api-us1.com/api/3/groupMembers?group_id=3\",\n                \"groupType\": \"https://account.api-us1.com/api/3/groupTypes/3\"\n            }\n        },\n        {\n            \"id\": 21,\n            \"type_id\": 1,\n            \"label\": \"CustomName\",\n            \"ordernum\": 3,\n            \"links\": {\n                \"groupMembers\": \"https://account.api-us1.com/api/3/groupMembers?group_id=21\",\n                \"groupType\": \"https://account.api-us1.com/api/3/groupTypes/1\"\n            }\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  groupDefinitions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                          default: 0
+                        type_id:
+                          type: integer
+                          example: 1
+                          default: 0
+                        label:
+                          type: string
+                          example: '{**DEFAULT**}'
+                        ordernum:
+                          type: integer
+                          example: 1
+                          default: 0
+                        links:
+                          type: object
+                          properties:
+                            groupMembers:
+                              type: string
+                              example: https://account.api-us1.com/api/3/groupMembers?group_id=1
+                            groupType:
+                              type: string
+                              example: https://account.api-us1.com/api/3/groupTypes/1
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Groups
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /groupMembers/{groupID}:
+    delete:
+      summary: ActiveCampaign Delete Custom Field Field Group
+      description: ''
+      operationId: delete-custom-field-field-group
+      parameters:
+      - name: groupID
+        in: path
+        description: Group ID
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": 404,\n            \"title\": \"Not Found\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 404
+                          default: 0
+                        title:
+                          type: string
+                          example: Not Found
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              POST:
+                value:
+                  groupMember:
+                    rel_id: '10'
+                    ordernum: null
+                    group_id: '1'
+      tags:
+      - Groups
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign Get Custom Field Group by ID
+      description: ''
+      operationId: get-custom-field-to-field-group
+      parameters:
+      - name: groupID
+        in: path
+        description: Group ID
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"groupMember\": {\n        \"id\": 89,\n        \"group_id\": 1,\n        \"rel_id\": 5,\n        \"ordernum\": 20,\n        \"links\": {\n            \"groupDefinition\": \"https://:account.api-us1.com/api/3/groupDefinitions/1\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  groupMember:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 89
+                        default: 0
+                      group_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      rel_id:
+                        type: integer
+                        example: 5
+                        default: 0
+                      ordernum:
+                        type: integer
+                        example: 20
+                        default: 0
+                      links:
+                        type: object
+                        properties:
+                          groupDefinition:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/groupDefinitions/1
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": 404,\n            \"title\": \"Not Found\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 404
+                          default: 0
+                        title:
+                          type: string
+                          example: Not Found
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              POST:
+                value:
+                  groupMember:
+                    rel_id: '10'
+                    ordernum: null
+                    group_id: '1'
+      tags:
+      - Groups
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /groupDefinitions:
+    post:
+      summary: ActiveCampaign Create a Custom Field Group
+      description: Create a Custom Field Group
+      operationId: create-a-custom-field-group
+      parameters:
+      - name: groupDefinition.label
+        in: query
+        description: Field Group Name
+        schema:
+          type: string
+      - name: groupDefinition.ordernum
+        in: query
+        description: The order the custom field group will be shown
+        schema:
+          type: integer
+          format: int32
+      - name: groupDefinition.groupType
+        in: query
+        description: The group type (see note)
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                groupDefinition:
+                  type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"groupDefinition\": {\n        \"id\": 22,\n        \"type_id\": 1,\n        \"label\": \"Group Name Here\",\n        \"ordernum\": 4,\n        \"created_by\": 1,\n        \"updated_by\": 1,\n        \"links\": {\n            \"groupMembers\": \"https://account.api-us1.com/api/3/groupMembers?group_id=22\",\n            \"groupType\": \"https://account.api-us1.com/api/3/groupTypes/1\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  groupDefinition:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 22
+                        default: 0
+                      type_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      label:
+                        type: string
+                        example: Group Name Here
+                      ordernum:
+                        type: integer
+                        example: 4
+                        default: 0
+                      created_by:
+                        type: integer
+                        example: 1
+                        default: 0
+                      updated_by:
+                        type: integer
+                        example: 1
+                        default: 0
+                      links:
+                        type: object
+                        properties:
+                          groupMembers:
+                            type: string
+                            example: https://account.api-us1.com/api/3/groupMembers?group_id=22
+                          groupType:
+                            type: string
+                            example: https://account.api-us1.com/api/3/groupTypes/1
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Groups
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /groupMembers/{groupId}:
+    put:
+      summary: ActiveCampaign Update Custom Field Field Group
+      description: ''
+      operationId: update-custom-field-field-group
+      parameters:
+      - name: groupId
+        in: path
+        description: Field group ID (see notes)
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rel_id:
+                  type: integer
+                  description: Custom field ID
+                  format: int32
+                ordernum:
+                  type: integer
+                  description: Order within the field group, use null to append
+                  format: int32
+                group_id:
+                  type: integer
+                  default: null
+                  format: int32
+            examples:
+              POST:
+                value:
+                  groupMember:
+                    rel_id: '10'
+                    ordernum: null
+                    group_id: '1'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"groupMember\": {\n        \"id\": 87,\n        \"group_id\": 1,\n        \"rel_id\": 10,\n        \"ordernum\": 18,\n        \"created_by\": 1,\n        \"updated_by\": 1,\n        \"links\": {\n            \"groupDefinition\": \"https://yourAccounut.api-us1.com/api/3/groupDefinitions/1\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  groupMember:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 87
+                        default: 0
+                      group_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      rel_id:
+                        type: integer
+                        example: 10
+                        default: 0
+                      ordernum:
+                        type: integer
+                        example: 18
+                        default: 0
+                      created_by:
+                        type: integer
+                        example: 1
+                        default: 0
+                      updated_by:
+                        type: integer
+                        example: 1
+                        default: 0
+                      links:
+                        type: object
+                        properties:
+                          groupDefinition:
+                            type: string
+                            example: https://yourAccounut.api-us1.com/api/3/groupDefinitions/1
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                rel_id left blank:
+                  value: "{\n    \"message\": \"Client error: `POST https://escape-velocity-grouper.cluster-private.app-us1.com/member` resulted in a `400 Bad Request` response:\\n{\\\"message\\\": {\\\"rel_id\\\": \\\"rel_id is required\\\"}}\\n\\n\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Client error: `POST https://escape-velocity-grouper.cluster-private.app-us1.com/member` resulted in a `400 Bad Request` response:
+
+                      {"message": {"rel_id": "rel_id is required"}}
+
+
+                      '
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for GroupDefinition with id 94\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for GroupDefinition with id 94
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"title\": \"The field title was not provided.\",\n            \"detail\": \"\",\n            \"code\": \"field_missing\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: The field title was not provided.
+                        detail:
+                          type: string
+                          example: ''
+                        code:
+                          type: string
+                          example: field_missing
+      deprecated: false
+      tags:
+      - Groups
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /groups:
+    post:
+      summary: ActiveCampaign Create a Group
+      description: ''
+      operationId: create-a-new-group
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group:
+                  properties:
+                    title:
+                      type: string
+                      description: Title of the group to be created
+                    descript:
+                      type: string
+                      description: Group description
+                    pgMessageAdd:
+                      type: boolean
+                      description: Permission for adding messages
+                      default: false
+                    unsubscribelink:
+                      type: boolean
+                      description: Whether or not to force unsubscribe links
+                      default: false
+                    optinconfirm:
+                      type: boolean
+                      description: Whether or not to force optin confirm for this group
+                      default: false
+                    pgListAdd:
+                      type: boolean
+                      description: Permission for adding lists
+                      default: false
+                    pgListEdit:
+                      type: boolean
+                      description: Permission for editing lists
+                      default: false
+                    pgListDelete:
+                      type: boolean
+                      description: Permission for deleting lists
+                      default: false
+                    pgListHeaders:
+                      type: boolean
+                      description: Permission for managing custom email headers
+                      default: false
+                    pgListEmailaccount:
+                      type: boolean
+                      description: Permission for managing Unsubscribe By Email
+                      default: false
+                    pgListBounce:
+                      type: boolean
+                      description: Permission for accessing list bounce settings
+                      default: false
+                    pgMessageEdit:
+                      type: boolean
+                      description: Permission for editing messages
+                      default: false
+                    pgMessageDelete:
+                      type: boolean
+                      description: Permission for deleting messages
+                      default: false
+                    pgMessageSend:
+                      type: boolean
+                      description: Permission for sending messages
+                      default: false
+                    pgContactAdd:
+                      type: boolean
+                      description: Permission for adding contacts
+                      default: false
+                    pgContactEdit:
+                      type: boolean
+                      description: Permission for editing contacts
+                      default: false
+                    pgContactDelete:
+                      type: boolean
+                      description: Permission for deleting contacts
+                      default: false
+                    pgContactMerge:
+                      type: boolean
+                      description: Permission for merging contacts
+                      default: false
+                    pgContactImport:
+                      type: boolean
+                      description: Permission for importing contacts
+                      default: false
+                    pgContactApprove:
+                      type: boolean
+                      description: Permission for approving contacts
+                      default: false
+                    pgContactExport:
+                      type: boolean
+                      description: Permission for exporting contacts
+                      default: false
+                    pgContactSync:
+                      type: boolean
+                      description: Permission for syncing contacts
+                      default: false
+                    pgContactFilters:
+                      type: boolean
+                      description: Permission for managing contact list segments
+                      default: false
+                    pgContactActions:
+                      type: boolean
+                      description: Permission for managing contact actions
+                      default: false
+                    pgContactFields:
+                      type: boolean
+                      description: Permission for managing contact custom fields
+                      default: false
+                    pg_user_add:
+                      type: boolean
+                      description: Permission for adding users
+                      default: false
+                    pg_user_edit:
+                      type: boolean
+                      description: Permission for editing users
+                      default: false
+                    pg_user_delete:
+                      type: boolean
+                      description: Permission for deleting users
+                      default: false
+                    pgGroupAdd:
+                      type: boolean
+                      description: Permission for adding groups
+                      default: false
+                    pgGroupEdit:
+                      type: boolean
+                      description: Permission for editing groups
+                      default: false
+                    pgGroupDelete:
+                      type: boolean
+                      description: Permission for deleting groups
+                      default: false
+                    pgTemplateAdd:
+                      type: boolean
+                      description: Permission for adding templates
+                      default: false
+                    pgTemplateEdit:
+                      type: boolean
+                      description: Permission for editing templates
+                      default: false
+                    pgTemplateDelete:
+                      type: boolean
+                      description: Permission for deleting templates
+                      default: false
+                    pgPersonalizationAdd:
+                      type: boolean
+                      description: Permission for adding personalization tags
+                      default: false
+                    pgPersonalizationEdit:
+                      type: boolean
+                      description: Permission for editing personalization tags
+                      default: false
+                    pgPersonalizationDelete:
+                      type: boolean
+                      description: Permission for deleting personalization tags
+                      default: false
+                    pgAutomationManage:
+                      type: boolean
+                      default: false
+                    pgFormEdit:
+                      type: boolean
+                      description: Permission for editing subscription forms
+                      default: false
+                    pgReportsCampaign:
+                      type: boolean
+                      description: Permission for viewing campaign reports
+                      default: false
+                    pgReportsList:
+                      type: boolean
+                      description: Permission for viewing list reports
+                      default: false
+                    pgReportsUser:
+                      type: boolean
+                      description: Permission for viewing user reports
+                      default: false
+                    pgStartupReports:
+                      type: boolean
+                      description: Campaign ID of last campaign report viewed to decide whether to show link on startup
+                      default: false
+                    pgReportsTrend:
+                      type: boolean
+                      description: Permission for viewing trend reports
+                      default: false
+                    pgStartupGettingstarted:
+                      type: boolean
+                      description: Whether or not to show the "getting started" tutorial on overview page
+                      default: false
+                    pgDeal:
+                      type: boolean
+                      description: Permission for viewing deals
+                      default: false
+                    pgDealDelete:
+                      type: boolean
+                      description: Permission for deleting deals
+                      default: false
+                    pgDealReassign:
+                      type: boolean
+                      description: Permission for reassigning deals
+                      default: false
+                    pgDealGroupAdd:
+                      type: boolean
+                      description: Permission for adding deal groups
+                      default: false
+                    pgDealGroupEdit:
+                      type: boolean
+                      description: Permission for editing deal groups
+                      default: false
+                    pgDealGroupDelete:
+                      type: boolean
+                      description: Permission for deleting deals groups
+                      default: false
+                    pgSavedResponsesManage:
+                      type: boolean
+                      description: Permission for managing saved responses
+                      default: false
+                    pgTagManage:
+                      type: boolean
+                      description: Permission for managing tags
+                      default: false
+                    reqApproval:
+                      type: boolean
+                      description: Whether or not this group requires all campaigns to be approved
+                      default: false
+                    reqApproval1st:
+                      type: boolean
+                      description: Whether or not this group requires first campaign to be approved
+                      default: false
+                    reqApprovalNotify:
+                      type: string
+                      description: Who to notify for approval related issues (email)
+                    socialdata:
+                      type: boolean
+                      description: Whether or not to show social links in campaigns sent from this group
+                      default: false
+                  required:
+                  - title
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  group:
+                    title: TEST TITLE
+                    descript: Description Text
+                    unsubscribelink: '0'
+                    optinconfirm: '0'
+                    pgListAdd: 1
+                    pgListEdit: 1
+                    pgListDelete: 1
+                    pgListHeaders: 1
+                    pgListEmailaccount: 1
+                    pgListBounce: 1
+                    pgMessageAdd: 1
+                    pgMessageEdit: 1
+                    pgMessageDelete: 1
+                    pgMessageSend: 1
+                    pgContactAdd: 1
+                    pgContactEdit: 1
+                    pgContactDelete: 1
+                    pgContactMerge: 1
+                    pgContactImport: 1
+                    pgContactApprove: 1
+                    pgContactExport: 1
+                    pgContactSync: 1
+                    pgContactFilters: 1
+                    pgContactActions: 1
+                    pgContactFields: 1
+                    pg_user_add: '0'
+                    pg_user_edit: '0'
+                    pg_user_delete: '0'
+                    pgGroupAdd: 1
+                    pgGroupEdit: 1
+                    pgGroupDelete: 1
+                    pgTemplateAdd: 1
+                    pgTemplateEdit: 1
+                    pgTemplateDelete: 1
+                    pgPersonalizationAdd: 1
+                    pgPersonalizationEdit: 1
+                    pgPersonalizationDelete: 1
+                    pgAutomationManage: 1
+                    pgFormEdit: 1
+                    pgReportsCampaign: 1
+                    pgReportsList: 1
+                    pgReportsUser: 1
+                    pgReportsTrend: 1
+                    pgStartupReports: 1
+                    pgStartupGettingstarted: 1
+                    pgDeal: 1
+                    pgDealDelete: 1
+                    pgDealReassign: 1
+                    pgDealGroupAdd: 1
+                    pgDealGroupEdit: 1
+                    pgDealGroupDelete: 1
+                    pgSavedResponsesManage: 1
+                    reqApproval: 1
+                    reqApproval1st: 1
+                    reqApprovalNotify: JohnDoe@gmail.com
+                    socialdata: 0
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"group\": {\n        \"title\": \"My Groups Title\",\n        \"p_admin\": 1,\n        \"links\": {\n            \"userGroups\": \"https://:account.api-us1.com/api/:version/groups/7/userGroups\",\n            \"groupLimit\": \"https://:account.api-us1.com/api/:version/groups/7/groupLimit\",\n            \"dealGroupGroups\": \"https://:account.api-us1.com/api/:version/groups/7/dealGroupGroups\",\n            \"listGroups\": \"https://:account.api-us1.com/api/:version/groups/7/listGroups\",\n            \"addressGroups\": \"https://:account.api-us1.com/api/:version/groups/7/addressGroups\",\n            \"automationGroups\": \"https://:account.api-us1.com/api/:version/groups/7/automationGroups\"\n        },\n        \"id\": \"7\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  group:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: My Groups Title
+                      p_admin:
+                        type: integer
+                        example: 1
+                        default: 0
+                      links:
+                        type: object
+                        properties:
+                          userGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/7/userGroups
+                          groupLimit:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/7/groupLimit
+                          dealGroupGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/7/dealGroupGroups
+                          listGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/7/listGroups
+                          addressGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/7/addressGroups
+                          automationGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/7/automationGroups
+                      id:
+                        type: string
+                        example: '7'
+      deprecated: false
+      tags:
+      - Groups
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign List All Groups
+      description: ''
+      operationId: list-all-groups
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"groups\": [\n        {\n            \"title\": \"TEST TITLE\",\n            \"descript\": \"This is a group for admin users (people that can manage content)\",\n            \"unsubscribelink\": \"0\",\n            \"optinconfirm\": \"0\",\n            \"p_admin\": \"1\",\n            \"pgListAdd\": \"1\",\n            \"pgListEdit\": \"1\",\n            \"pgListDelete\": \"1\",\n            \"pgListHeaders\": \"1\",\n            \"pgListEmailaccount\": \"1\",\n            \"pgListBounce\": \"1\",\n            \"pgMessageAdd\": \"1\",\n            \"pgMessageEdit\": \"1\",\n            \"pgMessageDelete\": \"1\",\n            \"pgMessageSend\": \"1\",\n            \"pgContactAdd\": \"1\",\n            \"pgContactEdit\": \"1\",\n            \"pgContactDelete\": \"1\",\n            \"pgContactMerge\": \"1\",\n            \"pgContactImport\": \"1\",\n            \"pgContactApprove\": \"1\",\n            \"pgContactExport\": \"1\",\n            \"pgContactSync\": \"1\",\n            \"pgContactFilters\": \"1\",\n            \"pgContactActions\": \"0\",\n            \"pgContactFields\": \"1\",\n            \"pg_user_add\": \"1\",\n            \"pg_user_edit\": \"1\",\n            \"pg_user_delete\": \"1\",\n            \"pgGroupAdd\": \"1\",\n            \"pgGroupEdit\": \"1\",\n            \"pgGroupDelete\": \"1\",\n            \"pgTemplateAdd\": \"1\",\n            \"pgTemplateEdit\": \"1\",\n            \"pgTemplateDelete\": \"1\",\n            \"pgPersonalizationAdd\": \"1\",\n            \"pgPersonalizationEdit\": \"1\",\n            \"pgPersonalizationDelete\": \"1\",\n            \"pgAutomationManage\": \"1\",\n            \"pgFormEdit\": \"1\",\n            \"pgReportsCampaign\": \"1\",\n            \"pgReportsList\": \"1\",\n            \"pgReportsUser\": \"1\",\n            \"pgReportsTrend\": \"1\",\n            \"pgStartupReports\": \"1\",\n            \"pgStartupGettingstarted\": \"1\",\n            \"pgDeal\": \"1\",\n            \"pgDealDelete\": \"1\",\n            \"pgDealReassign\": \"1\",\n            \"pgDealGroupAdd\": \"1\",\n            \"pgDealGroupEdit\": \"1\",\n            \"pgDealGroupDelete\": \"1\",\n            \"pgSavedResponsesManage\": \"1\",\n            \"sdate\": \"2018-09-20T10:51:14-05:00\",\n            \"reqApproval\": \"0\",\n            \"reqApproval1st\": \"2\",\n            \"reqApprovalNotify\": \"\",\n            \"socialdata\": \"0\",\n            \"links\": {\n                \"userGroups\": \"https://:account.api-us1.com/api/3/groups/3/userGroups\",\n                \"groupLimit\": \"https://:account.api-us1.com/api/3/groups/3/groupLimit\",\n                \"dealGroupGroups\": \"https://:account.api-us1.com/api/3/groups/3/dealGroupGroups\",\n                \"listGroups\": \"https://:account.api-us1.com/api/3/groups/3/listGroups\",\n                \"addressGroups\": \"https://:account.api-us1.com/api/3/groups/3/addressGroups\",\n                \"automationGroups\": \"https://:account.api-us1.com/api/3/groups/3/automationGroups\"\n            },\n            \"id\": \"3\"\n        },\n        {\n            \"title\": \"TEST TITLE\",\n            \"descript\": null,\n            \"unsubscribelink\": \"0\",\n            \"optinconfirm\": \"0\",\n            \"p_admin\": \"1\",\n            \"pgListAdd\": \"0\",\n            \"pgListEdit\": \"0\",\n            \"pgListDelete\": \"0\",\n            \"pgListHeaders\": \"0\",\n            \"pgListEmailaccount\": \"0\",\n            \"pgListBounce\": \"0\",\n            \"pgMessageAdd\": \"0\",\n            \"pgMessageEdit\": \"0\",\n            \"pgMessageDelete\": \"0\",\n            \"pgMessageSend\": \"0\",\n            \"pgContactAdd\": \"0\",\n            \"pgContactEdit\": \"0\",\n            \"pgContactDelete\": \"0\",\n            \"pgContactMerge\": \"0\",\n            \"pgContactImport\": \"0\",\n            \"pgContactApprove\": \"0\",\n            \"pgContactExport\": \"0\",\n            \"pgContactSync\": \"0\",\n            \"pgContactFilters\": \"0\",\n            \"pgContactActions\": \"0\",\n            \"pgContactFields\": \"0\",\n            \"pg_user_add\": \"0\",\n            \"pg_user_edit\": \"0\",\n            \"pg_user_delete\": \"0\",\n            \"pgGroupAdd\": \"0\",\n            \"pgGroupEdit\": \"0\",\n            \"pgGroupDelete\": \"0\",\n            \"pgTemplateAdd\": \"0\",\n            \"pgTemplateEdit\": \"0\",\n            \"pgTemplateDelete\": \"0\",\n            \"pgPersonalizationAdd\": \"0\",\n            \"pgPersonalizationEdit\": \"0\",\n            \"pgPersonalizationDelete\": \"0\",\n            \"pgAutomationManage\": \"0\",\n            \"pgFormEdit\": \"0\",\n            \"pgReportsCampaign\": \"0\",\n            \"pgReportsList\": \"0\",\n            \"pgReportsUser\": \"0\",\n            \"pgReportsTrend\": \"1\",\n            \"pgStartupReports\": \"0\",\n            \"pgStartupGettingstarted\": \"1\",\n            \"pgDeal\": \"1\",\n            \"pgDealDelete\": \"1\",\n            \"pgDealReassign\": \"1\",\n            \"pgDealGroupAdd\": \"1\",\n            \"pgDealGroupEdit\": \"1\",\n            \"pgDealGroupDelete\": \"1\",\n            \"pgSavedResponsesManage\": \"0\",\n            \"sdate\": null,\n            \"reqApproval\": \"0\",\n            \"reqApproval1st\": \"2\",\n            \"reqApprovalNotify\": \"\",\n            \"socialdata\": \"0\",\n            \"links\": {\n                \"userGroups\": \"https://:account.api-us1.com/api/3/groups/5/userGroups\",\n                \"groupLimit\": \"https://:account.api-us1.com/api/3/groups/5/groupLimit\",\n                \"dealGroupGroups\": \"https://:account.api-us1.com/api/3/groups/5/dealGroupGroups\",\n                \"listGroups\": \"https://:account.api-us1.com/api/3/groups/5/listGroups\",\n                \"addressGroups\": \"https://:account.api-us1.com/api/3/groups/5/addressGroups\",\n                \"automationGroups\": \"https://:account.api-us1.com/api/3/groups/5/automationGroups\"\n            },\n            \"id\": \"5\"\n        },\n        {\n            \"title\": \"TEST TITLE\",\n            \"descript\": null,\n            \"unsubscribelink\": \"0\",\n            \"optinconfirm\": \"0\",\n            \"p_admin\": \"1\",\n            \"pgListAdd\": \"0\",\n            \"pgListEdit\": \"0\",\n            \"pgListDelete\": \"0\",\n            \"pgListHeaders\": \"0\",\n            \"pgListEmailaccount\": \"0\",\n            \"pgListBounce\": \"0\",\n            \"pgMessageAdd\": \"0\",\n            \"pgMessageEdit\": \"0\",\n            \"pgMessageDelete\": \"0\",\n            \"pgMessageSend\": \"0\",\n            \"pgContactAdd\": \"0\",\n            \"pgContactEdit\": \"0\",\n            \"pgContactDelete\": \"0\",\n            \"pgContactMerge\": \"0\",\n            \"pgContactImport\": \"0\",\n            \"pgContactApprove\": \"0\",\n            \"pgContactExport\": \"0\",\n            \"pgContactSync\": \"0\",\n            \"pgContactFilters\": \"0\",\n            \"pgContactActions\": \"0\",\n            \"pgContactFields\": \"0\",\n            \"pg_user_add\": \"0\",\n            \"pg_user_edit\": \"0\",\n            \"pg_user_delete\": \"0\",\n            \"pgGroupAdd\": \"0\",\n            \"pgGroupEdit\": \"0\",\n            \"pgGroupDelete\": \"0\",\n            \"pgTemplateAdd\": \"0\",\n            \"pgTemplateEdit\": \"0\",\n            \"pgTemplateDelete\": \"0\",\n            \"pgPersonalizationAdd\": \"0\",\n            \"pgPersonalizationEdit\": \"0\",\n            \"pgPersonalizationDelete\": \"0\",\n            \"pgAutomationManage\": \"0\",\n            \"pgFormEdit\": \"0\",\n            \"pgReportsCampaign\": \"0\",\n            \"pgReportsList\": \"0\",\n            \"pgReportsUser\": \"0\",\n            \"pgReportsTrend\": \"1\",\n            \"pgStartupReports\": \"0\",\n            \"pgStartupGettingstarted\": \"1\",\n            \"pgDeal\": \"1\",\n            \"pgDealDelete\": \"1\",\n            \"pgDealReassign\": \"1\",\n            \"pgDealGroupAdd\": \"1\",\n            \"pgDealGroupEdit\": \"1\",\n            \"pgDealGroupDelete\": \"1\",\n            \"pgSavedResponsesManage\": \"0\",\n            \"sdate\": null,\n            \"reqApproval\": \"0\",\n            \"reqApproval1st\": \"2\",\n            \"reqApprovalNotify\": \"\",\n            \"socialdata\": \"0\",\n            \"links\": {\n                \"userGroups\": \"https://:account.api-us1.com/api/3/groups/6/userGroups\",\n                \"groupLimit\": \"https://:account.api-us1.com/api/3/groups/6/groupLimit\",\n                \"dealGroupGroups\": \"https://:account.api-us1.com/api/3/groups/6/dealGroupGroups\",\n                \"listGroups\": \"https://:account.api-us1.com/api/3/groups/6/listGroups\",\n                \"addressGroups\": \"https://:account.api-us1.com/api/3/groups/6/addressGroups\",\n                \"automationGroups\": \"https://:account.api-us1.com/api/3/groups/6/automationGroups\"\n            },\n            \"id\": \"6\"\n        },\n        {\n            \"title\": \"TEST TITLE\",\n            \"descript\": null,\n            \"unsubscribelink\": \"0\",\n            \"optinconfirm\": \"0\",\n            \"p_admin\": \"1\",\n            \"pgListAdd\": \"0\",\n            \"pgListEdit\": \"0\",\n            \"pgListDelete\": \"0\",\n            \"pgListHeaders\": \"0\",\n            \"pgListEmailaccount\": \"0\",\n            \"pgListBounce\": \"0\",\n            \"pgMessageAdd\": \"0\",\n            \"pgMessageEdit\": \"0\",\n            \"pgMessageDelete\": \"0\",\n            \"pgMessageSend\": \"0\",\n            \"pgContactAdd\": \"0\",\n            \"pgContactEdit\": \"0\",\n            \"pgContactDelete\": \"0\",\n            \"pgContactMerge\": \"0\",\n            \"pgContactImport\": \"0\",\n            \"pgContactApprove\": \"0\",\n            \"pgContactExport\": \"0\",\n            \"pgContactSync\": \"0\",\n            \"pgContactFilters\": \"0\",\n            \"pgContactActions\": \"0\",\n            \"pgContactFields\": \"0\",\n            \"pg_user_add\": \"0\",\n            \"pg_user_edit\": \"0\",\n            \"pg_user_delete\": \"0\",\n            \"pgGroupAdd\": \"0\",\n            \"pgGroupEdit\": \"0\",\n            \"pgGroupDelete\": \"0\",\n            \"pgTemplateAdd\": \"0\",\n            \"pgTemplateEdit\": \"0\",\n            \"pgTemplateDelete\": \"0\",\n            \"pgPersonalizationAdd\": \"0\",\n            \"pgPersonalizationEdit\": \"0\",\n            \"pgPersonalizationDelete\": \"0\",\n            \"pgAutomationManage\": \"0\",\n            \"pgFormEdit\": \"0\",\n            \"pgReportsCampaign\": \"0\",\n            \"pgReportsList\": \"0\",\n            \"pgReportsUser\": \"0\",\n            \"pgReportsTrend\": \"1\",\n            \"pgStartupReports\": \"0\",\n            \"pgStartupGettingstarted\": \"1\",\n            \"pgDeal\": \"1\",\n            \"pgDealDelete\": \"1\",\n            \"pgDealReassign\": \"1\",\n            \"pgDealGroupAdd\": \"1\",\n            \"pgDealGroupEdit\": \"1\",\n            \"pgDealGroupDelete\": \"1\",\n            \"pgSavedResponsesManage\": \"0\",\n            \"sdate\": null,\n            \"reqApproval\": \"0\",\n            \"reqApproval1st\": \"2\",\n            \"reqApprovalNotify\": \"\",\n            \"socialdata\": \"0\",\n            \"links\": {\n                \"userGroups\": \"https://:account.api-us1.com/api/3/groups/7/userGroups\",\n                \"groupLimit\": \"https://:account.api-us1.com/api/3/groups/7/groupLimit\",\n                \"dealGroupGroups\": \"https://:account.api-us1.com/api/3/groups/7/dealGroupGroups\",\n                \"listGroups\": \"https://:account.api-us1.com/api/3/groups/7/listGroups\",\n                \"addressGroups\": \"https://:account.api-us1.com/api/3/groups/7/addressGroups\",\n                \"automationGroups\": \"https://:account.api-us1.com/api/3/groups/7/automationGroups\"\n            },\n            \"id\": \"7\"\n        }\n    ],\n    \"meta\": {\n        \"total\": \"4\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  groups:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: TEST TITLE
+                        descript:
+                          type: string
+                          example: This is a group for admin users (people that can manage content)
+                        unsubscribelink:
+                          type: string
+                          example: '0'
+                        optinconfirm:
+                          type: string
+                          example: '0'
+                        p_admin:
+                          type: string
+                          example: '1'
+                        pgListAdd:
+                          type: string
+                          example: '1'
+                        pgListEdit:
+                          type: string
+                          example: '1'
+                        pgListDelete:
+                          type: string
+                          example: '1'
+                        pgListHeaders:
+                          type: string
+                          example: '1'
+                        pgListEmailaccount:
+                          type: string
+                          example: '1'
+                        pgListBounce:
+                          type: string
+                          example: '1'
+                        pgMessageAdd:
+                          type: string
+                          example: '1'
+                        pgMessageEdit:
+                          type: string
+                          example: '1'
+                        pgMessageDelete:
+                          type: string
+                          example: '1'
+                        pgMessageSend:
+                          type: string
+                          example: '1'
+                        pgContactAdd:
+                          type: string
+                          example: '1'
+                        pgContactEdit:
+                          type: string
+                          example: '1'
+                        pgContactDelete:
+                          type: string
+                          example: '1'
+                        pgContactMerge:
+                          type: string
+                          example: '1'
+                        pgContactImport:
+                          type: string
+                          example: '1'
+                        pgContactApprove:
+                          type: string
+                          example: '1'
+                        pgContactExport:
+                          type: string
+                          example: '1'
+                        pgContactSync:
+                          type: string
+                          example: '1'
+                        pgContactFilters:
+                          type: string
+                          example: '1'
+                        pgContactActions:
+                          type: string
+                          example: '0'
+                        pgContactFields:
+                          type: string
+                          example: '1'
+                        pg_user_add:
+                          type: string
+                          example: '1'
+                        pg_user_edit:
+                          type: string
+                          example: '1'
+                        pg_user_delete:
+                          type: string
+                          example: '1'
+                        pgGroupAdd:
+                          type: string
+                          example: '1'
+                        pgGroupEdit:
+                          type: string
+                          example: '1'
+                        pgGroupDelete:
+                          type: string
+                          example: '1'
+                        pgTemplateAdd:
+                          type: string
+                          example: '1'
+                        pgTemplateEdit:
+                          type: string
+                          example: '1'
+                        pgTemplateDelete:
+                          type: string
+                          example: '1'
+                        pgPersonalizationAdd:
+                          type: string
+                          example: '1'
+                        pgPersonalizationEdit:
+                          type: string
+                          example: '1'
+                        pgPersonalizationDelete:
+                          type: string
+                          example: '1'
+                        pgAutomationManage:
+                          type: string
+                          example: '1'
+                        pgFormEdit:
+                          type: string
+                          example: '1'
+                        pgReportsCampaign:
+                          type: string
+                          example: '1'
+                        pgReportsList:
+                          type: string
+                          example: '1'
+                        pgReportsUser:
+                          type: string
+                          example: '1'
+                        pgReportsTrend:
+                          type: string
+                          example: '1'
+                        pgStartupReports:
+                          type: string
+                          example: '1'
+                        pgStartupGettingstarted:
+                          type: string
+                          example: '1'
+                        pgDeal:
+                          type: string
+                          example: '1'
+                        pgDealDelete:
+                          type: string
+                          example: '1'
+                        pgDealReassign:
+                          type: string
+                          example: '1'
+                        pgDealGroupAdd:
+                          type: string
+                          example: '1'
+                        pgDealGroupEdit:
+                          type: string
+                          example: '1'
+                        pgDealGroupDelete:
+                          type: string
+                          example: '1'
+                        pgSavedResponsesManage:
+                          type: string
+                          example: '1'
+                        sdate:
+                          type: string
+                          example: '2018-09-20T10:51:14-05:00'
+                        reqApproval:
+                          type: string
+                          example: '0'
+                        reqApproval1st:
+                          type: string
+                          example: '2'
+                        reqApprovalNotify:
+                          type: string
+                          example: ''
+                        socialdata:
+                          type: string
+                          example: '0'
+                        links:
+                          type: object
+                          properties:
+                            userGroups:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/groups/3/userGroups
+                            groupLimit:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/groups/3/groupLimit
+                            dealGroupGroups:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/groups/3/dealGroupGroups
+                            listGroups:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/groups/3/listGroups
+                            addressGroups:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/groups/3/addressGroups
+                            automationGroups:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/groups/3/automationGroups
+                        id:
+                          type: string
+                          example: '3'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '4'
+      deprecated: false
+      tags:
+      - Groups
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /groups/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Group
+      description: ''
+      operationId: retrieve-a-group
+      parameters:
+      - name: id
+        in: path
+        description: ID of the group to retrieve
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"group\": {\n        \"title\": \"TEST TITLE\",\n        \"descript\": \"This is a group for admin users (people that can manage content)\",\n        \"unsubscribelink\": \"0\",\n        \"optinconfirm\": \"0\",\n        \"p_admin\": \"1\",\n        \"pgListAdd\": \"1\",\n        \"pgListEdit\": \"1\",\n        \"pgListDelete\": \"1\",\n        \"pgListHeaders\": \"1\",\n        \"pgListEmailaccount\": \"1\",\n        \"pgListBounce\": \"1\",\n        \"pgMessageAdd\": \"1\",\n        \"pgMessageEdit\": \"1\",\n        \"pgMessageDelete\": \"1\",\n        \"pgMessageSend\": \"1\",\n        \"pgContactAdd\": \"1\",\n        \"pgContactEdit\": \"1\",\n        \"pgContactDelete\": \"1\",\n        \"pgContactMerge\": \"1\",\n        \"pgContactImport\": \"1\",\n        \"pgContactApprove\": \"1\",\n        \"pgContactExport\": \"1\",\n        \"pgContactSync\": \"1\",\n        \"pgContactFilters\": \"1\",\n        \"pgContactActions\": \"0\",\n        \"pgContactFields\": \"1\",\n        \"pg_user_add\": \"1\",\n        \"pg_user_edit\": \"1\",\n        \"pg_user_delete\": \"1\",\n        \"pgGroupAdd\": \"1\",\n        \"pgGroupEdit\": \"1\",\n        \"pgGroupDelete\": \"1\",\n        \"pgTemplateAdd\": \"1\",\n        \"pgTemplateEdit\": \"1\",\n        \"pgTemplateDelete\": \"1\",\n        \"pgPersonalizationAdd\": \"1\",\n        \"pgPersonalizationEdit\": \"1\",\n        \"pgPersonalizationDelete\": \"1\",\n        \"pgAutomationManage\": \"1\",\n        \"pgFormEdit\": \"1\",\n        \"pgReportsCampaign\": \"1\",\n        \"pgReportsList\": \"1\",\n        \"pgReportsUser\": \"1\",\n        \"pgReportsTrend\": \"1\",\n        \"pgStartupReports\": \"1\",\n        \"pgStartupGettingstarted\": \"1\",\n        \"pgDeal\": \"1\",\n        \"pgDealDelete\": \"1\",\n        \"pgDealReassign\": \"1\",\n        \"pgDealGroupAdd\": \"1\",\n        \"pgDealGroupEdit\": \"1\",\n        \"pgDealGroupDelete\": \"1\",\n        \"pgSavedResponsesManage\": \"1\",\n        \"sdate\": \"2018-09-20T10:51:14-05:00\",\n        \"reqApproval\": \"0\",\n        \"reqApproval1st\": \"2\",\n        \"reqApprovalNotify\": \"\",\n        \"socialdata\": \"0\",\n        \"links\": {\n            \"userGroups\": \"https://:account.api-us1.com/api/3/groups/3/userGroups\",\n            \"groupLimit\": \"https://:account.api-us1.com/api/3/groups/3/groupLimit\",\n            \"dealGroupGroups\": \"https://:account.api-us1.com/api/3/groups/3/dealGroupGroups\",\n            \"listGroups\": \"https://:account.api-us1.com/api/3/groups/3/listGroups\",\n            \"addressGroups\": \"https://:account.api-us1.com/api/3/groups/3/addressGroups\",\n            \"automationGroups\": \"https://:account.api-us1.com/api/3/groups/3/automationGroups\"\n        },\n        \"id\": \"3\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  group:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: TEST TITLE
+                      descript:
+                        type: string
+                        example: This is a group for admin users (people that can manage content)
+                      unsubscribelink:
+                        type: string
+                        example: '0'
+                      optinconfirm:
+                        type: string
+                        example: '0'
+                      p_admin:
+                        type: string
+                        example: '1'
+                      pgListAdd:
+                        type: string
+                        example: '1'
+                      pgListEdit:
+                        type: string
+                        example: '1'
+                      pgListDelete:
+                        type: string
+                        example: '1'
+                      pgListHeaders:
+                        type: string
+                        example: '1'
+                      pgListEmailaccount:
+                        type: string
+                        example: '1'
+                      pgListBounce:
+                        type: string
+                        example: '1'
+                      pgMessageAdd:
+                        type: string
+                        example: '1'
+                      pgMessageEdit:
+                        type: string
+                        example: '1'
+                      pgMessageDelete:
+                        type: string
+                        example: '1'
+                      pgMessageSend:
+                        type: string
+                        example: '1'
+                      pgContactAdd:
+                        type: string
+                        example: '1'
+                      pgContactEdit:
+                        type: string
+                        example: '1'
+                      pgContactDelete:
+                        type: string
+                        example: '1'
+                      pgContactMerge:
+                        type: string
+                        example: '1'
+                      pgContactImport:
+                        type: string
+                        example: '1'
+                      pgContactApprove:
+                        type: string
+                        example: '1'
+                      pgContactExport:
+                        type: string
+                        example: '1'
+                      pgContactSync:
+                        type: string
+                        example: '1'
+                      pgContactFilters:
+                        type: string
+                        example: '1'
+                      pgContactActions:
+                        type: string
+                        example: '0'
+                      pgContactFields:
+                        type: string
+                        example: '1'
+                      pg_user_add:
+                        type: string
+                        example: '1'
+                      pg_user_edit:
+                        type: string
+                        example: '1'
+                      pg_user_delete:
+                        type: string
+                        example: '1'
+                      pgGroupAdd:
+                        type: string
+                        example: '1'
+                      pgGroupEdit:
+                        type: string
+                        example: '1'
+                      pgGroupDelete:
+                        type: string
+                        example: '1'
+                      pgTemplateAdd:
+                        type: string
+                        example: '1'
+                      pgTemplateEdit:
+                        type: string
+                        example: '1'
+                      pgTemplateDelete:
+                        type: string
+                        example: '1'
+                      pgPersonalizationAdd:
+                        type: string
+                        example: '1'
+                      pgPersonalizationEdit:
+                        type: string
+                        example: '1'
+                      pgPersonalizationDelete:
+                        type: string
+                        example: '1'
+                      pgAutomationManage:
+                        type: string
+                        example: '1'
+                      pgFormEdit:
+                        type: string
+                        example: '1'
+                      pgReportsCampaign:
+                        type: string
+                        example: '1'
+                      pgReportsList:
+                        type: string
+                        example: '1'
+                      pgReportsUser:
+                        type: string
+                        example: '1'
+                      pgReportsTrend:
+                        type: string
+                        example: '1'
+                      pgStartupReports:
+                        type: string
+                        example: '1'
+                      pgStartupGettingstarted:
+                        type: string
+                        example: '1'
+                      pgDeal:
+                        type: string
+                        example: '1'
+                      pgDealDelete:
+                        type: string
+                        example: '1'
+                      pgDealReassign:
+                        type: string
+                        example: '1'
+                      pgDealGroupAdd:
+                        type: string
+                        example: '1'
+                      pgDealGroupEdit:
+                        type: string
+                        example: '1'
+                      pgDealGroupDelete:
+                        type: string
+                        example: '1'
+                      pgSavedResponsesManage:
+                        type: string
+                        example: '1'
+                      sdate:
+                        type: string
+                        example: '2018-09-20T10:51:14-05:00'
+                      reqApproval:
+                        type: string
+                        example: '0'
+                      reqApproval1st:
+                        type: string
+                        example: '2'
+                      reqApprovalNotify:
+                        type: string
+                        example: ''
+                      socialdata:
+                        type: string
+                        example: '0'
+                      links:
+                        type: object
+                        properties:
+                          userGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/groups/3/userGroups
+                          groupLimit:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/groups/3/groupLimit
+                          dealGroupGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/groups/3/dealGroupGroups
+                          listGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/groups/3/listGroups
+                          addressGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/groups/3/addressGroups
+                          automationGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/groups/3/automationGroups
+                      id:
+                        type: string
+                        example: '3'
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for Group with id 10\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for Group with id 10
+      deprecated: false
+      tags:
+      - Groups
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Update a Group
+      description: ''
+      operationId: update-a-group
+      parameters:
+      - name: id
+        in: path
+        description: ID of the group to update
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group:
+                  properties:
+                    title:
+                      type: string
+                    descript:
+                      type: string
+                      description: Group description
+                    pgMessageAdd:
+                      type: boolean
+                      description: Permission for adding messages
+                      default: false
+                    unsubscribelink:
+                      type: boolean
+                      description: Whether or not to force unsubscribe links
+                      default: false
+                    optinconfirm:
+                      type: boolean
+                      description: Whether or not to force optin confirm for this group
+                      default: false
+                    pgListAdd:
+                      type: boolean
+                      description: Permission for adding lists
+                      default: false
+                    pgListEdit:
+                      type: boolean
+                      description: Permission for editing lists
+                      default: false
+                    pgListDelete:
+                      type: boolean
+                      description: Permission for deleting lists
+                      default: false
+                    pgListHeaders:
+                      type: boolean
+                      description: Permission for managing custom email headers
+                      default: false
+                    pgListEmailaccount:
+                      type: boolean
+                      description: Permission for managing Unsubscribe By Email
+                      default: false
+                    pgListBounce:
+                      type: boolean
+                      description: Permission for accessing list bounce settings
+                      default: false
+                    pgMessageEdit:
+                      type: boolean
+                      description: Permission for editing messages
+                      default: false
+                    pgMessageDelete:
+                      type: boolean
+                      description: Permission for deleting messages
+                      default: false
+                    pgMessageSend:
+                      type: boolean
+                      description: Permission for sending messages
+                      default: false
+                    pgContactAdd:
+                      type: boolean
+                      description: Permission for adding contacts
+                      default: false
+                    pgContactEdit:
+                      type: boolean
+                      description: Permission for editing contacts
+                      default: false
+                    pgContactDelete:
+                      type: boolean
+                      description: Permission for deleting contacts
+                      default: false
+                    pgContactMerge:
+                      type: boolean
+                      description: Permission for merging contacts
+                      default: false
+                    pgContactImport:
+                      type: boolean
+                      description: Permission for importing contacts
+                      default: false
+                    pgContactApprove:
+                      type: boolean
+                      description: Permission for approving contacts
+                      default: false
+                    pgContactExport:
+                      type: boolean
+                      description: Permission for exporting contacts
+                      default: false
+                    pgContactSync:
+                      type: boolean
+                      description: Permission for syncing contacts
+                      default: false
+                    pgContactFilters:
+                      type: boolean
+                      description: Permission for managing contact list segments
+                      default: false
+                    pgContactActions:
+                      type: boolean
+                      description: Permission for managing contact actions
+                      default: false
+                    pgContactFields:
+                      type: boolean
+                      description: Permission for managing contact custom fields
+                      default: false
+                    pg_user_add:
+                      type: boolean
+                      description: Permission for adding users
+                      default: false
+                    pg_user_edit:
+                      type: boolean
+                      description: Permission for editing users
+                      default: false
+                    pg_user_delete:
+                      type: boolean
+                      description: Permission for deleting users
+                      default: false
+                    pgGroupAdd:
+                      type: boolean
+                      description: Permission for adding groups
+                      default: false
+                    pgGroupEdit:
+                      type: boolean
+                      description: Permission for editing groups
+                      default: false
+                    pgGroupDelete:
+                      type: boolean
+                      description: Permission for deleting groups
+                      default: false
+                    pgTemplateAdd:
+                      type: boolean
+                      description: Permission for adding templates
+                      default: false
+                    pgTemplateEdit:
+                      type: boolean
+                      description: Permission for editing templates
+                      default: false
+                    pgTemplateDelete:
+                      type: boolean
+                      description: Permission for deleting templates
+                      default: false
+                    pgPersonalizationAdd:
+                      type: boolean
+                      description: Permission for adding personalization tags
+                      default: false
+                    pgPersonalizationEdit:
+                      type: boolean
+                      description: Permission for editing personalization tags
+                      default: false
+                    pgPersonalizationDelete:
+                      type: boolean
+                      description: Permission for deleting personalization tags
+                      default: false
+                    pgAutomationManage:
+                      type: boolean
+                      default: false
+                    pgFormEdit:
+                      type: boolean
+                      description: Permission for editing subscription forms
+                      default: false
+                    pgReportsCampaign:
+                      type: boolean
+                      description: Permission for viewing campaign reports
+                      default: false
+                    pgReportsList:
+                      type: boolean
+                      description: Permission for viewing list reports
+                      default: false
+                    pgReportsUser:
+                      type: boolean
+                      description: Permission for viewing user reports
+                      default: false
+                    pgStartupReports:
+                      type: boolean
+                      description: Campaign ID of last campaign report viewed to decide whether to show link on startup
+                      default: false
+                    pgReportsTrend:
+                      type: boolean
+                      description: Permission for viewing trend reports
+                      default: false
+                    pgStartupGettingstarted:
+                      type: boolean
+                      description: Whether or not to show the "getting started" tutorial on overview page
+                      default: false
+                    pgDeal:
+                      type: boolean
+                      description: Permission for viewing deals
+                      default: false
+                    pgDealDelete:
+                      type: boolean
+                      description: Permission for deleting deals
+                      default: false
+                    pgDealReassign:
+                      type: boolean
+                      description: Permission for reassigning deals
+                      default: false
+                    pgDealGroupAdd:
+                      type: boolean
+                      description: Permission for adding deal groups
+                      default: false
+                    pgDealGroupEdit:
+                      type: boolean
+                      description: Permission for editing deal groups
+                      default: false
+                    pgDealGroupDelete:
+                      type: boolean
+                      description: Permission for deleting deals groups
+                      default: false
+                    pgSavedResponsesManage:
+                      type: boolean
+                      description: Permission for managing saved responses
+                      default: false
+                    reqApproval:
+                      type: boolean
+                      description: Whether or not this group requires all campaigns to be approved
+                      default: false
+                    reqApproval1st:
+                      type: boolean
+                      description: Whether or not this group requires first campaign to be approved
+                      default: false
+                    reqApprovalNotify:
+                      type: string
+                      description: Who to notify for approval related issues (email)
+                    socialdata:
+                      type: boolean
+                      description: Whether or not to show social links in campaigns sent from this group
+                      default: false
+                  required: []
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  group:
+                    title: TEST TITLE
+                    descript: Description Text
+                    unsubscribelink: '0'
+                    optinconfirm: '0'
+                    pgListAdd: 1
+                    pgListEdit: 1
+                    pgListDelete: 1
+                    pgListHeaders: 1
+                    pgListEmailaccount: 1
+                    pgListBounce: 1
+                    pgMessageAdd: 1
+                    pgMessageEdit: 1
+                    pgMessageDelete: 1
+                    pgMessageSend: 1
+                    pgContactAdd: 1
+                    pgContactEdit: 1
+                    pgContactDelete: 1
+                    pgContactMerge: 1
+                    pgContactImport: 1
+                    pgContactApprove: 1
+                    pgContactExport: 1
+                    pgContactSync: 1
+                    pgContactFilters: 1
+                    pgContactActions: 1
+                    pgContactFields: 1
+                    pg_user_add: '0'
+                    pg_user_edit: '0'
+                    pg_user_delete: '0'
+                    pgGroupAdd: 1
+                    pgGroupEdit: 1
+                    pgGroupDelete: 1
+                    pgTemplateAdd: 1
+                    pgTemplateEdit: 1
+                    pgTemplateDelete: 1
+                    pgPersonalizationAdd: 1
+                    pgPersonalizationEdit: 1
+                    pgPersonalizationDelete: 1
+                    pgAutomationManage: 1
+                    pgFormEdit: 1
+                    pgReportsCampaign: 1
+                    pgReportsList: 1
+                    pgReportsUser: 1
+                    pgReportsTrend: 1
+                    pgStartupReports: 1
+                    pgStartupGettingstarted: 1
+                    pgDeal: 1
+                    pgDealDelete: 1
+                    pgDealReassign: 1
+                    pgDealGroupAdd: 1
+                    pgDealGroupEdit: 1
+                    pgDealGroupDelete: 1
+                    pgSavedResponsesManage: 1
+                    reqApproval: 1
+                    reqApproval1st: 1
+                    reqApprovalNotify: JohnDoe@gmail.com
+                    socialdata: 0
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"group\": {\n        \"title\": \"My Groups Title\",\n        \"p_admin\": 1,\n        \"links\": {\n            \"userGroups\": \"https://:account.api-us1.com/api/:version/groups/7/userGroups\",\n            \"groupLimit\": \"https://:account.api-us1.com/api/:version/groups/7/groupLimit\",\n            \"dealGroupGroups\": \"https://:account.api-us1.com/api/:version/groups/7/dealGroupGroups\",\n            \"listGroups\": \"https://:account.api-us1.com/api/:version/groups/7/listGroups\",\n            \"addressGroups\": \"https://:account.api-us1.com/api/:version/groups/7/addressGroups\",\n            \"automationGroups\": \"https://:account.api-us1.com/api/:version/groups/7/automationGroups\"\n        },\n        \"id\": \"7\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  group:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: My Groups Title
+                      p_admin:
+                        type: integer
+                        example: 1
+                        default: 0
+                      links:
+                        type: object
+                        properties:
+                          userGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/7/userGroups
+                          groupLimit:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/7/groupLimit
+                          dealGroupGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/7/dealGroupGroups
+                          listGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/7/listGroups
+                          addressGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/7/addressGroups
+                          automationGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/7/automationGroups
+                      id:
+                        type: string
+                        example: '7'
+            text/plain:
+              examples:
+                Result:
+                  value: "{\n    \"group\": {\n        \"title\": \"TEST TITLE\",\n        \"descript\": \"Description Text\",\n        \"unsubscribelink\": \"0\",\n        \"optinconfirm\": \"0\",\n        \"p_admin\": \"1\",\n        \"pgListAdd\": 1,\n        \"pgListEdit\": 1,\n        \"pgListDelete\": 1,\n        \"pgListHeaders\": 1,\n        \"pgListEmailaccount\": 1,\n        \"pgListBounce\": 1,\n        \"pgMessageAdd\": 1,\n        \"pgMessageEdit\": 1,\n        \"pgMessageDelete\": 1,\n        \"pgMessageSend\": 1,\n        \"pgContactAdd\": 1,\n        \"pgContactEdit\": 1,\n        \"pgContactDelete\": 1,\n        \"pgContactMerge\": 1,\n        \"pgContactImport\": 1,\n        \"pgContactApprove\": 1,\n        \"pgContactExport\": 1,\n        \"pgContactSync\": 1,\n        \"pgContactFilters\": 1,\n        \"pgContactActions\": 1,\n        \"pgContactFields\": 1,\n        \"pg_user_add\": \"0\",\n        \"pg_user_edit\": \"0\",\n        \"pg_user_delete\": \"0\",\n        \"pgGroupAdd\": 1,\n        \"pgGroupEdit\": 1,\n        \"pgGroupDelete\": 1,\n        \"pgTemplateAdd\": 1,\n        \"pgTemplateEdit\": 1,\n        \"pgTemplateDelete\": 1,\n        \"pgPersonalizationAdd\": 1,\n        \"pgPersonalizationEdit\": 1,\n        \"pgPersonalizationDelete\": 1,\n        \"pgAutomationManage\": 1,\n        \"pgFormEdit\": 1,\n        \"pgReportsCampaign\": 1,\n        \"pgReportsList\": 1,\n        \"pgReportsUser\": 1,\n        \"pgReportsTrend\": 1,\n        \"pgStartupReports\": 1,\n        \"pgStartupGettingstarted\": 1,\n        \"pgDeal\": 1,\n        \"pgDealDelete\": 1,\n        \"pgDealReassign\": 1,\n        \"pgDealGroupAdd\": 1,\n        \"pgDealGroupEdit\": 1,\n        \"pgDealGroupDelete\": 1,\n        \"pgSavedResponsesManage\": 1,\n        \"sdate\": \"2018-09-29T22:08:36-05:00\",\n        \"reqApproval\": 1,\n        \"reqApproval1st\": 1,\n        \"reqApprovalNotify\": \"JohnDoe@gmail.com\",\n        \"socialdata\": \"0\",\n        \"links\": {\n            \"userGroups\": \"https://:account.api-us1.com/api/:version/groups/5/userGroups\",\n            \"groupLimit\": \"https://:account.api-us1.com/api/:version/groups/5/groupLimit\",\n            \"dealGroupGroups\": \"https://:account.api-us1.com/api/:version/groups/5/dealGroupGroups\",\n            \"listGroups\": \"https://:account.api-us1.com/api/:version/groups/5/listGroups\",\n            \"addressGroups\": \"https://:account.api-us1.com/api/:version/groups/5/addressGroups\",\n            \"automationGroups\": \"https://:account.api-us1.com/api/:version/groups/5/automationGroups\"\n        },\n        \"id\": \"5\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  group:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: TEST TITLE
+                      descript:
+                        type: string
+                        example: Description Text
+                      unsubscribelink:
+                        type: string
+                        example: '0'
+                      optinconfirm:
+                        type: string
+                        example: '0'
+                      p_admin:
+                        type: string
+                        example: '1'
+                      pgListAdd:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgListEdit:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgListDelete:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgListHeaders:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgListEmailaccount:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgListBounce:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgMessageAdd:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgMessageEdit:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgMessageDelete:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgMessageSend:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgContactAdd:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgContactEdit:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgContactDelete:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgContactMerge:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgContactImport:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgContactApprove:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgContactExport:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgContactSync:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgContactFilters:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgContactActions:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgContactFields:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pg_user_add:
+                        type: string
+                        example: '0'
+                      pg_user_edit:
+                        type: string
+                        example: '0'
+                      pg_user_delete:
+                        type: string
+                        example: '0'
+                      pgGroupAdd:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgGroupEdit:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgGroupDelete:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgTemplateAdd:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgTemplateEdit:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgTemplateDelete:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgPersonalizationAdd:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgPersonalizationEdit:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgPersonalizationDelete:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgAutomationManage:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgFormEdit:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgReportsCampaign:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgReportsList:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgReportsUser:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgReportsTrend:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgStartupReports:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgStartupGettingstarted:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgDeal:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgDealDelete:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgDealReassign:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgDealGroupAdd:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgDealGroupEdit:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgDealGroupDelete:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pgSavedResponsesManage:
+                        type: integer
+                        example: 1
+                        default: 0
+                      sdate:
+                        type: string
+                        example: '2018-09-29T22:08:36-05:00'
+                      reqApproval:
+                        type: integer
+                        example: 1
+                        default: 0
+                      reqApproval1st:
+                        type: integer
+                        example: 1
+                        default: 0
+                      reqApprovalNotify:
+                        type: string
+                        example: JohnDoe@gmail.com
+                      socialdata:
+                        type: string
+                        example: '0'
+                      links:
+                        type: object
+                        properties:
+                          userGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/5/userGroups
+                          groupLimit:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/5/groupLimit
+                          dealGroupGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/5/dealGroupGroups
+                          listGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/5/listGroups
+                          addressGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/5/addressGroups
+                          automationGroups:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/groups/5/automationGroups
+                      id:
+                        type: string
+                        example: '5'
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for Group with id 8\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for Group with id 8
+      deprecated: false
+      tags:
+      - Groups
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a Group
+      description: ''
+      operationId: delete-a-group-1
+      parameters:
+      - name: id
+        in: path
+        description: ID of the group to be deleted
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Groups
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /groupLimits:
+    get:
+      summary: ActiveCampaign List All Group Limits
+      description: ''
+      operationId: list-all-group-limits
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\"groupLimits\": [\n\t\t{\n\t\t\t\"groupid\": \"1\",\n\t\t\t\"limitMail\": \"0\",\n\t\t\t\"limitMailType\": \"month\",\n\t\t\t\"limitContact\": \"0\",\n\t\t\t\"limitList\": \"0\",\n\t\t\t\"limitCampaign\": \"0\",\n\t\t\t\"limitCampaignType\": \"month\",\n\t\t\t\"limitAttachment\": \"-1\",\n\t\t\t\"limitUser\": \"0\",\n\t\t\t\"abuseRatio\": \"4\",\n\t\t\t\"forceSenderInfo\": \"0\",\n\t\t\t\"links\": {\n\t\t\t\t\"group\": \"https://:account.api-us1.com/api/3/groupLimits/1/group\"\n\t\t\t},\n\t\t\t\"id\": \"1\",\n\t\t\t\"group\": \"1\"\n\t\t},\n\t\t{\n\t\t\t\"groupid\": \"2\",\n\t\t\t\"limitMail\": \"0\",\n\t\t\t\"limitMailType\": \"month\",\n\t\t\t\"limitContact\": \"0\",\n\t\t\t\"limitList\": \"0\",\n\t\t\t\"limitCampaign\": \"0\",\n\t\t\t\"limitCampaignType\": \"month\",\n\t\t\t\"limitAttachment\": \"-1\",\n\t\t\t\"limitUser\": \"0\",\n\t\t\t\"abuseRatio\": \"4\",\n\t\t\t\"forceSenderInfo\": \"0\",\n\t\t\t\"links\": {\n\t\t\t\t\"group\": \"https://:accounts.api-us1.com/api/3/groupLimits/2/group\"\n\t\t\t},\n\t\t\t\"id\": \"2\",\n\t\t\t\"group\": \"2\"\n\t\t},\n\t\t{\n\t\t\t\"groupid\": \"3\",\n\t\t\t\"limitMail\": \"0\",\n\t\t\t\"limitMailType\": \"month\",\n\t\t\t\"limitContact\": \"0\",\n\t\t\t\"limitList\": \"0\",\n\t\t\t\"limitCampaign\": \"0\",\n\t\t\t\"limitCampaignType\": \"month\",\n\t\t\t\"limitAttachment\": \"-1\",\n\t\t\t\"limitUser\": \"0\",\n\t\t\t\"abuseRatio\": \"4\",\n\t\t\t\"forceSenderInfo\": \"0\",\n\t\t\t\"links\": {\n\t\t\t\t\"group\": \"https://:account.api-us1.com/api/3/groupLimits/3/group\"\n\t\t\t},\n\t\t\t\"id\": \"3\",\n\t\t\t\"group\": \"3\"\n\t\t},\n\t\t{\n\t\t\t\"groupid\": \"4\",\n\t\t\t\"limitMail\": \"0\",\n\t\t\t\"limitMailType\": \"month\",\n\t\t\t\"limitContact\": \"0\",\n\t\t\t\"limitList\": \"0\",\n\t\t\t\"limitCampaign\": \"0\",\n\t\t\t\"limitCampaignType\": \"month\",\n\t\t\t\"limitAttachment\": \"-1\",\n\t\t\t\"limitUser\": \"0\",\n\t\t\t\"abuseRatio\": \"4\",\n\t\t\t\"forceSenderInfo\": \"0\",\n\t\t\t\"links\": {\n\t\t\t\t\"group\": \"https://:account.api-us1.com/api/3/groupLimits/4/group\"\n\t\t\t},\n\t\t\t\"id\": \"4\",\n\t\t\t\"group\": \"4\"\n\t\t}\n\t],\n\t\"meta\": {\n\t\t\"total\": \"4\"\n\t}\n}"
+              schema:
+                type: object
+                properties:
+                  groupLimits:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        groupid:
+                          type: string
+                          example: '1'
+                        limitMail:
+                          type: string
+                          example: '0'
+                        limitMailType:
+                          type: string
+                          example: month
+                        limitContact:
+                          type: string
+                          example: '0'
+                        limitList:
+                          type: string
+                          example: '0'
+                        limitCampaign:
+                          type: string
+                          example: '0'
+                        limitCampaignType:
+                          type: string
+                          example: month
+                        limitAttachment:
+                          type: string
+                          example: '-1'
+                        limitUser:
+                          type: string
+                          example: '0'
+                        abuseRatio:
+                          type: string
+                          example: '4'
+                        forceSenderInfo:
+                          type: string
+                          example: '0'
+                        links:
+                          type: object
+                          properties:
+                            group:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/groupLimits/1/group
+                        id:
+                          type: string
+                          example: '1'
+                        group:
+                          type: string
+                          example: '1'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '4'
+      deprecated: false
+      tags:
+      - Groups
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

@@ -1,0 +1,211 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Event Tracking API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Event Tracking
+paths:
+  /eventTrackingEvents:
+    post:
+      summary: ActiveCampaign Create a New Event (name Only)
+      description: Create a new event tracking event (name only)
+      operationId: create-a-new-event-name-only
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                eventTrackingEvent:
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the event
+                  required:
+                  - name
+                  type: object
+            examples:
+              JSON:
+                value:
+                  eventTrackingEvent:
+                    name: my new fab event
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\"eventTrackingEvent\": {\n\t\t\"name\": \"my new fab event\"\n\t}\n}"
+              schema:
+                type: object
+                properties:
+                  eventTrackingEvent:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: my new fab event
+      deprecated: false
+      tags:
+      - Event Tracking
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign List All Events (names Only)
+      description: List the names of tracked events
+      operationId: list-all-event-types
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"eventTrackingEvents\": [\n    {\n      \"name\": \"__pagevisit\"\n    },\n    {\n      \"name\": \"__redir\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 2,\n  }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Event Tracking
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /eventTracking:
+    get:
+      summary: ActiveCampaign Retrieve Event Tracking Status
+      description: Get event tracking status (enabled or disabled)
+      operationId: retrieve-event-tracking-status
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"eventTracking\" {\n    \"enabled\": true\n  }\n}"
+      deprecated: false
+      tags:
+      - Event Tracking
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Enable/disable
+      description: Enable or disable event tracking
+      operationId: enable-disable-event-tracking
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                eventTracking:
+                  properties:
+                    enabled:
+                      type: boolean
+                      description: Whether event tracking should be enabled
+                  required:
+                  - enabled
+                  type: object
+            examples:
+              Enable:
+                value:
+                  eventTracking:
+                    enabled: true
+              Disable:
+                value:
+                  eventTracking:
+                    enabled: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"eventTracking\" {\n    \"enabled\": true\n  }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Event Tracking
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /eventTrackingEvents/{eventName}:
+    delete:
+      summary: ActiveCampaign Delete Event (name Only)
+      description: Remove an existing event tracking event (name only)
+      operationId: remove-event-name-only
+      parameters:
+      - name: eventName
+        in: path
+        description: Name of event to delete. Spaces in names are allowed, but must be encoded (for example, "my%20event").
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Event Tracking
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

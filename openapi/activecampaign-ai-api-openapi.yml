@@ -1,0 +1,160 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts AI API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: AI
+paths:
+  /sms/broadcasts/ai:
+    post:
+      tags:
+      - AI
+      summary: ActiveCampaign Create AI-generated Broadcast
+      description: Creates a broadcast using AI based on prompt and tone
+      operationId: createAIBroadcast
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AIBroadcastRequest'
+      responses:
+        '200':
+          description: AI broadcast request initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AIBroadcastResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Update Broadcast with AI
+      description: Updates an existing broadcast using AI
+      operationId: updateAIBroadcast
+      tags:
+      - AI
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AIBroadcastUpdateRequest'
+      responses:
+        '200':
+          description: AI broadcast update request initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AIBroadcastResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sms/broadcasts/ai/{Id}:
+    get:
+      tags:
+      - AI
+      summary: ActiveCampaign Get AI Broadcast Request Status
+      description: Returns the current status of the AI process execution
+      operationId: getAIBroadcastStatus
+      parameters:
+      - name: Id
+        in: path
+        required: true
+        description: Request ID from AI broadcast creation
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AIBroadcastStatus'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    AIBroadcastStatus:
+      type: object
+      properties:
+        source:
+          type: string
+          enum:
+          - ai_index
+          - sms_index
+          - ai_builder
+        status:
+          type: string
+          enum:
+          - in_progress
+          - error
+          - success
+        broadcastId:
+          type: integer
+          nullable: true
+    AIBroadcastUpdateRequest:
+      type: object
+      required:
+      - source
+      - prompt
+      - tone
+      - broadcastId
+      properties:
+        source:
+          type: string
+          enum:
+          - ai_index
+          - sms_index
+          - ai_builder
+        prompt:
+          type: string
+        tone:
+          type: string
+        broadcastId:
+          type: integer
+    AIBroadcastRequest:
+      type: object
+      required:
+      - source
+      - prompt
+      - tone
+      properties:
+        source:
+          type: string
+          enum:
+          - ai_index
+          - sms_index
+          - ai_builder
+        prompt:
+          type: string
+          description: User prompt for AI generation
+        tone:
+          type: string
+          description: Desired tone for the message
+    AIBroadcastResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: External identifier to track the request
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

@@ -1,0 +1,104 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Exports API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Exports
+paths:
+  /sms/broadcasts/export:
+    post:
+      tags:
+      - Exports
+      summary: ActiveCampaign Export Broadcast Metrics
+      description: Export broadcast performance metrics as CSV
+      operationId: exportBroadcastMetrics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  items:
+                    type: integer
+      responses:
+        '200':
+          description: Export generated successfully
+          content:
+            text/csv:
+              schema:
+                type: string
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sms/broadcasts/{broadcastId}/recipients/export:
+    post:
+      tags:
+      - Exports
+      summary: ActiveCampaign Export Broadcast Recipients
+      description: Export recipient data as CSV including full contact records
+      operationId: exportBroadcastRecipients
+      parameters:
+      - name: broadcastId
+        in: path
+        required: true
+        description: Broadcast ID
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                  format: date
+                end_date:
+                  type: string
+                  format: date
+                engagement:
+                  type: array
+                  items:
+                    type: string
+                deliverability:
+                  type: array
+                  items:
+                    type: string
+                search:
+                  type: string
+                order:
+                  type: object
+      responses:
+        '200':
+          description: Export generated successfully
+          content:
+            text/csv:
+              schema:
+                type: string
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

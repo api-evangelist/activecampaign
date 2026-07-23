@@ -1,0 +1,943 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Campaigns API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Campaigns
+paths:
+  /campaigns:
+    get:
+      summary: ActiveCampaign List All Campaigns
+      description: ''
+      operationId: list-all-campaigns
+      parameters:
+      - name: orders[sdate]
+        in: query
+        description: Order campaigns by send date
+        schema:
+          type: string
+          default: ASC
+      - name: orders[ldate]
+        in: query
+        description: Order campaigns by last send date
+        schema:
+          type: string
+      - name: filters[seriesid]
+        in: query
+        description: Filter to return the campaigns from the targeted automationId/seriesIds
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"campaigns\": [\n        {\n            \"type\": \"single\",\n            \"userid\": \"1\",\n            \"segmentid\": \"0\",\n            \"bounceid\": \"-1\",\n            \"realcid\": \"0\",\n            \"sendid\": \"0\",\n            \"threadid\": \"0\",\n            \"seriesid\": \"0\",\n            \"formid\": \"1\",\n            \"basetemplateid\": \"90a1d1ab6ad33e95708caf6472dc1724f698c694\",\n            \"basemessageid\": \"0\",\n            \"addressid\": \"0\",\n            \"source\": \"web\",\n            \"name\": \"Opt In Email\",\n            \"cdate\": \"2018-08-17T13:47:31-05:00\",\n            \"mdate\": \"2018-08-17T13:47:31-05:00\",\n            \"sdate\": null,\n            \"ldate\": null,\n            \"send_amt\": \"0\",\n            \"total_amt\": \"0\",\n            \"opens\": \"0\",\n            \"uniqueopens\": \"0\",\n            \"linkclicks\": \"0\",\n            \"uniquelinkclicks\": \"0\",\n            \"subscriberclicks\": \"0\",\n            \"forwards\": \"0\",\n            \"uniqueforwards\": \"0\",\n            \"hardbounces\": \"0\",\n            \"softbounces\": \"0\",\n            \"unsubscribes\": \"0\",\n            \"unsubreasons\": \"0\",\n            \"updates\": \"0\",\n            \"socialshares\": \"0\",\n            \"replies\": \"0\",\n            \"uniquereplies\": \"0\",\n            \"status\": \"0\",\n            \"public\": \"1\",\n            \"mail_transfer\": \"0\",\n            \"mail_send\": \"0\",\n            \"mail_cleanup\": \"0\",\n            \"mailer_log_file\": \"0\",\n            \"tracklinks\": \"all\",\n            \"tracklinksanalytics\": \"0\",\n            \"trackreads\": \"1\",\n            \"trackreadsanalytics\": \"1\",\n            \"analytics_campaign_name\": \"\",\n            \"tweet\": \"0\",\n            \"facebook\": \"0\",\n            \"survey\": \"\",\n            \"embed_images\": \"0\",\n            \"htmlunsub\": \"0\",\n            \"textunsub\": \"0\",\n            \"htmlunsubdata\": null,\n            \"textunsubdata\": null,\n            \"recurring\": \"day1\",\n            \"willrecur\": \"0\",\n            \"split_type\": \"even\",\n            \"split_content\": \"0\",\n            \"split_offset\": \"2\",\n            \"split_offset_type\": \"day\",\n            \"split_winner_messageid\": \"0\",\n            \"split_winner_awaiting\": \"0\",\n            \"responder_offset\": \"0\",\n            \"responder_type\": \"subscribe\",\n            \"responder_existing\": \"0\",\n            \"reminder_field\": \"sdate\",\n            \"reminder_format\": null,\n            \"reminder_type\": \"month_day\",\n            \"reminder_offset\": \"0\",\n            \"reminder_offset_type\": \"day\",\n            \"reminder_offset_sign\": \"+\",\n            \"reminder_last_cron_run\": null,\n            \"activerss_interval\": \"day1\",\n            \"activerss_url\": null,\n            \"activerss_items\": \"10\",\n            \"ip4\": \"643992596\",\n            \"laststep\": \"designer\",\n            \"managetext\": \"0\",\n            \"schedule\": \"0\",\n            \"scheduleddate\": null,\n            \"waitpreview\": \"0\",\n            \"deletestamp\": null,\n            \"replysys\": \"0\",\n            \"links\": {\n                \"user\": \"https://:account.api-us1.com/api/3/campaigns/1/user\",\n                \"automation\": \"https://:account.api-us1.com/api/3/campaigns/1/automation\",\n                \"campaignMessage\": \"https://:account.api-us1.com/api/3/campaigns/1/campaignMessage\",\n                \"campaignMessages\": \"https://:account.api-us1.com/api/3/campaigns/1/campaignMessages\",\n                \"links\": \"https://:account.api-us1.com/api/3/campaigns/1/links\",\n                \"campaignLists\": \"https://:account.api-us1.com/api/3/campaigns/1/campaignLists\"\n            },\n            \"id\": \"1\",\n            \"user\": \"1\",\n            \"automation\": null\n        }\n    ],\n    \"meta\": {\n        \"total\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  campaigns:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          example: single
+                        userid:
+                          type: string
+                          example: '1'
+                        segmentid:
+                          type: string
+                          example: '0'
+                        bounceid:
+                          type: string
+                          example: '-1'
+                        realcid:
+                          type: string
+                          example: '0'
+                        sendid:
+                          type: string
+                          example: '0'
+                        threadid:
+                          type: string
+                          example: '0'
+                        seriesid:
+                          type: string
+                          example: '0'
+                        formid:
+                          type: string
+                          example: '1'
+                        basetemplateid:
+                          type: string
+                          example: 90a1d1ab6ad33e95708caf6472dc1724f698c694
+                        basemessageid:
+                          type: string
+                          example: '0'
+                        addressid:
+                          type: string
+                          example: '0'
+                        source:
+                          type: string
+                          example: web
+                        name:
+                          type: string
+                          example: Opt In Email
+                        cdate:
+                          type: string
+                          example: '2018-08-17T13:47:31-05:00'
+                        mdate:
+                          type: string
+                          example: '2018-08-17T13:47:31-05:00'
+                        sdate: {}
+                        ldate: {}
+                        send_amt:
+                          type: string
+                          example: '0'
+                        total_amt:
+                          type: string
+                          example: '0'
+                        opens:
+                          type: string
+                          example: '0'
+                        uniqueopens:
+                          type: string
+                          example: '0'
+                        linkclicks:
+                          type: string
+                          example: '0'
+                        uniquelinkclicks:
+                          type: string
+                          example: '0'
+                        subscriberclicks:
+                          type: string
+                          example: '0'
+                        forwards:
+                          type: string
+                          example: '0'
+                        uniqueforwards:
+                          type: string
+                          example: '0'
+                        hardbounces:
+                          type: string
+                          example: '0'
+                        softbounces:
+                          type: string
+                          example: '0'
+                        unsubscribes:
+                          type: string
+                          example: '0'
+                        unsubreasons:
+                          type: string
+                          example: '0'
+                        updates:
+                          type: string
+                          example: '0'
+                        socialshares:
+                          type: string
+                          example: '0'
+                        replies:
+                          type: string
+                          example: '0'
+                        uniquereplies:
+                          type: string
+                          example: '0'
+                        status:
+                          type: string
+                          example: '0'
+                        public:
+                          type: string
+                          example: '1'
+                        mail_transfer:
+                          type: string
+                          example: '0'
+                        mail_send:
+                          type: string
+                          example: '0'
+                        mail_cleanup:
+                          type: string
+                          example: '0'
+                        mailer_log_file:
+                          type: string
+                          example: '0'
+                        tracklinks:
+                          type: string
+                          example: all
+                        tracklinksanalytics:
+                          type: string
+                          example: '0'
+                        trackreads:
+                          type: string
+                          example: '1'
+                        trackreadsanalytics:
+                          type: string
+                          example: '1'
+                        analytics_campaign_name:
+                          type: string
+                          example: ''
+                        tweet:
+                          type: string
+                          example: '0'
+                        facebook:
+                          type: string
+                          example: '0'
+                        survey:
+                          type: string
+                          example: ''
+                        embed_images:
+                          type: string
+                          example: '0'
+                        htmlunsub:
+                          type: string
+                          example: '0'
+                        textunsub:
+                          type: string
+                          example: '0'
+                        htmlunsubdata: {}
+                        textunsubdata: {}
+                        recurring:
+                          type: string
+                          example: day1
+                        willrecur:
+                          type: string
+                          example: '0'
+                        split_type:
+                          type: string
+                          example: even
+                        split_content:
+                          type: string
+                          example: '0'
+                        split_offset:
+                          type: string
+                          example: '2'
+                        split_offset_type:
+                          type: string
+                          example: day
+                        split_winner_messageid:
+                          type: string
+                          example: '0'
+                        split_winner_awaiting:
+                          type: string
+                          example: '0'
+                        responder_offset:
+                          type: string
+                          example: '0'
+                        responder_type:
+                          type: string
+                          example: subscribe
+                        responder_existing:
+                          type: string
+                          example: '0'
+                        reminder_field:
+                          type: string
+                          example: sdate
+                        reminder_format: {}
+                        reminder_type:
+                          type: string
+                          example: month_day
+                        reminder_offset:
+                          type: string
+                          example: '0'
+                        reminder_offset_type:
+                          type: string
+                          example: day
+                        reminder_offset_sign:
+                          type: string
+                          example: +
+                        reminder_last_cron_run: {}
+                        activerss_interval:
+                          type: string
+                          example: day1
+                        activerss_url: {}
+                        activerss_items:
+                          type: string
+                          example: '10'
+                        ip4:
+                          type: string
+                          example: '643992596'
+                        laststep:
+                          type: string
+                          example: designer
+                        managetext:
+                          type: string
+                          example: '0'
+                        schedule:
+                          type: string
+                          example: '0'
+                        scheduleddate: {}
+                        waitpreview:
+                          type: string
+                          example: '0'
+                        deletestamp: {}
+                        replysys:
+                          type: string
+                          example: '0'
+                        links:
+                          type: object
+                          properties:
+                            user:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/campaigns/1/user
+                            automation:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/campaigns/1/automation
+                            campaignMessage:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/campaigns/1/campaignMessage
+                            campaignMessages:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/campaigns/1/campaignMessages
+                            links:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/campaigns/1/links
+                            campaignLists:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/campaigns/1/campaignLists
+                        id:
+                          type: string
+                          example: '1'
+                        user:
+                          type: string
+                          example: '1'
+                        automation: {}
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '1'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Campaigns
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /campaigns/{id}/links:
+    get:
+      summary: ActiveCampaign Retrieve Links Associated to Campaign
+      description: ''
+      operationId: retrieve-links-associated-campaign
+      parameters:
+      - name: id
+        in: path
+        description: ID of campaign to retrieve Links for
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"links\": [\n        {\n            \"campaignid\": \"1\",\n            \"messageid\": \"3\",\n            \"link\": \"open\",\n            \"name\": \"Read Tracker\",\n            \"ref\": \"\",\n            \"tracked\": \"1\",\n            \"links\": {\n                \"campaign\": \"https://:account.api-us1.com/api/3/links/1/campaign\",\n                \"message\": \"https://:account.api-us1.com/api/3/links/1/message\"\n            },\n            \"id\": \"1\",\n            \"campaign\": \"1\",\n            \"message\": \"3\"\n        },\n        {\n            \"campaignid\": \"1\",\n            \"messageid\": \"0\",\n            \"link\": \"open\",\n            \"name\": \"Read Tracker\",\n            \"ref\": \"\",\n            \"tracked\": \"1\",\n            \"links\": {\n                \"campaign\": \"https://:account.api-us1.com/api/3/links/2/campaign\",\n                \"message\": \"https://:account.api-us1.com/api/3/links/2/message\"\n            },\n            \"id\": \"2\",\n            \"campaign\": \"1\",\n            \"message\": null\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  links:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        campaignid:
+                          type: string
+                          example: '1'
+                        messageid:
+                          type: string
+                          example: '3'
+                        link:
+                          type: string
+                          example: open
+                        name:
+                          type: string
+                          example: Read Tracker
+                        ref:
+                          type: string
+                          example: ''
+                        tracked:
+                          type: string
+                          example: '1'
+                        links:
+                          type: object
+                          properties:
+                            campaign:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/links/1/campaign
+                            message:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/links/1/message
+                        id:
+                          type: string
+                          example: '1'
+                        campaign:
+                          type: string
+                          example: '1'
+                        message:
+                          type: string
+                          example: '3'
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for Campaign with id 2\"\n}{\n    \"links\": []\n}"
+      deprecated: false
+      tags:
+      - Campaigns
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /campaigns/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Campaign
+      description: ''
+      operationId: retrieve-a-campaign
+      parameters:
+      - name: id
+        in: path
+        description: ID of campaign to retrieve
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"campaign\": {\n        \"type\": \"single\",\n        \"userid\": \"1\",\n        \"segmentid\": \"0\",\n        \"bounceid\": \"-1\",\n        \"realcid\": \"0\",\n        \"sendid\": \"0\",\n        \"threadid\": \"0\",\n        \"seriesid\": \"0\",\n        \"formid\": \"0\",\n        \"basetemplateid\": \"13b1432dc41b75dda9ff86d84a8593d2b2b9419f\",\n        \"basemessageid\": \"0\",\n        \"addressid\": \"0\",\n        \"source\": \"web\",\n        \"name\": \"Matt Litmus test\",\n        \"cdate\": \"2018-10-10T11:59:43-05:00\",\n        \"mdate\": \"2018-10-10T12:00:23-05:00\",\n        \"sdate\": null,\n        \"ldate\": null,\n        \"send_amt\": \"0\",\n        \"total_amt\": \"0\",\n        \"opens\": \"0\",\n        \"uniqueopens\": \"0\",\n        \"linkclicks\": \"0\",\n        \"uniquelinkclicks\": \"0\",\n        \"subscriberclicks\": \"0\",\n        \"forwards\": \"0\",\n        \"uniqueforwards\": \"0\",\n        \"hardbounces\": \"0\",\n        \"softbounces\": \"0\",\n        \"unsubscribes\": \"0\",\n        \"unsubreasons\": \"0\",\n        \"updates\": \"0\",\n        \"socialshares\": \"0\",\n        \"replies\": \"0\",\n        \"uniquereplies\": \"0\",\n        \"status\": \"0\",\n        \"public\": \"1\",\n        \"mail_transfer\": \"0\",\n        \"mail_send\": \"0\",\n        \"mail_cleanup\": \"0\",\n        \"mailer_log_file\": \"0\",\n        \"tracklinks\": \"all\",\n        \"tracklinksanalytics\": \"0\",\n        \"trackreads\": \"1\",\n        \"trackreadsanalytics\": \"1\",\n        \"analytics_campaign_name\": \"\",\n        \"tweet\": \"0\",\n        \"facebook\": \"0\",\n        \"survey\": \"\",\n        \"embed_images\": \"0\",\n        \"htmlunsub\": \"0\",\n        \"textunsub\": \"0\",\n        \"htmlunsubdata\": null,\n        \"textunsubdata\": null,\n        \"recurring\": \"day1\",\n        \"willrecur\": \"0\",\n        \"split_type\": \"even\",\n        \"split_content\": \"0\",\n        \"split_offset\": \"2\",\n        \"split_offset_type\": \"day\",\n        \"split_winner_messageid\": \"0\",\n        \"split_winner_awaiting\": \"0\",\n        \"responder_offset\": \"0\",\n        \"responder_type\": \"subscribe\",\n        \"responder_existing\": \"0\",\n        \"reminder_field\": \"sdate\",\n        \"reminder_format\": null,\n        \"reminder_type\": \"month_day\",\n        \"reminder_offset\": \"0\",\n        \"reminder_offset_type\": \"day\",\n        \"reminder_offset_sign\": \"+\",\n        \"reminder_last_cron_run\": null,\n        \"activerss_interval\": \"day1\",\n        \"activerss_url\": null,\n        \"activerss_items\": \"10\",\n        \"ip4\": \"643992596\",\n        \"laststep\": \"designer\",\n        \"managetext\": \"0\",\n        \"schedule\": \"0\",\n        \"scheduleddate\": null,\n        \"waitpreview\": \"0\",\n        \"deletestamp\": null,\n        \"replysys\": \"0\",\n        \"links\": {\n            \"user\": \"https://:account.api-us1.com/api/:version/campaigns/1/user\",\n            \"automation\": \"https://:account.api-us1.com/api/:version/campaigns/1/automation\",\n            \"campaignMessage\": \"https://:account.api-us1.com/api/:version/campaigns/1/campaignMessage\",\n            \"links\": \"https://:account.api-us1.com/api/:version/campaigns/1/links\",\n            \"aggregateRevenues\": \"https://:account.api-us1.com/api/:version/campaigns/1/aggregateRevenues\"\n        },\n        \"id\": \"1\",\n        \"user\": \"1\",\n        \"automation\": null\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  campaign:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: single
+                      userid:
+                        type: string
+                        example: '1'
+                      segmentid:
+                        type: string
+                        example: '0'
+                      bounceid:
+                        type: string
+                        example: '-1'
+                      realcid:
+                        type: string
+                        example: '0'
+                      sendid:
+                        type: string
+                        example: '0'
+                      threadid:
+                        type: string
+                        example: '0'
+                      seriesid:
+                        type: string
+                        example: '0'
+                      formid:
+                        type: string
+                        example: '0'
+                      basetemplateid:
+                        type: string
+                        example: 13b1432dc41b75dda9ff86d84a8593d2b2b9419f
+                      basemessageid:
+                        type: string
+                        example: '0'
+                      addressid:
+                        type: string
+                        example: '0'
+                      source:
+                        type: string
+                        example: web
+                      name:
+                        type: string
+                        example: Matt Litmus test
+                      cdate:
+                        type: string
+                        example: '2018-10-10T11:59:43-05:00'
+                      mdate:
+                        type: string
+                        example: '2018-10-10T12:00:23-05:00'
+                      sdate: {}
+                      ldate: {}
+                      send_amt:
+                        type: string
+                        example: '0'
+                      total_amt:
+                        type: string
+                        example: '0'
+                      opens:
+                        type: string
+                        example: '0'
+                      uniqueopens:
+                        type: string
+                        example: '0'
+                      linkclicks:
+                        type: string
+                        example: '0'
+                      uniquelinkclicks:
+                        type: string
+                        example: '0'
+                      subscriberclicks:
+                        type: string
+                        example: '0'
+                      forwards:
+                        type: string
+                        example: '0'
+                      uniqueforwards:
+                        type: string
+                        example: '0'
+                      hardbounces:
+                        type: string
+                        example: '0'
+                      softbounces:
+                        type: string
+                        example: '0'
+                      unsubscribes:
+                        type: string
+                        example: '0'
+                      unsubreasons:
+                        type: string
+                        example: '0'
+                      updates:
+                        type: string
+                        example: '0'
+                      socialshares:
+                        type: string
+                        example: '0'
+                      replies:
+                        type: string
+                        example: '0'
+                      uniquereplies:
+                        type: string
+                        example: '0'
+                      status:
+                        type: string
+                        example: '0'
+                      public:
+                        type: string
+                        example: '1'
+                      mail_transfer:
+                        type: string
+                        example: '0'
+                      mail_send:
+                        type: string
+                        example: '0'
+                      mail_cleanup:
+                        type: string
+                        example: '0'
+                      mailer_log_file:
+                        type: string
+                        example: '0'
+                      tracklinks:
+                        type: string
+                        example: all
+                      tracklinksanalytics:
+                        type: string
+                        example: '0'
+                      trackreads:
+                        type: string
+                        example: '1'
+                      trackreadsanalytics:
+                        type: string
+                        example: '1'
+                      analytics_campaign_name:
+                        type: string
+                        example: ''
+                      tweet:
+                        type: string
+                        example: '0'
+                      facebook:
+                        type: string
+                        example: '0'
+                      survey:
+                        type: string
+                        example: ''
+                      embed_images:
+                        type: string
+                        example: '0'
+                      htmlunsub:
+                        type: string
+                        example: '0'
+                      textunsub:
+                        type: string
+                        example: '0'
+                      htmlunsubdata: {}
+                      textunsubdata: {}
+                      recurring:
+                        type: string
+                        example: day1
+                      willrecur:
+                        type: string
+                        example: '0'
+                      split_type:
+                        type: string
+                        example: even
+                      split_content:
+                        type: string
+                        example: '0'
+                      split_offset:
+                        type: string
+                        example: '2'
+                      split_offset_type:
+                        type: string
+                        example: day
+                      split_winner_messageid:
+                        type: string
+                        example: '0'
+                      split_winner_awaiting:
+                        type: string
+                        example: '0'
+                      responder_offset:
+                        type: string
+                        example: '0'
+                      responder_type:
+                        type: string
+                        example: subscribe
+                      responder_existing:
+                        type: string
+                        example: '0'
+                      reminder_field:
+                        type: string
+                        example: sdate
+                      reminder_format: {}
+                      reminder_type:
+                        type: string
+                        example: month_day
+                      reminder_offset:
+                        type: string
+                        example: '0'
+                      reminder_offset_type:
+                        type: string
+                        example: day
+                      reminder_offset_sign:
+                        type: string
+                        example: +
+                      reminder_last_cron_run: {}
+                      activerss_interval:
+                        type: string
+                        example: day1
+                      activerss_url: {}
+                      activerss_items:
+                        type: string
+                        example: '10'
+                      ip4:
+                        type: string
+                        example: '643992596'
+                      laststep:
+                        type: string
+                        example: designer
+                      managetext:
+                        type: string
+                        example: '0'
+                      schedule:
+                        type: string
+                        example: '0'
+                      scheduleddate: {}
+                      waitpreview:
+                        type: string
+                        example: '0'
+                      deletestamp: {}
+                      replysys:
+                        type: string
+                        example: '0'
+                      links:
+                        type: object
+                        properties:
+                          user:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/campaigns/1/user
+                          automation:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/campaigns/1/automation
+                          campaignMessage:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/campaigns/1/campaignMessage
+                          links:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/campaigns/1/links
+                          aggregateRevenues:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/campaigns/1/aggregateRevenues
+                      id:
+                        type: string
+                        example: '1'
+                      user:
+                        type: string
+                        example: '1'
+                      automation: {}
+      deprecated: false
+      tags:
+      - Campaigns
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /campaigns/{id}/edit:
+    put:
+      summary: ActiveCampaign Edit Campaign
+      description: ''
+      operationId: edit-campaign
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Campaign name
+                type:
+                  type: string
+                  description: Campaign type
+                segmentId:
+                  type: string
+                  description: Id of selected segment. Both integer segment id's and string based segment id's are supported.
+                addressId:
+                  type: integer
+                  description: Id of selected address
+                  format: int32
+                listIds:
+                  type: array
+                  description: Array of selected lists ids
+                  items:
+                    type: integer
+                    format: int32
+                replyTrackingEnabled:
+                  type: boolean
+                  description: Turn on/off reply tracking
+                linkTrackingEnabled:
+                  type: boolean
+                  description: Turn on/off link tracking
+                googleAnalyticsLinkTrackingEnabled:
+                  type: boolean
+                  description: Turn on/off google analytics link tracking
+                googleAnalyticsCampaignName:
+                  type: string
+                  description: Name of campaign in google analytics
+                readTrackingEnabled:
+                  type: boolean
+                  description: Turn on/off read tracking
+                sendToExistingSubscribers:
+                  type: boolean
+                  description: Should send only to existing customers
+                canSplitContent:
+                  type: boolean
+                  description: Campaign can contains split content
+                recurring:
+                  type: boolean
+                  description: Is campaign recurring
+                responderDaysOffset:
+                  type: integer
+                  description: Determine value of responder offset in days
+                  format: int32
+                responderHoursOffset:
+                  type: integer
+                  description: Determine value of responder offset in hours
+                  format: int32
+                scheduledDate:
+                  type: string
+                  description: Date of sending
+                reminderField:
+                  type: string
+                  description: Field basic on witch reminder will be triggered
+                reminderOffset:
+                  type: integer
+                  description: Value of reminder offset
+                  format: int32
+                reminderOffsetType:
+                  type: string
+                  description: Type of reminder offset
+                reminderType:
+                  type: string
+                  description: Format of reminder date
+                rssInterval:
+                  type: integer
+                  description: Interval for RSS
+                  format: int32
+                splitType:
+                  type: string
+                  description: Type of split campaign
+                splitWinnerWaitPeriod:
+                  type: integer
+                  description: Period wait time
+                  format: int32
+                splitWinnerWaitPeriodType:
+                  type: string
+                  description: Determine period type
+                publicCampaignArchive:
+                  type: boolean
+                  description: Is campaign public
+      deprecated: false
+      tags:
+      - Campaigns
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /campaign:
+    post:
+      summary: ActiveCampaign Create Campaign
+      description: ''
+      operationId: create-campaign
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - type
+              properties:
+                name:
+                  type: string
+                type:
+                  type: string
+                canSplitContent:
+                  type: boolean
+                  default: false
+            examples:
+              Create Campaign:
+                value:
+                  canSplitContent: false
+                  type: single
+                  name: Campaign Name
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"id\": 149,\n    \"name\": \"Campaign Name\",\n    \"type\": \"single\",\n    \"canSplitContent\": false\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 149
+                    default: 0
+                  name:
+                    type: string
+                    example: Campaign Name
+                  type:
+                    type: string
+                    example: single
+                  canSplitContent:
+                    type: boolean
+                    example: false
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        \"Field name is required\",\n        \"Field type must be of type string\"\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Field name is required
+      deprecated: false
+      tags:
+      - Campaigns
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /campaigns/{id}/copy:
+    post:
+      summary: ActiveCampaign Duplicate Campaign
+      description: ''
+      operationId: duplicate-campaign
+      parameters:
+      - name: id
+        in: path
+        description: id of the source campaign
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\"succeeded\":1,\n  \"message\":\"Campaign draft copied.\",\n  \"newCampaignId\":217\n}"
+              schema:
+                type: object
+                properties:
+                  succeeded:
+                    type: integer
+                    example: 1
+                    default: 0
+                  message:
+                    type: string
+                    example: Campaign draft copied.
+                  newCampaignId:
+                    type: integer
+                    example: 217
+                    default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '''Bad request. You are not allowed to copy this campaign.'''
+      deprecated: false
+      tags:
+      - Campaigns
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

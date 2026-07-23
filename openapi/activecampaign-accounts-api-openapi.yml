@@ -1,0 +1,2402 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Accounts
+paths:
+  /accounts:
+    post:
+      summary: ActiveCampaign Create an Account
+      description: Create a new account
+      operationId: create-an-account-new
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account:
+                  properties:
+                    name:
+                      type: string
+                      description: Account's name
+                    accountUrl:
+                      type: string
+                      description: Account's website
+                    owner:
+                      type: integer
+                      description: The userId of the account owner.
+                      default: 1
+                      format: int32
+                    fields:
+                      type: array
+                      description: 'Account''s custom field values `{customFieldId: int, fieldValue: string, fieldCurrency?:string}[]`'
+                      items:
+                        properties:
+                          customFieldId:
+                            type: integer
+                            description: Field ID, ID of the Custom Field Meta Data
+                            format: int32
+                          fieldValue:
+                            type: string
+                            description: Updated field value. For `currency` field, this needs to be in cents not dollars (or 100 x Base Unit).
+                          fieldCurrency:
+                            type: string
+                            description: Required only for the `currency` field type. The three letter currency code for the currency value
+                        required:
+                        - customFieldId
+                        - fieldValue
+                        type: object
+                  required:
+                  - name
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  account:
+                    name: Example Account
+                    accountUrl: https://www.example.com
+                    owner: 1
+                    fields:
+                    - customFieldId: 9
+                      fieldValue: 500-1000
+                    - customFieldId: 20
+                      fieldValue: 1234
+                      fieldCurrency: GBP
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"account\": {\n        \"name\": \"Example Account\",\n        \"accountUrl\": \"https://www.example.com\",\n        \"createdTimestamp\": \"2019-06-12T16:52:16-05:00\",\n        \"updatedTimestamp\": \"2019-06-12T16:52:16-05:00\",\n        \"links\": [],\n        \"fields\": [\n            {\n                \"customFieldId\": 9,\n                \"fieldValue\": \"501 - 1000\",\n                \"accountId\": \"1\"\n            },\n            {\n                \"customFieldId\": 20,\n                \"fieldValue\": 1234,\n        \t\t\t\t\"fieldCurrency\": \"GBP\",\n                \"accountId\": \"1\"\n            }\n        ],\n        \"id\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  account:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Example Account
+                      accountUrl:
+                        type: string
+                        example: https://www.example.com
+                      createdTimestamp:
+                        type: string
+                        example: '2019-06-12T16:52:16-05:00'
+                      updatedTimestamp:
+                        type: string
+                        example: '2019-06-12T16:52:16-05:00'
+                      links:
+                        type: array
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            customFieldId:
+                              type: integer
+                              example: 9
+                              default: 0
+                            fieldValue:
+                              type: string
+                              example: 501 - 1000
+                            accountId:
+                              type: string
+                              example: '1'
+                      id:
+                        type: string
+                        example: '1'
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Missing Data:
+                  value: "{\n    \"errors\": [\n        {\n            \"title\": \"The account name was not provided.\",\n            \"detail\": \"\",\n            \"code\": \"field_missing\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/name\"\n            }\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: The account name was not provided.
+                        detail:
+                          type: string
+                          example: ''
+                        code:
+                          type: string
+                          example: field_missing
+                        source:
+                          type: object
+                          properties:
+                            pointer:
+                              type: string
+                              example: /data/attributes/name
+            text/plain:
+              examples:
+                Alredy Existing:
+                  value: "{\n    \"errors\": [\n        {\n            \"title\": \"An account named \\\"Example Account\\\" already exists. Please choose a new name.\",\n            \"detail\": \"\",\n            \"code\": \"duplicate\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/name\"\n            }\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: An account named "Example Account" already exists. Please choose a new name.
+                        detail:
+                          type: string
+                          example: ''
+                        code:
+                          type: string
+                          example: duplicate
+                        source:
+                          type: object
+                          properties:
+                            pointer:
+                              type: string
+                              example: /data/attributes/name
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign List All Accounts
+      description: Retrieve all existing account
+      operationId: list-all-accounts
+      parameters:
+      - name: search
+        in: query
+        description: Search by name
+        schema:
+          type: string
+      - name: count_deals
+        in: query
+        description: Whether to compute the contactCount and dealCount counts for the number of contacts/deals associated with each account. Set it to true to include the right counts. If set to false or omitted from the call, then contactCount and dealCount will not be counted and be simply displayed as 0.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"accounts\": [\n        {\n            \"name\": \"First Example Account\",\n            \"accountUrl\": null,\n            \"createdTimestamp\": \"2019-04-29T07:51:31-05:00\",\n            \"updatedTimestamp\": \"2019-04-29T07:51:31-05:00\",\n            \"contactCount\": \"1\",\n            \"dealCount\": \"3\",\n            \"links\": [\n                \"notes\": \"https://:account.api-us1.com/api/:version/accounts/1/notes\",\n                \"accountCustomFieldData\": \"https://:account.api-us1.com/api/:version/accounts/1/accountCustomFieldData\",\n                \"accountContacts\": \"https://:account.api-us1.com/api/:version/accounts/1/accountContacts\"],\n            \"id\": \"1\"\n        },\n        {\n            \"name\": \"Second Example Account\",\n            \"accountUrl\": null,\n            \"createdTimestamp\": \"2019-04-29T07:51:32-05:00\",\n            \"updatedTimestamp\": \"2019-04-29T07:51:32-05:00\",\n            \"contactCount\": \"2\",\n            \"dealCount\": \"5\",\n            \"links\": [\n                \"notes\": \"https://:account.api-us1.com/api/:version/accounts/2/notes\",\n                \"accountCustomFieldData\": \"https://:account.api-us1.com/api/:version/accounts/2/accountCustomFieldData\",\n                \"accountContacts\": \"https://:account.api-us1.com/api/:version/accounts/2/accountContacts\"],\n            \"id\": \"2\"\n        }\n    ],\n    \"meta\": {\n      \"total\": \"2\"\n    }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accounts/{id}:
+    put:
+      summary: ActiveCampaign Update an Account
+      description: Update an existing account
+      operationId: update-an-account-new
+      parameters:
+      - name: id
+        in: path
+        description: Account's id
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account:
+                  properties:
+                    name:
+                      type: string
+                      description: Account's name
+                    accountUrl:
+                      type: string
+                      description: Account's website
+                    fields:
+                      type: array
+                      description: 'Account''s custom field values `{customFieldId: int, fieldValue: string, fieldCurrency?:string}[]`'
+                      items:
+                        properties:
+                          customFieldId:
+                            type: integer
+                            description: Field ID, ID of the Custom Field Meta Data
+                            format: int32
+                          fieldValue:
+                            type: string
+                            description: Updated field value. For `currency` field, this needs to be in cents not dollars (or 100 x Base Unit).
+                          fieldCurrency:
+                            type: string
+                            description: Required only for the `currency` field type. The three letter currency code for the currency value
+                        required:
+                        - customFieldId
+                        - fieldValue
+                        type: object
+                    owner:
+                      type: integer
+                      description: The userId of the Account owner.
+                      default: 1
+                      format: int32
+                  required: []
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  account:
+                    name: Exmaple Account
+                    accountUrl: https://www.example.com
+                    fields:
+                    - customFieldId: 9
+                      fieldValue: 500-1000
+                    - customFieldId: 20
+                      fieldValue: 1234
+                      fieldCurrency: GBP
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"account\": {\n        \"name\": \"Exmaple Account\",\n        \"accountUrl\": \"https://www.example.com\",\n        \"createdTimestamp\": \"2019-04-03T13:57:31-05:00\",\n        \"updatedTimestamp\": \"2019-06-12T16:55:32-05:00\",\n        \"links\": [],\n        \"fields\": [\n            {\n                \"customFieldId\": 9,\n                \"fieldValue\": \"501 - 1000\",\n                \"accountId\": \"1\"\n            },\n            {\n                \"customFieldId\": 20,\n                \"fieldValue\": 1234,\n              \t\"fieldCurrency\": \"GBP\",\n                \"accountId\": \"1\"\n            }\n        ],\n        \"id\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  account:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Exmaple Account
+                      accountUrl:
+                        type: string
+                        example: https://www.example.com
+                      createdTimestamp:
+                        type: string
+                        example: '2019-04-03T13:57:31-05:00'
+                      updatedTimestamp:
+                        type: string
+                        example: '2019-06-12T16:55:32-05:00'
+                      links:
+                        type: array
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            customFieldId:
+                              type: integer
+                              example: 9
+                              default: 0
+                            fieldValue:
+                              type: string
+                              example: 501 - 1000
+                            accountId:
+                              type: string
+                              example: '1'
+                      id:
+                        type: string
+                        example: '1'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign Retrieve an Account
+      description: Retrieve an existing account
+      operationId: retrieve-an-account
+      parameters:
+      - name: id
+        in: path
+        description: Account's ID
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"account\": {\n        \"name\": \"Example Account\",\n        \"accountUrl\": \"https://www.example.com\",\n        \"createdTimestamp\": \"2019-05-15T15:58:16-05:00\",\n        \"updatedTimestamp\": \"2019-05-15T15:58:16-05:00\",\n        \"links\": [],\n        \"id\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  account:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Example Account
+                      accountUrl:
+                        type: string
+                        example: https://www.example.com
+                      createdTimestamp:
+                        type: string
+                        example: '2019-05-15T15:58:16-05:00'
+                      updatedTimestamp:
+                        type: string
+                        example: '2019-05-15T15:58:16-05:00'
+                      links:
+                        type: array
+                      id:
+                        type: string
+                        example: '1'
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete an Account
+      description: Delete an existing account
+      operationId: delete-an-account
+      parameters:
+      - name: id
+        in: path
+        description: Account's id
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accounts/{id}/notes:
+    post:
+      summary: ActiveCampaign Create an Account Note
+      description: Create a new note for an account
+      operationId: create-an-account-note
+      parameters:
+      - name: id
+        in: path
+        description: Account's id to assign new note to
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                note:
+                  properties:
+                    note:
+                      type: string
+                      description: Account note's content
+                  required:
+                  - note
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  note:
+                    note: Note for the account
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"accounts\": [\n    {\n      \"name\": \"Museuem of Science and Industry\",\n      \"accountUrl\": \"www.msi.com\",\n      \"createdTimestamp\": \"2019-04-03T13:29:35-05:00\",\n      \"updatedTimestamp\": \"2019-06-12T16:59:54-05:00\",\n      \"id\": \"1\"\n    }\n  ],\n  \"note\": {\n    \"cdate\": \"2017-05-31T09:54:30-05:00\",\n    \"id\": \"2\",\n    \"links\": {\n      \"activities\": \"/api/3/notes/2/activities\",\n      \"mentions\": \"/api/3/notes/2/mentions\",\n      \"notes\": \"/api/3/notes/2/notes\",\n      \"owner\": \"/api/3/notes/2/owner\",\n      \"user\": \"/api/3/notes/2/user\"\n    },\n    \"mdate\": \"2017-05-31T09:54:30-05:00\",\n    \"note\": \"Note for the account\",\n    \"owner\": {\n      \"id\": \"1\",\n      \"type\": \"account\"\n    },\n    \"relid\": \"1\",\n    \"reltype\": \"CustomerAccount\",\n    \"user\": \"1\",\n    \"userid\": \"1\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  accounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Museuem of Science and Industry
+                        accountUrl:
+                          type: string
+                          example: www.msi.com
+                        createdTimestamp:
+                          type: string
+                          example: '2019-04-03T13:29:35-05:00'
+                        updatedTimestamp:
+                          type: string
+                          example: '2019-06-12T16:59:54-05:00'
+                        id:
+                          type: string
+                          example: '1'
+                  note:
+                    type: object
+                    properties:
+                      cdate:
+                        type: string
+                        example: '2017-05-31T09:54:30-05:00'
+                      id:
+                        type: string
+                        example: '2'
+                      links:
+                        type: object
+                        properties:
+                          activities:
+                            type: string
+                            example: /api/3/notes/2/activities
+                          mentions:
+                            type: string
+                            example: /api/3/notes/2/mentions
+                          notes:
+                            type: string
+                            example: /api/3/notes/2/notes
+                          owner:
+                            type: string
+                            example: /api/3/notes/2/owner
+                          user:
+                            type: string
+                            example: /api/3/notes/2/user
+                      mdate:
+                        type: string
+                        example: '2017-05-31T09:54:30-05:00'
+                      note:
+                        type: string
+                        example: Note for the account
+                      owner:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: '1'
+                          type:
+                            type: string
+                            example: account
+                      relid:
+                        type: string
+                        example: '1'
+                      reltype:
+                        type: string
+                        example: CustomerAccount
+                      user:
+                        type: string
+                        example: '1'
+                      userid:
+                        type: string
+                        example: '1'
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accounts/{id}/notes/{noteid}:
+    put:
+      summary: ActiveCampaign Update an Account Note
+      description: Update an existing note for a account
+      operationId: update-a-account-note
+      parameters:
+      - name: id
+        in: path
+        description: Account's id to assign new note to
+        schema:
+          type: string
+        required: true
+      - name: noteid
+        in: path
+        description: Account note's id to update
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                note:
+                  properties:
+                    note:
+                      type: string
+                      description: Account note's content
+                  required:
+                  - note
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  note:
+                    note: Update with more info
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"accounts\": [\n    {\n      \"name\": \"Example Account\",\n      \"accountUrl\": \"https://www.example.url\",\n      \"createdTimestamp\": \"2019-04-03T13:29:35-05:00\",\n      \"updatedTimestamp\": \"2019-06-12T16:59:54-05:00\",\n      \"links\": {\n        \"notes\": \"https://hosted.localdev/api/3/accounts/1/notes\"\n      },\n      \"id\": \"1\"\n    }\n  ],\n  \"note\": {\n    \"cdate\": \"2017-06-01T13:42:13-05:00\",\n    \"id\": \"2\",\n    \"links\": {\n      \"activities\": \"/api/3/notes/2/activities\",\n      \"mentions\": \"/api/3/notes/2/mentions\",\n      \"notes\": \"/api/3/notes/2/notes\",\n      \"owner\": \"/api/3/notes/2/owner\",\n      \"user\": \"/api/3/notes/2/user\"\n    },\n    \"mdate\": \"2017-06-01T13:42:13-05:00\",\n    \"note\": \"Update with more info\",\n    \"owner\": {\n      \"id\": \"1\",\n      \"type\": \"account\"\n    },\n    \"relid\": \"1\",\n    \"reltype\": \"CustomerAccount\",\n    \"user\": \"1\",\n    \"userid\": \"1\"\n  }\n}\n"
+              schema:
+                type: object
+                properties:
+                  accounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Example Account
+                        accountUrl:
+                          type: string
+                          example: https://www.example.url
+                        createdTimestamp:
+                          type: string
+                          example: '2019-04-03T13:29:35-05:00'
+                        updatedTimestamp:
+                          type: string
+                          example: '2019-06-12T16:59:54-05:00'
+                        links:
+                          type: object
+                          properties:
+                            notes:
+                              type: string
+                              example: https://hosted.localdev/api/3/accounts/1/notes
+                        id:
+                          type: string
+                          example: '1'
+                  note:
+                    type: object
+                    properties:
+                      cdate:
+                        type: string
+                        example: '2017-06-01T13:42:13-05:00'
+                      id:
+                        type: string
+                        example: '2'
+                      links:
+                        type: object
+                        properties:
+                          activities:
+                            type: string
+                            example: /api/3/notes/2/activities
+                          mentions:
+                            type: string
+                            example: /api/3/notes/2/mentions
+                          notes:
+                            type: string
+                            example: /api/3/notes/2/notes
+                          owner:
+                            type: string
+                            example: /api/3/notes/2/owner
+                          user:
+                            type: string
+                            example: /api/3/notes/2/user
+                      mdate:
+                        type: string
+                        example: '2017-06-01T13:42:13-05:00'
+                      note:
+                        type: string
+                        example: Update with more info
+                      owner:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: '1'
+                          type:
+                            type: string
+                            example: account
+                      relid:
+                        type: string
+                        example: '1'
+                      reltype:
+                        type: string
+                        example: CustomerAccount
+                      user:
+                        type: string
+                        example: '1'
+                      userid:
+                        type: string
+                        example: '1'
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accounts/bulk_delete:
+    delete:
+      summary: ActiveCampaign Bulk Delete Accounts
+      description: Delete an existing account
+      operationId: bulk-delete-accounts
+      parameters:
+      - name: '[]ids'
+        in: query
+        description: An integer id of the account to be deleted
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"meta\": {\n        \"success\": true\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accountContacts:
+    post:
+      summary: ActiveCampaign Create an Association
+      description: Create a new account association
+      operationId: create-an-account-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountContact:
+                  properties:
+                    account:
+                      type: integer
+                      description: Account ID
+                      format: int32
+                    contact:
+                      type: integer
+                      description: Contact ID
+                      format: int32
+                    jobTitle:
+                      type: string
+                      description: Job Title of the contact at the account
+                  required:
+                  - account
+                  - contact
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  accountContact:
+                    contact: 2
+                    account: 1
+                    jobTitle: Product Manager
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"accountContact\": {\n        \"account\": 2,\n        \"contact\": 1,\n        \"jobTitle\": \"Product Manager\",\n        \"createdTimestamp\": \"2019-06-26T10:49:10-05:00\",\n        \"updatedTimestamp\": \"2019-06-26T10:49:10-05:00\",\n        \"links\": {\n            \"account\": \"http://hosted.localdev/api/3/accountContacts/2/account\",\n            \"contact\": \"http://hosted.localdev/api/3/accountContacts/1/contact\"\n        },\n        \"id\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  accountContact:
+                    type: object
+                    properties:
+                      account:
+                        type: integer
+                        example: 2
+                        default: 0
+                      contact:
+                        type: integer
+                        example: 1
+                        default: 0
+                      jobTitle:
+                        type: string
+                        example: Product Manager
+                      createdTimestamp:
+                        type: string
+                        example: '2019-06-26T10:49:10-05:00'
+                      updatedTimestamp:
+                        type: string
+                        example: '2019-06-26T10:49:10-05:00'
+                      links:
+                        type: object
+                        properties:
+                          account:
+                            type: string
+                            example: http://hosted.localdev/api/3/accountContacts/2/account
+                          contact:
+                            type: string
+                            example: http://hosted.localdev/api/3/accountContacts/1/contact
+                      id:
+                        type: string
+                        example: '1'
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Missing Data:
+                  value: "{\n    \"errors\": [\n        {\n            \"title\": \"The account attribute was not provided\",\n            \"detail\": \"\",\n            \"code\": \"field_missing\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/account\"\n            }\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: The account attribute was not provided
+                        detail:
+                          type: string
+                          example: ''
+                        code:
+                          type: string
+                          example: field_missing
+                        source:
+                          type: object
+                          properties:
+                            pointer:
+                              type: string
+                              example: /data/attributes/account
+            text/plain:
+              examples:
+                Alredy Existing:
+                  value: "{\n    \"errors\": [\n        {\n            \"title\": \"This contact is already associated with an account. We currently do not support contacts on multiple accounts.\",\n            \"detail\": \"\",\n            \"code\": \"field_invalid\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/account,contact\"\n            }\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: This contact is already associated with an account. We currently do not support contacts on multiple accounts.
+                        detail:
+                          type: string
+                          example: ''
+                        code:
+                          type: string
+                          example: field_invalid
+                        source:
+                          type: object
+                          properties:
+                            pointer:
+                              type: string
+                              example: /data/attributes/account,contact
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign List All Associations
+      description: Retrieve all existing account association
+      operationId: list-all-associations-1
+      parameters:
+      - name: filters[contact]
+        in: query
+        description: Filter by Contact ID
+        schema:
+          type: integer
+          format: int32
+      - name: filters[account]
+        in: query
+        description: Filter by Account ID
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"accountContacts\": [\n        {\n            \"account\": \"2\",\n            \"contact\": \"3\",\n            \"jobTitle\": \"Product Manager\",\n            \"createdTimestamp\": \"2019-06-26T10:49:10-05:00\",\n            \"updatedTimestamp\": \"2019-06-26T10:49:10-05:00\",\n            \"links\": {\n                \"account\": \"http://hosted.localdev/api/3/accountContacts/17/account\",\n                \"contact\": \"http://hosted.localdev/api/3/accountContacts/17/contact\"\n            },\n            \"id\": \"17\"\n        },\n        {\n            \"account\": \"2\",\n            \"contact\": \"1\",\n            \"jobTitle\": \"Product Manager\",\n            \"createdTimestamp\": \"2019-06-26T11:26:09-05:00\",\n            \"updatedTimestamp\": \"2019-06-26T11:26:09-05:00\",\n            \"links\": {\n                \"account\": \"http://hosted.localdev/api/3/accountContacts/18/account\",\n                \"contact\": \"http://hosted.localdev/api/3/accountContacts/18/contact\"\n            },\n            \"id\": \"18\"\n        },\n        {\n            \"account\": \"3\",\n            \"contact\": \"2\",\n            \"jobTitle\": \"Product Manager\",\n            \"createdTimestamp\": \"2019-06-26T11:26:15-05:00\",\n            \"updatedTimestamp\": \"2019-06-26T11:26:15-05:00\",\n            \"links\": {\n                \"account\": \"http://hosted.localdev/api/3/accountContacts/19/account\",\n                \"contact\": \"http://hosted.localdev/api/3/accountContacts/19/contact\"\n            },\n            \"id\": \"19\"\n        }\n    ],\n    \"meta\": {\n        \"total\": \"3\",\n        \"queryLog\": {\n            \"queries\": [\n                {\n                    \"stmt\": \"SELECT  COUNT(DISTINCT t.id) AS `__count` FROM em_customer_account_subscriber t   WHERE 1\",\n                    \"time\": 0.3669261932373\n                },\n                {\n                    \"stmt\": \"SELECT  t.* FROM em_customer_account_subscriber t   WHERE 1 LIMIT 0, 20\",\n                    \"time\": 0.17809867858887\n                }\n            ],\n            \"by_time\": [\n                {\n                    \"stmt\": \"SELECT  COUNT(DISTINCT t.id) AS `__count` FROM em_customer_account_subscriber t   WHERE 1\",\n                    \"time\": 0.3669261932373\n                },\n                {\n                    \"stmt\": \"SELECT  t.* FROM em_customer_account_subscriber t   WHERE 1 LIMIT 0, 20\",\n                    \"time\": 0.17809867858887\n                }\n            ],\n            \"total\": 0.54502487182617,\n            \"mode\": \"read/write\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  accountContacts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        account:
+                          type: string
+                          example: '2'
+                        contact:
+                          type: string
+                          example: '3'
+                        jobTitle:
+                          type: string
+                          example: Product Manager
+                        createdTimestamp:
+                          type: string
+                          example: '2019-06-26T10:49:10-05:00'
+                        updatedTimestamp:
+                          type: string
+                          example: '2019-06-26T10:49:10-05:00'
+                        links:
+                          type: object
+                          properties:
+                            account:
+                              type: string
+                              example: http://hosted.localdev/api/3/accountContacts/17/account
+                            contact:
+                              type: string
+                              example: http://hosted.localdev/api/3/accountContacts/17/contact
+                        id:
+                          type: string
+                          example: '17'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '3'
+                      queryLog:
+                        type: object
+                        properties:
+                          queries:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                stmt:
+                                  type: string
+                                  example: SELECT  COUNT(DISTINCT t.id) AS `__count` FROM em_customer_account_subscriber t   WHERE 1
+                                time:
+                                  type: number
+                                  example: 0.3669261932373
+                                  default: 0
+                          by_time:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                stmt:
+                                  type: string
+                                  example: SELECT  COUNT(DISTINCT t.id) AS `__count` FROM em_customer_account_subscriber t   WHERE 1
+                                time:
+                                  type: number
+                                  example: 0.3669261932373
+                                  default: 0
+                          total:
+                            type: number
+                            example: 0.54502487182617
+                            default: 0
+                          mode:
+                            type: string
+                            example: read/write
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accountContacts/{id}:
+    get:
+      summary: ActiveCampaign Retrieve an Association
+      description: Retrieve an existing account association
+      operationId: retrieve-an-association
+      parameters:
+      - name: id
+        in: path
+        description: Association's ID
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"accountContact\": {\n        \"account\": \"2\",\n        \"contact\": \"1\",\n        \"jobTitle\": \"Product Manager\",\n        \"createdTimestamp\": \"2019-06-26T11:26:09-05:00\",\n        \"updatedTimestamp\": \"2019-06-26T11:26:09-05:00\",\n        \"links\": {\n            \"account\": \"http://hosted.localdev/api/3/accountContacts/18/account\",\n            \"contact\": \"http://hosted.localdev/api/3/accountContacts/18/contact\"\n        },\n        \"id\": \"18\"\n    },\n    \"meta\": {\n        \"queryLog\": {\n            \"queries\": [\n                {\n                    \"stmt\": \"SELECT  * FROM em_customer_account_subscriber t   WHERE 1 AND id = '18' LIMIT 0, 1\",\n                    \"time\": 0.31304359436035\n                }\n            ],\n            \"by_time\": [\n                {\n                    \"stmt\": \"SELECT  * FROM em_customer_account_subscriber t   WHERE 1 AND id = '18' LIMIT 0, 1\",\n                    \"time\": 0.31304359436035\n                }\n            ],\n            \"total\": 0.31304359436035,\n            \"mode\": \"read/write\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  accountContact:
+                    type: object
+                    properties:
+                      account:
+                        type: string
+                        example: '2'
+                      contact:
+                        type: string
+                        example: '1'
+                      jobTitle:
+                        type: string
+                        example: Product Manager
+                      createdTimestamp:
+                        type: string
+                        example: '2019-06-26T11:26:09-05:00'
+                      updatedTimestamp:
+                        type: string
+                        example: '2019-06-26T11:26:09-05:00'
+                      links:
+                        type: object
+                        properties:
+                          account:
+                            type: string
+                            example: http://hosted.localdev/api/3/accountContacts/18/account
+                          contact:
+                            type: string
+                            example: http://hosted.localdev/api/3/accountContacts/18/contact
+                      id:
+                        type: string
+                        example: '18'
+                  meta:
+                    type: object
+                    properties:
+                      queryLog:
+                        type: object
+                        properties:
+                          queries:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                stmt:
+                                  type: string
+                                  example: SELECT  * FROM em_customer_account_subscriber t   WHERE 1 AND id = '18' LIMIT 0, 1
+                                time:
+                                  type: number
+                                  example: 0.31304359436035
+                                  default: 0
+                          by_time:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                stmt:
+                                  type: string
+                                  example: SELECT  * FROM em_customer_account_subscriber t   WHERE 1 AND id = '18' LIMIT 0, 1
+                                time:
+                                  type: number
+                                  example: 0.31304359436035
+                                  default: 0
+                          total:
+                            type: number
+                            example: 0.31304359436035
+                            default: 0
+                          mode:
+                            type: string
+                            example: read/write
+        '404':
+          description: '404'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for CustomerAccountSubscriber with id 100\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for CustomerAccountSubscriber with id 100
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Update an Association
+      description: Update an existing account association
+      operationId: update-an-association-1
+      parameters:
+      - name: id
+        in: path
+        description: Association's ID
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountContact:
+                  properties:
+                    account:
+                      type: integer
+                      description: Account ID
+                      format: int32
+                    contact:
+                      type: integer
+                      description: Contact ID
+                      format: int32
+                    jobTitle:
+                      type: string
+                      description: Job Title of the contact at the account
+                  required:
+                  - account
+                  - contact
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  accountContact:
+                    jobTitle: Product Manager
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"accountContact\": {\n        \"account\": \"3\",\n        \"contact\": \"2\",\n        \"jobTitle\": \"CEO\",\n        \"createdTimestamp\": \"2019-06-26T11:26:15-05:00\",\n        \"updatedTimestamp\": \"2019-06-26T11:29:57-05:00\",\n        \"links\": {\n            \"account\": \"http://hosted.localdev/api/3/accountContacts/19/account\",\n            \"contact\": \"http://hosted.localdev/api/3/accountContacts/19/contact\"\n        },\n        \"id\": \"19\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  accountContact:
+                    type: object
+                    properties:
+                      account:
+                        type: string
+                        example: '3'
+                      contact:
+                        type: string
+                        example: '2'
+                      jobTitle:
+                        type: string
+                        example: CEO
+                      createdTimestamp:
+                        type: string
+                        example: '2019-06-26T11:26:15-05:00'
+                      updatedTimestamp:
+                        type: string
+                        example: '2019-06-26T11:29:57-05:00'
+                      links:
+                        type: object
+                        properties:
+                          account:
+                            type: string
+                            example: http://hosted.localdev/api/3/accountContacts/19/account
+                          contact:
+                            type: string
+                            example: http://hosted.localdev/api/3/accountContacts/19/contact
+                      id:
+                        type: string
+                        example: '19'
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete an Association
+      description: Delete an existing account association
+      operationId: delete-an-association-1
+      parameters:
+      - name: id
+        in: path
+        description: Association's ID
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for CustomerAccountSubscriber with id 100\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for CustomerAccountSubscriber with id 100
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accountCustomFieldMeta:
+    post:
+      summary: ActiveCampaign Create a Custom Field
+      description: ''
+      operationId: create-a-customfieldmeta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountCustomFieldMetum:
+                  properties:
+                    fieldLabel:
+                      type: string
+                      description: Name of the field
+                    fieldType:
+                      type: string
+                      description: 'Type of field. Possible values are: `text`, `textarea`, `date`, `datetime`, `dropdown`, `multiselect`, `radio`, `checkbox`, `hidden`, `currency`, or `number`.'
+                    fieldOptions:
+                      type: array
+                      description: Options for the field. Only necessary if `field_type` is `dropdown`, `multiselect`, `radio`, or `checkbox`.
+                      items:
+                        type: string
+                    fieldDefault:
+                      type: string
+                      description: Default value of the field
+                    fieldDefaultCurrency:
+                      type: string
+                      description: The 3-letter currency code of the default currency for the field. Only necessary if `field_type` is `currency`.
+                    isFormVisible:
+                      type: boolean
+                      description: Whether or not the field is visible on forms
+                    displayOrder:
+                      type: integer
+                      description: Order for displaying the field on Manage Fields page and deal profiles
+                      format: int32
+                  required:
+                  - fieldLabel
+                  - fieldType
+                  type: object
+            examples:
+              text:
+                value:
+                  accountCustomFieldMetum:
+                    fieldLabel: sample text field2
+                    fieldType: text
+                    fieldDefault: Default Text
+                    isFormVisible: 1
+                    displayOrder: 1
+              textarea:
+                value:
+                  accountCustomFieldMetum:
+                    fieldLabel: sample textarea field
+                    fieldType: textarea
+                    fieldDefault: Default Text in Text Area
+                    isFormVisible: 1
+                    displayOrder: 2
+              date (ISO ONLY):
+                value:
+                  accountCustomFieldMetum:
+                    fieldLabel: sample date field
+                    fieldType: date
+                    fieldDefault: '2018-12-31 00:00:00'
+                    isFormVisible: 1
+                    displayOrder: 3
+              dropdown:
+                value:
+                  accountCustomFieldMetum:
+                    fieldLabel: sample dropdown field
+                    fieldType: dropdown
+                    fieldDefault: option 2
+                    fieldOptions:
+                    - option 1
+                    - option 2
+                    - option 3
+                    isFormVisible: 1
+                    displayOrder: 4
+              multiselect:
+                value:
+                  accountCustomFieldMetum:
+                    fieldLabel: sample multiselect field
+                    fieldType: multiselect
+                    fieldDefault:
+                    - option 2
+                    - option 3
+                    fieldOptions:
+                    - option 1
+                    - option 2
+                    - option 3
+                    isFormVisible: 1
+                    displayOrder: 5
+              radio:
+                value:
+                  accountCustomFieldMetum:
+                    fieldLabel: sample radio field
+                    fieldType: radio
+                    fieldDefault: option 2
+                    fieldOptions:
+                    - option 1
+                    - option 2
+                    - option 3
+                    isFormVisible: 1
+                    displayOrder: 6
+              checkbox:
+                value:
+                  accountCustomFieldMetum:
+                    fieldLabel: sample checkbox field
+                    fieldType: checkbox
+                    fieldDefault:
+                    - option 2
+                    - option 3
+                    fieldOptions:
+                    - option 1
+                    - option 2
+                    - option 3
+                    isFormVisible: 1
+                    displayOrder: 7
+              hidden:
+                value:
+                  accountCustomFieldMetum:
+                    fieldLabel: sample hidden field
+                    fieldType: hidden
+                    fieldDefault: Default Text in Hidden Field
+                    isFormVisible: 1
+                    displayOrder: 8
+              number:
+                value:
+                  accountCustomFieldMetum:
+                    fieldLabel: sample number field
+                    fieldType: number
+                    fieldDefault: '100.99'
+                    isFormVisible: 1
+                    displayOrder: 9
+              currency:
+                value:
+                  accountCustomFieldMetum:
+                    fieldLabel: sample money field
+                    fieldType: currency
+                    fieldDefault: '10099'
+                    fieldDefaultCurrency: aud
+                    isFormVisible: 1
+                    displayOrder: 10
+              datetime:
+                value:
+                  accountCustomFieldMetum:
+                    fieldLabel: sample datetime field
+                    fieldType: datetime
+                    fieldDefault: '2020-05-16T03:15:00-05:00'
+                    isFormVisible: 1
+                    displayOrder: 3
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"accountCustomFieldMetum\": {\n        \"id\": \"1\",\n        \"fieldLabel\": \"title\",\n        \"fieldType\": \"text\",\n        \"fieldOptions\": null,\n        \"fieldDefault\": \"Default Text\",\n        \"isFormVisible\": 1,\n        \"isRequired\": 0,\n        \"displayOrder\": 1,\n        \"createdTimestamp\": \"2018-10-22 19:57:37\",\n        \"updatedTimestamp\": \"2018-10-22 19:57:37\",\n        \"links\": {\n            \"accountCustomFieldData\": \"https://:account.api-us1.com/api/:version/3/accountCustomFieldMeta/1/accountCustomFieldData\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  accountCustomFieldMetum:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: '1'
+                      fieldLabel:
+                        type: string
+                        example: title
+                      fieldType:
+                        type: string
+                        example: text
+                      fieldOptions: {}
+                      fieldDefault:
+                        type: string
+                        example: Default Text
+                      isFormVisible:
+                        type: integer
+                        example: 1
+                        default: 0
+                      isRequired:
+                        type: integer
+                        example: 0
+                        default: 0
+                      displayOrder:
+                        type: integer
+                        example: 1
+                        default: 0
+                      createdTimestamp:
+                        type: string
+                        example: '2018-10-22 19:57:37'
+                      updatedTimestamp:
+                        type: string
+                        example: '2018-10-22 19:57:37'
+                      links:
+                        type: object
+                        properties:
+                          accountCustomFieldData:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/3/accountCustomFieldMeta/1/accountCustomFieldData
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\"errors\": [\n  \t\"title\": \"The field type field is required.\",\n    \"detail\": \"\",\n    \"code\": 422\n  ]\n}"
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign List All Custom Fields
+      description: ''
+      operationId: list-all-custom-fields-meta
+      parameters:
+      - name: limit
+        in: query
+        description: The number of fields returned per request.
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"accountCustomFieldMeta\": [\n        {\n            \"id\": \"1\",\n            \"fieldLabel\": \"Text Example\",\n            \"fieldType\": \"text\",\n            \"fieldOptions\": null,\n            \"fieldDefault\": 1,\n            \"fieldDefaultCurrency\": null,\n            \"isFormVisible\": 0,\n            \"isRequired\": 0,\n            \"displayOrder\": 1,\n            \"personalization\": \"\",\n            \"knownFieldId\": null,\n            \"hideFieldFlag\": 0,\n            \"createdTimestamp\": \"2019-04-23 15:34:00\",\n            \"updatedTimestamp\": \"2019-05-03 15:16:51\",\n            \"links\": {\n                \"accountCustomFieldData\": \"https://:account.api-us1.com/api/:version/accountCustomFieldMeta/1/accountCustomFieldData\"\n            }\n        },\n        {\n            \"id\": \"2\",\n            \"fieldLabel\": \"Multiple Choice Example\",\n            \"fieldType\": \"multiselect\",\n            \"fieldOptions\": [\n            \t\"Option 1\",\n            \t\"Option 2\",\n            \t\"Option 3\"\n            ],\n            \"fieldDefault\": 1,\n            \"fieldDefaultCurrency\": null,\n            \"isFormVisible\": 0,\n            \"isRequired\": 0,\n            \"displayOrder\": 2,\n            \"personalization\": \"\",\n            \"knownFieldId\": null,\n            \"hideFieldFlag\": 0,\n            \"createdTimestamp\": \"2019-04-23 15:34:00\",\n            \"updatedTimestamp\": \"2019-05-03 15:16:51\",\n            \"links\": {\n                \"accountCustomFieldData\": \"https://:account.api-us1.com/api/:version/accountCustomFieldMeta/1/accountCustomFieldData\"\n            }\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  accountCustomFieldMeta:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '1'
+                        fieldLabel:
+                          type: string
+                          example: Text Example
+                        fieldType:
+                          type: string
+                          example: text
+                        fieldOptions: {}
+                        fieldDefault:
+                          type: integer
+                          example: 1
+                          default: 0
+                        fieldDefaultCurrency: {}
+                        isFormVisible:
+                          type: integer
+                          example: 0
+                          default: 0
+                        isRequired:
+                          type: integer
+                          example: 0
+                          default: 0
+                        displayOrder:
+                          type: integer
+                          example: 1
+                          default: 0
+                        personalization:
+                          type: string
+                          example: ''
+                        knownFieldId: {}
+                        hideFieldFlag:
+                          type: integer
+                          example: 0
+                          default: 0
+                        createdTimestamp:
+                          type: string
+                          example: '2019-04-23 15:34:00'
+                        updatedTimestamp:
+                          type: string
+                          example: '2019-05-03 15:16:51'
+                        links:
+                          type: object
+                          properties:
+                            accountCustomFieldData:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/accountCustomFieldMeta/1/accountCustomFieldData
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accountCustomFieldMeta/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Custom Field
+      description: ''
+      operationId: retrieve-a-custom-field-meta
+      parameters:
+      - name: id
+        in: path
+        description: ID of the field to retrieve
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"accountCustomFieldMetum\": {\n        \"id\": \"1\",\n        \"fieldLabel\": \"New Title\",\n        \"fieldType\": \"text\",\n        \"fieldOptions\": null,\n        \"fieldDefault\": \"Default Text\",\n        \"isFormVisible\": 1,\n        \"isRequired\": 1,\n        \"displayOrder\": 1,\n        \"createdTimestamp\": \"2018-10-22 19:57:37\",\n        \"updatedTimestamp\": \"2018-10-22 20:04:21\",\n        \"links\": {\n            \"accountCustomFieldData\": \"https://:account.api-us1.com/api/:version/accountCustomFieldMeta/1/accountCustomFieldData\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  accountCustomFieldMetum:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: '1'
+                      fieldLabel:
+                        type: string
+                        example: New Title
+                      fieldType:
+                        type: string
+                        example: text
+                      fieldOptions: {}
+                      fieldDefault:
+                        type: string
+                        example: Default Text
+                      isFormVisible:
+                        type: integer
+                        example: 1
+                        default: 0
+                      isRequired:
+                        type: integer
+                        example: 1
+                        default: 0
+                      displayOrder:
+                        type: integer
+                        example: 1
+                        default: 0
+                      createdTimestamp:
+                        type: string
+                        example: '2018-10-22 19:57:37'
+                      updatedTimestamp:
+                        type: string
+                        example: '2018-10-22 20:04:21'
+                      links:
+                        type: object
+                        properties:
+                          accountCustomFieldData:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/accountCustomFieldMeta/1/accountCustomFieldData
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": 404,\n            \"title\": \"Not Found\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 404
+                          default: 0
+                        title:
+                          type: string
+                          example: Not Found
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Update a Custom Field
+      description: ''
+      operationId: update-a-custom-field
+      parameters:
+      - name: id
+        in: path
+        description: ID of the custom field to update
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountCustomFieldMetum:
+                  properties:
+                    fieldLabel:
+                      type: string
+                      description: Name of the field
+                    fieldOptions:
+                      type: array
+                      description: Options for the field. Only necessary if field_type is dropdown, multiselect, radio, or checkbox.
+                      items:
+                        type: string
+                    fieldDefault:
+                      type: string
+                      description: Default value of the field
+                    isFormVisible:
+                      type: boolean
+                      description: Whether or not the field is visible on forms
+                    displayOrder:
+                      type: integer
+                      description: Order for displaying the field on Manage Fields page and deal profiles
+                      format: int32
+                  required: []
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  accountCustomFieldMetum:
+                    fieldLabel: New Title
+                    fieldDefault: Default Text
+                    isFormVisible: 1
+                    displayOrder: 1
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"accountCustomFieldMetum\": {\n        \"id\": \"1\",\n        \"fieldLabel\": \"New Title\",\n        \"fieldType\": \"text\",\n        \"fieldOptions\": null,\n        \"fieldDefault\": \"Default Text\",\n        \"isFormVisible\": 1,\n        \"isRequired\": 1,\n        \"displayOrder\": 1,\n        \"createdTimestamp\": \"2018-10-22 19:57:37\",\n        \"updatedTimestamp\": \"2018-10-22 20:04:21\",\n        \"links\": {\n            \"accountCustomFieldData\": \"https://:account.api-us1.com/api/:version/accountCustomFieldMeta/1/accountCustomFieldData\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  accountCustomFieldMetum:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: '1'
+                      fieldLabel:
+                        type: string
+                        example: New Title
+                      fieldType:
+                        type: string
+                        example: text
+                      fieldOptions: {}
+                      fieldDefault:
+                        type: string
+                        example: Default Text
+                      isFormVisible:
+                        type: integer
+                        example: 1
+                        default: 0
+                      isRequired:
+                        type: integer
+                        example: 1
+                        default: 0
+                      displayOrder:
+                        type: integer
+                        example: 1
+                        default: 0
+                      createdTimestamp:
+                        type: string
+                        example: '2018-10-22 19:57:37'
+                      updatedTimestamp:
+                        type: string
+                        example: '2018-10-22 20:04:21'
+                      links:
+                        type: object
+                        properties:
+                          accountCustomFieldData:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/accountCustomFieldMeta/1/accountCustomFieldData
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": 404,\n            \"title\": \"Not Found\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 404
+                          default: 0
+                        title:
+                          type: string
+                          example: Not Found
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a Custom Field
+      description: ''
+      operationId: delete-a-custom-field
+      parameters:
+      - name: id
+        in: path
+        description: ID of the field to delete
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"message\": \"AccountCustomFieldMeta deleted.\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: AccountCustomFieldMeta deleted.
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": 404,\n            \"title\": \"Not Found\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 404
+                          default: 0
+                        title:
+                          type: string
+                          example: Not Found
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accountCustomFieldData:
+    post:
+      summary: ActiveCampaign Create a Custom Field Value
+      description: ''
+      operationId: create-a-custom-field-value
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountCustomFieldDatum:
+                  properties:
+                    customerAccountId:
+                      type: integer
+                      description: The ID of the account this field value relates to
+                      format: int32
+                    customFieldId:
+                      type: integer
+                      description: The ID of the custom field metum this field value relates to
+                      format: int32
+                    fieldValue:
+                      type: string
+                      description: 'Values for the field. (For `currency` field only, this needs to be in cents: eg, 10050 = 100.5)'
+                    fieldCurrency:
+                      type: string
+                      description: Currency code for the money value
+                      default: Default Currency for Field
+                  required:
+                  - customerAccountId
+                  - customFieldId
+                  - fieldValue
+                  type: object
+            examples:
+              text/textarea/hidden:
+                value:
+                  accountCustomFieldDatum:
+                    accountId: '2'
+                    customFieldId: '1'
+                    fieldValue: test title
+              dropdown/radio:
+                value:
+                  accountCustomFieldDatum:
+                    customerAccountId: '2'
+                    customFieldId: '2'
+                    fieldValue: '||option 1||option 2||option 3||'
+              mutliple multiselects/checkboxes:
+                value:
+                  accountCustomFieldDatum:
+                    customerAccountId: '2'
+                    customFieldId: '3'
+                    fieldValue:
+                    - option 1
+                    - option 3
+                    - option 4
+              currency:
+                value:
+                  accountCustomFieldDatum:
+                    customerAccountId: '1'
+                    customFieldId: '4'
+                    fieldValue: 9999
+                    fieldCurrency: cad
+              number:
+                value:
+                  accountCustomFieldDatum:
+                    customerAccountId: '1'
+                    customFieldId: '5'
+                    fieldValue: '100.99'
+              date:
+                value:
+                  accountCustomFieldDatum:
+                    customerAccountId: '1'
+                    customFieldId: '6'
+                    fieldValue: '2018-12-31'
+              datetime:
+                value:
+                  accountCustomFieldDatum:
+                    customerAccountId: '1'
+                    customFieldId: '14'
+                    fieldValue: '2020-05-19T02:45:00-05:00'
+              single multiselect/checkbox:
+                value:
+                  accountCustomFieldDatum:
+                    customerAccountId: '2'
+                    customFieldId: '3'
+                    fieldValue:
+                    - option 1
+                    - option 2
+                    - option 3
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"accountCustomFieldDatum\": {\n        \"id\": \"5\",\n        \"accountCustomFieldMetumId\": 1,\n        \"accountId\": 2,\n        \"customFieldId\": 1,\n        \"createdTimestamp\": \"2018-11-06 02:27:05\",\n        \"updatedTimestamp\": \"2018-11-06 02:27:05\",\n        \"fieldValue\": \"test title\",\n        \"links\": {\n            \"account\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/5/account\",\n            \"accountCustomFieldMetum\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/5/accountCustomFieldMetum\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  accountCustomFieldDatum:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: '5'
+                      accountCustomFieldMetumId:
+                        type: integer
+                        example: 1
+                        default: 0
+                      accountId:
+                        type: integer
+                        example: 2
+                        default: 0
+                      customFieldId:
+                        type: integer
+                        example: 1
+                        default: 0
+                      createdTimestamp:
+                        type: string
+                        example: '2018-11-06 02:27:05'
+                      updatedTimestamp:
+                        type: string
+                        example: '2018-11-06 02:27:05'
+                      fieldValue:
+                        type: string
+                        example: test title
+                      links:
+                        type: object
+                        properties:
+                          account:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/accountCustomFieldData/5/account
+                          accountCustomFieldMetum:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/accountCustomFieldData/5/accountCustomFieldMetum
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign List All Custom Field Values
+      description: ''
+      operationId: list-all-custom-field-values-2
+      parameters:
+      - name: filters[customerAccountId]
+        in: query
+        description: Filter results by a specific account (note that Id uses a capital I)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"accountCustomFieldData\": [\n        {\n            \"id\": \"3\",\n            \"accountCustomFieldMetumId\": 1,\n            \"accountId\": 1,\n            \"customFieldId\": 1,\n            \"createdTimestamp\": \"2018-11-06 02:26:07\",\n            \"updatedTimestamp\": \"2018-11-06 02:26:07\",\n            \"fieldValue\": \"test title\",\n            \"links\": {\n                \"account\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/3/account\",\n                \"accountCustomFieldMetum\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/3/accountCustomFieldMetum\"\n            }\n        },\n        {\n            \"id\": \"4\",\n            \"accountCustomFieldMetumId\": 1,\n            \"accountId\": 3,\n            \"customFieldId\": 1,\n            \"createdTimestamp\": \"2018-11-06 02:26:51\",\n            \"updatedTimestamp\": \"2018-11-06 02:26:51\",\n            \"fieldValue\": \"test title\",\n            \"links\": {\n                \"account\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/4/account\",\n                \"accountCustomFieldMetum\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/4/accountCustomFieldMetum\"\n            }\n        },\n        {\n            \"id\": \"5\",\n            \"accountCustomFieldMetumId\": 1,\n            \"accountId\": 2,\n            \"customFieldId\": 1,\n            \"createdTimestamp\": \"2018-11-06 02:27:05\",\n            \"updatedTimestamp\": \"2018-11-06 02:27:05\",\n            \"fieldValue\": \"test title\",\n            \"links\": {\n                \"account\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/5/account\",\n                \"accountCustomFieldMetum\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/5/accountCustomFieldMetum\"\n            }\n        },\n        {\n            \"id\": \"1\",\n            \"accountCustomFieldMetumId\": 5,\n            \"accountId\": 2,\n            \"customFieldId\": 5,\n            \"createdTimestamp\": \"2018-10-29 20:40:38\",\n            \"updatedTimestamp\": \"2018-11-06 02:21:36\",\n            \"fieldValue\": \"New title\",\n            \"links\": {\n                \"account\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/1/account\",\n                \"accountCustomFieldMetum\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/1/accountCustomFieldMetum\"\n            }\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  accountCustomFieldData:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '3'
+                        accountCustomFieldMetumId:
+                          type: integer
+                          example: 1
+                          default: 0
+                        accountId:
+                          type: integer
+                          example: 1
+                          default: 0
+                        customFieldId:
+                          type: integer
+                          example: 1
+                          default: 0
+                        createdTimestamp:
+                          type: string
+                          example: '2018-11-06 02:26:07'
+                        updatedTimestamp:
+                          type: string
+                          example: '2018-11-06 02:26:07'
+                        fieldValue:
+                          type: string
+                          example: test title
+                        links:
+                          type: object
+                          properties:
+                            account:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/accountCustomFieldData/3/account
+                            accountCustomFieldMetum:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/accountCustomFieldData/3/accountCustomFieldMetum
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accountCustomFieldData/bulkCreate:
+    post:
+      summary: ActiveCampaign Bulk Create a Custom Account Field Value
+      description: ''
+      operationId: bulk-create-a-custom-account-field-value
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                array:
+                  properties:
+                    customerAccountId:
+                      type: integer
+                      description: The ID of the account this field value relates to
+                      format: int32
+                    customFieldId:
+                      type: integer
+                      description: The ID of the custom field metum this field value relates to
+                      format: int32
+                    fieldValue:
+                      type: string
+                      description: 'Values for the field. (For currency field only, this needs to be in cents: eg, 10050 = 100.5)'
+                    fieldCurrency:
+                      type: string
+                      description: Currency code for the money value
+                  required:
+                  - customerAccountId
+                  - customFieldId
+                  - fieldValue
+                  type: object
+            examples:
+              Request Example:
+                value:
+                - accountId: '1'
+                  customFieldId: '1'
+                  fieldValue: test title
+                - accountId: '1'
+                  customFieldId: '2'
+                  fieldValue: test title
+                - accountId: '1'
+                  customFieldId: '3'
+                  fieldValue:
+                  - option 1
+                  - option 3
+                  - option 4
+                - accountId: '1'
+                  customFieldId: '4'
+                  fieldValue: 9999
+                  fieldCurrency: cad
+                - accountId: '1'
+                  customFieldId: '5'
+                  fieldValue: '100.99'
+                - accountId: '1'
+                  customFieldId: '6'
+                  fieldValue: '2018-12-31'
+                - accountId: '1'
+                  customFieldId: '7'
+                  fieldValue: '2020-05-19T02:45:00-05:00'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"the bulk insert was successful\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: the bulk insert was successful
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accountCustomFieldData/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Custom Field Value
+      description: ''
+      operationId: retrieve-a-custom-field-value
+      parameters:
+      - name: id
+        in: path
+        description: ID of the dealCustomFieldData to retrieve
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"accountCustomFieldDatum\": {\n        \"id\": \"1\",\n        \"accountId\": 2,\n        \"customFieldId\": 5,\n        \"createdTimestamp\": \"2018-10-29 20:40:38\",\n        \"updatedTimestamp\": \"2018-11-06 02:21:36\",\n        \"fieldValue\": \"New title\",\n        \"links\": {\n            \"account\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/1/account\",\n            \"accountCustomFieldMetum\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/1/accountCustomFieldMetum\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  accountCustomFieldDatum:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: '1'
+                      accountId:
+                        type: integer
+                        example: 2
+                        default: 0
+                      customFieldId:
+                        type: integer
+                        example: 5
+                        default: 0
+                      createdTimestamp:
+                        type: string
+                        example: '2018-10-29 20:40:38'
+                      updatedTimestamp:
+                        type: string
+                        example: '2018-11-06 02:21:36'
+                      fieldValue:
+                        type: string
+                        example: New title
+                      links:
+                        type: object
+                        properties:
+                          account:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/accountCustomFieldData/1/account
+                          accountCustomFieldMetum:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/accountCustomFieldData/1/accountCustomFieldMetum
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": 404,\n            \"title\": \"Not Found\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 404
+                          default: 0
+                        title:
+                          type: string
+                          example: Not Found
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Update a Custom Field Value
+      description: ''
+      operationId: update-a-custom-field-value
+      parameters:
+      - name: id
+        in: path
+        description: ID of the custom fields value to update
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountCustomFieldDatum:
+                  properties:
+                    fieldValue:
+                      type: string
+                      description: Values for text
+                    fieldCurrency:
+                      type: string
+                      description: Currency code for the `currency` value
+                      default: Default Currency for Field
+                  required: []
+                  type: object
+            examples:
+              text/textarea/hidden:
+                value:
+                  accountCustomFieldDatum:
+                    fieldValue: New title
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"accountCustomFieldDatum\": {\n        \"id\": \"1\",\n        \"accountId\": 2,\n        \"customFieldId\": 5,\n        \"createdTimestamp\": \"2018-10-29 20:40:38\",\n        \"updatedTimestamp\": \"2018-11-06 02:21:36\",\n        \"fieldValue\": \"New title\",\n        \"links\": {\n            \"account\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/1/account\",\n            \"accountCustomFieldMetum\": \"https://:account.api-us1.com/api/:version/accountCustomFieldData/1/accountCustomFieldMetum\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  accountCustomFieldDatum:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: '1'
+                      accountId:
+                        type: integer
+                        example: 2
+                        default: 0
+                      customFieldId:
+                        type: integer
+                        example: 5
+                        default: 0
+                      createdTimestamp:
+                        type: string
+                        example: '2018-10-29 20:40:38'
+                      updatedTimestamp:
+                        type: string
+                        example: '2018-11-06 02:21:36'
+                      fieldValue:
+                        type: string
+                        example: New title
+                      links:
+                        type: object
+                        properties:
+                          account:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/accountCustomFieldData/1/account
+                          accountCustomFieldMetum:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/accountCustomFieldData/1/accountCustomFieldMetum
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": 404,\n            \"title\": \"Not Found\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 404
+                          default: 0
+                        title:
+                          type: string
+                          example: Not Found
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a Custom Field Value
+      description: ''
+      operationId: delete-a-custom-field-value
+      parameters:
+      - name: id
+        in: path
+        description: ID of the dealCustomFieldData to retrieve
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"message\": \"AccountCustomFieldData deleted.\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: AccountCustomFieldData deleted.
+        '404':
+          description: '404'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": 404,\n            \"title\": \"Not Found\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 404
+                          default: 0
+                        title:
+                          type: string
+                          example: Not Found
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /accountCustomFieldData/bulkUpdate:
+    patch:
+      summary: ActiveCampaign Bulk Update a Custom Field Value
+      description: ''
+      operationId: bulk-update-a-custom-account-field-value
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                array:
+                  properties:
+                    id:
+                      type: integer
+                      description: ID of the dealCustomFieldData to update
+                      format: int32
+                    fieldValue:
+                      type: string
+                      description: 'Values for the field. (For currency field only, this needs to be in cents: eg, 10050 = 100.5)'
+                    fieldCurrency:
+                      type: string
+                      description: Currency code for the money value
+                  required:
+                  - id
+                  - fieldValue
+                  type: object
+            examples:
+              Request Example:
+                value:
+                - id: '1'
+                  fieldValue: test title
+                - id: '2'
+                  fieldValue:
+                  - option 1
+                  - option 3
+                  - option 4
+                - id: '3'
+                  fieldValue: 9999
+                  fieldCurrency: cad
+                - id: '4'
+                  fieldValue: '100.99'
+                - id: '5'
+                  fieldValue: '2018-12-31'
+                - id: '6'
+                  fieldValue: '2020-05-19T02:45:00-05:00'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"AccountCustomFieldDatas with ID(s): 1, 2, 3, 4, 5 successfully bulk updated.\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'AccountCustomFieldDatas with ID(s): 1, 2, 3, 4, 5 successfully bulk updated.'
+      deprecated: false
+      tags:
+      - Accounts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

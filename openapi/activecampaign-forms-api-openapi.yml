@@ -1,0 +1,574 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Forms API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Forms
+paths:
+  /forms/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Form
+      description: ''
+      operationId: retrieve-forms
+      parameters:
+      - name: id
+        in: path
+        description: ID of the form to retrieve
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"form\": {\n        \"name\": \"Test Form\",\n        \"action\": \"\",\n        \"actiondata\": {\n            \"actions\": [\n                {\n                    \"type\": \"email-results\",\n                    \"email\": \"johndoe@example.com\",\n                    \"fromname\": \"John Doe\",\n                    \"fromemail\": \"johndoe@example.com\",\n                    \"subject\": \"Form submission results\"\n                }\n            ]\n        },\n        \"submit\": \"show-thank-you\",\n        \"submitdata\": {\n            \"url\": \"\"\n        },\n        \"url\": \"\",\n        \"layout\": \"inline-form\",\n        \"title\": \"\",\n        \"body\": \"\",\n        \"button\": \"Submit\",\n        \"thanks\": \"Thanks for signing up!\",\n        \"style\": {\n            \"background\": \"FFFFFF\",\n            \"dark\": true,\n            \"fontcolor\": \"000000\",\n            \"layout\": \"normal\",\n            \"border\": {\n                \"width\": 0,\n                \"style\": \"solid\",\n                \"color\": \"B0B0B0\",\n                \"radius\": 0\n            },\n            \"width\": 500,\n            \"ac_branding\": true,\n            \"button\": {\n                \"padding\": 10,\n                \"background\": \"333333\",\n                \"fontcolor\": \"FFFFFF\",\n                \"border\": {\n                    \"radius\": 4,\n                    \"color\": \"333333\",\n                    \"style\": \"solid\",\n                    \"width\": 0\n                }\n            },\n            \"customcss\": \"\"\n        },\n        \"options\": {\n            \"blanks_overwrite\": true,\n            \"confaction\": \"show-message\"\n        },\n        \"cfields\": [\n            {\n                \"type\": \"header\",\n                \"header\": \"Contact Us\",\n                \"class\": \"_x29498744\",\n                \"required_options\": {}\n            },\n            {\n                \"type\": \"html\",\n                \"html\": \"<p>Please provide the information below and we'll be in touch soon.</p>\",\n                \"class\": \"_x14271862\",\n                \"required_options\": {}\n            },\n            {\n                \"header\": \"Full Name\",\n                \"type\": \"fullname\",\n                \"default_text\": \"\",\n                \"class\": \"_x13100531\",\n                \"required_options\": {},\n                \"required\": true\n            },\n            {\n                \"header\": \"Email\",\n                \"type\": \"email\",\n                \"default_text\": \"\",\n                \"required\": true,\n                \"class\": \"_x37378733\",\n                \"required_options\": {}\n            },\n            {\n                \"type\": \"organization\",\n                \"header\": \"Company\",\n                \"default_text\": \"\",\n                \"class\": \"_x16906569\",\n                \"required_options\": {},\n                \"required\": false\n            },\n            {\n                \"id\": \"13\",\n                \"header\": \"Role in Company\",\n                \"required\": true,\n                \"class\": \"_field13\",\n                \"required_options\": {}\n            },\n            {\n                \"id\": \"46\",\n                \"header\": \"What do you need help with?\",\n                \"required\": true,\n                \"class\": \"_field46\",\n                \"required_options\": {}\n            }\n        ],\n        \"parentformid\": \"0\",\n        \"userid\": \"1\",\n        \"addressid\": \"0\",\n        \"cdate\": \"2018-10-07T09:12:46-06:00\",\n        \"udate\": \"2018-10-12T11:18:52-06:00\",\n        \"entries\": \"0\",\n        \"aid\": null,\n        \"links\": {\n            \"address\": \"https://:account.api-us1.com/api/3/forms/13/address\"\n        },\n        \"id\": \"13\",\n        \"address\": null\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  form:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Test Form
+                      action:
+                        type: string
+                        example: ''
+                      actiondata:
+                        type: object
+                        properties:
+                          actions:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  example: email-results
+                                email:
+                                  type: string
+                                  example: johndoe@example.com
+                                fromname:
+                                  type: string
+                                  example: John Doe
+                                fromemail:
+                                  type: string
+                                  example: johndoe@example.com
+                                subject:
+                                  type: string
+                                  example: Form submission results
+                      submit:
+                        type: string
+                        example: show-thank-you
+                      submitdata:
+                        type: object
+                        properties:
+                          url:
+                            type: string
+                            example: ''
+                      url:
+                        type: string
+                        example: ''
+                      layout:
+                        type: string
+                        example: inline-form
+                      title:
+                        type: string
+                        example: ''
+                      body:
+                        type: string
+                        example: ''
+                      button:
+                        type: string
+                        example: Submit
+                      thanks:
+                        type: string
+                        example: Thanks for signing up!
+                      style:
+                        type: object
+                        properties:
+                          background:
+                            type: string
+                            example: FFFFFF
+                          dark:
+                            type: boolean
+                            example: true
+                            default: true
+                          fontcolor:
+                            type: string
+                            example: '000000'
+                          layout:
+                            type: string
+                            example: normal
+                          border:
+                            type: object
+                            properties:
+                              width:
+                                type: integer
+                                example: 0
+                                default: 0
+                              style:
+                                type: string
+                                example: solid
+                              color:
+                                type: string
+                                example: B0B0B0
+                              radius:
+                                type: integer
+                                example: 0
+                                default: 0
+                          width:
+                            type: integer
+                            example: 500
+                            default: 0
+                          ac_branding:
+                            type: boolean
+                            example: true
+                            default: true
+                          button:
+                            type: object
+                            properties:
+                              padding:
+                                type: integer
+                                example: 10
+                                default: 0
+                              background:
+                                type: string
+                                example: '333333'
+                              fontcolor:
+                                type: string
+                                example: FFFFFF
+                              border:
+                                type: object
+                                properties:
+                                  radius:
+                                    type: integer
+                                    example: 4
+                                    default: 0
+                                  color:
+                                    type: string
+                                    example: '333333'
+                                  style:
+                                    type: string
+                                    example: solid
+                                  width:
+                                    type: integer
+                                    example: 0
+                                    default: 0
+                          customcss:
+                            type: string
+                            example: ''
+                      options:
+                        type: object
+                        properties:
+                          blanks_overwrite:
+                            type: boolean
+                            example: true
+                            default: true
+                          confaction:
+                            type: string
+                            example: show-message
+                      cfields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: header
+                            header:
+                              type: string
+                              example: Contact Us
+                            class:
+                              type: string
+                              example: _x29498744
+                            required_options:
+                              type: object
+                              properties: {}
+                      parentformid:
+                        type: string
+                        example: '0'
+                      userid:
+                        type: string
+                        example: '1'
+                      addressid:
+                        type: string
+                        example: '0'
+                      cdate:
+                        type: string
+                        example: '2018-10-07T09:12:46-06:00'
+                      udate:
+                        type: string
+                        example: '2018-10-12T11:18:52-06:00'
+                      entries:
+                        type: string
+                        example: '0'
+                      aid: {}
+                      links:
+                        type: object
+                        properties:
+                          address:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/forms/13/address
+                      id:
+                        type: string
+                        example: '13'
+                      address: {}
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for Form with id 7\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for Form with id 7
+      deprecated: false
+      tags:
+      - Forms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      description: ''
+      operationId: delete_forms{id}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              examples:
+                New Example:
+                  summary: New Example
+                  value: '{}'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: form id
+        schema:
+          type: integer
+          default: ''
+      tags:
+      - Forms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      description: ''
+      operationId: put_forms{id}
+      responses:
+        '200':
+          description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: integer
+          default: ''
+      tags:
+      - Forms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /forms:
+    get:
+      summary: ActiveCampaign List All Forms
+      description: ''
+      operationId: forms-1
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"forms\": [\n        {\n            \"name\": \"Testing\",\n            \"action\": \"\",\n            \"actiondata\": {\n                \"actions\": [\n                    {\n                        \"type\": \"subscribe-to-list\",\n                        \"email\": \"johndoe@example.com\",\n                        \"list\": \"1\"\n                    }\n                ]\n            },\n            \"submit\": \"show-thank-you\",\n            \"submitdata\": {\n                \"url\": \"\"\n            },\n            \"url\": \"\",\n            \"layout\": \"inline-form\",\n            \"title\": \"\",\n            \"body\": \"\",\n            \"button\": \"Submit\",\n            \"thanks\": \"Thanks for signing up!\",\n            \"style\": {\n                \"background\": \"FFFFFF\",\n                \"dark\": true,\n                \"fontcolor\": \"000000\",\n                \"layout\": \"normal\",\n                \"border\": {\n                    \"width\": 0,\n                    \"style\": \"solid\",\n                    \"color\": \"B0B0B0\",\n                    \"radius\": 0\n                },\n                \"width\": 500,\n                \"ac_branding\": true,\n                \"button\": {\n                    \"padding\": 10,\n                    \"background\": \"333333\",\n                    \"fontcolor\": \"FFFFFF\",\n                    \"border\": {\n                        \"radius\": 4,\n                        \"color\": \"333333\",\n                        \"style\": \"solid\",\n                        \"width\": 0\n                    }\n                }\n            },\n            \"options\": {\n                \"blanks_overwrite\": true,\n                \"confaction\": \"show-message\",\n                \"sendoptin\": true,\n                \"optin_id\": 1,\n                \"optin_created\": true,\n                \"confform\": \"2\"\n            },\n            \"cfields\": [\n                {\n                    \"type\": \"header\",\n                    \"header\": \"Subscribe for Email Updates\",\n                    \"class\": \"_x41699710\"\n                },\n                {\n                    \"type\": \"html\",\n                    \"html\": \"<p>Add a descriptive message telling what your visitor is signing up for here.</p>\",\n                    \"class\": \"_x50329289\"\n                },\n                {\n                    \"header\": \"Full Name\",\n                    \"type\": \"fullname\",\n                    \"default_text\": \"Type your name\",\n                    \"class\": \"_x67999677\"\n                },\n                {\n                    \"header\": \"Email\",\n                    \"type\": \"email\",\n                    \"default_text\": \"Type your email\",\n                    \"required\": true,\n                    \"class\": \"_x68140262\"\n                }\n            ],\n            \"parentformid\": \"0\",\n            \"userid\": \"1\",\n            \"addressid\": \"0\",\n            \"cdate\": \"2018-08-17T13:47:31-05:00\",\n            \"udate\": \"2018-08-17T13:47:38-05:00\",\n            \"entries\": \"0\",\n            \"aid\": \"0\",\n            \"defaultscreenshot\": \"http://img-us1.com/default-form.gif\",\n            \"recent\": [],\n            \"contacts\": 0,\n            \"deals\": 0,\n            \"links\": {\n                \"address\": \"https://:account.api-us1.com/api/3/forms/1/address\"\n            },\n            \"id\": \"1\",\n            \"address\": null\n        }\n    ],\n    \"meta\": {\n        \"total\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  forms:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Testing
+                        action:
+                          type: string
+                          example: ''
+                        actiondata:
+                          type: object
+                          properties:
+                            actions:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  type:
+                                    type: string
+                                    example: subscribe-to-list
+                                  email:
+                                    type: string
+                                    example: johndoe@example.com
+                                  list:
+                                    type: string
+                                    example: '1'
+                        submit:
+                          type: string
+                          example: show-thank-you
+                        submitdata:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: ''
+                        url:
+                          type: string
+                          example: ''
+                        layout:
+                          type: string
+                          example: inline-form
+                        title:
+                          type: string
+                          example: ''
+                        body:
+                          type: string
+                          example: ''
+                        button:
+                          type: string
+                          example: Submit
+                        thanks:
+                          type: string
+                          example: Thanks for signing up!
+                        style:
+                          type: object
+                          properties:
+                            background:
+                              type: string
+                              example: FFFFFF
+                            dark:
+                              type: boolean
+                              example: true
+                              default: true
+                            fontcolor:
+                              type: string
+                              example: '000000'
+                            layout:
+                              type: string
+                              example: normal
+                            border:
+                              type: object
+                              properties:
+                                width:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                style:
+                                  type: string
+                                  example: solid
+                                color:
+                                  type: string
+                                  example: B0B0B0
+                                radius:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                            width:
+                              type: integer
+                              example: 500
+                              default: 0
+                            ac_branding:
+                              type: boolean
+                              example: true
+                              default: true
+                            button:
+                              type: object
+                              properties:
+                                padding:
+                                  type: integer
+                                  example: 10
+                                  default: 0
+                                background:
+                                  type: string
+                                  example: '333333'
+                                fontcolor:
+                                  type: string
+                                  example: FFFFFF
+                                border:
+                                  type: object
+                                  properties:
+                                    radius:
+                                      type: integer
+                                      example: 4
+                                      default: 0
+                                    color:
+                                      type: string
+                                      example: '333333'
+                                    style:
+                                      type: string
+                                      example: solid
+                                    width:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                        options:
+                          type: object
+                          properties:
+                            blanks_overwrite:
+                              type: boolean
+                              example: true
+                              default: true
+                            confaction:
+                              type: string
+                              example: show-message
+                            sendoptin:
+                              type: boolean
+                              example: true
+                              default: true
+                            optin_id:
+                              type: integer
+                              example: 1
+                              default: 0
+                            optin_created:
+                              type: boolean
+                              example: true
+                              default: true
+                            confform:
+                              type: string
+                              example: '2'
+                        cfields:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                example: header
+                              header:
+                                type: string
+                                example: Subscribe for Email Updates
+                              class:
+                                type: string
+                                example: _x41699710
+                        parentformid:
+                          type: string
+                          example: '0'
+                        userid:
+                          type: string
+                          example: '1'
+                        addressid:
+                          type: string
+                          example: '0'
+                        cdate:
+                          type: string
+                          example: '2018-08-17T13:47:31-05:00'
+                        udate:
+                          type: string
+                          example: '2018-08-17T13:47:38-05:00'
+                        entries:
+                          type: string
+                          example: '0'
+                        aid:
+                          type: string
+                          example: '0'
+                        defaultscreenshot:
+                          type: string
+                          example: http://img-us1.com/default-form.gif
+                        recent:
+                          type: array
+                        contacts:
+                          type: integer
+                          example: 0
+                          default: 0
+                        deals:
+                          type: integer
+                          example: 0
+                          default: 0
+                        links:
+                          type: object
+                          properties:
+                            address:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/forms/1/address
+                        id:
+                          type: string
+                          example: '1'
+                        address: {}
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '1'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Forms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      description: ''
+      operationId: post_forms
+      responses:
+        '200':
+          description: ''
+      parameters: []
+      tags:
+      - Forms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /form/optin:
+    post:
+      description: ''
+      operationId: post_formoptin
+      responses:
+        '200':
+          description: ''
+      parameters: []
+      tags:
+      - Forms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

@@ -1,0 +1,379 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Calendars API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Calendars
+paths:
+  /calendars:
+    post:
+      summary: ActiveCampaign Create a Calendar Feed
+      description: ''
+      operationId: create-a-calendar-feed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                calendar:
+                  properties:
+                    title:
+                      type: string
+                      description: Title of the calendar feed
+                    type:
+                      type: string
+                      description: 'Possible Values: ''All'', ''Deals'', or ''Contacts'''
+                    notification:
+                      type: boolean
+                      description: Whether or not this calendar has notifications
+                  required:
+                  - title
+                  - type
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  calendar:
+                    title: Calendar Title
+                    type: All
+                    notification: 1
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"calendar\": {\n        \"title\": \"Calendar Title\",\n        \"type\": \"All\",\n        \"userid\": \"1\",\n        \"notification\": 1,\n        \"cdate\": \"2018-11-15T22:26:35-06:00\",\n        \"mdate\": \"2018-11-15T22:26:35-06:00\",\n        \"token\": \"5540950ac4ed4f11591db934b701aff8\",\n        \"links\": {\n            \"calendarRels\": \"https://:account.api-us1.com/api/:version/calendars/1/calendarRels\",\n            \"calendarUsers\": \"https://:account.api-us1.com/api/:version/calendars/1/calendarUsers\"\n        },\n        \"id\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  calendar:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: Calendar Title
+                      type:
+                        type: string
+                        example: All
+                      userid:
+                        type: string
+                        example: '1'
+                      notification:
+                        type: integer
+                        example: 1
+                        default: 0
+                      cdate:
+                        type: string
+                        example: '2018-11-15T22:26:35-06:00'
+                      mdate:
+                        type: string
+                        example: '2018-11-15T22:26:35-06:00'
+                      token:
+                        type: string
+                        example: 5540950ac4ed4f11591db934b701aff8
+                      links:
+                        type: object
+                        properties:
+                          calendarRels:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/calendars/1/calendarRels
+                          calendarUsers:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/calendars/1/calendarUsers
+                      id:
+                        type: string
+                        example: '1'
+      deprecated: false
+      tags:
+      - Calendars
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign List All Calendar Feeds
+      description: ''
+      operationId: list-all-calendar-feeds
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"calendars\": [\n        {\n            \"userid\": \"1\",\n            \"title\": \"Calendar Title\",\n            \"type\": \"All\",\n            \"token\": \"4d9af6b9d5056ef1ca4a31c12c0e105c\",\n            \"notification\": \"0\",\n            \"cdate\": \"2018-11-15T22:36:05-06:00\",\n            \"mdate\": \"2018-11-15T22:36:05-06:00\",\n            \"links\": {\n                \"calendarRels\": \"https://:account.api-us1.com/api/:version/calendars/2/calendarRels\",\n                \"calendarUsers\": \"https://:account.api-us1.com/api/:version/calendars/2/calendarUsers\"\n            },\n            \"id\": \"2\"\n        }\n    ],\n    \"meta\": {\n        \"total\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  calendars:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        userid:
+                          type: string
+                          example: '1'
+                        title:
+                          type: string
+                          example: Calendar Title
+                        type:
+                          type: string
+                          example: All
+                        token:
+                          type: string
+                          example: 4d9af6b9d5056ef1ca4a31c12c0e105c
+                        notification:
+                          type: string
+                          example: '0'
+                        cdate:
+                          type: string
+                          example: '2018-11-15T22:36:05-06:00'
+                        mdate:
+                          type: string
+                          example: '2018-11-15T22:36:05-06:00'
+                        links:
+                          type: object
+                          properties:
+                            calendarRels:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/calendars/2/calendarRels
+                            calendarUsers:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/calendars/2/calendarUsers
+                        id:
+                          type: string
+                          example: '2'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '1'
+      deprecated: false
+      tags:
+      - Calendars
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /calendars/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Calendar Feed
+      description: ''
+      operationId: list-all-calendar-feeds-1
+      parameters:
+      - name: id
+        in: path
+        description: ID of the calendar feed to retrieve
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"calendar\": {\n        \"userid\": \"1\",\n        \"title\": \"Calendar Title\",\n        \"type\": \"All\",\n        \"token\": \"5540950ac4ed4f11591db934b701aff8\",\n        \"notification\": \"1\",\n        \"cdate\": \"2018-11-15T22:26:35-06:00\",\n        \"mdate\": \"2018-11-15T22:26:35-06:00\",\n        \"links\": {\n            \"calendarRels\": \"https://:account.api-us1.com/api/:version/calendars/1/calendarRels\",\n            \"calendarUsers\": \"https://:account.api-us1.com/api/:version/calendars/1/calendarUsers\"\n        },\n        \"id\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  calendar:
+                    type: object
+                    properties:
+                      userid:
+                        type: string
+                        example: '1'
+                      title:
+                        type: string
+                        example: Calendar Title
+                      type:
+                        type: string
+                        example: All
+                      token:
+                        type: string
+                        example: 5540950ac4ed4f11591db934b701aff8
+                      notification:
+                        type: string
+                        example: '1'
+                      cdate:
+                        type: string
+                        example: '2018-11-15T22:26:35-06:00'
+                      mdate:
+                        type: string
+                        example: '2018-11-15T22:26:35-06:00'
+                      links:
+                        type: object
+                        properties:
+                          calendarRels:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/calendars/1/calendarRels
+                          calendarUsers:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/calendars/1/calendarUsers
+                      id:
+                        type: string
+                        example: '1'
+        '404':
+          description: '404'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for Calendar with id 1\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for Calendar with id 1
+      deprecated: false
+      tags:
+      - Calendars
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Update a Calendar Feed
+      description: ''
+      operationId: update-a-calendar-feed
+      parameters:
+      - name: id
+        in: path
+        description: ID of the calendar feed to update
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                calendar:
+                  properties:
+                    title:
+                      type: string
+                      description: Title of the calendar feed
+                    type:
+                      type: string
+                      description: 'Possible Values: ''All'', ''Deals'', or ''Contacts'''
+                    notification:
+                      type: boolean
+                      description: Whether or not this calendar has notifications
+                  required: []
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  calendar:
+                    title: Calendar Title
+                    type: Deals
+                    notification: 0
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"calendar\": {\n        \"userid\": \"1\",\n        \"title\": \"Calendar Title\",\n        \"type\": \"Deals\",\n        \"token\": \"5540950ac4ed4f11591db934b701aff8\",\n        \"notification\": 0,\n        \"cdate\": \"2018-11-15T22:26:35-06:00\",\n        \"mdate\": \"2018-11-16T02:11:40-06:00\",\n        \"links\": {\n            \"calendarRels\": \"https://:account.api-us1.com/api/:version/calendars/1/calendarRels\",\n            \"calendarUsers\": \"https://:account.api-us1.com/api/:version/calendars/1/calendarUsers\"\n        },\n        \"id\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  calendar:
+                    type: object
+                    properties:
+                      userid:
+                        type: string
+                        example: '1'
+                      title:
+                        type: string
+                        example: Calendar Title
+                      type:
+                        type: string
+                        example: Deals
+                      token:
+                        type: string
+                        example: 5540950ac4ed4f11591db934b701aff8
+                      notification:
+                        type: integer
+                        example: 0
+                        default: 0
+                      cdate:
+                        type: string
+                        example: '2018-11-15T22:26:35-06:00'
+                      mdate:
+                        type: string
+                        example: '2018-11-16T02:11:40-06:00'
+                      links:
+                        type: object
+                        properties:
+                          calendarRels:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/calendars/1/calendarRels
+                          calendarUsers:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/calendars/1/calendarUsers
+                      id:
+                        type: string
+                        example: '1'
+      deprecated: false
+      tags:
+      - Calendars
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a Calendar Feed
+      description: ''
+      operationId: remove-a-calendar-feed
+      parameters:
+      - name: id
+        in: path
+        description: ID of the calendar feed to delete
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Calendars
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

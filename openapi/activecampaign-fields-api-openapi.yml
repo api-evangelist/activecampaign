@@ -1,0 +1,1737 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Fields API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Fields
+paths:
+  /fields:
+    post:
+      summary: ActiveCampaign Create a Custom Field
+      description: ''
+      operationId: create-a-contact-custom-field
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                field:
+                  properties:
+                    title:
+                      type: string
+                      description: Title of the field being created
+                    type:
+                      type: string
+                      description: 'Possible Values: dropdown, hidden, checkbox, date, text, datetime, textarea, NULL, listbox, radio'
+                    descript:
+                      type: string
+                      description: Description of field being created
+                    perstag:
+                      type: string
+                      description: The perstag that represents the field being created
+                    defval:
+                      type: string
+                      description: Default value of the field being created
+                    show_in_list:
+                      type: boolean
+                      description: Show this field in the contact list view (Deprecated - no longer used)
+                    rows:
+                      type: integer
+                      description: Num of rows for a textarea (Deprecated - no longer used)
+                      format: int32
+                    cols:
+                      type: integer
+                      description: Num of columns for a textarea (Deprecated - no longer used)
+                      format: int32
+                    visible:
+                      type: boolean
+                      description: Show or hide this field when using the Form Builder
+                    service:
+                      type: string
+                      description: 'Possible Vales: nimble, contactually, mindbody, salesforce, highrise, google_spreadsheets, pipedrive, onepage, google_contacts, freshbooks, shopify, zendesk, etsy, NULL, bigcommerce, capsule, bigcommerce_oauth, sugarcrm, zohocrm, batchbook'
+                    ordernum:
+                      type: integer
+                      description: Order of appearance in ‘My Fields’ tab.
+                      format: int32
+                  required:
+                  - title
+                  - type
+                  type: object
+            examples:
+              textarea:
+                value:
+                  field:
+                    type: textarea
+                    title: Field Title
+                    descript: Field description
+                    perstag: Personalized Tag
+                    defval: Default Value
+                    visible: 1
+                    ordernum: 1
+              text:
+                value:
+                  field:
+                    type: text
+                    title: Field Title
+                    descript: Field description
+                    perstag: Personalized Tag
+                    defval: Default Value
+                    visible: 1
+                    ordernum: 1
+              date:
+                value:
+                  field:
+                    type: date
+                    title: Field Title
+                    descript: Field description
+                    perstag: Personalized Tag
+                    defval: '2025-01-01'
+                    visible: 1
+                    ordernum: 1
+              dropdown:
+                value:
+                  field:
+                    type: dropdown
+                    title: Field Title
+                    descript: Field description
+                    perstag: Personalized Tag
+                    visible: 1
+                    ordernum: 1
+              multiselect:
+                value:
+                  field:
+                    type: listbox
+                    title: Field Title
+                    descript: Field description
+                    perstag: Personalized Tag
+                    visible: 1
+                    ordernum: 1
+              radio:
+                value:
+                  field:
+                    type: radio
+                    title: Field Title
+                    descript: Field description
+                    perstag: Personalized Tag
+                    visible: 1
+                    ordernum: 1
+              checkbox:
+                value:
+                  field:
+                    type: checkbox
+                    title: Field Title
+                    descript: Field description
+                    perstag: Personalized Tag
+                    visible: 1
+                    ordernum: 1
+              hidden:
+                value:
+                  field:
+                    type: hidden
+                    title: Field Title
+                    descript: Field description
+                    perstag: Personalized Tag
+                    defval: Default Value
+                    visible: 1
+                    ordernum: 1
+              datetime (ISO):
+                value:
+                  field:
+                    type: datetime
+                    title: Field Title
+                    descript: Field description
+                    perstag: Personalized Tag
+                    defval: '2025-05-19T02:45:00-05:00'
+                    visible: 1
+                    ordernum: 1
+              number:
+                value:
+                  field:
+                    type: number
+                    title: Field Title
+                    descript: Field description
+                    perstag: Personalized Tag
+                    defval: '1234'
+                    visible: 1
+                    ordernum: 1
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"fieldOptions\": [],\n    \"fieldRels\": [],\n    \"fields\": [\n        {\n            \"title\": \"Another Test Title\",\n            \"descript\": null,\n            \"type\": \"\",\n            \"isrequired\": \"0\",\n            \"perstag\": \"ANOTHER_TEST_TITLE\",\n            \"defval\": null,\n            \"show_in_list\": \"0\",\n            \"rows\": \"0\",\n            \"cols\": \"0\",\n            \"visible\": \"1\",\n            \"service\": \"\",\n            \"ordernum\": \"2\",\n            \"cdate\": \"2018-11-15T21:43:38-06:00\",\n            \"udate\": \"2018-11-15T21:43:38-06:00\",\n            \"options\": [],\n            \"relations\": [],\n            \"links\": {\n                \"options\": \"https://:account.api-us1.com/api/:version/fields/2/options\",\n                \"relations\": \"https://:account.api-us1.com/api/:version/fields/2/relations\"\n            },\n            \"id\": \"2\"\n        },\n        {\n            \"title\": \"Title\",\n            \"descript\": \"Field  description\",\n            \"type\": \"textarea\",\n            \"isrequired\": \"1\",\n            \"perstag\": \"PERSONALIZEDTAG\",\n            \"defval\": \"Defaut Value\",\n            \"show_in_list\": \"1\",\n            \"rows\": \"2\",\n            \"cols\": \"2\",\n            \"visible\": \"1\",\n            \"service\": \"google\",\n            \"ordernum\": \"3\",\n            \"cdate\": \"2018-11-15T21:42:40-06:00\",\n            \"udate\": \"2018-11-15T21:49:52-06:00\",\n            \"options\": [],\n            \"relations\": [],\n            \"links\": {\n                \"options\": \"https://:account.api-us1.com/api/:version/fields/1/options\",\n                \"relations\": \"https://:account.api-us1.com/api/:version/fields/1/relations\"\n            },\n            \"id\": \"1\"\n        }\n    ],\n    \"meta\": {\n        \"total\": \"2\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  fieldOptions:
+                    type: array
+                  fieldRels:
+                    type: array
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: Another Test Title
+                        descript: {}
+                        type:
+                          type: string
+                          example: ''
+                        isrequired:
+                          type: string
+                          example: '0'
+                        perstag:
+                          type: string
+                          example: ANOTHER_TEST_TITLE
+                        defval: {}
+                        show_in_list:
+                          type: string
+                          example: '0'
+                        rows:
+                          type: string
+                          example: '0'
+                        cols:
+                          type: string
+                          example: '0'
+                        visible:
+                          type: string
+                          example: '1'
+                        service:
+                          type: string
+                          example: ''
+                        ordernum:
+                          type: string
+                          example: '2'
+                        cdate:
+                          type: string
+                          example: '2018-11-15T21:43:38-06:00'
+                        udate:
+                          type: string
+                          example: '2018-11-15T21:43:38-06:00'
+                        options:
+                          type: array
+                        relations:
+                          type: array
+                        links:
+                          type: object
+                          properties:
+                            options:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/fields/2/options
+                            relations:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/fields/2/relations
+                        id:
+                          type: string
+                          example: '2'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '2'
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"Forbidden\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Forbidden
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"title\": \"There is already a field with this title\",\n            \"detail\": \"There is already a field named 'Test Title' -- choose another name\",\n            \"code\": \"duplicate\"\n        }\n    ]\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            example: The field title was not provided.
+                          detail:
+                            type: string
+                            example: ''
+                          code:
+                            type: string
+                            example: field_missing
+                - type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            example: There is already a field with this personalization tag
+                          detail:
+                            type: string
+                            example: There is already a personalization tag named 'Perstag' -- choose another name
+                          code:
+                            type: string
+                            example: field_invalid
+                - type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            example: There is already a field with this title
+                          detail:
+                            type: string
+                            example: There is already a field named 'Test Title' -- choose another name
+                          code:
+                            type: string
+                            example: duplicate
+      deprecated: false
+      tags:
+      - Fields
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign List All Custom Fields
+      description: ''
+      operationId: retrieve-fields
+      parameters:
+      - name: limit
+        in: query
+        description: The number of fields returned per request.
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      - name: filters[perstag]
+        in: query
+        description: 'The custom field''s persistant tag to filter by (Ex: CUSTOMER_GROUP)'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"fieldOptions\": [],\n    \"fieldRels\": [],\n    \"fields\": [\n        {\n            \"title\": \"Another Test Title\",\n            \"descript\": null,\n            \"type\": \"\",\n            \"isrequired\": \"0\",\n            \"perstag\": \"ANOTHER_TEST_TITLE\",\n            \"defval\": null,\n            \"show_in_list\": \"0\",\n            \"rows\": \"0\",\n            \"cols\": \"0\",\n            \"visible\": \"1\",\n            \"service\": \"\",\n            \"ordernum\": \"2\",\n            \"cdate\": \"2018-11-15T21:43:38-06:00\",\n            \"udate\": \"2018-11-15T21:43:38-06:00\",\n            \"options\": [],\n            \"relations\": [],\n            \"links\": {\n                \"options\": \"https://:account.api-us1.com/api/:version/fields/2/options\",\n                \"relations\": \"https://:account.api-us1.com/api/:version/fields/2/relations\"\n            },\n            \"id\": \"2\"\n        },\n        {\n            \"title\": \"Title\",\n            \"descript\": \"Field  description\",\n            \"type\": \"textarea\",\n            \"isrequired\": \"1\",\n            \"perstag\": \"PERSONALIZEDTAG\",\n            \"defval\": \"Defaut Value\",\n            \"show_in_list\": \"1\",\n            \"rows\": \"2\",\n            \"cols\": \"2\",\n            \"visible\": \"1\",\n            \"service\": \"google\",\n            \"ordernum\": \"3\",\n            \"cdate\": \"2018-11-15T21:42:40-06:00\",\n            \"udate\": \"2018-11-15T21:49:52-06:00\",\n            \"options\": [],\n            \"relations\": [],\n            \"links\": {\n                \"options\": \"https://:account.api-us1.com/api/:version/fields/1/options\",\n                \"relations\": \"https://:account.api-us1.com/api/:version/fields/1/relations\"\n            },\n            \"id\": \"1\"\n        }\n    ],\n    \"meta\": {\n        \"total\": \"2\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  fieldOptions:
+                    type: array
+                  fieldRels:
+                    type: array
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: Another Test Title
+                        descript: {}
+                        type:
+                          type: string
+                          example: ''
+                        isrequired:
+                          type: string
+                          example: '0'
+                        perstag:
+                          type: string
+                          example: ANOTHER_TEST_TITLE
+                        defval: {}
+                        show_in_list:
+                          type: string
+                          example: '0'
+                        rows:
+                          type: string
+                          example: '0'
+                        cols:
+                          type: string
+                          example: '0'
+                        visible:
+                          type: string
+                          example: '1'
+                        service:
+                          type: string
+                          example: ''
+                        ordernum:
+                          type: string
+                          example: '2'
+                        cdate:
+                          type: string
+                          example: '2018-11-15T21:43:38-06:00'
+                        udate:
+                          type: string
+                          example: '2018-11-15T21:43:38-06:00'
+                        options:
+                          type: array
+                        relations:
+                          type: array
+                        links:
+                          type: object
+                          properties:
+                            options:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/fields/2/options
+                            relations:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/fields/2/relations
+                        id:
+                          type: string
+                          example: '2'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '2'
+      deprecated: false
+      tags:
+      - Fields
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /fields/{id}:
+    put:
+      summary: ActiveCampaign Update a Custom Field
+      description: ''
+      operationId: update-a-field
+      parameters:
+      - name: id
+        in: path
+        description: ID of the field to update
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                field:
+                  properties:
+                    type:
+                      type: string
+                      description: 'Possible Values: dropdown, hidden, checkbox, date, datetime, text, textarea, NULL, listbox, radio'
+                    title:
+                      type: string
+                      description: Title of the field being updated
+                    descript:
+                      type: string
+                      description: Description of field being updated
+                    perstag:
+                      type: string
+                      description: The perstag that represents the field being created
+                    defval:
+                      type: string
+                      description: Default value of the field being created
+                    show_in_list:
+                      type: boolean
+                      description: Show this field in the contact list view (No longer Used)
+                    visible:
+                      type: boolean
+                      description: Setting to show/hide field
+                    service:
+                      type: string
+                      description: 'Possible Vales: nimble, contactually, mindbody, salesforce, highrise, google_spreadsheets, pipedrive, onepage, google_contacts, freshbooks, shopify, zendesk, etsy, NULL, bigcommerce, capsule, bigcommerce_oauth, sugarcrm, zohocrm, batchbook'
+                    ordernum:
+                      type: string
+                      description: Order of appearance in ‘My Fields’ tab.
+                  required: []
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  field:
+                    type: textarea
+                    title: Title
+                    descript: Field  description
+                    perstag: Personalized Tag
+                    defval: Defaut Value
+                    show_in_list: 1
+                    rows: 2
+                    cols: 2
+                    visible: 1
+                    service: google
+                    ordernum: 3
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"field\": {\n        \"title\": \"Title\",\n        \"descript\": \"Field  description\",\n        \"type\": \"textarea\",\n        \"isrequired\": 0,\n        \"perstag\": \"PERSONALIZEDTAG\",\n        \"defval\": \"Defaut Value\",\n        \"show_in_list\": 1,\n        \"rows\": 2,\n        \"cols\": 2,\n        \"visible\": 1,\n        \"service\": \"google\",\n        \"ordernum\": 3,\n        \"cdate\": \"2018-09-25T16:06:08-05:00\",\n        \"udate\": \"2018-09-29T18:23:20-05:00\",\n        \"links\": {\n            \"options\": \"https://:account.api-us1.com/api/:version/fields/3/options\",\n            \"relations\": \"https://:account.api-us1.com/api/:version/fields/3/relations\"\n        },\n        \"id\": \"3\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  field:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: Title
+                      descript:
+                        type: string
+                        example: Field  description
+                      type:
+                        type: string
+                        example: textarea
+                      isrequired:
+                        type: integer
+                        example: 0
+                        default: 0
+                      perstag:
+                        type: string
+                        example: PERSONALIZEDTAG
+                      defval:
+                        type: string
+                        example: Defaut Value
+                      show_in_list:
+                        type: integer
+                        example: 1
+                        default: 0
+                      rows:
+                        type: integer
+                        example: 2
+                        default: 0
+                      cols:
+                        type: integer
+                        example: 2
+                        default: 0
+                      visible:
+                        type: integer
+                        example: 1
+                        default: 0
+                      service:
+                        type: string
+                        example: google
+                      ordernum:
+                        type: integer
+                        example: 3
+                        default: 0
+                      cdate:
+                        type: string
+                        example: '2018-09-25T16:06:08-05:00'
+                      udate:
+                        type: string
+                        example: '2018-09-29T18:23:20-05:00'
+                      links:
+                        type: object
+                        properties:
+                          options:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/fields/3/options
+                          relations:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/fields/3/relations
+                      id:
+                        type: string
+                        example: '3'
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"Forbidden\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Forbidden
+      deprecated: false
+      tags:
+      - Fields
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign Get a Custom Field by ID
+      description: ''
+      operationId: retrieve-a-custom-field-contact
+      parameters:
+      - name: id
+        in: path
+        description: ID of the field to retrieve
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"fieldOptions\": [],\n    \"fieldRels\": [\n        {\n            \"field\": \"1\",\n            \"relid\": \"0\",\n            \"dorder\": \"0\",\n            \"cdate\": \"2018-08-17T11:09:43-05:00\",\n            \"links\": [],\n            \"id\": \"1\"\n        }\n    ],\n    \"field\": {\n        \"title\": \"test\",\n        \"descript\": \"\",\n        \"type\": \"text\",\n        \"isrequired\": \"0\",\n        \"perstag\": \"TEST\",\n        \"defval\": \"\",\n        \"show_in_list\": \"0\",\n        \"rows\": \"0\",\n        \"cols\": \"0\",\n        \"visible\": \"1\",\n        \"service\": \"\",\n        \"ordernum\": \"1\",\n        \"cdate\": \"2018-08-17T11:09:43-05:00\",\n        \"udate\": \"2018-08-17T11:09:43-05:00\",\n        \"options\": [],\n        \"relations\": [\n            \"1\"\n        ],\n        \"links\": {\n            \"options\": \"https://:account.api-us1.com/api/3/fields/1/options\",\n            \"relations\": \"https://:account.api-us1.com/api/3/fields/1/relations\"\n        },\n        \"id\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  fieldOptions:
+                    type: array
+                  fieldRels:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          example: '1'
+                        relid:
+                          type: string
+                          example: '0'
+                        dorder:
+                          type: string
+                          example: '0'
+                        cdate:
+                          type: string
+                          example: '2018-08-17T11:09:43-05:00'
+                        links:
+                          type: array
+                        id:
+                          type: string
+                          example: '1'
+                  field:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: test
+                      descript:
+                        type: string
+                        example: ''
+                      type:
+                        type: string
+                        example: text
+                      isrequired:
+                        type: string
+                        example: '0'
+                      perstag:
+                        type: string
+                        example: TEST
+                      defval:
+                        type: string
+                        example: ''
+                      show_in_list:
+                        type: string
+                        example: '0'
+                      rows:
+                        type: string
+                        example: '0'
+                      cols:
+                        type: string
+                        example: '0'
+                      visible:
+                        type: string
+                        example: '1'
+                      service:
+                        type: string
+                        example: ''
+                      ordernum:
+                        type: string
+                        example: '1'
+                      cdate:
+                        type: string
+                        example: '2018-08-17T11:09:43-05:00'
+                      udate:
+                        type: string
+                        example: '2018-08-17T11:09:43-05:00'
+                      options:
+                        type: array
+                      relations:
+                        type: array
+                        items:
+                          type: string
+                          example: '1'
+                      links:
+                        type: object
+                        properties:
+                          options:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/fields/1/options
+                          relations:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/fields/1/relations
+                      id:
+                        type: string
+                        example: '1'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Fields
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a Custom Field
+      description: ''
+      operationId: delete-a-field
+      parameters:
+      - name: id
+        in: path
+        description: ID of the field option to delete
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for Field with id 99\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for Field with id 99
+      deprecated: false
+      tags:
+      - Fields
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /fieldRels:
+    post:
+      summary: ActiveCampaign Create a Custom Field Relationship to List(s)
+      description: ''
+      operationId: create-a-custom-field-relationship-to-lists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fieldRel:
+                  type: object
+                  properties:
+                    field:
+                      type: integer
+                      description: ID of the field to create the relationship
+                      default: 8
+                      format: int32
+                    relid:
+                      type: integer
+                      description: ID of the list to create the relationship (0 makes the field available on all lists)
+                      default: 2
+                      format: int32
+            examples:
+              Request Example:
+                value:
+                  fieldRel:
+                    field: 8
+                    relid: 2
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"fieldRel\": {\n        \"relid\": 2,\n        \"field\": 8,\n        \"cdate\": \"2019-02-01T08:39:25-06:00\",\n        \"links\": [],\n        \"id\": \"19\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  fieldRel:
+                    type: object
+                    properties:
+                      relid:
+                        type: integer
+                        example: 2
+                        default: 0
+                      field:
+                        type: integer
+                        example: 8
+                        default: 0
+                      cdate:
+                        type: string
+                        example: '2019-02-01T08:39:25-06:00'
+                      links:
+                        type: array
+                      id:
+                        type: string
+                        example: '19'
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"Forbidden\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Forbidden
+      deprecated: false
+      tags:
+      - Fields
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /fieldOption/bulk:
+    post:
+      summary: ActiveCampaign Create Custom Field Options
+      description: ''
+      operationId: create-custom-field-options
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - field
+              - value
+              properties:
+                field:
+                  type: integer
+                  description: ID of the custom field to add options to
+                  format: int32
+                label:
+                  type: string
+                  description: Name of the option
+                value:
+                  type: string
+                  description: Value of the option
+                orderid:
+                  type: integer
+                  description: Order for displaying the custom field option
+                  format: int32
+                isdefault:
+                  type: boolean
+                  description: Whether or not this option is the default value
+            examples:
+              Request Example:
+                value:
+                  fieldOptions:
+                  - orderid: 1
+                    value: X
+                    label: Option X
+                    isdefault: false
+                    field: '62'
+                  - orderid: 2
+                    value: Y
+                    label: Option Y
+                    isdefault: false
+                    field: '62'
+                  - orderid: 3
+                    value: Z
+                    label: Option Z
+                    isdefault: false
+                    field: '62'
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"fieldOptions\": [\n        {\n            \"orderid\": 1,\n            \"value\": \"X\",\n            \"label\": \"Option X\",\n            \"isdefault\": 0,\n            \"field\": \"62\",\n            \"cdate\": \"2023-06-08T15:36:49-05:00\",\n            \"udate\": \"2023-06-08T15:36:49-05:00\",\n            \"links\": {\n                \"field\": \"https://{{yourAccount}}.api-us1.com/api/3/fieldOptions/1/field\"\n            },\n            \"id\": \"1\"\n        },\n        {\n            \"orderid\": 2,\n            \"value\": \"Y\",\n            \"label\": \"Option Y\",\n            \"isdefault\": 0,\n            \"field\": \"62\",\n            \"cdate\": \"2023-06-08T15:36:49-05:00\",\n            \"udate\": \"2023-06-08T15:36:49-05:00\",\n            \"links\": {\n                \"field\": \"https://{{yourAccount}}.api-us1.com/api/3/fieldOptions/2/field\"\n            },\n            \"id\": \"2\"\n        },\n        {\n            \"orderid\": 3,\n            \"value\": \"Z\",\n            \"label\": \"Option Z\",\n            \"isdefault\": 0,\n            \"field\": \"62\",\n            \"cdate\": \"2023-06-08T15:36:49-05:00\",\n            \"udate\": \"2023-06-08T15:36:49-05:00\",\n            \"links\": {\n                \"field\": \"{{yourAccount}}.api-us1.com/api/3/fieldOptions/3/field\"\n            },\n            \"id\": \"3\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  fieldOptions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        orderid:
+                          type: integer
+                          example: 1
+                          default: 0
+                        value:
+                          type: string
+                          example: X
+                        label:
+                          type: string
+                          example: Option X
+                        isdefault:
+                          type: integer
+                          example: 0
+                          default: 0
+                        field:
+                          type: string
+                          example: '62'
+                        cdate:
+                          type: string
+                          example: '2023-06-08T15:36:49-05:00'
+                        udate:
+                          type: string
+                          example: '2023-06-08T15:36:49-05:00'
+                        links:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              example: https://{{yourAccount}}.api-us1.com/api/3/fieldOptions/1/field
+                        id:
+                          type: string
+                          example: '1'
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": \"Bulk operation failed. Request must contain an array of fieldOption objects.\"\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: string
+                    example: Bulk operation failed. Request must contain an array of fieldOption objects.
+      deprecated: false
+      tags:
+      - Fields
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /fieldRels/{fieldRelId}:
+    delete:
+      summary: ActiveCampaign Delete a Custom Field Relationship to List(s)
+      description: ''
+      operationId: delete-a-custom-field-relationship-to-lists
+      parameters:
+      - name: fieldRelId
+        in: path
+        description: Field relationship ID to be deleted
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"Forbidden\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Forbidden
+      deprecated: false
+      tags:
+      - Fields
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /fieldValues:
+    post:
+      summary: ActiveCampaign Create a Custom Field Value
+      description: ''
+      operationId: create-fieldvalue
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fieldValue:
+                  properties:
+                    contact:
+                      type: string
+                      description: ID of the contact whose field value you're updating
+                    field:
+                      type: string
+                      description: ID of the custom field whose value you're updating for the contact
+                    value:
+                      type: string
+                      description: Value for the field that you're updating. For multi-select options this needs to be in the format of ||option1||option2||
+                  required:
+                  - contact
+                  - field
+                  - value
+                  type: object
+                useDefaults:
+                  type: boolean
+                  description: If true, this will populate the missing required fields for this contact with default values
+                  default: false
+            examples:
+              text/textarea/hidden value:
+                value:
+                  fieldValue:
+                    contact: 2
+                    field: 3
+                    value: Blue
+                  useDefaults: true
+              dropdown/radio value:
+                value:
+                  fieldValue:
+                    contact: 2
+                    field: 4
+                    value: '||option 1||option 2||option 3||'
+              date value:
+                value:
+                  fieldValue:
+                    contact: 2
+                    field: 7
+                    value: '2018-12-31'
+              datetime value ISO format:
+                value:
+                  fieldValue:
+                    contact: 2
+                    field: 7
+                    value: '2020-05-19T02:45:00-05:00'
+              multiselect with multiple options:
+                value:
+                  fieldValue:
+                    contact: 2
+                    field: 6
+                    value: '||Option 1||Option 3||Option 4||'
+              multiselect with single option:
+                value:
+                  fieldValue:
+                    contact: 2
+                    field: 6
+                    value: '||Option 2||'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"contacts\": [\n        {\n            \"cdate\": \"2018-08-06T16:26:04-05:00\",\n            \"email\": \"ikreimont+2@activecampaign.com\",\n            \"phone\": \"\",\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"orgid\": \"0\",\n            \"segmentio_id\": \"\",\n            \"bounced_hard\": \"0\",\n            \"bounced_soft\": \"0\",\n            \"bounced_date\": null,\n            \"ip\": \"0\",\n            \"ua\": null,\n            \"hash\": \"14d8c4418ae944c68e9dde4a975854cc\",\n            \"socialdata_lastcheck\": null,\n            \"email_local\": \"\",\n            \"email_domain\": \"\",\n            \"sentcnt\": \"0\",\n            \"rating_tstamp\": null,\n            \"gravatar\": \"0\",\n            \"deleted\": \"0\",\n            \"anonymized\": \"0\",\n            \"adate\": null,\n            \"udate\": \"2018-10-01T17:18:40-05:00\",\n            \"edate\": null,\n            \"deleted_at\": null,\n            \"created_utc_timestamp\": \"2018-09-21 12:04:40\",\n            \"updated_utc_timestamp\": \"2018-10-01 17:18:40\",\n            \"links\": {\n                \"bounceLogs\": \"https://:account.api-us1.com/api/:version/contacts/2/bounceLogs\",\n                \"contactAutomations\": \"https://:account.api-us1.com/api/:version/contacts/2/contactAutomations\",\n                \"contactData\": \"https://:account.api-us1.com/api/:version/contacts/2/contactData\",\n                \"contactGoals\": \"https://:account.api-us1.com/api/:version/contacts/2/contactGoals\",\n                \"contactLists\": \"https://:account.api-us1.com/api/:version/contacts/2/contactLists\",\n                \"contactLogs\": \"https://:account.api-us1.com/api/:version/contacts/2/contactLogs\",\n                \"contactTags\": \"https://:account.api-us1.com/api/:version/contacts/2/contactTags\",\n                \"contactDeals\": \"https://:account.api-us1.com/api/:version/contacts/2/contactDeals\",\n                \"deals\": \"https://:account.api-us1.com/api/:version/contacts/2/deals\",\n                \"fieldValues\": \"https://:account.api-us1.com/api/:version/contacts/2/fieldValues\",\n                \"geoIps\": \"https://:account.api-us1.com/api/:version/contacts/2/geoIps\",\n                \"notes\": \"https://:account.api-us1.com/api/:version/contacts/2/notes\",\n                \"organization\": \"https://:account.api-us1.com/api/:version/contacts/2/organization\",\n                \"plusAppend\": \"https://:account.api-us1.com/api/:version/contacts/2/plusAppend\",\n                \"trackingLogs\": \"https://:account.api-us1.com/api/:version/contacts/2/trackingLogs\",\n                \"scoreValues\": \"https://:account.api-us1.com/api/:version/contacts/2/scoreValues\"\n            },\n            \"id\": \"2\",\n            \"organization\": null\n        }\n    ],\n    \"fieldValue\": {\n        \"contact\": 2,\n        \"field\": 3,\n        \"value\": \"Blue\",\n        \"cdate\": \"2018-10-01T17:18:40-05:00\",\n        \"udate\": \"2018-10-01T17:18:40-05:00\",\n        \"links\": {\n            \"owner\": \"https://:account.api-us1.com/api/:version/fieldValues/15/owner\",\n            \"field\": \"https://:account.api-us1.com/api/:version/fieldValues/15/field\"\n        },\n        \"owner\": 2,\n        \"id\": \"15\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  contacts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cdate:
+                          type: string
+                          example: '2018-08-06T16:26:04-05:00'
+                        email:
+                          type: string
+                          example: ikreimont+2@activecampaign.com
+                        phone:
+                          type: string
+                          example: ''
+                        firstName:
+                          type: string
+                          example: ''
+                        lastName:
+                          type: string
+                          example: ''
+                        orgid:
+                          type: string
+                          example: '0'
+                        segmentio_id:
+                          type: string
+                          example: ''
+                        bounced_hard:
+                          type: string
+                          example: '0'
+                        bounced_soft:
+                          type: string
+                          example: '0'
+                        bounced_date: {}
+                        ip:
+                          type: string
+                          example: '0'
+                        ua: {}
+                        hash:
+                          type: string
+                          example: 14d8c4418ae944c68e9dde4a975854cc
+                        socialdata_lastcheck: {}
+                        email_local:
+                          type: string
+                          example: ''
+                        email_domain:
+                          type: string
+                          example: ''
+                        sentcnt:
+                          type: string
+                          example: '0'
+                        rating_tstamp: {}
+                        gravatar:
+                          type: string
+                          example: '0'
+                        deleted:
+                          type: string
+                          example: '0'
+                        anonymized:
+                          type: string
+                          example: '0'
+                        adate: {}
+                        udate:
+                          type: string
+                          example: '2018-10-01T17:18:40-05:00'
+                        edate: {}
+                        deleted_at: {}
+                        created_utc_timestamp:
+                          type: string
+                          example: '2018-09-21 12:04:40'
+                        updated_utc_timestamp:
+                          type: string
+                          example: '2018-10-01 17:18:40'
+                        links:
+                          type: object
+                          properties:
+                            bounceLogs:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/bounceLogs
+                            contactAutomations:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactAutomations
+                            contactData:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactData
+                            contactGoals:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactGoals
+                            contactLists:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactLists
+                            contactLogs:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactLogs
+                            contactTags:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactTags
+                            contactDeals:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactDeals
+                            deals:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/deals
+                            fieldValues:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/fieldValues
+                            geoIps:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/geoIps
+                            notes:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/notes
+                            organization:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/organization
+                            plusAppend:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/plusAppend
+                            trackingLogs:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/trackingLogs
+                            scoreValues:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/scoreValues
+                        id:
+                          type: string
+                          example: '2'
+                        organization: {}
+                  fieldValue:
+                    type: object
+                    properties:
+                      contact:
+                        type: integer
+                        example: 2
+                        default: 0
+                      field:
+                        type: integer
+                        example: 3
+                        default: 0
+                      value:
+                        type: string
+                        example: Blue
+                      cdate:
+                        type: string
+                        example: '2018-10-01T17:18:40-05:00'
+                      udate:
+                        type: string
+                        example: '2018-10-01T17:18:40-05:00'
+                      links:
+                        type: object
+                        properties:
+                          owner:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/fieldValues/15/owner
+                          field:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/fieldValues/15/field
+                      owner:
+                        type: integer
+                        example: 2
+                        default: 0
+                      id:
+                        type: string
+                        example: '15'
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"Forbidden\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Forbidden
+      deprecated: false
+      tags:
+      - Fields
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign List All Custom Field Values
+      description: ''
+      operationId: list-all-custom-field-values
+      parameters:
+      - name: filters[fieldid]
+        in: query
+        description: ID of the field the value belongs to.
+        schema:
+          type: string
+      - name: filters[val]
+        in: query
+        description: Value of the custom field for a specific contact
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"fieldValues\": [\n        {\n            \"contact\": \"5\",\n            \"field\": \"1\",\n            \"value\": \"Burger\",\n            \"cdate\": \"2018-09-29T12:03:11-06:00\",\n            \"udate\": \"2018-09-29T12:03:11-06:00\",\n            \"links\": {\n                \"owner\": \"https://:account.api-us1.com/api/3/fieldValues/1/owner\",\n                \"field\": \"https://:account.api-us1.com/api/3/fieldValues/1/field\"\n            },\n            \"id\": \"1\",\n            \"owner\": \"5\"\n        },\n        {\n            \"contact\": \"7\",\n            \"field\": \"2\",\n            \"value\": \"2018-05-10\",\n            \"cdate\": \"2018-04-24T12:04:46-06:00\",\n            \"udate\": \"2018-04-24T12:04:46-06:00\",\n            \"links\": {\n                \"owner\": \"https://:account.api-us1.com/api/3/fieldValues/2/owner\",\n                \"field\": \"https://:account.api-us1.com/api/3/fieldValues/2/field\"\n            },\n            \"id\": \"2\",\n            \"owner\": \"7\"\n        }\n    ],\n    \"meta\": {\n        \"total\": \"2\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  fieldValues:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        contact:
+                          type: string
+                          example: '5'
+                        field:
+                          type: string
+                          example: '1'
+                        value:
+                          type: string
+                          example: Burger
+                        cdate:
+                          type: string
+                          example: '2018-09-29T12:03:11-06:00'
+                        udate:
+                          type: string
+                          example: '2018-09-29T12:03:11-06:00'
+                        links:
+                          type: object
+                          properties:
+                            owner:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/fieldValues/1/owner
+                            field:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/fieldValues/1/field
+                        id:
+                          type: string
+                          example: '1'
+                        owner:
+                          type: string
+                          example: '5'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '2'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Fields
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /fieldValues/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Custom Field Value
+      description: ''
+      operationId: retrieve-a-fieldvalues
+      parameters:
+      - name: id
+        in: path
+        description: ID of the fieldValue to retrieve
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"fieldValue\": {\n        \"contact\": \"0\",\n        \"field\": null,\n        \"value\": null,\n        \"cdate\": \"2018-09-18T10:30:31-05:00\",\n        \"udate\": \"2018-09-18T10:30:31-05:00\",\n        \"links\": {\n            \"owner\": \"https://:account.api-us1.com/api/3/fieldValues/2/owner\",\n            \"field\": \"https://:account.api-us1.com/api/3/fieldValues/2/field\"\n        },\n        \"id\": \"2\",\n        \"owner\": null\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  fieldValue:
+                    type: object
+                    properties:
+                      contact:
+                        type: string
+                        example: '0'
+                      field: {}
+                      value: {}
+                      cdate:
+                        type: string
+                        example: '2018-09-18T10:30:31-05:00'
+                      udate:
+                        type: string
+                        example: '2018-09-18T10:30:31-05:00'
+                      links:
+                        type: object
+                        properties:
+                          owner:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/fieldValues/2/owner
+                          field:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/fieldValues/2/field
+                      id:
+                        type: string
+                        example: '2'
+                      owner: {}
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for FieldValue with id 10\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for FieldValue with id 10
+      deprecated: false
+      tags:
+      - Fields
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Update a Custom Field Value for Contact
+      description: ''
+      operationId: update-a-custom-field-value-for-contact
+      parameters:
+      - name: id
+        in: path
+        description: ID of the fieldValue to update
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fieldValue:
+                  properties:
+                    contact:
+                      type: string
+                      description: ID of the contact whose field value you're updating
+                    field:
+                      type: string
+                      description: ID of the custom field whose value you're updating for the contact
+                    value:
+                      type: string
+                      description: Value for the field that you're updating
+                  required:
+                  - contact
+                  - field
+                  - value
+                  type: object
+                useDefaults:
+                  type: boolean
+                  description: If true, this will populate the missing required fields for this contact with default values
+                  default: false
+            examples:
+              text/textarea/hidden value:
+                value:
+                  fieldValue:
+                    contact: 4
+                    field: 24
+                    value: Blue
+                  useDefaults: true
+              dropdown/radio value:
+                value:
+                  fieldValue:
+                    contact: 2
+                    field: 5
+                    value: Option 1
+              checkbox/listbox values (multiple):
+                value:
+                  fieldValue:
+                    contact: 2
+                    field: 6
+                    value: '||Option 1||Option 3||Option 4||'
+              date value:
+                value:
+                  fieldValue:
+                    contact: 2
+                    field: 7
+                    value: '2018-12-31'
+              datetime value (ISO):
+                value:
+                  fieldValue:
+                    contact: 2
+                    field: 7
+                    value: '2020-05-19T02:45:00-05:00'
+              checkbox/listbox values (single):
+                value:
+                  fieldValue:
+                    contact: 2
+                    field: 6
+                    value: '||Option 2||'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"contacts\": [\n        {\n            \"cdate\": \"2018-08-06T16:56:43-05:00\",\n            \"email\": \"johndoe@example.com\",\n            \"phone\": \"\",\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\",\n            \"orgid\": \"0\",\n            \"segmentio_id\": \"\",\n            \"bounced_hard\": \"0\",\n            \"bounced_soft\": \"0\",\n            \"bounced_date\": \"0000-00-00\",\n            \"ip\": \"4\",\n            \"ua\": \"\",\n            \"hash\": \"867d56644591991f6b50e1cb913f038b\",\n            \"socialdata_lastcheck\": \"0000-00-00 00:00:00\",\n            \"email_local\": \"\",\n            \"email_domain\": \"\",\n            \"sentcnt\": \"0\",\n            \"rating_tstamp\": \"0000-00-00\",\n            \"gravatar\": \"0\",\n            \"deleted\": \"0\",\n            \"anonymized\": \"0\",\n            \"adate\": \"2018-10-24T13:33:06-05:00\",\n            \"udate\": \"2018-10-24T13:33:11-05:00\",\n            \"edate\": \"2018-10-24T13:33:07-05:00\",\n            \"deleted_at\": \"0000-00-00 00:00:00\",\n            \"created_utc_timestamp\": \"2018-09-21 12:04:48\",\n            \"updated_utc_timestamp\": \"2018-10-24 13:33:11\",\n            \"links\": {\n                \"bounceLogs\": \"https://:account.api-us1.com/api/:version/contacts/24/bounceLogs\",\n                \"contactAutomations\": \"https://:account.api-us1.com/api/:version/contacts/24/contactAutomations\",\n                \"contactData\": \"https://:account.api-us1.com/api/:version/contacts/24/contactData\",\n                \"contactGoals\": \"https://:account.api-us1.com/api/:version/contacts/24/contactGoals\",\n                \"contactLists\": \"https://:account.api-us1.com/api/:version/contacts/24/contactLists\",\n                \"contactLogs\": \"https://:account.api-us1.com/api/:version/contacts/24/contactLogs\",\n                \"contactTags\": \"https://:account.api-us1.com/api/:version/contacts/24/contactTags\",\n                \"contactDeals\": \"https://:account.api-us1.com/api/:version/contacts/24/contactDeals\",\n                \"deals\": \"https://:account.api-us1.com/api/:version/contacts/24/deals\",\n                \"fieldValues\": \"https://:account.api-us1.com/api/:version/contacts/24/fieldValues\",\n                \"geoIps\": \"https://:account.api-us1.com/api/:version/contacts/24/geoIps\",\n                \"notes\": \"https://:account.api-us1.com/api/:version/contacts/24/notes\",\n                \"organization\": \"https://:account.api-us1.com/api/:version/contacts/24/organization\",\n                \"plusAppend\": \"https://:account.api-us1.com/api/:version/contacts/24/plusAppend\",\n                \"trackingLogs\": \"https://:account.api-us1.com/api/:version/contacts/24/trackingLogs\",\n                \"scoreValues\": \"https://:account.api-us1.com/api/:version/contacts/24/scoreValues\"\n            },\n            \"id\": \"24\",\n            \"organization\": null\n        }\n    ],\n    \"fieldValue\": {\n        \"contact\": 4,\n        \"field\": 24,\n        \"value\": \"Blue\",\n        \"cdate\": \"2018-10-24T13:32:52-05:00\",\n        \"udate\": \"2018-10-24T13:33:11-05:00\",\n        \"links\": {\n            \"owner\": \"https://:account.api-us1.com/api/:version/fieldValues/15/owner\",\n            \"field\": \"https://:account.api-us1.com/api/:version/fieldValues/15/field\"\n        },\n        \"owner\": 4,\n        \"id\": \"15\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  contacts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cdate:
+                          type: string
+                          example: '2018-08-06T16:56:43-05:00'
+                        email:
+                          type: string
+                          example: johndoe@example.com
+                        phone:
+                          type: string
+                          example: ''
+                        firstName:
+                          type: string
+                          example: John
+                        lastName:
+                          type: string
+                          example: Doe
+                        orgid:
+                          type: string
+                          example: '0'
+                        segmentio_id:
+                          type: string
+                          example: ''
+                        bounced_hard:
+                          type: string
+                          example: '0'
+                        bounced_soft:
+                          type: string
+                          example: '0'
+                        bounced_date:
+                          type: string
+                          example: '0000-00-00'
+                        ip:
+                          type: string
+                          example: '4'
+                        ua:
+                          type: string
+                          example: ''
+                        hash:
+                          type: string
+                          example: 867d56644591991f6b50e1cb913f038b
+                        socialdata_lastcheck:
+                          type: string
+                          example: '0000-00-00 00:00:00'
+                        email_local:
+                          type: string
+                          example: ''
+                        email_domain:
+                          type: string
+                          example: ''
+                        sentcnt:
+                          type: string
+                          example: '0'
+                        rating_tstamp:
+                          type: string
+                          example: '0000-00-00'
+                        gravatar:
+                          type: string
+                          example: '0'
+                        deleted:
+                          type: string
+                          example: '0'
+                        anonymized:
+                          type: string
+                          example: '0'
+                        adate:
+                          type: string
+                          example: '2018-10-24T13:33:06-05:00'
+                        udate:
+                          type: string
+                          example: '2018-10-24T13:33:11-05:00'
+                        edate:
+                          type: string
+                          example: '2018-10-24T13:33:07-05:00'
+                        deleted_at:
+                          type: string
+                          example: '0000-00-00 00:00:00'
+                        created_utc_timestamp:
+                          type: string
+                          example: '2018-09-21 12:04:48'
+                        updated_utc_timestamp:
+                          type: string
+                          example: '2018-10-24 13:33:11'
+                        links:
+                          type: object
+                          properties:
+                            bounceLogs:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/bounceLogs
+                            contactAutomations:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/contactAutomations
+                            contactData:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/contactData
+                            contactGoals:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/contactGoals
+                            contactLists:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/contactLists
+                            contactLogs:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/contactLogs
+                            contactTags:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/contactTags
+                            contactDeals:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/contactDeals
+                            deals:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/deals
+                            fieldValues:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/fieldValues
+                            geoIps:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/geoIps
+                            notes:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/notes
+                            organization:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/organization
+                            plusAppend:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/plusAppend
+                            trackingLogs:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/trackingLogs
+                            scoreValues:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/24/scoreValues
+                        id:
+                          type: string
+                          example: '24'
+                        organization: {}
+                  fieldValue:
+                    type: object
+                    properties:
+                      contact:
+                        type: integer
+                        example: 4
+                        default: 0
+                      field:
+                        type: integer
+                        example: 24
+                        default: 0
+                      value:
+                        type: string
+                        example: Blue
+                      cdate:
+                        type: string
+                        example: '2018-10-24T13:32:52-05:00'
+                      udate:
+                        type: string
+                        example: '2018-10-24T13:33:11-05:00'
+                      links:
+                        type: object
+                        properties:
+                          owner:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/fieldValues/15/owner
+                          field:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/fieldValues/15/field
+                      owner:
+                        type: integer
+                        example: 4
+                        default: 0
+                      id:
+                        type: string
+                        example: '15'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Fields
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a Custom Field Value
+      description: ''
+      operationId: delete-a-fieldvalue-1
+      parameters:
+      - name: id
+        in: path
+        description: ID of the fieldValue to delete
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"Forbidden\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Forbidden
+      deprecated: false
+      tags:
+      - Fields
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

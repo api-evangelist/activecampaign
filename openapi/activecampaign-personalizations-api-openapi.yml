@@ -1,0 +1,625 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Personalizations API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Personalizations
+paths:
+  /personalizations:
+    get:
+      summary: ActiveCampaign List Variables
+      description: Retrieve a list of personalization variables
+      operationId: list-variables
+      parameters:
+      - name: orders[format]
+        in: query
+        description: Order variables by format (ASC/DESC)
+        schema:
+          type: string
+      - name: orders[tag]
+        in: query
+        description: Order variables by tag (ASC/DESC)
+        schema:
+          type: string
+      - name: orders[name]
+        in: query
+        description: Order variables by name (ASC/DESC)
+        schema:
+          type: string
+      - name: orders[content]
+        in: query
+        description: Order variables by content (ASC/DESC)
+        schema:
+          type: string
+      - name: filter[name]
+        in: query
+        description: Filter by variable name
+        schema:
+          type: string
+      - name: filter[tag]
+        in: query
+        description: Filter by variable tag
+        schema:
+          type: string
+      - name: filter[listName]
+        in: query
+        description: Filter by name of list
+        schema:
+          type: string
+      - name: filter[content]
+        in: query
+        description: Contents of variable
+        schema:
+          type: string
+      - name: filter[format]
+        in: query
+        description: Filter by tag format (html, text)
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: 'Result limit (Default: 20)'
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    personalizations:
+                    - name: address
+                      tag: awesometag
+                      format: html
+                      content: this is the first content
+                      listIds: 1,2,3
+                      listNames: List1,List2,List3
+                      listsCount: '3'
+                      isLocked: false
+                      links: []
+                      id: '1'
+                    - name: phone
+                      tag: greattag
+                      format: html
+                      content: this is the second one
+                      listIds: 3,4
+                      listNames: List3,List4
+                      listsCount: '2'
+                      isLocked: false
+                      links: []
+                      id: '2'
+                    - name: 'nice
+
+                        '
+                      tag: hellotag
+                      format: text
+                      content: this is the third one
+                      listIds: 1,3
+                      listNames: List1,List3
+                      listsCount: '2'
+                      isLocked: false
+                      links: []
+                      id: '3'
+                    - name: hahah
+                      tag: goodtag
+                      format: html
+                      content: fourth
+                      listIds: 1,4
+                      listNames: List1,List4
+                      listsCount: '2'
+                      isLocked: false
+                      links: []
+                      id: '4'
+                    - name: hello world
+                      tag: nicetag
+                      format: text
+                      content: fifth
+                      listIds: 2,3,4
+                      listNames: List2,List3,List4
+                      listsCount: '3'
+                      isLocked: true
+                      links: []
+                      id: '5'
+                    meta:
+                      total: '5'
+              schema:
+                type: object
+                properties:
+                  personalizations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: address
+                        tag:
+                          type: string
+                          example: awesometag
+                        format:
+                          type: string
+                          example: html
+                        content:
+                          type: string
+                          example: this is the first content
+                        listIds:
+                          type: string
+                          example: 1,2,3
+                        listNames:
+                          type: string
+                          example: List1,List2,List3
+                        links:
+                          type: array
+                        id:
+                          type: string
+                          example: '1'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '5'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Personalizations
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      summary: ActiveCampaign Create a Variable
+      description: Create a personalization variable
+      operationId: create-variable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                personalization:
+                  properties:
+                    tag:
+                      type: string
+                      description: tag name
+                    name:
+                      type: string
+                      description: Tag name
+                    format:
+                      type: string
+                      description: '"html" or "text"'
+                    content:
+                      type: string
+                      description: Personalization/Variable contents
+                    listids:
+                      type: string
+                      description: 'Comma-separated list of list ids (string), ie: "2,3,4,5"'
+                  required: []
+                  type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    personalization:
+                      tag: brand-new-tag
+                      name: brand new name
+                      format: text
+                      content: Hello World!
+                      listids: 2,3,4,5
+                      userid: '1'
+                      isLocked: false
+                      links: []
+                      id: '8'
+              schema:
+                type: object
+                properties:
+                  personalization:
+                    type: object
+                    properties:
+                      tag:
+                        type: string
+                        example: brand-new-tag
+                      name:
+                        type: string
+                        example: brand new name
+                      format:
+                        type: string
+                        example: text
+                      content:
+                        type: string
+                        example: Hello World!
+                      listids:
+                        type: string
+                        example: 2,3,4,5
+                      userid:
+                        type: string
+                        example: '1'
+                      links:
+                        type: array
+                      id:
+                        type: string
+                        example: '8'
+      deprecated: false
+      tags:
+      - Personalizations
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /personalizations/{variableID}:
+    get:
+      summary: ActiveCampaign Retrieve a Variable
+      description: Retrieve an individual personalization variable
+      operationId: retrieve-variable
+      parameters:
+      - name: variableID
+        in: path
+        description: ID (int) of variable
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    personalization:
+                      name: brand new name
+                      tag: brand-new-tag
+                      format: text
+                      content: Hello World!
+                      listIds: 2,3,5,4
+                      listNames: Another List,League Players,real,Test Segmentation
+                      listsCount: '4'
+                      isLocked: false
+                      links: []
+                      id: '8'
+              schema:
+                type: object
+                properties:
+                  personalization:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: brand new name
+                      tag:
+                        type: string
+                        example: brand-new-tag
+                      format:
+                        type: string
+                        example: text
+                      content:
+                        type: string
+                        example: Hello World!
+                      listIds:
+                        type: string
+                        example: 2,3,5,4
+                      listNames:
+                        type: string
+                        example: Another List,League Players,real,Test Segmentation
+                      listsCount:
+                        type: string
+                        example: '4'
+                      links:
+                        type: array
+                      id:
+                        type: string
+                        example: '8'
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for Personalization with id 22\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for Personalization with id 22
+      deprecated: false
+      tags:
+      - Personalizations
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Edit a Variable
+      description: Edit a personalization variable
+      operationId: edit-variable
+      parameters:
+      - name: variableID
+        in: path
+        description: ID (int) of personalization/variable
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                personalization:
+                  properties:
+                    tag:
+                      type: string
+                      description: tag name
+                    name:
+                      type: string
+                      description: Tag name
+                    format:
+                      type: string
+                      description: '"html" or "text"'
+                    content:
+                      type: string
+                      description: Personalization/Variable contents
+                    listids:
+                      type: string
+                      description: 'Comma-separated list of list ids (string), ie: "2,3,4,5"'
+                  required: []
+                  type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    personalization:
+                      userid: '1'
+                      tag: brand-new-tag
+                      name: changed name
+                      content: Hello World!
+                      format: text
+                      created_timestamp: '2024-08-14 12:31:35'
+                      updated_timestamp: '2024-08-14 12:31:35'
+                      created_by: null
+                      updated_by: null
+                      isLocked: false
+                      listids: 2,3,4,5
+                      links: []
+                      id: '8'
+              schema:
+                type: object
+                properties:
+                  personalization:
+                    type: object
+                    properties:
+                      userid:
+                        type: string
+                        example: '1'
+                      tag:
+                        type: string
+                        example: brand-new-tag
+                      name:
+                        type: string
+                        example: changed name
+                      content:
+                        type: string
+                        example: Hello World!
+                      format:
+                        type: string
+                        example: text
+                      created_timestamp:
+                        type: string
+                        example: '2024-08-14 12:31:35'
+                      updated_timestamp:
+                        type: string
+                        example: '2024-08-14 12:31:35'
+                      created_by: {}
+                      updated_by: {}
+                      listids:
+                        type: string
+                        example: 2,3,4,5
+                      links:
+                        type: array
+                      id:
+                        type: string
+                        example: '8'
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for ActiveCampaign\\\\Hosted\\\\Personalization\\\\Personalization with id 22\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for ActiveCampaign\Hosted\Personalization\Personalization with id 22
+      deprecated: false
+      tags:
+      - Personalizations
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a Variable
+      description: Delete a personalization variable
+      operationId: delete-variable
+      parameters:
+      - name: variableID
+        in: path
+        description: ID (int) of personalization/variable
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for Personalization with id 22\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for Personalization with id 22
+      deprecated: false
+      tags:
+      - Personalizations
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /personalizations/bulkdelete:
+    delete:
+      summary: ActiveCampaign Bulk Delete Variables
+      description: Bulk delete personalization variables
+      operationId: bulk-delete-variables
+      parameters:
+      - name: ids
+        in: query
+        description: 'List of variables to be deleted, ie: 1,2,3'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: Delete successful
+      deprecated: false
+      tags:
+      - Personalizations
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /personalizations/{variableID}/lock:
+    patch:
+      description: ''
+      operationId: get_{personalizationId}lock
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: ''
+                  message:
+                    type: string
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                    success: true
+                    message: Personalization updated successfully
+                No rights to lock (not an admin):
+                  summary: No rights to lock (not an admin)
+                  value:
+                    success: false
+                    message: Only admin can lock/unlock personalizations
+      parameters:
+      - in: path
+        name: variableID
+        schema:
+          type: string
+        required: true
+      tags:
+      - Personalizations
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /personalizations/{variableID}/unlock:
+    patch:
+      description: ''
+      operationId: patch_new-endpoint
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+              examples:
+                New Example 1:
+                  summary: New Example 1
+                  value:
+                    success: false
+                    message: Only admin can lock/unlock personalizations
+                No rights to unlock (not an admin):
+                  summary: No rights to unlock (not an admin)
+                  value:
+                    success: true
+                    message: Personalization updated successfully
+      parameters:
+      - in: path
+        name: variableID
+        schema:
+          type: string
+        required: true
+      tags:
+      - Personalizations
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

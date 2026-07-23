@@ -1,0 +1,152 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Scores API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Scores
+paths:
+  /scores/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Score
+      description: ''
+      operationId: retrieve-a-score
+      parameters:
+      - name: id
+        in: path
+        description: ID of the score to retrieve
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"score\": {\n        \"reltype\": \"contact\",\n        \"name\": \"Link Engagement Score\",\n        \"descript\": \"+50 points when user clicks any link sent\",\n        \"status\": \"1\",\n        \"cdate\": \"2018-12-13T15:05:42-06:00\",\n        \"mdate\": \"2018-12-13T16:23:07-06:00\",\n        \"links\": [],\n        \"id\": \"2\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  score:
+                    type: object
+                    properties:
+                      reltype:
+                        type: string
+                        example: contact
+                      name:
+                        type: string
+                        example: Link Engagement Score
+                      descript:
+                        type: string
+                        example: +50 points when user clicks any link sent
+                      status:
+                        type: string
+                        example: '1'
+                      cdate:
+                        type: string
+                        example: '2018-12-13T15:05:42-06:00'
+                      mdate:
+                        type: string
+                        example: '2018-12-13T16:23:07-06:00'
+                      links:
+                        type: array
+                      id:
+                        type: string
+                        example: '2'
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for Score with id 1\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for Score with id 1
+      deprecated: false
+      tags:
+      - Scores
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /scores:
+    get:
+      summary: ActiveCampaign List All Scores
+      description: ''
+      operationId: list-all-scores
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"scores\": [\n        {\n            \"reltype\": \"contact\",\n            \"name\": \"Link Engagement Score\",\n            \"descript\": \"+50 points when user clicks any link sent\",\n            \"status\": \"1\",\n            \"cdate\": \"2018-12-13T15:05:42-06:00\",\n            \"mdate\": \"2018-12-13T16:23:07-06:00\",\n            \"links\": [],\n            \"id\": \"2\"\n        },\n        {\n            \"reltype\": \"contact\",\n            \"name\": \"Easy Targets\",\n            \"descript\": \"+10 for replying to any campaign email\",\n            \"status\": \"1\",\n            \"cdate\": \"2018-12-18T19:00:13-06:00\",\n            \"mdate\": \"2018-12-18T19:01:15-06:00\",\n            \"links\": [],\n            \"id\": \"6\"\n        },\n        {\n            \"reltype\": \"deal\",\n            \"name\": \"Is John Smith\",\n            \"descript\": \"+10 If contacts first name is John and the last name is Smith\",\n            \"status\": \"1\",\n            \"cdate\": \"2018-12-18T19:15:02-06:00\",\n            \"mdate\": \"2018-12-18T19:15:10-06:00\",\n            \"links\": [],\n            \"id\": \"7\"\n        },\n        {\n            \"reltype\": \"deal\",\n            \"name\": \"Country Is USA\",\n            \"descript\": \"+20 if contact resides in the United States\",\n            \"status\": \"1\",\n            \"cdate\": \"2018-12-19T00:37:38-06:00\",\n            \"mdate\": \"2018-12-19T00:37:42-06:00\",\n            \"links\": [],\n            \"id\": \"9\"\n        }\n    ],\n    \"meta\": {\n        \"total\": \"4\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  scores:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        reltype:
+                          type: string
+                          example: contact
+                        name:
+                          type: string
+                          example: Link Engagement Score
+                        descript:
+                          type: string
+                          example: +50 points when user clicks any link sent
+                        status:
+                          type: string
+                          example: '1'
+                        cdate:
+                          type: string
+                          example: '2018-12-13T15:05:42-06:00'
+                        mdate:
+                          type: string
+                          example: '2018-12-13T16:23:07-06:00'
+                        links:
+                          type: array
+                        id:
+                          type: string
+                          example: '2'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '4'
+      deprecated: false
+      tags:
+      - Scores
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

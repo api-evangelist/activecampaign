@@ -1,0 +1,406 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Saved Responses API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Saved Responses
+paths:
+  /savedResponses:
+    post:
+      summary: ActiveCampaign Create a Saved Response
+      description: ''
+      operationId: saved-responses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                savedResponse:
+                  properties:
+                    title:
+                      type: string
+                      description: Title of the saved response being created
+                    subject:
+                      type: string
+                      description: Subject of the saved response being created
+                    body:
+                      type: string
+                      description: Body of the saved response being created
+                  required:
+                  - title
+                  - subject
+                  - body
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  savedResponse:
+                    title: Response Title
+                    subject: Response Subject
+                    body: Response Body
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"savedResponse\": {\n        \"title\": \"Response title\",\n        \"subject\": \"Response subject\",\n        \"body\": \"Response body\",\n        \"cdate\": \"2018-11-16T02:50:54-06:00\",\n        \"links\": {\n            \"user\": \"https://:account.api-us1.com/api/:version/savedResponses/1/user\",\n            \"savedResponseCategorySavedResponse\": \"https://:account.api-us1.com/api/:version/savedResponses/1/savedResponseCategorySavedResponse\"\n        },\n        \"id\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  savedResponse:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: Response title
+                      subject:
+                        type: string
+                        example: Response subject
+                      body:
+                        type: string
+                        example: Response body
+                      cdate:
+                        type: string
+                        example: '2018-11-16T02:50:54-06:00'
+                      links:
+                        type: object
+                        properties:
+                          user:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/savedResponses/1/user
+                          savedResponseCategorySavedResponse:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/savedResponses/1/savedResponseCategorySavedResponse
+                      id:
+                        type: string
+                        example: '1'
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"title\": \"This field is required.\",\n            \"detail\": \"\",\n            \"code\": \"field_missing\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/title\"\n            }\n        },\n        {\n            \"title\": \"Either a subject or a body needs to be provided.\",\n            \"detail\": \"\",\n            \"code\": \"field_invalid\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/subject\"\n            }\n        },\n        {\n            \"title\": \"Either a subject or a body needs to be provided.\",\n            \"detail\": \"\",\n            \"code\": \"field_invalid\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/body\"\n            }\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: This field is required.
+                        detail:
+                          type: string
+                          example: ''
+                        code:
+                          type: string
+                          example: field_missing
+                        source:
+                          type: object
+                          properties:
+                            pointer:
+                              type: string
+                              example: /data/attributes/title
+      deprecated: false
+      tags:
+      - Saved Responses
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign List All Saved Responses
+      description: ''
+      operationId: list-all-saved-responses
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"savedResponses\": [\n        {\n            \"title\": \"Response title\",\n            \"subject\": \"Response subject\",\n            \"body\": \"Response body\",\n            \"ldate\": null,\n            \"last_sent_user_id\": null,\n            \"cdate\": \"2018-11-16T02:50:54-06:00\",\n            \"mdate\": null,\n            \"links\": {\n                \"user\": \"https://:account.api-us1.com/api/:version/savedResponses/1/user\",\n                \"savedResponseCategorySavedResponse\": \"https://:account.api-us1.com/api/:version/savedResponses/1/savedResponseCategorySavedResponse\"\n            },\n            \"id\": \"1\"\n        }\n    ],\n    \"meta\": {\n        \"total\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  savedResponses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          example: Response title
+                        subject:
+                          type: string
+                          example: Response subject
+                        body:
+                          type: string
+                          example: Response body
+                        ldate: {}
+                        last_sent_user_id: {}
+                        cdate:
+                          type: string
+                          example: '2018-11-16T02:50:54-06:00'
+                        mdate: {}
+                        links:
+                          type: object
+                          properties:
+                            user:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/savedResponses/1/user
+                            savedResponseCategorySavedResponse:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/savedResponses/1/savedResponseCategorySavedResponse
+                        id:
+                          type: string
+                          example: '1'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '1'
+      deprecated: false
+      tags:
+      - Saved Responses
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /savedResponses/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Saved Response
+      description: ''
+      operationId: get-a-savedresponse
+      parameters:
+      - name: id
+        in: path
+        description: ID of the saved Response to recieve
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"savedResponse\": {\n        \"title\": \"Response title\",\n        \"subject\": \"Response subject\",\n        \"body\": \"Response body\",\n        \"ldate\": null,\n        \"last_sent_user_id\": null,\n        \"cdate\": \"2018-11-16T02:50:54-06:00\",\n        \"mdate\": null,\n        \"links\": {\n            \"user\": \"https://:account.api-us1.com/api/:version/savedResponses/1/user\",\n            \"savedResponseCategorySavedResponse\": \"https://:account.api-us1.com/api/:version/savedResponses/1/savedResponseCategorySavedResponse\"\n        },\n        \"id\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  savedResponse:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: Response title
+                      subject:
+                        type: string
+                        example: Response subject
+                      body:
+                        type: string
+                        example: Response body
+                      ldate: {}
+                      last_sent_user_id: {}
+                      cdate:
+                        type: string
+                        example: '2018-11-16T02:50:54-06:00'
+                      mdate: {}
+                      links:
+                        type: object
+                        properties:
+                          user:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/savedResponses/1/user
+                          savedResponseCategorySavedResponse:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/savedResponses/1/savedResponseCategorySavedResponse
+                      id:
+                        type: string
+                        example: '1'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Saved Responses
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Update a Saved Response
+      description: ''
+      operationId: update-a-saved-response
+      parameters:
+      - name: id
+        in: path
+        description: ID of the saved response to update
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                savedResponse:
+                  properties:
+                    title:
+                      type: string
+                      description: Title of the saved response being updated
+                    subject:
+                      type: string
+                      description: Subject of the saved response being updated
+                    body:
+                      type: string
+                      description: Body of the saved response being updated
+                  required: []
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  savedResponse:
+                    title: Response title
+                    subject: Response subject
+                    body: Response body
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"savedResponse\": {\n        \"title\": \"New Response Title\",\n        \"subject\": \"New Response Subject\",\n        \"body\": \"New Response Body\",\n        \"ldate\": null,\n        \"last_sent_user_id\": null,\n        \"cdate\": \"2018-11-16T02:50:54-06:00\",\n        \"mdate\": \"2018-11-16T11:19:30-06:00\",\n        \"links\": {\n            \"user\": \"https://:account.api-us1.com/api/:version/savedResponses/1/user\",\n            \"savedResponseCategorySavedResponse\": \"https://:account.api-us1.com/api/:version/savedResponses/1/savedResponseCategorySavedResponse\"\n        },\n        \"id\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  savedResponse:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: New Response Title
+                      subject:
+                        type: string
+                        example: New Response Subject
+                      body:
+                        type: string
+                        example: New Response Body
+                      ldate: {}
+                      last_sent_user_id: {}
+                      cdate:
+                        type: string
+                        example: '2018-11-16T02:50:54-06:00'
+                      mdate:
+                        type: string
+                        example: '2018-11-16T11:19:30-06:00'
+                      links:
+                        type: object
+                        properties:
+                          user:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/savedResponses/1/user
+                          savedResponseCategorySavedResponse:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/savedResponses/1/savedResponseCategorySavedResponse
+                      id:
+                        type: string
+                        example: '1'
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for SavedResponse with id 0\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for SavedResponse with id 0
+      deprecated: false
+      tags:
+      - Saved Responses
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a Saved Response
+      description: ''
+      operationId: retrieve-a-savedresponse
+      parameters:
+      - name: id
+        in: path
+        description: ID of the saved response to remove
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '404':
+          description: '404'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for SavedResponse with id 1\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for SavedResponse with id 1
+      deprecated: false
+      tags:
+      - Saved Responses
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

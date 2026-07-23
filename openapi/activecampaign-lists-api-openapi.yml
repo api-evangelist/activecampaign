@@ -1,0 +1,1004 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Lists API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Lists
+paths:
+  /lists:
+    post:
+      summary: ActiveCampaign Create a List
+      description: ''
+      operationId: create-new-list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                list:
+                  properties:
+                    name:
+                      type: string
+                      description: Name of the list to create
+                    stringid:
+                      type: string
+                      description: 'URL-safe list name. Example: ''list-name-sample'''
+                    sender_url:
+                      type: string
+                      description: The website URL this list is for.
+                    sender_reminder:
+                      type: string
+                      description: A reminder for your contacts as to why they are on this list and you are messaging them.
+                    send_last_broadcast:
+                      type: boolean
+                      description: Boolean value indicating whether or not to send the last sent campaign to this list to a new subscriber upon subscribing. 1 = yes, 0 = no
+                      default: false
+                    carboncopy:
+                      type: string
+                      description: Comma-separated list of email addresses to send a copy of all mailings to upon send
+                    subscription_notify:
+                      type: string
+                      description: Comma-separated list of email addresses to notify when a new subscriber joins this list.
+                    unsubscription_notify:
+                      type: string
+                      description: Comma-separated list of email addresses to notify when a subscriber unsubscribes from this list.
+                    user:
+                      type: integer
+                      description: User Id of the list owner.  A list owner is able to control campaign branding.  A property of list.userid also exists on this object; both properties map to the same list owner field and are being maintained in the response object for backward compatibility.  If you post values for both list.user and list.userid, the value of list.user will be used.
+                      format: int32
+                    channel:
+                      type: string
+                      description: Type of channel for the list. Possible values are `email` or `sms`.
+                      default: email
+                  required:
+                  - name
+                  - stringid
+                  - sender_url
+                  - sender_reminder
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  list:
+                    name: Name of List
+                    stringid: Name-of-list
+                    sender_url: http://activecampaign.com
+                    sender_reminder: You are receiving this email as you subscribed to a newsletter when making an order on our site.
+                    send_last_broadcast: 0
+                    carboncopy: ''
+                    subscription_notify: ''
+                    unsubscription_notify: ''
+                    user: 1
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"list\": {\n        \"name\": \"Name of List\",\n        \"stringid\": \"Name-of-list\",\n        \"cdate\": \"2019-02-27T19:06:23-05:00\",\n        \"udate\": \"2019-02-27T19:06:23-05:00\",\n        \"links\": {\n            \"contactGoalLists\": \"https://:account.api-us1.com/api/:version/lists/6/contactGoalLists\",\n            \"user\": \"https://:account.api-us1.com/api/:version/lists/6/user\",\n            \"addressLists\": \"https://:account.api-us1.com/api/:version/lists/6/addressLists\"\n        },\n        \"id\": \"6\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  list:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Name of List
+                      stringid:
+                        type: string
+                        example: Name-of-list
+                      cdate:
+                        type: string
+                        example: '2019-02-27T19:06:23-05:00'
+                      udate:
+                        type: string
+                        example: '2019-02-27T19:06:23-05:00'
+                      links:
+                        type: object
+                        properties:
+                          contactGoalLists:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/lists/6/contactGoalLists
+                          user:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/lists/6/user
+                          addressLists:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/lists/6/addressLists
+                      id:
+                        type: string
+                        example: '6'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '403':
+          description: '403'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": 403,\n            \"title\": \"Forbidden\",\n            \"detail\": \"You do not have permission to create lists.\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 403
+                          default: 0
+                        title:
+                          type: string
+                          example: Forbidden
+                        detail:
+                          type: string
+                          example: You do not have permission to create lists.
+      deprecated: false
+      tags:
+      - Lists
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign Retrieve All Lists
+      description: ''
+      operationId: retrieve-all-lists
+      parameters:
+      - name: filters[name]
+        in: query
+        description: Filter by the name of the list
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Limit the number of returned results
+        schema:
+          type: integer
+          format: int32
+      - name: filters[name][<operator>]
+        in: query
+        description: Filters lists by list name according to the operator specified. (See supported operators below)
+        schema:
+          type: string
+      - name: orders[name]
+        in: query
+        description: Orders filtered results by weight, ascending order, or descending order. If weight is used, exact matches are returned first, followed by matches starting with what was filtered by, followed by the rest of the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"lists\": [\n        {\n            \"stringid\": \"email-subscription\",\n            \"userid\": \"1\",\n            \"name\": \"Email Subscription\",\n            \"cdate\": \"2018-08-06T16:30:41-05:00\",\n            \"p_use_tracking\": \"1\",\n            \"p_use_analytics_read\": \"0\",\n            \"p_use_analytics_link\": \"0\",\n            \"p_use_twitter\": \"0\",\n            \"p_use_facebook\": \"0\",\n            \"p_embed_image\": \"1\",\n            \"p_use_captcha\": \"1\",\n            \"send_last_broadcast\": \"0\",\n            \"private\": \"0\",\n            \"analytics_domains\": null,\n            \"analytics_source\": \"\",\n            \"analytics_ua\": \"\",\n            \"twitter_token\": \"\",\n            \"twitter_token_secret\": \"\",\n            \"facebook_session\": null,\n            \"carboncopy\": null,\n            \"subscription_notify\": null,\n            \"unsubscription_notify\": null,\n            \"require_name\": \"0\",\n            \"get_unsubscribe_reason\": \"0\",\n            \"to_name\": \"Subscriber\",\n            \"optinoptout\": \"1\",\n            \"sender_name\": \"\",\n            \"sender_addr1\": \"\",\n            \"sender_addr2\": \"\",\n            \"sender_city\": \"\",\n            \"sender_state\": \"\",\n            \"sender_zip\": \"\",\n            \"sender_country\": \"\",\n            \"sender_phone\": \"\",\n            \"sender_url\": \"http://www.ilankreimont.com\",\n            \"sender_reminder\": \"You signed up for my mailing list.\",\n            \"fulladdress\": \"\",\n            \"optinmessageid\": \"0\",\n            \"optoutconf\": \"0\",\n            \"deletestamp\": null,\n            \"udate\": null,\n            \"links\": {\n                \"contactGoalLists\": \"https://:account.api-us1.com/api/3/lists/1/contactGoalLists\",\n                \"user\": \"https://:account.api-us1.com/api/3/lists/1/user\",\n                \"addressLists\": \"https://:account.api-us1.com/api/3/lists/1/addressLists\"\n            },\n            \"id\": \"1\",\n            \"user\": \"1\"\n        },\n        {\n            \"stringid\": \"robert-list\",\n            \"userid\": \"1\",\n            \"name\": \"Robert List\",\n            \"cdate\": \"2018-09-07T08:56:49-05:00\",\n            \"p_use_tracking\": \"1\",\n            \"p_use_analytics_read\": \"0\",\n            \"p_use_analytics_link\": \"0\",\n            \"p_use_twitter\": \"0\",\n            \"p_use_facebook\": \"0\",\n            \"p_embed_image\": \"1\",\n            \"p_use_captcha\": \"1\",\n            \"send_last_broadcast\": \"0\",\n            \"private\": \"0\",\n            \"analytics_domains\": null,\n            \"analytics_source\": \"\",\n            \"analytics_ua\": \"\",\n            \"twitter_token\": \"\",\n            \"twitter_token_secret\": \"\",\n            \"facebook_session\": null,\n            \"carboncopy\": null,\n            \"subscription_notify\": null,\n            \"unsubscription_notify\": null,\n            \"require_name\": \"0\",\n            \"get_unsubscribe_reason\": \"0\",\n            \"to_name\": \"Subscriber\",\n            \"optinoptout\": \"1\",\n            \"sender_name\": \"\",\n            \"sender_addr1\": \"\",\n            \"sender_addr2\": \"\",\n            \"sender_city\": \"\",\n            \"sender_state\": \"\",\n            \"sender_zip\": \"\",\n            \"sender_country\": \"\",\n            \"sender_phone\": \"\",\n            \"sender_url\": \"http://www.activecampaign.com\",\n            \"sender_reminder\": \"Test\",\n            \"fulladdress\": \"\",\n            \"optinmessageid\": \"0\",\n            \"optoutconf\": \"0\",\n            \"deletestamp\": null,\n            \"udate\": null,\n            \"links\": {\n                \"contactGoalLists\": \"https://:account.api-us1.com/api/3/lists/2/contactGoalLists\",\n                \"user\": \"https://:account.api-us1.com/api/3/lists/2/user\",\n                \"addressLists\": \"https://:account.api-us1.com/api/3/lists/2/addressLists\"\n            },\n            \"id\": \"2\",\n            \"user\": \"1\"\n        },\n        {\n            \"stringid\": \"mark-list\",\n            \"userid\": \"1\",\n            \"name\": \"Mark List\",\n            \"cdate\": \"2018-09-14T08:53:28-05:00\",\n            \"p_use_tracking\": \"1\",\n            \"p_use_analytics_read\": \"0\",\n            \"p_use_analytics_link\": \"0\",\n            \"p_use_twitter\": \"0\",\n            \"p_use_facebook\": \"0\",\n            \"p_embed_image\": \"1\",\n            \"p_use_captcha\": \"1\",\n            \"send_last_broadcast\": \"0\",\n            \"private\": \"0\",\n            \"analytics_domains\": null,\n            \"analytics_source\": \"\",\n            \"analytics_ua\": \"\",\n            \"twitter_token\": \"\",\n            \"twitter_token_secret\": \"\",\n            \"facebook_session\": null,\n            \"carboncopy\": null,\n            \"subscription_notify\": null,\n            \"unsubscription_notify\": null,\n            \"require_name\": \"0\",\n            \"get_unsubscribe_reason\": \"0\",\n            \"to_name\": \"Subscriber\",\n            \"optinoptout\": \"1\",\n            \"sender_name\": \"\",\n            \"sender_addr1\": \"\",\n            \"sender_addr2\": \"\",\n            \"sender_city\": \"\",\n            \"sender_state\": \"\",\n            \"sender_zip\": \"\",\n            \"sender_country\": \"\",\n            \"sender_phone\": \"\",\n            \"sender_url\": \"http://www.activecampaign.com\",\n            \"sender_reminder\": \"testing.\",\n            \"fulladdress\": \"\",\n            \"optinmessageid\": \"0\",\n            \"optoutconf\": \"0\",\n            \"deletestamp\": null,\n            \"udate\": null,\n            \"links\": {\n                \"contactGoalLists\": \"https://:account.api-us1.com/api/3/lists/3/contactGoalLists\",\n                \"user\": \"https://:account.api-us1.com/api/3/lists/3/user\",\n                \"addressLists\": \"https://:account.api-us1.com/api/3/lists/3/addressLists\"\n            },\n            \"id\": \"3\",\n            \"user\": \"1\"\n        },\n        {\n            \"stringid\": \"\",\n            \"userid\": \"0\",\n            \"name\": \"\",\n            \"cdate\": \"2018-09-25T15:24:37-05:00\",\n            \"p_use_tracking\": \"1\",\n            \"p_use_analytics_read\": \"0\",\n            \"p_use_analytics_link\": \"0\",\n            \"p_use_twitter\": \"0\",\n            \"p_use_facebook\": \"0\",\n            \"p_embed_image\": \"1\",\n            \"p_use_captcha\": \"1\",\n            \"send_last_broadcast\": \"0\",\n            \"private\": \"0\",\n            \"analytics_domains\": null,\n            \"analytics_source\": \"\",\n            \"analytics_ua\": \"\",\n            \"twitter_token\": \"\",\n            \"twitter_token_secret\": \"\",\n            \"facebook_session\": null,\n            \"carboncopy\": null,\n            \"subscription_notify\": null,\n            \"unsubscription_notify\": null,\n            \"require_name\": \"0\",\n            \"get_unsubscribe_reason\": \"0\",\n            \"to_name\": \"Subscriber\",\n            \"optinoptout\": \"1\",\n            \"sender_name\": \"\",\n            \"sender_addr1\": \"\",\n            \"sender_addr2\": \"\",\n            \"sender_city\": \"\",\n            \"sender_state\": \"\",\n            \"sender_zip\": \"\",\n            \"sender_country\": \"\",\n            \"sender_phone\": \"\",\n            \"sender_url\": null,\n            \"sender_reminder\": null,\n            \"fulladdress\": null,\n            \"optinmessageid\": \"0\",\n            \"optoutconf\": \"0\",\n            \"deletestamp\": null,\n            \"udate\": \"2018-09-25T15:24:37-05:00\",\n            \"links\": {\n                \"contactGoalLists\": \"https://:account.api-us1.com/api/3/lists/4/contactGoalLists\",\n                \"user\": \"https://:account.api-us1.com/api/3/lists/4/user\",\n                \"addressLists\": \"https://:account.api-us1.com/api/3/lists/4/addressLists\"\n            },\n            \"id\": \"4\",\n            \"user\": null\n        }\n    ],\n    \"meta\": {\n        \"total\": \"4\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  lists:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        stringid:
+                          type: string
+                          example: email-subscription
+                        userid:
+                          type: string
+                          example: '1'
+                        name:
+                          type: string
+                          example: Email Subscription
+                        cdate:
+                          type: string
+                          example: '2018-08-06T16:30:41-05:00'
+                        p_use_tracking:
+                          type: string
+                          example: '1'
+                        p_use_analytics_read:
+                          type: string
+                          example: '0'
+                        p_use_analytics_link:
+                          type: string
+                          example: '0'
+                        p_use_twitter:
+                          type: string
+                          example: '0'
+                        p_use_facebook:
+                          type: string
+                          example: '0'
+                        p_embed_image:
+                          type: string
+                          example: '1'
+                        p_use_captcha:
+                          type: string
+                          example: '1'
+                        send_last_broadcast:
+                          type: string
+                          example: '0'
+                        private:
+                          type: string
+                          example: '0'
+                        analytics_domains: {}
+                        analytics_source:
+                          type: string
+                          example: ''
+                        analytics_ua:
+                          type: string
+                          example: ''
+                        twitter_token:
+                          type: string
+                          example: ''
+                        twitter_token_secret:
+                          type: string
+                          example: ''
+                        facebook_session: {}
+                        carboncopy: {}
+                        subscription_notify: {}
+                        unsubscription_notify: {}
+                        require_name:
+                          type: string
+                          example: '0'
+                        get_unsubscribe_reason:
+                          type: string
+                          example: '0'
+                        to_name:
+                          type: string
+                          example: Subscriber
+                        optinoptout:
+                          type: string
+                          example: '1'
+                        sender_name:
+                          type: string
+                          example: ''
+                        sender_addr1:
+                          type: string
+                          example: ''
+                        sender_addr2:
+                          type: string
+                          example: ''
+                        sender_city:
+                          type: string
+                          example: ''
+                        sender_state:
+                          type: string
+                          example: ''
+                        sender_zip:
+                          type: string
+                          example: ''
+                        sender_country:
+                          type: string
+                          example: ''
+                        sender_phone:
+                          type: string
+                          example: ''
+                        sender_url:
+                          type: string
+                          example: http://www.ilankreimont.com
+                        sender_reminder:
+                          type: string
+                          example: You signed up for my mailing list.
+                        fulladdress:
+                          type: string
+                          example: ''
+                        optinmessageid:
+                          type: string
+                          example: '0'
+                        optoutconf:
+                          type: string
+                          example: '0'
+                        deletestamp: {}
+                        udate: {}
+                        links:
+                          type: object
+                          properties:
+                            contactGoalLists:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/lists/1/contactGoalLists
+                            user:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/lists/1/user
+                            addressLists:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/lists/1/addressLists
+                        id:
+                          type: string
+                          example: '1'
+                        user:
+                          type: string
+                          example: '1'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '4'
+        '403':
+          description: '403'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": 403,\n            \"title\": \"Forbidden\",\n            \"detail\": \"You do not have permission to view lists.\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 403
+                          default: 0
+                        title:
+                          type: string
+                          example: Forbidden
+                        detail:
+                          type: string
+                          example: You do not have permission to view lists.
+      deprecated: false
+      tags:
+      - Lists
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /lists/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a List
+      description: ''
+      operationId: retrieve-a-list
+      parameters:
+      - name: id
+        in: path
+        description: ID of the lists to retrieve
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"list\": {\n        \"stringid\": \"email-subscription\",\n        \"userid\": \"1\",\n        \"name\": \"Email Subscription\",\n        \"cdate\": \"2018-08-06T16:30:41-05:00\",\n        \"p_use_tracking\": \"1\",\n        \"p_use_analytics_read\": \"0\",\n        \"p_use_analytics_link\": \"0\",\n        \"p_use_twitter\": \"0\",\n        \"p_use_facebook\": \"0\",\n        \"p_embed_image\": \"1\",\n        \"p_use_captcha\": \"1\",\n        \"send_last_broadcast\": \"0\",\n        \"private\": \"0\",\n        \"analytics_domains\": null,\n        \"analytics_source\": \"\",\n        \"analytics_ua\": \"\",\n        \"twitter_token\": \"\",\n        \"twitter_token_secret\": \"\",\n        \"facebook_session\": null,\n        \"carboncopy\": null,\n        \"subscription_notify\": null,\n        \"unsubscription_notify\": null,\n        \"require_name\": \"0\",\n        \"get_unsubscribe_reason\": \"0\",\n        \"to_name\": \"Subscriber\",\n        \"optinoptout\": \"1\",\n        \"sender_name\": \"\",\n        \"sender_addr1\": \"\",\n        \"sender_addr2\": \"\",\n        \"sender_city\": \"\",\n        \"sender_state\": \"\",\n        \"sender_zip\": \"\",\n        \"sender_country\": \"\",\n        \"sender_phone\": \"\",\n        \"sender_url\": \"http://www.activecampaign.com\",\n        \"sender_reminder\": \"You signed up for my mailing list.\",\n        \"fulladdress\": \"\",\n        \"optinmessageid\": \"0\",\n        \"optoutconf\": \"0\",\n        \"deletestamp\": null,\n        \"udate\": null,\n        \"links\": {\n            \"contactGoalLists\": \"https://:account.api-us1.com/api/3/lists/1/contactGoalLists\",\n            \"user\": \"https://:account.api-us1.com/api/3/lists/1/user\",\n            \"addressLists\": \"https://:account.api-us1.com/api/3/lists/1/addressLists\"\n        },\n        \"id\": \"1\",\n        \"user\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  list:
+                    type: object
+                    properties:
+                      stringid:
+                        type: string
+                        example: email-subscription
+                      userid:
+                        type: string
+                        example: '1'
+                      name:
+                        type: string
+                        example: Email Subscription
+                      cdate:
+                        type: string
+                        example: '2018-08-06T16:30:41-05:00'
+                      p_use_tracking:
+                        type: string
+                        example: '1'
+                      p_use_analytics_read:
+                        type: string
+                        example: '0'
+                      p_use_analytics_link:
+                        type: string
+                        example: '0'
+                      p_use_twitter:
+                        type: string
+                        example: '0'
+                      p_use_facebook:
+                        type: string
+                        example: '0'
+                      p_embed_image:
+                        type: string
+                        example: '1'
+                      p_use_captcha:
+                        type: string
+                        example: '1'
+                      send_last_broadcast:
+                        type: string
+                        example: '0'
+                      private:
+                        type: string
+                        example: '0'
+                      analytics_domains: {}
+                      analytics_source:
+                        type: string
+                        example: ''
+                      analytics_ua:
+                        type: string
+                        example: ''
+                      twitter_token:
+                        type: string
+                        example: ''
+                      twitter_token_secret:
+                        type: string
+                        example: ''
+                      facebook_session: {}
+                      carboncopy: {}
+                      subscription_notify: {}
+                      unsubscription_notify: {}
+                      require_name:
+                        type: string
+                        example: '0'
+                      get_unsubscribe_reason:
+                        type: string
+                        example: '0'
+                      to_name:
+                        type: string
+                        example: Subscriber
+                      optinoptout:
+                        type: string
+                        example: '1'
+                      sender_name:
+                        type: string
+                        example: ''
+                      sender_addr1:
+                        type: string
+                        example: ''
+                      sender_addr2:
+                        type: string
+                        example: ''
+                      sender_city:
+                        type: string
+                        example: ''
+                      sender_state:
+                        type: string
+                        example: ''
+                      sender_zip:
+                        type: string
+                        example: ''
+                      sender_country:
+                        type: string
+                        example: ''
+                      sender_phone:
+                        type: string
+                        example: ''
+                      sender_url:
+                        type: string
+                        example: http://www.activecampaign.com
+                      sender_reminder:
+                        type: string
+                        example: You signed up for my mailing list.
+                      fulladdress:
+                        type: string
+                        example: ''
+                      optinmessageid:
+                        type: string
+                        example: '0'
+                      optoutconf:
+                        type: string
+                        example: '0'
+                      deletestamp: {}
+                      udate: {}
+                      links:
+                        type: object
+                        properties:
+                          contactGoalLists:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/lists/1/contactGoalLists
+                          user:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/lists/1/user
+                          addressLists:
+                            type: string
+                            example: https://:account.api-us1.com/api/3/lists/1/addressLists
+                      id:
+                        type: string
+                        example: '1'
+                      user:
+                        type: string
+                        example: '1'
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": 403,\n            \"title\": \"Forbidden\",\n            \"detail\": \"You do not have permission to view lists.\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 403
+                          default: 0
+                        title:
+                          type: string
+                          example: Forbidden
+                        detail:
+                          type: string
+                          example: You do not have permission to view lists.
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for _List with id 7\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for _List with id 7
+      deprecated: false
+      tags:
+      - Lists
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a List
+      description: ''
+      operationId: delete-a-list
+      parameters:
+      - name: id
+        in: path
+        description: ID of the list to delete
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for _List with id 3\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for _List with id 3
+      deprecated: false
+      tags:
+      - Lists
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /listGroups:
+    post:
+      summary: ActiveCampaign Create a List Group Permission
+      description: ''
+      operationId: create-a-list-group-permission
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                listGroup:
+                  properties:
+                    listid:
+                      type: integer
+                      description: ID of the list
+                      format: int32
+                    groupid:
+                      type: integer
+                      description: ID of the group that list should be associated with
+                      format: int32
+                  required:
+                  - listid
+                  - groupid
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  listGroup:
+                    listid: 19
+                    groupid: 1
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"listGroup\": {\n        \"list\": 19,\n        \"group\": 1,\n        \"links\": {\n            \"list\": \"https://account.api-us1.com/api/3/listGroups/55/list\",\n            \"group\": \"https://account.api-us1.com/api/3/listGroups/55/group\"\n        },\n        \"id\": \"55\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  listGroup:
+                    type: object
+                    properties:
+                      list:
+                        type: integer
+                        example: 19
+                        default: 0
+                      group:
+                        type: integer
+                        example: 1
+                        default: 0
+                      links:
+                        type: object
+                        properties:
+                          list:
+                            type: string
+                            example: https://account.api-us1.com/api/3/listGroups/55/list
+                          group:
+                            type: string
+                            example: https://account.api-us1.com/api/3/listGroups/55/group
+                      id:
+                        type: string
+                        example: '55'
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"Forbidden\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Forbidden
+      deprecated: false
+      tags:
+      - Lists
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /lists/exclusions/{id}:
+    get:
+      summary: ActiveCampaign Retrieve an Exclusion
+      description: ''
+      operationId: exclusions-retrieve-an-exclusion
+      parameters:
+      - name: id
+        in: path
+        description: ID of the exclusion to retrieve
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"id\": \"2\",\n    \"matchPhrase\": \"pattern\",\n    \"matchType\": \"exact\",\n    \"channel\": \"several\",\n    \"hidden\": false,\n    \"lists\": [\n        \"2\",\n        \"1\"\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '2'
+                  matchPhrase:
+                    type: string
+                    example: pattern
+                  matchType:
+                    type: string
+                    example: exact
+                  channel:
+                    type: string
+                    example: several
+                  hidden:
+                    type: boolean
+                    example: false
+                    default: true
+                  lists:
+                    type: array
+                    items:
+                      type: string
+                      example: '2'
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"Exclusion not found [id=422]\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Exclusion not found [id=422]
+      deprecated: false
+      tags:
+      - Lists
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Update an Exclusion
+      description: ''
+      operationId: update-an-exclusion
+      parameters:
+      - name: id
+        in: path
+        description: The Exclusion's ID
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                channel:
+                  type: string
+                  enum:
+                  - '"all"'
+                  - '"allSms"'
+                  - '"allEmail"'
+                  - '"several"'
+                lists:
+                  type: array
+                  description: String-qouted IDs of lists. This field should **only** be provided when `channel = "several"`. For all other channel types, it must be either empty or omitted. If included for unsupported channel types, a 422 HTTP error will be returned.
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"id\": \"2\",\n    \"matchPhrase\": \"example@example.com\",\n    \"matchType\": \"exact\",\n    \"channel\": \"email\",\n    \"hidden\": false,\n    \"lists\": [\n    \t\"1\", \"2\"\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '2'
+                  matchPhrase:
+                    type: string
+                    example: example@example.com
+                  matchType:
+                    type: string
+                    example: exact
+                  channel:
+                    type: string
+                    example: email
+                  hidden:
+                    type: boolean
+                    example: false
+                    default: true
+                  lists:
+                    type: array
+                    items:
+                      type: string
+                      example: '1'
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Missing permissions:
+                  value: "{\n    \"message\": \"You don't have permission to access this resource\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: You don't have permission to access this resource
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for Exclusion with id 404\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for Exclusion with id 404
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Validation error:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": 422,\n            \"title\": \"Invalid attribute\",\n            \"detail\": \"Lists must be an array of string-quoted integers\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/lists[0]\"\n            }\n        },\n        {\n            \"status\": 422,\n            \"title\": \"Invalid attribute\",\n            \"detail\": \"List IDs must be empty for channel \\\"all\\\"\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/lists\"\n            }\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 422
+                          default: 0
+                        title:
+                          type: string
+                          example: Invalid attribute
+                        detail:
+                          type: string
+                          example: Lists must be an array of string-quoted integers
+                        source:
+                          type: object
+                          properties:
+                            pointer:
+                              type: string
+                              example: /data/attributes/lists[0]
+      deprecated: false
+      tags:
+      - Lists
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /lists/exclusions:
+    get:
+      summary: ActiveCampaign Retrieve Exclusions List
+      description: ''
+      operationId: exclusions-retrieve-a-list
+      parameters:
+      - name: filters[matchPhrase]
+        in: query
+        description: Filters by the match phrase, for example `filters[matchPhrase]=.com`
+        schema:
+          type: string
+      - name: filters[lists]
+        in: query
+        description: Filters by the list ID, for example `filters[lists][]=1`. You can filter by many list IDs
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int32
+      - name: orders[matchPhrase]
+        in: query
+        description: Sort by the matchPhrase
+        schema:
+          type: string
+          enum:
+          - '''DESC'''
+          - '''ASC'''
+      - name: orders[lists]
+        in: query
+        description: Sort by lists IDs
+        schema:
+          type: string
+          enum:
+          - '''DESC'''
+          - '''ASC'''
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"exclusions\": [\n        {\n            \"id\": \"1\",\n            \"matchPhrase\": \"example@domain.pl\",\n            \"matchType\": \"end\",\n            \"channel\": \"allSms\",\n            \"hidden\": false,\n            \"lists\": []\n        },\n        {\n            \"id\": \"2\",\n            \"matchPhrase\": \"example@domain.com\",\n            \"matchType\": \"exact\",\n            \"channel\": \"several\",\n            \"hidden\": false,\n            \"lists\": [\n                \"2\",\n                \"1\"\n            ]\n        }\n    ],\n    \"meta\": {\n        \"total\": 5\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  exclusions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '1'
+                        matchPhrase:
+                          type: string
+                          example: example@domain.pl
+                        matchType:
+                          type: string
+                          example: end
+                        channel:
+                          type: string
+                          example: allSms
+                        hidden:
+                          type: boolean
+                          example: false
+                          default: true
+                        lists:
+                          type: array
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 5
+                        default: 0
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Validation errors:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": 422,\n            \"title\": \"Invalid attribute\",\n            \"detail\": \"Invalid order direction: \\\"DASC\\\". Allowed values are: \\\"ASC\\\", \\\"DESC\\\"\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/orders[matchPhrase]\"\n            }\n        },\n        {\n            \"status\": 422,\n            \"title\": \"Invalid attribute\",\n            \"detail\": \"Invalid filter field: \\\"nonExisting\\\". Allowed fields are: matchPhrase, lists\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/filters[nonExisting]\"\n            }\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: integer
+                          example: 422
+                          default: 0
+                        title:
+                          type: string
+                          example: Invalid attribute
+                        detail:
+                          type: string
+                          example: 'Invalid order direction: "DASC". Allowed values are: "ASC", "DESC"'
+                        source:
+                          type: object
+                          properties:
+                            pointer:
+                              type: string
+                              example: /data/attributes/orders[matchPhrase]
+      deprecated: false
+      tags:
+      - Lists
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

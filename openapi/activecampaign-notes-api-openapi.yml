@@ -1,0 +1,612 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Notes API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Notes
+paths:
+  /notes:
+    get:
+      summary: ActiveCampaign Retrieve List of All Notes
+      description: ''
+      operationId: retrieve-list-of-all-notes
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"notes\": [\n        {\n            \"relid\": \"126\",\n            \"reltype\": \"Activity\",\n            \"userid\": \"1\",\n            \"is_draft\": \"0\",\n            \"cdate\": \"2022-05-26T08:58:34-05:00\",\n            \"mdate\": \"2022-05-26T08:58:34-05:00\",\n            \"note\": \"Oh, hi Mark\",\n            \"links\": {\n                \"activities\": \"https://:account.api-us1.com/api/3/notes/1/activities\",\n                \"user\": \"https://:account.api-us1.com/api/3/notes/1/user\",\n                \"mentions\": \"https://:account.api-us1.com/api/3/notes/1/mentions\",\n                \"notes\": \"https://:account.api-us1.com/api/3/notes/1/notes\",\n                \"owner\": \"https://:account.api-us1.com/api/3/notes/1/owner\"\n            },\n            \"id\": \"1\",\n            \"user\": \"1\",\n            \"owner\": {\n                \"type\": \"activity\",\n                \"id\": \"126\"\n            }\n        },\n        {\n            \"relid\": \"6\",\n            \"reltype\": \"Deal\",\n            \"userid\": \"1\",\n            \"is_draft\": \"0\",\n            \"cdate\": \"2023-08-18T11:09:38-05:00\",\n            \"mdate\": \"2023-08-18T11:09:40-05:00\",\n            \"note\": \"Here is a note\",\n            \"links\": {\n                \"activities\": \"https://:account.api-us1.com/api/3/notes/2/activities\",\n                \"user\": \"https://:account.api-us1.com/api/3/notes/2/user\",\n                \"mentions\": \":account.api-us1.com/api/3/notes/2/mentions\",\n                \"notes\": \":account.api-us1.com/api/3/notes/2/notes\",\n                \"owner\": \":account.api-us1.com/api/3/notes/2/owner\"\n            },\n            \"id\": \"2\",\n            \"user\": \"1\",\n            \"owner\": {\n                \"type\": \"deal\",\n                \"id\": \"6\"\n            }\n        }\n    ],\n    \"meta\": {\n        \"total\": \"2\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  notes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        relid:
+                          type: string
+                          example: '126'
+                        reltype:
+                          type: string
+                          example: Activity
+                        userid:
+                          type: string
+                          example: '1'
+                        is_draft:
+                          type: string
+                          example: '0'
+                        cdate:
+                          type: string
+                          example: '2022-05-26T08:58:34-05:00'
+                        mdate:
+                          type: string
+                          example: '2022-05-26T08:58:34-05:00'
+                        note:
+                          type: string
+                          example: Oh, hi Mark
+                        links:
+                          type: object
+                          properties:
+                            activities:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/notes/1/activities
+                            user:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/notes/1/user
+                            mentions:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/notes/1/mentions
+                            notes:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/notes/1/notes
+                            owner:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/notes/1/owner
+                        id:
+                          type: string
+                          example: '1'
+                        user:
+                          type: string
+                          example: '1'
+                        owner:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: activity
+                            id:
+                              type: string
+                              example: '126'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '2'
+      deprecated: false
+      tags:
+      - Notes
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      summary: ActiveCampaign Create a Note
+      description: ''
+      operationId: create-a-note
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                note:
+                  properties:
+                    note:
+                      type: string
+                    reltype:
+                      type: string
+                      description: 'Possible Values: Activity, Deal, DealTask, Subscriber, CustomerAccount'
+                    relid:
+                      type: integer
+                      format: int32
+                  required:
+                  - note
+                  - reltype
+                  - relid
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  note:
+                    note: This is the text of the note
+                    relid: 2
+                    reltype: Subscriber
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"contacts\": [\n        {\n            \"cdate\": \"2018-08-06T16:26:04-05:00\",\n            \"email\": \"ikreimont+2@activecampaign.com\",\n            \"phone\": \"\",\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"orgid\": \"0\",\n            \"segmentio_id\": \"\",\n            \"bounced_hard\": \"0\",\n            \"bounced_soft\": \"0\",\n            \"bounced_date\": null,\n            \"ip\": \"0\",\n            \"ua\": null,\n            \"hash\": \"14d8c4418ae944c68e9dde4a975854cc\",\n            \"socialdata_lastcheck\": null,\n            \"email_local\": \"\",\n            \"email_domain\": \"\",\n            \"sentcnt\": \"0\",\n            \"rating_tstamp\": null,\n            \"gravatar\": \"0\",\n            \"deleted\": \"0\",\n            \"anonymized\": \"0\",\n            \"adate\": null,\n            \"udate\": \"2018-09-28T17:45:11-05:00\",\n            \"edate\": null,\n            \"deleted_at\": null,\n            \"created_utc_timestamp\": \"2018-09-21 12:04:40\",\n            \"updated_utc_timestamp\": \"2018-09-28 17:45:11\",\n            \"links\": {\n                \"bounceLogs\": \"https://:account.api-us1.com/api/:version/contacts/2/bounceLogs\",\n                \"contactAutomations\": \"https://:account.api-us1.com/api/:version/contacts/2/contactAutomations\",\n                \"contactData\": \"https://:account.api-us1.com/api/:version/contacts/2/contactData\",\n                \"contactGoals\": \"https://:account.api-us1.com/api/:version/contacts/2/contactGoals\",\n                \"contactLists\": \"https://:account.api-us1.com/api/:version/contacts/2/contactLists\",\n                \"contactLogs\": \"https://:account.api-us1.com/api/:version/contacts/2/contactLogs\",\n                \"contactTags\": \"https://:account.api-us1.com/api/:version/contacts/2/contactTags\",\n                \"contactDeals\": \"https://:account.api-us1.com/api/:version/contacts/2/contactDeals\",\n                \"deals\": \"https://:account.api-us1.com/api/:version/contacts/2/deals\",\n                \"fieldValues\": \"https://:account.api-us1.com/api/:version/contacts/2/fieldValues\",\n                \"geoIps\": \"https://:account.api-us1.com/api/:version/contacts/2/geoIps\",\n                \"notes\": \"https://:account.api-us1.com/api/:version/contacts/2/notes\",\n                \"organization\": \"https://:account.api-us1.com/api/:version/contacts/2/organization\",\n                \"plusAppend\": \"https://:account.api-us1.com/api/:version/contacts/2/plusAppend\",\n                \"trackingLogs\": \"https://:account.api-us1.com/api/:version/contacts/2/trackingLogs\",\n                \"scoreValues\": \"https://:account.api-us1.com/api/:version/contacts/2/scoreValues\"\n            },\n            \"id\": \"2\",\n            \"organization\": null\n        }\n    ],\n    \"note\": {\n        \"note\": \"This is the text of the note\",\n        \"cdate\": \"2018-09-28T17:45:11-05:00\",\n        \"mdate\": \"2018-09-28T17:45:11-05:00\",\n        \"reltype\": \"Subscriber\",\n        \"relid\": 2,\n        \"userid\": \"1\",\n        \"links\": {\n            \"activities\": \"https://:account.api-us1.com/api/:version/notes/2/activities\",\n            \"user\": \"https://:account.api-us1.com/api/:version/notes/2/user\",\n            \"mentions\": \"https://:account.api-us1.com/api/:version/notes/2/mentions\",\n            \"notes\": \"https://:account.api-us1.com/api/:version/notes/2/notes\",\n            \"owner\": \"https://:account.api-us1.com/api/:version/notes/2/owner\"\n        },\n        \"owner\": {\n            \"type\": \"contact\",\n            \"id\": 2\n        },\n        \"id\": \"2\",\n        \"user\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  contacts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cdate:
+                          type: string
+                          example: '2018-08-06T16:26:04-05:00'
+                        email:
+                          type: string
+                          example: ikreimont+2@activecampaign.com
+                        phone:
+                          type: string
+                          example: ''
+                        firstName:
+                          type: string
+                          example: ''
+                        lastName:
+                          type: string
+                          example: ''
+                        orgid:
+                          type: string
+                          example: '0'
+                        segmentio_id:
+                          type: string
+                          example: ''
+                        bounced_hard:
+                          type: string
+                          example: '0'
+                        bounced_soft:
+                          type: string
+                          example: '0'
+                        bounced_date: {}
+                        ip:
+                          type: string
+                          example: '0'
+                        ua: {}
+                        hash:
+                          type: string
+                          example: 14d8c4418ae944c68e9dde4a975854cc
+                        socialdata_lastcheck: {}
+                        email_local:
+                          type: string
+                          example: ''
+                        email_domain:
+                          type: string
+                          example: ''
+                        sentcnt:
+                          type: string
+                          example: '0'
+                        rating_tstamp: {}
+                        gravatar:
+                          type: string
+                          example: '0'
+                        deleted:
+                          type: string
+                          example: '0'
+                        anonymized:
+                          type: string
+                          example: '0'
+                        adate: {}
+                        udate:
+                          type: string
+                          example: '2018-09-28T17:45:11-05:00'
+                        edate: {}
+                        deleted_at: {}
+                        created_utc_timestamp:
+                          type: string
+                          example: '2018-09-21 12:04:40'
+                        updated_utc_timestamp:
+                          type: string
+                          example: '2018-09-28 17:45:11'
+                        links:
+                          type: object
+                          properties:
+                            bounceLogs:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/bounceLogs
+                            contactAutomations:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactAutomations
+                            contactData:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactData
+                            contactGoals:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactGoals
+                            contactLists:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactLists
+                            contactLogs:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactLogs
+                            contactTags:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactTags
+                            contactDeals:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/contactDeals
+                            deals:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/deals
+                            fieldValues:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/fieldValues
+                            geoIps:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/geoIps
+                            notes:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/notes
+                            organization:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/organization
+                            plusAppend:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/plusAppend
+                            trackingLogs:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/trackingLogs
+                            scoreValues:
+                              type: string
+                              example: https://:account.api-us1.com/api/:version/contacts/2/scoreValues
+                        id:
+                          type: string
+                          example: '2'
+                        organization: {}
+                  note:
+                    type: object
+                    properties:
+                      note:
+                        type: string
+                        example: This is the text of the note
+                      cdate:
+                        type: string
+                        example: '2018-09-28T17:45:11-05:00'
+                      mdate:
+                        type: string
+                        example: '2018-09-28T17:45:11-05:00'
+                      reltype:
+                        type: string
+                        example: Subscriber
+                      relid:
+                        type: integer
+                        example: 2
+                        default: 0
+                      userid:
+                        type: string
+                        example: '1'
+                      links:
+                        type: object
+                        properties:
+                          activities:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/2/activities
+                          user:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/2/user
+                          mentions:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/2/mentions
+                          notes:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/2/notes
+                          owner:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/2/owner
+                      owner:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: contact
+                          id:
+                            type: integer
+                            example: 2
+                            default: 0
+                      id:
+                        type: string
+                        example: '2'
+                      user:
+                        type: string
+                        example: '1'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Notes
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /notes/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Note
+      description: ''
+      operationId: retrieve-a-note
+      parameters:
+      - name: id
+        in: path
+        description: ID of the note to retrieve
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"note\": {\n        \"relid\": \"2\",\n        \"reltype\": \"Subscriber\",\n        \"userid\": \"1\",\n        \"cdate\": \"2018-09-12T17:20:20-05:00\",\n        \"mdate\": \"2018-09-20T09:10:06-05:00\",\n        \"note\": \"TEST NOTE\",\n        \"links\": {\n            \"activities\": \"https://:account.api-us1.com/api/:version/notes/2/activities\",\n            \"user\": \"https://:account.api-us1.com/api/:version/notes/2/user\",\n            \"mentions\": \"https://:account.api-us1.com/api/:version/notes/2/mentions\",\n            \"notes\": \"https://:account.api-us1.com/api/:version/notes/2/notes\",\n            \"owner\": \"https://:account.api-us1.com/api/:version/notes/2/owner\"\n        },\n        \"id\": \"2\",\n        \"user\": \"1\",\n        \"owner\": {\n            \"type\": \"contact\",\n            \"id\": \"2\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  note:
+                    type: object
+                    properties:
+                      relid:
+                        type: string
+                        example: '2'
+                      reltype:
+                        type: string
+                        example: Subscriber
+                      userid:
+                        type: string
+                        example: '1'
+                      cdate:
+                        type: string
+                        example: '2018-09-12T17:20:20-05:00'
+                      mdate:
+                        type: string
+                        example: '2018-09-20T09:10:06-05:00'
+                      note:
+                        type: string
+                        example: TEST NOTE
+                      links:
+                        type: object
+                        properties:
+                          activities:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/2/activities
+                          user:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/2/user
+                          mentions:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/2/mentions
+                          notes:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/2/notes
+                          owner:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/2/owner
+                      id:
+                        type: string
+                        example: '2'
+                      user:
+                        type: string
+                        example: '1'
+                      owner:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: contact
+                          id:
+                            type: string
+                            example: '2'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Notes
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Update a Note
+      description: ''
+      operationId: update-a-note
+      parameters:
+      - name: id
+        in: path
+        description: ID of the note to update
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                note:
+                  properties:
+                    note:
+                      type: string
+                    reltype:
+                      type: string
+                      description: 'Possible Values: Activity, Deal, DealTask, Subscriber, CustomerAccount'
+                    relid:
+                      type: string
+                  required:
+                  - note
+                  - reltype
+                  - relid
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  note:
+                    note: This is the text of the note
+                    relid: 2
+                    reltype: Subscriber
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"note\": {\n        \"relid\": \"107\",\n        \"reltype\": \"Subscriber\",\n        \"userid\": \"1\",\n        \"cdate\": \"2018-09-21T11:52:41-05:00\",\n        \"mdate\": \"2018-09-28T18:39:44-05:00\",\n        \"note\": \"This is the text of the note\",\n        \"links\": {\n            \"activities\": \"https://:account.api-us1.com/api/:version/notes/1/activities\",\n            \"user\": \"https://:account.api-us1.com/api/:version/notes/1/user\",\n            \"mentions\": \"https://:account.api-us1.com/api/:version/notes/1/mentions\",\n            \"notes\": \"https://:account.api-us1.com/api/:version/notes/1/notes\",\n            \"owner\": \"https://:account.api-us1.com/api/:version/notes/1/owner\"\n        },\n        \"id\": \"1\",\n        \"user\": \"1\",\n        \"owner\": {\n            \"type\": \"contact\",\n            \"id\": \"107\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  note:
+                    type: object
+                    properties:
+                      relid:
+                        type: string
+                        example: '107'
+                      reltype:
+                        type: string
+                        example: Subscriber
+                      userid:
+                        type: string
+                        example: '1'
+                      cdate:
+                        type: string
+                        example: '2018-09-21T11:52:41-05:00'
+                      mdate:
+                        type: string
+                        example: '2018-09-28T18:39:44-05:00'
+                      note:
+                        type: string
+                        example: This is the text of the note
+                      links:
+                        type: object
+                        properties:
+                          activities:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/1/activities
+                          user:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/1/user
+                          mentions:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/1/mentions
+                          notes:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/1/notes
+                          owner:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/notes/1/owner
+                      id:
+                        type: string
+                        example: '1'
+                      user:
+                        type: string
+                        example: '1'
+                      owner:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: contact
+                          id:
+                            type: string
+                            example: '107'
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for Subscriber with id 1\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for Subscriber with id 1
+      deprecated: false
+      tags:
+      - Notes
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a Note
+      description: ''
+      operationId: delete-note
+      parameters:
+      - name: id
+        in: path
+        description: ID of the note to delete
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for Note with id 1\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for Note with id 1
+      deprecated: false
+      tags:
+      - Notes
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

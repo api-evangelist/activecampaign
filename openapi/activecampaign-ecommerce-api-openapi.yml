@@ -1,0 +1,1765 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Ecommerce API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Ecommerce
+paths:
+  /ecomCustomers:
+    post:
+      summary: ActiveCampaign Create a Customer
+      description: Create a new e-commerce customer resource.
+      operationId: create-customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ecomCustomer:
+                  properties:
+                    connectionid:
+                      type: string
+                      description: The id of the connection object for the service where the customer originates.
+                    externalid:
+                      type: string
+                      description: The id of the customer in the external service.
+                    email:
+                      type: string
+                      description: The email address of the customer.
+                    acceptsMarketing:
+                      type: string
+                      description: Indication of whether customer has opt-ed in to marketing communications. 0 = not opted-in, 1 = opted-in. A value of 0 means the contact will match the "Has not opted in to marketing" segment condition and a value of 1 means the contact will match the "Has opted in to marketing" segment condition.
+                  required:
+                  - connectionid
+                  - externalid
+                  - email
+                  type: object
+            examples:
+              JSON:
+                value:
+                  ecomCustomer:
+                    connectionid: '1'
+                    externalid: '56789'
+                    email: alice@example.com
+                    acceptsMarketing: '1'
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"ecomCustomer\": {\n    \"connectionid\": \"1\",\n    \"externalid\": \"56789\",\n    \"email\": \"alice@example.com\",\n    \"links\": {\n      \"connection\": \"/api/3/ecomCustomers/1/connection\",\n      \"orders\": \"/api/3/ecomCustomers/1/orders\"\n    },\n    \"id\": \"1\",\n    \"connection\": \"1\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  ecomCustomer:
+                    type: object
+                    properties:
+                      connectionid:
+                        type: string
+                        example: '1'
+                      externalid:
+                        type: string
+                        example: '56789'
+                      email:
+                        type: string
+                        example: alice@example.com
+                      links:
+                        type: object
+                        properties:
+                          connection:
+                            type: string
+                            example: /api/3/ecomCustomers/1/connection
+                          orders:
+                            type: string
+                            example: /api/3/ecomCustomers/1/orders
+                      id:
+                        type: string
+                        example: '1'
+                      connection:
+                        type: string
+                        example: '1'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Ecommerce
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign List All Customers
+      description: List all e-commerce customer resources.
+      operationId: list-all-customers
+      parameters:
+      - name: filters[email]
+        in: query
+        description: Filter by the email address of a customer.
+        schema:
+          type: string
+      - name: filters[externalid]
+        in: query
+        description: Filter by the id of the customer in the external service.
+        schema:
+          type: string
+      - name: filters[connectionid]
+        in: query
+        description: Filter by the id of the connection object for the service where the customer originates.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                GET /ecomCustomers (Example RESPONSE):
+                  value: "{\n  \"ecomCustomers\": [\n    {\n      \"connectionid\": \"1\",\n      \"externalid\": \"56789\",\n      \"email\": \"alice@example.com\",\n      \"totalRevenue\": \"3280\",\n      \"totalOrders\": \"2\",\n      \"totalProducts\": \"2\",\n      \"avgRevenuePerOrder\": \"2285\",\n      \"avgProductCategory\": \"Electronics\",\n      \"tstamp\": \"2017-02-06T14:05:31-06:00\",\n      \"links\": {\n        \"connection\": \"/api/3/ecomCustomers/1/connection\",\n        \"orders\": \"/api/3/ecomCustomers/1/orders\"\n      },\n      \"id\": \"1\",\n      \"connection\": \"1\"\n    },\n    {\n      \"connectionid\": \"2\",\n      \"externalid\": \"44322\",\n      \"email\": \"alice@example.com\",\n      \"totalRevenue\": \"7599\",\n      \"totalOrders\": \"1\",\n      \"totalProducts\": \"1\",\n      \"avgRevenuePerOrder\": \"7599\",\n      \"avgProductCategory\": \"Books\",\n      \"tstamp\": \"2016-12-13T18:02:07-06:00\",\n      \"links\": {\n        \"connection\": \"/api/3/ecomCustomers/3/connection\",\n        \"orders\": \"/api/3/ecomCustomers/3/orders\"\n      },\n      \"id\": \"3\",\n      \"connection\": \"2\"\n    },\n    {\n      \"connectionid\": \"0\",\n      \"externalid\": \"0\",\n      \"email\": \"alice@example.com\",\n      \"totalRevenue\": \"10879\",\n      \"totalOrders\": \"3\",\n      \"totalProducts\": \"3\",\n      \"avgRevenuePerOrder\": \"3626\",\n      \"avgProductCategory\": \"Electronics\",\n      \"tstamp\": \"2017-02-06T14:05:31-06:00\",\n      \"links\": {\n        \"connection\": \"/api/3/ecomCustomers/2/connection\",\n        \"orders\": \"/api/3/ecomCustomers/2/orders\"\n      },\n      \"id\": \"2\",\n      \"connection\": null\n    }\n  ],\n  \"meta\": {\n    \"total\": \"3\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  ecomCustomers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        connectionid:
+                          type: string
+                          example: '1'
+                        externalid:
+                          type: string
+                          example: '56789'
+                        email:
+                          type: string
+                          example: alice@example.com
+                        totalRevenue:
+                          type: string
+                          example: '3280'
+                        totalOrders:
+                          type: string
+                          example: '2'
+                        totalProducts:
+                          type: string
+                          example: '2'
+                        avgRevenuePerOrder:
+                          type: string
+                          example: '2285'
+                        avgProductCategory:
+                          type: string
+                          example: Electronics
+                        tstamp:
+                          type: string
+                          example: '2017-02-06T14:05:31-06:00'
+                        links:
+                          type: object
+                          properties:
+                            connection:
+                              type: string
+                              example: /api/3/ecomCustomers/1/connection
+                            orders:
+                              type: string
+                              example: /api/3/ecomCustomers/1/orders
+                        id:
+                          type: string
+                          example: '1'
+                        connection:
+                          type: string
+                          example: '1'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '3'
+      deprecated: false
+      tags:
+      - Ecommerce
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ecomCustomers/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Customer
+      description: Retrieve an existing e-commerce customer resource.
+      operationId: get-customer
+      parameters:
+      - name: id
+        in: path
+        description: The id of the customer to retrieve
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"ecomCustomer\": {\n        \"connectionid\": \"3\",\n        \"externalid\": \"1440117293120\",\n        \"email\": \"john.doe@example.com\",\n        \"totalRevenue\": \"150761\",\n        \"totalOrders\": \"1\",\n        \"totalProducts\": \"3\",\n        \"avgRevenuePerOrder\": \"150761\",\n        \"avgProductCategory\": \"Musical Instrument\",\n        \"tstamp\": \"2019-01-01T10:23:22-06:00\",\n        \"acceptsMarketing\": \"0\",\n        \"links\": {\n            \"connection\": \"https://:account.api-us1.com/api/:version/ecomCustomers/15/connection\",\n            \"orders\": \"https://:account.api-us1.com/api/:version/ecomCustomers/15/orders\"\n        },\n        \"id\": \"15\",\n        \"connection\": \"3\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  ecomCustomer:
+                    type: object
+                    properties:
+                      connectionid:
+                        type: string
+                        example: '3'
+                      externalid:
+                        type: string
+                        example: '1440117293120'
+                      email:
+                        type: string
+                        example: john.doe@example.com
+                      totalRevenue:
+                        type: string
+                        example: '150761'
+                      totalOrders:
+                        type: string
+                        example: '1'
+                      totalProducts:
+                        type: string
+                        example: '3'
+                      avgRevenuePerOrder:
+                        type: string
+                        example: '150761'
+                      avgProductCategory:
+                        type: string
+                        example: Musical Instrument
+                      tstamp:
+                        type: string
+                        example: '2019-01-01T10:23:22-06:00'
+                      acceptsMarketing:
+                        type: string
+                        example: '0'
+                      links:
+                        type: object
+                        properties:
+                          connection:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/ecomCustomers/15/connection
+                          orders:
+                            type: string
+                            example: https://:account.api-us1.com/api/:version/ecomCustomers/15/orders
+                      id:
+                        type: string
+                        example: '15'
+                      connection:
+                        type: string
+                        example: '3'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Ecommerce
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: ActiveCampaign Update a Customer
+      description: Update an existing e-commerce customer resource.
+      operationId: update-customer
+      parameters:
+      - name: id
+        in: path
+        description: The id of the customer to update
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ecomCustomer:
+                  properties:
+                    externalid:
+                      type: string
+                      description: The id of the customer in the external service.
+                    connectionid:
+                      type: string
+                      description: The id of the connection object for the service where the customer originates.
+                    email:
+                      type: string
+                      description: The email address of the customer.
+                    acceptsMarketing:
+                      type: string
+                      description: Indication of whether customer has opt-ed in to marketing communications. 0 = not opted-in, 1 = opted-in. A value of 0 means the contact will match the "Has not opted in to marketing" segment condition and a value of 1 means the contact will match the "Has opted in to marketing" segment condition.
+                  required: []
+                  type: object
+            examples:
+              JSON:
+                value:
+                  ecomCustomer:
+                    externalid: '98765'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"ecomCustomer\": {\n    \"connectionid\": \"1\",\n    \"externalid\": \"98765\",\n    \"email\": \"alice@example.com\",\n    \"totalRevenue\": \"3280\",\n    \"totalOrders\": \"2\",\n    \"totalProducts\": \"2\",\n    \"avgRevenuePerOrder\": \"2285\",\n    \"avgProductCategory\": \"Electronics\",\n    \"tstamp\": \"2017-02-06T14:05:31-06:00\",\n    \"links\": {\n      \"connection\": \"/api/3/ecomCustomers/1/connection\",\n      \"orders\": \"/api/3/ecomCustomers/1/orders\"\n    },\n    \"id\": \"1\",\n    \"connection\": \"1\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  ecomCustomer:
+                    type: object
+                    properties:
+                      connectionid:
+                        type: string
+                        example: '1'
+                      externalid:
+                        type: string
+                        example: '98765'
+                      email:
+                        type: string
+                        example: alice@example.com
+                      totalRevenue:
+                        type: string
+                        example: '3280'
+                      totalOrders:
+                        type: string
+                        example: '2'
+                      totalProducts:
+                        type: string
+                        example: '2'
+                      avgRevenuePerOrder:
+                        type: string
+                        example: '2285'
+                      avgProductCategory:
+                        type: string
+                        example: Electronics
+                      tstamp:
+                        type: string
+                        example: '2017-02-06T14:05:31-06:00'
+                      links:
+                        type: object
+                        properties:
+                          connection:
+                            type: string
+                            example: /api/3/ecomCustomers/1/connection
+                          orders:
+                            type: string
+                            example: /api/3/ecomCustomers/1/orders
+                      id:
+                        type: string
+                        example: '1'
+                      connection:
+                        type: string
+                        example: '1'
+      deprecated: false
+      tags:
+      - Ecommerce
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete a Customer
+      description: Delete an existing e-commerce customer resource.
+      operationId: delete-customer
+      parameters:
+      - name: id
+        in: path
+        description: The id of the customer to delete.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Ecommerce
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ecomOrders:
+    post:
+      summary: ActiveCampaign Create an Order
+      description: Create a new e-commerce order resource.
+      operationId: create-order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ecomOrder:
+                  properties:
+                    externalid:
+                      type: string
+                      description: The id of the order in the external service. ONLY REQUIRED IF EXTERNALCHECKOUTID NOT INCLUDED.
+                    externalcheckoutid:
+                      type: string
+                      description: The id of the cart in the external service. ONLY REQUIRED IF EXTERNALID IS NOT INCLUDED.
+                    source:
+                      type: integer
+                      description: The order source code. 0 - historical, 1 - real-time. Only real-time orders (source = 1) will show up on your Ecommerce Dashboard and trigger the “Makes a purchase” automation start, abandoned cart actions, customer conversions, or revenue attributions.
+                      format: int32
+                    email:
+                      type: string
+                      description: The email address of the customer who placed the order.
+                    orderProducts:
+                      properties:
+                        name:
+                          type: string
+                          description: The name of the product
+                        price:
+                          type: integer
+                          description: The price of the product, in cents. (i.e. $456.78 => 45678). Must be greater than or equal to zero.
+                          format: int32
+                        quantity:
+                          type: integer
+                          description: The quantity ordered.
+                          format: int32
+                        externalid:
+                          type: string
+                          description: The id of the product in the external service.
+                        category:
+                          type: string
+                          description: The category of the product.
+                        sku:
+                          type: string
+                          description: The SKU for the product
+                        description:
+                          type: string
+                          description: The description of the product
+                        imageUrl:
+                          type: string
+                          description: An Image URL that displays an image of the product
+                        productUrl:
+                          type: string
+                          description: A URL linking to the product in your store
+                      required:
+                      - name
+                      - price
+                      - quantity
+                      - externalid
+                      type: object
+                    totalPrice:
+                      type: integer
+                      description: The total price of the order in cents, including tax and shipping charges. (i.e. $456.78 => 45678). Must be greater than or equal to zero.
+                      format: int32
+                    shippingAmount:
+                      type: integer
+                      description: The total shipping amount in cents for the order
+                      format: int32
+                    taxAmount:
+                      type: integer
+                      description: The total tax amount for the order in cents
+                      format: int32
+                    discountAmount:
+                      type: integer
+                      description: The total discount amount for the order in cents
+                      format: int32
+                    currency:
+                      type: string
+                      description: The currency of the order (3-digit ISO code, e.g., 'USD').
+                    connectionid:
+                      type: integer
+                      description: The id of the connection from which this order originated.
+                      format: int32
+                    customerid:
+                      type: integer
+                      description: The id of the customer associated with this order.
+                      format: int32
+                    orderUrl:
+                      type: string
+                      description: The URL for the order in the external service.
+                    externalCreatedDate:
+                      type: string
+                      description: The date the order was placed.
+                      format: date
+                    externalUpdatedDate:
+                      type: string
+                      description: The date the order was updated.
+                    abandonedDate:
+                      type: string
+                      description: The date the cart was abandoned. REQUIRED ONLY IF INCLUDING EXTERNALCHECKOUTID.
+                    shippingMethod:
+                      type: string
+                      description: The shipping method of the order.
+                    orderNumber:
+                      type: string
+                      description: The order number. This can be different than the externalid.
+                    orderDiscounts:
+                      properties:
+                        name:
+                          type: string
+                          description: The discount code or name of the discount
+                        type:
+                          type: string
+                          description: The type of discount, either 'order' for discount on the order, or 'shipping' for free shipping.
+                        discountAmount:
+                          type: integer
+                          description: The amount of the discount in cents.
+                          format: int32
+                      required: []
+                      type: object
+                  required:
+                  - externalid
+                  - externalcheckoutid
+                  - source
+                  - email
+                  - totalPrice
+                  - currency
+                  - connectionid
+                  - customerid
+                  - externalCreatedDate
+                  - abandonedDate
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  ecomOrder:
+                    externalid: '3246315233'
+                    source: '1'
+                    email: alice@example.com
+                    orderProducts:
+                    - externalid: PROD12345
+                      name: Pogo Stick
+                      price: 4900
+                      quantity: 1
+                      category: Toys
+                      sku: POGO-12
+                      description: lorem ipsum...
+                      imageUrl: https://example.com/product.jpg
+                      productUrl: https://store.example.com/product12345
+                    - externalid: PROD23456
+                      name: Skateboard
+                      price: 3000
+                      quantity: 1
+                      category: Toys
+                      sku: SK8BOARD145
+                      description: lorem ipsum...
+                      imageUrl: https://example.com/product.jpg
+                      productUrl: https://store.example.com/product45678
+                    orderDiscounts:
+                    - name: 1OFF
+                      type: order
+                      discountAmount: 100
+                    orderUrl: https://example.com/orders/3246315233
+                    externalCreatedDate: '2016-09-13T17:41:39-04:00'
+                    externalUpdatedDate: '2016-09-14T17:41:39-04:00'
+                    shippingMethod: UPS Ground
+                    totalPrice: 9111
+                    shippingAmount: 200
+                    taxAmount: 500
+                    discountAmount: 100
+                    currency: USD
+                    orderNumber: myorder-123
+                    connectionid: '1'
+                    customerid: '1'
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"connections\": [\n        {\n            \"service\": \"example\",\n            \"externalid\": \"examplestore\",\n            \"name\": \"My Example Store\",\n            \"isInternal\": \"0\",\n            \"connectionType\": \"ecommerce\",\n            \"status\": \"1\",\n            \"syncStatus\": \"0\",\n            \"sync_request_time\": null,\n            \"sync_start_time\": null,\n            \"lastSync\": null,\n            \"logoUrl\": \"https://myexamplestore.com/images/logo.jpg\",\n            \"linkUrl\": \"https://myexamplestore.com\",\n            \"cdate\": \"2018-01-12T13:13:53-06:00\",\n            \"udate\": \"2018-01-12T13:13:53-06:00\",\n            \"credentialExpiration\": null,\n            \"links\": {\n                \"options\": \"https://exampleaccount.api-us1.com/api/3/connections/1/options\",\n                \"customers\": \"https://exampleaccount.api-us1.com.api-us1.com/api/3/connections/1/customers\"\n            },\n            \"id\": \"1\",\n            \"serviceName\": \"shopify\"\n        }\n    ],\n    \"ecomOrderProducts\": [\n        {\n            \"externalid\": \"PROD12345\",\n            \"name\": \"Pogo Stick\",\n            \"price\": 4900,\n            \"quantity\": 1,\n            \"category\": \"Toys\",\n            \"sku\": \"POGO-12\",\n            \"description\": \"lorem ipsum...\",\n            \"imageUrl\": \"https://example.com/product.jpg\",\n            \"productUrl\": \"https://store.example.com/product12345\"\n        },\n        {\n            \"externalid\": \"PROD23456\",\n            \"name\": \"Skateboard\",\n            \"price\": 3000,\n            \"quantity\": 1,\n            \"category\": \"Toys\",\n            \"sku\": \"SK8BOARD145\",\n            \"description\": \"lorem ipsum...\",\n            \"imageUrl\": \"https://example.com/product.jpg\",\n            \"productUrl\": \"https://store.example.com/product45678\"\n        }\n    ],\n    \"ecomOrderDiscounts\": [\n        {\n            \"name\": \"1OFF\",\n            \"type\": \"order\",\n            \"orderid\": \"5355\",\n            \"discountAmount\": \"100\",\n            \"id\": \"1\",\n            \"createdDate\": \"2019-09-05T12:16:18-05:00\",\n            \"updatedDate\": \"2019-09-05T12:16:18-05:00\"\n        }\n    ],\n    \"ecomOrder\": {\n        \"externalid\": \"3246315234\",\n        \"source\": \"1\",\n        \"email\": \"alice@example.com\",\n        \"currency\": \"USD\",\n        \"connectionid\": \"1\",\n        \"customerid\": \"1\",\n        \"orderUrl\": \"https://example.com/orders/3246315233\",\n        \"shippingMethod\": \"UPS Ground\",\n        \"totalPrice\": 9111,\n        \"shippingAmount\": 200,\n        \"taxAmount\": 500,\n        \"discountAmount\": 100,\n        \"externalCreatedDate\": \"2016-09-13T16:41:39-05:00\",\n        \"totalProducts\": 2,\n        \"createdDate\": \"2019-09-05T12:16:18-05:00\",\n        \"updatedDate\": \"2019-09-05T12:16:18-05:00\",\n        \"state\": 1,\n        \"connection\": \"1\",\n        \"orderProducts\": [\n            \"1\",\n            \"2\"\n        ],\n        \"orderDiscounts\": [\n            \"1\"\n        ],\n        \"customer\": \"1\",\n        \"orderDate\": \"2016-09-13T16:41:39-05:00\",\n        \"tstamp\": \"2019-09-05T12:16:18-05:00\",\n        \"links\": {\n            \"connection\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/connection\",\n            \"customer\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/customer\",\n            \"orderProducts\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderProducts\",\n            \"orderDiscounts\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderDiscounts\",\n            \"orderActivities\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderActivities\"\n        },\n        \"id\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  connections:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        service:
+                          type: string
+                          example: example
+                        externalid:
+                          type: string
+                          example: examplestore
+                        name:
+                          type: string
+                          example: My Example Store
+                        isInternal:
+                          type: string
+                          example: '0'
+                        connectionType:
+                          type: string
+                          example: ecommerce
+                        status:
+                          type: string
+                          example: '1'
+                        syncStatus:
+                          type: string
+                          example: '0'
+                        sync_request_time: {}
+                        sync_start_time: {}
+                        lastSync: {}
+                        logoUrl:
+                          type: string
+                          example: https://myexamplestore.com/images/logo.jpg
+                        linkUrl:
+                          type: string
+                          example: https://myexamplestore.com
+                        cdate:
+                          type: string
+                          example: '2018-01-12T13:13:53-06:00'
+                        udate:
+                          type: string
+                          example: '2018-01-12T13:13:53-06:00'
+                        credentialExpiration: {}
+                        links:
+                          type: object
+                          properties:
+                            options:
+                              type: string
+                              example: https://exampleaccount.api-us1.com/api/3/connections/1/options
+                            customers:
+                              type: string
+                              example: https://exampleaccount.api-us1.com.api-us1.com/api/3/connections/1/customers
+                        id:
+                          type: string
+                          example: '1'
+                        serviceName:
+                          type: string
+                          example: shopify
+                  ecomOrderProducts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        externalid:
+                          type: string
+                          example: PROD12345
+                        name:
+                          type: string
+                          example: Pogo Stick
+                        price:
+                          type: integer
+                          example: 4900
+                          default: 0
+                        quantity:
+                          type: integer
+                          example: 1
+                          default: 0
+                        category:
+                          type: string
+                          example: Toys
+                        sku:
+                          type: string
+                          example: POGO-12
+                        description:
+                          type: string
+                          example: lorem ipsum...
+                        imageUrl:
+                          type: string
+                          example: https://example.com/product.jpg
+                        productUrl:
+                          type: string
+                          example: https://store.example.com/product12345
+                  ecomOrderDiscounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: 1OFF
+                        type:
+                          type: string
+                          example: order
+                        orderid:
+                          type: string
+                          example: '5355'
+                        discountAmount:
+                          type: string
+                          example: '100'
+                        id:
+                          type: string
+                          example: '1'
+                        createdDate:
+                          type: string
+                          example: '2019-09-05T12:16:18-05:00'
+                        updatedDate:
+                          type: string
+                          example: '2019-09-05T12:16:18-05:00'
+                  ecomOrder:
+                    type: object
+                    properties:
+                      externalid:
+                        type: string
+                        example: '3246315234'
+                      source:
+                        type: string
+                        example: '1'
+                      email:
+                        type: string
+                        example: alice@example.com
+                      currency:
+                        type: string
+                        example: USD
+                      connectionid:
+                        type: string
+                        example: '1'
+                      customerid:
+                        type: string
+                        example: '1'
+                      orderUrl:
+                        type: string
+                        example: https://example.com/orders/3246315233
+                      shippingMethod:
+                        type: string
+                        example: UPS Ground
+                      totalPrice:
+                        type: integer
+                        example: 9111
+                        default: 0
+                      shippingAmount:
+                        type: integer
+                        example: 200
+                        default: 0
+                      taxAmount:
+                        type: integer
+                        example: 500
+                        default: 0
+                      discountAmount:
+                        type: integer
+                        example: 100
+                        default: 0
+                      externalCreatedDate:
+                        type: string
+                        example: '2016-09-13T16:41:39-05:00'
+                      totalProducts:
+                        type: integer
+                        example: 2
+                        default: 0
+                      createdDate:
+                        type: string
+                        example: '2019-09-05T12:16:18-05:00'
+                      updatedDate:
+                        type: string
+                        example: '2019-09-05T12:16:18-05:00'
+                      state:
+                        type: integer
+                        example: 1
+                        default: 0
+                      connection:
+                        type: string
+                        example: '1'
+                      orderProducts:
+                        type: array
+                        items:
+                          type: string
+                          example: '1'
+                      orderDiscounts:
+                        type: array
+                        items:
+                          type: string
+                          example: '1'
+                      customer:
+                        type: string
+                        example: '1'
+                      orderDate:
+                        type: string
+                        example: '2016-09-13T16:41:39-05:00'
+                      tstamp:
+                        type: string
+                        example: '2019-09-05T12:16:18-05:00'
+                      links:
+                        type: object
+                        properties:
+                          connection:
+                            type: string
+                            example: https://exampleaccount.api-us1.com/api/3/ecomOrders/1/connection
+                          customer:
+                            type: string
+                            example: https://exampleaccount.api-us1.com/api/3/ecomOrders/1/customer
+                          orderProducts:
+                            type: string
+                            example: https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderProducts
+                          orderDiscounts:
+                            type: string
+                            example: https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderDiscounts
+                          orderActivities:
+                            type: string
+                            example: https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderActivities
+                      id:
+                        type: string
+                        example: '1'
+      deprecated: false
+      tags:
+      - Ecommerce
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      summary: ActiveCampaign List All Orders
+      description: List all existing e-commerce order resources.
+      operationId: list-all-orders
+      parameters:
+      - name: filters[connectionid]
+        in: query
+        description: Filter by the connection id. Must be greater than 0.
+        schema:
+          type: integer
+          format: int32
+      - name: filters[externalid]
+        in: query
+        description: Filter by the external id of the order.
+        schema:
+          type: integer
+          format: int32
+      - name: filters[externalcheckoutid]
+        in: query
+        description: Filter by the external checkout id
+        schema:
+          type: string
+      - name: filters[email]
+        in: query
+        description: Filter by the customer email address.
+        schema:
+          type: string
+      - name: filters[state]
+        in: query
+        description: Filter by the state of the order. 0 = Pending, 1 = Completed, 2 = Abandoned, 3 = Recovered, 4 = Waiting (Customer checked out but payment is not yet completed)
+        schema:
+          type: integer
+          format: int32
+      - name: filters[customerid]
+        in: query
+        description: Filter by the customer id
+        schema:
+          type: string
+      - name: filters[external_created_date]
+        in: query
+        description: Filter by the external created date
+        schema:
+          type: string
+          format: date
+      - name: orders[connectionid]
+        in: query
+        description: Order by connection ID. Accepted values are ASC or DESC.
+        schema:
+          type: integer
+          format: int32
+      - name: orders[externalid]
+        in: query
+        description: Order by external ID. Accepted values are ASC or DESC.
+        schema:
+          type: integer
+          format: int32
+      - name: orders[externalcheckoutid]
+        in: query
+        description: Order by external checkout ID. Accepted values are ASC or DESC.
+        schema:
+          type: string
+      - name: orders[email]
+        in: query
+        description: Order by email. Accepted values are ASC or DESC.
+        schema:
+          type: string
+      - name: orders[state]
+        in: query
+        description: Order by state. Accepted values are ASC or DESC.
+        schema:
+          type: integer
+          format: int32
+      - name: orders[customerid]
+        in: query
+        description: Order by customer ID. Accepted values are ASC or DESC.
+        schema:
+          type: string
+      - name: orders[external_created_date]
+        in: query
+        description: Order by external created date. Accepted values are ASC or DESC.
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"ecomOrders\": [\n    {\n      \"externalid\": \"3246315234\",\n      \"source\": \"1\",\n      \"email\": \"alice@example.com\",\n      \"currency\": \"USD\",\n      \"connectionid\": \"1\",\n      \"customerid\": \"1\",\n      \"orderUrl\": \"https://example.com/orders/3246315233\",\n      \"shippingMethod\": \"UPS Ground\",\n      \"totalPrice\": 9111,\n      \"shippingAmount\": 200,\n      \"taxAmount\": 500,\n      \"discountAmount\": 100,\n      \"externalCreatedDate\": \"2016-09-13T16:41:39-05:00\",\n      \"totalProducts\": 2,\n      \"createdDate\": \"2019-09-05T12:16:18-05:00\",\n      \"updatedDate\": \"2019-09-05T12:16:18-05:00\",\n      \"state\": 1,\n      \"connection\": \"1\",\n      \"orderProducts\": [\n        \"1\",\n        \"2\"\n      ],\n      \"customer\": \"1\",\n      \"orderDate\": \"2016-09-13T16:41:39-05:00\",\n      \"tstamp\": \"2019-09-05T12:16:18-05:00\",\n      \"links\": {\n        \"connection\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/connection\",\n        \"customer\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/customer\",\n        \"orderProducts\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderProducts\",\n        \"orderDiscounts\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderDiscounts\",\n        \"orderActivities\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderActivities\"\n      },\n      \"id\": \"1\"\n    },\n    {\n      \"externalid\": \"47856739866\",\n      \"source\": \"1\",\n      \"email\": \"example@example.com\",\n      \"currency\": \"USD\",\n      \"connectionid\": \"1\",\n      \"customerid\": \"2\",\n      \"orderUrl\": \"https://example.com/orders/47856739866\",\n      \"shippingMethod\": \"UPS Ground\",\n      \"totalPrice\": 3450,\n      \"shippingAmount\": 100,\n      \"taxAmount\": 0,\n      \"discountAmount\": 0,\n      \"externalCreatedDate\": \"2019-09-06T2:10:00-05:00\",\n      \"totalProducts\": 2,\n      \"createdDate\": \"2019-09-06T2:10:00-05:00\",\n      \"updatedDate\": \"2019-09-06T2:10:00-05:00\",\n      \"state\": 1,\n      \"connection\": \"1\",\n      \"orderProducts\": [\n        \"3\"\n      ],\n      \"customer\": \"2\",\n      \"orderDate\": \"2019-09-06T2:10:00-05:00\",\n      \"tstamp\": \"2019-09-06T2:10:00-05:00\",\n      \"links\": {\n        \"connection\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/2/connection\",\n        \"customer\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/2/customer\",\n        \"orderProducts\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/2/orderProducts\",\n        \"orderDiscounts\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/2/orderDiscounts\",\n        \"orderActivities\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/2/orderActivities\"\n      },\n      \"id\": \"2\"\n    },\n  ],\n  \"meta\": {\n    \"total\": \"2\"\n  }\n}"
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Ecommerce
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ecomOrders/{ecomOrderId}:
+    get:
+      summary: ActiveCampaign Retrieve an Order
+      description: Retrieve an existing e-commerce order resource.
+      operationId: get-order
+      parameters:
+      - name: ecomOrderId
+        in: path
+        description: The id of the order to retrieve.
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"ecomOrder\": {\n        \"customerid\": \"1\",\n        \"connectionid\": \"1\",\n        \"state\": \"1\",\n        \"source\": \"1\",\n        \"externalid\": \"1233456789\",\n        \"externalcheckoutid\": null,\n        \"orderNumber\": \"123456789\",\n        \"email\": \"alice@example.com\",\n        \"totalPrice\": \"1000\",\n        \"discountAmount\": \"100\",\n        \"shippingAmount\": \"120\",\n        \"taxAmount\": \"120\",\n        \"totalProducts\": \"1\",\n        \"currency\": \"usd\",\n        \"shippingMethod\": \"ground shipping\",\n        \"orderUrl\": \"https://examplestore.com/orders/123456789\",\n        \"externalCreatedDate\": \"2019-06-29T14:44:49-05:00\",\n        \"externalUpdatedDate\": \"2019-06-29T14:44:49-05:00\",\n        \"abandonedDate\": null,\n        \"createdDate\": \"2019-06-29T14:44:51-05:00\",\n        \"updatedDate\": \"2019-06-29T14:44:51-05:00\",\n        \"orderDate\": \"2019-06-29T14:44:49-05:00\",\n        \"tstamp\": \"2019-06-29T14:44:51-05:00\",\n        \"links\": {\n            \"connection\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/connection\",\n            \"customer\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/customer\",\n            \"orderProducts\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderProducts\",\n            \"orderDiscounts\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderDiscounts\",\n            \"orderActivities\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderActivities\"\n        },\n        \"id\": \"1\",\n        \"connection\": \"1\",\n        \"customer\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  ecomOrder:
+                    type: object
+                    properties:
+                      customerid:
+                        type: string
+                        example: '1'
+                      connectionid:
+                        type: string
+                        example: '1'
+                      state:
+                        type: string
+                        example: '1'
+                      source:
+                        type: string
+                        example: '1'
+                      externalid:
+                        type: string
+                        example: '1233456789'
+                      externalcheckoutid: {}
+                      orderNumber:
+                        type: string
+                        example: '123456789'
+                      email:
+                        type: string
+                        example: alice@example.com
+                      totalPrice:
+                        type: string
+                        example: '1000'
+                      discountAmount:
+                        type: string
+                        example: '100'
+                      shippingAmount:
+                        type: string
+                        example: '120'
+                      taxAmount:
+                        type: string
+                        example: '120'
+                      totalProducts:
+                        type: string
+                        example: '1'
+                      currency:
+                        type: string
+                        example: usd
+                      shippingMethod:
+                        type: string
+                        example: ground shipping
+                      orderUrl:
+                        type: string
+                        example: https://examplestore.com/orders/123456789
+                      externalCreatedDate:
+                        type: string
+                        example: '2019-06-29T14:44:49-05:00'
+                      externalUpdatedDate:
+                        type: string
+                        example: '2019-06-29T14:44:49-05:00'
+                      abandonedDate: {}
+                      createdDate:
+                        type: string
+                        example: '2019-06-29T14:44:51-05:00'
+                      updatedDate:
+                        type: string
+                        example: '2019-06-29T14:44:51-05:00'
+                      orderDate:
+                        type: string
+                        example: '2019-06-29T14:44:49-05:00'
+                      tstamp:
+                        type: string
+                        example: '2019-06-29T14:44:51-05:00'
+                      links:
+                        type: object
+                        properties:
+                          connection:
+                            type: string
+                            example: https://exampleaccount.api-us1.com/api/3/ecomOrders/1/connection
+                          customer:
+                            type: string
+                            example: https://exampleaccount.api-us1.com/api/3/ecomOrders/1/customer
+                          orderProducts:
+                            type: string
+                            example: https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderProducts
+                          orderDiscounts:
+                            type: string
+                            example: https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderDiscounts
+                          orderActivities:
+                            type: string
+                            example: https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderActivities
+                      id:
+                        type: string
+                        example: '1'
+                      connection:
+                        type: string
+                        example: '1'
+                      customer:
+                        type: string
+                        example: '1'
+      deprecated: false
+      tags:
+      - Ecommerce
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: ActiveCampaign Delete an Order
+      description: Delete an existing e-commerce order resource.
+      operationId: delete-order
+      parameters:
+      - name: ecomOrderId
+        in: path
+        description: The id of the order to delete.
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Ecommerce
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ecomOrders/{id}:
+    put:
+      summary: ActiveCampaign Update an Order
+      description: Update an existing ecommerce order/cart resource.
+      operationId: update-order
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the order to update
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ecomOrder:
+                  properties:
+                    externalid:
+                      type: string
+                      description: The id of the order in the external service. ONLY REQUIRED IF EXTERNALCHECKOUTID NOT INCLUDED.
+                    externalcheckoutid:
+                      type: string
+                      description: The id of the cart in the external service. ONLY REQUIRED IF EXTERNALID IS NOT INCLUDED.
+                    email:
+                      type: string
+                      description: The email address of the customer who placed the order.
+                    orderProducts:
+                      properties:
+                        name:
+                          type: string
+                          description: The name of the product
+                        price:
+                          type: integer
+                          description: The price of the product, in cents. (i.e. $456.78 => 45678). Must be greater than or equal to zero.
+                          format: int32
+                        quantity:
+                          type: integer
+                          description: The quantity ordered.
+                          format: int32
+                        externalid:
+                          type: string
+                          description: The id of the product in the external service.
+                        category:
+                          type: string
+                          description: The category of the product.
+                        sku:
+                          type: string
+                          description: The SKU for the product
+                        description:
+                          type: string
+                          description: The description of the product
+                        imageUrl:
+                          type: string
+                          description: An Image URL that displays an image of the product
+                        productUrl:
+                          type: string
+                          description: A URL linking to the product in your store
+                      required: []
+                      type: object
+                    totalPrice:
+                      type: integer
+                      description: The total price of the order in cents, including tax and shipping charges. (i.e. $456.78 => 45678). Must be greater than or equal to zero.
+                      format: int32
+                    shippingAmount:
+                      type: integer
+                      description: The total shipping amount in cents for the order
+                      format: int32
+                    taxAmount:
+                      type: integer
+                      description: The total tax amount for the order in cents
+                      format: int32
+                    discountAmount:
+                      type: integer
+                      description: The total discount amount for the order in cents
+                      format: int32
+                    currency:
+                      type: string
+                      description: The currency of the order (3-digit ISO code, e.g., 'USD').
+                    orderUrl:
+                      type: string
+                      description: The URL for the order in the external service.
+                    externalUpdatedDate:
+                      type: string
+                      description: The date the order was updated.
+                    abandonedDate:
+                      type: string
+                      description: The date the cart was abandoned. REQUIRED ONLY IF INCLUDING EXTERNALCHECKOUTID.
+                    shippingMethod:
+                      type: string
+                      description: The shipping method of the order.
+                    orderNumber:
+                      type: string
+                      description: The order number in your system. This can be different than the external ID.
+                    orderDiscounts:
+                      properties:
+                        name:
+                          type: string
+                          description: The discount code or name of the discount
+                        type:
+                          type: string
+                          description: The type of discount, either 'order' for discount on the order, or 'shipping' for free shipping.
+                        discountAmount:
+                          type: string
+                          description: The amount of the discount in cents.
+                      required: []
+                      type: object
+                  required: []
+                  type: object
+            examples:
+              Request Example:
+                value:
+                  ecomOrder:
+                    externalid: '3246315237'
+                    email: alice@example.com
+                    orderProducts:
+                    - externalid: PROD12345
+                      name: Pogo Stick
+                      price: 4900
+                      quantity: 1
+                      category: Toys
+                      sku: POGO-12
+                      description: lorem ipsum...
+                      imageUrl: https://example.com/product.jpg
+                      productUrl: https://store.example.com/product12345
+                    - externalid: PROD23456
+                      name: Skateboard
+                      price: 3000
+                      quantity: 1
+                      category: Toys
+                      sku: SK8BOARD145
+                      description: lorem ipsum...
+                      imageUrl: https://example.com/product.jpg
+                      productUrl: https://store.example.com/product45678
+                    orderDiscounts:
+                    - name: 1OFF
+                      type: order
+                      discountAmount: 100
+                    externalUpdatedDate: '2016-09-15T17:41:39-04:00'
+                    shippingMethod: UPS Ground
+                    totalPrice: 9111
+                    shippingAmount: 200
+                    taxAmount: 500
+                    discountAmount: 100
+                    currency: USD
+                    orderNumber: 12345-1
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"ecomOrderProducts\": [\n        {\n            \"orderid\": \"1\",\n            \"connectionid\": \"1\",\n            \"externalid\": \"PROD12345\",\n            \"sku\": \"POGO-12\",\n            \"name\": \"Pogo Stick\",\n            \"description\": \"lorem ipsum...\",\n            \"price\": \"4900\",\n            \"quantity\": \"1\",\n            \"category\": \"Toys\",\n            \"imageUrl\": \"https://example.com/product.jpg\",\n            \"productUrl\": \"https://store.example.com/product12345\",\n            \"createdDate\": \"2019-09-05T13:55:37-05:00\",\n            \"updatedDate\": \"2019-09-05T13:55:37-05:00\",\n            \"tstamp\": \"2019-09-05T13:55:37-05:00\",\n            \"links\": {\n                \"ecomOrder\": \"https://youraccounthere.api-us1.com/api/3/ecomOrderProducts/1/ecomOrder\"\n            },\n            \"id\": \"3\",\n            \"ecomOrder\": \"1\"\n        },\n        {\n            \"orderid\": \"1\",\n            \"connectionid\": \"1\",\n            \"externalid\": \"PROD23456\",\n            \"sku\": \"SK8BOARD145\",\n            \"name\": \"Skateboard\",\n            \"description\": \"lorem ipsum...\",\n            \"price\": \"3000\",\n            \"quantity\": \"1\",\n            \"category\": \"Toys\",\n            \"imageUrl\": \"https://example.com/product.jpg\",\n            \"productUrl\": \"https://store.example.com/product45678\",\n            \"createdDate\": \"2019-09-05T13:55:37-05:00\",\n            \"updatedDate\": \"2019-09-05T13:55:37-05:00\",\n            \"tstamp\": \"2019-09-05T13:55:37-05:00\",\n            \"links\": {\n                \"ecomOrder\": \"https://youraccounthere.api-us1.com/api/3/ecomOrderProducts/1/ecomOrder\"\n            },\n            \"id\": \"4\",\n            \"ecomOrder\": \"1\"\n        }\n    ],\n    \"ecomOrderDiscounts\": [\n        {\n            \"name\": \"1OFF\",\n            \"type\": \"order\",\n            \"orderid\": \"5355\",\n            \"discountAmount\": \"100\",\n            \"id\": \"1\",\n            \"createdDate\": \"2019-09-05T12:16:18-05:00\",\n            \"updatedDate\": \"2019-09-05T12:16:18-05:00\"\n        }\n    ],\n    \"ecomOrder\": {\n        \"customerid\": \"1\",\n        \"connectionid\": \"1\",\n        \"state\": \"1\",\n        \"source\": \"1\",\n        \"externalid\": \"3246315237\",\n        \"orderNumber\": \"\",\n        \"email\": \"alice@example.com\",\n        \"totalPrice\": 9111,\n        \"discountAmount\": 100,\n        \"shippingAmount\": 200,\n        \"taxAmount\": 500,\n        \"totalProducts\": 2,\n        \"currency\": \"USD\",\n        \"shippingMethod\": \"UPS Ground\",\n        \"orderUrl\": \"https://example.com/orders/3246315233\",\n        \"externalCreatedDate\": \"2016-09-13T16:41:39-05:00\",\n        \"externalUpdatedDate\": \"2016-09-15T16:41:39-05:00\",\n        \"createdDate\": \"2019-09-05T12:52:13-05:00\",\n        \"updatedDate\": \"2019-09-05T13:55:37-05:00\",\n        \"orderProducts\": [\n            \"3\",\n            \"4\"\n        ],\n        \"orderDiscounts\": [\n            \"1\"\n        ],\n        \"customer\": \"1\",\n        \"orderDate\": \"2016-09-13T16:41:39-05:00\",\n        \"tstamp\": \"2019-09-05T13:55:37-05:00\",\n        \"links\": {\n            \"connection\": \"https://youraccounthere.api-us1.com/api/3/ecomOrders/1/connection\",\n            \"customer\": \"https://youraccounthere.api-us1.com/api/3/ecomOrders/1/customer\",\n            \"orderProducts\": \"https://youraccounthere.api-us1.com/api/3/ecomOrders/1/orderProducts\",\n            \"orderDiscounts\": \"https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderDiscounts\",\n            \"orderActivities\": \"https://youraccounthere.api-us1.com/api/3/ecomOrders/1/orderActivities\"\n        },\n        \"id\": \"1\",\n        \"connection\": \"1\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  ecomOrderProducts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        orderid:
+                          type: string
+                          example: '1'
+                        connectionid:
+                          type: string
+                          example: '1'
+                        externalid:
+                          type: string
+                          example: PROD12345
+                        sku:
+                          type: string
+                          example: POGO-12
+                        name:
+                          type: string
+                          example: Pogo Stick
+                        description:
+                          type: string
+                          example: lorem ipsum...
+                        price:
+                          type: string
+                          example: '4900'
+                        quantity:
+                          type: string
+                          example: '1'
+                        category:
+                          type: string
+                          example: Toys
+                        imageUrl:
+                          type: string
+                          example: https://example.com/product.jpg
+                        productUrl:
+                          type: string
+                          example: https://store.example.com/product12345
+                        createdDate:
+                          type: string
+                          example: '2019-09-05T13:55:37-05:00'
+                        updatedDate:
+                          type: string
+                          example: '2019-09-05T13:55:37-05:00'
+                        tstamp:
+                          type: string
+                          example: '2019-09-05T13:55:37-05:00'
+                        links:
+                          type: object
+                          properties:
+                            ecomOrder:
+                              type: string
+                              example: https://youraccounthere.api-us1.com/api/3/ecomOrderProducts/1/ecomOrder
+                        id:
+                          type: string
+                          example: '3'
+                        ecomOrder:
+                          type: string
+                          example: '1'
+                  ecomOrderDiscounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: 1OFF
+                        type:
+                          type: string
+                          example: order
+                        orderid:
+                          type: string
+                          example: '5355'
+                        discountAmount:
+                          type: string
+                          example: '100'
+                        id:
+                          type: string
+                          example: '1'
+                        createdDate:
+                          type: string
+                          example: '2019-09-05T12:16:18-05:00'
+                        updatedDate:
+                          type: string
+                          example: '2019-09-05T12:16:18-05:00'
+                  ecomOrder:
+                    type: object
+                    properties:
+                      customerid:
+                        type: string
+                        example: '1'
+                      connectionid:
+                        type: string
+                        example: '1'
+                      state:
+                        type: string
+                        example: '1'
+                      source:
+                        type: string
+                        example: '1'
+                      externalid:
+                        type: string
+                        example: '3246315237'
+                      orderNumber:
+                        type: string
+                        example: ''
+                      email:
+                        type: string
+                        example: alice@example.com
+                      totalPrice:
+                        type: integer
+                        example: 9111
+                        default: 0
+                      discountAmount:
+                        type: integer
+                        example: 100
+                        default: 0
+                      shippingAmount:
+                        type: integer
+                        example: 200
+                        default: 0
+                      taxAmount:
+                        type: integer
+                        example: 500
+                        default: 0
+                      totalProducts:
+                        type: integer
+                        example: 2
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                      shippingMethod:
+                        type: string
+                        example: UPS Ground
+                      orderUrl:
+                        type: string
+                        example: https://example.com/orders/3246315233
+                      externalCreatedDate:
+                        type: string
+                        example: '2016-09-13T16:41:39-05:00'
+                      externalUpdatedDate:
+                        type: string
+                        example: '2016-09-15T16:41:39-05:00'
+                      createdDate:
+                        type: string
+                        example: '2019-09-05T12:52:13-05:00'
+                      updatedDate:
+                        type: string
+                        example: '2019-09-05T13:55:37-05:00'
+                      orderProducts:
+                        type: array
+                        items:
+                          type: string
+                          example: '3'
+                      orderDiscounts:
+                        type: array
+                        items:
+                          type: string
+                          example: '1'
+                      customer:
+                        type: string
+                        example: '1'
+                      orderDate:
+                        type: string
+                        example: '2016-09-13T16:41:39-05:00'
+                      tstamp:
+                        type: string
+                        example: '2019-09-05T13:55:37-05:00'
+                      links:
+                        type: object
+                        properties:
+                          connection:
+                            type: string
+                            example: https://youraccounthere.api-us1.com/api/3/ecomOrders/1/connection
+                          customer:
+                            type: string
+                            example: https://youraccounthere.api-us1.com/api/3/ecomOrders/1/customer
+                          orderProducts:
+                            type: string
+                            example: https://youraccounthere.api-us1.com/api/3/ecomOrders/1/orderProducts
+                          orderDiscounts:
+                            type: string
+                            example: https://exampleaccount.api-us1.com/api/3/ecomOrders/1/orderDiscounts
+                          orderActivities:
+                            type: string
+                            example: https://youraccounthere.api-us1.com/api/3/ecomOrders/1/orderActivities
+                      id:
+                        type: string
+                        example: '1'
+                      connection:
+                        type: string
+                        example: '1'
+      deprecated: false
+      tags:
+      - Ecommerce
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ecomOrderProducts:
+    get:
+      summary: ActiveCampaign List EcomOrderProducts
+      description: ''
+      operationId: list-ecomorderproducts
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"ecomOrderProducts\": [\n        {\n            \"orderid\": \"1\",\n            \"connectionid\": \"1\",\n            \"externalid\": \"1269385775\",\n            \"sku\": \"SKATE-8\",\n            \"name\": \"My Cool Skateboard\",\n            \"description\": \"This skateboard is so cool, it rides itself\",\n            \"price\": \"5000\",\n            \"quantity\": \"1\",\n            \"category\": \"skateboards\",\n            \"imageUrl\": \"https://example.com/images/skateboard.jpg\",\n            \"productUrl\": \"http://example.com/products/skate-8\",\n            \"createdDate\": \"2019-06-28T18:04:19-05:00\",\n            \"updatedDate\": \"2019-06-28T18:04:19-05:00\",\n            \"tstamp\": \"2019-06-28T18:04:19-05:00\",\n            \"links\": {\n                \"ecomOrder\": \"https://commissiontheatre.api-us1.com/api/3/ecomOrderProducts/1/ecomOrder\"\n            },\n            \"id\": \"1\",\n            \"ecomOrder\": \"2\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  ecomOrderProducts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        orderid:
+                          type: string
+                          example: '1'
+                        connectionid:
+                          type: string
+                          example: '1'
+                        externalid:
+                          type: string
+                          example: '1269385775'
+                        sku:
+                          type: string
+                          example: SKATE-8
+                        name:
+                          type: string
+                          example: My Cool Skateboard
+                        description:
+                          type: string
+                          example: This skateboard is so cool, it rides itself
+                        price:
+                          type: string
+                          example: '5000'
+                        quantity:
+                          type: string
+                          example: '1'
+                        category:
+                          type: string
+                          example: skateboards
+                        imageUrl:
+                          type: string
+                          example: https://example.com/images/skateboard.jpg
+                        productUrl:
+                          type: string
+                          example: http://example.com/products/skate-8
+                        createdDate:
+                          type: string
+                          example: '2019-06-28T18:04:19-05:00'
+                        updatedDate:
+                          type: string
+                          example: '2019-06-28T18:04:19-05:00'
+                        tstamp:
+                          type: string
+                          example: '2019-06-28T18:04:19-05:00'
+                        links:
+                          type: object
+                          properties:
+                            ecomOrder:
+                              type: string
+                              example: https://commissiontheatre.api-us1.com/api/3/ecomOrderProducts/1/ecomOrder
+                        id:
+                          type: string
+                          example: '1'
+                        ecomOrder:
+                          type: string
+                          example: '2'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Ecommerce
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ecomOrders/{id}/orderProducts:
+    get:
+      summary: ActiveCampaign List EcomOrderProducts for a Specific EcomOrder
+      description: ''
+      operationId: list-products-for-order
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the order whose products you'd like returned.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"ecomOrderProducts\": [\n        {\n            \"orderid\": \"1\",\n            \"connectionid\": \"1\",\n            \"externalid\": \"1269385775\",\n            \"sku\": \"SKATE-8\",\n            \"name\": \"My Cool Skateboard\",\n            \"description\": \"This skateboard is so cool, it rides itself\",\n            \"price\": \"5000\",\n            \"quantity\": \"1\",\n            \"category\": \"skateboards\",\n            \"imageUrl\": \"https://example.com/images/skateboard.jpg\",\n            \"productUrl\": \"http://example.com/products/skate-8\",\n            \"createdDate\": \"2019-06-28T18:04:19-05:00\",\n            \"updatedDate\": \"2019-06-28T18:04:19-05:00\",\n            \"tstamp\": \"2019-06-28T18:04:19-05:00\",\n            \"links\": {\n                \"ecomOrder\": \"https://commissiontheatre.api-us1.com/api/3/ecomOrderProducts/1/ecomOrder\"\n            },\n            \"id\": \"1\",\n            \"ecomOrder\": \"2\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  ecomOrderProducts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        orderid:
+                          type: string
+                          example: '1'
+                        connectionid:
+                          type: string
+                          example: '1'
+                        externalid:
+                          type: string
+                          example: '1269385775'
+                        sku:
+                          type: string
+                          example: SKATE-8
+                        name:
+                          type: string
+                          example: My Cool Skateboard
+                        description:
+                          type: string
+                          example: This skateboard is so cool, it rides itself
+                        price:
+                          type: string
+                          example: '5000'
+                        quantity:
+                          type: string
+                          example: '1'
+                        category:
+                          type: string
+                          example: skateboards
+                        imageUrl:
+                          type: string
+                          example: https://example.com/images/skateboard.jpg
+                        productUrl:
+                          type: string
+                          example: http://example.com/products/skate-8
+                        createdDate:
+                          type: string
+                          example: '2019-06-28T18:04:19-05:00'
+                        updatedDate:
+                          type: string
+                          example: '2019-06-28T18:04:19-05:00'
+                        tstamp:
+                          type: string
+                          example: '2019-06-28T18:04:19-05:00'
+                        links:
+                          type: object
+                          properties:
+                            ecomOrder:
+                              type: string
+                              example: https://commissiontheatre.api-us1.com/api/3/ecomOrderProducts/1/ecomOrder
+                        id:
+                          type: string
+                          example: '1'
+                        ecomOrder:
+                          type: string
+                          example: '2'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Ecommerce
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ecomOrderProducts/{id}:
+    get:
+      summary: ActiveCampaign Retrieve an EcomOrderProduct
+      description: ''
+      operationId: retrieve-an-ecomorderproduct
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the product you'd like returned.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"ecomOrderProduct\": {\n        \"orderid\": \"1\",\n        \"connectionid\": \"1\",\n        \"externalid\": \"1269385775\",\n        \"sku\": \"SKATE-8\",\n        \"name\": \"My Cool Skateboard\",\n        \"description\": \"This skateboard is so cool, it rides itself\",\n        \"price\": \"5000\",\n        \"quantity\": \"1\",\n        \"category\": \"skateboards\",\n        \"imageUrl\": \"https://example.com/images/skateboard.jpg\",\n        \"productUrl\": \"http://example.com/products/skate-8\",\n        \"createdDate\": \"2019-06-28T18:04:19-05:00\",\n        \"updatedDate\": \"2019-06-28T18:04:19-05:00\",\n        \"tstamp\": \"2019-06-28T18:04:19-05:00\",\n        \"links\": {\n            \"ecomOrder\": \"https://commissiontheatre.api-us1.com/api/3/ecomOrderProducts/1/ecomOrder\"\n        },\n        \"id\": \"1\",\n        \"ecomOrder\": \"2\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  ecomOrderProduct:
+                    type: object
+                    properties:
+                      orderid:
+                        type: string
+                        example: '1'
+                      connectionid:
+                        type: string
+                        example: '1'
+                      externalid:
+                        type: string
+                        example: '1269385775'
+                      sku:
+                        type: string
+                        example: SKATE-8
+                      name:
+                        type: string
+                        example: My Cool Skateboard
+                      description:
+                        type: string
+                        example: This skateboard is so cool, it rides itself
+                      price:
+                        type: string
+                        example: '5000'
+                      quantity:
+                        type: string
+                        example: '1'
+                      category:
+                        type: string
+                        example: skateboards
+                      imageUrl:
+                        type: string
+                        example: https://example.com/images/skateboard.jpg
+                      productUrl:
+                        type: string
+                        example: http://example.com/products/skate-8
+                      createdDate:
+                        type: string
+                        example: '2019-06-28T18:04:19-05:00'
+                      updatedDate:
+                        type: string
+                        example: '2019-06-28T18:04:19-05:00'
+                      tstamp:
+                        type: string
+                        example: '2019-06-28T18:04:19-05:00'
+                      links:
+                        type: object
+                        properties:
+                          ecomOrder:
+                            type: string
+                            example: https://commissiontheatre.api-us1.com/api/3/ecomOrderProducts/1/ecomOrder
+                      id:
+                        type: string
+                        example: '1'
+                      ecomOrder:
+                        type: string
+                        example: '2'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '404':
+          description: '404'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for EcomOrderProduct with id {the id requested}\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for EcomOrderProduct with id {the id requested}
+      deprecated: false
+      tags:
+      - Ecommerce
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token

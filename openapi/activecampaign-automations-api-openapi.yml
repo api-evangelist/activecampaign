@@ -1,0 +1,434 @@
+openapi: 3.0.3
+info:
+  title: ActiveCampaign SMS Broadcast Accounts Automations API
+  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
+  version: 3.0.0
+  contact:
+    name: ActiveCampaign Support
+    url: https://www.activecampaign.com
+  x-generated-from: documentation
+servers:
+- url: https://{yourAccountName}.api-us1.com/api/3
+  description: US-based Users
+  variables:
+    yourAccountName:
+      default: yourAccountName
+security:
+- ApiToken: []
+tags:
+- name: Automations
+paths:
+  /automations:
+    get:
+      summary: ActiveCampaign List All Automations
+      description: ''
+      operationId: list-all-automations
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"automations\": [\n        {\n            \"name\": \"Email Subscription\",\n            \"cdate\": \"2018-08-06T16:28:43-05:00\",\n            \"mdate\": \"2018-08-06T16:33:10-05:00\",\n            \"userid\": \"1\",\n            \"status\": \"2\",\n            \"entered\": \"0\",\n            \"exited\": \"0\",\n            \"hidden\": \"0\",\n            \"defaultscreenshot\": \"http://img-us1.com/default-series.gif\",\n            \"screenshot\": \"https://d226aj4ao1t61q.cloudfront.net/k0x4h0lr_default-automation.png\",\n            \"links\": {\n                \"campaigns\": \"https://:account.api-us1.com/api/3/automations/1/campaigns\",\n                \"contactGoals\": \"https://:account.api-us1.com/api/3/automations/1/contactGoals\",\n                \"contactAutomations\": \"https://:account.api-us1.com/api/3/automations/1/contactAutomations\",\n                \"blocks\": \"https://:account.api-us1.com/api/3/automations/1/blocks\",\n                \"goals\": \"https://:account.api-us1.com/api/3/automations/1/goals\",\n                \"sms\": \"https://:account.api-us1.com/api/3/automations/1/sms\",\n                \"sitemessages\": \"https://:account.api-us1.com/api/3/automations/1/sitemessages\"\n            },\n            \"id\": \"1\"\n        },\n        {\n            \"name\": \"Test SMS Send\",\n            \"cdate\": \"2018-09-18T10:46:32-05:00\",\n            \"mdate\": \"2018-09-18T10:54:30-05:00\",\n            \"userid\": \"1\",\n            \"status\": \"1\",\n            \"entered\": \"2\",\n            \"exited\": \"2\",\n            \"hidden\": \"0\",\n            \"defaultscreenshot\": \"http://img-us1.com/default-series.gif\",\n            \"screenshot\": \"https://d226aj4ao1t61q.cloudfront.net/k0x4h0lr_default-automation.png\",\n            \"links\": {\n                \"campaigns\": \"https://:account.api-us1.com/api/3/automations/2/campaigns\",\n                \"contactGoals\": \"https://:account.api-us1.com/api/3/automations/2/contactGoals\",\n                \"contactAutomations\": \"https://:account.api-us1.com/api/3/automations/2/contactAutomations\",\n                \"blocks\": \"https://:account.api-us1.com/api/3/automations/2/blocks\",\n                \"goals\": \"https://:account.api-us1.com/api/3/automations/2/goals\",\n                \"sms\": \"https://:account.api-us1.com/api/3/automations/2/sms\",\n                \"sitemessages\": \"https://:account.api-us1.com/api/3/automations/2/sitemessages\"\n            },\n            \"id\": \"2\"\n        }\n    ],\n    \"meta\": {\n        \"total\": \"2\",\n        \"starts\": [\n            {\n                \"id\": \"2\",\n                \"series\": \"1\",\n                \"type\": \"subscribe\"\n            },\n            {\n                \"id\": \"4\",\n                \"series\": \"2\",\n                \"type\": \"subscribe\"\n            }\n        ],\n        \"filtered\": false,\n        \"smsLogs\": []\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  automations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Email Subscription
+                        cdate:
+                          type: string
+                          example: '2018-08-06T16:28:43-05:00'
+                        mdate:
+                          type: string
+                          example: '2018-08-06T16:33:10-05:00'
+                        userid:
+                          type: string
+                          example: '1'
+                        status:
+                          type: string
+                          example: '2'
+                        entered:
+                          type: string
+                          example: '0'
+                        exited:
+                          type: string
+                          example: '0'
+                        hidden:
+                          type: string
+                          example: '0'
+                        defaultscreenshot:
+                          type: string
+                          example: http://img-us1.com/default-series.gif
+                        screenshot:
+                          type: string
+                          example: https://d226aj4ao1t61q.cloudfront.net/k0x4h0lr_default-automation.png
+                        links:
+                          type: object
+                          properties:
+                            campaigns:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/campaigns
+                            contactGoals:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/contactGoals
+                            contactAutomations:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/contactAutomations
+                            blocks:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/blocks
+                            goals:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/goals
+                            sms:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/sms
+                            sitemessages:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/sitemessages
+                        id:
+                          type: string
+                          example: '1'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '2'
+                      starts:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '2'
+                            series:
+                              type: string
+                              example: '1'
+                            type:
+                              type: string
+                              example: subscribe
+                      filtered:
+                        type: boolean
+                        example: false
+                        default: true
+                      smsLogs:
+                        type: array
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Automations
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /automations/{automationId}:
+    get:
+      summary: ActiveCampaign Copy of List All Automations
+      description: ''
+      operationId: get_automations-1
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"automations\": [\n        {\n            \"name\": \"Email Subscription\",\n            \"cdate\": \"2018-08-06T16:28:43-05:00\",\n            \"mdate\": \"2018-08-06T16:33:10-05:00\",\n            \"userid\": \"1\",\n            \"status\": \"2\",\n            \"entered\": \"0\",\n            \"exited\": \"0\",\n            \"hidden\": \"0\",\n            \"defaultscreenshot\": \"http://img-us1.com/default-series.gif\",\n            \"screenshot\": \"https://d226aj4ao1t61q.cloudfront.net/k0x4h0lr_default-automation.png\",\n            \"links\": {\n                \"campaigns\": \"https://:account.api-us1.com/api/3/automations/1/campaigns\",\n                \"contactGoals\": \"https://:account.api-us1.com/api/3/automations/1/contactGoals\",\n                \"contactAutomations\": \"https://:account.api-us1.com/api/3/automations/1/contactAutomations\",\n                \"blocks\": \"https://:account.api-us1.com/api/3/automations/1/blocks\",\n                \"goals\": \"https://:account.api-us1.com/api/3/automations/1/goals\",\n                \"sms\": \"https://:account.api-us1.com/api/3/automations/1/sms\",\n                \"sitemessages\": \"https://:account.api-us1.com/api/3/automations/1/sitemessages\"\n            },\n            \"id\": \"1\"\n        },\n        {\n            \"name\": \"Test SMS Send\",\n            \"cdate\": \"2018-09-18T10:46:32-05:00\",\n            \"mdate\": \"2018-09-18T10:54:30-05:00\",\n            \"userid\": \"1\",\n            \"status\": \"1\",\n            \"entered\": \"2\",\n            \"exited\": \"2\",\n            \"hidden\": \"0\",\n            \"defaultscreenshot\": \"http://img-us1.com/default-series.gif\",\n            \"screenshot\": \"https://d226aj4ao1t61q.cloudfront.net/k0x4h0lr_default-automation.png\",\n            \"links\": {\n                \"campaigns\": \"https://:account.api-us1.com/api/3/automations/2/campaigns\",\n                \"contactGoals\": \"https://:account.api-us1.com/api/3/automations/2/contactGoals\",\n                \"contactAutomations\": \"https://:account.api-us1.com/api/3/automations/2/contactAutomations\",\n                \"blocks\": \"https://:account.api-us1.com/api/3/automations/2/blocks\",\n                \"goals\": \"https://:account.api-us1.com/api/3/automations/2/goals\",\n                \"sms\": \"https://:account.api-us1.com/api/3/automations/2/sms\",\n                \"sitemessages\": \"https://:account.api-us1.com/api/3/automations/2/sitemessages\"\n            },\n            \"id\": \"2\"\n        }\n    ],\n    \"meta\": {\n        \"total\": \"2\",\n        \"starts\": [\n            {\n                \"id\": \"2\",\n                \"series\": \"1\",\n                \"type\": \"subscribe\"\n            },\n            {\n                \"id\": \"4\",\n                \"series\": \"2\",\n                \"type\": \"subscribe\"\n            }\n        ],\n        \"filtered\": false,\n        \"smsLogs\": []\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  automations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Email Subscription
+                        cdate:
+                          type: string
+                          example: '2018-08-06T16:28:43-05:00'
+                        mdate:
+                          type: string
+                          example: '2018-08-06T16:33:10-05:00'
+                        userid:
+                          type: string
+                          example: '1'
+                        status:
+                          type: string
+                          example: '2'
+                        entered:
+                          type: string
+                          example: '0'
+                        exited:
+                          type: string
+                          example: '0'
+                        hidden:
+                          type: string
+                          example: '0'
+                        defaultscreenshot:
+                          type: string
+                          example: http://img-us1.com/default-series.gif
+                        screenshot:
+                          type: string
+                          example: https://d226aj4ao1t61q.cloudfront.net/k0x4h0lr_default-automation.png
+                        links:
+                          type: object
+                          properties:
+                            campaigns:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/campaigns
+                            contactGoals:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/contactGoals
+                            contactAutomations:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/contactAutomations
+                            blocks:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/blocks
+                            goals:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/goals
+                            sms:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/sms
+                            sitemessages:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/sitemessages
+                        id:
+                          type: string
+                          example: '1'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        example: '2'
+                      starts:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: '2'
+                            series:
+                              type: string
+                              example: '1'
+                            type:
+                              type: string
+                              example: subscribe
+                      filtered:
+                        type: boolean
+                        example: false
+                        default: true
+                      smsLogs:
+                        type: array
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      parameters:
+      - in: path
+        name: automationId
+        schema:
+          type: string
+          default: Id of the automation to be retrieved
+        required: true
+      tags:
+      - Automations
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /automations/{id}:
+    get:
+      summary: ActiveCampaign Copy of List All Automations
+      description: ''
+      operationId: get_automations-1
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Response:
+                  value:
+                    automations:
+                    - name: Send Introductory Email
+                      cdate: '2025-10-15T14:08:05-05:00'
+                      mdate: '2025-10-15T15:57:24-05:00'
+                      userid: '1'
+                      status: 2
+                      entered: '2'
+                      exited: '2'
+                      hidden: '0'
+                      entitlements_violation: '0'
+                      source: '0'
+                      description: null
+                      exit_on_unsubscribe: '0'
+                      exit_on_conversion: '0'
+                      multientry: '1'
+                      links:
+                        campaigns: https://account.api-us1.com/api/3/automations/87/campaigns
+                        contactGoals: https://account.api-us1.com/api/3/automations/87/contactGoals
+                        contactAutomations: https://account.api-us1.com/api/3/automations/87/contactAutomations
+                        blocks: https://account.api-us1.com/api/3/automations/87/blocks
+                        goals: https://account.api-us1.com/api/3/automations/87/goals
+                        sms: https://account.api-us1.com/api/3/automations/87/sms
+                        sitemessages: https://account.api-us1.com/api/3/automations/87/sitemessages
+                        triggers: https://account.api-us1.com/api/3/automations/87/triggers
+                      id: '87'
+                    - name: Send Text Message Reminder
+                      cdate: '2025-07-30T12:18:17-05:00'
+                      mdate: '2025-10-15T14:07:32-05:00'
+                      userid: '1'
+                      status: 2
+                      entered: '63'
+                      exited: '63'
+                      hidden: '0'
+                      entitlements_violation: '0'
+                      source: '0'
+                      description: ''
+                      exit_on_unsubscribe: '0'
+                      exit_on_conversion: '0'
+                      multientry: '1'
+                      links:
+                        campaigns: https://account.api-us1.com/api/3/automations/83/campaigns
+                        contactGoals: https://account.api-us1.com/api/3/automations/83/contactGoals
+                        contactAutomations: https://account.api-us1.com/api/3/automations/83/contactAutomations
+                        blocks: https://account.api-us1.com/api/3/automations/83/blocks
+                        goals: https://account.api-us1.com/api/3/automations/83/goals
+                        sms: https://account.api-us1.com/api/3/automations/83/sms
+                        sitemessages: https://account.api-us1.com/api/3/automations/83/sitemessages
+                        triggers: https://account.api-us1.com/api/3/automations/83/triggers
+                      id: '83'
+                  summary: Response
+              schema:
+                type: object
+                properties:
+                  automation:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Email Subscription
+                        cdate:
+                          type: string
+                          example: '2018-08-06T16:28:43-05:00'
+                        mdate:
+                          type: string
+                          example: '2018-08-06T16:33:10-05:00'
+                        userid:
+                          type: string
+                          example: '1'
+                        status:
+                          type: string
+                          example: '2'
+                        entered:
+                          type: string
+                          example: '0'
+                        exited:
+                          type: string
+                          example: '0'
+                        hidden:
+                          type: string
+                          example: '0'
+                        entitlements_violation:
+                          type: string
+                        source:
+                          type: string
+                        description:
+                          type: string
+                        exit_on_unsubscribe:
+                          type: string
+                        exit_on_conversion:
+                          type: string
+                        multientry:
+                          type: string
+                        links:
+                          type: object
+                          properties:
+                            campaigns:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/campaigns
+                            contactGoals:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/contactGoals
+                            contactAutomations:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/contactAutomations
+                            blocks:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/blocks
+                            goals:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/goals
+                            sms:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/sms
+                            sitemessages:
+                              type: string
+                              example: https://:account.api-us1.com/api/3/automations/1/sitemessages
+                            triggers:
+                              type: string
+                        id:
+                          type: string
+                          example: '1'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Response:
+                  value: '{}'
+                  summary: Response
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          default: ID of the automation to be retrieved
+        required: true
+      tags:
+      - Automations
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      name: Api-Token
+      in: header
+      description: Your ActiveCampaign API token
