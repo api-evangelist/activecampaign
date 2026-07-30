@@ -1,80 +1,1446 @@
 aid: activecampaign
 url: https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/apis.yml
 apis:
-- aid: activecampaign:activecampaign-v3
-  name: ActiveCampaign API v3
+- aid: activecampaign:activecampaign-accounts-api
+  name: ActiveCampaign Accounts API
+  description: The Accounts API from ActiveCampaign — 13 operation(s) for accounts.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
   tags:
-  - Marketing Automation
-  - CRM
-  - Email Marketing
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-addresses-api
+  name: ActiveCampaign Addresses API
+  description: The Addresses API from ActiveCampaign — 4 operation(s) for addresses.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Addresses
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-addresses-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-ai-api
+  name: ActiveCampaign AI API
+  description: The AI API from ActiveCampaign — 2 operation(s) for ai.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - AI
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-ai-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-automations-api
+  name: ActiveCampaign Automations API
+  description: The Automations API from ActiveCampaign — 3 operation(s) for automations.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Automations
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-automations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-branding-api
+  name: ActiveCampaign Branding API
+  description: The Branding API from ActiveCampaign — 2 operation(s) for branding.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Branding
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-branding-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-broadcasts-api
+  name: ActiveCampaign Broadcasts API
+  description: The Broadcasts API from ActiveCampaign — 11 operation(s) for broadcasts.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Broadcasts
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-broadcasts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-bulk-import-api
+  name: ActiveCampaign Bulk Import API
+  description: The Bulk Import API from ActiveCampaign — 2 operation(s) for bulk import.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Bulk Import
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-bulk-import-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-calendars-api
+  name: ActiveCampaign Calendars API
+  description: The Calendars API from ActiveCampaign — 2 operation(s) for calendars.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Calendars
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-calendars-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-campaigns-api
+  name: ActiveCampaign Campaigns API
+  description: The Campaigns API from ActiveCampaign — 6 operation(s) for campaigns.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-contacts-api
+  name: ActiveCampaign Contacts API
+  description: The Contacts API from ActiveCampaign — 28 operation(s) for contacts.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
   - Contacts
-  - Deals
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-credits-api
+  name: ActiveCampaign Credits API
+  description: The Credits API from ActiveCampaign — 1 operation(s) for credits.
   humanURL: https://developers.activecampaign.com/reference/overview
   baseURL: https://youraccountname.api-us1.com/api/3
-  properties:
-  - url: https://developers.activecampaign.com/reference/overview
-    type: Documentation
-  - url: https://developers.activecampaign.com/reference/authentication
-    type: Authentication
-  - url: openapi/activecampaign-v3.json
-    type: OpenAPI
-  - url: asyncapi/activecampaign-webhooks-asyncapi.yml
-    type: AsyncAPI
-    title: Webhooks
-  - url: graphql/activecampaign-graphql.md
-    type: GraphQL
-  description: The primary REST API for ActiveCampaign, organized around resources
-    such as contacts, deals, accounts, automations, campaigns, messages, lists, tags,
-    webhooks, custom objects, and ecommerce entities. Uses API key header authentication.
-- aid: activecampaign:activecampaign-sms
-  name: ActiveCampaign SMS Broadcast API
   tags:
-  - SMS
-  - Marketing Automation
-  - Messaging
+  - Credits
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-credits-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-custom-objects-api
+  name: ActiveCampaign Custom Objects API
+  description: The Custom Objects API from ActiveCampaign — 9 operation(s) for custom objects.
   humanURL: https://developers.activecampaign.com/reference/overview
   baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Custom Objects
   properties:
-  - url: https://developers.activecampaign.com/reference/overview
-    type: Documentation
-  - url: openapi/activecampaign-sms.json
-    type: OpenAPI
-  - url: json-schema/activecampaign-sms-broadcast-message-schema.json
-    type: JSONSchema
-    title: Broadcast Message
-  - url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
-    type: JSONSchema
-    title: Broadcast Create Request
-  - url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
-    type: JSONSchema
-    title: Broadcast Update Request
-  - url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
-    type: JSONSchema
-    title: Broadcast Metrics
-  - url: json-schema/activecampaign-sms-recipient-schema.json
-    type: JSONSchema
-    title: Recipient
-  - url: json-schema/activecampaign-sms-credits-response-schema.json
-    type: JSONSchema
-    title: Credits Response
-  - url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
-    type: JSONSchema
-    title: AI Broadcast Request
-  - url: json-structure/activecampaign-sms-broadcast-message-structure.json
-    type: JSONStructure
-    title: Broadcast Message
-  - url: json-structure/activecampaign-sms-recipient-structure.json
-    type: JSONStructure
-    title: Recipient
-  - url: examples/activecampaign-sms-broadcast-message-example.json
-    type: Examples
-    title: Broadcast Message Example
-  - url: examples/activecampaign-sms-recipient-example.json
-    type: Examples
-    title: Recipient Example
-  description: API for managing SMS broadcasts, lists, metrics, and AI-powered content
-    generation in ActiveCampaign. Supports creating, scheduling, and tracking SMS
-    broadcast campaigns.
+  - type: OpenAPI
+    url: openapi/activecampaign-custom-objects-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-deals-api
+  name: ActiveCampaign Deals API
+  description: The Deals API from ActiveCampaign — 25 operation(s) for deals.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Deals
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-deals-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-ecommerce-api
+  name: ActiveCampaign Ecommerce API
+  description: The Ecommerce API from ActiveCampaign — 8 operation(s) for ecommerce.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Ecommerce
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-ecommerce-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-event-tracking-api
+  name: ActiveCampaign Event Tracking API
+  description: The Event Tracking API from ActiveCampaign — 3 operation(s) for event tracking.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Event Tracking
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-event-tracking-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-exports-api
+  name: ActiveCampaign Exports API
+  description: The Exports API from ActiveCampaign — 2 operation(s) for exports.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Exports
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-exports-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-failures-api
+  name: ActiveCampaign Failures API
+  description: The Failures API from ActiveCampaign — 1 operation(s) for failures.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Failures
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-failures-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-fields-api
+  name: ActiveCampaign Fields API
+  description: The Fields API from ActiveCampaign — 7 operation(s) for fields.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Fields
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-fields-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-forms-api
+  name: ActiveCampaign Forms API
+  description: The Forms API from ActiveCampaign — 3 operation(s) for forms.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Forms
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-forms-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-groups-api
+  name: ActiveCampaign Groups API
+  description: The Groups API from ActiveCampaign — 7 operation(s) for groups.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-groups-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-lists-api
+  name: ActiveCampaign Lists API
+  description: The Lists API from ActiveCampaign — 5 operation(s) for lists.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-lists-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-messages-api
+  name: ActiveCampaign Messages API
+  description: The Messages API from ActiveCampaign — 2 operation(s) for messages.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-messages-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-metrics-api
+  name: ActiveCampaign Metrics API
+  description: The Metrics API from ActiveCampaign — 5 operation(s) for metrics.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-notes-api
+  name: ActiveCampaign Notes API
+  description: The Notes API from ActiveCampaign — 2 operation(s) for notes.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-notes-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-other-api
+  name: ActiveCampaign Other API
+  description: The Other API from ActiveCampaign — 14 operation(s) for other.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Other
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-other-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-personalizations-api
+  name: ActiveCampaign Personalizations API
+  description: The Personalizations API from ActiveCampaign — 5 operation(s) for personalizations.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Personalizations
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-personalizations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-recipients-api
+  name: ActiveCampaign Recipients API
+  description: The Recipients API from ActiveCampaign — 2 operation(s) for recipients.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Recipients
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-recipients-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-saved-responses-api
+  name: ActiveCampaign Saved Responses API
+  description: The Saved Responses API from ActiveCampaign — 2 operation(s) for saved responses.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Saved Responses
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-saved-responses-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-scores-api
+  name: ActiveCampaign Scores API
+  description: The Scores API from ActiveCampaign — 2 operation(s) for scores.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Scores
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-scores-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-site-tracking-api
+  name: ActiveCampaign Site Tracking API
+  description: The Site Tracking API from ActiveCampaign — 2 operation(s) for site tracking.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Site Tracking
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-site-tracking-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-snapshots-api
+  name: ActiveCampaign Snapshots API
+  description: The Snapshots API from ActiveCampaign — 1 operation(s) for snapshots.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Snapshots
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-snapshots-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-tags-api
+  name: ActiveCampaign Tags API
+  description: The Tags API from ActiveCampaign — 2 operation(s) for tags.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-tags-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-tasks-api
+  name: ActiveCampaign Tasks API
+  description: The Tasks API from ActiveCampaign — 6 operation(s) for tasks.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-templates-api
+  name: ActiveCampaign Templates API
+  description: The Templates API from ActiveCampaign — 1 operation(s) for templates.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-templates-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-users-api
+  name: ActiveCampaign Users API
+  description: The Users API from ActiveCampaign — 5 operation(s) for users.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-users-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
+- aid: activecampaign:activecampaign-webhooks-api
+  name: ActiveCampaign Webhooks API
+  description: The Webhooks API from ActiveCampaign — 3 operation(s) for webhooks.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: AsyncAPI
+    url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/activecampaign-graphql.md
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-message-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-credits-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-broadcast-message-structure.json
+  - type: JSONStructure
+    url: json-structure/activecampaign-sms-recipient-structure.json
+  - type: Examples
+    url: examples/activecampaign-sms-broadcast-message-example.json
+  - type: Examples
+    url: examples/activecampaign-sms-recipient-example.json
 name: ActiveCampaign
 tags:
 - Marketing Automation
