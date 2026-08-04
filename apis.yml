@@ -1452,6 +1452,16 @@ type: Index
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+- type: TrustCenter
+  url: security/activecampaign-trust-center.yml
+- type: Website
+  url: https://www.activecampaign.com
+- type: Documentation
+  url: https://developers.activecampaign.com
+- type: Support
+  url: https://help.activecampaign.com
+- type: SignUp
+  url: https://www.activecampaign.com/signup/
 - type: AgentCard
   url: a2a/activecampaign-a2a.yml
   name: A2A Agent Card

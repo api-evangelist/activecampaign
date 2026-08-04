@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://www.activecampaign.com/security
+url: https://www.activecampaign.com/security
+certifications:
+- SOC 2
+- HIPAA
+- GDPR
+evidence:
+- source: https://www.activecampaign.com/security
+  keywords:
+  - soc 2
+  - hipaa
+  - gdpr
+
+x-ported-from: active-campaign
+x-ported: '2026-08-04'
+x-ported-note: >-
+  Carried over from the retired duplicate `active-campaign` during the
+  duplicate-provider merge. Content unchanged; provider identity repointed.
