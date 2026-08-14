@@ -41,6 +41,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-accounts-overlay.yaml
 - aid: activecampaign:activecampaign-addresses-api
   name: ActiveCampaign Addresses API
   description: The Addresses API from ActiveCampaign — 4 operation(s) for addresses.
@@ -81,6 +83,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-addresses-overlay.yaml
 - aid: activecampaign:activecampaign-ai-api
   name: ActiveCampaign AI API
   description: The AI API from ActiveCampaign — 2 operation(s) for ai.
@@ -121,6 +125,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-ai-overlay.yaml
 - aid: activecampaign:activecampaign-automations-api
   name: ActiveCampaign Automations API
   description: The Automations API from ActiveCampaign — 3 operation(s) for automations.
@@ -161,6 +167,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-automations-overlay.yaml
 - aid: activecampaign:activecampaign-branding-api
   name: ActiveCampaign Branding API
   description: The Branding API from ActiveCampaign — 2 operation(s) for branding.
@@ -201,6 +209,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-branding-overlay.yaml
 - aid: activecampaign:activecampaign-broadcasts-api
   name: ActiveCampaign Broadcasts API
   description: The Broadcasts API from ActiveCampaign — 11 operation(s) for broadcasts.
@@ -241,6 +251,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-broadcasts-overlay.yaml
 - aid: activecampaign:activecampaign-bulk-import-api
   name: ActiveCampaign Bulk Import API
   description: The Bulk Import API from ActiveCampaign — 2 operation(s) for bulk import.
@@ -281,6 +293,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-bulk-import-overlay.yaml
 - aid: activecampaign:activecampaign-calendars-api
   name: ActiveCampaign Calendars API
   description: The Calendars API from ActiveCampaign — 2 operation(s) for calendars.
@@ -321,6 +335,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-calendars-overlay.yaml
 - aid: activecampaign:activecampaign-campaigns-api
   name: ActiveCampaign Campaigns API
   description: The Campaigns API from ActiveCampaign — 6 operation(s) for campaigns.
@@ -361,6 +377,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-campaigns-overlay.yaml
 - aid: activecampaign:activecampaign-contacts-api
   name: ActiveCampaign Contacts API
   description: The Contacts API from ActiveCampaign — 28 operation(s) for contacts.
@@ -401,6 +419,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-contacts-overlay.yaml
 - aid: activecampaign:activecampaign-credits-api
   name: ActiveCampaign Credits API
   description: The Credits API from ActiveCampaign — 1 operation(s) for credits.
@@ -441,6 +461,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-credits-overlay.yaml
 - aid: activecampaign:activecampaign-custom-objects-api
   name: ActiveCampaign Custom Objects API
   description: The Custom Objects API from ActiveCampaign — 9 operation(s) for custom objects.
@@ -481,6 +503,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-custom-objects-overlay.yaml
 - aid: activecampaign:activecampaign-deals-api
   name: ActiveCampaign Deals API
   description: The Deals API from ActiveCampaign — 25 operation(s) for deals.
@@ -521,6 +545,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-deals-overlay.yaml
 - aid: activecampaign:activecampaign-ecommerce-api
   name: ActiveCampaign Ecommerce API
   description: The Ecommerce API from ActiveCampaign — 8 operation(s) for ecommerce.
@@ -561,6 +587,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-ecommerce-overlay.yaml
 - aid: activecampaign:activecampaign-event-tracking-api
   name: ActiveCampaign Event Tracking API
   description: The Event Tracking API from ActiveCampaign — 3 operation(s) for event tracking.
@@ -601,6 +629,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-event-tracking-overlay.yaml
 - aid: activecampaign:activecampaign-exports-api
   name: ActiveCampaign Exports API
   description: The Exports API from ActiveCampaign — 2 operation(s) for exports.
@@ -641,6 +671,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-exports-overlay.yaml
 - aid: activecampaign:activecampaign-failures-api
   name: ActiveCampaign Failures API
   description: The Failures API from ActiveCampaign — 1 operation(s) for failures.
@@ -681,6 +713,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-failures-overlay.yaml
 - aid: activecampaign:activecampaign-fields-api
   name: ActiveCampaign Fields API
   description: The Fields API from ActiveCampaign — 7 operation(s) for fields.
@@ -721,6 +755,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-fields-overlay.yaml
 - aid: activecampaign:activecampaign-forms-api
   name: ActiveCampaign Forms API
   description: The Forms API from ActiveCampaign — 3 operation(s) for forms.
@@ -761,6 +797,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-forms-overlay.yaml
 - aid: activecampaign:activecampaign-groups-api
   name: ActiveCampaign Groups API
   description: The Groups API from ActiveCampaign — 7 operation(s) for groups.
@@ -801,6 +839,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-groups-overlay.yaml
 - aid: activecampaign:activecampaign-lists-api
   name: ActiveCampaign Lists API
   description: The Lists API from ActiveCampaign — 5 operation(s) for lists.
@@ -841,6 +881,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-lists-overlay.yaml
 - aid: activecampaign:activecampaign-messages-api
   name: ActiveCampaign Messages API
   description: The Messages API from ActiveCampaign — 2 operation(s) for messages.
@@ -881,6 +923,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-messages-overlay.yaml
 - aid: activecampaign:activecampaign-metrics-api
   name: ActiveCampaign Metrics API
   description: The Metrics API from ActiveCampaign — 5 operation(s) for metrics.
@@ -921,6 +965,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-metrics-overlay.yaml
 - aid: activecampaign:activecampaign-notes-api
   name: ActiveCampaign Notes API
   description: The Notes API from ActiveCampaign — 2 operation(s) for notes.
@@ -961,6 +1007,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-notes-overlay.yaml
 - aid: activecampaign:activecampaign-other-api
   name: ActiveCampaign Other API
   description: The Other API from ActiveCampaign — 14 operation(s) for other.
@@ -1001,6 +1049,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-other-overlay.yaml
 - aid: activecampaign:activecampaign-personalizations-api
   name: ActiveCampaign Personalizations API
   description: The Personalizations API from ActiveCampaign — 5 operation(s) for personalizations.
@@ -1041,6 +1091,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-personalizations-overlay.yaml
 - aid: activecampaign:activecampaign-recipients-api
   name: ActiveCampaign Recipients API
   description: The Recipients API from ActiveCampaign — 2 operation(s) for recipients.
@@ -1081,6 +1133,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-recipients-overlay.yaml
 - aid: activecampaign:activecampaign-saved-responses-api
   name: ActiveCampaign Saved Responses API
   description: The Saved Responses API from ActiveCampaign — 2 operation(s) for saved responses.
@@ -1121,6 +1175,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-saved-responses-overlay.yaml
 - aid: activecampaign:activecampaign-scores-api
   name: ActiveCampaign Scores API
   description: The Scores API from ActiveCampaign — 2 operation(s) for scores.
@@ -1161,6 +1217,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-scores-overlay.yaml
 - aid: activecampaign:activecampaign-site-tracking-api
   name: ActiveCampaign Site Tracking API
   description: The Site Tracking API from ActiveCampaign — 2 operation(s) for site tracking.
@@ -1201,6 +1259,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-site-tracking-overlay.yaml
 - aid: activecampaign:activecampaign-snapshots-api
   name: ActiveCampaign Snapshots API
   description: The Snapshots API from ActiveCampaign — 1 operation(s) for snapshots.
@@ -1241,6 +1301,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-snapshots-overlay.yaml
 - aid: activecampaign:activecampaign-tags-api
   name: ActiveCampaign Tags API
   description: The Tags API from ActiveCampaign — 2 operation(s) for tags.
@@ -1281,6 +1343,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-tags-overlay.yaml
 - aid: activecampaign:activecampaign-tasks-api
   name: ActiveCampaign Tasks API
   description: The Tasks API from ActiveCampaign — 6 operation(s) for tasks.
@@ -1321,6 +1385,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-tasks-overlay.yaml
 - aid: activecampaign:activecampaign-templates-api
   name: ActiveCampaign Templates API
   description: The Templates API from ActiveCampaign — 1 operation(s) for templates.
@@ -1361,6 +1427,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-templates-overlay.yaml
 - aid: activecampaign:activecampaign-users-api
   name: ActiveCampaign Users API
   description: The Users API from ActiveCampaign — 5 operation(s) for users.
@@ -1401,6 +1469,8 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-users-overlay.yaml
 - aid: activecampaign:activecampaign-webhooks-api
   name: ActiveCampaign Webhooks API
   description: The Webhooks API from ActiveCampaign — 3 operation(s) for webhooks.
@@ -1441,6 +1511,144 @@ apis:
     url: examples/activecampaign-sms-broadcast-message-example.json
   - type: Examples
     url: examples/activecampaign-sms-recipient-example.json
+  - type: Overlay
+    url: overlays/activecampaign-webhooks-overlay.yaml
+- aid: activecampaign:activecampaign-segments-api
+  name: ActiveCampaign Segments API
+  description: The Segments API from ActiveCampaign — 8 operation(s) for creating, retrieving, updating and deleting
+    segments (segmentsV2), reading a segment as it existed at a point in time, reverting a segment to a historic
+    definition, and listing saved segment summaries (audiences).
+  humanURL: https://developers.activecampaign.com/reference/create_segment
+  baseURL: https://{yourAccountName}.api-us1.com/api/3
+  tags:
+  - Segments
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-segments-api-openapi.json
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: Overlay
+    url: overlays/activecampaign-segments-overlay.yaml
+- aid: activecampaign:activecampaign-segment-matching-api
+  name: ActiveCampaign Segment Matching API
+  description: The Segment Matching API from ActiveCampaign — 8 operation(s) for asynchronous match-all and match-some
+    segment evaluation. A match request returns a runId; result sets are cached against that runId with a 24-hour
+    TTL and polled until is_ready is true. Also carries segment count history.
+  humanURL: https://developers.activecampaign.com/reference/create_match_all_request
+  baseURL: https://{yourAccountName}.api-us1.com
+  tags:
+  - Segments
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-segment-matching-api-openapi.json
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: Overlay
+    url: overlays/activecampaign-segment-matching-overlay.yaml
+- aid: activecampaign:activecampaign-segment-match-one-api
+  name: ActiveCampaign Segment Match One API
+  description: The Segment Match One API from ActiveCampaign — 2 operation(s) that check whether a single contact
+    matches a given segment, addressed either by ActiveCampaign contact id or by the integration-supplied externalId.
+  humanURL: https://developers.activecampaign.com/reference/create_match_one_request
+  baseURL: https://{yourAccountName}.api-us1.com/api/3
+  tags:
+  - Segments
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-segment-match-one-api-openapi.json
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: Overlay
+    url: overlays/activecampaign-segment-match-one-overlay.yaml
+- aid: activecampaign:activecampaign-partners-api
+  name: ActiveCampaign Partners API
+  description: 'The Partners API from ActiveCampaign — 36 operation(s) for resellers and agency partners: child-account
+    creation and listing, account cloning snapshots, AI customization profiles, documents and custom instructions,
+    CRM reporting and sync configuration, insight cards, storage quota and locale catalogs. It is a separate credential
+    surface from the customer v3 API.'
+  humanURL: https://developers.activecampaign.com/reference/get_child_accounts_get_list
+  baseURL: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com/
+  tags:
+  - Partners
+  - Resellers
+  - Child Accounts
+  - AI
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-partners-api-openapi.json
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: Overlay
+    url: overlays/activecampaign-partners-overlay.yaml
+- aid: activecampaign:activecampaign-whatsapp-api
+  name: ActiveCampaign WhatsApp API
+  description: The WhatsApp API from ActiveCampaign — 13 operation(s) for listing, retrieving, updating and deleting
+    WhatsApp message templates, sending a template message to a recipient phone number with template variables,
+    and reading conversations and flow executions on the WhatsApp channel.
+  humanURL: https://developers.activecampaign.com/reference/list-whatsapp-templates
+  baseURL: https://{youraccountname}.api-us1.com/api/3
+  tags:
+  - WhatsApp
+  - Messaging
+  - Channels
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-whatsapp-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: Overlay
+    url: overlays/activecampaign-whatsapp-overlay.yaml
+- aid: activecampaign:activecampaign-trackcmp-api
+  name: ActiveCampaign trackcmp Event API
+  description: The trackcmp event API from ActiveCampaign — 1 operation that posts a tracked event. It is the only
+    ActiveCampaign API served from trackcmp.net rather than from the per-account api-us1.com host, and it is the
+    ingest endpoint behind site and event tracking.
+  humanURL: https://developers.activecampaign.com/reference/track-event
+  baseURL: https://trackcmp.net
+  tags:
+  - Event Tracking
+  - Site Tracking
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-trackcmp-api-openapi.json
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: Overlay
+    url: overlays/activecampaign-trackcmp-overlay.yaml
+- aid: activecampaign:activecampaign-v2-api
+  name: ActiveCampaign v2 Legacy API
+  description: The surviving v2 surface from ActiveCampaign — 1 operation, GET /api/2/template/share, which creates
+    a shareable campaign template link. ActiveCampaign still advertises v2.json in its own /.well-known/api-catalog
+    alongside v3, with no published end-of-life date.
+  humanURL: https://developers.activecampaign.com/reference/create-shareable-campaign-template-link
+  baseURL: https://{youraccountname}.api-us1.com/api/2
+  tags:
+  - Legacy
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-v2-api-openapi.json
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+  - type: Overlay
+    url: overlays/activecampaign-v2-overlay.yaml
 name: ActiveCampaign
 tags:
 - Marketing Automation
@@ -1448,6 +1656,10 @@ tags:
 - CRM
 - Sales Automation
 - Customer Experience
+- SMS Marketing
+- Ecommerce
+- Segmentation
+- Webhooks
 type: Index
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
@@ -1573,77 +1785,57 @@ common:
 - type: Features
   data:
   - name: Email Marketing
-    description: Create and send conversion-focused email campaigns with personalization
-      and segmentation.
+    description: Create and send conversion-focused email campaigns with personalization and segmentation.
   - name: Marketing Automation
-    description: Build automated customer journeys and workflows triggered by contact
-      behavior and events.
+    description: Build automated customer journeys and workflows triggered by contact behavior and events.
   - name: CRM
-    description: Built-in sales CRM for managing deals, pipelines, tasks, and customer
-      relationships.
+    description: Built-in sales CRM for managing deals, pipelines, tasks, and customer relationships.
   - name: SMS Marketing
-    description: Reach contacts via SMS broadcast campaigns with AI-powered content
-      generation.
+    description: Reach contacts via SMS broadcast campaigns with AI-powered content generation.
   - name: WhatsApp Messaging
     description: Automate growth and customer engagement through WhatsApp communications.
   - name: Transactional Email
-    description: Automate transactional alerts, password resets, and notifications
-      via Postmark integration.
+    description: Automate transactional alerts, password resets, and notifications via Postmark integration.
   - name: Custom Objects
-    description: Create custom data schemas to activate complex data for segmentation
-      and personalized automation.
+    description: Create custom data schemas to activate complex data for segmentation and personalized automation.
   - name: Contact Event Tracking
-    description: Track contact behaviors and activities across web properties and
-      integrations.
+    description: Track contact behaviors and activities across web properties and integrations.
   - name: Webhooks
-    description: Receive real-time event notifications for contact, campaign, automation,
-      and custom object activities.
+    description: Receive real-time event notifications for contact, campaign, automation, and custom object activities.
   - name: Landing Pages
     description: Deploy conversion-ready landing pages for lead capture and campaigns.
   - name: Active Intelligence
-    description: AI-powered orchestration and autonomous marketing agents for campaign
-      suggestions and personalization.
+    description: AI-powered orchestration and autonomous marketing agents for campaign suggestions and personalization.
   - name: MCP Server
-    description: Connect AI applications to ActiveCampaign using the Model Context
-      Protocol server.
+    description: Connect AI applications to ActiveCampaign using the Model Context Protocol server.
 - type: UseCases
   data:
   - name: Lead Nurturing
-    description: Automate email sequences to nurture leads through the sales funnel
-      based on behavior.
+    description: Automate email sequences to nurture leads through the sales funnel based on behavior.
   - name: E-Commerce Automation
-    description: Trigger post-purchase emails, abandoned cart recovery, and personalized
-      product recommendations.
+    description: Trigger post-purchase emails, abandoned cart recovery, and personalized product recommendations.
   - name: Customer Onboarding
-    description: Automate onboarding sequences for SaaS products to improve activation
-      and retention.
+    description: Automate onboarding sequences for SaaS products to improve activation and retention.
   - name: Contact Segmentation
-    description: Segment contacts using tags, custom fields, and custom objects for
-      targeted campaigns.
+    description: Segment contacts using tags, custom fields, and custom objects for targeted campaigns.
   - name: Sales Pipeline Management
-    description: Manage deals, tasks, and pipeline stages with CRM and automation
-      integration.
+    description: Manage deals, tasks, and pipeline stages with CRM and automation integration.
   - name: SMS Broadcast Campaigns
     description: Send targeted SMS campaigns to subscriber lists with engagement tracking.
   - name: Webhook-Driven Integrations
-    description: Build real-time integrations using webhooks for contact and campaign
-      activity events.
+    description: Build real-time integrations using webhooks for contact and campaign activity events.
 - type: Integrations
   data:
   - name: Salesforce
-    description: Sync contact and deal data between ActiveCampaign and Salesforce
-      CRM.
+    description: Sync contact and deal data between ActiveCampaign and Salesforce CRM.
   - name: Zapier
     description: Connect ActiveCampaign to 1000+ apps via Zapier automation workflows.
   - name: Slack
-    description: Send notifications and trigger automations from Slack using OAuth2
-      integration.
+    description: Send notifications and trigger automations from Slack using OAuth2 integration.
   - name: Calendly
-    description: Sync scheduling data and trigger automations with custom objects
-      via OAuth2.
+    description: Sync scheduling data and trigger automations with custom objects via OAuth2.
   - name: Twilio
-    description: Integrate SMS workflows using Twilio with Basic Auth for outbound
-      messaging.
+    description: Integrate SMS workflows using Twilio with Basic Auth for outbound messaging.
   - name: Shopify
     description: Sync ecommerce customers, orders, and products for automated campaigns.
   - name: WordPress
@@ -1653,37 +1845,125 @@ common:
 - type: Solutions
   data:
   - name: Starter
-    description: Entry-level plan with marketing automation, up to 5 automation actions,
-      and 1 user.
+    description: Entry-level plan with marketing automation, up to 5 automation actions, and 1 user.
   - name: Plus
-    description: Mid-tier plan with unlimited automation actions, landing pages, and
-      standard segmentation.
+    description: Mid-tier plan with unlimited automation actions, landing pages, and standard segmentation.
   - name: Pro
-    description: Advanced plan with predictive content, advanced segmentation, and
-      3 users.
+    description: Advanced plan with predictive content, advanced segmentation, and 3 users.
   - name: Enterprise
-    description: Full-featured plan with custom objects, dedicated account team, and
-      premium segmentation.
-- name: MCP Server
-  url: https://github.com/ActiveCampaign/postmark-mcp
+    description: Full-featured plan with custom objects, dedicated account team, and premium segmentation.
+- name: ActiveCampaign Remote MCP Server
+  url: mcp/activecampaign-mcp.yml
   type: MCPServer
-- name: Agent Skills
-  url: https://github.com/ActiveCampaign/postmark-skills
+- name: ActiveCampaign Plugin for Claude
+  url: https://github.com/ActiveCampaign/activecampaign-plugin
   type: AgentSkills
 - type: LlmsText
   url: https://developers.activecampaign.com/llms.txt
-- type: Blog
-  url: https://www.activecampaign.com/blog
+- type: WellKnown
+  url: well-known/activecampaign-well-known.yml
+  name: Well-Known Discovery Probe
+- type: APICatalog
+  url: https://developers.activecampaign.com/.well-known/api-catalog
+  name: RFC 9727 API Catalog
+- type: ToolCrosswalk
+  url: mcp/activecampaign-tool-crosswalk.yml
+  name: MCP Tool to REST Operation Crosswalk
+- type: LLMsTxt
+  url: llms/activecampaign-llms.txt
+  name: llms.txt
+- type: Packages
+  url: packages/activecampaign-packages.yml
+  name: Client Libraries
+- type: SDKs
+  url: packages/activecampaign-packages.yml
+  name: SDKs
+- type: Conformance
+  url: conformance/activecampaign-conformance.yml
+  name: Standards Conformance
+- type: Compliance
+  url: https://www.activecampaign.com/security
+  name: Security and Compliance
+- type: TrustCenter
+  url: https://www.activecampaign.com/security
+  name: Security Page
+- type: ErrorCatalog
+  url: errors/activecampaign-problem-types.yml
+  name: Error Catalog
+- type: Lifecycle
+  url: lifecycle/activecampaign-lifecycle.yml
+  name: API Lifecycle
+- type: Sandbox
+  url: sandbox/activecampaign-sandbox.yml
+  name: Developer Sandbox
+- type: Conventions
+  url: conventions/activecampaign-conventions.yml
+  name: API Conventions
+- type: ChangeLog
+  url: changelog/activecampaign-changelog.yml
+  name: Release Notes
+- type: DataModel
+  url: data-model/activecampaign-data-model.yml
+  name: Data Model
+- type: Plans
+  url: plans/activecampaign-plans-pricing.yml
+  name: Plans and Pricing
+- type: RateLimits
+  url: rate-limits/activecampaign-rate-limits.yml
+  name: Rate Limits
+- type: FinOps
+  url: finops/activecampaign-finops.yml
+  name: FinOps
+- type: AgentSkill
+  url: skills/_index.yml
+  name: Agent Skills
+- type: VulnerabilityDisclosure
+  url: security/activecampaign-vulnerability-disclosure.yml
+  name: Vulnerability Disclosure
+- type: Security
+  url: https://hackerone.com/activecampaign
+  name: Security Disclosure Program
+- type: Webhooks
+  url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  name: Webhooks
+- type: AsyncAPI
+  url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  name: Webhooks AsyncAPI
+- type: TermsOfService
+  url: https://www.activecampaign.com/legal/terms-of-service
+  name: Terms of Service
+- type: PrivacyPolicy
+  url: https://www.activecampaign.com/privacy-policy
+  name: Privacy Policy
+- type: APIReference
+  url: https://developers.activecampaign.com/reference/overview
+  name: API Reference
+- type: DeveloperPortal
+  url: https://developers.activecampaign.com/
+  name: Developer Portal
+- type: Postman
+  url: https://www.postman.com/acdevrel/activecampaign-developer-relations/overview
+  name: Postman Workspace
+- type: Documentation
+  url: https://developers.activecampaign.com/reference/overview
+  name: API Documentation
 created: '2025-02-17'
-modified: '2026-05-30'
+modified: '2026-08-13'
 position: Consumer
-description: ActiveCampaign is a leading marketing automation platform that helps
-  businesses of all sizes seamlessly engage with their customers. With its user-friendly
-  interface and powerful features, ActiveCampaign allows businesses to create personalized
-  email campaigns, automate workflows, and track customer interactions in real-time.
-  The platform offers a REST API (v3), SMS Broadcast API, webhooks, and custom object
-  schemas for building deep integrations and automations.
+description: 'ActiveCampaign is a marketing automation and customer experience platform used by more than 180,000
+  businesses for email marketing, marketing automation, CRM and sales automation. Its developer surface is unusually
+  broad: nine published OpenAPI documents discoverable through a real RFC 9727 /.well-known/api-catalog, covering
+  the v3 REST API, SMS Broadcast, WhatsApp messaging, Segments V2 and asynchronous segment matching, a reseller
+  Partners API, trackcmp event ingest and a surviving v2 operation. It also ships an Ecommerce GraphQL API, an outbound
+  webhook surface, a first-party remote MCP server with a published tool index, an A2A agent card, and an MIT-licensed
+  Claude plugin of first-party Agent Skills. Authentication is a single unscoped Api-Token header; the base URL
+  is per account.'
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 specificationVersion: '0.19'
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 81
+  pass: local-v1
