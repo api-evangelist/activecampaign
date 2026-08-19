@@ -1,0 +1,966 @@
+{
+  "item": [
+    {
+      "id": "800e1b0e-aff9-40c2-b1f8-ddd648e84f47",
+      "name": "Campaigns",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "41ed0b50-4861-4ac8-881d-dc62fd4d6155",
+          "name": "ActiveCampaign List All Campaigns",
+          "request": {
+            "name": "ActiveCampaign List All Campaigns",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "orders[sdate]",
+                  "value": "ASC",
+                  "description": "Order campaigns by send date"
+                },
+                {
+                  "disabled": false,
+                  "key": "orders[ldate]",
+                  "value": "<string>",
+                  "description": "Order campaigns by last send date"
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[seriesid]",
+                  "value": "<integer>",
+                  "description": "Filter to return the campaigns from the targeted automationId/seriesIds"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c021662-f872-4d82-b873-8d7531757f5c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orders[sdate]",
+                      "value": "ASC"
+                    },
+                    {
+                      "key": "orders[ldate]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters[seriesid]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"campaigns\\\": [\\n        {\\n            \\\"type\\\": \\\"single\\\",\\n            \\\"userid\\\": \\\"1\\\",\\n            \\\"segmentid\\\": \\\"0\\\",\\n            \\\"bounceid\\\": \\\"-1\\\",\\n            \\\"realcid\\\": \\\"0\\\",\\n            \\\"sendid\\\": \\\"0\\\",\\n            \\\"threadid\\\": \\\"0\\\",\\n            \\\"seriesid\\\": \\\"0\\\",\\n            \\\"formid\\\": \\\"1\\\",\\n            \\\"basetemplateid\\\": \\\"90a1d1ab6ad33e95708caf6472dc1724f698c694\\\",\\n            \\\"basemessageid\\\": \\\"0\\\",\\n            \\\"addressid\\\": \\\"0\\\",\\n            \\\"source\\\": \\\"web\\\",\\n            \\\"name\\\": \\\"Opt In Email\\\",\\n            \\\"cdate\\\": \\\"2018-08-17T13:47:31-05:00\\\",\\n            \\\"mdate\\\": \\\"2018-08-17T13:47:31-05:00\\\",\\n            \\\"sdate\\\": null,\\n            \\\"ldate\\\": null,\\n            \\\"send_amt\\\": \\\"0\\\",\\n            \\\"total_amt\\\": \\\"0\\\",\\n            \\\"opens\\\": \\\"0\\\",\\n            \\\"uniqueopens\\\": \\\"0\\\",\\n            \\\"linkclicks\\\": \\\"0\\\",\\n            \\\"uniquelinkclicks\\\": \\\"0\\\",\\n            \\\"subscriberclicks\\\": \\\"0\\\",\\n            \\\"forwards\\\": \\\"0\\\",\\n            \\\"uniqueforwards\\\": \\\"0\\\",\\n            \\\"hardbounces\\\": \\\"0\\\",\\n            \\\"softbounces\\\": \\\"0\\\",\\n            \\\"unsubscribes\\\": \\\"0\\\",\\n            \\\"unsubreasons\\\": \\\"0\\\",\\n            \\\"updates\\\": \\\"0\\\",\\n            \\\"socialshares\\\": \\\"0\\\",\\n            \\\"replies\\\": \\\"0\\\",\\n            \\\"uniquereplies\\\": \\\"0\\\",\\n            \\\"status\\\": \\\"0\\\",\\n            \\\"public\\\": \\\"1\\\",\\n            \\\"mail_transfer\\\": \\\"0\\\",\\n            \\\"mail_send\\\": \\\"0\\\",\\n            \\\"mail_cleanup\\\": \\\"0\\\",\\n            \\\"mailer_log_file\\\": \\\"0\\\",\\n            \\\"tracklinks\\\": \\\"all\\\",\\n            \\\"tracklinksanalytics\\\": \\\"0\\\",\\n            \\\"trackreads\\\": \\\"1\\\",\\n            \\\"trackreadsanalytics\\\": \\\"1\\\",\\n            \\\"analytics_campaign_name\\\": \\\"\\\",\\n            \\\"tweet\\\": \\\"0\\\",\\n            \\\"facebook\\\": \\\"0\\\",\\n            \\\"survey\\\": \\\"\\\",\\n            \\\"embed_images\\\": \\\"0\\\",\\n            \\\"htmlunsub\\\": \\\"0\\\",\\n            \\\"textunsub\\\": \\\"0\\\",\\n            \\\"htmlunsubdata\\\": null,\\n            \\\"textunsubdata\\\": null,\\n            \\\"recurring\\\": \\\"day1\\\",\\n            \\\"willrecur\\\": \\\"0\\\",\\n            \\\"split_type\\\": \\\"even\\\",\\n            \\\"split_content\\\": \\\"0\\\",\\n            \\\"split_offset\\\": \\\"2\\\",\\n            \\\"split_offset_type\\\": \\\"day\\\",\\n            \\\"split_winner_messageid\\\": \\\"0\\\",\\n            \\\"split_winner_awaiting\\\": \\\"0\\\",\\n            \\\"responder_offset\\\": \\\"0\\\",\\n            \\\"responder_type\\\": \\\"subscribe\\\",\\n            \\\"responder_existing\\\": \\\"0\\\",\\n            \\\"reminder_field\\\": \\\"sdate\\\",\\n            \\\"reminder_format\\\": null,\\n            \\\"reminder_type\\\": \\\"month_day\\\",\\n            \\\"reminder_offset\\\": \\\"0\\\",\\n            \\\"reminder_offset_type\\\": \\\"day\\\",\\n            \\\"reminder_offset_sign\\\": \\\"+\\\",\\n            \\\"reminder_last_cron_run\\\": null,\\n            \\\"activerss_interval\\\": \\\"day1\\\",\\n            \\\"activerss_url\\\": null,\\n            \\\"activerss_items\\\": \\\"10\\\",\\n            \\\"ip4\\\": \\\"643992596\\\",\\n            \\\"laststep\\\": \\\"designer\\\",\\n            \\\"managetext\\\": \\\"0\\\",\\n            \\\"schedule\\\": \\\"0\\\",\\n            \\\"scheduleddate\\\": null,\\n            \\\"waitpreview\\\": \\\"0\\\",\\n            \\\"deletestamp\\\": null,\\n            \\\"replysys\\\": \\\"0\\\",\\n            \\\"links\\\": {\\n                \\\"user\\\": \\\"https://:account.api-us1.com/api/3/campaigns/1/user\\\",\\n                \\\"automation\\\": \\\"https://:account.api-us1.com/api/3/campaigns/1/automation\\\",\\n                \\\"campaignMessage\\\": \\\"https://:account.api-us1.com/api/3/campaigns/1/campaignMessage\\\",\\n                \\\"campaignMessages\\\": \\\"https://:account.api-us1.com/api/3/campaigns/1/campaignMessages\\\",\\n                \\\"links\\\": \\\"https://:account.api-us1.com/api/3/campaigns/1/links\\\",\\n                \\\"campaignLists\\\": \\\"https://:account.api-us1.com/api/3/campaigns/1/campaignLists\\\"\\n            },\\n            \\\"id\\\": \\\"1\\\",\\n            \\\"user\\\": \\\"1\\\",\\n            \\\"automation\\\": null\\n        }\\n    ],\\n    \\\"meta\\\": {\\n        \\\"total\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6768e78-bc26-4dc3-8cc9-3366b4b5f460",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orders[sdate]",
+                      "value": "ASC"
+                    },
+                    {
+                      "key": "orders[ldate]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters[seriesid]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d22aea28-e88a-42de-9a58-7e2267da936b",
+          "name": "ActiveCampaign Retrieve Links Associated to Campaign",
+          "request": {
+            "name": "ActiveCampaign Retrieve Links Associated to Campaign",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns",
+                ":id",
+                "links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of campaign to retrieve Links for"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "154c6568-d4f1-4b0d-9642-d6b7e4ee0620",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":id",
+                    "links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of campaign to retrieve Links for"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"links\\\": [\\n        {\\n            \\\"campaignid\\\": \\\"1\\\",\\n            \\\"messageid\\\": \\\"3\\\",\\n            \\\"link\\\": \\\"open\\\",\\n            \\\"name\\\": \\\"Read Tracker\\\",\\n            \\\"ref\\\": \\\"\\\",\\n            \\\"tracked\\\": \\\"1\\\",\\n            \\\"links\\\": {\\n                \\\"campaign\\\": \\\"https://:account.api-us1.com/api/3/links/1/campaign\\\",\\n                \\\"message\\\": \\\"https://:account.api-us1.com/api/3/links/1/message\\\"\\n            },\\n            \\\"id\\\": \\\"1\\\",\\n            \\\"campaign\\\": \\\"1\\\",\\n            \\\"message\\\": \\\"3\\\"\\n        },\\n        {\\n            \\\"campaignid\\\": \\\"1\\\",\\n            \\\"messageid\\\": \\\"0\\\",\\n            \\\"link\\\": \\\"open\\\",\\n            \\\"name\\\": \\\"Read Tracker\\\",\\n            \\\"ref\\\": \\\"\\\",\\n            \\\"tracked\\\": \\\"1\\\",\\n            \\\"links\\\": {\\n                \\\"campaign\\\": \\\"https://:account.api-us1.com/api/3/links/2/campaign\\\",\\n                \\\"message\\\": \\\"https://:account.api-us1.com/api/3/links/2/message\\\"\\n            },\\n            \\\"id\\\": \\\"2\\\",\\n            \\\"campaign\\\": \\\"1\\\",\\n            \\\"message\\\": null\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdab8697-624d-4bfb-a38c-98883a9c17f5",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":id",
+                    "links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of campaign to retrieve Links for"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for Campaign with id 2\\\"\\n}{\\n    \\\"links\\\": []\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a95d2a3-a609-4e25-9b29-47c5378ceb43",
+          "name": "ActiveCampaign Retrieve a Campaign",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Campaign",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of campaign to retrieve"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "41e4d88b-8b70-4548-b9db-81527cefb81a",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of campaign to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"campaign\\\": {\\n        \\\"type\\\": \\\"single\\\",\\n        \\\"userid\\\": \\\"1\\\",\\n        \\\"segmentid\\\": \\\"0\\\",\\n        \\\"bounceid\\\": \\\"-1\\\",\\n        \\\"realcid\\\": \\\"0\\\",\\n        \\\"sendid\\\": \\\"0\\\",\\n        \\\"threadid\\\": \\\"0\\\",\\n        \\\"seriesid\\\": \\\"0\\\",\\n        \\\"formid\\\": \\\"0\\\",\\n        \\\"basetemplateid\\\": \\\"13b1432dc41b75dda9ff86d84a8593d2b2b9419f\\\",\\n        \\\"basemessageid\\\": \\\"0\\\",\\n        \\\"addressid\\\": \\\"0\\\",\\n        \\\"source\\\": \\\"web\\\",\\n        \\\"name\\\": \\\"Matt Litmus test\\\",\\n        \\\"cdate\\\": \\\"2018-10-10T11:59:43-05:00\\\",\\n        \\\"mdate\\\": \\\"2018-10-10T12:00:23-05:00\\\",\\n        \\\"sdate\\\": null,\\n        \\\"ldate\\\": null,\\n        \\\"send_amt\\\": \\\"0\\\",\\n        \\\"total_amt\\\": \\\"0\\\",\\n        \\\"opens\\\": \\\"0\\\",\\n        \\\"uniqueopens\\\": \\\"0\\\",\\n        \\\"linkclicks\\\": \\\"0\\\",\\n        \\\"uniquelinkclicks\\\": \\\"0\\\",\\n        \\\"subscriberclicks\\\": \\\"0\\\",\\n        \\\"forwards\\\": \\\"0\\\",\\n        \\\"uniqueforwards\\\": \\\"0\\\",\\n        \\\"hardbounces\\\": \\\"0\\\",\\n        \\\"softbounces\\\": \\\"0\\\",\\n        \\\"unsubscribes\\\": \\\"0\\\",\\n        \\\"unsubreasons\\\": \\\"0\\\",\\n        \\\"updates\\\": \\\"0\\\",\\n        \\\"socialshares\\\": \\\"0\\\",\\n        \\\"replies\\\": \\\"0\\\",\\n        \\\"uniquereplies\\\": \\\"0\\\",\\n        \\\"status\\\": \\\"0\\\",\\n        \\\"public\\\": \\\"1\\\",\\n        \\\"mail_transfer\\\": \\\"0\\\",\\n        \\\"mail_send\\\": \\\"0\\\",\\n        \\\"mail_cleanup\\\": \\\"0\\\",\\n        \\\"mailer_log_file\\\": \\\"0\\\",\\n        \\\"tracklinks\\\": \\\"all\\\",\\n        \\\"tracklinksanalytics\\\": \\\"0\\\",\\n        \\\"trackreads\\\": \\\"1\\\",\\n        \\\"trackreadsanalytics\\\": \\\"1\\\",\\n        \\\"analytics_campaign_name\\\": \\\"\\\",\\n        \\\"tweet\\\": \\\"0\\\",\\n        \\\"facebook\\\": \\\"0\\\",\\n        \\\"survey\\\": \\\"\\\",\\n        \\\"embed_images\\\": \\\"0\\\",\\n        \\\"htmlunsub\\\": \\\"0\\\",\\n        \\\"textunsub\\\": \\\"0\\\",\\n        \\\"htmlunsubdata\\\": null,\\n        \\\"textunsubdata\\\": null,\\n        \\\"recurring\\\": \\\"day1\\\",\\n        \\\"willrecur\\\": \\\"0\\\",\\n        \\\"split_type\\\": \\\"even\\\",\\n        \\\"split_content\\\": \\\"0\\\",\\n        \\\"split_offset\\\": \\\"2\\\",\\n        \\\"split_offset_type\\\": \\\"day\\\",\\n        \\\"split_winner_messageid\\\": \\\"0\\\",\\n        \\\"split_winner_awaiting\\\": \\\"0\\\",\\n        \\\"responder_offset\\\": \\\"0\\\",\\n        \\\"responder_type\\\": \\\"subscribe\\\",\\n        \\\"responder_existing\\\": \\\"0\\\",\\n        \\\"reminder_field\\\": \\\"sdate\\\",\\n        \\\"reminder_format\\\": null,\\n        \\\"reminder_type\\\": \\\"month_day\\\",\\n        \\\"reminder_offset\\\": \\\"0\\\",\\n        \\\"reminder_offset_type\\\": \\\"day\\\",\\n        \\\"reminder_offset_sign\\\": \\\"+\\\",\\n        \\\"reminder_last_cron_run\\\": null,\\n        \\\"activerss_interval\\\": \\\"day1\\\",\\n        \\\"activerss_url\\\": null,\\n        \\\"activerss_items\\\": \\\"10\\\",\\n        \\\"ip4\\\": \\\"643992596\\\",\\n        \\\"laststep\\\": \\\"designer\\\",\\n        \\\"managetext\\\": \\\"0\\\",\\n        \\\"schedule\\\": \\\"0\\\",\\n        \\\"scheduleddate\\\": null,\\n        \\\"waitpreview\\\": \\\"0\\\",\\n        \\\"deletestamp\\\": null,\\n        \\\"replysys\\\": \\\"0\\\",\\n        \\\"links\\\": {\\n            \\\"user\\\": \\\"https://:account.api-us1.com/api/:version/campaigns/1/user\\\",\\n            \\\"automation\\\": \\\"https://:account.api-us1.com/api/:version/campaigns/1/automation\\\",\\n            \\\"campaignMessage\\\": \\\"https://:account.api-us1.com/api/:version/campaigns/1/campaignMessage\\\",\\n            \\\"links\\\": \\\"https://:account.api-us1.com/api/:version/campaigns/1/links\\\",\\n            \\\"aggregateRevenues\\\": \\\"https://:account.api-us1.com/api/:version/campaigns/1/aggregateRevenues\\\"\\n        },\\n        \\\"id\\\": \\\"1\\\",\\n        \\\"user\\\": \\\"1\\\",\\n        \\\"automation\\\": null\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3c979fb-b4cc-44c8-8e29-dd7b05dbca21",
+          "name": "ActiveCampaign Edit Campaign",
+          "request": {
+            "name": "ActiveCampaign Edit Campaign",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns",
+                ":id",
+                "edit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"segmentId\": \"<string>\",\n  \"addressId\": \"<integer>\",\n  \"listIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"replyTrackingEnabled\": \"<boolean>\",\n  \"linkTrackingEnabled\": \"<boolean>\",\n  \"googleAnalyticsLinkTrackingEnabled\": \"<boolean>\",\n  \"googleAnalyticsCampaignName\": \"<string>\",\n  \"readTrackingEnabled\": \"<boolean>\",\n  \"sendToExistingSubscribers\": \"<boolean>\",\n  \"canSplitContent\": \"<boolean>\",\n  \"recurring\": \"<boolean>\",\n  \"responderDaysOffset\": \"<integer>\",\n  \"responderHoursOffset\": \"<integer>\",\n  \"scheduledDate\": \"<string>\",\n  \"reminderField\": \"<string>\",\n  \"reminderOffset\": \"<integer>\",\n  \"reminderOffsetType\": \"<string>\",\n  \"reminderType\": \"<string>\",\n  \"rssInterval\": \"<integer>\",\n  \"splitType\": \"<string>\",\n  \"splitWinnerWaitPeriod\": \"<integer>\",\n  \"splitWinnerWaitPeriodType\": \"<string>\",\n  \"publicCampaignArchive\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "271f9f3b-0633-4155-8e91-3050bcf94a8c",
+          "name": "ActiveCampaign Create Campaign",
+          "request": {
+            "name": "ActiveCampaign Create Campaign",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"canSplitContent\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7bfd9503-66e2-41cb-ad26-1edbbf60619e",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"canSplitContent\": false,\n  \"type\": \"single\",\n  \"name\": \"Campaign Name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"id\\\": 149,\\n    \\\"name\\\": \\\"Campaign Name\\\",\\n    \\\"type\\\": \\\"single\\\",\\n    \\\"canSplitContent\\\": false\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5ec404e-f84b-40e9-ac53-b7da6e040cd8",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"canSplitContent\": false,\n  \"type\": \"single\",\n  \"name\": \"Campaign Name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        \\\"Field name is required\\\",\\n        \\\"Field type must be of type string\\\"\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce5d1b1a-46e8-452f-bd12-4bd4ecd30c18",
+          "name": "ActiveCampaign Duplicate Campaign",
+          "request": {
+            "name": "ActiveCampaign Duplicate Campaign",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns",
+                ":id",
+                "copy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id of the source campaign"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a621b702-6888-46dc-b45e-8a779901d877",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":id",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id of the source campaign"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n\\t\\\"succeeded\\\":1,\\n  \\\"message\\\":\\\"Campaign draft copied.\\\",\\n  \\\"newCampaignId\\\":217\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca8eb6b5-9760-4a94-8dad-e7783203e222",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":id",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id of the source campaign"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"'Bad request. You are not allowed to copy this campaign.'\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "63d6993d-7234-40a8-ba4c-8705bef43a0f",
+    "name": "ActiveCampaign SMS Broadcast Accounts Campaigns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

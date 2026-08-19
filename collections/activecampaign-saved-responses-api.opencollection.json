@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Saved Responses API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Saved Responses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Saved Responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/savedResponses"
+          },
+          "docs": "ActiveCampaign List All Saved Responses"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Saved Response",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/savedResponses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Saved Response"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Saved Response",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/savedResponses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the saved Response to recieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Saved Response"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Saved Response",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/savedResponses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the saved response to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Saved Response"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Saved Response",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/savedResponses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the saved response to remove"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Saved Response"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,116 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of /.well-known/* on every ActiveCampaign host named in apis.yml
+description: >-
+  RFC 8615 well-known discovery probe across the two ActiveCampaign hosts that are
+  addressable without an account. The v3 REST base URL is per-account
+  (https://{yourAccountName}.api-us1.com/api/3) and therefore cannot be probed
+  anonymously, so it is recorded as unprobeable rather than as a miss.
+hosts:
+  - host: https://developers.activecampaign.com
+    role: developer portal / API reference
+    documents:
+      - path: /.well-known/api-catalog
+        status: 200
+        content_type: application/linkset+json
+        file: activecampaign-api-catalog.json
+        note: >-
+          RFC 9727 API catalog linkset. Nine service-desc entries, each pointing at a
+          real OpenAPI document under /openapi/. This is the discovery surface that
+          exposed the WhatsApp, Partners, Segments, trackcmp and v2 specifications,
+          none of which were reachable from the JS-rendered reference UI.
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/mcp.json
+        status: 404
+  - host: https://www.activecampaign.com
+    role: corporate website
+    documents:
+      - path: /.well-known/agent.json
+        status: 200
+        content_type: application/json
+        file: ../a2a/activecampaign-agent-card.json
+        note: >-
+          A2A agent card served at the pre-0.3 legacy path. Captured and graded in
+          a2a/activecampaign-a2a.yml; not duplicated here.
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/mcp.json
+        status: 404
+  - host: 'https://{yourAccountName}.api-us1.com'
+    role: v3 REST API base
+    probed: false
+    note: >-
+      Templated per-account host. ActiveCampaign's own base-URL documentation states
+      the account API URL is issued in the account's Settings -> Developer tab and
+      that api-us1.com is not guaranteed for every account, so there is no anonymous
+      host to probe. Recorded as unprobeable, not as an absence.
+    documents: []
+catalog:
+  spec: RFC 9727 (api-catalog)
+  url: https://developers.activecampaign.com/.well-known/api-catalog
+  service_desc_count: 9
+  services:
+    - anchor: 'https://developers.activecampaign.com/reference#v3.json'
+      service_desc: https://developers.activecampaign.com/openapi/v3.json
+      type: application/vnd.oai.openapi+json
+    - anchor: 'https://developers.activecampaign.com/reference#sms.json'
+      service_desc: https://developers.activecampaign.com/openapi/sms.json
+      type: application/vnd.oai.openapi+json
+    - anchor: 'https://developers.activecampaign.com/reference#whatsapp.yml'
+      service_desc: https://developers.activecampaign.com/openapi/whatsapp.yml
+      type: application/vnd.oai.openapi+json
+    - anchor: 'https://developers.activecampaign.com/reference#partners.json'
+      service_desc: https://developers.activecampaign.com/openapi/partners.json
+      type: application/vnd.oai.openapi+json
+    - anchor: 'https://developers.activecampaign.com/reference#openapi_public.json'
+      service_desc: https://developers.activecampaign.com/openapi/openapi_public.json
+      type: application/vnd.oai.openapi+json
+    - anchor: 'https://developers.activecampaign.com/reference#segment_match_all_match_some.json'
+      service_desc: https://developers.activecampaign.com/openapi/segment_match_all_match_some.json
+      type: application/vnd.oai.openapi+json
+    - anchor: 'https://developers.activecampaign.com/reference#segment_match_one.json'
+      service_desc: https://developers.activecampaign.com/openapi/segment_match_one.json
+      type: application/vnd.oai.openapi+json
+    - anchor: 'https://developers.activecampaign.com/reference#trackcmp.json'
+      service_desc: https://developers.activecampaign.com/openapi/trackcmp.json
+      type: application/vnd.oai.openapi+json
+    - anchor: 'https://developers.activecampaign.com/reference#v2.json'
+      service_desc: https://developers.activecampaign.com/openapi/v2.json
+      type: application/vnd.oai.openapi+json
+summary:
+  hosts_probed: 2
+  paths_probed: 18
+  documents_found: 2
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: false
+  api_catalog: true
+  ai_plugin: false
+x-evidence:
+  fetched: '2026-08-13'
+  method: curl -L, 20s timeout, browser user agent, per-path HTTP status recorded verbatim

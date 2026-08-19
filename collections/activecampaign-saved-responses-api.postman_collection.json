@@ -1,0 +1,890 @@
+{
+  "item": [
+    {
+      "id": "16c493c3-f229-48a7-9ba1-dac5a67d9d9a",
+      "name": "Saved Responses",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b65dc7cc-e72e-4acd-838e-aadae731fb8a",
+          "name": "ActiveCampaign Create a Saved Response",
+          "request": {
+            "name": "ActiveCampaign Create a Saved Response",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "savedResponses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"savedResponse\": {\n    \"title\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc5c6c7c-a699-479e-84b8-7a18af141931",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "savedResponses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"savedResponse\": {\n    \"title\": \"Response Title\",\n    \"subject\": \"Response Subject\",\n    \"body\": \"Response Body\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"savedResponse\\\": {\\n        \\\"title\\\": \\\"Response title\\\",\\n        \\\"subject\\\": \\\"Response subject\\\",\\n        \\\"body\\\": \\\"Response body\\\",\\n        \\\"cdate\\\": \\\"2018-11-16T02:50:54-06:00\\\",\\n        \\\"links\\\": {\\n            \\\"user\\\": \\\"https://:account.api-us1.com/api/:version/savedResponses/1/user\\\",\\n            \\\"savedResponseCategorySavedResponse\\\": \\\"https://:account.api-us1.com/api/:version/savedResponses/1/savedResponseCategorySavedResponse\\\"\\n        },\\n        \\\"id\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "949588b9-d613-4f8b-b88e-f37780da6013",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "savedResponses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"savedResponse\": {\n    \"title\": \"Response Title\",\n    \"subject\": \"Response Subject\",\n    \"body\": \"Response Body\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"title\\\": \\\"This field is required.\\\",\\n            \\\"detail\\\": \\\"\\\",\\n            \\\"code\\\": \\\"field_missing\\\",\\n            \\\"source\\\": {\\n                \\\"pointer\\\": \\\"/data/attributes/title\\\"\\n            }\\n        },\\n        {\\n            \\\"title\\\": \\\"Either a subject or a body needs to be provided.\\\",\\n            \\\"detail\\\": \\\"\\\",\\n            \\\"code\\\": \\\"field_invalid\\\",\\n            \\\"source\\\": {\\n                \\\"pointer\\\": \\\"/data/attributes/subject\\\"\\n            }\\n        },\\n        {\\n            \\\"title\\\": \\\"Either a subject or a body needs to be provided.\\\",\\n            \\\"detail\\\": \\\"\\\",\\n            \\\"code\\\": \\\"field_invalid\\\",\\n            \\\"source\\\": {\\n                \\\"pointer\\\": \\\"/data/attributes/body\\\"\\n            }\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a283de03-3f72-4da5-994a-540ff2229c09",
+          "name": "ActiveCampaign List All Saved Responses",
+          "request": {
+            "name": "ActiveCampaign List All Saved Responses",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "savedResponses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "947e259a-ec4a-4dab-8daa-4e479a9cb17c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "savedResponses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"savedResponses\\\": [\\n        {\\n            \\\"title\\\": \\\"Response title\\\",\\n            \\\"subject\\\": \\\"Response subject\\\",\\n            \\\"body\\\": \\\"Response body\\\",\\n            \\\"ldate\\\": null,\\n            \\\"last_sent_user_id\\\": null,\\n            \\\"cdate\\\": \\\"2018-11-16T02:50:54-06:00\\\",\\n            \\\"mdate\\\": null,\\n            \\\"links\\\": {\\n                \\\"user\\\": \\\"https://:account.api-us1.com/api/:version/savedResponses/1/user\\\",\\n                \\\"savedResponseCategorySavedResponse\\\": \\\"https://:account.api-us1.com/api/:version/savedResponses/1/savedResponseCategorySavedResponse\\\"\\n            },\\n            \\\"id\\\": \\\"1\\\"\\n        }\\n    ],\\n    \\\"meta\\\": {\\n        \\\"total\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3aab62c1-85bf-47a6-88e5-9b96b6f0b79a",
+          "name": "ActiveCampaign Retrieve a Saved Response",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Saved Response",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "savedResponses",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the saved Response to recieve"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d827d346-3533-4496-b936-ffa2e65b3c1c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "savedResponses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the saved Response to recieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"savedResponse\\\": {\\n        \\\"title\\\": \\\"Response title\\\",\\n        \\\"subject\\\": \\\"Response subject\\\",\\n        \\\"body\\\": \\\"Response body\\\",\\n        \\\"ldate\\\": null,\\n        \\\"last_sent_user_id\\\": null,\\n        \\\"cdate\\\": \\\"2018-11-16T02:50:54-06:00\\\",\\n        \\\"mdate\\\": null,\\n        \\\"links\\\": {\\n            \\\"user\\\": \\\"https://:account.api-us1.com/api/:version/savedResponses/1/user\\\",\\n            \\\"savedResponseCategorySavedResponse\\\": \\\"https://:account.api-us1.com/api/:version/savedResponses/1/savedResponseCategorySavedResponse\\\"\\n        },\\n        \\\"id\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ebfb1c6-e2b3-4da8-acd7-07b1014edce1",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "savedResponses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the saved Response to recieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04a6c7f7-f527-4a2b-a28d-08135f59dcd7",
+          "name": "ActiveCampaign Update a Saved Response",
+          "request": {
+            "name": "ActiveCampaign Update a Saved Response",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "savedResponses",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the saved response to update"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"savedResponse\": {\n    \"title\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3aa627eb-c159-43be-be1d-f75ec3c57c53",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "savedResponses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the saved response to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"savedResponse\": {\n    \"title\": \"Response title\",\n    \"subject\": \"Response subject\",\n    \"body\": \"Response body\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"savedResponse\\\": {\\n        \\\"title\\\": \\\"New Response Title\\\",\\n        \\\"subject\\\": \\\"New Response Subject\\\",\\n        \\\"body\\\": \\\"New Response Body\\\",\\n        \\\"ldate\\\": null,\\n        \\\"last_sent_user_id\\\": null,\\n        \\\"cdate\\\": \\\"2018-11-16T02:50:54-06:00\\\",\\n        \\\"mdate\\\": \\\"2018-11-16T11:19:30-06:00\\\",\\n        \\\"links\\\": {\\n            \\\"user\\\": \\\"https://:account.api-us1.com/api/:version/savedResponses/1/user\\\",\\n            \\\"savedResponseCategorySavedResponse\\\": \\\"https://:account.api-us1.com/api/:version/savedResponses/1/savedResponseCategorySavedResponse\\\"\\n        },\\n        \\\"id\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1f8f7f8-5431-4932-ab52-309c10f24888",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "savedResponses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the saved response to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"savedResponse\": {\n    \"title\": \"Response title\",\n    \"subject\": \"Response subject\",\n    \"body\": \"Response body\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for SavedResponse with id 0\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2cf172cd-f749-4878-a660-c59c13a28cca",
+          "name": "ActiveCampaign Delete a Saved Response",
+          "request": {
+            "name": "ActiveCampaign Delete a Saved Response",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "savedResponses",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the saved response to remove"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84b48918-5b12-4fe0-a6ee-e0bfc16cdee0",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "savedResponses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the saved response to remove"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a37c719-45f2-4a83-b008-e34d43ae91ee",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "savedResponses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the saved response to remove"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"message\": \"No Result found for SavedResponse with id 1\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1ccafafd-e2f2-4f4b-8210-fbf5bcf90565",
+    "name": "ActiveCampaign SMS Broadcast Accounts Saved Responses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1207 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Deals API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deals",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Deals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals",
+            "params": [
+              {
+                "name": "filters[search]",
+                "value": "",
+                "type": "query",
+                "description": "Search text to use with `search_field` parameter."
+              },
+              {
+                "name": "filters[search_field]",
+                "value": "",
+                "type": "query",
+                "description": "Field to search for. See [available values](https://developers.activecampaign.com/reference/deal#deals-parameters-available-values)."
+              },
+              {
+                "name": "filters[title]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's title"
+              },
+              {
+                "name": "filters[stage]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's stage"
+              },
+              {
+                "name": "filters[group]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's pipeline"
+              },
+              {
+                "name": "filters[status]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's status.  See [available values](https://developers.activecampaign.com/reference/deal#deals-parameters-available-values)"
+              },
+              {
+                "name": "filters[owner]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's owner"
+              },
+              {
+                "name": "filters[nextdate_range]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's tasks due dates. See [available values](https://developers.activecampaign.com/reference/deal#deals-parameters-available-values)"
+              },
+              {
+                "name": "filters[tag]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tag names associated with deal's primary contact. See [available values](https://developers.activecampaign.com/reference/deal#deals-parameters-available-values)."
+              },
+              {
+                "name": "filters[tasktype]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deals that have tasks with given type"
+              },
+              {
+                "name": "filters[created_before]",
+                "value": "",
+                "type": "query",
+                "description": "Returns deals that are created less than given date"
+              },
+              {
+                "name": "filters[created_after]",
+                "value": "",
+                "type": "query",
+                "description": "Returns deals that are created greater than or equal to given date"
+              },
+              {
+                "name": "filters[updated_before]",
+                "value": "",
+                "type": "query",
+                "description": "Returns deals that are updated less than given date"
+              },
+              {
+                "name": "filters[updated_after]",
+                "value": "",
+                "type": "query",
+                "description": "Returns deals that are updated greater than or equal to given date"
+              },
+              {
+                "name": "filters[organization]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal's primary contact's organization's id"
+              },
+              {
+                "name": "filters[minimum_value]",
+                "value": "",
+                "type": "query",
+                "description": "In USD with dollar portion. Returns deals whose values are greater than or equal to given value"
+              },
+              {
+                "name": "filters[maximum_value]",
+                "value": "",
+                "type": "query",
+                "description": "In USD with dollar portion. Returns deals whose values are less than or equal to given value"
+              },
+              {
+                "name": "filters[score_greater_than]",
+                "value": "",
+                "type": "query",
+                "description": "In a format of `<score_id>:<score_value>`. Returns deals whose score value is greater than given value"
+              },
+              {
+                "name": "filters[score_less_than]",
+                "value": "",
+                "type": "query",
+                "description": "In a format of `<score_id>:<score_value>`. Returns deals whose score value is less than given value"
+              },
+              {
+                "name": "filters[score]",
+                "value": "",
+                "type": "query",
+                "description": "In a format of `<score_id>:<score_value>`. Returns deals whose score value is equal to given value"
+              },
+              {
+                "name": "orders[title]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal's title."
+              },
+              {
+                "name": "orders[value]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal's value."
+              },
+              {
+                "name": "orders[cdate]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal's created date."
+              },
+              {
+                "name": "orders[contact_name]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal's primary contact's first name."
+              },
+              {
+                "name": "orders[contact_orgname]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal's primary contact's organization name."
+              },
+              {
+                "name": "orders[next-action]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal's next task's due date first. Then append deals with no next task. Lastly append deals with overdue tasks. If dates are the same, order by deal's id."
+              }
+            ]
+          },
+          "docs": "Retrieve all existing deals"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Deal's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Deal's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Deal's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Deal Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals/:id/notes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Deal's id to assign new note to"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new note for a deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Deal Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals/:id/notes/:noteId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal's id to assign new note to"
+              },
+              {
+                "name": "noteId",
+                "value": "",
+                "type": "path",
+                "description": "Deal note's id to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing note for a deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Update Deal Owners",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/deals/bulkUpdate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Deal Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealActivities",
+            "params": [
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Include this param to exclude \"email\", \"connection_email\", and \"LinkData\" activity types"
+              },
+              {
+                "name": "deal",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal ID"
+              },
+              {
+                "name": "filters[data_type]",
+                "value": "",
+                "type": "query",
+                "description": "Enter any dataType (see Response Details) to filter by that type. Examples: \"userid\" or task\" or \"note\""
+              },
+              {
+                "name": "filters[data_id]",
+                "value": "",
+                "type": "query",
+                "description": "Enter any dataId (see Response details) to filter by related object. Example \"291\" for a note with ID 291"
+              }
+            ]
+          },
+          "docs": "View a recent activity for Deals. A specific deal's activity can also be viewed using /api/3/deals/[dealID]/dealActivities."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealGroups",
+            "params": [
+              {
+                "name": "filters[title]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by pipeline's title. The filter matches any pipeline titles that contain the provided title (i.e. \"Contact\" matches all of \"In Contact\", \"To Contact\", and \"Contact Pipeline\")."
+              },
+              {
+                "name": "filters[have_stages]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by whether pipelines have deal stages. Can be either `1` or `0`. If `1`, only pipelines with at least one stage will be returned."
+              },
+              {
+                "name": "orders[title]",
+                "value": "",
+                "type": "query",
+                "description": "Order by Pipeline's title"
+              },
+              {
+                "name": "orders[popular]",
+                "value": "",
+                "type": "query",
+                "description": "Order by number of deals each pipeline has. If pipelines have same number of deals, pipelines' created dates are used to determine the order."
+              }
+            ]
+          },
+          "docs": "Retrieve all existing pipelines"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealGroups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new pipeline"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealGroups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing pipeline"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealGroups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing pipeline"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealGroups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing pipeline"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve Inaccessible Pipelines by User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealGroup/get_inaccessible_deal_groups",
+            "params": [
+              {
+                "name": "dealIds[]",
+                "value": "",
+                "type": "query",
+                "description": "Deal Ids"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "User's Id"
+              }
+            ]
+          },
+          "docs": "Retrieve pipelines that given user doesn't have access to"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Stages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealStages",
+            "params": [
+              {
+                "name": "filters[title]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deal stages' titles. Any stages whose titles partial-match the filter value are returned"
+              },
+              {
+                "name": "filters[d_groupid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by pipeline's id"
+              },
+              {
+                "name": "orders[title]",
+                "value": "",
+                "type": "query",
+                "description": "Order by deal stage's title"
+              }
+            ]
+          },
+          "docs": "Retrieve all existing stages"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealStages",
+            "params": [
+              {
+                "name": "reorder",
+                "value": "",
+                "type": "query",
+                "description": "Whether to reorder stages within the pipeline after creating a new deal stage. Can be one of `0` and `1`. If set to `1`, new order values will be assigned to all stages within the same pipeline. If deal stages with the same order exists, the stage with the highest `id` will be assigned with the lowest `order`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new stage for a pipeline"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealStages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal stage's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing stage"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealStages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal stage's id"
+              },
+              {
+                "name": "reorder",
+                "value": "",
+                "type": "query",
+                "description": "Whether to reorder stages within the pipeline after creating a new deal stage. Can be one of `0` and `1`. If set to `1`, new order values will be assigned to all stages within the same pipeline. If deal stages with the same order exists, the stage with the highest `id` will be assigned with the lowest `order`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing stage"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealStages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal stage's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing stage"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Move Deals to Another Stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealStages/:id/deals",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal stage's id whose deals are to be moved to another deal stage"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Move all deals in one stage to another stage"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Custom Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldMeta",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of fields returned per request."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Custom Fields"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Custom Field Meta",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldMeta",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Custom Field Meta"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldMeta/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the field to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldMeta/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the custom field to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldMeta/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the field to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Custom Field Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData",
+            "params": [
+              {
+                "name": "filters[dealId]",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by a specific deal (note that Id uses a capital I)"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Custom Field Values"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Create a Custom Deal Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData/bulkCreate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Bulk Create a Custom Deal Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the dealCustomFieldData to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the custom fields value to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the dealCustomFieldData to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Update a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealCustomFieldData/bulkUpdate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Bulk Update a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Deal Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealRoles",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "(optional string used to search for matching titles)"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Deal Roles"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Deal Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealRoles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Deal Role"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Deal Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealRoles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal role's id"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Deal Role"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasks",
+            "params": [
+              {
+                "name": "filters[title]",
+                "value": "",
+                "type": "query",
+                "description": "The title to be assigned to the task"
+              },
+              {
+                "name": "filters[reltype]",
+                "value": "",
+                "type": "query",
+                "description": "The name of the relating object (see relationships table)"
+              },
+              {
+                "name": "filters[relid]",
+                "value": "",
+                "type": "query",
+                "description": "The id of the relational object for this task"
+              },
+              {
+                "name": "filters[status]",
+                "value": "",
+                "type": "query",
+                "description": "Task status means complete or incomplete. 1 is complete and 0 is incomplete."
+              },
+              {
+                "name": "filters[note]",
+                "value": "",
+                "type": "query",
+                "description": "The content describing the task"
+              },
+              {
+                "name": "filters[duedate]",
+                "value": "",
+                "type": "query",
+                "description": "Due date of the task"
+              },
+              {
+                "name": "filters[d_tasktypeid]",
+                "value": "",
+                "type": "query",
+                "description": "The type of the task based on the available Task Types in the account"
+              },
+              {
+                "name": "filters[userid]",
+                "value": "",
+                "type": "query",
+                "description": "User ID this task belongs to"
+              },
+              {
+                "name": "filters[due_after]",
+                "value": "",
+                "type": "query",
+                "description": "Filter deal tasks that are due after a specific date"
+              },
+              {
+                "name": "Fitlers[due_before]",
+                "value": "",
+                "type": "query",
+                "description": "Filter deal tasks that are due before a specific date"
+              },
+              {
+                "name": "filters[duedate_range]",
+                "value": "",
+                "type": "query",
+                "description": "Filter deal tasks that are due between specific date range (YYYY-MM-DD+YYYY-MM-DD format) or get categorized tasks (upcoming, scheduled, overdue values)"
+              },
+              {
+                "name": "filters[assignee_userid]",
+                "value": "",
+                "type": "query",
+                "description": "The id of the user a task is assigned to"
+              },
+              {
+                "name": "filters[outcome_id]",
+                "value": "",
+                "type": "query",
+                "description": "The id of a task outcome that the task belongs to."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of existing tasks"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new task"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the task"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing task"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the task"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing task"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The task id"
+              }
+            ]
+          },
+          "docs": "Delete an existing task"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Task Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasktypes"
+          },
+          "docs": "Retrieve all existing task types"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Task Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasktypes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new task type"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Task Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasktypes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal task type's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing task type"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Task Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasktypes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal task type's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing task type"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Task Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasktypes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal task type's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing task type"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Move Tasks to Another Task Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/dealTasktypes/:id/dealTasks",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Deal task type's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Move tasks to a different task type"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

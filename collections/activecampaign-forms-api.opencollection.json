@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Forms API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Forms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the form to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Form"
+        },
+        {
+          "info": {
+            "name": "put_forms{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_forms{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "form id"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/forms"
+          },
+          "docs": "ActiveCampaign List All Forms"
+        },
+        {
+          "info": {
+            "name": "post_forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/forms"
+          }
+        },
+        {
+          "info": {
+            "name": "post_formoptin",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/form/optin"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

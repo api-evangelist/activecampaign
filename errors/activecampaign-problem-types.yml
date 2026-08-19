@@ -1,0 +1,182 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/*.yml + openapi/*.json (nine ActiveCampaign OpenAPI documents, 384 operations / 367 distinct
+  operationIds)
+format: custom
+rfc9457: false
+description: 'Error surface derived from every 4xx/5xx response declared across ActiveCampaign''s nine
+  published OpenAPI documents. ActiveCampaign does NOT use RFC 9457 problem+json: every error body is
+  application/json (a handful are text/plain) with a provider-specific shape, and the specs mostly describe
+  those responses with the status code as the description string rather than a typed problem. There is
+  no published error-code registry to enrich these titles from — the developer portal has no error reference
+  page — so the entries below carry the spec''s own description strings verbatim rather than invented
+  remediation text.'
+envelope:
+  content_type: application/json
+  problem_json: false
+  documented_shape: false
+  note: No single error schema is shared across the specs. Where a 4xx declares a schema at all it is
+    endpoint-local. An agent cannot rely on a stable error field name across the surface.
+problem_count: 7
+problems:
+- status: 400
+  title: Bad Request
+  occurrences: 161
+  content_types:
+  - application/json
+  spec_descriptions:
+  - text: '400'
+    count: 109
+  - text: Bad Request
+    count: 48
+  - text: Bad Request. See error details in response body
+    count: 2
+  - text: Invalid request data
+    count: 1
+  - text: Bad Request. Payload did not pass validation
+    count: 1
+  source_operations:
+  - activecampaign-accounts-api-openapi.yml#list-all-accounts
+  - activecampaign-accounts-api-openapi.yml#update-an-account-new
+  - activecampaign-accounts-api-openapi.yml#delete-an-account
+  - activecampaign-accounts-api-openapi.yml#bulk-delete-accounts
+- status: 401
+  title: Unauthorized
+  occurrences: 54
+  content_types:
+  - application/json
+  spec_descriptions:
+  - text: Authorization error
+    count: 36
+  - text: Unauthorized
+    count: 18
+  source_operations:
+  - activecampaign-partners-api-openapi.json#get_ai_customizations_profiles_list
+  - activecampaign-partners-api-openapi.json#post_ai_customizations_profiles_create
+  - activecampaign-partners-api-openapi.json#get_ai_customizations_profiles_get
+  - activecampaign-partners-api-openapi.json#delete_ai_customizations_profiles_delete
+- status: 403
+  title: Forbidden
+  occurrences: 48
+  content_types:
+  - application/json
+  - text/plain
+  spec_descriptions:
+  - text: '403'
+    count: 24
+  - text: Forbidden
+    count: 18
+  - text: Insufficient permissions
+    count: 5
+  - text: One or more accounts are invalid or do not belong to this reseller
+    count: 1
+  source_operations:
+  - activecampaign-broadcasts-api-openapi.yml#listBroadcasts
+  - activecampaign-broadcasts-api-openapi.yml#createBroadcast
+  - activecampaign-broadcasts-api-openapi.yml#getBroadcast
+  - activecampaign-broadcasts-api-openapi.yml#updateBroadcast
+- status: 404
+  title: Not Found
+  occurrences: 129
+  content_types:
+  - application/json
+  - text/plain
+  spec_descriptions:
+  - text: '404'
+    count: 76
+  - text: Not Found
+    count: 30
+  - text: Segment Not Found
+    count: 5
+  - text: Broadcast not found
+    count: 3
+  - text: Profile or document not found
+    count: 3
+  - text: Profile not found
+    count: 2
+  source_operations:
+  - activecampaign-accounts-api-openapi.yml#retrieve-an-association
+  - activecampaign-accounts-api-openapi.yml#delete-an-association-1
+  - activecampaign-accounts-api-openapi.yml#retrieve-a-custom-field-meta
+  - activecampaign-accounts-api-openapi.yml#update-a-custom-field
+- status: 409
+  title: Conflict
+  occurrences: 3
+  content_types:
+  - application/json
+  spec_descriptions:
+  - text: Request failed due to a conflict with the current state of AI customization profiles
+    count: 2
+  - text: Conflict
+    count: 1
+  source_operations:
+  - activecampaign-other-api-openapi.yml#add-domain-to-whitelist
+  - activecampaign-partners-api-openapi.json#post_ai_customizations_profiles_create
+  - activecampaign-partners-api-openapi.json#patch_ai_customizations_profiles_update
+- status: 422
+  title: Unprocessable Entity
+  occurrences: 43
+  content_types:
+  - application/json
+  - text/plain
+  spec_descriptions:
+  - text: '422'
+    count: 31
+  - text: Unprocessable Content
+    count: 8
+  - text: Validation failed
+    count: 3
+  - text: Validation error
+    count: 1
+  source_operations:
+  - activecampaign-accounts-api-openapi.yml#create-an-account-new
+  - activecampaign-accounts-api-openapi.yml#create-an-account-1
+  - activecampaign-accounts-api-openapi.yml#create-a-customfieldmeta
+  - activecampaign-contacts-api-openapi.yml#create-a-new-contact
+- status: 503
+  title: '503'
+  occurrences: 2
+  content_types:
+  - application/json
+  spec_descriptions:
+  - text: Service Unavailable
+    count: 1
+  - text: ARC is unreachable.
+    count: 1
+  source_operations:
+  - activecampaign-partners-api-openapi.json#get_child_accounts_get_for_snapshots
+  - activecampaign-partners-api-openapi.json#get_locales_get_catalogs
+coverage:
+  operations_total: 384
+  operations_declaring_an_error_response: 280
+  operations_with_no_error_response: 104
+  note: 104 of 384 published operations (27%) declare no failure response at all. For those, an agent
+    has no contract for what a failure looks like. The 17-operation gap between operations and distinct
+    operationIds is duplicate ids inside the v3 document (e.g. get_automations-1 is bound to two paths).
+anomalies:
+- kind: success-status-carrying-failure
+  operationId: delete-a-campaign
+  status: 200
+  detail: 'ActiveCampaign documents this explicitly: "This endpoint reports failures in the response body
+    rather than with an error status: a campaign that does not exist, or a user without permission to
+    delete campaigns, both return 200 with succeeded set to 0." Any agent that branches on HTTP status
+    alone will report a phantom success.'
+  source: https://developers.activecampaign.com/reference/delete-a-campaign
+- kind: no-401-on-most-of-v3
+  detail: 401 appears 54 times and almost entirely inside the Partners API and the SMS/WhatsApp specs.
+    The main v3 document largely declares 403 for authentication failure instead — ActiveCampaign's own
+    account endpoint documentation says a missing or invalid Api-Token returns 403, not 401. Agents should
+    treat 403 as "check the token" on this API.
+  source: https://developers.activecampaign.com/reference/retrieve-account-information
+rate_limit_error:
+  status: 429
+  title: Too Many Requests
+  recovery_header: Retry-After
+  declared_in_openapi: false
+  note: 429 is documented on the rate-limits page but is NOT declared as a response on any operation in
+    any of the nine specs. It is the one error every high-volume client will hit and the one error the
+    contract omits.
+  source: https://developers.activecampaign.com/reference/rate-limits
+related:
+  conventions: conventions/activecampaign-conventions.yml
+  rate_limits: rate-limits/activecampaign-rate-limits.yml

@@ -1,0 +1,1367 @@
+{
+  "item": [
+    {
+      "id": "5d2fec89-5871-4b14-aea6-97a50d68d0ab",
+      "name": "Personalizations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6510058e-5ce8-410e-8ab7-24651da6b0df",
+          "name": "ActiveCampaign List Variables",
+          "request": {
+            "name": "ActiveCampaign List Variables",
+            "description": {
+              "content": "Retrieve a list of personalization variables",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "personalizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "orders[format]",
+                  "value": "<string>",
+                  "description": "Order variables by format (ASC/DESC)"
+                },
+                {
+                  "disabled": false,
+                  "key": "orders[tag]",
+                  "value": "<string>",
+                  "description": "Order variables by tag (ASC/DESC)"
+                },
+                {
+                  "disabled": false,
+                  "key": "orders[name]",
+                  "value": "<string>",
+                  "description": "Order variables by name (ASC/DESC)"
+                },
+                {
+                  "disabled": false,
+                  "key": "orders[content]",
+                  "value": "<string>",
+                  "description": "Order variables by content (ASC/DESC)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[name]",
+                  "value": "<string>",
+                  "description": "Filter by variable name"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[tag]",
+                  "value": "<string>",
+                  "description": "Filter by variable tag"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[listName]",
+                  "value": "<string>",
+                  "description": "Filter by name of list"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[content]",
+                  "value": "<string>",
+                  "description": "Contents of variable"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[format]",
+                  "value": "<string>",
+                  "description": "Filter by tag format (html, text)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Result limit (Default: 20)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e51ce144-65d3-4af6-b2e9-2ce07c60dde6",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personalizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orders[format]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orders[tag]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orders[name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orders[content]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[tag]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[listName]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[content]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[format]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"personalizations\": [\n    {\n      \"name\": \"address\",\n      \"tag\": \"awesometag\",\n      \"format\": \"html\",\n      \"content\": \"this is the first content\",\n      \"listIds\": \"1,2,3\",\n      \"listNames\": \"List1,List2,List3\",\n      \"listsCount\": \"3\",\n      \"isLocked\": false,\n      \"links\": [],\n      \"id\": \"1\"\n    },\n    {\n      \"name\": \"phone\",\n      \"tag\": \"greattag\",\n      \"format\": \"html\",\n      \"content\": \"this is the second one\",\n      \"listIds\": \"3,4\",\n      \"listNames\": \"List3,List4\",\n      \"listsCount\": \"2\",\n      \"isLocked\": false,\n      \"links\": [],\n      \"id\": \"2\"\n    },\n    {\n      \"name\": \"nice\\n\",\n      \"tag\": \"hellotag\",\n      \"format\": \"text\",\n      \"content\": \"this is the third one\",\n      \"listIds\": \"1,3\",\n      \"listNames\": \"List1,List3\",\n      \"listsCount\": \"2\",\n      \"isLocked\": false,\n      \"links\": [],\n      \"id\": \"3\"\n    },\n    {\n      \"name\": \"hahah\",\n      \"tag\": \"goodtag\",\n      \"format\": \"html\",\n      \"content\": \"fourth\",\n      \"listIds\": \"1,4\",\n      \"listNames\": \"List1,List4\",\n      \"listsCount\": \"2\",\n      \"isLocked\": false,\n      \"links\": [],\n      \"id\": \"4\"\n    },\n    {\n      \"name\": \"hello world\",\n      \"tag\": \"nicetag\",\n      \"format\": \"text\",\n      \"content\": \"fifth\",\n      \"listIds\": \"2,3,4\",\n      \"listNames\": \"List2,List3,List4\",\n      \"listsCount\": \"3\",\n      \"isLocked\": true,\n      \"links\": [],\n      \"id\": \"5\"\n    }\n  ],\n  \"meta\": {\n    \"total\": \"5\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be5d5cb6-40ae-4cfa-a029-ffffc6fd4cb3",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personalizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orders[format]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orders[tag]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orders[name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orders[content]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[tag]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[listName]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[content]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[format]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f75981f-10e6-4944-9795-bcd44f64e5d4",
+          "name": "ActiveCampaign Create a Variable",
+          "request": {
+            "name": "ActiveCampaign Create a Variable",
+            "description": {
+              "content": "Create a personalization variable",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "personalizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"personalization\": {\n    \"tag\": \"<string>\",\n    \"name\": \"<string>\",\n    \"format\": \"<string>\",\n    \"content\": \"<string>\",\n    \"listids\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "98d95c72-3392-4465-a789-c1fcaeefa3a7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personalizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"personalization\": {\n    \"tag\": \"<string>\",\n    \"name\": \"<string>\",\n    \"format\": \"<string>\",\n    \"content\": \"<string>\",\n    \"listids\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"personalization\": {\n    \"tag\": \"brand-new-tag\",\n    \"name\": \"brand new name\",\n    \"format\": \"text\",\n    \"content\": \"Hello World!\",\n    \"listids\": \"2,3,4,5\",\n    \"userid\": \"1\",\n    \"isLocked\": false,\n    \"links\": [],\n    \"id\": \"8\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d50228b2-7a18-4e70-881d-75fca7138e92",
+          "name": "ActiveCampaign Retrieve a Variable",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Variable",
+            "description": {
+              "content": "Retrieve an individual personalization variable",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "personalizations",
+                ":variableID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "variableID",
+                  "description": "(Required) ID (int) of variable"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da10c6af-f232-41ea-b880-e72adb5cf4a1",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personalizations",
+                    ":variableID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "variableID",
+                      "description": "(Required) ID (int) of variable"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"personalization\": {\n    \"name\": \"brand new name\",\n    \"tag\": \"brand-new-tag\",\n    \"format\": \"text\",\n    \"content\": \"Hello World!\",\n    \"listIds\": \"2,3,5,4\",\n    \"listNames\": \"Another List,League Players,real,Test Segmentation\",\n    \"listsCount\": \"4\",\n    \"isLocked\": false,\n    \"links\": [],\n    \"id\": \"8\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65dda95c-53b8-49ed-8265-dabef7611bf7",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personalizations",
+                    ":variableID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "variableID",
+                      "description": "(Required) ID (int) of variable"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for Personalization with id 22\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b39f6bd-5ff7-4265-b23c-a44564cb2382",
+          "name": "ActiveCampaign Edit a Variable",
+          "request": {
+            "name": "ActiveCampaign Edit a Variable",
+            "description": {
+              "content": "Edit a personalization variable",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "personalizations",
+                ":variableID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "variableID",
+                  "description": "(Required) ID (int) of personalization/variable"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"personalization\": {\n    \"tag\": \"<string>\",\n    \"name\": \"<string>\",\n    \"format\": \"<string>\",\n    \"content\": \"<string>\",\n    \"listids\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d31bf968-60b2-4313-901a-d625c0188208",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personalizations",
+                    ":variableID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "variableID",
+                      "description": "(Required) ID (int) of personalization/variable"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"personalization\": {\n    \"tag\": \"<string>\",\n    \"name\": \"<string>\",\n    \"format\": \"<string>\",\n    \"content\": \"<string>\",\n    \"listids\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"personalization\": {\n    \"userid\": \"1\",\n    \"tag\": \"brand-new-tag\",\n    \"name\": \"changed name\",\n    \"content\": \"Hello World!\",\n    \"format\": \"text\",\n    \"created_timestamp\": \"2024-08-14 12:31:35\",\n    \"updated_timestamp\": \"2024-08-14 12:31:35\",\n    \"created_by\": null,\n    \"updated_by\": null,\n    \"isLocked\": false,\n    \"listids\": \"2,3,4,5\",\n    \"links\": [],\n    \"id\": \"8\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2e343e9-1e97-49ea-a392-4c483cec530d",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personalizations",
+                    ":variableID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "variableID",
+                      "description": "(Required) ID (int) of personalization/variable"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"personalization\": {\n    \"tag\": \"<string>\",\n    \"name\": \"<string>\",\n    \"format\": \"<string>\",\n    \"content\": \"<string>\",\n    \"listids\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for ActiveCampaign\\\\\\\\Hosted\\\\\\\\Personalization\\\\\\\\Personalization with id 22\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f7303a6-5740-4518-9c69-b65226e73dfe",
+          "name": "ActiveCampaign Delete a Variable",
+          "request": {
+            "name": "ActiveCampaign Delete a Variable",
+            "description": {
+              "content": "Delete a personalization variable",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "personalizations",
+                ":variableID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "variableID",
+                  "description": "(Required) ID (int) of personalization/variable"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1dbc2d3e-8d84-47be-b43e-e2d8bc32a7cf",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personalizations",
+                    ":variableID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "variableID",
+                      "description": "(Required) ID (int) of personalization/variable"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "631735ba-9c7c-41d0-b4bf-ed666abbe5c1",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personalizations",
+                    ":variableID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "variableID",
+                      "description": "(Required) ID (int) of personalization/variable"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for Personalization with id 22\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db48f463-938a-4a83-abd3-992ae27c55f5",
+          "name": "ActiveCampaign Bulk Delete Variables",
+          "request": {
+            "name": "ActiveCampaign Bulk Delete Variables",
+            "description": {
+              "content": "Bulk delete personalization variables",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "personalizations",
+                "bulkdelete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "List of variables to be deleted, ie: 1,2,3"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5872b69c-fea8-4072-aa80-426ebfb3856e",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personalizations",
+                    "bulkdelete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Delete successful",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57036143-9833-4ba6-b92c-a2cd52d9e9d9",
+          "name": "get_{personalization Id}lock",
+          "request": {
+            "name": "get_{personalization Id}lock",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "personalizations",
+                ":variableID",
+                "lock"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variableID",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "deaa683e-3ccc-4345-bd98-fd2dfbf68ed0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personalizations",
+                    ":variableID",
+                    "lock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variableID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Personalization updated successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66239aad-7ace-437a-9942-b21bfb2b8bf8",
+          "name": "patch new-endpoint",
+          "request": {
+            "name": "patch new-endpoint",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "personalizations",
+                ":variableID",
+                "unlock"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variableID",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6dbb4c4-386b-4ac7-a5a6-a3d40ea43194",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personalizations",
+                    ":variableID",
+                    "unlock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variableID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Only admin can lock/unlock personalizations\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ad835954-4939-4f20-ab94-7af4f237a962",
+    "name": "ActiveCampaign SMS Broadcast Accounts Personalizations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

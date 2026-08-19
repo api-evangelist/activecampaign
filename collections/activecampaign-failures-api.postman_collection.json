@@ -1,0 +1,200 @@
+{
+  "item": [
+    {
+      "id": "ed5b70e8-3500-46f8-8396-7ae89331a2c0",
+      "name": "Failures",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0870d25b-5220-417b-ae00-702aec172816",
+          "name": "ActiveCampaign Get Broadcast Failure Details",
+          "request": {
+            "name": "ActiveCampaign Get Broadcast Failure Details",
+            "description": {
+              "content": "Returns grouping and counts of failures for the broadcast",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sms",
+                "broadcasts",
+                "metrics",
+                ":broadcastId",
+                "failures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "Start date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>",
+                  "description": "End date (YYYY-MM-DD)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "broadcastId",
+                  "description": "(Required) Broadcast ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f885aef-622c-491d-8dcc-886047dcd58b",
+              "name": "Failure details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sms",
+                    "broadcasts",
+                    "metrics",
+                    ":broadcastId",
+                    "failures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "broadcastId",
+                      "description": "(Required) Broadcast ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"failures\": [\n    {\n      \"errorCode\": \"string\",\n      \"errorSource\": \"ac\",\n      \"count\": 4535\n    },\n    {\n      \"errorCode\": \"string\",\n      \"errorSource\": \"twilio\",\n      \"count\": 5064\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7461dc80-72d2-4e43-880b-9db4a0324304",
+    "name": "ActiveCampaign SMS Broadcast Accounts Failures API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

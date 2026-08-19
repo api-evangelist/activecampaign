@@ -1,0 +1,331 @@
+{
+  "item": [
+    {
+      "id": "8bfd6bac-6a70-49c9-ba94-f4b1133a4e1c",
+      "name": "Scores",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fe6e88fd-c814-4895-8469-f0530c27d952",
+          "name": "ActiveCampaign Retrieve a Score",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Score",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scores",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the score to retrieve"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e7dfbfc-1d39-411e-95c1-f013fd117318",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scores",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the score to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"score\\\": {\\n        \\\"reltype\\\": \\\"contact\\\",\\n        \\\"name\\\": \\\"Link Engagement Score\\\",\\n        \\\"descript\\\": \\\"+50 points when user clicks any link sent\\\",\\n        \\\"status\\\": \\\"1\\\",\\n        \\\"cdate\\\": \\\"2018-12-13T15:05:42-06:00\\\",\\n        \\\"mdate\\\": \\\"2018-12-13T16:23:07-06:00\\\",\\n        \\\"links\\\": [],\\n        \\\"id\\\": \\\"2\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a601748a-3c4c-443a-b0fb-266c1543813d",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scores",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the score to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for Score with id 1\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5238bf38-2723-4b21-bea4-b4f87762f60b",
+          "name": "ActiveCampaign List All Scores",
+          "request": {
+            "name": "ActiveCampaign List All Scores",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scores"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70136b81-bd12-43c1-b2a2-ec1eee79a99d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scores"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"scores\\\": [\\n        {\\n            \\\"reltype\\\": \\\"contact\\\",\\n            \\\"name\\\": \\\"Link Engagement Score\\\",\\n            \\\"descript\\\": \\\"+50 points when user clicks any link sent\\\",\\n            \\\"status\\\": \\\"1\\\",\\n            \\\"cdate\\\": \\\"2018-12-13T15:05:42-06:00\\\",\\n            \\\"mdate\\\": \\\"2018-12-13T16:23:07-06:00\\\",\\n            \\\"links\\\": [],\\n            \\\"id\\\": \\\"2\\\"\\n        },\\n        {\\n            \\\"reltype\\\": \\\"contact\\\",\\n            \\\"name\\\": \\\"Easy Targets\\\",\\n            \\\"descript\\\": \\\"+10 for replying to any campaign email\\\",\\n            \\\"status\\\": \\\"1\\\",\\n            \\\"cdate\\\": \\\"2018-12-18T19:00:13-06:00\\\",\\n            \\\"mdate\\\": \\\"2018-12-18T19:01:15-06:00\\\",\\n            \\\"links\\\": [],\\n            \\\"id\\\": \\\"6\\\"\\n        },\\n        {\\n            \\\"reltype\\\": \\\"deal\\\",\\n            \\\"name\\\": \\\"Is John Smith\\\",\\n            \\\"descript\\\": \\\"+10 If contacts first name is John and the last name is Smith\\\",\\n            \\\"status\\\": \\\"1\\\",\\n            \\\"cdate\\\": \\\"2018-12-18T19:15:02-06:00\\\",\\n            \\\"mdate\\\": \\\"2018-12-18T19:15:10-06:00\\\",\\n            \\\"links\\\": [],\\n            \\\"id\\\": \\\"7\\\"\\n        },\\n        {\\n            \\\"reltype\\\": \\\"deal\\\",\\n            \\\"name\\\": \\\"Country Is USA\\\",\\n            \\\"descript\\\": \\\"+20 if contact resides in the United States\\\",\\n            \\\"status\\\": \\\"1\\\",\\n            \\\"cdate\\\": \\\"2018-12-19T00:37:38-06:00\\\",\\n            \\\"mdate\\\": \\\"2018-12-19T00:37:42-06:00\\\",\\n            \\\"links\\\": [],\\n            \\\"id\\\": \\\"9\\\"\\n        }\\n    ],\\n    \\\"meta\\\": {\\n        \\\"total\\\": \\\"4\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5e4acd0e-76a0-4800-89dd-9760a1466a92",
+    "name": "ActiveCampaign SMS Broadcast Accounts Scores API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

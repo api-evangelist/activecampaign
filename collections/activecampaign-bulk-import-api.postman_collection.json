@@ -1,0 +1,541 @@
+{
+  "item": [
+    {
+      "id": "c0cca182-6f67-4762-9294-b904bb2b2acf",
+      "name": "Bulk Import",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e8ca320b-6a75-4a54-97a6-582fb1e62e82",
+          "name": "ActiveCampaign Bulk Import Contacts",
+          "request": {
+            "name": "ActiveCampaign Bulk Import Contacts",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "import",
+                "bulk_import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Api-Token",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contacts\": [\n    {\n      \"email\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"customer_acct_name\": \"<string>\",\n      \"fields\": [\n        {\n          \"id\": \"<integer>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"subscribe\": [\n        {\n          \"listid\": \"<string>\"\n        },\n        {\n          \"listid\": \"<string>\"\n        }\n      ],\n      \"unsubscribe\": [\n        {\n          \"listid\": \"<string>\"\n        },\n        {\n          \"listid\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"email\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"customer_acct_name\": \"<string>\",\n      \"fields\": [\n        {\n          \"id\": \"<integer>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"id\": \"<integer>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"subscribe\": [\n        {\n          \"listid\": \"<string>\"\n        },\n        {\n          \"listid\": \"<string>\"\n        }\n      ],\n      \"unsubscribe\": [\n        {\n          \"listid\": \"<string>\"\n        },\n        {\n          \"listid\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"callback\": {\n    \"url\": \"<string>\",\n    \"requestType\": \"POST\",\n    \"detailed_results\": \"true\",\n    \"params\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"headers\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "feff5341-3620-4acd-8a4d-de821f36a36d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "import",
+                    "bulk_import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Api-Token",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"email\": \"someone@somewhere.com\",\n      \"first_name\": \"Jane\",\n      \"last_name\": \"Doe\",\n      \"phone\": \"123-456-7890\",\n      \"customer_acct_name\": \"ActiveCampaign\",\n      \"exclude_automations\": false,\n      \"tags\": [\n        \"dictumst\",\n        \"aliquam\",\n        \"augue quam\",\n        \"sollicitudin rutrum\"\n      ],\n      \"fields\": [\n        {\n          \"id\": 1,\n          \"value\": \"foo\"\n        },\n        {\n          \"id\": 2,\n          \"value\": \"||foo||bar||baz||\"\n        }\n      ],\n      \"subscribe\": [\n        {\n          \"listid\": 1\n        },\n        {\n          \"listid\": 2\n        }\n      ],\n      \"unsubscribe\": [\n        {\n          \"listid\": 3\n        }\n      ]\n    }\n  ],\n  \"callback\": {\n    \"url\": \"www.your_web_server.com\",\n    \"requestType\": \"POST\",\n    \"detailed_results\": \"true\",\n    \"params\": [\n      {\n        \"key\": \"\",\n        \"value\": \"\"\n      }\n    ],\n    \"headers\": [\n      {\n        \"key\": \"\",\n        \"value\": \"\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n   \\\"Success\\\":1,\\n   \\\"queued_contacts\\\":1,\\n   \\\"batchId\\\":\\\"0641fbdd-f62f-4c2c-ba02-3a83d5d11ac9\\\",\\n   \\\"message\\\":\\\"Contact import queued\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce36abe8-ab74-47b3-8052-010af6cc5c7c",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "import",
+                    "bulk_import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Api-Token",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contacts\": [\n    {\n      \"email\": \"someone@somewhere.com\",\n      \"first_name\": \"Jane\",\n      \"last_name\": \"Doe\",\n      \"phone\": \"123-456-7890\",\n      \"customer_acct_name\": \"ActiveCampaign\",\n      \"exclude_automations\": false,\n      \"tags\": [\n        \"dictumst\",\n        \"aliquam\",\n        \"augue quam\",\n        \"sollicitudin rutrum\"\n      ],\n      \"fields\": [\n        {\n          \"id\": 1,\n          \"value\": \"foo\"\n        },\n        {\n          \"id\": 2,\n          \"value\": \"||foo||bar||baz||\"\n        }\n      ],\n      \"subscribe\": [\n        {\n          \"listid\": 1\n        },\n        {\n          \"listid\": 2\n        }\n      ],\n      \"unsubscribe\": [\n        {\n          \"listid\": 3\n        }\n      ]\n    }\n  ],\n  \"callback\": {\n    \"url\": \"www.your_web_server.com\",\n    \"requestType\": \"POST\",\n    \"detailed_results\": \"true\",\n    \"params\": [\n      {\n        \"key\": \"\",\n        \"value\": \"\"\n      }\n    ],\n    \"headers\": [\n      {\n        \"key\": \"\",\n        \"value\": \"\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n\\t\\\"success\\\": 0,\\n\\t\\\"message\\\": \\\"JSON payload did not pass validation. Please fix failure Reasons and retry. The import was not queued for processing.\\\",\\n\\t\\\"failureReasons\\\": [{\\n\\t\\t\\\"contact\\\": 230,\\n\\t\\t\\\"failureReason\\\": \\\"Field‘ email’ incorrect format\\\"\\n\\t}]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f752c565-6df9-4897-864c-f345c46f687a",
+          "name": "ActiveCampaign Bulk Import Status List",
+          "request": {
+            "name": "ActiveCampaign Bulk Import Status List",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "import",
+                "bulk_import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2194f16-e074-41b1-ba47-cdca182f2f12",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "import",
+                    "bulk_import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"outstanding\\\":[\\n    {\\\"forDate\\\":\\\"2021-06-01\\\",\\\"batches\\\":\\\"333\\\",\\\"contacts\\\":\\\"83250\\\"}\\n  ],\\n  \\\"recentlyCompleted\\\":[\\n    {\\\"forDate\\\":\\\"2021-06-01\\\",\\\"batches\\\":\\\"17\\\",\\\"contacts\\\":\\\"4250\\\"},\\n    {\\\"forDate\\\":\\\"2021-06-02\\\",\\\"batches\\\":\\\"50\\\",\\\"contacts\\\":\\\"12500\\\"}\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e22386a-63a2-42c4-851d-b6e5b4f38279",
+          "name": "ActiveCampaign Bulk Import Status Info",
+          "request": {
+            "name": "ActiveCampaign Bulk Import Status Info",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "import",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "batchId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14c95a09-7c99-4ea7-ad1a-4cfcdaff7298",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "import",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "batchId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"status\\\":\\\"completed\\\",\\n  \\\"success\\\":[\\\"123\\\",\\\"124\\\",\\\"125\\\",\\\"126\\\"],\\n  \\\"failure\\\":[\\n    \\\"invalid.email@invalidDomain\\\", \\n    \\\"invalid'character@example.com\\\"\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1d1cc00-0adf-41b1-9669-871ad457cbec",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "import",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "batchId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\\"success\\\":0,\\\"message\\\":\\\"'batchId' is a required field.\\\"}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "25b2f0ef-e879-4dd8-ad7c-73f43d6e12f6",
+    "name": "ActiveCampaign SMS Broadcast Accounts Bulk Import API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

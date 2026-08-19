@@ -1,0 +1,905 @@
+{
+  "item": [
+    {
+      "id": "126140c3-0864-49c8-b05a-e108971f3d40",
+      "name": "Webhooks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "83992f52-7c94-443b-b177-09d75f73c2c0",
+          "name": "ActiveCampaign Create a Webhook",
+          "request": {
+            "name": "ActiveCampaign Create a Webhook",
+            "description": {
+              "content": "Create a new webhook",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook\": {\n    \"name\": \"<string>\",\n    \"url\": \"<string>\",\n    \"events\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sources\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"listid\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3517a451-c814-44f9-958a-58fecb714455",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook\": {\n    \"name\": \"My Hook\",\n    \"url\": \"http://example.com/my-hook\",\n    \"events\": [\n      \"subscribe\",\n      \"unsubscribe\",\n      \"sent\"\n    ],\n    \"sources\": [\n      \"public\",\n      \"system\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"webhook\\\": {\\n    \\\"cdate\\\": \\\"2016-01-01T12:00:00-00:00\\\",\\n    \\\"listid\\\": \\\"0\\\",\\n    \\\"name\\\": \\\"My Hook\\\",\\n    \\\"url\\\": \\\"http://example.com/my-hook\\\",\\n    \\\"events\\\": [\\n      \\\"subscribe\\\",\\n      \\\"unsubscribe\\\",\\n      \\\"sent\\\"\\n    ],\\n    \\\"sources\\\": [\\n      \\\"public\\\",\\n      \\\"system\\\"\\n    ],\\n    \\\"links\\\": [],\\n    \\\"id\\\": \\\"1\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb8eafb5-e3db-445c-bb0d-b1c2771915aa",
+          "name": "ActiveCampaign List All Webhooks",
+          "request": {
+            "name": "ActiveCampaign List All Webhooks",
+            "description": {
+              "content": "List all existing webhooks",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filters[name]",
+                  "value": "<string>",
+                  "description": "Filter by webhook name"
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[url]",
+                  "value": "<string>",
+                  "description": "Filter by webhook url"
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[listid]",
+                  "value": "<string>",
+                  "description": "Filter by webhook's associated list"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae8e35b8-f585-4c92-828a-39ab0fc0a7fd",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters[name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters[url]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters[listid]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"webhooks\\\": [\\n    {\\n      \\\"cdate\\\": \\\"2016-01-01T12:00:00-00:00\\\",\\n      \\\"listid\\\": \\\"0\\\",\\n      \\\"name\\\": \\\"My Hook\\\",\\n      \\\"url\\\": \\\"http://example.com/my-hook\\\",\\n      \\\"events\\\": [\\n        \\\"subscribe\\\",\\n        \\\"unsubscribe\\\",\\n        \\\"sent\\\"\\n      ],\\n      \\\"sources\\\": [\\n        \\\"public\\\",\\n        \\\"system\\\"\\n      ],\\n      \\\"links\\\": [],\\n      \\\"id\\\": \\\"1\\\"\\n    },\\n    {\\n      \\\"cdate\\\": \\\"2016-01-01T12:00:00-00:00\\\",\\n      \\\"listid\\\": \\\"0\\\",\\n      \\\"name\\\": \\\"My Hook 2\\\",\\n      \\\"url\\\": \\\"http://example.com/my-hook-2\\\",\\n      \\\"events\\\": [\\n        \\\"subscribe\\\"\\n      ],\\n      \\\"sources\\\": [\\n        \\\"admin\\\"\\n      ],\\n      \\\"links\\\": [],\\n      \\\"id\\\": \\\"2\\\"\\n    },\\n  ],\\n  \\\"meta\\\": {\\n    \\\"total\\\": \\\"2\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16a4a3e2-c440-47ff-88dd-3ef9b9f6cb5f",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters[name]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters[url]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters[listid]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f858d23-1c89-4b30-8e90-9fe1ed4c53a9",
+          "name": "ActiveCampaign Retrieve a Webhook",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Webhook",
+            "description": {
+              "content": "Retrieve an existing webhook",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2bc84c01-73e1-40b9-a58a-d876c1680b0b",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"webhook\\\": {\\n    \\\"cdate\\\": \\\"2016-01-01T12:00:00-00:00\\\",\\n    \\\"listid\\\": \\\"0\\\",\\n    \\\"name\\\": \\\"My hook\\\",\\n    \\\"url\\\": \\\"http://example.com/my-hook\\\",\\n    \\\"events\\\": [\\n      \\\"subscribe\\\",\\n      \\\"unsubscribe\\\",\\n      \\\"sent\\\"\\n    ],\\n    \\\"sources\\\": [\\n      \\\"admin\\\",\\n      \\\"api\\\",\\n      \\\"system\\\"\\n    ],\\n    \\\"links\\\": [],\\n    \\\"id\\\": \\\"1\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "793dea9a-9daa-41cf-97fd-7244a3c6922a",
+          "name": "ActiveCampaign Update a Webhook",
+          "request": {
+            "name": "ActiveCampaign Update a Webhook",
+            "description": {
+              "content": "Update an existing webhook",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The webhook id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook\": {\n    \"name\": \"<string>\",\n    \"url\": \"<string>\",\n    \"events\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sources\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"listid\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f2edbf44-117d-407e-8f8b-179113b168d4",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The webhook id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook\": {\n    \"name\": \"My Hook\",\n    \"url\": \"http://example.com/my-hook\",\n    \"events\": [\n      \"subscribe\",\n      \"unsubscribe\",\n      \"sent\"\n    ],\n    \"sources\": [\n      \"public\",\n      \"system\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"webhook\\\": {\\n    \\\"cdate\\\": \\\"2016-01-01T12:00:00-00:00\\\",\\n    \\\"listid\\\": \\\"0\\\",\\n    \\\"name\\\": \\\"My Hook\\\",\\n    \\\"url\\\": \\\"http://example.com/my-hook\\\",\\n    \\\"events\\\": [\\n      \\\"subscribe\\\",\\n      \\\"unsubscribe\\\",\\n      \\\"sent\\\"\\n    ],\\n    \\\"sources\\\": [\\n      \\\"public\\\",\\n      \\\"system\\\"\\n    ],\\n    \\\"links\\\": [],\\n    \\\"id\\\": \\\"1\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "746b607f-d44f-4a5c-8b52-22fb9d076467",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The webhook id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook\": {\n    \"name\": \"My Hook\",\n    \"url\": \"http://example.com/my-hook\",\n    \"events\": [\n      \"subscribe\",\n      \"unsubscribe\",\n      \"sent\"\n    ],\n    \"sources\": [\n      \"public\",\n      \"system\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a9ea927-6c24-4621-a1e0-98414bb3c48f",
+          "name": "ActiveCampaign Delete a Webhook",
+          "request": {
+            "name": "ActiveCampaign Delete a Webhook",
+            "description": {
+              "content": "Delete an existing webhook",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The webhook id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34135a2f-fd1a-4ed4-934f-0a1f1c760f0d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The webhook id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed79cc88-6418-4795-a718-9e937a6d6972",
+          "name": "ActiveCampaign List All Webhook Events",
+          "request": {
+            "name": "ActiveCampaign List All Webhook Events",
+            "description": {
+              "content": "List all available webhook events",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhook",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd9180a6-25f8-4aa2-8dde-f630bbec29bd",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"webhookEvents\\\": [\\n    \\\"bounce\\\",\\n    \\\"click\\\",\\n    \\\"contact_tag_added\\\",\\n    \\\"contact_tag_removed\\\",\\n    \\\"deal_add\\\",\\n    \\\"deal_note_add\\\",\\n    \\\"deal_pipeline_add\\\",\\n    \\\"deal_stage_add\\\",\\n    \\\"deal_task_add\\\",\\n    \\\"deal_task_complete\\\",\\n    \\\"deal_tasktype_add\\\",\\n    \\\"deal_update\\\",\\n    \\\"forward\\\",\\n    \\\"list_add\\\",\\n    \\\"open\\\",\\n    \\\"reply\\\",\\n    \\\"sent\\\",\\n    \\\"share\\\",\\n    \\\"sms_reply\\\",\\n    \\\"sms_sent\\\",\\n    \\\"sms_unsub\\\",\\n    \\\"subscribe\\\",\\n    \\\"subscriber_note\\\",\\n    \\\"unsubscribe\\\",\\n    \\\"update\\\"\\n  ],\\n  \\\"meta\\\": {\\n    \\\"total\\\": 25\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e7c172f4-796b-4dc7-a3f4-a84656078d85",
+    "name": "ActiveCampaign SMS Broadcast Accounts Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

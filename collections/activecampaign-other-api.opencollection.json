@@ -1,0 +1,399 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Other API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Other",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List a Contact's Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/activities",
+            "params": [
+              {
+                "name": "contact",
+                "value": "",
+                "type": "query",
+                "description": "Required Contact ID"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Filter for activities after a specific DateTime"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Activities to include: notes, notes.user, recipients, recipients.recipient, reference, reference.automation, reference.campaign, reference.campaign.campaignList, reference.campaign.campaignMessage, reference.campaignMessage, reference.contact, reference.contactList, reference.contactList.list, reference.deal, reference.deal.contact, reference.dealTasktype, reference.link, reference.list, reference.log, reference.log.campaign, reference.log.contact, reference.log.message, reference.message, reference.note, reference.sms, reference.sms.automation, user"
+              },
+              {
+                "name": "orders[tstamp]",
+                "value": "",
+                "type": "query",
+                "description": "Order activities by tstamp"
+              },
+              {
+                "name": "emails",
+                "value": "",
+                "type": "query",
+                "description": "FALSE: Excludes email data fields under each activity. No specific connection to emails is mentioned in the JSON data.​ TRUE: Returns deal activities that include email data fields like \"connection_email.\" Each deal activity specifies the addition of email connection information along with timestamps and relevant metadata."
+              }
+            ]
+          },
+          "docs": "View your contact's recent activity. The activity is generated when a contact is retrieved via /api/3/contacts/[contactID]. This endpoint should be used after retrieving a contact to obtain the latest data. This is useful for searching for contacts that match certain criteria - such as being part of a certain list, or having a specific custom field value."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Geo IP Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/geoIps/:geoAddressID/geoAddress",
+            "params": [
+              {
+                "name": "geoAddressID",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Geo IP Address"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Email Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/emailActivities",
+            "params": [
+              {
+                "name": "filters[subscriberid]",
+                "value": "",
+                "type": "query",
+                "description": "Set this parameter to return only email activities belonging to a given subscriber."
+              },
+              {
+                "name": "filters[dealId]",
+                "value": "",
+                "type": "query",
+                "description": "Set this parameter to return only email activities belonging to a given deal."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Email Activities"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get a Record by External Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/records/:schemdId/external/:externalId",
+            "params": [
+              {
+                "name": "schemdId",
+                "value": "",
+                "type": "path",
+                "description": "ID of schema"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path",
+                "description": "External ID for record"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Get a Record by External Id"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/connections",
+            "params": [
+              {
+                "name": "filters[service]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the external service name."
+              },
+              {
+                "name": "filters[externalid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the external id associated with a connection."
+              }
+            ]
+          },
+          "docs": "List all existing connection resources."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/connections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new connection resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/connections/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the connection to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing connection resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/connections/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the connection to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing connection resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/connections/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the connection to delete."
+              }
+            ]
+          },
+          "docs": "Delete an existing connection resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/configs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the config to edit"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Update Settings"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get Contact by Event ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/trackingLogs/:eventId/contact",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "The Event's ID"
+              }
+            ]
+          },
+          "docs": "Get the contact that was involved in an event."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Local Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/localevent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Published by TrackCmp. Creates an em_local_event row in production database."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Personalization Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/stripo/personalizationTags",
+            "params": [
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "(optional) Comma separated values: contacts,accounts,deals,customobjects,message,messageVariables,social,surveymonkey,dropbox,ecom"
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query",
+                "description": "(optional)"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Personalization Tags"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Stripo Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/stripo/config",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Stripo Config"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get Editor Markup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/content/editorMarkup/:messageId",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path",
+                "description": "required"
+              }
+            ]
+          },
+          "docs": "Get Editor Markup"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Whitelisted Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/prism/urlWhitelistings"
+          },
+          "docs": "List of all whitelisted site tracking domains"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Add Domain to Whitelist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/prism/urlWhitelistings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a domain to the site tracking whitelist"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Remove Domain from Whitelist",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/prism/urlWhitelistings/:domain_id",
+            "params": [
+              {
+                "name": "domain_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the whitelisted domain. Can be retrieved using the GET /prism/urlWhitelistings endpoint"
+              }
+            ]
+          },
+          "docs": "Remove a domain from the site tracking whitelist"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

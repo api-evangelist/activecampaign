@@ -1,0 +1,117 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/ActiveCampaign/activecampaign-plugin
+description: >-
+  ActiveCampaign publishes its own Agent Skills. This index catalogues them; the files
+  under skills/activecampaign-plugin/ are saved VERBATIM from ActiveCampaign's MIT
+  licensed first-party plugin repository (pushed 2026-08-07, plugin version 0.2.0).
+  Nothing in this directory is authored by API Evangelist — where a provider ships real
+  skills, the pipeline captures them rather than generating substitutes.
+publisher:
+  name: ActiveCampaign, LLC
+  repository: https://github.com/ActiveCampaign/activecampaign-plugin
+  license: MIT
+  plugin_name: activecampaign
+  plugin_version: 0.2.0
+  contact: amurrey@activecampaign.com
+  manifest: skills/activecampaign-plugin/activecampaign-plugin.json
+grounding:
+  surface: mcp
+  server: mcp/activecampaign-mcp.yml
+  note: >-
+    Every skill is grounded in MCP tool names (mcp__activecampaign__*), not in REST
+    operationIds. The REST operations behind each tool are resolved in
+    mcp/activecampaign-tool-crosswalk.yml, so a reader can follow a skill step all the
+    way down to a v3 operation and its real parameters.
+safety_contract:
+  pattern: read -> preview -> confirm -> execute -> verify
+  note: >-
+    ActiveCampaign's own design decision, and a sensible one given the API has no
+    idempotency key and no undo. The plugin pre-approves each skill's READ tools in
+    allowed-tools and deliberately leaves WRITE tools to the host's permission prompt.
+skills:
+  - file: activecampaign-plugin/activecampaign-reporting-analyst.md
+    name: reporting-analyst
+    description: >-
+      Analyze campaign performance, automation results, email metrics, and engagement
+      trends.
+    api: mcp/activecampaign-mcp.yml
+    write_capable: false
+    tools:
+      - list_campaigns
+      - get_campaign
+      - get_campaign_links
+      - list_email_activities
+      - list_contacts
+      - list_automations
+      - list_contact_automations
+      - get_contact_automation
+      - list_deals
+      - get_deal
+      - list_deal_activities
+      - list_deal_pipelines
+      - list_deal_stages
+  - file: activecampaign-plugin/activecampaign-campaign-strategist.md
+    name: campaign-strategist
+    description: 'Campaign planning, email content and targeting, backed by account data.'
+    api: mcp/activecampaign-mcp.yml
+    write_capable: false
+  - file: activecampaign-plugin/activecampaign-automation-builder.md
+    name: automation-builder
+    description: >-
+      Workflow design, triggers and drip sequences; can enrol contacts and manage the
+      tags that trigger workflows.
+    api: mcp/activecampaign-mcp.yml
+    write_capable: true
+  - file: activecampaign-plugin/activecampaign-contact-operations.md
+    name: contact-operations
+    description: >-
+      Segmentation, bulk updates, and list/field management with a preview-and-confirm
+      step.
+    api: mcp/activecampaign-mcp.yml
+    write_capable: true
+  - file: activecampaign-plugin/activecampaign-deals-crm.md
+    name: deals-crm
+    description: >-
+      Pipelines, stages, deals, owners and custom objects — creates and operates the
+      CRM with preview-and-confirm.
+    api: mcp/activecampaign-mcp.yml
+    write_capable: true
+  - file: activecampaign-plugin/activecampaign-deliverability-advisor.md
+    name: deliverability-advisor
+    description: 'Diagnoses spam, bounce and authentication problems; SPF/DKIM/DMARC guidance.'
+    api: mcp/activecampaign-mcp.yml
+    write_capable: false
+commands:
+  - {file: activecampaign-plugin/commands/activecampaign-campaign-report.md, name: '/activecampaign:campaign-report', read_only: true}
+  - {file: activecampaign-plugin/commands/activecampaign-weekly-digest.md, name: '/activecampaign:weekly-digest', read_only: true}
+  - {file: activecampaign-plugin/commands/activecampaign-automation-audit.md, name: '/activecampaign:automation-audit', read_only: true}
+  - {file: activecampaign-plugin/commands/activecampaign-audience-health.md, name: '/activecampaign:audience-health', read_only: true}
+  - {file: activecampaign-plugin/commands/activecampaign-deal-pipeline-review.md, name: '/activecampaign:deal-pipeline-review', read_only: true}
+agents:
+  - {file: activecampaign-plugin/agents/activecampaign-marketing-planner.md, name: marketing-planner, read_only: true, description: '30/60/90-day marketing plans grounded in account data; produces the plan, does not execute it.'}
+  - {file: activecampaign-plugin/agents/activecampaign-data-operations.md, name: data-operations, read_only: false, description: 'Bulk contact operations (mass tagging, list migration, field cleanup, bulk import) with safety previews and automation-trigger warnings.'}
+capability_boundaries:
+  cannot:
+    - 'Create, edit or send campaigns — the plugin preps the audience; the human sends in the UI.'
+    - 'Create automations or edit automation steps — it designs the flow; the human builds it.'
+    - 'Compute aggregate metrics (win rate, completion rate, average deal value, totals).'
+    - 'Verify DNS or inbox placement.'
+  note: >-
+    ActiveCampaign's own stated limits, quoted from its README. The aggregate ban is
+    server-enforced, not a plugin choice — see mcp/activecampaign-mcp.yml.
+unrelated_content_in_this_directory:
+  - path: skills/postmark-skills/
+    belongs_to: Postmark
+    canonical_location: all/postmark/skills/postmark-skills/
+    note: >-
+      A copy of the Postmark skills bundle sits in this repo. Postmark is an
+      ActiveCampaign-owned product with its own catalog entry, and the same files are
+      already present in all/postmark/. It is left in place rather than deleted, but it
+      is NOT indexed above and no ActiveCampaign AgentSkill pointer resolves to it —
+      those skills teach an agent to send transactional email through Postmark's API,
+      not to operate the ActiveCampaign platform.
+x-evidence:
+  - {url: 'https://api.github.com/repos/ActiveCampaign/activecampaign-plugin', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://api.github.com/repos/ActiveCampaign/activecampaign-plugin/contents/skills', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://api.github.com/repos/ActiveCampaign/activecampaign-plugin/readme', http_status: 200, fetched: '2026-08-13'}

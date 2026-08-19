@@ -1,0 +1,513 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WhatsApp API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List WhatsApp Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{youraccountname}.api-us1.com/api/3/channel/whatsapp/channels/whatsapp/template",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "* `ACCOUNT_UPDATE` - Account Update\n* `PAYMENT_UPDATE` - Payment Update\n* `PERSONAL_FINANCE_UPDATE` - Personal Finance Update\n* `SHIPPING_UPDATE` - Shipping Update\n* `RESERVATION_UPDATE` - Reservation Update\n* `ISSUE_RESOLUTION` - Issue Resolution\n* `APPOINTMENT_UPDATE` - Appointment Update\n* `TRANSPORTATION_UPDATE` - Transportation Update\n* `TICKET_UPDATE` - Ticket Update\n* `ALERT_UPDATE` - Alert Update\n* `AUTO_REPLY` - Auto Reply\n* `TRANSACTIONAL` - Transactional\n* `MARKETING` - Marketing\n* `OTP` - Otp\n* `AUTHENTICATION` - Authentication\n* `UTILITY` - Utility"
+              },
+              {
+                "name": "category__in",
+                "value": "",
+                "type": "query",
+                "description": "Multiple values may be separated by commas."
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "channel__in",
+                "value": "",
+                "type": "query",
+                "description": "Multiple values may be separated by commas."
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query",
+                "description": "Which field to use when ordering the results."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "A page number within the paginated result set."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "* `draft` - Draft\n* `approved` - Approved\n* `in_appeal` - In Appeal\n* `pending` - Pending\n* `rejected` - Rejected\n* `pending_deletion` - Pending Deletion\n* `deleted` - Deleted\n* `disabled` - Disabled\n* `submitted` - Submitted"
+              },
+              {
+                "name": "status__in",
+                "value": "",
+                "type": "query",
+                "description": "Multiple values may be separated by commas."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Token",
+              "value": "{{Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists WhatsApp Templates. You can search with the `name` and `status` fields using the `?seach=my-template-name` query parameter."
+        },
+        {
+          "info": {
+            "name": "Get WhatsApp Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{youraccountname}.api-us1.com/api/3/channel/whatsapp/channels/whatsapp/template/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Token",
+              "value": "{{Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets a WhatsApp Template by Id."
+        },
+        {
+          "info": {
+            "name": "Update WhatsApp Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{youraccountname}.api-us1.com/api/3/channel/whatsapp/channels/whatsapp/template/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Token",
+              "value": "{{Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a WhatsApp Template by Id."
+        },
+        {
+          "info": {
+            "name": "Delete WhatsApp Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{youraccountname}.api-us1.com/api/3/channel/whatsapp/channels/whatsapp/template/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Token",
+              "value": "{{Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a WhatsApp Template by Id."
+        },
+        {
+          "info": {
+            "name": "Send a WhatsApp Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{youraccountname}.api-us1.com/api/3/channel/whatsapp/channels/whatsapp/template/:id/send",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Template Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Token",
+              "value": "{{Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send a single WhatsApp message: select a template to use and call our endpoint with the recipient phone number and the variables the template needs. That's it!"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Flows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Flow Executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{youraccountname}.api-us1.com/api/3/channel/whatsapp/flow-execution",
+            "params": [
+              {
+                "name": "flow",
+                "value": "",
+                "type": "query",
+                "description": "A Flow Id to filter the Flow Executions and only get those from that Flow."
+              },
+              {
+                "name": "flow_version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "A page number within the paginated result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "You can search with the `status`, `created_by__email` fields."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Token",
+              "value": "{{Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists Flow Executions. "
+        },
+        {
+          "info": {
+            "name": "List Flow Execution Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{youraccountname}.api-us1.com/api/3/channel/whatsapp/flow-execution-contact",
+            "params": [
+              {
+                "name": "contact",
+                "value": "",
+                "type": "query",
+                "description": "A Contact Id to filter the Flow Execution Contacts and only get those from that Contact."
+              },
+              {
+                "name": "execution_steps__step_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "flow",
+                "value": "",
+                "type": "query",
+                "description": "A Flow Id to filter the Flow Execution Contacts and only get those from that Flow."
+              },
+              {
+                "name": "flow_execution",
+                "value": "",
+                "type": "query",
+                "description": "A Flow Execution Id to filter the Flow Execution Contacts and only get those from that Flow Execution."
+              },
+              {
+                "name": "flow_version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "A boolean param to filter between active/in progress Flow Execution Contacs.\n\n If the parameter is omitted it will respond with Flow Execution Contacts with any `status`."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "A page number within the paginated result set."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "You can search with the `contact__phone`, `contact__first_name`, `contact__last_name`, `contact__email` fields."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Token",
+              "value": "{{Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists Flow Execution Contacts."
+        },
+        {
+          "info": {
+            "name": "Get Flow Execution Contact by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{youraccountname}.api-us1.com/api/3/channel/whatsapp/flow-execution-contact/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A Flow Execution Contact Id to Retrive."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Token",
+              "value": "{{Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Flow Execution Contact by Id."
+        },
+        {
+          "info": {
+            "name": "Get Flow Execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{youraccountname}.api-us1.com/api/3/channel/whatsapp/flow-execution/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A Flow Execution Id to retrive."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Token",
+              "value": "{{Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Flow Execution by Id."
+        },
+        {
+          "info": {
+            "name": "Create a Flow Execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{youraccountname}.api-us1.com/api/3/channel/whatsapp/flow/:id/run",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A Flow Id to create a Flow Execution."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Token",
+              "value": "{{Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a Flow Execution of a Flow."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{youraccountname}.api-us1.com/api/3/channel/whatsapp/inbox/conversation",
+            "params": [
+              {
+                "name": "contact",
+                "value": "",
+                "type": "query",
+                "description": "A Contact Id to filter the Conversations and only get those from that Contact."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "A page number within the paginated result set."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Token",
+              "value": "{{Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists Conversations. "
+        },
+        {
+          "info": {
+            "name": "Update a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{youraccountname}.api-us1.com/api/3/channel/whatsapp/inbox/conversation/:id/update",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Token",
+              "value": "{{Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a Conversation"
+        },
+        {
+          "info": {
+            "name": "Partially Update a Conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{youraccountname}.api-us1.com/api/3/channel/whatsapp/inbox/conversation/:id/update",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Token",
+              "value": "{{Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Partially update a Conversation"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

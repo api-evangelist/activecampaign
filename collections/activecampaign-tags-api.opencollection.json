@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Tags API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tags",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name of tag(s); \"contains\" operator is assumed."
+              },
+              {
+                "name": "filters[search][<operator>]",
+                "value": "",
+                "type": "query",
+                "description": "Filters tags by tag name according to the operator specified. Operators currently supported: `eq`, `neq`, `lt`, `lte`, `gt`, `gte`, `contains`, `starts_with`"
+              },
+              {
+                "name": "orders[search]",
+                "value": "",
+                "type": "query",
+                "description": "Orders filtered results by weight, ascending order, or descending order. If `weight` is used, exact matches are returned first, followed by matches starting with what was filtered by, followed by the rest of the results."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Tags"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Tag"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the tag to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Tag"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the tag to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Tag"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the tag to remove"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Tag"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Webhooks API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/webhooks",
+            "params": [
+              {
+                "name": "filters[name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by webhook name"
+              },
+              {
+                "name": "filters[url]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by webhook url"
+              },
+              {
+                "name": "filters[listid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by webhook's associated list"
+              }
+            ]
+          },
+          "docs": "List all existing webhooks"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing webhook"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The webhook id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing webhook"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The webhook id"
+              }
+            ]
+          },
+          "docs": "Delete an existing webhook"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Webhook Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/webhook/events"
+          },
+          "docs": "List all available webhook events"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

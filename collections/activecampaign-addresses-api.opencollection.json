@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Addresses API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Addresses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addresses"
+          },
+          "docs": "ActiveCampaign List All Addresses"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create an Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addresses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create an Address"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve an Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addresses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Address to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve an Address"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update an Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addresses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Address being changed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update an Address"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete an Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addresses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Address to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete an Address"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete Address Associated with a Specific User Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addressGroups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the AddressGroup to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete Address Associated with a Specific User Group"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete Address Associated with a Specific List",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/addressLists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the AddressList to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete Address Associated with a Specific List"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

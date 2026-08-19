@@ -1,0 +1,2155 @@
+{
+  "item": [
+    {
+      "id": "2c9beec3-1698-4ea4-a5b8-8d7fed0b2d30",
+      "name": "Tasks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "174f606d-da45-4519-a44b-50631f3ab8d4",
+          "name": "ActiveCampaign Create a Task Outcome",
+          "request": {
+            "name": "ActiveCampaign Create a Task Outcome",
+            "description": {
+              "content": "Create a new task outcome",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "taskOutcomes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"sentiment\": \"<string>\",\n  \"disabled\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "712d5a36-a942-41b6-9596-ac2e1975a1da",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOutcomes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskOutcome\": {\n    \"title\": \"Interested\",\n    \"sentiment\": \"Positive\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"taskOutcome\\\": {\\n    \\\"title\\\": \\\"Interested\\\",\\n    \\\"sentiment\\\": \\\"POSITIVE\\\",\\n    \\\"created_by\\\": \\\"1\\\",\\n    \\\"disabled\\\": \\\"\\\",\\n    \\\"links\\\": {\\n      \\\"tasktypeOutcomeRels\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/1/tasktypeOutcomeRels\\\",\\n      \\\"dealTasks\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/1/dealTasks\\\"\\n    },\\n    \\\"id\\\": \\\"1\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4ced756-2784-46aa-9d40-47f0a62126fd",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOutcomes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskOutcome\": {\n    \"title\": \"Interested\",\n    \"sentiment\": \"Positive\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"title\\\": \\\"The taskOutcome title was not provided.\\\",\\n            \\\"detail\\\": \\\"\\\",\\n            \\\"code\\\": \\\"field_missing\\\",\\n            \\\"error\\\": \\\"taskOutcome_title_was_not_provided\\\",\\n            \\\"source\\\": {\\n                \\\"pointer\\\": \\\"/data/attributes/title\\\"\\n            }\\n        },\\n        {\\n            \\\"title\\\": \\\"Sentiment value must be one of Positive, Neutral, or Negative.\\\",\\n            \\\"detail\\\": \\\"\\\",\\n            \\\"code\\\": \\\"field_invalid\\\",\\n            \\\"error\\\": \\\"\\\",\\n            \\\"source\\\": {\\n                \\\"pointer\\\": \\\"/data/attributes/sentiment\\\"\\n            }\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ccabd7d-aef1-4924-a56b-af00d3faccf6",
+          "name": "ActiveCampaign List All Task Outcomes",
+          "request": {
+            "name": "ActiveCampaign List All Task Outcomes",
+            "description": {
+              "content": "Retrieve all existing task outcomes",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "taskOutcomes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filters[sentiment]",
+                  "value": "<string>",
+                  "description": "1 is for Negative, 2 is for Neutral and 3 is for Positive"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5fd31a6b-5858-4540-b091-fa85d3cc9698",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOutcomes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters[sentiment]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"taskOutcomes\\\": [\\n        {\\n            \\\"title\\\": \\\"Interested\\\",\\n            \\\"sentiment\\\": \\\"POSITIVE\\\",\\n            \\\"disabled\\\": \\\"0\\\",\\n            \\\"created_by\\\": \\\"1\\\",\\n            \\\"updated_by\\\": \\\"1\\\",\\n            \\\"created_utc_timestamp\\\": \\\"2021-02-16T12:26:15-06:00\\\",\\n            \\\"updated_utc_timestamp\\\": \\\"2021-02-16T12:27:56-06:00\\\",\\n            \\\"dealTasktype_ids\\\": [],\\n            \\\"links\\\": {\\n                \\\"tasktypeOutcomeRels\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/1/tasktypeOutcomeRels\\\",\\n                \\\"dealTasks\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/1/dealTasks\\\"\\n            },\\n            \\\"id\\\": \\\"1\\\"\\n        },\\n        {\\n            \\\"title\\\": \\\"Not Interested\\\",\\n            \\\"sentiment\\\": \\\"NEGATIVE\\\",\\n            \\\"disabled\\\": \\\"0\\\",\\n            \\\"created_by\\\": \\\"1\\\",\\n            \\\"updated_by\\\": \\\"1\\\",\\n            \\\"created_utc_timestamp\\\": \\\"2021-02-16T12:27:01-06:00\\\",\\n            \\\"updated_utc_timestamp\\\": \\\"2021-02-16T12:27:01-06:00\\\",\\n            \\\"dealTasktype_ids\\\": [],\\n            \\\"links\\\": {\\n                \\\"tasktypeOutcomeRels\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/2/tasktypeOutcomeRels\\\",\\n                \\\"dealTasks\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/2/dealTasks\\\"\\n            },\\n            \\\"id\\\": \\\"2\\\"\\n        },\\n        {\\n            \\\"title\\\": \\\"Left a voicemail\\\",\\n            \\\"sentiment\\\": \\\"NEUTRAL\\\",\\n            \\\"disabled\\\": \\\"0\\\",\\n            \\\"created_by\\\": \\\"1\\\",\\n            \\\"updated_by\\\": \\\"1\\\",\\n            \\\"created_utc_timestamp\\\": \\\"2021-02-16T12:27:13-06:00\\\",\\n            \\\"updated_utc_timestamp\\\": \\\"2021-02-16T12:27:13-06:00\\\",\\n            \\\"dealTasktype_ids\\\": [],\\n            \\\"links\\\": {\\n                \\\"tasktypeOutcomeRels\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/3/tasktypeOutcomeRels\\\",\\n                \\\"dealTasks\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/3/dealTasks\\\"\\n            },\\n            \\\"id\\\": \\\"3\\\"\\n        },\\n        {\\n            \\\"title\\\": \\\"Disabled outcome\\\",\\n            \\\"sentiment\\\": \\\"NEUTRAL\\\",\\n            \\\"disabled\\\": \\\"1\\\",\\n            \\\"created_by\\\": \\\"1\\\",\\n            \\\"updated_by\\\": \\\"1\\\",\\n            \\\"created_utc_timestamp\\\": \\\"2021-02-16T12:28:27-06:00\\\",\\n            \\\"updated_utc_timestamp\\\": \\\"2021-02-16T12:28:27-06:00\\\",\\n            \\\"dealTasktype_ids\\\": [],\\n            \\\"links\\\": {\\n                \\\"tasktypeOutcomeRels\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/4/tasktypeOutcomeRels\\\",\\n                \\\"dealTasks\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/4/dealTasks\\\"\\n            },\\n            \\\"id\\\": \\\"4\\\"\\n        }\\n    ],\\n    \\\"meta\\\": {\\n        \\\"total\\\": \\\"4\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97bdf6bc-3a1b-4aca-8fea-df555f1c1d62",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOutcomes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters[sentiment]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9a5d4da-6634-4c70-baf3-c888ad4b520e",
+          "name": "ActiveCampaign Retrieve a Task Outcome",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Task Outcome",
+            "description": {
+              "content": "Retrieve an existing task outcome",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "taskOutcomes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Task outcome's id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9c7b313-0101-4580-be30-3dc671fd8171",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOutcomes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Task outcome's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"taskOutcome\\\": {\\n        \\\"title\\\": \\\"Interested\\\",\\n        \\\"sentiment\\\": \\\"POSITIVE\\\",\\n        \\\"disabled\\\": \\\"0\\\",\\n        \\\"created_by\\\": \\\"1\\\",\\n        \\\"updated_by\\\": \\\"1\\\",\\n        \\\"created_utc_timestamp\\\": \\\"2021-02-16T12:26:15-06:00\\\",\\n        \\\"updated_utc_timestamp\\\": \\\"2021-02-16T12:27:56-06:00\\\",\\n        \\\"dealTasktype_ids\\\": [],\\n        \\\"links\\\": {\\n            \\\"tasktypeOutcomeRels\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/1/tasktypeOutcomeRels\\\",\\n            \\\"dealTasks\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/1/dealTasks\\\"\\n        },\\n        \\\"id\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bc4cf38-26a4-4d19-a7ec-93e301bdfd48",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOutcomes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Task outcome's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for TaskOutcome with id 111\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69a6f7ef-00a0-4a13-960d-7ed37d352a67",
+          "name": "ActiveCampaign Update a Task Outcome",
+          "request": {
+            "name": "ActiveCampaign Update a Task Outcome",
+            "description": {
+              "content": "Update an existing task outcome",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "taskOutccomes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Task outcome's id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"sentiment\": \"<string>\",\n  \"disabled\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e5d2e0fd-a758-4c19-b41c-c486918b23c2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOutccomes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Task outcome's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskOutcome\": {\n    \"sentiment\": \"Neutral\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"taskOutcome\\\": {\\n        \\\"title\\\": \\\"Interested\\\",\\n        \\\"sentiment\\\": \\\"NEUTRAL\\\",\\n        \\\"disabled\\\": \\\"0\\\",\\n        \\\"created_by\\\": \\\"1\\\",\\n        \\\"updated_by\\\": \\\"1\\\",\\n        \\\"created_utc_timestamp\\\": \\\"2021-02-16T12:26:15-06:00\\\",\\n        \\\"updated_utc_timestamp\\\": \\\"2021-02-16T12:27:56-06:00\\\",\\n        \\\"links\\\": {\\n            \\\"tasktypeOutcomeRels\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/1/tasktypeOutcomeRels\\\",\\n            \\\"dealTasks\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/1/dealTasks\\\"\\n        },\\n        \\\"id\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04ff8974-9238-450a-959b-e4291c00a70f",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOutccomes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Task outcome's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskOutcome\": {\n    \"sentiment\": \"Neutral\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"errors\": [\n        {\n            \"title\": \"A task outcome with the same title already exists.\",\n            \"detail\": \"\",\n            \"code\": \"field_invalid\",\n            \"error\": \"\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/title\"\n            }\n        },\n        {\n            \"title\": \"Sentiment value must be one of Positive, Neutral, or Negative.\",\n            \"detail\": \"\",\n            \"code\": \"field_invalid\",\n            \"error\": \"\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/sentiment\"\n            }\n        }\n    ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94887b16-09c8-4881-bf47-b6521a2b2fcf",
+          "name": "ActiveCampaign Delete a Task Outcome",
+          "request": {
+            "name": "ActiveCampaign Delete a Task Outcome",
+            "description": {
+              "content": "Delete an existing task outcome",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "taskOutccomes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Task outcome's id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af8a5cce-7a32-4a19-bc2b-c6087dc6b62e",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOutccomes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Task outcome's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abfa590d-90aa-41c6-b30d-719fd89b4b91",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskOutccomes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Task outcome's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"message\": \"No Result found for TaskOutcome with id 111\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d679450-ad39-44a8-a01d-94ae7779c3ab",
+          "name": "ActiveCampaign WIP Create a Task Type - Outcome Relation",
+          "request": {
+            "name": "ActiveCampaign WIP Create a Task Type - Outcome Relation",
+            "description": {
+              "content": "Create a new task type",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasktypeOutcomeRels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"sentiment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e99d5ea9-bb1f-4266-95ab-c50310d5e3da",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasktypeOutcomeRels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskOutcome\": {\n    \"title\": \"Interested\",\n    \"sentiment\": \"Positive\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"taskOutcome\\\": {\\n    \\\"title\\\": \\\"Interested\\\",\\n    \\\"sentiment\\\": \\\"POSITIVE\\\",\\n    \\\"created_by\\\": \\\"1\\\",\\n    \\\"disabled\\\": \\\"\\\",\\n    \\\"links\\\": {\\n      \\\"tasktypeOutcomeRels\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/1/tasktypeOutcomeRels\\\",\\n      \\\"dealTasks\\\": \\\"https://youraccountname.api-us1.com/api/3/taskOutcomes/1/dealTasks\\\"\\n    },\\n    \\\"id\\\": \\\"1\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "497e711e-833a-4a62-a956-8b71aabd1b38",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasktypeOutcomeRels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskOutcome\": {\n    \"title\": \"Interested\",\n    \"sentiment\": \"Positive\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17ab6c85-31be-406a-965f-4924ce98b993",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasktypeOutcomeRels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskOutcome\": {\n    \"title\": \"Interested\",\n    \"sentiment\": \"Positive\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"errors\": [\n        {\n            \"title\": \"A task outcome with the same title already exists.\",\n            \"detail\": \"\",\n            \"code\": \"field_invalid\",\n            \"error\": \"\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/title\"\n            }\n        },\n        {\n            \"title\": \"Sentiment value must be one of Positive, Neutral, or Negative.\",\n            \"detail\": \"\",\n            \"code\": \"field_invalid\",\n            \"error\": \"\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/sentiment\"\n            }\n        }\n    ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6b7bd3e-7664-4827-8f94-98d59f2c64b6",
+          "name": "ActiveCampaign List All Task Type - Outcome Relations",
+          "request": {
+            "name": "ActiveCampaign List All Task Type - Outcome Relations",
+            "description": {
+              "content": "Retrieve all existing task type - outcome relations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasktypeOutcomeRels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb933a4d-51bc-48d6-ad21-5a8c1c7af4f8",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasktypeOutcomeRels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"tasktypeOutcomeRels\\\": [\\n        {\\n            \\\"tasktype_id\\\": \\\"1\\\",\\n            \\\"outcome_id\\\": \\\"9\\\",\\n            \\\"display_order\\\": \\\"0\\\",\\n            \\\"created_by\\\": \\\"0\\\",\\n            \\\"created_utc_timestamp\\\": \\\"2021-04-02T12:06:06-05:00\\\",\\n            \\\"updated_by\\\": null,\\n            \\\"updated_utc_timestamp\\\": \\\"2021-04-02 12:06:06\\\",\\n            \\\"links\\\": {\\n                \\\"tasktype\\\": \\\"https://youraccountname.api-us1.com/api/3/tasktypeOutcomeRels/57/tasktype\\\",\\n                \\\"outcome\\\": \\\"https://youraccountname.api-us1.com/api/3/tasktypeOutcomeRels/57/outcome\\\",\\n                \\\"createdBy\\\": \\\"https://youraccountname.api-us1.com/api/3/tasktypeOutcomeRels/57/createdBy\\\"\\n            },\\n            \\\"id\\\": \\\"1\\\",\\n            \\\"tasktype\\\": \\\"1\\\",\\n            \\\"outcome\\\": \\\"9\\\",\\n            \\\"createdBy\\\": \\\"1\\\"\\n        },\\n        {\\n            \\\"tasktype_id\\\": \\\"1\\\",\\n            \\\"outcome_id\\\": \\\"10\\\",\\n            \\\"display_order\\\": \\\"1\\\",\\n            \\\"created_by\\\": \\\"0\\\",\\n            \\\"created_utc_timestamp\\\": \\\"2021-04-02T12:06:06-05:00\\\",\\n            \\\"updated_by\\\": null,\\n            \\\"updated_utc_timestamp\\\": \\\"2021-04-02 12:06:06\\\",\\n            \\\"links\\\": {\\n                \\\"tasktype\\\": \\\"https://youraccountname.api-us1.com/api/3/tasktypeOutcomeRels/58/tasktype\\\",\\n                \\\"outcome\\\": \\\"https://youraccountname.api-us1.com/api/3/tasktypeOutcomeRels/58/outcome\\\",\\n                \\\"createdBy\\\": \\\"https://youraccountname.api-us1.com/api/3/tasktypeOutcomeRels/58/createdBy\\\"\\n            },\\n            \\\"id\\\": \\\"2\\\",\\n            \\\"tasktype\\\": \\\"1\\\",\\n            \\\"outcome\\\": \\\"10\\\",\\n            \\\"createdBy\\\": \\\"1\\\"\\n        },\\n        {\\n            \\\"tasktype_id\\\": \\\"2\\\",\\n            \\\"outcome_id\\\": \\\"9\\\",\\n            \\\"display_order\\\": \\\"2\\\",\\n            \\\"created_by\\\": \\\"0\\\",\\n            \\\"created_utc_timestamp\\\": \\\"2021-04-02T12:06:07-05:00\\\",\\n            \\\"updated_by\\\": null,\\n            \\\"updated_utc_timestamp\\\": \\\"2021-04-02 12:06:07\\\",\\n            \\\"links\\\": {\\n                \\\"tasktype\\\": \\\"https://youraccountname.api-us1.com/api/3/tasktypeOutcomeRels/60/tasktype\\\",\\n                \\\"outcome\\\": \\\"https://youraccountname.api-us1.com/api/3/tasktypeOutcomeRels/60/outcome\\\",\\n                \\\"createdBy\\\": \\\"https://youraccountname.api-us1.com/api/3/tasktypeOutcomeRels/60/createdBy\\\"\\n            },\\n            \\\"id\\\": \\\"3\\\",\\n            \\\"tasktype\\\": \\\"2\\\",\\n            \\\"outcome\\\": \\\"9\\\",\\n            \\\"createdBy\\\": \\\"1\\\"\\n        }\\n    ],\\n    \\\"meta\\\": {\\n        \\\"total\\\": \\\"3\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bcde415-6252-4b70-9c01-c40c1f4e21b6",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasktypeOutcomeRels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30437c61-495e-466f-8aff-e6fa42c5a904",
+          "name": "ActiveCampaign Retrieve a Task Type - Outcome Relation",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Task Type - Outcome Relation",
+            "description": {
+              "content": "Retrieve an existing task type - outcome relation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasktypeOutcomeRels",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Task type - outcome relation's id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "998be1c6-ce0d-4a26-a1a7-40c6b74b289d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasktypeOutcomeRels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Task type - outcome relation's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"tasktypeOutcomeRel\\\": {\\n        \\\"tasktype_id\\\": \\\"1\\\",\\n        \\\"outcome_id\\\": \\\"9\\\",\\n        \\\"display_order\\\": \\\"0\\\",\\n        \\\"created_by\\\": \\\"0\\\",\\n        \\\"created_utc_timestamp\\\": \\\"2021-04-05T15:19:36-05:00\\\",\\n        \\\"updated_by\\\": null,\\n        \\\"updated_utc_timestamp\\\": \\\"2021-04-05 15:19:36\\\",\\n        \\\"links\\\": {\\n            \\\"tasktype\\\": \\\"http://hosted.localdev/api/3/tasktypeOutcomeRels/1/tasktype\\\",\\n            \\\"outcome\\\": \\\"http://hosted.localdev/api/3/tasktypeOutcomeRels/1/outcome\\\",\\n            \\\"createdBy\\\": \\\"http://hosted.localdev/api/3/tasktypeOutcomeRels/1/createdBy\\\"\\n        },\\n        \\\"id\\\": \\\"1\\\",\\n        \\\"tasktype\\\": \\\"1\\\",\\n        \\\"outcome\\\": \\\"1\\\",\\n        \\\"createdBy\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bf95bee-dbde-4f4a-abaa-6110cfc0c880",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasktypeOutcomeRels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Task type - outcome relation's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for TasktypeOutcomeRel with id 111\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13f27087-1e97-4a7c-888a-54d8f8a59880",
+          "name": "ActiveCampaign WIP Update a Task Type - Outcome Relation",
+          "request": {
+            "name": "ActiveCampaign WIP Update a Task Type - Outcome Relation",
+            "description": {
+              "content": "Update an existing task type",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasktypeOutcomeRels",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Task type - outcome relation's id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dealTasktype\": {\n    \"title\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a86c6f3-47aa-48b9-95da-09f0b922c6ef",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasktypeOutcomeRels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Task type - outcome relation's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskOutcome\": {\n    \"title\": \"Interested\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"taskOutcome\\\": {\\n        \\\"title\\\": \\\"Interested\\\",\\n        \\\"sentiment\\\": \\\"POSITIVE\\\",\\n        \\\"disabled\\\": \\\"0\\\",\\n        \\\"created_by\\\": \\\"1\\\",\\n        \\\"updated_by\\\": \\\"1\\\",\\n        \\\"created_utc_timestamp\\\": \\\"2021-02-16T12:26:15-06:00\\\",\\n        \\\"updated_utc_timestamp\\\": \\\"2021-02-16T12:27:56-06:00\\\",\\n        \\\"links\\\": {\\n            \\\"tasktypeOutcomeRels\\\": \\\"https://task-outcomes.staging.api-us1.com/api/3/taskOutcomes/1/tasktypeOutcomeRels\\\",\\n            \\\"dealTasks\\\": \\\"https://task-outcomes.staging.api-us1.com/api/3/taskOutcomes/1/dealTasks\\\"\\n        },\\n        \\\"id\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d62f7582-3009-4ba9-985f-dc6724d3e04f",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasktypeOutcomeRels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Task type - outcome relation's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskOutcome\": {\n    \"title\": \"Interested\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4dcd8b25-a70e-467a-96a8-c0277cbaa0f1",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasktypeOutcomeRels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Task type - outcome relation's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskOutcome\": {\n    \"title\": \"Interested\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"errors\": [\n        {\n            \"title\": \"A task outcome with the same title already exists.\",\n            \"detail\": \"\",\n            \"code\": \"field_invalid\",\n            \"error\": \"\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/title\"\n            }\n        },\n        {\n            \"title\": \"Sentiment value must be one of Positive, Neutral, or Negative.\",\n            \"detail\": \"\",\n            \"code\": \"field_invalid\",\n            \"error\": \"\",\n            \"source\": {\n                \"pointer\": \"/data/attributes/sentiment\"\n            }\n        }\n    ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38972ada-1eea-4b3a-98a1-cee967b0b476",
+          "name": "ActiveCampaign Delete a Task Type - Outcome Relation",
+          "request": {
+            "name": "ActiveCampaign Delete a Task Type - Outcome Relation",
+            "description": {
+              "content": "Delete an existing task type - outcome relation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasktypeOutcomeRels",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Task type - outcome relation's id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "994a423b-ab53-4da5-8f17-cf014a6e15e7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasktypeOutcomeRels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Task type - outcome relation's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a00f5ca-f300-444b-8176-aabf5cce2e20",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasktypeOutcomeRels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Task type - outcome relation's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"message\": \"No Result found for TasktypeOutcomeRel with id 111\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e4f0be1-e1bb-4257-aa81-6de4e767e23b",
+          "name": "ActiveCampaign Create a Task Reminder",
+          "request": {
+            "name": "ActiveCampaign Create a Task Reminder",
+            "description": {
+              "content": "Create a new task reminder",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "taskNotifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dealTask\": \"<string>\",\n  \"interval\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a83d56f-720c-42f4-9d6b-b2dd700bffde",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskNotifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskNotification\": {\n    \"dealTask\": \"1\",\n    \"interval\": \"123\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9bc56e9-30fb-4861-984c-eb76e51bf2b5",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "taskNotifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskNotification\": {\n    \"dealTask\": \"1\",\n    \"interval\": \"123\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0fe5780f-fd59-49ce-9a98-257784642cca",
+    "name": "ActiveCampaign SMS Broadcast Accounts Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

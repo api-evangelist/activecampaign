@@ -1,0 +1,140 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.activecampaign.com/page/sdks plus unauthenticated registry
+  metadata from registry.npmjs.org, repo.packagist.org, rubygems.org and pypi.org
+description: >-
+  First-party and provider-recommended client libraries for the ActiveCampaign v3 API.
+  Version and published date are read from each registry's own metadata endpoint on
+  the date above, not from prose. ActiveCampaign's own SDK page lists four libraries
+  and marks only two of them as "Created and maintained by ActiveCampaign"; the other
+  two are explicitly credited to third parties and are recorded here as official:false
+  with the provider's own attribution.
+packages:
+  - language: php
+    registry: packagist
+    name: activecampaign/api-php
+    url: https://packagist.org/packages/activecampaign/api-php
+    repository: https://github.com/ActiveCampaign/activecampaign-api-php
+    install: composer require activecampaign/api-php
+    official: true
+    version: v2.0.3
+    published: '2017-04-26'
+    note: >-
+      DECAY SIGNAL. The provider's SDK page still presents this as "Created and
+      maintained by ActiveCampaign", but the last Packagist release is from 2017 and
+      the GitHub repository was last pushed 2021-07-26. It predates most of the v3
+      surface it is supposed to wrap — the WhatsApp, Segments V2, Partners and
+      SMS Broadcast APIs all postdate it.
+  - language: javascript
+    registry: npm
+    name: activecampaign
+    url: https://www.npmjs.com/package/activecampaign
+    repository: https://github.com/ActiveCampaign/activecampaign-api-nodejs
+    install: npm install activecampaign
+    official: true
+    version: 1.2.5
+    published: '2018-03-13'
+    note: >-
+      DECAY SIGNAL. Published by the `activecampaign` npm account with author
+      help@activecampaign.com and maintainers including `activecampaign-eng`, so
+      first-party attribution is solid. Last release 2018; GitHub repo last pushed
+      2020-02-27. Like the PHP client it predates most of the current v3 surface.
+  - language: php
+    registry: packagist
+    name: activecampaign/module-integration
+    url: https://packagist.org/packages/activecampaign/module-integration
+    repository: https://github.com/ActiveCampaign/module-integration
+    install: composer require activecampaign/module-integration
+    official: true
+    version: 2.1.29
+    published: '2026-08-04'
+    note: >-
+      Magento 2.3/2.4 extension rather than a general API client, but it is genuinely
+      first-party and it is the only ActiveCampaign-published package on any registry
+      that is actively released. Included because it is the honest counterweight to the
+      two abandoned SDKs above: ActiveCampaign still ships PHP, just not an API client.
+  - language: ruby
+    registry: rubygems
+    name: active_campaign
+    url: https://rubygems.org/gems/active_campaign
+    repository: https://github.com/mhenrixon/active_campaign
+    install: gem install active_campaign
+    official: false
+    maintainer: Mikael Henriksson
+    version: 0.1.16
+    published: '2019-05-14'
+    note: >-
+      Listed on ActiveCampaign's own SDK page as "Rails ... Created and maintained by
+      Mikael Henriksson" — provider-recommended, third-party maintained. Last release
+      2019.
+  - language: python
+    registry: null
+    name: active-campaign-python
+    url: https://github.com/adulmec/active-campaign-python
+    repository: https://github.com/adulmec/active-campaign-python
+    install: null
+    official: false
+    maintainer: Apollo Data Solutions
+    version: null
+    published: null
+    note: >-
+      Listed on ActiveCampaign's own SDK page as the Python option, credited to Apollo
+      Data Solutions. It is distributed from GitHub only — the repository publishes no
+      PyPI package, so there is no registry metadata endpoint to read a version from.
+      version/published are null because the check ran and found nothing, not because
+      the check was skipped. Three same-named PyPI packages exist and are all DIFFERENT
+      projects: `active-campaign-python` 0.9.2 (Dennis Durling, github.com/tahoe/…,
+      2018-03-20), `activecampaign` (Ben Lopatin) and `activecampaign-python` 1.0.10
+      (Miguel Ferrer, 2023-08-09). None is the adulmec library the provider links, and
+      none is first-party, so none is recorded as this package's release.
+agent_tooling:
+  - language: javascript
+    registry: npm
+    name: '@activecampaign/postmark-mcp'
+    url: https://www.npmjs.com/package/@activecampaign/postmark-mcp
+    official: true
+    version: 2.1.1
+    published: '2026-07-13'
+    product: Postmark
+    note: >-
+      Published by ActiveCampaign (npm publisher dandigangi_ac) but it is the MCP
+      server for POSTMARK, ActiveCampaign's transactional-email product, not for the
+      ActiveCampaign marketing/CRM API. It is catalogued in all/postmark/ and is listed
+      here only so the ownership is unambiguous. The ActiveCampaign platform's own
+      agent surface is a REMOTE MCP server with no installable package — see
+      mcp/activecampaign-mcp.yml.
+  - language: null
+    registry: github
+    name: ActiveCampaign/activecampaign-plugin
+    url: https://github.com/ActiveCampaign/activecampaign-plugin
+    official: true
+    version: null
+    published: null
+    license: MIT
+    note: >-
+      First-party Claude plugin (six Agent Skills, five slash commands, two subagents)
+      layered on the remote MCP server. Distributed from GitHub, not a package
+      registry, and the repository publishes no tags — version/published are null
+      because there is nothing dated to read. Repository last pushed 2026-08-07.
+summary:
+  total: 5
+  official: 3
+  official_api_clients: 2
+  languages: [php, javascript, ruby, python]
+  registries: [packagist, npm, rubygems]
+  finding: >-
+    Both first-party API clients are abandoned. The newest release of either is
+    2018-03-13 (npm `activecampaign` 1.2.5); the PHP client last shipped 2017-04-26.
+    ActiveCampaign has since published five additional OpenAPI documents and a
+    50-tool MCP server, none of which any first-party SDK covers. A developer
+    following the provider's own SDK page today installs a library seven or more
+    years older than the API it is meant to call.
+docs: https://developers.activecampaign.com/page/sdks
+x-evidence:
+  - {url: 'https://developers.activecampaign.com/page/sdks.md', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://registry.npmjs.org/activecampaign', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://repo.packagist.org/p2/activecampaign/api-php.json', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://repo.packagist.org/p2/activecampaign/module-integration.json', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://rubygems.org/api/v1/gems/active_campaign.json', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://pypi.org/pypi/active-campaign-python/json', http_status: 200, fetched: '2026-08-13', note: 'Resolves to a different project (tahoe/active-campaign-python 0.9.2), not the adulmec library the provider links.'}

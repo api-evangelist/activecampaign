@@ -1,0 +1,58 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for ActiveCampaign SMS Broadcast Accounts Credits API
+  version: 1.0.0
+extends: openapi/activecampaign-credits-api-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+x-source: apis.yml + conventions/, rate-limits/, errors/, authentication/, lifecycle/ in this repo
+x-note: Captures API Evangelist findings as an Overlay so the harvested contract is never mutated. Every
+  value below is sourced from an ActiveCampaign-published page or from this repo's probed artifacts; nothing
+  is invented.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: activecampaign
+    x-apievangelist-profile: https://apis.io/provider/activecampaign/
+    x-apievangelist-artifacts:
+      conventions: conventions/activecampaign-conventions.yml
+      errors: errors/activecampaign-problem-types.yml
+      rate-limits: rate-limits/activecampaign-rate-limits.yml
+      authentication: authentication/activecampaign-authentication.yml
+      lifecycle: lifecycle/activecampaign-lifecycle.yml
+      data-model: data-model/activecampaign-data-model.yml
+      mcp: mcp/activecampaign-mcp.yml
+    x-rate-limit:
+      requests_per_second: 5
+      scope: account
+      headers:
+      - RateLimit-Limit
+      - RateLimit-Remaining
+      - Retry-After
+      exhaustion_status: 429
+      docs: https://developers.activecampaign.com/reference/rate-limits
+    x-idempotency:
+      supported: false
+      note: No idempotency key is documented or declared. Retries of non-GET operations are not safe.
+    x-pagination:
+      style: limit-offset
+      limit_default: 20
+      limit_max: 100
+      offset_zero_based: true
+      total_field: meta.total
+      docs: https://developers.activecampaign.com/reference/pagination
+    x-error-format:
+      rfc9457: false
+      content_type: application/json
+      note: 429 is real but is declared on no operation in any published spec.
+    x-deprecation-policy:
+      published: false
+      sunset_header: false
+    x-status-page: https://status.activecampaign.com/
+    x-api-catalog: https://developers.activecampaign.com/.well-known/api-catalog
+- target: $.info
+  update:
+    contact:
+      name: ActiveCampaign Developer Relations
+      url: https://developers.activecampaign.com/
+      email: devrel@activecampaign.com

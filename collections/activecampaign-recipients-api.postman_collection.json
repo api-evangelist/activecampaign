@@ -1,0 +1,419 @@
+{
+  "item": [
+    {
+      "id": "a8325565-0826-475e-b436-a8af7cbcddf5",
+      "name": "Recipients",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "954bc577-a49d-43b2-8edc-4f6c86dbcc7d",
+          "name": "ActiveCampaign Get Broadcast Recipients",
+          "request": {
+            "name": "ActiveCampaign Get Broadcast Recipients",
+            "description": {
+              "content": "Fetch all contacts who were sent a specific broadcast",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sms",
+                "broadcasts",
+                ":broadcastId",
+                "recipients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "Start date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>",
+                  "description": "End date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[deliverability][]",
+                  "value": "<string>",
+                  "description": "Filter by deliverability status"
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[deliverability][]",
+                  "value": "<string>",
+                  "description": "Filter by deliverability status"
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[engagement][]",
+                  "value": "<string>",
+                  "description": "Filter by engagement type"
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[engagement][]",
+                  "value": "<string>",
+                  "description": "Filter by engagement type"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search contacts by name or phone"
+                },
+                {
+                  "disabled": false,
+                  "key": "order[field]",
+                  "value": "<string>",
+                  "description": "Order by field"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of items to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "broadcastId",
+                  "description": "(Required) Broadcast ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f50f25f7-b9a4-4c45-bb22-99c49383eba0",
+              "name": "Recipients retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sms",
+                    "broadcasts",
+                    ":broadcastId",
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "filters[deliverability][]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters[deliverability][]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters[engagement][]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters[engagement][]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order[field]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "broadcastId",
+                      "description": "(Required) Broadcast ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"recipients\": [\n    {\n      \"id\": 899,\n      \"name\": \"string\",\n      \"phoneNumber\": \"string\",\n      \"sentDate\": \"2005-07-24T13:20:22.882Z\",\n      \"clicks\": 7226,\n      \"deliverability\": \"failed\",\n      \"replies\": [\n        {\n          \"message\": \"string\",\n          \"date\": \"1966-06-18T12:35:36.292Z\"\n        },\n        {\n          \"message\": \"string\",\n          \"date\": \"1995-01-22T02:52:18.240Z\"\n        }\n      ],\n      \"optOut\": \"no\",\n      \"details\": {\n        \"errorCode\": \"string\",\n        \"errorSource\": \"ac\"\n      }\n    },\n    {\n      \"id\": 9791,\n      \"name\": \"string\",\n      \"phoneNumber\": \"string\",\n      \"sentDate\": \"2019-12-23T23:45:17.350Z\",\n      \"clicks\": 4730,\n      \"deliverability\": \"delivered\",\n      \"replies\": [\n        {\n          \"message\": \"string\",\n          \"date\": \"1980-02-19T17:50:02.179Z\"\n        },\n        {\n          \"message\": \"string\",\n          \"date\": \"1956-07-29T20:18:39.387Z\"\n        }\n      ],\n      \"optOut\": \"yes\",\n      \"details\": {\n        \"errorCode\": \"string\",\n        \"errorSource\": \"twilio\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"total\": 227,\n    \"limit\": 8924,\n    \"offset\": 5455\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce52130a-df0f-415d-a986-2e7caf1247d5",
+          "name": "ActiveCampaign Export Broadcast Recipients",
+          "request": {
+            "name": "ActiveCampaign Export Broadcast Recipients",
+            "description": {
+              "content": "Export recipient data as CSV including full contact records",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sms",
+                "broadcasts",
+                ":broadcastId",
+                "recipients",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "broadcastId",
+                  "description": "(Required) Broadcast ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"engagement\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deliverability\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search\": \"<string>\",\n  \"order\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "48de2613-93fb-4098-a365-56e232d4a1ea",
+              "name": "Export generated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sms",
+                    "broadcasts",
+                    ":broadcastId",
+                    "recipients",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "broadcastId",
+                      "description": "(Required) Broadcast ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"engagement\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deliverability\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search\": \"<string>\",\n  \"order\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c184afda-4cbc-46a8-a620-6a0aa87cc7f2",
+    "name": "ActiveCampaign SMS Broadcast Accounts Recipients API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

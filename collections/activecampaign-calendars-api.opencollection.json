@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Calendars API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Calendars",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Calendar Feeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/calendars"
+          },
+          "docs": "ActiveCampaign List All Calendar Feeds"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Calendar Feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/calendars",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Calendar Feed"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Calendar Feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/calendars/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the calendar feed to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Calendar Feed"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Calendar Feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/calendars/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the calendar feed to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Calendar Feed"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Calendar Feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/calendars/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the calendar feed to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Calendar Feed"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

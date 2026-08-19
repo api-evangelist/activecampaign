@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Users API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users"
+          },
+          "docs": "List all existing users"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user you want to view"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing user"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing user"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the user you wish to delete"
+              }
+            ]
+          },
+          "docs": "Delete an existing user"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a User by Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users/email/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "Email address of the user you want to view"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing user by looking up their email address"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a User by Username",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users/username/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username of the user you want to view"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing user by looking up their username"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve Logged-in User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/users/me"
+          },
+          "docs": "Retrieve the logged-in user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

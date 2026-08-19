@@ -1,0 +1,943 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/activecampaign-mcp.yml + openapi/*.yml + openapi/*.json
+description: Binds every tool ActiveCampaign publishes on its remote MCP server to the v3 REST operation(s)
+  that back it, so each tool inherits a real input contract (the operation's parameters and requestBody)
+  instead of a guessed one. The live tools/list manifest is unreachable anonymously -- ActiveCampaign
+  issues a per-account MCP URL -- so bindings are by name and published description, with confidence recorded
+  honestly per row.
+surfaces:
+  openapi:
+    files:
+    - activecampaign-accounts-api-openapi.yml
+    - activecampaign-addresses-api-openapi.yml
+    - activecampaign-ai-api-openapi.yml
+    - activecampaign-automations-api-openapi.yml
+    - activecampaign-branding-api-openapi.yml
+    - activecampaign-broadcasts-api-openapi.yml
+    - activecampaign-bulk-import-api-openapi.yml
+    - activecampaign-calendars-api-openapi.yml
+    - activecampaign-campaigns-api-openapi.yml
+    - activecampaign-contacts-api-openapi.yml
+    - activecampaign-credits-api-openapi.yml
+    - activecampaign-custom-objects-api-openapi.yml
+    - activecampaign-deals-api-openapi.yml
+    - activecampaign-ecommerce-api-openapi.yml
+    - activecampaign-event-tracking-api-openapi.yml
+    - activecampaign-exports-api-openapi.yml
+    - activecampaign-failures-api-openapi.yml
+    - activecampaign-fields-api-openapi.yml
+    - activecampaign-forms-api-openapi.yml
+    - activecampaign-groups-api-openapi.yml
+    - activecampaign-lists-api-openapi.yml
+    - activecampaign-messages-api-openapi.yml
+    - activecampaign-metrics-api-openapi.yml
+    - activecampaign-notes-api-openapi.yml
+    - activecampaign-other-api-openapi.yml
+    - activecampaign-partners-api-openapi.json
+    - activecampaign-personalizations-api-openapi.yml
+    - activecampaign-recipients-api-openapi.yml
+    - activecampaign-saved-responses-api-openapi.yml
+    - activecampaign-scores-api-openapi.yml
+    - activecampaign-segment-match-one-api-openapi.json
+    - activecampaign-segment-matching-api-openapi.json
+    - activecampaign-segments-api-openapi.json
+    - activecampaign-site-tracking-api-openapi.yml
+    - activecampaign-snapshots-api-openapi.yml
+    - activecampaign-tags-api-openapi.yml
+    - activecampaign-tasks-api-openapi.yml
+    - activecampaign-templates-api-openapi.yml
+    - activecampaign-trackcmp-api-openapi.json
+    - activecampaign-users-api-openapi.yml
+    - activecampaign-v2-api-openapi.json
+    - activecampaign-webhooks-api-openapi.yml
+    - activecampaign-whatsapp-api-openapi.yml
+    operation_count: 367
+    gated: false
+  mcp:
+    manifest: mcp/activecampaign-mcp.yml
+    endpoint: null
+    gated: true
+    gated_reason: Per-account server URL issued in Settings -> Developer; no anonymous endpoint to call
+      tools/list against.
+  graphql:
+    endpoint: https://{yourAccountName}.api-us1.com/api/3/ecom/graphql
+    scope: Ecommerce only (orders, products, recurring payments)
+    gated: true
+    gated_reason: Introspection requires an Api-Token on a real account; the per-account host cannot be
+      resolved anonymously.
+    docs: https://developers.activecampaign.com/reference/about-the-graphql-api
+    local_artifact: graphql/activecampaign-schema.graphql
+crosswalk:
+- tool: list_contacts
+  category: Contacts
+  rest:
+  - list-all-contacts
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-contacts-api-openapi.yml
+- tool: get_contact
+  category: Contacts
+  rest:
+  - get-contact
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-contacts-api-openapi.yml
+- tool: create_or_update_contact
+  category: Contacts
+  rest:
+  - sync-a-contacts-data
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-contacts-api-openapi.yml
+  note: POST /contact/sync is the email-keyed upsert the tool describes; create-a-new-contact / update-a-contact-new
+    are the id-keyed alternatives.
+- tool: list_tags
+  category: Tags
+  rest:
+  - retrieve-all-tags
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-tags-api-openapi.yml
+- tool: get_tag
+  category: Tags
+  rest:
+  - retrieve-a-tag
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-tags-api-openapi.yml
+- tool: create_contact_tag
+  category: Tags
+  rest:
+  - create-a-new-tag
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-tags-api-openapi.yml
+  note: Tool name says contact_tag but the description is 'create a new organizational tag' = POST /tags.
+- tool: add_tag_to_contact
+  category: Tags
+  rest:
+  - create-contact-tag
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-contacts-api-openapi.yml
+  note: POST /contactTags binds an existing tag to a contact.
+- tool: list_lists
+  category: Lists
+  rest:
+  - retrieve-all-lists
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-lists-api-openapi.yml
+- tool: get_list
+  category: Lists
+  rest:
+  - retrieve-a-list
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-lists-api-openapi.yml
+- tool: create_list
+  category: Lists
+  rest:
+  - create-new-list
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-lists-api-openapi.yml
+- tool: update_list
+  category: Lists
+  rest:
+  - create-new-list
+  binding: rest
+  confidence: low
+  source_spec:
+  - activecampaign-lists-api-openapi.yml
+  note: No PUT /lists/{id} operation is published in the v3 contract. ActiveCampaign's list update is
+    performed through the same POST /lists payload with an id, so the tool's write path is not separately
+    documented in OpenAPI.
+- tool: add_contact_to_list
+  category: Lists
+  rest:
+  - update-list-status-for-contact
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-contacts-api-openapi.yml
+  note: POST /contactLists carries the Active/Unsubscribed/Unconfirmed status field.
+- tool: list_contact_custom_fields
+  category: Custom Fields
+  rest:
+  - retrieve-fields
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-fields-api-openapi.yml
+- tool: get_contact_custom_field
+  category: Custom Fields
+  rest:
+  - retrieve-a-custom-field-contact
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-fields-api-openapi.yml
+- tool: create_contact_custom_field
+  category: Custom Fields
+  rest:
+  - create-a-contact-custom-field
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-fields-api-openapi.yml
+- tool: create_field_options
+  category: Custom Fields
+  rest:
+  - create-custom-field-options
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-fields-api-openapi.yml
+- tool: create_contact_field_relationship
+  category: Custom Fields
+  rest:
+  - create-a-custom-field-relationship-to-lists
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-fields-api-openapi.yml
+- tool: list_contact_field_values
+  category: Field Values
+  rest:
+  - list-all-custom-field-values
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-fields-api-openapi.yml
+- tool: get_contact_field_value
+  category: Field Values
+  rest:
+  - retrieve-a-fieldvalues
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-fields-api-openapi.yml
+- tool: create_contact_field_value
+  category: Field Values
+  rest:
+  - create-fieldvalue
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-fields-api-openapi.yml
+- tool: update_contact_field_value
+  category: Field Values
+  rest:
+  - update-a-custom-field-value-for-contact
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-fields-api-openapi.yml
+- tool: list_campaigns
+  category: Campaigns
+  rest:
+  - list-all-campaigns
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-campaigns-api-openapi.yml
+- tool: get_campaign
+  category: Campaigns
+  rest:
+  - retrieve-a-campaign
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-campaigns-api-openapi.yml
+- tool: get_campaign_links
+  category: Campaigns
+  rest:
+  - retrieve-links-associated-campaign
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-campaigns-api-openapi.yml
+- tool: list_automations
+  category: Automations
+  rest:
+  - list-all-automations
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-automations-api-openapi.yml
+- tool: list_contact_automations
+  category: Automations
+  rest:
+  - list-all-contact-automations
+  - list-all-contactautomations-for-contact
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-contacts-api-openapi.yml
+  note: 'Fans out: the collection endpoint and the per-contact endpoint both satisfy the description.'
+- tool: get_contact_automation
+  category: Automations
+  rest:
+  - retrieve-a-contactautomation
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-contacts-api-openapi.yml
+- tool: add_contact_to_automation
+  category: Automations
+  rest:
+  - create-new-contactautomation
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-contacts-api-openapi.yml
+- tool: remove_contact_from_automation
+  category: Automations
+  rest:
+  - delete-a-contactautomation
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-contacts-api-openapi.yml
+- tool: list_deals
+  category: Deals (CRM)
+  rest:
+  - list-all-deals
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-deals-api-openapi.yml
+- tool: get_deal
+  category: Deals (CRM)
+  rest:
+  - retrieve-a-deal
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-deals-api-openapi.yml
+- tool: create_deal
+  category: Deals (CRM)
+  rest:
+  - create-a-deal-new
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-deals-api-openapi.yml
+- tool: update_deal
+  category: Deals (CRM)
+  rest:
+  - update-a-deal-new
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-deals-api-openapi.yml
+- tool: create_deal_note
+  category: Deals (CRM)
+  rest:
+  - create-a-deal-note
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-deals-api-openapi.yml
+- tool: update_deal_note
+  category: Deals (CRM)
+  rest:
+  - update-a-deal-note
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-deals-api-openapi.yml
+- tool: deal_owner_bulk_update
+  category: Deals (CRM)
+  rest:
+  - bulk-update-deal-owners
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-deals-api-openapi.yml
+  note: PATCH /deals/bulkUpdate.
+- tool: list_deal_pipelines
+  category: Pipelines
+  rest:
+  - list-all-pipelines
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-deals-api-openapi.yml
+  note: Pipelines are dealGroups in the REST contract.
+- tool: get_deal_pipeline
+  category: Pipelines
+  rest:
+  - retrieve-a-pipeline
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-deals-api-openapi.yml
+- tool: create_deal_pipeline
+  category: Pipelines
+  rest:
+  - create-a-pipeline
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-deals-api-openapi.yml
+- tool: update_deal_pipeline
+  category: Pipelines
+  rest:
+  - update-a-pipeline
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-deals-api-openapi.yml
+- tool: list_deal_activities
+  category: Activities
+  rest:
+  - list-all-deal-activities
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-deals-api-openapi.yml
+- tool: list_email_activities
+  category: Activities
+  rest:
+  - list-all-email-activities
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-other-api-openapi.yml
+- tool: list_groups
+  category: Groups
+  rest:
+  - list-all-groups
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-groups-api-openapi.yml
+- tool: create_list_group_permission
+  category: Groups
+  rest:
+  - create-a-list-group-permission
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-lists-api-openapi.yml
+- tool: list_custom_object_schemas
+  category: Custom Objects
+  rest:
+  - list-all-schemas
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-custom-objects-api-openapi.yml
+- tool: create_custom_object_schema
+  category: Custom Objects
+  rest:
+  - create-a-schema
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-custom-objects-api-openapi.yml
+- tool: list_custom_object_records
+  category: Custom Objects
+  rest:
+  - list-records-created-from-a-schema
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-custom-objects-api-openapi.yml
+- tool: create_or_update_custom_object_record
+  category: Custom Objects
+  rest:
+  - create-or-update-record
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-custom-objects-api-openapi.yml
+- tool: get_campaign_messages
+  category: Campaign Message Details
+  rest:
+  - retrieve-a-message
+  - list-all-messages
+  binding: rest
+  confidence: medium
+  source_spec:
+  - activecampaign-messages-api-openapi.yml
+  note: The v3 contract exposes message bodies through /messages, not through a campaign-scoped path;
+    binding is by semantics.
+- tool: update_campaign_message
+  category: Campaign Message Details
+  rest:
+  - update-a-message
+  binding: rest
+  confidence: high
+  source_spec:
+  - activecampaign-messages-api-openapi.yml
+mcp_only: []
+mcp_only_note: Every published MCP tool maps to at least one public v3 REST operation. There is no MCP-only
+  capability.
+rest_only:
+- spec: activecampaign-accounts-api-openapi.yml
+  operation_count: 25
+  operations:
+  - bulk-create-a-custom-account-field-value
+  - bulk-delete-accounts
+  - bulk-update-a-custom-account-field-value
+  - create-a-custom-field-value
+  - create-a-customfieldmeta
+  - create-an-account-1
+  - create-an-account-new
+  - create-an-account-note
+  - delete-a-custom-field
+  - delete-a-custom-field-value
+  - delete-an-account
+  - delete-an-association-1
+  - list-all-accounts
+  - list-all-associations-1
+  - list-all-custom-field-values-2
+  - list-all-custom-fields-meta
+  - retrieve-a-custom-field-meta
+  - retrieve-a-custom-field-value
+  - retrieve-an-account
+  - retrieve-an-association
+  - update-a-account-note
+  - update-a-custom-field
+  - update-a-custom-field-value
+  - update-an-account-new
+  - update-an-association-1
+- spec: activecampaign-addresses-api-openapi.yml
+  operation_count: 7
+  operations:
+  - create-an-address
+  - delete-an-address
+  - delete-an-addressgroup
+  - delete-an-addresslist
+  - list-all-addresses
+  - retrieve-an-address
+  - update-an-address
+- spec: activecampaign-automations-api-openapi.yml
+  operation_count: 1
+  operations:
+  - get_automations-1
+- spec: activecampaign-branding-api-openapi.yml
+  operation_count: 3
+  operations:
+  - brandings
+  - get-branding
+  - update-branding
+- spec: activecampaign-broadcasts-api-openapi.yml
+  operation_count: 9
+  operations:
+  - createAIBroadcast
+  - createBroadcast
+  - deleteBroadcast
+  - getAIBroadcastStatus
+  - getBroadcast
+  - listBroadcastLists
+  - listBroadcasts
+  - updateAIBroadcast
+  - updateBroadcast
+- spec: activecampaign-bulk-import-api-openapi.yml
+  operation_count: 3
+  operations:
+  - bulk-import-contacts
+  - bulk-import-status-info
+  - bulk-import-status-list
+- spec: activecampaign-calendars-api-openapi.yml
+  operation_count: 5
+  operations:
+  - create-a-calendar-feed
+  - list-all-calendar-feeds
+  - list-all-calendar-feeds-1
+  - remove-a-calendar-feed
+  - update-a-calendar-feed
+- spec: activecampaign-campaigns-api-openapi.yml
+  operation_count: 3
+  operations:
+  - create-campaign
+  - duplicate-campaign
+  - edit-campaign
+- spec: activecampaign-contacts-api-openapi.yml
+  operation_count: 26
+  operations:
+  - create-a-new-contact
+  - create-a-secondary-contact
+  - delete-a-secondary-contact
+  - delete-contact
+  - get-contacts-tracking-logsevents
+  - list-all-secondary-contacts
+  - remove-a-contacts-tag
+  - retrieve-a-contacts-score-value
+  - retrieve-a-secondary-contact
+  - retrieve-contact-account-contacts
+  - retrieve-contact-automation-entry-counts
+  - retrieve-contact-bounce-logs
+  - retrieve-contact-data
+  - retrieve-contact-deals
+  - retrieve-contact-deals-list
+  - retrieve-contact-field-values
+  - retrieve-contact-geo-ips
+  - retrieve-contact-goals
+  - retrieve-contact-list-memberships
+  - retrieve-contact-logs
+  - retrieve-contact-notes
+  - retrieve-contact-organization
+  - retrieve-contact-plus-append
+  - retrieve-contact-tracking-logs
+  - update-a-contact-new
+  - update-a-secondary-contact
+- spec: activecampaign-credits-api-openapi.yml
+  operation_count: 1
+  operations:
+  - getSmsCreditData
+- spec: activecampaign-custom-objects-api-openapi.yml
+  operation_count: 9
+  operations:
+  - create-a-child-schema
+  - create-a-public-schema
+  - delete-a-field-1
+  - delete-a-record
+  - delete-a-record-by-external-id
+  - delete-a-schema
+  - get-a-single-record
+  - retrieve-a-schema
+  - update-a-schema
+- spec: activecampaign-deals-api-openapi.yml
+  operation_count: 35
+  operations:
+  - bulk-create-a-custom-deal-field-value
+  - bulk-update-a-custom-field-value
+  - create-a-deal-role
+  - create-a-deal-stage
+  - create-a-deal-task-type
+  - create-custom-deal-field-meta
+  - create-custom-deal-field-value
+  - create-task
+  - delete-a-custom-deal-field-data
+  - delete-a-custom-deal-field-meta
+  - delete-a-deal
+  - delete-a-deal-role
+  - delete-a-deal-stage
+  - delete-a-deal-task-type
+  - delete-a-pipeline
+  - delete-task
+  - get-task
+  - list-all-custom-fielddata-field-values
+  - list-all-deal-roles
+  - list-all-deal-stages
+  - list-all-deal-task-types
+  - list-all-tasks
+  - move-deal-tasks-to-another-deal-task-type
+  - move-deals-to-another-deal-stage
+  - retrieve-a-custom-deal-field-meta
+  - retrieve-a-custom-deal-field-value
+  - retrieve-a-deal-stage
+  - retrieve-a-deal-task-type
+  - retrieve-all-custom-deal-field-meta
+  - retrieve-inaccessible-pipelines-by-user
+  - update-a-custom-deal-field-meta
+  - update-a-custom-deal-field-value
+  - update-a-deal-stage
+  - update-a-deal-task-type
+  - update-task
+- spec: activecampaign-ecommerce-api-openapi.yml
+  operation_count: 13
+  operations:
+  - create-customer
+  - create-order
+  - delete-customer
+  - delete-order
+  - get-customer
+  - get-order
+  - list-all-customers
+  - list-all-orders
+  - list-ecomorderproducts
+  - list-products-for-order
+  - retrieve-an-ecomorderproduct
+  - update-customer
+  - update-order
+- spec: activecampaign-event-tracking-api-openapi.yml
+  operation_count: 5
+  operations:
+  - create-a-new-event-name-only
+  - enable-disable-event-tracking
+  - list-all-event-types
+  - remove-event-name-only
+  - retrieve-event-tracking-status
+- spec: activecampaign-fields-api-openapi.yml
+  operation_count: 4
+  operations:
+  - delete-a-custom-field-relationship-to-lists
+  - delete-a-field
+  - delete-a-fieldvalue-1
+  - update-a-field
+- spec: activecampaign-forms-api-openapi.yml
+  operation_count: 6
+  operations:
+  - delete_forms{id}
+  - forms-1
+  - post_formoptin
+  - post_forms
+  - put_forms{id}
+  - retrieve-forms
+- spec: activecampaign-groups-api-openapi.yml
+  operation_count: 11
+  operations:
+  - add-custom-field-to-field-group
+  - create-a-custom-field-group
+  - create-a-new-group
+  - delete-a-group-1
+  - delete-custom-field-field-group
+  - get-all-custom-field-groups
+  - get-custom-field-to-field-group
+  - list-all-group-limits
+  - retrieve-a-group
+  - update-a-group
+  - update-custom-field-field-group
+- spec: activecampaign-lists-api-openapi.yml
+  operation_count: 4
+  operations:
+  - delete-a-list
+  - exclusions-retrieve-a-list
+  - exclusions-retrieve-an-exclusion
+  - update-an-exclusion
+- spec: activecampaign-messages-api-openapi.yml
+  operation_count: 2
+  operations:
+  - create-a-new-message
+  - delete-a-message
+- spec: activecampaign-metrics-api-openapi.yml
+  operation_count: 3
+  operations:
+  - exportBroadcastMetrics
+  - getBroadcastFailures
+  - getBroadcastMetrics
+- spec: activecampaign-notes-api-openapi.yml
+  operation_count: 5
+  operations:
+  - create-a-note
+  - delete-note
+  - retrieve-a-note
+  - retrieve-list-of-all-notes
+  - update-a-note
+- spec: activecampaign-other-api-openapi.yml
+  operation_count: 17
+  operations:
+  - add-domain-to-whitelist
+  - create-connection
+  - delete-connection
+  - get-a-single-record-using-external-id
+  - get-connection
+  - get-contact-by-event-id
+  - get-editor-markup
+  - list-all-connections
+  - list-all-whitelisted-domains
+  - list-contact-activities
+  - local-events
+  - personalization-tags
+  - remove-domain-from-whitelist
+  - retrieve-a-contacts-geo-ip-address
+  - set-config
+  - stripo-config
+  - update-connection
+- spec: activecampaign-partners-api-openapi.json
+  operation_count: 36
+  operations:
+  - delete_ai_customizations_documents_delete
+  - delete_ai_customizations_instructions_delete
+  - delete_ai_customizations_profiles_delete
+  - delete_child_account_snapshots_delete_snapshot
+  - get_ai_customizations_documents_download
+  - get_ai_customizations_documents_get
+  - get_ai_customizations_documents_list
+  - get_ai_customizations_instructions_get
+  - get_ai_customizations_instructions_list
+  - get_ai_customizations_profiles_get
+  - get_ai_customizations_profiles_get_by_child_account
+  - get_ai_customizations_profiles_list
+  - get_child_account_snapshots_get_list
+  - get_child_account_snapshots_list_snapshot_by_reseller
+  - get_child_accounts_get_for_snapshots
+  - get_child_accounts_get_list
+  - get_crm_reporting_list_pipelines
+  - get_crm_reporting_pipelines_summary
+  - get_crm_sync_get_pipeline_sync_config
+  - get_crm_sync_list_pipelines
+  - get_crm_sync_settings_get
+  - get_files_quota_status
+  - get_insight_cards_get_list_latest
+  - get_locales_get_catalogs
+  - patch_ai_customizations_documents_update
+  - patch_ai_customizations_instructions_update
+  - patch_ai_customizations_profiles_assign_accounts
+  - patch_ai_customizations_profiles_update
+  - patch_insight_cards_update_state
+  - post_ai_customizations_documents_upload
+  - post_ai_customizations_instructions_create
+  - post_ai_customizations_profiles_create
+  - post_child_account_snapshots_create_snapshot
+  - post_child_accounts_create
+  - put_crm_sync_put_pipeline_sync_config
+  - put_crm_sync_settings_update
+- spec: activecampaign-personalizations-api-openapi.yml
+  operation_count: 8
+  operations:
+  - bulk-delete-variables
+  - create-variable
+  - delete-variable
+  - edit-variable
+  - get_{personalizationId}lock
+  - list-variables
+  - patch_new-endpoint
+  - retrieve-variable
+- spec: activecampaign-recipients-api-openapi.yml
+  operation_count: 2
+  operations:
+  - exportBroadcastRecipients
+  - getBroadcastRecipients
+- spec: activecampaign-saved-responses-api-openapi.yml
+  operation_count: 5
+  operations:
+  - get-a-savedresponse
+  - list-all-saved-responses
+  - retrieve-a-savedresponse
+  - saved-responses
+  - update-a-saved-response
+- spec: activecampaign-scores-api-openapi.yml
+  operation_count: 2
+  operations:
+  - list-all-scores
+  - retrieve-a-score
+- spec: activecampaign-segment-match-one-api-openapi.json
+  operation_count: 2
+  operations:
+  - create_match_one_request
+  - segment_match_check_by_external_id
+- spec: activecampaign-segment-matching-api-openapi.json
+  operation_count: 8
+  operations:
+  - create_match_all_request
+  - create_match_all_request_with_segment_id
+  - find_contact_id_by_ac_playload
+  - get_count_history_by_segment_id
+  - get_count_history_with_timestamp
+  - get_recent_count_history
+  - get_result_set_by_id
+  - get_result_set_by_run_id
+- spec: activecampaign-segments-api-openapi.json
+  operation_count: 8
+  operations:
+  - create_segment
+  - delete_segment
+  - get_saved_segment_summaries
+  - get_saved_segment_summaries_by_id
+  - get_segment_historic
+  - retrieve_segment
+  - segment_revert_to_history
+  - update_segment
+- spec: activecampaign-site-tracking-api-openapi.yml
+  operation_count: 3
+  operations:
+  - enable-disable-site-tracking
+  - retrieve-site-tracking-code
+  - retrieve-site-tracking-status
+- spec: activecampaign-snapshots-api-openapi.yml
+  operation_count: 2
+  operations:
+  - getBroadcastSnapshot
+  - getBroadcastSnapshotByIds
+- spec: activecampaign-tags-api-openapi.yml
+  operation_count: 2
+  operations:
+  - delete-a-tag
+  - update-a-tag
+- spec: activecampaign-tasks-api-openapi.yml
+  operation_count: 11
+  operations:
+  - create-a-task-outcome
+  - create-a-task-outcome-1
+  - create-a-task-reminder
+  - delete-a-task-outcome
+  - delete-a-task-type-outcome-relation
+  - list-all-task-outcomes
+  - list-all-task-type-outcome-relations
+  - retrieve-a-task-outcome
+  - retrieve-a-task-type-outcome-relation
+  - update-a-task-outcome
+  - update-a-task-outcome-1
+- spec: activecampaign-templates-api-openapi.yml
+  operation_count: 1
+  operations:
+  - retrieve-a-template
+- spec: activecampaign-trackcmp-api-openapi.json
+  operation_count: 1
+  operations:
+  - track-event
+- spec: activecampaign-users-api-openapi.yml
+  operation_count: 8
+  operations:
+  - create-user
+  - delete-user
+  - get-user
+  - get-user-email
+  - get-user-loggedin
+  - get-user-username
+  - list-all-users
+  - update-user
+- spec: activecampaign-v2-api-openapi.json
+  operation_count: 1
+  operations:
+  - create-shareable-campaign-template-link
+- spec: activecampaign-webhooks-api-openapi.yml
+  operation_count: 6
+  operations:
+  - create-webhook
+  - delete-webhook
+  - get-a-list-of-webhook-events
+  - get-a-list-of-webhooks
+  - get-webhook
+  - update-webhook
+- spec: activecampaign-whatsapp-api-openapi.yml
+  operation_count: 13
+  operations:
+  - Create a Flow Execution
+  - Delete WhatsApp Template
+  - Get Flow Execution
+  - Get Flow Execution Contact
+  - Get WhatsApp Template
+  - List Conversations
+  - List Flow Execution
+  - List Flow Execution Contact
+  - List WhatsApp Templates
+  - Partially update a Conversation
+  - Send a WhatsApp Template Message
+  - Update a Conversation
+  - channels_whatsapp_template_update
+coverage:
+  tools_published: 50
+  tools_bound: 50
+  tools_unbound: 0
+  mcp_only: 0
+  rest_operations_total: 367
+  rest_operations_with_a_tool: 51
+  rest_operations_without_a_tool: 316
+  confidence_high: 48
+  confidence_medium: 1
+  confidence_low: 1
+finding: 'The MCP surface is a deliberate 50-tool subset of a 367-operation REST surface -- roughly 15%.
+  The agent surface covers contacts, tags, lists, custom fields and field values, campaigns, automations,
+  deals, pipelines, activities, groups and custom objects, and covers nothing else: ecommerce/deep data,
+  WhatsApp, SMS broadcasts, forms, site and event tracking, accounts, users, reseller/partner management,
+  AI customization profiles, segments and webhooks have no tool. Notably the MCP server can read and update
+  campaign message content but cannot send a campaign.'

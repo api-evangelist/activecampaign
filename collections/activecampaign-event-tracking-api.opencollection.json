@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Event Tracking API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Event Tracking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Events (names Only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/eventTrackingEvents"
+          },
+          "docs": "List the names of tracked events"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a New Event (name Only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/eventTrackingEvents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new event tracking event (name only)"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve Event Tracking Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/eventTracking"
+          },
+          "docs": "Get event tracking status (enabled or disabled)"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Enable/disable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/eventTracking",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable or disable event tracking"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete Event (name Only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/eventTrackingEvents/:eventName",
+            "params": [
+              {
+                "name": "eventName",
+                "value": "",
+                "type": "path",
+                "description": "Name of event to delete. Spaces in names are allowed, but must be encoded (for example, \"my%20event\")."
+              }
+            ]
+          },
+          "docs": "Remove an existing event tracking event (name only)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

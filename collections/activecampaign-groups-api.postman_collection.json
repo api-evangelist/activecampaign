@@ -1,0 +1,2355 @@
+{
+  "item": [
+    {
+      "id": "443b22d6-75ca-4368-8379-a90d9f22d78c",
+      "name": "Groups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7fcc0822-e324-4d9d-9724-0797c85d767c",
+          "name": "ActiveCampaign Add Custom Field to Field Group",
+          "request": {
+            "name": "ActiveCampaign Add Custom Field to Field Group",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groupMembers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groupMember\": {\n    \"rel_id\": \"<integer>\",\n    \"ordernum\": \"<integer>\",\n    \"group_id\": null\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6168d34b-4df0-42f8-b4ac-925ee7b5aaac",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupMember\": {\n    \"rel_id\": \"10\",\n    \"ordernum\": null,\n    \"group_id\": \"1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"groupMember\\\": {\\n        \\\"id\\\": 87,\\n        \\\"group_id\\\": 1,\\n        \\\"rel_id\\\": 10,\\n        \\\"ordernum\\\": 18,\\n        \\\"created_by\\\": 1,\\n        \\\"updated_by\\\": 1,\\n        \\\"links\\\": {\\n            \\\"groupDefinition\\\": \\\"https://yourAccounut.api-us1.com/api/3/groupDefinitions/1\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33d39983-3481-49a1-a5db-b59e58b6cdb5",
+              "name": "403",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupMember\": {\n    \"rel_id\": \"10\",\n    \"ordernum\": null,\n    \"group_id\": \"1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"Client error: `POST https://escape-velocity-grouper.cluster-private.app-us1.com/member` resulted in a `400 Bad Request` response:\\\\n{\\\\\\\"message\\\\\\\": {\\\\\\\"rel_id\\\\\\\": \\\\\\\"rel_id is required\\\\\\\"}}\\\\n\\\\n\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8e2051c-8a00-4126-8338-e56f6a8735bd",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupMember\": {\n    \"rel_id\": \"10\",\n    \"ordernum\": null,\n    \"group_id\": \"1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for GroupDefinition with id 94\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98fb04ae-fc91-4f21-abb3-5d7e3fbff1be",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupMember\": {\n    \"rel_id\": \"10\",\n    \"ordernum\": null,\n    \"group_id\": \"1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"title\\\": \\\"The field title was not provided.\\\",\\n            \\\"detail\\\": \\\"\\\",\\n            \\\"code\\\": \\\"field_missing\\\"\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2478145d-6137-4511-bbc5-5f3712998d9f",
+          "name": "ActiveCampaign Get All Custom Field Groups",
+          "request": {
+            "name": "ActiveCampaign Get All Custom Field Groups",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groupMembers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a11eb16-e0f0-46e6-93d8-c5eba9422db5",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"groupDefinitions\\\": [\\n        {\\n            \\\"id\\\": 1,\\n            \\\"type_id\\\": 1,\\n            \\\"label\\\": \\\"{**DEFAULT**}\\\",\\n            \\\"ordernum\\\": 1,\\n            \\\"links\\\": {\\n                \\\"groupMembers\\\": \\\"https://account.api-us1.com/api/3/groupMembers?group_id=1\\\",\\n                \\\"groupType\\\": \\\"https://account.api-us1.com/api/3/groupTypes/1\\\"\\n            }\\n        },\\n        {\\n            \\\"id\\\": 2,\\n            \\\"type_id\\\": 2,\\n            \\\"label\\\": \\\"{**DEAL_DEFAULT**}\\\",\\n            \\\"ordernum\\\": 2,\\n            \\\"links\\\": {\\n                \\\"groupMembers\\\": \\\"https://account.api-us1.com/api/3/groupMembers?group_id=2\\\",\\n                \\\"groupType\\\": \\\"https://account.api-us1.com/api/3/groupTypes/2\\\"\\n            }\\n        },\\n        {\\n            \\\"id\\\": 3,\\n            \\\"type_id\\\": 3,\\n            \\\"label\\\": \\\"{**ACCOUNT_DEFAULT**}\\\",\\n            \\\"ordernum\\\": 3,\\n            \\\"links\\\": {\\n                \\\"groupMembers\\\": \\\"https://account.api-us1.com/api/3/groupMembers?group_id=3\\\",\\n                \\\"groupType\\\": \\\"https://account.api-us1.com/api/3/groupTypes/3\\\"\\n            }\\n        },\\n        {\\n            \\\"id\\\": 21,\\n            \\\"type_id\\\": 1,\\n            \\\"label\\\": \\\"CustomName\\\",\\n            \\\"ordernum\\\": 3,\\n            \\\"links\\\": {\\n                \\\"groupMembers\\\": \\\"https://account.api-us1.com/api/3/groupMembers?group_id=21\\\",\\n                \\\"groupType\\\": \\\"https://account.api-us1.com/api/3/groupTypes/1\\\"\\n            }\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07edae76-d8e7-473a-8ccd-2be66e219af3",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8dfb02f9-1c55-47e4-96a1-afa920f4e232",
+          "name": "ActiveCampaign Delete Custom Field Field Group",
+          "request": {
+            "name": "ActiveCampaign Delete Custom Field Field Group",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groupMembers",
+                ":groupID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupID",
+                  "description": "(Required) Group ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb3efa65-641c-43ac-85f3-03df2803ecc3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers",
+                    ":groupID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupID",
+                      "description": "(Required) Group ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupMember\": {\n    \"rel_id\": \"10\",\n    \"ordernum\": null,\n    \"group_id\": \"1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46e3e664-4b15-4a56-b040-183d43a85e24",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers",
+                    ":groupID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupID",
+                      "description": "(Required) Group ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupMember\": {\n    \"rel_id\": \"10\",\n    \"ordernum\": null,\n    \"group_id\": \"1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"status\\\": 404,\\n            \\\"title\\\": \\\"Not Found\\\"\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d14215e-ee7c-4c75-b40d-129d235dd0cf",
+          "name": "ActiveCampaign Get Custom Field Group by ID",
+          "request": {
+            "name": "ActiveCampaign Get Custom Field Group by ID",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groupMembers",
+                ":groupID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupID",
+                  "description": "(Required) Group ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d30183a-bf6f-4ba4-b912-028515ebc0cf",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers",
+                    ":groupID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupID",
+                      "description": "(Required) Group ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupMember\": {\n    \"rel_id\": \"10\",\n    \"ordernum\": null,\n    \"group_id\": \"1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"groupMember\\\": {\\n        \\\"id\\\": 89,\\n        \\\"group_id\\\": 1,\\n        \\\"rel_id\\\": 5,\\n        \\\"ordernum\\\": 20,\\n        \\\"links\\\": {\\n            \\\"groupDefinition\\\": \\\"https://:account.api-us1.com/api/3/groupDefinitions/1\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0edb7b9-bc09-4a60-9751-9e34b8f57c26",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers",
+                    ":groupID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupID",
+                      "description": "(Required) Group ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupMember\": {\n    \"rel_id\": \"10\",\n    \"ordernum\": null,\n    \"group_id\": \"1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"status\\\": 404,\\n            \\\"title\\\": \\\"Not Found\\\"\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9a9e002-1c12-4869-ae08-3a31b4d0d300",
+          "name": "ActiveCampaign Create a Custom Field Group",
+          "request": {
+            "name": "ActiveCampaign Create a Custom Field Group",
+            "description": {
+              "content": "Create a Custom Field Group",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groupDefinitions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupDefinition.label",
+                  "value": "<string>",
+                  "description": "Field Group Name"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupDefinition.ordernum",
+                  "value": "<integer>",
+                  "description": "The order the custom field group will be shown"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupDefinition.groupType",
+                  "value": "<integer>",
+                  "description": "The group type (see note)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groupDefinition\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "282ad751-0b53-435d-962d-53c33bfa83e1",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupDefinitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupDefinition.label",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupDefinition.ordernum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "groupDefinition.groupType",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupDefinition\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"groupDefinition\\\": {\\n        \\\"id\\\": 22,\\n        \\\"type_id\\\": 1,\\n        \\\"label\\\": \\\"Group Name Here\\\",\\n        \\\"ordernum\\\": 4,\\n        \\\"created_by\\\": 1,\\n        \\\"updated_by\\\": 1,\\n        \\\"links\\\": {\\n            \\\"groupMembers\\\": \\\"https://account.api-us1.com/api/3/groupMembers?group_id=22\\\",\\n            \\\"groupType\\\": \\\"https://account.api-us1.com/api/3/groupTypes/1\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d82b7832-84b0-4ab9-af79-2f7569a9ca1f",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupDefinitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupDefinition.label",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupDefinition.ordernum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "groupDefinition.groupType",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupDefinition\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49037f98-ed7b-44e4-adf1-8c209f6ed266",
+          "name": "ActiveCampaign Update Custom Field Field Group",
+          "request": {
+            "name": "ActiveCampaign Update Custom Field Field Group",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groupMembers",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) Field group ID (see notes)"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rel_id\": \"<integer>\",\n  \"ordernum\": \"<integer>\",\n  \"group_id\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a72f43c8-4e80-4bd4-81a8-16de075b8b80",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) Field group ID (see notes)"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupMember\": {\n    \"rel_id\": \"10\",\n    \"ordernum\": null,\n    \"group_id\": \"1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"groupMember\\\": {\\n        \\\"id\\\": 87,\\n        \\\"group_id\\\": 1,\\n        \\\"rel_id\\\": 10,\\n        \\\"ordernum\\\": 18,\\n        \\\"created_by\\\": 1,\\n        \\\"updated_by\\\": 1,\\n        \\\"links\\\": {\\n            \\\"groupDefinition\\\": \\\"https://yourAccounut.api-us1.com/api/3/groupDefinitions/1\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f441f487-0f5c-4b20-9b0f-dc139879c656",
+              "name": "403",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) Field group ID (see notes)"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupMember\": {\n    \"rel_id\": \"10\",\n    \"ordernum\": null,\n    \"group_id\": \"1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"Client error: `POST https://escape-velocity-grouper.cluster-private.app-us1.com/member` resulted in a `400 Bad Request` response:\\\\n{\\\\\\\"message\\\\\\\": {\\\\\\\"rel_id\\\\\\\": \\\\\\\"rel_id is required\\\\\\\"}}\\\\n\\\\n\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78e988a2-5257-4be9-ad1c-9be19f48ae2e",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) Field group ID (see notes)"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupMember\": {\n    \"rel_id\": \"10\",\n    \"ordernum\": null,\n    \"group_id\": \"1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for GroupDefinition with id 94\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1546a73-03b3-465a-b5aa-7308e4fc5a29",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupMembers",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) Field group ID (see notes)"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupMember\": {\n    \"rel_id\": \"10\",\n    \"ordernum\": null,\n    \"group_id\": \"1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"title\\\": \\\"The field title was not provided.\\\",\\n            \\\"detail\\\": \\\"\\\",\\n            \\\"code\\\": \\\"field_missing\\\"\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "423333a0-9065-44aa-b7f1-09401426e522",
+          "name": "ActiveCampaign Create a Group",
+          "request": {
+            "name": "ActiveCampaign Create a Group",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"group\": {\n    \"title\": \"<string>\",\n    \"descript\": \"<string>\",\n    \"pgMessageAdd\": false,\n    \"unsubscribelink\": false,\n    \"optinconfirm\": false,\n    \"pgListAdd\": false,\n    \"pgListEdit\": false,\n    \"pgListDelete\": false,\n    \"pgListHeaders\": false,\n    \"pgListEmailaccount\": false,\n    \"pgListBounce\": false,\n    \"pgMessageEdit\": false,\n    \"pgMessageDelete\": false,\n    \"pgMessageSend\": false,\n    \"pgContactAdd\": false,\n    \"pgContactEdit\": false,\n    \"pgContactDelete\": false,\n    \"pgContactMerge\": false,\n    \"pgContactImport\": false,\n    \"pgContactApprove\": false,\n    \"pgContactExport\": false,\n    \"pgContactSync\": false,\n    \"pgContactFilters\": false,\n    \"pgContactActions\": false,\n    \"pgContactFields\": false,\n    \"pg_user_add\": false,\n    \"pg_user_edit\": false,\n    \"pg_user_delete\": false,\n    \"pgGroupAdd\": false,\n    \"pgGroupEdit\": false,\n    \"pgGroupDelete\": false,\n    \"pgTemplateAdd\": false,\n    \"pgTemplateEdit\": false,\n    \"pgTemplateDelete\": false,\n    \"pgPersonalizationAdd\": false,\n    \"pgPersonalizationEdit\": false,\n    \"pgPersonalizationDelete\": false,\n    \"pgAutomationManage\": false,\n    \"pgFormEdit\": false,\n    \"pgReportsCampaign\": false,\n    \"pgReportsList\": false,\n    \"pgReportsUser\": false,\n    \"pgStartupReports\": false,\n    \"pgReportsTrend\": false,\n    \"pgStartupGettingstarted\": false,\n    \"pgDeal\": false,\n    \"pgDealDelete\": false,\n    \"pgDealReassign\": false,\n    \"pgDealGroupAdd\": false,\n    \"pgDealGroupEdit\": false,\n    \"pgDealGroupDelete\": false,\n    \"pgSavedResponsesManage\": false,\n    \"pgTagManage\": false,\n    \"reqApproval\": false,\n    \"reqApproval1st\": false,\n    \"reqApprovalNotify\": \"<string>\",\n    \"socialdata\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e8d1a84-b990-4825-a961-e3d086a6bd6e",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"group\": {\n    \"title\": \"TEST TITLE\",\n    \"descript\": \"Description Text\",\n    \"unsubscribelink\": \"0\",\n    \"optinconfirm\": \"0\",\n    \"pgListAdd\": 1,\n    \"pgListEdit\": 1,\n    \"pgListDelete\": 1,\n    \"pgListHeaders\": 1,\n    \"pgListEmailaccount\": 1,\n    \"pgListBounce\": 1,\n    \"pgMessageAdd\": 1,\n    \"pgMessageEdit\": 1,\n    \"pgMessageDelete\": 1,\n    \"pgMessageSend\": 1,\n    \"pgContactAdd\": 1,\n    \"pgContactEdit\": 1,\n    \"pgContactDelete\": 1,\n    \"pgContactMerge\": 1,\n    \"pgContactImport\": 1,\n    \"pgContactApprove\": 1,\n    \"pgContactExport\": 1,\n    \"pgContactSync\": 1,\n    \"pgContactFilters\": 1,\n    \"pgContactActions\": 1,\n    \"pgContactFields\": 1,\n    \"pg_user_add\": \"0\",\n    \"pg_user_edit\": \"0\",\n    \"pg_user_delete\": \"0\",\n    \"pgGroupAdd\": 1,\n    \"pgGroupEdit\": 1,\n    \"pgGroupDelete\": 1,\n    \"pgTemplateAdd\": 1,\n    \"pgTemplateEdit\": 1,\n    \"pgTemplateDelete\": 1,\n    \"pgPersonalizationAdd\": 1,\n    \"pgPersonalizationEdit\": 1,\n    \"pgPersonalizationDelete\": 1,\n    \"pgAutomationManage\": 1,\n    \"pgFormEdit\": 1,\n    \"pgReportsCampaign\": 1,\n    \"pgReportsList\": 1,\n    \"pgReportsUser\": 1,\n    \"pgReportsTrend\": 1,\n    \"pgStartupReports\": 1,\n    \"pgStartupGettingstarted\": 1,\n    \"pgDeal\": 1,\n    \"pgDealDelete\": 1,\n    \"pgDealReassign\": 1,\n    \"pgDealGroupAdd\": 1,\n    \"pgDealGroupEdit\": 1,\n    \"pgDealGroupDelete\": 1,\n    \"pgSavedResponsesManage\": 1,\n    \"reqApproval\": 1,\n    \"reqApproval1st\": 1,\n    \"reqApprovalNotify\": \"JohnDoe@gmail.com\",\n    \"socialdata\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"group\\\": {\\n        \\\"title\\\": \\\"My Groups Title\\\",\\n        \\\"p_admin\\\": 1,\\n        \\\"links\\\": {\\n            \\\"userGroups\\\": \\\"https://:account.api-us1.com/api/:version/groups/7/userGroups\\\",\\n            \\\"groupLimit\\\": \\\"https://:account.api-us1.com/api/:version/groups/7/groupLimit\\\",\\n            \\\"dealGroupGroups\\\": \\\"https://:account.api-us1.com/api/:version/groups/7/dealGroupGroups\\\",\\n            \\\"listGroups\\\": \\\"https://:account.api-us1.com/api/:version/groups/7/listGroups\\\",\\n            \\\"addressGroups\\\": \\\"https://:account.api-us1.com/api/:version/groups/7/addressGroups\\\",\\n            \\\"automationGroups\\\": \\\"https://:account.api-us1.com/api/:version/groups/7/automationGroups\\\"\\n        },\\n        \\\"id\\\": \\\"7\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75c339fe-98eb-470b-86da-006d5954b8ce",
+          "name": "ActiveCampaign List All Groups",
+          "request": {
+            "name": "ActiveCampaign List All Groups",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3d88c24-8a00-49aa-921a-690229492e76",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"groups\\\": [\\n        {\\n            \\\"title\\\": \\\"TEST TITLE\\\",\\n            \\\"descript\\\": \\\"This is a group for admin users (people that can manage content)\\\",\\n            \\\"unsubscribelink\\\": \\\"0\\\",\\n            \\\"optinconfirm\\\": \\\"0\\\",\\n            \\\"p_admin\\\": \\\"1\\\",\\n            \\\"pgListAdd\\\": \\\"1\\\",\\n            \\\"pgListEdit\\\": \\\"1\\\",\\n            \\\"pgListDelete\\\": \\\"1\\\",\\n            \\\"pgListHeaders\\\": \\\"1\\\",\\n            \\\"pgListEmailaccount\\\": \\\"1\\\",\\n            \\\"pgListBounce\\\": \\\"1\\\",\\n            \\\"pgMessageAdd\\\": \\\"1\\\",\\n            \\\"pgMessageEdit\\\": \\\"1\\\",\\n            \\\"pgMessageDelete\\\": \\\"1\\\",\\n            \\\"pgMessageSend\\\": \\\"1\\\",\\n            \\\"pgContactAdd\\\": \\\"1\\\",\\n            \\\"pgContactEdit\\\": \\\"1\\\",\\n            \\\"pgContactDelete\\\": \\\"1\\\",\\n            \\\"pgContactMerge\\\": \\\"1\\\",\\n            \\\"pgContactImport\\\": \\\"1\\\",\\n            \\\"pgContactApprove\\\": \\\"1\\\",\\n            \\\"pgContactExport\\\": \\\"1\\\",\\n            \\\"pgContactSync\\\": \\\"1\\\",\\n            \\\"pgContactFilters\\\": \\\"1\\\",\\n            \\\"pgContactActions\\\": \\\"0\\\",\\n            \\\"pgContactFields\\\": \\\"1\\\",\\n            \\\"pg_user_add\\\": \\\"1\\\",\\n            \\\"pg_user_edit\\\": \\\"1\\\",\\n            \\\"pg_user_delete\\\": \\\"1\\\",\\n            \\\"pgGroupAdd\\\": \\\"1\\\",\\n            \\\"pgGroupEdit\\\": \\\"1\\\",\\n            \\\"pgGroupDelete\\\": \\\"1\\\",\\n            \\\"pgTemplateAdd\\\": \\\"1\\\",\\n            \\\"pgTemplateEdit\\\": \\\"1\\\",\\n            \\\"pgTemplateDelete\\\": \\\"1\\\",\\n            \\\"pgPersonalizationAdd\\\": \\\"1\\\",\\n            \\\"pgPersonalizationEdit\\\": \\\"1\\\",\\n            \\\"pgPersonalizationDelete\\\": \\\"1\\\",\\n            \\\"pgAutomationManage\\\": \\\"1\\\",\\n            \\\"pgFormEdit\\\": \\\"1\\\",\\n            \\\"pgReportsCampaign\\\": \\\"1\\\",\\n            \\\"pgReportsList\\\": \\\"1\\\",\\n            \\\"pgReportsUser\\\": \\\"1\\\",\\n            \\\"pgReportsTrend\\\": \\\"1\\\",\\n            \\\"pgStartupReports\\\": \\\"1\\\",\\n            \\\"pgStartupGettingstarted\\\": \\\"1\\\",\\n            \\\"pgDeal\\\": \\\"1\\\",\\n            \\\"pgDealDelete\\\": \\\"1\\\",\\n            \\\"pgDealReassign\\\": \\\"1\\\",\\n            \\\"pgDealGroupAdd\\\": \\\"1\\\",\\n            \\\"pgDealGroupEdit\\\": \\\"1\\\",\\n            \\\"pgDealGroupDelete\\\": \\\"1\\\",\\n            \\\"pgSavedResponsesManage\\\": \\\"1\\\",\\n            \\\"sdate\\\": \\\"2018-09-20T10:51:14-05:00\\\",\\n            \\\"reqApproval\\\": \\\"0\\\",\\n            \\\"reqApproval1st\\\": \\\"2\\\",\\n            \\\"reqApprovalNotify\\\": \\\"\\\",\\n            \\\"socialdata\\\": \\\"0\\\",\\n            \\\"links\\\": {\\n                \\\"userGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/3/userGroups\\\",\\n                \\\"groupLimit\\\": \\\"https://:account.api-us1.com/api/3/groups/3/groupLimit\\\",\\n                \\\"dealGroupGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/3/dealGroupGroups\\\",\\n                \\\"listGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/3/listGroups\\\",\\n                \\\"addressGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/3/addressGroups\\\",\\n                \\\"automationGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/3/automationGroups\\\"\\n            },\\n            \\\"id\\\": \\\"3\\\"\\n        },\\n        {\\n            \\\"title\\\": \\\"TEST TITLE\\\",\\n            \\\"descript\\\": null,\\n            \\\"unsubscribelink\\\": \\\"0\\\",\\n            \\\"optinconfirm\\\": \\\"0\\\",\\n            \\\"p_admin\\\": \\\"1\\\",\\n            \\\"pgListAdd\\\": \\\"0\\\",\\n            \\\"pgListEdit\\\": \\\"0\\\",\\n            \\\"pgListDelete\\\": \\\"0\\\",\\n            \\\"pgListHeaders\\\": \\\"0\\\",\\n            \\\"pgListEmailaccount\\\": \\\"0\\\",\\n            \\\"pgListBounce\\\": \\\"0\\\",\\n            \\\"pgMessageAdd\\\": \\\"0\\\",\\n            \\\"pgMessageEdit\\\": \\\"0\\\",\\n            \\\"pgMessageDelete\\\": \\\"0\\\",\\n            \\\"pgMessageSend\\\": \\\"0\\\",\\n            \\\"pgContactAdd\\\": \\\"0\\\",\\n            \\\"pgContactEdit\\\": \\\"0\\\",\\n            \\\"pgContactDelete\\\": \\\"0\\\",\\n            \\\"pgContactMerge\\\": \\\"0\\\",\\n            \\\"pgContactImport\\\": \\\"0\\\",\\n            \\\"pgContactApprove\\\": \\\"0\\\",\\n            \\\"pgContactExport\\\": \\\"0\\\",\\n            \\\"pgContactSync\\\": \\\"0\\\",\\n            \\\"pgContactFilters\\\": \\\"0\\\",\\n            \\\"pgContactActions\\\": \\\"0\\\",\\n            \\\"pgContactFields\\\": \\\"0\\\",\\n            \\\"pg_user_add\\\": \\\"0\\\",\\n            \\\"pg_user_edit\\\": \\\"0\\\",\\n            \\\"pg_user_delete\\\": \\\"0\\\",\\n            \\\"pgGroupAdd\\\": \\\"0\\\",\\n            \\\"pgGroupEdit\\\": \\\"0\\\",\\n            \\\"pgGroupDelete\\\": \\\"0\\\",\\n            \\\"pgTemplateAdd\\\": \\\"0\\\",\\n            \\\"pgTemplateEdit\\\": \\\"0\\\",\\n            \\\"pgTemplateDelete\\\": \\\"0\\\",\\n            \\\"pgPersonalizationAdd\\\": \\\"0\\\",\\n            \\\"pgPersonalizationEdit\\\": \\\"0\\\",\\n            \\\"pgPersonalizationDelete\\\": \\\"0\\\",\\n            \\\"pgAutomationManage\\\": \\\"0\\\",\\n            \\\"pgFormEdit\\\": \\\"0\\\",\\n            \\\"pgReportsCampaign\\\": \\\"0\\\",\\n            \\\"pgReportsList\\\": \\\"0\\\",\\n            \\\"pgReportsUser\\\": \\\"0\\\",\\n            \\\"pgReportsTrend\\\": \\\"1\\\",\\n            \\\"pgStartupReports\\\": \\\"0\\\",\\n            \\\"pgStartupGettingstarted\\\": \\\"1\\\",\\n            \\\"pgDeal\\\": \\\"1\\\",\\n            \\\"pgDealDelete\\\": \\\"1\\\",\\n            \\\"pgDealReassign\\\": \\\"1\\\",\\n            \\\"pgDealGroupAdd\\\": \\\"1\\\",\\n            \\\"pgDealGroupEdit\\\": \\\"1\\\",\\n            \\\"pgDealGroupDelete\\\": \\\"1\\\",\\n            \\\"pgSavedResponsesManage\\\": \\\"0\\\",\\n            \\\"sdate\\\": null,\\n            \\\"reqApproval\\\": \\\"0\\\",\\n            \\\"reqApproval1st\\\": \\\"2\\\",\\n            \\\"reqApprovalNotify\\\": \\\"\\\",\\n            \\\"socialdata\\\": \\\"0\\\",\\n            \\\"links\\\": {\\n                \\\"userGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/5/userGroups\\\",\\n                \\\"groupLimit\\\": \\\"https://:account.api-us1.com/api/3/groups/5/groupLimit\\\",\\n                \\\"dealGroupGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/5/dealGroupGroups\\\",\\n                \\\"listGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/5/listGroups\\\",\\n                \\\"addressGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/5/addressGroups\\\",\\n                \\\"automationGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/5/automationGroups\\\"\\n            },\\n            \\\"id\\\": \\\"5\\\"\\n        },\\n        {\\n            \\\"title\\\": \\\"TEST TITLE\\\",\\n            \\\"descript\\\": null,\\n            \\\"unsubscribelink\\\": \\\"0\\\",\\n            \\\"optinconfirm\\\": \\\"0\\\",\\n            \\\"p_admin\\\": \\\"1\\\",\\n            \\\"pgListAdd\\\": \\\"0\\\",\\n            \\\"pgListEdit\\\": \\\"0\\\",\\n            \\\"pgListDelete\\\": \\\"0\\\",\\n            \\\"pgListHeaders\\\": \\\"0\\\",\\n            \\\"pgListEmailaccount\\\": \\\"0\\\",\\n            \\\"pgListBounce\\\": \\\"0\\\",\\n            \\\"pgMessageAdd\\\": \\\"0\\\",\\n            \\\"pgMessageEdit\\\": \\\"0\\\",\\n            \\\"pgMessageDelete\\\": \\\"0\\\",\\n            \\\"pgMessageSend\\\": \\\"0\\\",\\n            \\\"pgContactAdd\\\": \\\"0\\\",\\n            \\\"pgContactEdit\\\": \\\"0\\\",\\n            \\\"pgContactDelete\\\": \\\"0\\\",\\n            \\\"pgContactMerge\\\": \\\"0\\\",\\n            \\\"pgContactImport\\\": \\\"0\\\",\\n            \\\"pgContactApprove\\\": \\\"0\\\",\\n            \\\"pgContactExport\\\": \\\"0\\\",\\n            \\\"pgContactSync\\\": \\\"0\\\",\\n            \\\"pgContactFilters\\\": \\\"0\\\",\\n            \\\"pgContactActions\\\": \\\"0\\\",\\n            \\\"pgContactFields\\\": \\\"0\\\",\\n            \\\"pg_user_add\\\": \\\"0\\\",\\n            \\\"pg_user_edit\\\": \\\"0\\\",\\n            \\\"pg_user_delete\\\": \\\"0\\\",\\n            \\\"pgGroupAdd\\\": \\\"0\\\",\\n            \\\"pgGroupEdit\\\": \\\"0\\\",\\n            \\\"pgGroupDelete\\\": \\\"0\\\",\\n            \\\"pgTemplateAdd\\\": \\\"0\\\",\\n            \\\"pgTemplateEdit\\\": \\\"0\\\",\\n            \\\"pgTemplateDelete\\\": \\\"0\\\",\\n            \\\"pgPersonalizationAdd\\\": \\\"0\\\",\\n            \\\"pgPersonalizationEdit\\\": \\\"0\\\",\\n            \\\"pgPersonalizationDelete\\\": \\\"0\\\",\\n            \\\"pgAutomationManage\\\": \\\"0\\\",\\n            \\\"pgFormEdit\\\": \\\"0\\\",\\n            \\\"pgReportsCampaign\\\": \\\"0\\\",\\n            \\\"pgReportsList\\\": \\\"0\\\",\\n            \\\"pgReportsUser\\\": \\\"0\\\",\\n            \\\"pgReportsTrend\\\": \\\"1\\\",\\n            \\\"pgStartupReports\\\": \\\"0\\\",\\n            \\\"pgStartupGettingstarted\\\": \\\"1\\\",\\n            \\\"pgDeal\\\": \\\"1\\\",\\n            \\\"pgDealDelete\\\": \\\"1\\\",\\n            \\\"pgDealReassign\\\": \\\"1\\\",\\n            \\\"pgDealGroupAdd\\\": \\\"1\\\",\\n            \\\"pgDealGroupEdit\\\": \\\"1\\\",\\n            \\\"pgDealGroupDelete\\\": \\\"1\\\",\\n            \\\"pgSavedResponsesManage\\\": \\\"0\\\",\\n            \\\"sdate\\\": null,\\n            \\\"reqApproval\\\": \\\"0\\\",\\n            \\\"reqApproval1st\\\": \\\"2\\\",\\n            \\\"reqApprovalNotify\\\": \\\"\\\",\\n            \\\"socialdata\\\": \\\"0\\\",\\n            \\\"links\\\": {\\n                \\\"userGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/6/userGroups\\\",\\n                \\\"groupLimit\\\": \\\"https://:account.api-us1.com/api/3/groups/6/groupLimit\\\",\\n                \\\"dealGroupGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/6/dealGroupGroups\\\",\\n                \\\"listGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/6/listGroups\\\",\\n                \\\"addressGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/6/addressGroups\\\",\\n                \\\"automationGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/6/automationGroups\\\"\\n            },\\n            \\\"id\\\": \\\"6\\\"\\n        },\\n        {\\n            \\\"title\\\": \\\"TEST TITLE\\\",\\n            \\\"descript\\\": null,\\n            \\\"unsubscribelink\\\": \\\"0\\\",\\n            \\\"optinconfirm\\\": \\\"0\\\",\\n            \\\"p_admin\\\": \\\"1\\\",\\n            \\\"pgListAdd\\\": \\\"0\\\",\\n            \\\"pgListEdit\\\": \\\"0\\\",\\n            \\\"pgListDelete\\\": \\\"0\\\",\\n            \\\"pgListHeaders\\\": \\\"0\\\",\\n            \\\"pgListEmailaccount\\\": \\\"0\\\",\\n            \\\"pgListBounce\\\": \\\"0\\\",\\n            \\\"pgMessageAdd\\\": \\\"0\\\",\\n            \\\"pgMessageEdit\\\": \\\"0\\\",\\n            \\\"pgMessageDelete\\\": \\\"0\\\",\\n            \\\"pgMessageSend\\\": \\\"0\\\",\\n            \\\"pgContactAdd\\\": \\\"0\\\",\\n            \\\"pgContactEdit\\\": \\\"0\\\",\\n            \\\"pgContactDelete\\\": \\\"0\\\",\\n            \\\"pgContactMerge\\\": \\\"0\\\",\\n            \\\"pgContactImport\\\": \\\"0\\\",\\n            \\\"pgContactApprove\\\": \\\"0\\\",\\n            \\\"pgContactExport\\\": \\\"0\\\",\\n            \\\"pgContactSync\\\": \\\"0\\\",\\n            \\\"pgContactFilters\\\": \\\"0\\\",\\n            \\\"pgContactActions\\\": \\\"0\\\",\\n            \\\"pgContactFields\\\": \\\"0\\\",\\n            \\\"pg_user_add\\\": \\\"0\\\",\\n            \\\"pg_user_edit\\\": \\\"0\\\",\\n            \\\"pg_user_delete\\\": \\\"0\\\",\\n            \\\"pgGroupAdd\\\": \\\"0\\\",\\n            \\\"pgGroupEdit\\\": \\\"0\\\",\\n            \\\"pgGroupDelete\\\": \\\"0\\\",\\n            \\\"pgTemplateAdd\\\": \\\"0\\\",\\n            \\\"pgTemplateEdit\\\": \\\"0\\\",\\n            \\\"pgTemplateDelete\\\": \\\"0\\\",\\n            \\\"pgPersonalizationAdd\\\": \\\"0\\\",\\n            \\\"pgPersonalizationEdit\\\": \\\"0\\\",\\n            \\\"pgPersonalizationDelete\\\": \\\"0\\\",\\n            \\\"pgAutomationManage\\\": \\\"0\\\",\\n            \\\"pgFormEdit\\\": \\\"0\\\",\\n            \\\"pgReportsCampaign\\\": \\\"0\\\",\\n            \\\"pgReportsList\\\": \\\"0\\\",\\n            \\\"pgReportsUser\\\": \\\"0\\\",\\n            \\\"pgReportsTrend\\\": \\\"1\\\",\\n            \\\"pgStartupReports\\\": \\\"0\\\",\\n            \\\"pgStartupGettingstarted\\\": \\\"1\\\",\\n            \\\"pgDeal\\\": \\\"1\\\",\\n            \\\"pgDealDelete\\\": \\\"1\\\",\\n            \\\"pgDealReassign\\\": \\\"1\\\",\\n            \\\"pgDealGroupAdd\\\": \\\"1\\\",\\n            \\\"pgDealGroupEdit\\\": \\\"1\\\",\\n            \\\"pgDealGroupDelete\\\": \\\"1\\\",\\n            \\\"pgSavedResponsesManage\\\": \\\"0\\\",\\n            \\\"sdate\\\": null,\\n            \\\"reqApproval\\\": \\\"0\\\",\\n            \\\"reqApproval1st\\\": \\\"2\\\",\\n            \\\"reqApprovalNotify\\\": \\\"\\\",\\n            \\\"socialdata\\\": \\\"0\\\",\\n            \\\"links\\\": {\\n                \\\"userGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/7/userGroups\\\",\\n                \\\"groupLimit\\\": \\\"https://:account.api-us1.com/api/3/groups/7/groupLimit\\\",\\n                \\\"dealGroupGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/7/dealGroupGroups\\\",\\n                \\\"listGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/7/listGroups\\\",\\n                \\\"addressGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/7/addressGroups\\\",\\n                \\\"automationGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/7/automationGroups\\\"\\n            },\\n            \\\"id\\\": \\\"7\\\"\\n        }\\n    ],\\n    \\\"meta\\\": {\\n        \\\"total\\\": \\\"4\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8396fbb7-6ead-418b-8669-9dbf61fde218",
+          "name": "ActiveCampaign Retrieve a Group",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Group",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the group to retrieve"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af51fdc7-6916-4399-9a63-7acd093b9265",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the group to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"group\\\": {\\n        \\\"title\\\": \\\"TEST TITLE\\\",\\n        \\\"descript\\\": \\\"This is a group for admin users (people that can manage content)\\\",\\n        \\\"unsubscribelink\\\": \\\"0\\\",\\n        \\\"optinconfirm\\\": \\\"0\\\",\\n        \\\"p_admin\\\": \\\"1\\\",\\n        \\\"pgListAdd\\\": \\\"1\\\",\\n        \\\"pgListEdit\\\": \\\"1\\\",\\n        \\\"pgListDelete\\\": \\\"1\\\",\\n        \\\"pgListHeaders\\\": \\\"1\\\",\\n        \\\"pgListEmailaccount\\\": \\\"1\\\",\\n        \\\"pgListBounce\\\": \\\"1\\\",\\n        \\\"pgMessageAdd\\\": \\\"1\\\",\\n        \\\"pgMessageEdit\\\": \\\"1\\\",\\n        \\\"pgMessageDelete\\\": \\\"1\\\",\\n        \\\"pgMessageSend\\\": \\\"1\\\",\\n        \\\"pgContactAdd\\\": \\\"1\\\",\\n        \\\"pgContactEdit\\\": \\\"1\\\",\\n        \\\"pgContactDelete\\\": \\\"1\\\",\\n        \\\"pgContactMerge\\\": \\\"1\\\",\\n        \\\"pgContactImport\\\": \\\"1\\\",\\n        \\\"pgContactApprove\\\": \\\"1\\\",\\n        \\\"pgContactExport\\\": \\\"1\\\",\\n        \\\"pgContactSync\\\": \\\"1\\\",\\n        \\\"pgContactFilters\\\": \\\"1\\\",\\n        \\\"pgContactActions\\\": \\\"0\\\",\\n        \\\"pgContactFields\\\": \\\"1\\\",\\n        \\\"pg_user_add\\\": \\\"1\\\",\\n        \\\"pg_user_edit\\\": \\\"1\\\",\\n        \\\"pg_user_delete\\\": \\\"1\\\",\\n        \\\"pgGroupAdd\\\": \\\"1\\\",\\n        \\\"pgGroupEdit\\\": \\\"1\\\",\\n        \\\"pgGroupDelete\\\": \\\"1\\\",\\n        \\\"pgTemplateAdd\\\": \\\"1\\\",\\n        \\\"pgTemplateEdit\\\": \\\"1\\\",\\n        \\\"pgTemplateDelete\\\": \\\"1\\\",\\n        \\\"pgPersonalizationAdd\\\": \\\"1\\\",\\n        \\\"pgPersonalizationEdit\\\": \\\"1\\\",\\n        \\\"pgPersonalizationDelete\\\": \\\"1\\\",\\n        \\\"pgAutomationManage\\\": \\\"1\\\",\\n        \\\"pgFormEdit\\\": \\\"1\\\",\\n        \\\"pgReportsCampaign\\\": \\\"1\\\",\\n        \\\"pgReportsList\\\": \\\"1\\\",\\n        \\\"pgReportsUser\\\": \\\"1\\\",\\n        \\\"pgReportsTrend\\\": \\\"1\\\",\\n        \\\"pgStartupReports\\\": \\\"1\\\",\\n        \\\"pgStartupGettingstarted\\\": \\\"1\\\",\\n        \\\"pgDeal\\\": \\\"1\\\",\\n        \\\"pgDealDelete\\\": \\\"1\\\",\\n        \\\"pgDealReassign\\\": \\\"1\\\",\\n        \\\"pgDealGroupAdd\\\": \\\"1\\\",\\n        \\\"pgDealGroupEdit\\\": \\\"1\\\",\\n        \\\"pgDealGroupDelete\\\": \\\"1\\\",\\n        \\\"pgSavedResponsesManage\\\": \\\"1\\\",\\n        \\\"sdate\\\": \\\"2018-09-20T10:51:14-05:00\\\",\\n        \\\"reqApproval\\\": \\\"0\\\",\\n        \\\"reqApproval1st\\\": \\\"2\\\",\\n        \\\"reqApprovalNotify\\\": \\\"\\\",\\n        \\\"socialdata\\\": \\\"0\\\",\\n        \\\"links\\\": {\\n            \\\"userGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/3/userGroups\\\",\\n            \\\"groupLimit\\\": \\\"https://:account.api-us1.com/api/3/groups/3/groupLimit\\\",\\n            \\\"dealGroupGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/3/dealGroupGroups\\\",\\n            \\\"listGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/3/listGroups\\\",\\n            \\\"addressGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/3/addressGroups\\\",\\n            \\\"automationGroups\\\": \\\"https://:account.api-us1.com/api/3/groups/3/automationGroups\\\"\\n        },\\n        \\\"id\\\": \\\"3\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "983ae169-7181-4454-a2cb-79d7bbc36081",
+              "name": "403",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the group to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for Group with id 10\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "521ad319-a80f-45a2-8304-3efab526299d",
+          "name": "ActiveCampaign Update a Group",
+          "request": {
+            "name": "ActiveCampaign Update a Group",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the group to update"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"group\": {\n    \"title\": \"<string>\",\n    \"descript\": \"<string>\",\n    \"pgMessageAdd\": false,\n    \"unsubscribelink\": false,\n    \"optinconfirm\": false,\n    \"pgListAdd\": false,\n    \"pgListEdit\": false,\n    \"pgListDelete\": false,\n    \"pgListHeaders\": false,\n    \"pgListEmailaccount\": false,\n    \"pgListBounce\": false,\n    \"pgMessageEdit\": false,\n    \"pgMessageDelete\": false,\n    \"pgMessageSend\": false,\n    \"pgContactAdd\": false,\n    \"pgContactEdit\": false,\n    \"pgContactDelete\": false,\n    \"pgContactMerge\": false,\n    \"pgContactImport\": false,\n    \"pgContactApprove\": false,\n    \"pgContactExport\": false,\n    \"pgContactSync\": false,\n    \"pgContactFilters\": false,\n    \"pgContactActions\": false,\n    \"pgContactFields\": false,\n    \"pg_user_add\": false,\n    \"pg_user_edit\": false,\n    \"pg_user_delete\": false,\n    \"pgGroupAdd\": false,\n    \"pgGroupEdit\": false,\n    \"pgGroupDelete\": false,\n    \"pgTemplateAdd\": false,\n    \"pgTemplateEdit\": false,\n    \"pgTemplateDelete\": false,\n    \"pgPersonalizationAdd\": false,\n    \"pgPersonalizationEdit\": false,\n    \"pgPersonalizationDelete\": false,\n    \"pgAutomationManage\": false,\n    \"pgFormEdit\": false,\n    \"pgReportsCampaign\": false,\n    \"pgReportsList\": false,\n    \"pgReportsUser\": false,\n    \"pgStartupReports\": false,\n    \"pgReportsTrend\": false,\n    \"pgStartupGettingstarted\": false,\n    \"pgDeal\": false,\n    \"pgDealDelete\": false,\n    \"pgDealReassign\": false,\n    \"pgDealGroupAdd\": false,\n    \"pgDealGroupEdit\": false,\n    \"pgDealGroupDelete\": false,\n    \"pgSavedResponsesManage\": false,\n    \"reqApproval\": false,\n    \"reqApproval1st\": false,\n    \"reqApprovalNotify\": \"<string>\",\n    \"socialdata\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "21b5f267-5946-435e-827c-c48cd75aa05c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the group to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"group\": {\n    \"title\": \"TEST TITLE\",\n    \"descript\": \"Description Text\",\n    \"unsubscribelink\": \"0\",\n    \"optinconfirm\": \"0\",\n    \"pgListAdd\": 1,\n    \"pgListEdit\": 1,\n    \"pgListDelete\": 1,\n    \"pgListHeaders\": 1,\n    \"pgListEmailaccount\": 1,\n    \"pgListBounce\": 1,\n    \"pgMessageAdd\": 1,\n    \"pgMessageEdit\": 1,\n    \"pgMessageDelete\": 1,\n    \"pgMessageSend\": 1,\n    \"pgContactAdd\": 1,\n    \"pgContactEdit\": 1,\n    \"pgContactDelete\": 1,\n    \"pgContactMerge\": 1,\n    \"pgContactImport\": 1,\n    \"pgContactApprove\": 1,\n    \"pgContactExport\": 1,\n    \"pgContactSync\": 1,\n    \"pgContactFilters\": 1,\n    \"pgContactActions\": 1,\n    \"pgContactFields\": 1,\n    \"pg_user_add\": \"0\",\n    \"pg_user_edit\": \"0\",\n    \"pg_user_delete\": \"0\",\n    \"pgGroupAdd\": 1,\n    \"pgGroupEdit\": 1,\n    \"pgGroupDelete\": 1,\n    \"pgTemplateAdd\": 1,\n    \"pgTemplateEdit\": 1,\n    \"pgTemplateDelete\": 1,\n    \"pgPersonalizationAdd\": 1,\n    \"pgPersonalizationEdit\": 1,\n    \"pgPersonalizationDelete\": 1,\n    \"pgAutomationManage\": 1,\n    \"pgFormEdit\": 1,\n    \"pgReportsCampaign\": 1,\n    \"pgReportsList\": 1,\n    \"pgReportsUser\": 1,\n    \"pgReportsTrend\": 1,\n    \"pgStartupReports\": 1,\n    \"pgStartupGettingstarted\": 1,\n    \"pgDeal\": 1,\n    \"pgDealDelete\": 1,\n    \"pgDealReassign\": 1,\n    \"pgDealGroupAdd\": 1,\n    \"pgDealGroupEdit\": 1,\n    \"pgDealGroupDelete\": 1,\n    \"pgSavedResponsesManage\": 1,\n    \"reqApproval\": 1,\n    \"reqApproval1st\": 1,\n    \"reqApprovalNotify\": \"JohnDoe@gmail.com\",\n    \"socialdata\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"group\\\": {\\n        \\\"title\\\": \\\"My Groups Title\\\",\\n        \\\"p_admin\\\": 1,\\n        \\\"links\\\": {\\n            \\\"userGroups\\\": \\\"https://:account.api-us1.com/api/:version/groups/7/userGroups\\\",\\n            \\\"groupLimit\\\": \\\"https://:account.api-us1.com/api/:version/groups/7/groupLimit\\\",\\n            \\\"dealGroupGroups\\\": \\\"https://:account.api-us1.com/api/:version/groups/7/dealGroupGroups\\\",\\n            \\\"listGroups\\\": \\\"https://:account.api-us1.com/api/:version/groups/7/listGroups\\\",\\n            \\\"addressGroups\\\": \\\"https://:account.api-us1.com/api/:version/groups/7/addressGroups\\\",\\n            \\\"automationGroups\\\": \\\"https://:account.api-us1.com/api/:version/groups/7/automationGroups\\\"\\n        },\\n        \\\"id\\\": \\\"7\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a84420e-4a78-41c0-a02d-9e537f1c577e",
+              "name": "403",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the group to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"group\": {\n    \"title\": \"TEST TITLE\",\n    \"descript\": \"Description Text\",\n    \"unsubscribelink\": \"0\",\n    \"optinconfirm\": \"0\",\n    \"pgListAdd\": 1,\n    \"pgListEdit\": 1,\n    \"pgListDelete\": 1,\n    \"pgListHeaders\": 1,\n    \"pgListEmailaccount\": 1,\n    \"pgListBounce\": 1,\n    \"pgMessageAdd\": 1,\n    \"pgMessageEdit\": 1,\n    \"pgMessageDelete\": 1,\n    \"pgMessageSend\": 1,\n    \"pgContactAdd\": 1,\n    \"pgContactEdit\": 1,\n    \"pgContactDelete\": 1,\n    \"pgContactMerge\": 1,\n    \"pgContactImport\": 1,\n    \"pgContactApprove\": 1,\n    \"pgContactExport\": 1,\n    \"pgContactSync\": 1,\n    \"pgContactFilters\": 1,\n    \"pgContactActions\": 1,\n    \"pgContactFields\": 1,\n    \"pg_user_add\": \"0\",\n    \"pg_user_edit\": \"0\",\n    \"pg_user_delete\": \"0\",\n    \"pgGroupAdd\": 1,\n    \"pgGroupEdit\": 1,\n    \"pgGroupDelete\": 1,\n    \"pgTemplateAdd\": 1,\n    \"pgTemplateEdit\": 1,\n    \"pgTemplateDelete\": 1,\n    \"pgPersonalizationAdd\": 1,\n    \"pgPersonalizationEdit\": 1,\n    \"pgPersonalizationDelete\": 1,\n    \"pgAutomationManage\": 1,\n    \"pgFormEdit\": 1,\n    \"pgReportsCampaign\": 1,\n    \"pgReportsList\": 1,\n    \"pgReportsUser\": 1,\n    \"pgReportsTrend\": 1,\n    \"pgStartupReports\": 1,\n    \"pgStartupGettingstarted\": 1,\n    \"pgDeal\": 1,\n    \"pgDealDelete\": 1,\n    \"pgDealReassign\": 1,\n    \"pgDealGroupAdd\": 1,\n    \"pgDealGroupEdit\": 1,\n    \"pgDealGroupDelete\": 1,\n    \"pgSavedResponsesManage\": 1,\n    \"reqApproval\": 1,\n    \"reqApproval1st\": 1,\n    \"reqApprovalNotify\": \"JohnDoe@gmail.com\",\n    \"socialdata\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for Group with id 8\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "571b672a-21d2-400b-b784-39953a2c7b9e",
+          "name": "ActiveCampaign Delete a Group",
+          "request": {
+            "name": "ActiveCampaign Delete a Group",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the group to be deleted"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e49ec356-769d-4bde-82f2-b77b5e1ff3d6",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the group to be deleted"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb5416a4-2c3b-4c99-8bc1-708d628bcf02",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the group to be deleted"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ded138f5-c550-4cb7-8860-504e252673e5",
+          "name": "ActiveCampaign List All Group Limits",
+          "request": {
+            "name": "ActiveCampaign List All Group Limits",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groupLimits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60d10084-3ca1-46b9-8a13-492ebfe3b71f",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groupLimits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n\\t\\\"groupLimits\\\": [\\n\\t\\t{\\n\\t\\t\\t\\\"groupid\\\": \\\"1\\\",\\n\\t\\t\\t\\\"limitMail\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitMailType\\\": \\\"month\\\",\\n\\t\\t\\t\\\"limitContact\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitList\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitCampaign\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitCampaignType\\\": \\\"month\\\",\\n\\t\\t\\t\\\"limitAttachment\\\": \\\"-1\\\",\\n\\t\\t\\t\\\"limitUser\\\": \\\"0\\\",\\n\\t\\t\\t\\\"abuseRatio\\\": \\\"4\\\",\\n\\t\\t\\t\\\"forceSenderInfo\\\": \\\"0\\\",\\n\\t\\t\\t\\\"links\\\": {\\n\\t\\t\\t\\t\\\"group\\\": \\\"https://:account.api-us1.com/api/3/groupLimits/1/group\\\"\\n\\t\\t\\t},\\n\\t\\t\\t\\\"id\\\": \\\"1\\\",\\n\\t\\t\\t\\\"group\\\": \\\"1\\\"\\n\\t\\t},\\n\\t\\t{\\n\\t\\t\\t\\\"groupid\\\": \\\"2\\\",\\n\\t\\t\\t\\\"limitMail\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitMailType\\\": \\\"month\\\",\\n\\t\\t\\t\\\"limitContact\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitList\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitCampaign\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitCampaignType\\\": \\\"month\\\",\\n\\t\\t\\t\\\"limitAttachment\\\": \\\"-1\\\",\\n\\t\\t\\t\\\"limitUser\\\": \\\"0\\\",\\n\\t\\t\\t\\\"abuseRatio\\\": \\\"4\\\",\\n\\t\\t\\t\\\"forceSenderInfo\\\": \\\"0\\\",\\n\\t\\t\\t\\\"links\\\": {\\n\\t\\t\\t\\t\\\"group\\\": \\\"https://:accounts.api-us1.com/api/3/groupLimits/2/group\\\"\\n\\t\\t\\t},\\n\\t\\t\\t\\\"id\\\": \\\"2\\\",\\n\\t\\t\\t\\\"group\\\": \\\"2\\\"\\n\\t\\t},\\n\\t\\t{\\n\\t\\t\\t\\\"groupid\\\": \\\"3\\\",\\n\\t\\t\\t\\\"limitMail\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitMailType\\\": \\\"month\\\",\\n\\t\\t\\t\\\"limitContact\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitList\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitCampaign\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitCampaignType\\\": \\\"month\\\",\\n\\t\\t\\t\\\"limitAttachment\\\": \\\"-1\\\",\\n\\t\\t\\t\\\"limitUser\\\": \\\"0\\\",\\n\\t\\t\\t\\\"abuseRatio\\\": \\\"4\\\",\\n\\t\\t\\t\\\"forceSenderInfo\\\": \\\"0\\\",\\n\\t\\t\\t\\\"links\\\": {\\n\\t\\t\\t\\t\\\"group\\\": \\\"https://:account.api-us1.com/api/3/groupLimits/3/group\\\"\\n\\t\\t\\t},\\n\\t\\t\\t\\\"id\\\": \\\"3\\\",\\n\\t\\t\\t\\\"group\\\": \\\"3\\\"\\n\\t\\t},\\n\\t\\t{\\n\\t\\t\\t\\\"groupid\\\": \\\"4\\\",\\n\\t\\t\\t\\\"limitMail\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitMailType\\\": \\\"month\\\",\\n\\t\\t\\t\\\"limitContact\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitList\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitCampaign\\\": \\\"0\\\",\\n\\t\\t\\t\\\"limitCampaignType\\\": \\\"month\\\",\\n\\t\\t\\t\\\"limitAttachment\\\": \\\"-1\\\",\\n\\t\\t\\t\\\"limitUser\\\": \\\"0\\\",\\n\\t\\t\\t\\\"abuseRatio\\\": \\\"4\\\",\\n\\t\\t\\t\\\"forceSenderInfo\\\": \\\"0\\\",\\n\\t\\t\\t\\\"links\\\": {\\n\\t\\t\\t\\t\\\"group\\\": \\\"https://:account.api-us1.com/api/3/groupLimits/4/group\\\"\\n\\t\\t\\t},\\n\\t\\t\\t\\\"id\\\": \\\"4\\\",\\n\\t\\t\\t\\\"group\\\": \\\"4\\\"\\n\\t\\t}\\n\\t],\\n\\t\\\"meta\\\": {\\n\\t\\t\\\"total\\\": \\\"4\\\"\\n\\t}\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e2df53f9-9af0-4e12-aea1-cb8a66de7d72",
+    "name": "ActiveCampaign SMS Broadcast Accounts Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

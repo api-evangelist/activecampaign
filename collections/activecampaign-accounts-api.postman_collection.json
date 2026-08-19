@@ -1,0 +1,4028 @@
+{
+  "item": [
+    {
+      "id": "871c1339-2390-4445-a0aa-f1028a5031ee",
+      "name": "Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a64c6a6a-677a-48bf-a12d-0e11433f8f97",
+          "name": "ActiveCampaign Create an Account",
+          "request": {
+            "name": "ActiveCampaign Create an Account",
+            "description": {
+              "content": "Create a new account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account\": {\n    \"name\": \"<string>\",\n    \"accountUrl\": \"<string>\",\n    \"owner\": 1,\n    \"fields\": [\n      {\n        \"customFieldId\": \"<integer>\",\n        \"fieldValue\": \"<string>\",\n        \"fieldCurrency\": \"<string>\"\n      },\n      {\n        \"customFieldId\": \"<integer>\",\n        \"fieldValue\": \"<string>\",\n        \"fieldCurrency\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "97500170-99f8-454f-afe9-a95202ba6242",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"name\": \"Example Account\",\n    \"accountUrl\": \"https://www.example.com\",\n    \"owner\": 1,\n    \"fields\": [\n      {\n        \"customFieldId\": 9,\n        \"fieldValue\": \"500-1000\"\n      },\n      {\n        \"customFieldId\": 20,\n        \"fieldValue\": 1234,\n        \"fieldCurrency\": \"GBP\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"account\\\": {\\n        \\\"name\\\": \\\"Example Account\\\",\\n        \\\"accountUrl\\\": \\\"https://www.example.com\\\",\\n        \\\"createdTimestamp\\\": \\\"2019-06-12T16:52:16-05:00\\\",\\n        \\\"updatedTimestamp\\\": \\\"2019-06-12T16:52:16-05:00\\\",\\n        \\\"links\\\": [],\\n        \\\"fields\\\": [\\n            {\\n                \\\"customFieldId\\\": 9,\\n                \\\"fieldValue\\\": \\\"501 - 1000\\\",\\n                \\\"accountId\\\": \\\"1\\\"\\n            },\\n            {\\n                \\\"customFieldId\\\": 20,\\n                \\\"fieldValue\\\": 1234,\\n        \\t\\t\\t\\t\\\"fieldCurrency\\\": \\\"GBP\\\",\\n                \\\"accountId\\\": \\\"1\\\"\\n            }\\n        ],\\n        \\\"id\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61c58919-8a26-4d34-a979-a0e284566fa7",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"name\": \"Example Account\",\n    \"accountUrl\": \"https://www.example.com\",\n    \"owner\": 1,\n    \"fields\": [\n      {\n        \"customFieldId\": 9,\n        \"fieldValue\": \"500-1000\"\n      },\n      {\n        \"customFieldId\": 20,\n        \"fieldValue\": 1234,\n        \"fieldCurrency\": \"GBP\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"title\\\": \\\"The account name was not provided.\\\",\\n            \\\"detail\\\": \\\"\\\",\\n            \\\"code\\\": \\\"field_missing\\\",\\n            \\\"source\\\": {\\n                \\\"pointer\\\": \\\"/data/attributes/name\\\"\\n            }\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7da74fb-0e12-4d46-9570-1c5cf16a1ed4",
+          "name": "ActiveCampaign List All Accounts",
+          "request": {
+            "name": "ActiveCampaign List All Accounts",
+            "description": {
+              "content": "Retrieve all existing account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search by name"
+                },
+                {
+                  "disabled": false,
+                  "key": "count_deals",
+                  "value": "<boolean>",
+                  "description": "Whether to compute the contactCount and dealCount counts for the number of contacts/deals associated with each account. Set it to true to include the right counts. If set to false or omitted from the call, then contactCount and dealCount will not be counted and be simply displayed as 0."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c7cebfd-74dd-4dba-937f-15421ff4845d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count_deals",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"accounts\\\": [\\n        {\\n            \\\"name\\\": \\\"First Example Account\\\",\\n            \\\"accountUrl\\\": null,\\n            \\\"createdTimestamp\\\": \\\"2019-04-29T07:51:31-05:00\\\",\\n            \\\"updatedTimestamp\\\": \\\"2019-04-29T07:51:31-05:00\\\",\\n            \\\"contactCount\\\": \\\"1\\\",\\n            \\\"dealCount\\\": \\\"3\\\",\\n            \\\"links\\\": [\\n                \\\"notes\\\": \\\"https://:account.api-us1.com/api/:version/accounts/1/notes\\\",\\n                \\\"accountCustomFieldData\\\": \\\"https://:account.api-us1.com/api/:version/accounts/1/accountCustomFieldData\\\",\\n                \\\"accountContacts\\\": \\\"https://:account.api-us1.com/api/:version/accounts/1/accountContacts\\\"],\\n            \\\"id\\\": \\\"1\\\"\\n        },\\n        {\\n            \\\"name\\\": \\\"Second Example Account\\\",\\n            \\\"accountUrl\\\": null,\\n            \\\"createdTimestamp\\\": \\\"2019-04-29T07:51:32-05:00\\\",\\n            \\\"updatedTimestamp\\\": \\\"2019-04-29T07:51:32-05:00\\\",\\n            \\\"contactCount\\\": \\\"2\\\",\\n            \\\"dealCount\\\": \\\"5\\\",\\n            \\\"links\\\": [\\n                \\\"notes\\\": \\\"https://:account.api-us1.com/api/:version/accounts/2/notes\\\",\\n                \\\"accountCustomFieldData\\\": \\\"https://:account.api-us1.com/api/:version/accounts/2/accountCustomFieldData\\\",\\n                \\\"accountContacts\\\": \\\"https://:account.api-us1.com/api/:version/accounts/2/accountContacts\\\"],\\n            \\\"id\\\": \\\"2\\\"\\n        }\\n    ],\\n    \\\"meta\\\": {\\n      \\\"total\\\": \\\"2\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b68f0417-298c-4dba-9b7b-052b5c415a59",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count_deals",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51ec8fb8-c064-4daa-9434-5389ccf6918c",
+          "name": "ActiveCampaign Update an Account",
+          "request": {
+            "name": "ActiveCampaign Update an Account",
+            "description": {
+              "content": "Update an existing account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Account's id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account\": {\n    \"name\": \"<string>\",\n    \"accountUrl\": \"<string>\",\n    \"fields\": [\n      {\n        \"customFieldId\": \"<integer>\",\n        \"fieldValue\": \"<string>\",\n        \"fieldCurrency\": \"<string>\"\n      },\n      {\n        \"customFieldId\": \"<integer>\",\n        \"fieldValue\": \"<string>\",\n        \"fieldCurrency\": \"<string>\"\n      }\n    ],\n    \"owner\": 1\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cbf4b002-a88f-4d0f-8b52-a5f7af5c25a4",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Account's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"name\": \"Exmaple Account\",\n    \"accountUrl\": \"https://www.example.com\",\n    \"fields\": [\n      {\n        \"customFieldId\": 9,\n        \"fieldValue\": \"500-1000\"\n      },\n      {\n        \"customFieldId\": 20,\n        \"fieldValue\": 1234,\n        \"fieldCurrency\": \"GBP\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"account\\\": {\\n        \\\"name\\\": \\\"Exmaple Account\\\",\\n        \\\"accountUrl\\\": \\\"https://www.example.com\\\",\\n        \\\"createdTimestamp\\\": \\\"2019-04-03T13:57:31-05:00\\\",\\n        \\\"updatedTimestamp\\\": \\\"2019-06-12T16:55:32-05:00\\\",\\n        \\\"links\\\": [],\\n        \\\"fields\\\": [\\n            {\\n                \\\"customFieldId\\\": 9,\\n                \\\"fieldValue\\\": \\\"501 - 1000\\\",\\n                \\\"accountId\\\": \\\"1\\\"\\n            },\\n            {\\n                \\\"customFieldId\\\": 20,\\n                \\\"fieldValue\\\": 1234,\\n              \\t\\\"fieldCurrency\\\": \\\"GBP\\\",\\n                \\\"accountId\\\": \\\"1\\\"\\n            }\\n        ],\\n        \\\"id\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c20a3071-3e38-420d-ad1d-0ecca840d47e",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Account's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"name\": \"Exmaple Account\",\n    \"accountUrl\": \"https://www.example.com\",\n    \"fields\": [\n      {\n        \"customFieldId\": 9,\n        \"fieldValue\": \"500-1000\"\n      },\n      {\n        \"customFieldId\": 20,\n        \"fieldValue\": 1234,\n        \"fieldCurrency\": \"GBP\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a3e1b1c-e0be-4748-b73c-0226a67e1499",
+          "name": "ActiveCampaign Retrieve an Account",
+          "request": {
+            "name": "ActiveCampaign Retrieve an Account",
+            "description": {
+              "content": "Retrieve an existing account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Account's ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8685c63f-ec68-4855-ad20-54fcf62f747e",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Account's ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"account\\\": {\\n        \\\"name\\\": \\\"Example Account\\\",\\n        \\\"accountUrl\\\": \\\"https://www.example.com\\\",\\n        \\\"createdTimestamp\\\": \\\"2019-05-15T15:58:16-05:00\\\",\\n        \\\"updatedTimestamp\\\": \\\"2019-05-15T15:58:16-05:00\\\",\\n        \\\"links\\\": [],\\n        \\\"id\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47650415-41ce-491c-bd56-c0d7ff31dc65",
+          "name": "ActiveCampaign Delete an Account",
+          "request": {
+            "name": "ActiveCampaign Delete an Account",
+            "description": {
+              "content": "Delete an existing account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Account's id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d4e7ba48-efb0-40f5-8d44-4215e21c76a6",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Account's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8bb9557-7695-4e04-b7c7-dffcb3fafbe4",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Account's id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70d010c4-4137-4c97-949d-94b5f7ec05b0",
+          "name": "ActiveCampaign Create an Account Note",
+          "request": {
+            "name": "ActiveCampaign Create an Account Note",
+            "description": {
+              "content": "Create a new note for an account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":id",
+                "notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Account's id to assign new note to"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": {\n    \"note\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "17f0229d-1225-4b68-b5b3-6ee8e9a01611",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Account's id to assign new note to"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": {\n    \"note\": \"Note for the account\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"accounts\\\": [\\n    {\\n      \\\"name\\\": \\\"Museuem of Science and Industry\\\",\\n      \\\"accountUrl\\\": \\\"www.msi.com\\\",\\n      \\\"createdTimestamp\\\": \\\"2019-04-03T13:29:35-05:00\\\",\\n      \\\"updatedTimestamp\\\": \\\"2019-06-12T16:59:54-05:00\\\",\\n      \\\"id\\\": \\\"1\\\"\\n    }\\n  ],\\n  \\\"note\\\": {\\n    \\\"cdate\\\": \\\"2017-05-31T09:54:30-05:00\\\",\\n    \\\"id\\\": \\\"2\\\",\\n    \\\"links\\\": {\\n      \\\"activities\\\": \\\"/api/3/notes/2/activities\\\",\\n      \\\"mentions\\\": \\\"/api/3/notes/2/mentions\\\",\\n      \\\"notes\\\": \\\"/api/3/notes/2/notes\\\",\\n      \\\"owner\\\": \\\"/api/3/notes/2/owner\\\",\\n      \\\"user\\\": \\\"/api/3/notes/2/user\\\"\\n    },\\n    \\\"mdate\\\": \\\"2017-05-31T09:54:30-05:00\\\",\\n    \\\"note\\\": \\\"Note for the account\\\",\\n    \\\"owner\\\": {\\n      \\\"id\\\": \\\"1\\\",\\n      \\\"type\\\": \\\"account\\\"\\n    },\\n    \\\"relid\\\": \\\"1\\\",\\n    \\\"reltype\\\": \\\"CustomerAccount\\\",\\n    \\\"user\\\": \\\"1\\\",\\n    \\\"userid\\\": \\\"1\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dcca3660-f671-4fde-806a-2e2ad019fb20",
+          "name": "ActiveCampaign Update an Account Note",
+          "request": {
+            "name": "ActiveCampaign Update an Account Note",
+            "description": {
+              "content": "Update an existing note for a account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":id",
+                "notes",
+                ":noteid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Account's id to assign new note to"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "noteid",
+                  "description": "(Required) Account note's id to update"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": {\n    \"note\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "215ff890-1b38-427e-a56d-2e660dd714da",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "notes",
+                    ":noteid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Account's id to assign new note to"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "noteid",
+                      "description": "(Required) Account note's id to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": {\n    \"note\": \"Update with more info\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"accounts\\\": [\\n    {\\n      \\\"name\\\": \\\"Example Account\\\",\\n      \\\"accountUrl\\\": \\\"https://www.example.url\\\",\\n      \\\"createdTimestamp\\\": \\\"2019-04-03T13:29:35-05:00\\\",\\n      \\\"updatedTimestamp\\\": \\\"2019-06-12T16:59:54-05:00\\\",\\n      \\\"links\\\": {\\n        \\\"notes\\\": \\\"https://hosted.localdev/api/3/accounts/1/notes\\\"\\n      },\\n      \\\"id\\\": \\\"1\\\"\\n    }\\n  ],\\n  \\\"note\\\": {\\n    \\\"cdate\\\": \\\"2017-06-01T13:42:13-05:00\\\",\\n    \\\"id\\\": \\\"2\\\",\\n    \\\"links\\\": {\\n      \\\"activities\\\": \\\"/api/3/notes/2/activities\\\",\\n      \\\"mentions\\\": \\\"/api/3/notes/2/mentions\\\",\\n      \\\"notes\\\": \\\"/api/3/notes/2/notes\\\",\\n      \\\"owner\\\": \\\"/api/3/notes/2/owner\\\",\\n      \\\"user\\\": \\\"/api/3/notes/2/user\\\"\\n    },\\n    \\\"mdate\\\": \\\"2017-06-01T13:42:13-05:00\\\",\\n    \\\"note\\\": \\\"Update with more info\\\",\\n    \\\"owner\\\": {\\n      \\\"id\\\": \\\"1\\\",\\n      \\\"type\\\": \\\"account\\\"\\n    },\\n    \\\"relid\\\": \\\"1\\\",\\n    \\\"reltype\\\": \\\"CustomerAccount\\\",\\n    \\\"user\\\": \\\"1\\\",\\n    \\\"userid\\\": \\\"1\\\"\\n  }\\n}\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54bb591b-d15d-4468-880f-d271954b5664",
+          "name": "ActiveCampaign Bulk Delete Accounts",
+          "request": {
+            "name": "ActiveCampaign Bulk Delete Accounts",
+            "description": {
+              "content": "Delete an existing account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                "bulk_delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "[]ids",
+                  "value": "<integer>",
+                  "description": "An integer id of the account to be deleted"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08f76d56-ada4-49c4-851d-7efc46487132",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "bulk_delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "[]ids",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"meta\\\": {\\n        \\\"success\\\": true\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ba1678b-0d47-409b-a2a2-90157283fce0",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "bulk_delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "[]ids",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "134a5b2b-6080-4571-ad4c-df1179504d3e",
+          "name": "ActiveCampaign Create an Association",
+          "request": {
+            "name": "ActiveCampaign Create an Association",
+            "description": {
+              "content": "Create a new account association",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountContacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountContact\": {\n    \"account\": \"<integer>\",\n    \"contact\": \"<integer>\",\n    \"jobTitle\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c007398-0655-4bbe-afe5-9e0acf6ac371",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountContacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountContact\": {\n    \"contact\": 2,\n    \"account\": 1,\n    \"jobTitle\": \"Product Manager\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"accountContact\\\": {\\n        \\\"account\\\": 2,\\n        \\\"contact\\\": 1,\\n        \\\"jobTitle\\\": \\\"Product Manager\\\",\\n        \\\"createdTimestamp\\\": \\\"2019-06-26T10:49:10-05:00\\\",\\n        \\\"updatedTimestamp\\\": \\\"2019-06-26T10:49:10-05:00\\\",\\n        \\\"links\\\": {\\n            \\\"account\\\": \\\"http://hosted.localdev/api/3/accountContacts/2/account\\\",\\n            \\\"contact\\\": \\\"http://hosted.localdev/api/3/accountContacts/1/contact\\\"\\n        },\\n        \\\"id\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b52fbab3-631f-4912-91e3-b86a0da2706a",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountContacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountContact\": {\n    \"contact\": 2,\n    \"account\": 1,\n    \"jobTitle\": \"Product Manager\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"title\\\": \\\"The account attribute was not provided\\\",\\n            \\\"detail\\\": \\\"\\\",\\n            \\\"code\\\": \\\"field_missing\\\",\\n            \\\"source\\\": {\\n                \\\"pointer\\\": \\\"/data/attributes/account\\\"\\n            }\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "534cdecc-f9d3-4e1b-ad89-26b5b22613bf",
+          "name": "ActiveCampaign List All Associations",
+          "request": {
+            "name": "ActiveCampaign List All Associations",
+            "description": {
+              "content": "Retrieve all existing account association",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountContacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filters[contact]",
+                  "value": "<integer>",
+                  "description": "Filter by Contact ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[account]",
+                  "value": "<integer>",
+                  "description": "Filter by Account ID"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9eb48df5-2418-43df-9dce-de27b79c925a",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountContacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters[contact]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filters[account]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"accountContacts\\\": [\\n        {\\n            \\\"account\\\": \\\"2\\\",\\n            \\\"contact\\\": \\\"3\\\",\\n            \\\"jobTitle\\\": \\\"Product Manager\\\",\\n            \\\"createdTimestamp\\\": \\\"2019-06-26T10:49:10-05:00\\\",\\n            \\\"updatedTimestamp\\\": \\\"2019-06-26T10:49:10-05:00\\\",\\n            \\\"links\\\": {\\n                \\\"account\\\": \\\"http://hosted.localdev/api/3/accountContacts/17/account\\\",\\n                \\\"contact\\\": \\\"http://hosted.localdev/api/3/accountContacts/17/contact\\\"\\n            },\\n            \\\"id\\\": \\\"17\\\"\\n        },\\n        {\\n            \\\"account\\\": \\\"2\\\",\\n            \\\"contact\\\": \\\"1\\\",\\n            \\\"jobTitle\\\": \\\"Product Manager\\\",\\n            \\\"createdTimestamp\\\": \\\"2019-06-26T11:26:09-05:00\\\",\\n            \\\"updatedTimestamp\\\": \\\"2019-06-26T11:26:09-05:00\\\",\\n            \\\"links\\\": {\\n                \\\"account\\\": \\\"http://hosted.localdev/api/3/accountContacts/18/account\\\",\\n                \\\"contact\\\": \\\"http://hosted.localdev/api/3/accountContacts/18/contact\\\"\\n            },\\n            \\\"id\\\": \\\"18\\\"\\n        },\\n        {\\n            \\\"account\\\": \\\"3\\\",\\n            \\\"contact\\\": \\\"2\\\",\\n            \\\"jobTitle\\\": \\\"Product Manager\\\",\\n            \\\"createdTimestamp\\\": \\\"2019-06-26T11:26:15-05:00\\\",\\n            \\\"updatedTimestamp\\\": \\\"2019-06-26T11:26:15-05:00\\\",\\n            \\\"links\\\": {\\n                \\\"account\\\": \\\"http://hosted.localdev/api/3/accountContacts/19/account\\\",\\n                \\\"contact\\\": \\\"http://hosted.localdev/api/3/accountContacts/19/contact\\\"\\n            },\\n            \\\"id\\\": \\\"19\\\"\\n        }\\n    ],\\n    \\\"meta\\\": {\\n        \\\"total\\\": \\\"3\\\",\\n        \\\"queryLog\\\": {\\n            \\\"queries\\\": [\\n                {\\n                    \\\"stmt\\\": \\\"SELECT  COUNT(DISTINCT t.id) AS `__count` FROM em_customer_account_subscriber t   WHERE 1\\\",\\n                    \\\"time\\\": 0.3669261932373\\n                },\\n                {\\n                    \\\"stmt\\\": \\\"SELECT  t.* FROM em_customer_account_subscriber t   WHERE 1 LIMIT 0, 20\\\",\\n                    \\\"time\\\": 0.17809867858887\\n                }\\n            ],\\n            \\\"by_time\\\": [\\n                {\\n                    \\\"stmt\\\": \\\"SELECT  COUNT(DISTINCT t.id) AS `__count` FROM em_customer_account_subscriber t   WHERE 1\\\",\\n                    \\\"time\\\": 0.3669261932373\\n                },\\n                {\\n                    \\\"stmt\\\": \\\"SELECT  t.* FROM em_customer_account_subscriber t   WHERE 1 LIMIT 0, 20\\\",\\n                    \\\"time\\\": 0.17809867858887\\n                }\\n            ],\\n            \\\"total\\\": 0.54502487182617,\\n            \\\"mode\\\": \\\"read/write\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f7519de-21aa-4670-a65e-e643c07348db",
+          "name": "ActiveCampaign Retrieve an Association",
+          "request": {
+            "name": "ActiveCampaign Retrieve an Association",
+            "description": {
+              "content": "Retrieve an existing account association",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountContacts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Association's ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a9c142b-11d9-4236-94fe-96476acfad98",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountContacts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Association's ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"accountContact\\\": {\\n        \\\"account\\\": \\\"2\\\",\\n        \\\"contact\\\": \\\"1\\\",\\n        \\\"jobTitle\\\": \\\"Product Manager\\\",\\n        \\\"createdTimestamp\\\": \\\"2019-06-26T11:26:09-05:00\\\",\\n        \\\"updatedTimestamp\\\": \\\"2019-06-26T11:26:09-05:00\\\",\\n        \\\"links\\\": {\\n            \\\"account\\\": \\\"http://hosted.localdev/api/3/accountContacts/18/account\\\",\\n            \\\"contact\\\": \\\"http://hosted.localdev/api/3/accountContacts/18/contact\\\"\\n        },\\n        \\\"id\\\": \\\"18\\\"\\n    },\\n    \\\"meta\\\": {\\n        \\\"queryLog\\\": {\\n            \\\"queries\\\": [\\n                {\\n                    \\\"stmt\\\": \\\"SELECT  * FROM em_customer_account_subscriber t   WHERE 1 AND id = '18' LIMIT 0, 1\\\",\\n                    \\\"time\\\": 0.31304359436035\\n                }\\n            ],\\n            \\\"by_time\\\": [\\n                {\\n                    \\\"stmt\\\": \\\"SELECT  * FROM em_customer_account_subscriber t   WHERE 1 AND id = '18' LIMIT 0, 1\\\",\\n                    \\\"time\\\": 0.31304359436035\\n                }\\n            ],\\n            \\\"total\\\": 0.31304359436035,\\n            \\\"mode\\\": \\\"read/write\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db14512b-31fa-4066-b0ae-02a5e5ecd262",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountContacts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Association's ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"message\": \"No Result found for CustomerAccountSubscriber with id 100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e53dbc9-25bf-4469-814b-155aa6e6b604",
+          "name": "ActiveCampaign Update an Association",
+          "request": {
+            "name": "ActiveCampaign Update an Association",
+            "description": {
+              "content": "Update an existing account association",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountContacts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Association's ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountContact\": {\n    \"account\": \"<integer>\",\n    \"contact\": \"<integer>\",\n    \"jobTitle\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4062588e-db64-4b84-aa78-38f98c219c17",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountContacts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Association's ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountContact\": {\n    \"jobTitle\": \"Product Manager\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"accountContact\\\": {\\n        \\\"account\\\": \\\"3\\\",\\n        \\\"contact\\\": \\\"2\\\",\\n        \\\"jobTitle\\\": \\\"CEO\\\",\\n        \\\"createdTimestamp\\\": \\\"2019-06-26T11:26:15-05:00\\\",\\n        \\\"updatedTimestamp\\\": \\\"2019-06-26T11:29:57-05:00\\\",\\n        \\\"links\\\": {\\n            \\\"account\\\": \\\"http://hosted.localdev/api/3/accountContacts/19/account\\\",\\n            \\\"contact\\\": \\\"http://hosted.localdev/api/3/accountContacts/19/contact\\\"\\n        },\\n        \\\"id\\\": \\\"19\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3d7cccf-37a7-404b-84ff-5500ceaf2bf3",
+          "name": "ActiveCampaign Delete an Association",
+          "request": {
+            "name": "ActiveCampaign Delete an Association",
+            "description": {
+              "content": "Delete an existing account association",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountContacts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Association's ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14bf1a16-b2e0-42fe-810c-bc0c012f7bab",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountContacts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Association's ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "630ebcec-89d7-49de-ad67-3ba35140296b",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountContacts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Association's ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for CustomerAccountSubscriber with id 100\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf0d267f-3f01-41f4-9126-cba74205832a",
+          "name": "ActiveCampaign Create a Custom Field",
+          "request": {
+            "name": "ActiveCampaign Create a Custom Field",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountCustomFieldMeta"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountCustomFieldMetum\": {\n    \"fieldLabel\": \"<string>\",\n    \"fieldType\": \"<string>\",\n    \"fieldOptions\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"fieldDefault\": \"<string>\",\n    \"fieldDefaultCurrency\": \"<string>\",\n    \"isFormVisible\": \"<boolean>\",\n    \"displayOrder\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "71c1a323-81db-48c3-a2e3-f3753b6470a3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldMeta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountCustomFieldMetum\": {\n    \"fieldLabel\": \"sample text field2\",\n    \"fieldType\": \"text\",\n    \"fieldDefault\": \"Default Text\",\n    \"isFormVisible\": 1,\n    \"displayOrder\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"accountCustomFieldMetum\\\": {\\n        \\\"id\\\": \\\"1\\\",\\n        \\\"fieldLabel\\\": \\\"title\\\",\\n        \\\"fieldType\\\": \\\"text\\\",\\n        \\\"fieldOptions\\\": null,\\n        \\\"fieldDefault\\\": \\\"Default Text\\\",\\n        \\\"isFormVisible\\\": 1,\\n        \\\"isRequired\\\": 0,\\n        \\\"displayOrder\\\": 1,\\n        \\\"createdTimestamp\\\": \\\"2018-10-22 19:57:37\\\",\\n        \\\"updatedTimestamp\\\": \\\"2018-10-22 19:57:37\\\",\\n        \\\"links\\\": {\\n            \\\"accountCustomFieldData\\\": \\\"https://:account.api-us1.com/api/:version/3/accountCustomFieldMeta/1/accountCustomFieldData\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aaa28659-492a-4804-a3ce-9a95b8510f8a",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldMeta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountCustomFieldMetum\": {\n    \"fieldLabel\": \"sample text field2\",\n    \"fieldType\": \"text\",\n    \"fieldDefault\": \"Default Text\",\n    \"isFormVisible\": 1,\n    \"displayOrder\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n\\t\\\"errors\\\": [\\n  \\t\\\"title\\\": \\\"The field type field is required.\\\",\\n    \\\"detail\\\": \\\"\\\",\\n    \\\"code\\\": 422\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "679b28ba-1336-47de-8f99-3ddd38fab5d1",
+          "name": "ActiveCampaign List All Custom Fields",
+          "request": {
+            "name": "ActiveCampaign List All Custom Fields",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountCustomFieldMeta"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "The number of fields returned per request."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "49328af6-5506-407b-aead-1e738c11d1b5",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldMeta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"accountCustomFieldMeta\\\": [\\n        {\\n            \\\"id\\\": \\\"1\\\",\\n            \\\"fieldLabel\\\": \\\"Text Example\\\",\\n            \\\"fieldType\\\": \\\"text\\\",\\n            \\\"fieldOptions\\\": null,\\n            \\\"fieldDefault\\\": 1,\\n            \\\"fieldDefaultCurrency\\\": null,\\n            \\\"isFormVisible\\\": 0,\\n            \\\"isRequired\\\": 0,\\n            \\\"displayOrder\\\": 1,\\n            \\\"personalization\\\": \\\"\\\",\\n            \\\"knownFieldId\\\": null,\\n            \\\"hideFieldFlag\\\": 0,\\n            \\\"createdTimestamp\\\": \\\"2019-04-23 15:34:00\\\",\\n            \\\"updatedTimestamp\\\": \\\"2019-05-03 15:16:51\\\",\\n            \\\"links\\\": {\\n                \\\"accountCustomFieldData\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldMeta/1/accountCustomFieldData\\\"\\n            }\\n        },\\n        {\\n            \\\"id\\\": \\\"2\\\",\\n            \\\"fieldLabel\\\": \\\"Multiple Choice Example\\\",\\n            \\\"fieldType\\\": \\\"multiselect\\\",\\n            \\\"fieldOptions\\\": [\\n            \\t\\\"Option 1\\\",\\n            \\t\\\"Option 2\\\",\\n            \\t\\\"Option 3\\\"\\n            ],\\n            \\\"fieldDefault\\\": 1,\\n            \\\"fieldDefaultCurrency\\\": null,\\n            \\\"isFormVisible\\\": 0,\\n            \\\"isRequired\\\": 0,\\n            \\\"displayOrder\\\": 2,\\n            \\\"personalization\\\": \\\"\\\",\\n            \\\"knownFieldId\\\": null,\\n            \\\"hideFieldFlag\\\": 0,\\n            \\\"createdTimestamp\\\": \\\"2019-04-23 15:34:00\\\",\\n            \\\"updatedTimestamp\\\": \\\"2019-05-03 15:16:51\\\",\\n            \\\"links\\\": {\\n                \\\"accountCustomFieldData\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldMeta/1/accountCustomFieldData\\\"\\n            }\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8892975-0f84-4fb1-9181-5335a0914b97",
+          "name": "ActiveCampaign Retrieve a Custom Field",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Custom Field",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountCustomFieldMeta",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the field to retrieve"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de4333fb-fb86-408c-896b-7378773ae83a",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldMeta",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the field to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"accountCustomFieldMetum\\\": {\\n        \\\"id\\\": \\\"1\\\",\\n        \\\"fieldLabel\\\": \\\"New Title\\\",\\n        \\\"fieldType\\\": \\\"text\\\",\\n        \\\"fieldOptions\\\": null,\\n        \\\"fieldDefault\\\": \\\"Default Text\\\",\\n        \\\"isFormVisible\\\": 1,\\n        \\\"isRequired\\\": 1,\\n        \\\"displayOrder\\\": 1,\\n        \\\"createdTimestamp\\\": \\\"2018-10-22 19:57:37\\\",\\n        \\\"updatedTimestamp\\\": \\\"2018-10-22 20:04:21\\\",\\n        \\\"links\\\": {\\n            \\\"accountCustomFieldData\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldMeta/1/accountCustomFieldData\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5a79925-2232-4a65-8275-77a31fef772c",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldMeta",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the field to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"status\\\": 404,\\n            \\\"title\\\": \\\"Not Found\\\"\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5a8ab03-793c-41bd-aded-a40b08991a11",
+          "name": "ActiveCampaign Update a Custom Field",
+          "request": {
+            "name": "ActiveCampaign Update a Custom Field",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountCustomFieldMeta",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the custom field to update"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountCustomFieldMetum\": {\n    \"fieldLabel\": \"<string>\",\n    \"fieldOptions\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"fieldDefault\": \"<string>\",\n    \"isFormVisible\": \"<boolean>\",\n    \"displayOrder\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f7bc5c62-e2df-48d6-b1d0-9dc5919e1a9b",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldMeta",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the custom field to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountCustomFieldMetum\": {\n    \"fieldLabel\": \"New Title\",\n    \"fieldDefault\": \"Default Text\",\n    \"isFormVisible\": 1,\n    \"displayOrder\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"accountCustomFieldMetum\\\": {\\n        \\\"id\\\": \\\"1\\\",\\n        \\\"fieldLabel\\\": \\\"New Title\\\",\\n        \\\"fieldType\\\": \\\"text\\\",\\n        \\\"fieldOptions\\\": null,\\n        \\\"fieldDefault\\\": \\\"Default Text\\\",\\n        \\\"isFormVisible\\\": 1,\\n        \\\"isRequired\\\": 1,\\n        \\\"displayOrder\\\": 1,\\n        \\\"createdTimestamp\\\": \\\"2018-10-22 19:57:37\\\",\\n        \\\"updatedTimestamp\\\": \\\"2018-10-22 20:04:21\\\",\\n        \\\"links\\\": {\\n            \\\"accountCustomFieldData\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldMeta/1/accountCustomFieldData\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "548bcde4-24e1-4389-8582-4ea3defc24a3",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldMeta",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the custom field to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountCustomFieldMetum\": {\n    \"fieldLabel\": \"New Title\",\n    \"fieldDefault\": \"Default Text\",\n    \"isFormVisible\": 1,\n    \"displayOrder\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"status\\\": 404,\\n            \\\"title\\\": \\\"Not Found\\\"\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5b4fb6d-851d-4582-8fab-9990ea664290",
+          "name": "ActiveCampaign Delete a Custom Field",
+          "request": {
+            "name": "ActiveCampaign Delete a Custom Field",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountCustomFieldMeta",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the field to delete"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "968a4eb0-5df5-4b67-82fe-3b2b33026a93",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldMeta",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the field to delete"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"message\\\": \\\"AccountCustomFieldMeta deleted.\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c698a9af-04b2-4d71-9641-7fbdf1ef2762",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldMeta",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the field to delete"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"status\\\": 404,\\n            \\\"title\\\": \\\"Not Found\\\"\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5edd515-4557-4faf-b462-e4413bd4fedb",
+          "name": "ActiveCampaign Create a Custom Field Value",
+          "request": {
+            "name": "ActiveCampaign Create a Custom Field Value",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountCustomFieldData"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountCustomFieldDatum\": {\n    \"customerAccountId\": \"<integer>\",\n    \"customFieldId\": \"<integer>\",\n    \"fieldValue\": \"<string>\",\n    \"fieldCurrency\": \"Default Currency for Field\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b7301110-26bf-4458-940b-37260a1e2a8a",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountCustomFieldDatum\": {\n    \"accountId\": \"2\",\n    \"customFieldId\": \"1\",\n    \"fieldValue\": \"test title\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"accountCustomFieldDatum\\\": {\\n        \\\"id\\\": \\\"5\\\",\\n        \\\"accountCustomFieldMetumId\\\": 1,\\n        \\\"accountId\\\": 2,\\n        \\\"customFieldId\\\": 1,\\n        \\\"createdTimestamp\\\": \\\"2018-11-06 02:27:05\\\",\\n        \\\"updatedTimestamp\\\": \\\"2018-11-06 02:27:05\\\",\\n        \\\"fieldValue\\\": \\\"test title\\\",\\n        \\\"links\\\": {\\n            \\\"account\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/5/account\\\",\\n            \\\"accountCustomFieldMetum\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/5/accountCustomFieldMetum\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41869f72-3bd6-4942-9167-9ef641ec4462",
+          "name": "ActiveCampaign List All Custom Field Values",
+          "request": {
+            "name": "ActiveCampaign List All Custom Field Values",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountCustomFieldData"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filters[customerAccountId]",
+                  "value": "<string>",
+                  "description": "Filter results by a specific account (note that Id uses a capital I)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13b8d3c2-e222-4ab3-98f5-4566f0f9f407",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters[customerAccountId]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"accountCustomFieldData\\\": [\\n        {\\n            \\\"id\\\": \\\"3\\\",\\n            \\\"accountCustomFieldMetumId\\\": 1,\\n            \\\"accountId\\\": 1,\\n            \\\"customFieldId\\\": 1,\\n            \\\"createdTimestamp\\\": \\\"2018-11-06 02:26:07\\\",\\n            \\\"updatedTimestamp\\\": \\\"2018-11-06 02:26:07\\\",\\n            \\\"fieldValue\\\": \\\"test title\\\",\\n            \\\"links\\\": {\\n                \\\"account\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/3/account\\\",\\n                \\\"accountCustomFieldMetum\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/3/accountCustomFieldMetum\\\"\\n            }\\n        },\\n        {\\n            \\\"id\\\": \\\"4\\\",\\n            \\\"accountCustomFieldMetumId\\\": 1,\\n            \\\"accountId\\\": 3,\\n            \\\"customFieldId\\\": 1,\\n            \\\"createdTimestamp\\\": \\\"2018-11-06 02:26:51\\\",\\n            \\\"updatedTimestamp\\\": \\\"2018-11-06 02:26:51\\\",\\n            \\\"fieldValue\\\": \\\"test title\\\",\\n            \\\"links\\\": {\\n                \\\"account\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/4/account\\\",\\n                \\\"accountCustomFieldMetum\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/4/accountCustomFieldMetum\\\"\\n            }\\n        },\\n        {\\n            \\\"id\\\": \\\"5\\\",\\n            \\\"accountCustomFieldMetumId\\\": 1,\\n            \\\"accountId\\\": 2,\\n            \\\"customFieldId\\\": 1,\\n            \\\"createdTimestamp\\\": \\\"2018-11-06 02:27:05\\\",\\n            \\\"updatedTimestamp\\\": \\\"2018-11-06 02:27:05\\\",\\n            \\\"fieldValue\\\": \\\"test title\\\",\\n            \\\"links\\\": {\\n                \\\"account\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/5/account\\\",\\n                \\\"accountCustomFieldMetum\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/5/accountCustomFieldMetum\\\"\\n            }\\n        },\\n        {\\n            \\\"id\\\": \\\"1\\\",\\n            \\\"accountCustomFieldMetumId\\\": 5,\\n            \\\"accountId\\\": 2,\\n            \\\"customFieldId\\\": 5,\\n            \\\"createdTimestamp\\\": \\\"2018-10-29 20:40:38\\\",\\n            \\\"updatedTimestamp\\\": \\\"2018-11-06 02:21:36\\\",\\n            \\\"fieldValue\\\": \\\"New title\\\",\\n            \\\"links\\\": {\\n                \\\"account\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/1/account\\\",\\n                \\\"accountCustomFieldMetum\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/1/accountCustomFieldMetum\\\"\\n            }\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9f8a393-934c-4627-9a5c-276faa2334cf",
+          "name": "ActiveCampaign Bulk Create a Custom Account Field Value",
+          "request": {
+            "name": "ActiveCampaign Bulk Create a Custom Account Field Value",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountCustomFieldData",
+                "bulkCreate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"array\": {\n    \"customerAccountId\": \"<integer>\",\n    \"customFieldId\": \"<integer>\",\n    \"fieldValue\": \"<string>\",\n    \"fieldCurrency\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35d40c32-6c24-4838-896c-c0c7f93f7f7c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldData",
+                    "bulkCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"accountId\": \"1\",\n    \"customFieldId\": \"1\",\n    \"fieldValue\": \"test title\"\n  },\n  {\n    \"accountId\": \"1\",\n    \"customFieldId\": \"2\",\n    \"fieldValue\": \"test title\"\n  },\n  {\n    \"accountId\": \"1\",\n    \"customFieldId\": \"3\",\n    \"fieldValue\": [\n      \"option 1\",\n      \"option 3\",\n      \"option 4\"\n    ]\n  },\n  {\n    \"accountId\": \"1\",\n    \"customFieldId\": \"4\",\n    \"fieldValue\": 9999,\n    \"fieldCurrency\": \"cad\"\n  },\n  {\n    \"accountId\": \"1\",\n    \"customFieldId\": \"5\",\n    \"fieldValue\": \"100.99\"\n  },\n  {\n    \"accountId\": \"1\",\n    \"customFieldId\": \"6\",\n    \"fieldValue\": \"2018-12-31\"\n  },\n  {\n    \"accountId\": \"1\",\n    \"customFieldId\": \"7\",\n    \"fieldValue\": \"2020-05-19T02:45:00-05:00\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"the bulk insert was successful\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a4ade2e-790b-48ea-ab00-58882253fb94",
+          "name": "ActiveCampaign Retrieve a Custom Field Value",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Custom Field Value",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountCustomFieldData",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the dealCustomFieldData to retrieve"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aac02cc8-f18b-40a9-a8c1-c9e4c5a12463",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldData",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the dealCustomFieldData to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"accountCustomFieldDatum\\\": {\\n        \\\"id\\\": \\\"1\\\",\\n        \\\"accountId\\\": 2,\\n        \\\"customFieldId\\\": 5,\\n        \\\"createdTimestamp\\\": \\\"2018-10-29 20:40:38\\\",\\n        \\\"updatedTimestamp\\\": \\\"2018-11-06 02:21:36\\\",\\n        \\\"fieldValue\\\": \\\"New title\\\",\\n        \\\"links\\\": {\\n            \\\"account\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/1/account\\\",\\n            \\\"accountCustomFieldMetum\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/1/accountCustomFieldMetum\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff5d1b29-4c16-4570-b97f-aa538dcf9b7f",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldData",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the dealCustomFieldData to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"status\\\": 404,\\n            \\\"title\\\": \\\"Not Found\\\"\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88a1bb41-e5f2-4bc6-9d80-db1441fc0431",
+          "name": "ActiveCampaign Update a Custom Field Value",
+          "request": {
+            "name": "ActiveCampaign Update a Custom Field Value",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountCustomFieldData",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the custom fields value to update"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountCustomFieldDatum\": {\n    \"fieldValue\": \"<string>\",\n    \"fieldCurrency\": \"Default Currency for Field\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c7b5573a-2385-44f9-9e07-5e10c31d7937",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldData",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the custom fields value to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountCustomFieldDatum\": {\n    \"fieldValue\": \"New title\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"accountCustomFieldDatum\\\": {\\n        \\\"id\\\": \\\"1\\\",\\n        \\\"accountId\\\": 2,\\n        \\\"customFieldId\\\": 5,\\n        \\\"createdTimestamp\\\": \\\"2018-10-29 20:40:38\\\",\\n        \\\"updatedTimestamp\\\": \\\"2018-11-06 02:21:36\\\",\\n        \\\"fieldValue\\\": \\\"New title\\\",\\n        \\\"links\\\": {\\n            \\\"account\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/1/account\\\",\\n            \\\"accountCustomFieldMetum\\\": \\\"https://:account.api-us1.com/api/:version/accountCustomFieldData/1/accountCustomFieldMetum\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b0d37be-42ab-48a6-9ee2-737af301cc19",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldData",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the custom fields value to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountCustomFieldDatum\": {\n    \"fieldValue\": \"New title\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"status\\\": 404,\\n            \\\"title\\\": \\\"Not Found\\\"\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a354603-c954-4745-83b3-255732041598",
+          "name": "ActiveCampaign Delete a Custom Field Value",
+          "request": {
+            "name": "ActiveCampaign Delete a Custom Field Value",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountCustomFieldData",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the dealCustomFieldData to retrieve"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d4167af6-a376-4c60-b3e8-b7bb7f2be7a2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldData",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the dealCustomFieldData to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"message\\\": \\\"AccountCustomFieldData deleted.\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56152b87-5371-445c-b4f7-3ad742c682a1",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldData",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the dealCustomFieldData to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"errors\": [\n        {\n            \"status\": 404,\n            \"title\": \"Not Found\"\n        }\n    ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5bf229a3-cbb3-4f10-a058-60c0a362597a",
+          "name": "ActiveCampaign Bulk Update a Custom Field Value",
+          "request": {
+            "name": "ActiveCampaign Bulk Update a Custom Field Value",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountCustomFieldData",
+                "bulkUpdate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"array\": {\n    \"id\": \"<integer>\",\n    \"fieldValue\": \"<string>\",\n    \"fieldCurrency\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "df7a5ce5-94ef-49d1-95c0-30bda34f4632",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountCustomFieldData",
+                    "bulkUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"id\": \"1\",\n    \"fieldValue\": \"test title\"\n  },\n  {\n    \"id\": \"2\",\n    \"fieldValue\": [\n      \"option 1\",\n      \"option 3\",\n      \"option 4\"\n    ]\n  },\n  {\n    \"id\": \"3\",\n    \"fieldValue\": 9999,\n    \"fieldCurrency\": \"cad\"\n  },\n  {\n    \"id\": \"4\",\n    \"fieldValue\": \"100.99\"\n  },\n  {\n    \"id\": \"5\",\n    \"fieldValue\": \"2018-12-31\"\n  },\n  {\n    \"id\": \"6\",\n    \"fieldValue\": \"2020-05-19T02:45:00-05:00\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"AccountCustomFieldDatas with ID(s): 1, 2, 3, 4, 5 successfully bulk updated.\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "24ac72c0-e16d-425b-95f2-5e170df782a7",
+    "name": "ActiveCampaign SMS Broadcast Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

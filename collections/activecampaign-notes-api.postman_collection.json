@@ -1,0 +1,890 @@
+{
+  "item": [
+    {
+      "id": "7383c512-8e01-45b4-9970-fd74858b5bad",
+      "name": "Notes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e3d88ac-fe89-404e-90f4-ee8b2245fb67",
+          "name": "ActiveCampaign Retrieve List of All Notes",
+          "request": {
+            "name": "ActiveCampaign Retrieve List of All Notes",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81575f19-bd8c-42c5-b365-fda134cebbd6",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"notes\\\": [\\n        {\\n            \\\"relid\\\": \\\"126\\\",\\n            \\\"reltype\\\": \\\"Activity\\\",\\n            \\\"userid\\\": \\\"1\\\",\\n            \\\"is_draft\\\": \\\"0\\\",\\n            \\\"cdate\\\": \\\"2022-05-26T08:58:34-05:00\\\",\\n            \\\"mdate\\\": \\\"2022-05-26T08:58:34-05:00\\\",\\n            \\\"note\\\": \\\"Oh, hi Mark\\\",\\n            \\\"links\\\": {\\n                \\\"activities\\\": \\\"https://:account.api-us1.com/api/3/notes/1/activities\\\",\\n                \\\"user\\\": \\\"https://:account.api-us1.com/api/3/notes/1/user\\\",\\n                \\\"mentions\\\": \\\"https://:account.api-us1.com/api/3/notes/1/mentions\\\",\\n                \\\"notes\\\": \\\"https://:account.api-us1.com/api/3/notes/1/notes\\\",\\n                \\\"owner\\\": \\\"https://:account.api-us1.com/api/3/notes/1/owner\\\"\\n            },\\n            \\\"id\\\": \\\"1\\\",\\n            \\\"user\\\": \\\"1\\\",\\n            \\\"owner\\\": {\\n                \\\"type\\\": \\\"activity\\\",\\n                \\\"id\\\": \\\"126\\\"\\n            }\\n        },\\n        {\\n            \\\"relid\\\": \\\"6\\\",\\n            \\\"reltype\\\": \\\"Deal\\\",\\n            \\\"userid\\\": \\\"1\\\",\\n            \\\"is_draft\\\": \\\"0\\\",\\n            \\\"cdate\\\": \\\"2023-08-18T11:09:38-05:00\\\",\\n            \\\"mdate\\\": \\\"2023-08-18T11:09:40-05:00\\\",\\n            \\\"note\\\": \\\"Here is a note\\\",\\n            \\\"links\\\": {\\n                \\\"activities\\\": \\\"https://:account.api-us1.com/api/3/notes/2/activities\\\",\\n                \\\"user\\\": \\\"https://:account.api-us1.com/api/3/notes/2/user\\\",\\n                \\\"mentions\\\": \\\":account.api-us1.com/api/3/notes/2/mentions\\\",\\n                \\\"notes\\\": \\\":account.api-us1.com/api/3/notes/2/notes\\\",\\n                \\\"owner\\\": \\\":account.api-us1.com/api/3/notes/2/owner\\\"\\n            },\\n            \\\"id\\\": \\\"2\\\",\\n            \\\"user\\\": \\\"1\\\",\\n            \\\"owner\\\": {\\n                \\\"type\\\": \\\"deal\\\",\\n                \\\"id\\\": \\\"6\\\"\\n            }\\n        }\\n    ],\\n    \\\"meta\\\": {\\n        \\\"total\\\": \\\"2\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "568d3418-1b33-44d6-b228-9e2583275262",
+          "name": "ActiveCampaign Create a Note",
+          "request": {
+            "name": "ActiveCampaign Create a Note",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": {\n    \"note\": \"<string>\",\n    \"reltype\": \"<string>\",\n    \"relid\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57b3b11f-e8e0-467f-976f-66acc4aa2fc4",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": {\n    \"note\": \"This is the text of the note\",\n    \"relid\": 2,\n    \"reltype\": \"Subscriber\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"contacts\\\": [\\n        {\\n            \\\"cdate\\\": \\\"2018-08-06T16:26:04-05:00\\\",\\n            \\\"email\\\": \\\"ikreimont+2@activecampaign.com\\\",\\n            \\\"phone\\\": \\\"\\\",\\n            \\\"firstName\\\": \\\"\\\",\\n            \\\"lastName\\\": \\\"\\\",\\n            \\\"orgid\\\": \\\"0\\\",\\n            \\\"segmentio_id\\\": \\\"\\\",\\n            \\\"bounced_hard\\\": \\\"0\\\",\\n            \\\"bounced_soft\\\": \\\"0\\\",\\n            \\\"bounced_date\\\": null,\\n            \\\"ip\\\": \\\"0\\\",\\n            \\\"ua\\\": null,\\n            \\\"hash\\\": \\\"14d8c4418ae944c68e9dde4a975854cc\\\",\\n            \\\"socialdata_lastcheck\\\": null,\\n            \\\"email_local\\\": \\\"\\\",\\n            \\\"email_domain\\\": \\\"\\\",\\n            \\\"sentcnt\\\": \\\"0\\\",\\n            \\\"rating_tstamp\\\": null,\\n            \\\"gravatar\\\": \\\"0\\\",\\n            \\\"deleted\\\": \\\"0\\\",\\n            \\\"anonymized\\\": \\\"0\\\",\\n            \\\"adate\\\": null,\\n            \\\"udate\\\": \\\"2018-09-28T17:45:11-05:00\\\",\\n            \\\"edate\\\": null,\\n            \\\"deleted_at\\\": null,\\n            \\\"created_utc_timestamp\\\": \\\"2018-09-21 12:04:40\\\",\\n            \\\"updated_utc_timestamp\\\": \\\"2018-09-28 17:45:11\\\",\\n            \\\"links\\\": {\\n                \\\"bounceLogs\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/bounceLogs\\\",\\n                \\\"contactAutomations\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/contactAutomations\\\",\\n                \\\"contactData\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/contactData\\\",\\n                \\\"contactGoals\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/contactGoals\\\",\\n                \\\"contactLists\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/contactLists\\\",\\n                \\\"contactLogs\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/contactLogs\\\",\\n                \\\"contactTags\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/contactTags\\\",\\n                \\\"contactDeals\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/contactDeals\\\",\\n                \\\"deals\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/deals\\\",\\n                \\\"fieldValues\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/fieldValues\\\",\\n                \\\"geoIps\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/geoIps\\\",\\n                \\\"notes\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/notes\\\",\\n                \\\"organization\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/organization\\\",\\n                \\\"plusAppend\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/plusAppend\\\",\\n                \\\"trackingLogs\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/trackingLogs\\\",\\n                \\\"scoreValues\\\": \\\"https://:account.api-us1.com/api/:version/contacts/2/scoreValues\\\"\\n            },\\n            \\\"id\\\": \\\"2\\\",\\n            \\\"organization\\\": null\\n        }\\n    ],\\n    \\\"note\\\": {\\n        \\\"note\\\": \\\"This is the text of the note\\\",\\n        \\\"cdate\\\": \\\"2018-09-28T17:45:11-05:00\\\",\\n        \\\"mdate\\\": \\\"2018-09-28T17:45:11-05:00\\\",\\n        \\\"reltype\\\": \\\"Subscriber\\\",\\n        \\\"relid\\\": 2,\\n        \\\"userid\\\": \\\"1\\\",\\n        \\\"links\\\": {\\n            \\\"activities\\\": \\\"https://:account.api-us1.com/api/:version/notes/2/activities\\\",\\n            \\\"user\\\": \\\"https://:account.api-us1.com/api/:version/notes/2/user\\\",\\n            \\\"mentions\\\": \\\"https://:account.api-us1.com/api/:version/notes/2/mentions\\\",\\n            \\\"notes\\\": \\\"https://:account.api-us1.com/api/:version/notes/2/notes\\\",\\n            \\\"owner\\\": \\\"https://:account.api-us1.com/api/:version/notes/2/owner\\\"\\n        },\\n        \\\"owner\\\": {\\n            \\\"type\\\": \\\"contact\\\",\\n            \\\"id\\\": 2\\n        },\\n        \\\"id\\\": \\\"2\\\",\\n        \\\"user\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26f331eb-1d68-412a-ac44-e5ba11d9c2f3",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": {\n    \"note\": \"This is the text of the note\",\n    \"relid\": 2,\n    \"reltype\": \"Subscriber\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12873cf8-fb1c-4cef-97cb-45a42144b80b",
+          "name": "ActiveCampaign Retrieve a Note",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Note",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the note to retrieve"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17e9802a-f4db-469f-af9c-fa1ff75e40e5",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the note to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"note\\\": {\\n        \\\"relid\\\": \\\"2\\\",\\n        \\\"reltype\\\": \\\"Subscriber\\\",\\n        \\\"userid\\\": \\\"1\\\",\\n        \\\"cdate\\\": \\\"2018-09-12T17:20:20-05:00\\\",\\n        \\\"mdate\\\": \\\"2018-09-20T09:10:06-05:00\\\",\\n        \\\"note\\\": \\\"TEST NOTE\\\",\\n        \\\"links\\\": {\\n            \\\"activities\\\": \\\"https://:account.api-us1.com/api/:version/notes/2/activities\\\",\\n            \\\"user\\\": \\\"https://:account.api-us1.com/api/:version/notes/2/user\\\",\\n            \\\"mentions\\\": \\\"https://:account.api-us1.com/api/:version/notes/2/mentions\\\",\\n            \\\"notes\\\": \\\"https://:account.api-us1.com/api/:version/notes/2/notes\\\",\\n            \\\"owner\\\": \\\"https://:account.api-us1.com/api/:version/notes/2/owner\\\"\\n        },\\n        \\\"id\\\": \\\"2\\\",\\n        \\\"user\\\": \\\"1\\\",\\n        \\\"owner\\\": {\\n            \\\"type\\\": \\\"contact\\\",\\n            \\\"id\\\": \\\"2\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ebc20c8-547c-41af-b093-30da300abece",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the note to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43dabff6-53ec-4a70-9a2f-0ce1cd94c574",
+          "name": "ActiveCampaign Update a Note",
+          "request": {
+            "name": "ActiveCampaign Update a Note",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the note to update"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": {\n    \"note\": \"<string>\",\n    \"reltype\": \"<string>\",\n    \"relid\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5fbbbfd5-22b7-4caf-bffc-5be492b50783",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the note to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": {\n    \"note\": \"This is the text of the note\",\n    \"relid\": 2,\n    \"reltype\": \"Subscriber\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"note\\\": {\\n        \\\"relid\\\": \\\"107\\\",\\n        \\\"reltype\\\": \\\"Subscriber\\\",\\n        \\\"userid\\\": \\\"1\\\",\\n        \\\"cdate\\\": \\\"2018-09-21T11:52:41-05:00\\\",\\n        \\\"mdate\\\": \\\"2018-09-28T18:39:44-05:00\\\",\\n        \\\"note\\\": \\\"This is the text of the note\\\",\\n        \\\"links\\\": {\\n            \\\"activities\\\": \\\"https://:account.api-us1.com/api/:version/notes/1/activities\\\",\\n            \\\"user\\\": \\\"https://:account.api-us1.com/api/:version/notes/1/user\\\",\\n            \\\"mentions\\\": \\\"https://:account.api-us1.com/api/:version/notes/1/mentions\\\",\\n            \\\"notes\\\": \\\"https://:account.api-us1.com/api/:version/notes/1/notes\\\",\\n            \\\"owner\\\": \\\"https://:account.api-us1.com/api/:version/notes/1/owner\\\"\\n        },\\n        \\\"id\\\": \\\"1\\\",\\n        \\\"user\\\": \\\"1\\\",\\n        \\\"owner\\\": {\\n            \\\"type\\\": \\\"contact\\\",\\n            \\\"id\\\": \\\"107\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65af59cb-da87-44c7-9812-46cd6b143a71",
+              "name": "403",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the note to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": {\n    \"note\": \"This is the text of the note\",\n    \"relid\": 2,\n    \"reltype\": \"Subscriber\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for Subscriber with id 1\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d249743-2796-4def-b479-3223593e517c",
+          "name": "ActiveCampaign Delete a Note",
+          "request": {
+            "name": "ActiveCampaign Delete a Note",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the note to delete"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a350713-d561-4b21-bbd6-84b6e006ea2d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the note to delete"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "472de6e9-50f1-42a1-afc0-2d56b4b48ad9",
+              "name": "403",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the note to delete"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for Note with id 1\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1c3c61fd-dbd0-4d78-9b6c-b543b150a131",
+    "name": "ActiveCampaign SMS Broadcast Accounts Notes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

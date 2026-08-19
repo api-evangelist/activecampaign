@@ -1,0 +1,95 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.activecampaign.com/page/developer-sandbox-accounts
+description: >-
+  ActiveCampaign's test environment is a whole separate ACCOUNT, not a test mode inside
+  a live one. There is no test/live key pair, no test-mode prefix, no magic test
+  identifiers and no time simulation — the platform's sandbox story is "we will give
+  you a free, limited, real account if you ask us for one".
+model: separate-account
+test_live_separation:
+  mode_switch: false
+  key_prefix_test: null
+  key_prefix_live: null
+  note: >-
+    ActiveCampaign API keys carry no environment marker. A sandbox key and a production
+    key are structurally identical, so a client cannot tell from the credential which
+    environment it is pointed at — the only discriminator is the account subdomain in
+    the base URL. For an agent operating with a user-supplied base URL and key, that is
+    a real blast-radius concern: nothing in the request or the response says "this is
+    production".
+sandbox_account:
+  name: Developer Sandbox Account
+  purpose: >-
+    "Enables developers and integration partners to explore the functionality available
+    on the ActiveCampaign platform and test both the technical and business value of
+    their integration."
+  cost: free
+  self_service: false
+  provisioning: request form, manually approved
+  request_form: https://acresearch.activehosted.com/f/13
+  limits:
+    contacts: 1000
+    email_sends: 100
+    users: 5
+    custom_objects: true
+    sms_credits_for_automations: 0
+  expiry:
+    duration_years: 2
+    renewable: true
+    renewal_contact: devrel@activecampaign.com
+  note: >-
+    "Developer Sandbox Accounts are intended to provide a realistic environment that is
+    similar to the environment of ActiveCampaign customers." The 100 email-send cap and
+    the zero SMS credits mean the two most consequential side effects on the platform —
+    sending email and sending SMS — are exactly the ones you cannot meaningfully
+    exercise before going live.
+magic_values:
+  test_cards: null
+  test_bank_accounts: null
+  test_phone_numbers: null
+  test_emails: null
+  published: false
+  note: >-
+    None published. ActiveCampaign is not a payments provider and documents no reserved
+    identifiers that trigger deterministic behaviour. Nothing is invented here.
+time_simulation:
+  test_clocks: false
+  note: >-
+    No test clock or time-travel facility. Automations, scheduled campaigns and
+    date-based triggers can only be exercised in real time, which makes multi-day
+    journey logic effectively untestable before production.
+fixtures_and_triggers:
+  fixture_tooling: false
+  event_triggers: false
+  webhook_replay: false
+  note: >-
+    No fixture generator, no event-trigger CLI, no webhook replay. Webhooks in
+    particular are not retried on failure, so there is no supported way to re-deliver a
+    missed test event.
+  webhook_testing_hint: >-
+    ActiveCampaign publishes an example repo for managing webhooks over the REST API
+    (github.com/ActiveCampaign/example-rest_hooks); it manages subscriptions, it does
+    not simulate deliveries.
+trial:
+  available: true
+  length_days: 14
+  credit_card_required: false
+  note: >-
+    A 14-day product trial exists and is self-service, unlike the sandbox. It is a
+    trial of the product, not a developer environment: it expires, it is billed after,
+    and it is not the environment ActiveCampaign points integrators at.
+  source: https://www.activecampaign.com/pricing
+agent_guidance:
+  - >-
+    Treat every ActiveCampaign credential as production unless a human has confirmed
+    otherwise. There is no programmatic way to detect a sandbox.
+  - >-
+    Destructive and enrolling operations (add_contact_to_automation, create_deal,
+    bulk-import-contacts) have no dry-run and no undo. ActiveCampaign's own first-party
+    Claude plugin wraps every write in a read -> preview -> confirm -> execute -> verify
+    flow for exactly this reason.
+x-evidence:
+  - {url: 'https://developers.activecampaign.com/page/developer-sandbox-accounts.md', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/page/getting-started.md', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/reference/authentication.md', http_status: 200, fetched: '2026-08-13'}

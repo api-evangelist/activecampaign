@@ -1,0 +1,90 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.activecampaign.com/whats-new
+description: >-
+  ActiveCampaign publishes PRODUCT release notes and no developer/API changelog. This
+  artifact records both facts, because the difference matters to an integrator: you can
+  read what shipped in the app, and you cannot read what changed in the contract you
+  call.
+api_changelog:
+  published: false
+  probed:
+    - {url: 'https://developers.activecampaign.com/changelog', status: 404}
+  note: >-
+    The developer portal has no changelog, no release-notes section and no dated entry
+    stream. None of the nine OpenAPI documents carries a version history; six of them
+    are pinned at info.version 1.0.0 / 2.0.0 / 3.0.0 with no date. The only dated
+    signals anywhere in the developer surface are per-page `updatedAt` timestamps in
+    the markdown twins exposed through llms.txt — e.g. the MCP tools page is stamped
+    2026-07-13 and the rate-limits page 2025-10-02. Those are documentation edits, not
+    contract changes, but they are the closest thing to a changelog an agent can parse.
+product_release_notes:
+  url: https://www.activecampaign.com/whats-new
+  scheme: named-release
+  current_version: Active Intelligence 2.8
+  dated_entries: false
+  dated_entries_note: >-
+    Entries are grouped under a named platform release and carry no per-entry
+    publication date, so a diff against a previous read is not possible from the page
+    itself.
+  entries:
+    - version: Active Intelligence 2.8
+      date: null
+      breaking: false
+      highlights:
+        - >-
+          Session memory — "Active Intelligence remembers your rules so every session
+          builds on the last instead of resetting to zero."
+        - >-
+          Document-to-campaign — upload a brief or reference a past campaign and have
+          it built from existing copy rather than a template.
+        - In-editor image generation and swapping from the content library or a URL.
+        - >-
+          Custom instructions — company voice, audience details and strategic
+          priorities persisted across every campaign and automation.
+        - >-
+          Connectors — pulls context from Asana, Calendly, Google Ads, Stripe, Webflow
+          and Wix into campaign generation.
+      api_impact: >-
+        Partially visible in the contract. The Partners API spec carries an
+        ai_customizations surface (profiles, documents, custom instructions) whose
+        operationIds — get_ai_customizations_profiles_list,
+        post_ai_customizations_documents_upload,
+        post_ai_customizations_instructions_create — are the API-side expression of the
+        "custom instructions" and "upload a doc" features above.
+    - version: Contact Import agent
+      date: null
+      breaking: false
+      highlights:
+        - >-
+          CSV/XLSX upload with automatic column mapping, custom-field creation and
+          list/tag recommendation.
+      api_impact: 'Adjacent to the existing bulk-import-contacts surface; no new public operation documented.'
+    - version: Migration solution
+      date: null
+      breaking: false
+      highlights:
+        - Assisted migration of marketing assets from Mailchimp into ActiveCampaign.
+      api_impact: none published
+    - version: WhatsApp templates
+      date: null
+      breaking: false
+      highlights:
+        - >-
+          Create and manage WhatsApp template messages directly in ActiveCampaign,
+          aligned to Meta's approval requirements.
+      api_impact: >-
+        Directly visible. openapi/activecampaign-whatsapp-api-openapi.yml (13
+        operations) covers List/Get/Update/Delete WhatsApp Template and Send a WhatsApp
+        Template Message. This spec is discoverable ONLY through
+        /.well-known/api-catalog.
+breaking_change_policy:
+  published: false
+  note: See lifecycle/activecampaign-lifecycle.yml — no deprecation policy, no notice period, no Sunset header.
+related:
+  lifecycle: lifecycle/activecampaign-lifecycle.yml
+  well_known: well-known/activecampaign-well-known.yml
+x-evidence:
+  - {url: 'https://www.activecampaign.com/whats-new', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/changelog', http_status: 404, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/llms.txt', http_status: 200, fetched: '2026-08-13'}

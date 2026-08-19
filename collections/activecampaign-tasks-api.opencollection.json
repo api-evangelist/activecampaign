@@ -1,0 +1,223 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Tasks API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Task Outcomes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/taskOutcomes",
+            "params": [
+              {
+                "name": "filters[sentiment]",
+                "value": "",
+                "type": "query",
+                "description": "1 is for Negative, 2 is for Neutral and 3 is for Positive"
+              }
+            ]
+          },
+          "docs": "Retrieve all existing task outcomes"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Task Outcome",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/taskOutcomes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new task outcome"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Task Outcome",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/taskOutcomes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Task outcome's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing task outcome"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Task Outcome",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/taskOutccomes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Task outcome's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing task outcome"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Task Outcome",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/taskOutccomes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Task outcome's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing task outcome"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Task Type - Outcome Relations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tasktypeOutcomeRels"
+          },
+          "docs": "Retrieve all existing task type - outcome relations"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign WIP Create a Task Type - Outcome Relation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tasktypeOutcomeRels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new task type"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Task Type - Outcome Relation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tasktypeOutcomeRels/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Task type - outcome relation's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing task type - outcome relation"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign WIP Update a Task Type - Outcome Relation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tasktypeOutcomeRels/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Task type - outcome relation's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing task type"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Task Type - Outcome Relation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/tasktypeOutcomeRels/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Task type - outcome relation's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing task type - outcome relation"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Task Reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/taskNotifications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new task reminder"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,129 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/*.yml + openapi/*.json (nine ActiveCampaign OpenAPI documents, 384
+  operations, 208 component schemas), cross-read against
+  https://developers.activecampaign.com/reference/overview and
+  graphql/activecampaign-schema.graphql
+description: >-
+  Entity-relationship graph for the ActiveCampaign platform, derived from the published
+  REST contract. ActiveCampaign's data model has one root — Contact — and everything
+  else either describes a contact, groups contacts, sends to contacts, or records what
+  a contact did. The relationships below are read from real paths and real id-reference
+  fields; nothing is inferred from naming alone.
+id_convention:
+  style: opaque-numeric-string
+  note: >-
+    ActiveCampaign ids are integers serialized as JSON strings in most responses
+    ("id": "12"). There are no typed id prefixes (no cus_/deal_ style), so an id
+    carries no type information and an agent must track which collection an id came
+    from. SegmentsV2 is the exception: it accepts non-numeric segment ids, and
+    ActiveCampaign notes that historic-definition and revert operations work ONLY on
+    non-numeric segment ids.
+  external_id_support:
+    - {entity: CustomObjectRecord, field: externalId, note: 'Delete-by-external-id is published: DELETE /customObjects/records/{schemaId}/external/{externalId}.'}
+    - {entity: Segment, field: externalId, note: 'segment_match_check_by_external_id matches a contact to a segment by external id.'}
+    - {entity: Contact, field: email, note: 'POST /contact/sync treats email as the natural key — the closest thing to an external id on the core entity.'}
+entities:
+  - name: Contact
+    path_root: /contacts
+    role: root entity
+    schemas_in_spec: 20
+    note: >-
+      The hub. Twenty-two distinct sub-resources hang directly off /contacts/{id},
+      which is why the API has no expand parameter — traversal is done with extra
+      round trips.
+  - {name: List, path_root: /lists, role: subscription grouping}
+  - {name: Tag, path_root: /tags, role: freeform label}
+  - {name: CustomFieldMeta, path_root: /fields, role: contact field definition}
+  - {name: FieldValue, path_root: /fieldValues, role: contact field value}
+  - {name: Campaign, path_root: /campaigns, role: email send}
+  - {name: Message, path_root: /messages, role: email content}
+  - {name: Automation, path_root: /automations, role: journey definition}
+  - {name: ContactAutomation, path_root: /contactAutomations, role: enrolment join}
+  - {name: Deal, path_root: /deals, role: CRM opportunity}
+  - {name: Pipeline, path_root: /dealGroups, role: CRM funnel, note: 'Called "deal group" in the contract and "pipeline" in the UI and in every MCP tool name.'}
+  - {name: DealStage, path_root: /dealStages, role: funnel step}
+  - {name: DealTask, path_root: /dealTasks, role: sales activity}
+  - {name: Account, path_root: /accounts, role: CRM organization, note: 'Distinct from the ActiveCampaign hosted account returned by GET /settings/account — a documented naming collision the provider itself flags.'}
+  - {name: AccountContact, path_root: /accountContacts, role: contact-to-organization join}
+  - {name: Note, path_root: /notes, role: annotation}
+  - {name: Segment, path_root: /segmentsV2, role: dynamic contact filter}
+  - {name: CustomObjectSchema, path_root: /customObjects/schemas, role: user-defined type}
+  - {name: CustomObjectRecord, path_root: /customObjects/records, role: user-defined instance}
+  - {name: EcomConnection, path_root: /connections, role: deep-data integration}
+  - {name: EcomCustomer, path_root: /ecomCustomers, role: commerce identity}
+  - {name: EcomOrder, path_root: /ecomOrders, role: commerce transaction}
+  - {name: EcomOrderProduct, path_root: /ecomOrderProducts, role: order line item}
+  - {name: Form, path_root: /forms, role: capture surface}
+  - {name: Webhook, path_root: /webhooks, role: event subscription}
+  - {name: Group, path_root: /groups, role: user permission group}
+  - {name: User, path_root: /users, role: platform operator}
+  - {name: Score, path_root: /scores, role: computed contact/deal value}
+  - {name: SmsBroadcast, path_root: /sms, role: SMS send, spec: openapi/activecampaign-broadcasts-api-openapi.yml}
+  - {name: WhatsAppTemplate, path_root: /channel, role: WhatsApp message template, spec: openapi/activecampaign-whatsapp-api-openapi.yml}
+  - {name: Conversation, path_root: /channel, role: inbound/outbound thread}
+relationships:
+  - {from: Contact, to: List, type: has_many, via: contactLists, operation: retrieve-contact-list-memberships, join_entity: ContactList}
+  - {from: Contact, to: Tag, type: has_many, via: contactTags, operation: create-contact-tag, join_entity: ContactTag}
+  - {from: Contact, to: FieldValue, type: has_many, via: fieldValues, operation: retrieve-contact-field-values}
+  - {from: FieldValue, to: CustomFieldMeta, type: belongs_to, via: field}
+  - {from: CustomFieldMeta, to: List, type: has_many, via: fieldRels, operation: create-a-custom-field-relationship-to-lists, note: 'Field visibility is scoped to lists.'}
+  - {from: Contact, to: ContactAutomation, type: has_many, via: contactAutomations, operation: list-all-contactautomations-for-contact}
+  - {from: ContactAutomation, to: Automation, type: belongs_to, via: automation}
+  - {from: Contact, to: Deal, type: has_many, via: deals, operation: retrieve-contact-deals}
+  - {from: Deal, to: Contact, type: belongs_to, via: contact}
+  - {from: Deal, to: Pipeline, type: belongs_to, via: group, note: 'The deal field is named group because pipelines are dealGroups in the contract.'}
+  - {from: Deal, to: DealStage, type: belongs_to, via: stage}
+  - {from: DealStage, to: Pipeline, type: belongs_to, via: group}
+  - {from: Deal, to: DealTask, type: has_many, via: dealTasks}
+  - {from: Deal, to: Note, type: has_many, via: notes, operation: create-a-deal-note}
+  - {from: Deal, to: User, type: belongs_to, via: owner, operation: bulk-update-deal-owners}
+  - {from: Deal, to: Contact, type: has_many, via: contactDeals, join_entity: ContactDeal, note: 'Secondary contacts on a deal.'}
+  - {from: Contact, to: Account, type: has_many, via: accountContacts, operation: retrieve-contact-account-contacts, join_entity: AccountContact}
+  - {from: Contact, to: Note, type: has_many, via: notes, operation: retrieve-contact-notes}
+  - {from: Contact, to: Score, type: has_many, via: scoreValues, operation: retrieve-a-contacts-score-value}
+  - {from: Contact, to: EventLog, type: has_many, via: trackingLogs, operation: retrieve-contact-tracking-logs}
+  - {from: Contact, to: GeoIp, type: has_many, via: geoIps, operation: retrieve-contact-geo-ips}
+  - {from: Contact, to: BounceLog, type: has_many, via: bounceLogs, operation: retrieve-contact-bounce-logs}
+  - {from: Contact, to: Goal, type: has_many, via: contactGoals, operation: retrieve-contact-goals}
+  - {from: Campaign, to: Message, type: has_many, via: messages}
+  - {from: Campaign, to: List, type: has_many, via: lists}
+  - {from: Campaign, to: Link, type: has_many, via: links, operation: retrieve-links-associated-campaign}
+  - {from: CustomObjectRecord, to: CustomObjectSchema, type: belongs_to, via: schemaId}
+  - {from: CustomObjectSchema, to: CustomObjectSchema, type: has_many, via: child, operation: create-a-child-schema, note: 'Schemas nest.'}
+  - {from: EcomOrder, to: EcomCustomer, type: belongs_to, via: customer}
+  - {from: EcomOrder, to: EcomOrderProduct, type: has_many, via: orderProducts, operation: list-products-for-order}
+  - {from: EcomCustomer, to: EcomConnection, type: belongs_to, via: connection}
+  - {from: EcomOrder, to: Contact, type: belongs_to, via: email, note: 'Deep-data orders resolve to a contact by email, not by contact id.'}
+  - {from: Group, to: List, type: has_many, via: listGroups, operation: create-a-list-group-permission, note: 'Group permission is what makes a list visible to a user.'}
+  - {from: User, to: Group, type: belongs_to, via: group}
+  - {from: Segment, to: Contact, type: has_many, via: segmentMatch, operation: create_match_all_request, note: 'Materialized asynchronously — a match request returns a runId and the result set is polled.'}
+  - {from: Webhook, to: List, type: belongs_to, via: listid}
+composite_notes:
+  - >-
+    Ecommerce data is stored as ActiveCampaign Custom Objects under the hood.
+    ActiveCampaign says so directly: the Ecommerce GraphQL API "saves order, product,
+    and recurring payment data as ActiveCampaign Custom Objects", whose schemas
+    ActiveCampaign manages and does not bill for. So EcomOrder/EcomCustomer and
+    CustomObjectRecord are two projections of one store, which is why order data is
+    usable in segmentation and product data is not.
+  - >-
+    Segment matching is a job, not a query. create_match_all_request returns within
+    ~4 seconds or hands back a runId with is_ready false; the result set is cached
+    against that runId with a 24-hour TTL, and changing the sort order on a poll
+    invalidates the cache and restarts the search.
+render:
+  subway: null
+  graphql: graphql/activecampaign-schema.graphql
+  note: >-
+    graphql/activecampaign-schema.graphql is a CONCEPTUAL translation of the REST model
+    authored by API Evangelist, not an ActiveCampaign artifact. ActiveCampaign's real
+    GraphQL endpoint covers Ecommerce only.
+coverage:
+  entities: 31
+  relationships: 36
+  schemas_in_spec: 208
+related:
+  conventions: conventions/activecampaign-conventions.yml
+  vocabulary: vocabulary/activecampaign-vocabulary.yaml

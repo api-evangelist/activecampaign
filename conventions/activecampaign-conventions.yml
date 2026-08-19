@@ -1,0 +1,175 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.activecampaign.com/reference/pagination,
+  https://developers.activecampaign.com/reference/url,
+  https://developers.activecampaign.com/reference/authentication,
+  https://developers.activecampaign.com/reference/rate-limits, plus derivation from
+  openapi/*.yml and openapi/*.json in this repo
+description: >-
+  Cross-cutting request/response semantics for the ActiveCampaign v3 API — the rules an
+  agent has to know before it calls any operation. Where the docs are silent the entry
+  says so explicitly; an undocumented convention is recorded as undocumented, never
+  inferred into existence.
+authentication:
+  style: api-key
+  header: Api-Token
+  location: header
+  scheme_name_in_spec: ApiToken
+  oauth2: false
+  scopes: false
+  note: >-
+    One flat account API key, no scopes, no OAuth. Each USER in an ActiveCampaign
+    account has their own key, so the key identifies a user and inherits that user's
+    group permissions — which is the only authorization granularity available.
+  key_location_ui: Settings -> Developer
+  docs: https://developers.activecampaign.com/reference/authentication
+  artifact: authentication/activecampaign-authentication.yml
+base_url:
+  style: per-account-subdomain
+  template: 'https://{yourAccountName}.api-us1.com/api/3'
+  version_in_path: true
+  docs: https://developers.activecampaign.com/reference/url
+  warning: >-
+    ActiveCampaign explicitly warns integrators NOT to construct the base URL from an
+    account name: "It is explicitly not a guarantee that api-us1.com is always a
+    supported API Base URL for all current and future users." An integration must ask
+    the user for the full URL shown in their Developer tab. For an agent this means the
+    endpoint is a runtime input, not a constant.
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    ActiveCampaign documents NO idempotency key of any kind — no Idempotency-Key
+    header, no client-supplied request id, no de-duplication window — and no
+    Idempotency-Key parameter appears in any of the 367 operations across the nine
+    published OpenAPI documents. The nearest thing is POST /contact/sync
+    (`sync-a-contacts-data`), which is naturally idempotent because it keys on email
+    address, and POST /customObjects/records/{schemaId} (`create-or-update-record`),
+    which upserts. Those are per-resource upserts, not a general retry-safety
+    contract. NO Idempotency pointer is emitted in apis.yml, because asserting one
+    would credit ActiveCampaign with a contract it does not offer. This matters more
+    than usual here: the documented retry path is "wait Retry-After seconds and resume",
+    and a retried non-idempotent POST against a marketing automation platform can
+    re-enrol a contact or re-create a deal.
+  upsert_operations:
+    - {operationId: sync-a-contacts-data, path: /contact/sync, keyed_on: email}
+    - {operationId: create-or-update-record, path: '/customObjects/records/{schemaId}', keyed_on: externalId}
+pagination:
+  style: limit-offset
+  params:
+    limit: {name: limit, in: query, default: 20, max: 100}
+    offset: {name: offset, in: query, zero_based: true}
+  response_total_field: meta.total
+  cursor: false
+  link_header: false
+  keyset_escape_hatch:
+    param: id_greater
+    applies_to: GET /contacts
+    note: >-
+      ActiveCampaign's own performance note: on accounts with many contacts, offset
+      paging degrades. It recommends `orders[id]=ASC` plus `id_greater` instead.
+      `id_greater` is documented as available on the Contacts endpoint ONLY, so the
+      efficient paging strategy is not generalizable — an agent walking any other
+      collection is stuck with offset.
+  docs: https://developers.activecampaign.com/reference/pagination
+ordering:
+  param_style: 'orders[<field>]=ASC|DESC'
+  multi_field: true
+  precedence: order of appearance in the query string
+  note: Not all fields are orderable; the docs do not publish the orderable field list per resource.
+filtering:
+  param_style: 'filters[<field>]=<value>'
+  semantics: >-
+    Match is "equals" or "contains" depending on the endpoint, configured server-side
+    and not declared in the contract. An agent cannot tell from the spec which one it
+    will get.
+  note: Not all fields are filterable; the filterable set is not published per resource.
+field_expansion:
+  supported: false
+  note: >-
+    No `expand`/`include` parameter. Related resources are reached through dedicated
+    sub-paths instead — /contacts/{id}/fieldValues, /contacts/{id}/deals,
+    /contacts/{id}/contactLists and about twenty more. This is an N+1 shape: building a
+    complete contact view costs one call per relationship, against a 5 rps
+    account-wide budget.
+metadata:
+  envelope_field: meta
+  common_key: meta.total
+  note: '"Metadata can be represented as a top-level member named meta."'
+response_envelope:
+  style: resource-keyed
+  shape: >-
+    Collections come back under a plural key matching the resource ("contacts": [...])
+    alongside "meta"; single fetches come back under the singular key. There is no
+    generic data/errors wrapper.
+request_tracing:
+  request_id_header: null
+  documented: false
+  note: No request-id or correlation-id header is documented on request or response.
+versioning:
+  scheme: uri-path
+  current: v3
+  path_segment: /api/3
+  prior_versions:
+    - {version: v2, status: legacy, spec: openapi/activecampaign-v2-api-openapi.json, note: 'One operation still published: GET /api/2/template/share.'}
+    - {version: v1, status: retired, note: 'The v3 docs carry an explicit v1 -> v3 migration table for account_view -> GET /settings/account.'}
+  breaking_change_policy: undocumented
+  sunset_header: false
+  artifact: lifecycle/activecampaign-lifecycle.yml
+error_envelope:
+  format: custom
+  rfc9457: false
+  content_type: application/json
+  note: >-
+    No application/problem+json anywhere in the published specs; every error body is
+    application/json with a provider-specific shape. See
+    errors/activecampaign-problem-types.yml.
+  soft_failure_warning: >-
+    At least one documented endpoint reports failure with HTTP 200. DELETE
+    /campaigns/{id} ("Delete a campaign") returns 200 with `succeeded: 0` when the
+    campaign does not exist or the user lacks permission. An agent that treats 2xx as
+    success will silently mis-report on that path.
+rate_limit_signaling:
+  headers: [RateLimit-Limit, RateLimit-Remaining, Retry-After]
+  status: 429
+  limit: 5 requests/second/account
+  artifact: rate-limits/activecampaign-rate-limits.yml
+bulk_operations:
+  supported: true
+  examples:
+    - {operationId: bulk-import-contacts, path: /import/bulk_import, note: 'Asynchronous; status polled via bulk-import-status-list / bulk-import-status-info.'}
+    - {operationId: bulk-update-deal-owners, path: /deals/bulkUpdate}
+    - {operationId: bulk-create-a-custom-deal-field-value, path: /dealCustomFieldData/bulkCreate}
+  webhook_caveat: >-
+    "Mass operations (e.g. contact imports) do not fire webhooks." A bulk import is
+    therefore invisible to any event-driven consumer — the single most consequential
+    convention on the event side.
+webhooks:
+  delivery: HTTP POST
+  content_type: application/x-www-form-urlencoded
+  field_style: 'bracketed PHP-style keys, e.g. contact[email], deal[id]'
+  signature: none
+  retries: false
+  auto_disable_on: HTTP 410 from the subscriber
+  guarantee: at-least-once
+  artifact: asyncapi/activecampaign-webhooks-asyncapi.yml
+graphql:
+  scope: Ecommerce only (orders, products, recurring payments)
+  endpoint: 'https://{yourAccountName}.api-us1.com/api/3/ecom/graphql'
+  auth: same Api-Token header as REST
+  introspection: enabled but account-gated
+  docs: https://developers.activecampaign.com/reference/about-the-graphql-api
+related:
+  errors: errors/activecampaign-problem-types.yml
+  lifecycle: lifecycle/activecampaign-lifecycle.yml
+  authentication: authentication/activecampaign-authentication.yml
+  rate_limits: rate-limits/activecampaign-rate-limits.yml
+  data_model: data-model/activecampaign-data-model.yml
+x-evidence:
+  - {url: 'https://developers.activecampaign.com/reference/pagination.md', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/reference/url.md', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/reference/authentication.md', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/reference/rate-limits.md', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/page/webhooks.md', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/llms.txt', http_status: 200, fetched: '2026-08-13'}

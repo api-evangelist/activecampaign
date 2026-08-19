@@ -1,0 +1,2893 @@
+{
+  "item": [
+    {
+      "id": "81a431fc-c083-470a-b03e-b2a95e472d88",
+      "name": "Custom Objects",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad95f8d1-e8bb-4beb-8b5e-12eb69e9b786",
+          "name": "ActiveCampaign List All Schemas",
+          "request": {
+            "name": "ActiveCampaign List All Schemas",
+            "description": {
+              "content": "Retrieve all schemas available within an account.\n\nUsers are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customObjects",
+                "schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The number of schemas to retrieve for each API call. Maximum value is 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset index of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "orders",
+                  "value": "<string>",
+                  "description": "Array of sorting criteria to fetch items"
+                },
+                {
+                  "disabled": false,
+                  "key": "orders",
+                  "value": "<string>",
+                  "description": "Array of sorting criteria to fetch items"
+                },
+                {
+                  "disabled": false,
+                  "key": "filters",
+                  "value": "<string>",
+                  "description": "Filters schemas by different criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "showFields",
+                  "value": "all",
+                  "description": "Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fdfddd98-4f10-4279-8840-6fb21e3a0160",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "orders",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orders",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "showFields",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"schemas\\\": [\\n    {\\n      \\\"id\\\": \\\"6449c3f3-b68d-46d1-850b-c8aea998ce1b\\\",\\n      \\\"slug\\\": \\\"my-object\\\",\\n      \\\"visibility\\\": \\\"private\\\",\\n      \\\"labels\\\": {\\n        \\\"singular\\\": \\\"My Object\\\",\\n        \\\"plural\\\": \\\"My Objects\\\"\\n      },\\n      \\\"description\\\": \\\"Sample Schema\\\",\\n      \\\"createdTimestamp\\\": \\\"2021-04-16T15:08:25.783751329Z\\\",\\n      \\\"updatedTimestamp\\\": \\\"2021-04-16T15:08:25.783751329Z\\\",\\n      \\\"fields\\\": [\\n        {\\n          \\\"id\\\": \\\"my-number-field\\\",\\n          \\\"labels\\\": {\\n            \\\"singular\\\": \\\"Number\\\",\\n            \\\"plural\\\": \\\"Numbers\\\"\\n          },\\n          \\\"type\\\": \\\"number\\\",\\n          \\\"required\\\": false,\\n          \\\"scale\\\": 0\\n        }\\n      ],\\n      \\\"icons\\\": {\\n        \\\"default\\\": \\\"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\\\"\\n      },\\n      \\\"relationships\\\": [\\n        {\\n          \\\"id\\\": \\\"primary-contact\\\",\\n          \\\"labels\\\": {\\n            \\\"singular\\\": \\\"Primary Contact\\\",\\n            \\\"plural\\\": \\\"Primary Contacts\\\"\\n          },\\n          \\\"description\\\": \\\"Primary contact to this object\\\",\\n          \\\"namespace\\\": \\\"contacts\\\",\\n          \\\"hasMany\\\": false\\n        }\\n      ]\\n    }\\n  ],\\n  \\\"meta\\\": {\\n    \\\"total\\\": 1,\\n    \\\"count\\\": 1,\\n    \\\"limit\\\": 20,\\n    \\\"offset\\\": 0\\n  }\\n}\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a543bbef-d79b-4fb3-b21e-ec5e0609d913",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "orders",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orders",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "showFields",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2cb7bb66-6d6e-4edb-b2b9-3655a802340d",
+          "name": "ActiveCampaign Create a Schema",
+          "request": {
+            "name": "ActiveCampaign Create a Schema",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customObjects",
+                "schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schema\": {\n    \"slug\": \"<string>\",\n    \"labels\": {\n      \"singular\": \"<string>\",\n      \"plural\": \"<string>\"\n    },\n    \"description\": \"<string>\",\n    \"fields\": [\n      {\n        \"id\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"labels\": {\n          \"singular\": \"<string>\",\n          \"plural\": \"<string>\"\n        },\n        \"type\": \"<string>\",\n        \"scale\": \"<integer>\",\n        \"isRequired\": \"<boolean>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"labels\": {\n          \"singular\": \"<string>\",\n          \"plural\": \"<string>\"\n        },\n        \"type\": \"<string>\",\n        \"scale\": \"<integer>\",\n        \"isRequired\": \"<boolean>\"\n      }\n    ],\n    \"relationships\": [\n      {\n        \"id\": \"<string>\",\n        \"labels\": {\n          \"singular\": \"<string>\",\n          \"plural\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"hasMany\": \"<boolean>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"labels\": {\n          \"singular\": \"<string>\",\n          \"plural\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"hasMany\": \"<boolean>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9c1e2a4f-675c-4370-a0b8-e716f8ff0cb3",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema\": {\n    \"slug\": \"my-object\",\n    \"labels\": {\n      \"singular\": \"My Object\",\n      \"plural\": \"My Objects\"\n    },\n    \"description\": \"Sample Schema\",\n    \"fields\": [\n      {\n        \"id\": \"my-number-field\",\n        \"labels\": {\n          \"singular\": \"Number\",\n          \"plural\": \"Numbers\"\n        },\n        \"type\": \"number\",\n        \"required\": false,\n        \"scale\": 0\n      }\n    ],\n    \"relationships\": [\n      {\n        \"id\": \"primary-contact\",\n        \"labels\": {\n          \"singular\": \"Primary Contact\",\n          \"plural\": \"Primary Contacts\"\n        },\n        \"description\": \"Primary contact to this object\",\n        \"namespace\": \"contacts\",\n        \"hasMany\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"schema\\\": {\\n        \\\"id\\\": \\\"2123028c-64e6-40e2-97bc-9d63a2ca920b\\\",\\n        \\\"slug\\\": \\\"my-object\\\",\\n        \\\"visibility\\\": \\\"private\\\",\\n        \\\"labels\\\": {\\n            \\\"singular\\\": \\\"My Object\\\",\\n            \\\"plural\\\": \\\"My Objects\\\"\\n        },\\n        \\\"description\\\": \\\"Sample Schema\\\",\\n        \\\"createdTimestamp\\\": \\\"2021-03-19T18:23:17.153996399Z\\\",\\n        \\\"updatedTimestamp\\\": \\\"2021-03-19T18:23:17.153996399Z\\\",\\n        \\\"fields\\\": [{\\n            \\\"id\\\": \\\"my-number-field\\\",\\n            \\\"labels\\\": {\\n                \\\"singular\\\": \\\"Number\\\",\\n                \\\"plural\\\": \\\"Numbers\\\"\\n            },\\n            \\\"type\\\": \\\"number\\\",\\n            \\\"required\\\": false,\\n            \\\"scale\\\": 0\\n        }],\\n        \\\"icons\\\": {\\n            \\\"default\\\": \\\"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\\\"\\n        },\\n        \\\"relationships\\\": [{\\n            \\\"id\\\": \\\"primary-contact\\\",\\n            \\\"labels\\\": {\\n                \\\"singular\\\": \\\"Primary Contact\\\",\\n                \\\"plural\\\": \\\"Primary Contacts\\\"\\n            },\\n            \\\"description\\\": \\\"Primary contact to this object\\\",\\n            \\\"namespace\\\": \\\"contacts\\\",\\n            \\\"hasMany\\\": false\\n        }]\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05ce4635-89bb-4e83-a894-0646426fcb39",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema\": {\n    \"slug\": \"my-object\",\n    \"labels\": {\n      \"singular\": \"My Object\",\n      \"plural\": \"My Objects\"\n    },\n    \"description\": \"Sample Schema\",\n    \"fields\": [\n      {\n        \"id\": \"my-number-field\",\n        \"labels\": {\n          \"singular\": \"Number\",\n          \"plural\": \"Numbers\"\n        },\n        \"type\": \"number\",\n        \"required\": false,\n        \"scale\": 0\n      }\n    ],\n    \"relationships\": [\n      {\n        \"id\": \"primary-contact\",\n        \"labels\": {\n          \"singular\": \"Primary Contact\",\n          \"plural\": \"Primary Contacts\"\n        },\n        \"description\": \"Primary contact to this object\",\n        \"namespace\": \"contacts\",\n        \"hasMany\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"errors\\\": [\\n    {\\n      \\\"title\\\": \\\"Invalid value for field \\\\\\\"schema.fields.labels\\\\\\\"\\\",\\n      \\\"detail\\\": \\\"Schema fields must provide labels\\\",\\n      \\\"source\\\": {\\n        \\\"type\\\": \\\"pointer\\\",\\n        \\\"value\\\": \\\"/data/attributes/schema/fields/labels\\\"\\n      }\\n    }\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "724462c2-302f-47cd-adee-b52fffd97585",
+          "name": "ActiveCampaign Retrieve a Schema",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Schema",
+            "description": {
+              "content": "Retrieve a specific schema by id.\n\nUsers are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customObjects",
+                "schemas",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "showFields",
+                  "value": "all",
+                  "description": "Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the Schema"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db6e3ed9-2d6d-49f2-a848-02c9eaead2e0",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "showFields",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the Schema"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"schema\\\": {\\n    \\\"id\\\": \\\"6449c3f3-b68d-46d1-850b-c8aea998ce1b\\\",\\n    \\\"slug\\\": \\\"my-object\\\",\\n    \\\"visibility\\\": \\\"private\\\",\\n    \\\"labels\\\": {\\n      \\\"singular\\\": \\\"My Object\\\",\\n      \\\"plural\\\": \\\"My Objects\\\"\\n    },\\n    \\\"description\\\": \\\"Sample Schema\\\",\\n    \\\"createdTimestamp\\\": \\\"2021-04-16T15:08:25.783751329Z\\\",\\n    \\\"updatedTimestamp\\\": \\\"2021-04-16T15:08:25.783751329Z\\\",\\n    \\\"fields\\\": [\\n      {\\n        \\\"id\\\": \\\"my-number-field\\\",\\n        \\\"labels\\\": {\\n          \\\"singular\\\": \\\"Number\\\",\\n          \\\"plural\\\": \\\"Numbers\\\"\\n        },\\n        \\\"type\\\": \\\"number\\\",\\n        \\\"required\\\": false,\\n        \\\"scale\\\": 0\\n      }\\n    ],\\n    \\\"icons\\\": {\\n      \\\"default\\\": \\\"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\\\"\\n    },\\n    \\\"relationships\\\": [\\n      {\\n        \\\"id\\\": \\\"primary-contact\\\",\\n        \\\"labels\\\": {\\n          \\\"singular\\\": \\\"Primary Contact\\\",\\n          \\\"plural\\\": \\\"Primary Contacts\\\"\\n        },\\n        \\\"description\\\": \\\"Primary contact to this object\\\",\\n        \\\"namespace\\\": \\\"contacts\\\",\\n        \\\"hasMany\\\": false\\n      }\\n    ]\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c4c19c2-50f7-460c-b5c0-2d6313551fbf",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "showFields",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the Schema"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"message\\\": \\\"Not Found\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "359c78c7-2ac3-4c45-b842-158d49a3ccb1",
+          "name": "ActiveCampaign Delete a Schema",
+          "request": {
+            "name": "ActiveCampaign Delete a Schema",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customObjects",
+                "schemas",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of schema to delete"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02a973b9-6275-4fc3-a145-9975f1510e5d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of schema to delete"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c34d726a-efdf-4f69-a7a9-e71c6ba255fd",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of schema to delete"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"message\\\": \\\"Not Found\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a20c70a-b9a5-40d1-b25f-78a204eefa09",
+          "name": "ActiveCampaign Update a Schema",
+          "request": {
+            "name": "ActiveCampaign Update a Schema",
+            "description": {
+              "content": "Make an update to a given schema.\n\nTo delete a schema field, reference the field delete endpoint: https://developers.activecampaign.com/reference/delete-a-field-1\n\nUsers are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customObjects",
+                "schemas",
+                ":schemaId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "showFields",
+                  "value": "all",
+                  "description": "Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schemaId",
+                  "description": "(Required) Id of Schema being updated"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "When set to `true` the API will validate the schema update without saving changes",
+                "key": "validateOnly",
+                "value": "false"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schema\": {\n    \"slug\": \"<string>\",\n    \"labels\": {\n      \"singular\": \"<string>\",\n      \"plural\": \"<string>\"\n    },\n    \"description\": \"<string>\",\n    \"appId\": \"<string>\",\n    \"fields\": [\n      {\n        \"id\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"icons\": {\n      \"default\": \"<string>\"\n    },\n    \"relationships\": {\n      \"id\": \"<string>\",\n      \"labels\": {\n        \"singular\": \"<string>\",\n        \"plural\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"namespace\": \"<string>\",\n      \"hasMany\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8cf7f54f-b85c-414c-b5f1-0ac2c6ca11e0",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "showFields",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) Id of Schema being updated"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "When set to `true` the API will validate the schema update without saving changes",
+                    "key": "validateOnly",
+                    "value": "false"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema\": {\n    \"slug\": \"stripe-order\",\n    \"labels\": {\n      \"singular\": \"Stripe Order\",\n      \"plural\": \"Stripe Orders\"\n    },\n    \"description\": \"Orders placed through the Stripe integration\",\n    \"appId\": \"123456\",\n    \"fields\": [\n      {\n        \"id\": \"name\",\n        \"labels\": {\n          \"singular\": \"Product Name\",\n          \"plural\": \"Product Name\"\n        },\n        \"description\": \"Name of the product from the Stripe integration\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"text\"\n      },\n      {\n        \"id\": \"total\",\n        \"labels\": {\n          \"singular\": \"Order Total\",\n          \"plural\": \"Order Totals\"\n        },\n        \"description\": \"Total cost of the order\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"currency\",\n        \"defaultCurrency\": \"USD\"\n      },\n      {\n        \"id\": \"status\",\n        \"labels\": {\n          \"singular\": \"Order Status\",\n          \"plural\": \"Order Statuses\"\n        },\n        \"description\": \"Status of the order\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"dropdown\",\n        \"options\": [\n          {\n            \"value\": \"Processed\"\n          }\n        ]\n      },\n      {\n        \"id\": \"features\",\n        \"labels\": {\n          \"singular\": \"Order Feature\",\n          \"plural\": \"Order Features\"\n        },\n        \"description\": \"Extra features for the order\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"multiselect\",\n        \"options\": [\n          {\n            \"value\": \"Expedited Shipping\"\n          }\n        ]\n      },\n      {\n        \"id\": \"rating\",\n        \"labels\": {\n          \"singular\": \"Order Rating\",\n          \"plural\": \"Order Ratings\"\n        },\n        \"description\": \"Customer satisfaction rating\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"decimal\",\n        \"scale\": 2\n      }\n    ],\n    \"icons\": {\n      \"default\": \"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\"\n    },\n    \"relationships\": [\n      {\n        \"id\": \"primary-contact\",\n        \"labels\": {\n          \"singular\": \"Primary Contact\",\n          \"plural\": \"Primary Contacts\"\n        },\n        \"description\": \"Products purchased in this Stripe order\",\n        \"namespace\": \"contacts\",\n        \"hasMany\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"schema\\\": {\\n    \\\"id\\\": \\\"schema-9999-9999\\\",\\n    \\\"slug\\\": \\\"stripe-order\\\",\\n    \\\"labels\\\": {\\n      \\\"singular\\\": \\\"Stripe Order\\\",\\n      \\\"plural\\\": \\\"Stripe Orders\\\"\\n    },\\n    \\\"description\\\": \\\"Orders placed through the Stripe integration\\\",\\n    \\\"appId\\\": \\\"123456\\\",\\n    \\\"fields\\\": [\\n      {\\n        \\\"id\\\": \\\"name\\\",\\n        \\\"labels\\\": {\\n          \\\"singular\\\": \\\"Product Name\\\",\\n          \\\"plural\\\": \\\"Product Name\\\"\\n        },\\n        \\\"description\\\": \\\"Name of the product from the Stripe integration\\\",\\n        \\\"isRequired\\\": true,\\n        \\\"origin\\\": \\\"stripe\\\",\\n        \\\"type\\\": \\\"text\\\"\\n      },\\n      {\\n        \\\"id\\\": \\\"total\\\",\\n        \\\"labels\\\": {\\n          \\\"singular\\\": \\\"Order Total\\\",\\n          \\\"plural\\\": \\\"Order Totals\\\"\\n        },\\n        \\\"description\\\": \\\"Total cost of the order\\\",\\n        \\\"isRequired\\\": true,\\n        \\\"origin\\\": \\\"stripe\\\",\\n        \\\"type\\\": \\\"currency\\\",\\n        \\\"defaultCurrency\\\": \\\"USD\\\"\\n      },\\n      {\\n        \\\"id\\\": \\\"status\\\",\\n        \\\"labels\\\": {\\n          \\\"singular\\\": \\\"Order Status\\\",\\n          \\\"plural\\\": \\\"Order Statuses\\\"\\n        },\\n        \\\"description\\\": \\\"Status of the order\\\",\\n        \\\"isRequired\\\": true,\\n        \\\"origin\\\": \\\"stripe\\\",\\n        \\\"type\\\": \\\"dropdown\\\",\\n        \\\"options\\\": [\\n          {\\n            \\\"id\\\": \\\"264d3b73-069e-4ca1-b270-dbfa3137b541\\\",\\n            \\\"value\\\": \\\"Processed\\\"\\n          }\\n        ]\\n      },\\n      {\\n        \\\"id\\\": \\\"features\\\",\\n        \\\"labels\\\": {\\n          \\\"singular\\\": \\\"Order Feature\\\",\\n          \\\"plural\\\": \\\"Order Features\\\"\\n        },\\n        \\\"description\\\": \\\"Extra features for the order\\\",\\n        \\\"isRequired\\\": true,\\n        \\\"origin\\\": \\\"stripe\\\",\\n        \\\"type\\\": \\\"multiselect\\\",\\n        \\\"options\\\": [\\n          {\\n            \\\"id\\\": \\\"041ef416-a85b-678f-4a15-5dd481dad123\\\",\\n            \\\"value\\\": \\\"Expedited Shipping\\\"\\n          }\\n        ]\\n      },\\n      {\\n        \\\"id\\\": \\\"rating\\\",\\n        \\\"labels\\\": {\\n          \\\"singular\\\": \\\"Order Rating\\\",\\n          \\\"plural\\\": \\\"Order Ratings\\\"\\n        },\\n        \\\"description\\\": \\\"Customer satisfaction rating\\\",\\n        \\\"isRequired\\\": true,\\n        \\\"origin\\\": \\\"stripe\\\",\\n        \\\"type\\\": \\\"decimal\\\",\\n        \\\"scale\\\": 2\\n      }\\n    ],\\n    \\\"icons\\\": {\\n      \\\"default\\\": \\\"https://activehosted.com/temp-placeholder.svg\\\"\\n    },\\n    \\\"relationships\\\": [\\n      {\\n        \\\"id\\\": \\\"primary-contact\\\",\\n        \\\"labels\\\": {\\n          \\\"singular\\\": \\\"Primary Contact\\\",\\n          \\\"plural\\\": \\\"Primary Contacts\\\"\\n        },\\n        \\\"description\\\": \\\"Products purchased in this Stripe order\\\",\\n        \\\"namespace\\\": \\\"contacts\\\",\\n        \\\"hasMany\\\": false\\n      }\\n    ],\\n    \\\"createdTimestamp\\\": \\\"2021-04-13T21:12:53.390Z\\\",\\n    \\\"updatedTimestamp\\\": \\\"2021-04-13T21:12:53.390Z\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e7795ad-df89-4b17-8953-cc1ec566de92",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "showFields",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) Id of Schema being updated"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "When set to `true` the API will validate the schema update without saving changes",
+                    "key": "validateOnly",
+                    "value": "false"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema\": {\n    \"slug\": \"stripe-order\",\n    \"labels\": {\n      \"singular\": \"Stripe Order\",\n      \"plural\": \"Stripe Orders\"\n    },\n    \"description\": \"Orders placed through the Stripe integration\",\n    \"appId\": \"123456\",\n    \"fields\": [\n      {\n        \"id\": \"name\",\n        \"labels\": {\n          \"singular\": \"Product Name\",\n          \"plural\": \"Product Name\"\n        },\n        \"description\": \"Name of the product from the Stripe integration\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"text\"\n      },\n      {\n        \"id\": \"total\",\n        \"labels\": {\n          \"singular\": \"Order Total\",\n          \"plural\": \"Order Totals\"\n        },\n        \"description\": \"Total cost of the order\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"currency\",\n        \"defaultCurrency\": \"USD\"\n      },\n      {\n        \"id\": \"status\",\n        \"labels\": {\n          \"singular\": \"Order Status\",\n          \"plural\": \"Order Statuses\"\n        },\n        \"description\": \"Status of the order\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"dropdown\",\n        \"options\": [\n          {\n            \"value\": \"Processed\"\n          }\n        ]\n      },\n      {\n        \"id\": \"features\",\n        \"labels\": {\n          \"singular\": \"Order Feature\",\n          \"plural\": \"Order Features\"\n        },\n        \"description\": \"Extra features for the order\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"multiselect\",\n        \"options\": [\n          {\n            \"value\": \"Expedited Shipping\"\n          }\n        ]\n      },\n      {\n        \"id\": \"rating\",\n        \"labels\": {\n          \"singular\": \"Order Rating\",\n          \"plural\": \"Order Ratings\"\n        },\n        \"description\": \"Customer satisfaction rating\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"decimal\",\n        \"scale\": 2\n      }\n    ],\n    \"icons\": {\n      \"default\": \"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\"\n    },\n    \"relationships\": [\n      {\n        \"id\": \"primary-contact\",\n        \"labels\": {\n          \"singular\": \"Primary Contact\",\n          \"plural\": \"Primary Contacts\"\n        },\n        \"description\": \"Products purchased in this Stripe order\",\n        \"namespace\": \"contacts\",\n        \"hasMany\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd8fd6d9-62bb-4896-8031-8a8f49e5657d",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "showFields",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) Id of Schema being updated"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "When set to `true` the API will validate the schema update without saving changes",
+                    "key": "validateOnly",
+                    "value": "false"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema\": {\n    \"slug\": \"stripe-order\",\n    \"labels\": {\n      \"singular\": \"Stripe Order\",\n      \"plural\": \"Stripe Orders\"\n    },\n    \"description\": \"Orders placed through the Stripe integration\",\n    \"appId\": \"123456\",\n    \"fields\": [\n      {\n        \"id\": \"name\",\n        \"labels\": {\n          \"singular\": \"Product Name\",\n          \"plural\": \"Product Name\"\n        },\n        \"description\": \"Name of the product from the Stripe integration\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"text\"\n      },\n      {\n        \"id\": \"total\",\n        \"labels\": {\n          \"singular\": \"Order Total\",\n          \"plural\": \"Order Totals\"\n        },\n        \"description\": \"Total cost of the order\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"currency\",\n        \"defaultCurrency\": \"USD\"\n      },\n      {\n        \"id\": \"status\",\n        \"labels\": {\n          \"singular\": \"Order Status\",\n          \"plural\": \"Order Statuses\"\n        },\n        \"description\": \"Status of the order\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"dropdown\",\n        \"options\": [\n          {\n            \"value\": \"Processed\"\n          }\n        ]\n      },\n      {\n        \"id\": \"features\",\n        \"labels\": {\n          \"singular\": \"Order Feature\",\n          \"plural\": \"Order Features\"\n        },\n        \"description\": \"Extra features for the order\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"multiselect\",\n        \"options\": [\n          {\n            \"value\": \"Expedited Shipping\"\n          }\n        ]\n      },\n      {\n        \"id\": \"rating\",\n        \"labels\": {\n          \"singular\": \"Order Rating\",\n          \"plural\": \"Order Ratings\"\n        },\n        \"description\": \"Customer satisfaction rating\",\n        \"isRequired\": true,\n        \"origin\": \"stripe\",\n        \"type\": \"decimal\",\n        \"scale\": 2\n      }\n    ],\n    \"icons\": {\n      \"default\": \"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\"\n    },\n    \"relationships\": [\n      {\n        \"id\": \"primary-contact\",\n        \"labels\": {\n          \"singular\": \"Primary Contact\",\n          \"plural\": \"Primary Contacts\"\n        },\n        \"description\": \"Products purchased in this Stripe order\",\n        \"namespace\": \"contacts\",\n        \"hasMany\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"errors\\\": [\\n    {\\n      \\\"title\\\": \\\"Invalid value for field \\\\\\\"{field_name}\\\\\\\"\\\",\\n      \\\"detail\\\": \\\"{description}\\\",\\n      \\\"source\\\": {\\n        \\\"type\\\": \\\"pointer\\\",\\n        \\\"value\\\": \\\"/data/attributes/{field_name}\\\"\\n      }\\n    }\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1492d750-ed6c-437e-a605-7fe24897eb04",
+          "name": "ActiveCampaign Delete a Field",
+          "request": {
+            "name": "ActiveCampaign Delete a Field",
+            "description": {
+              "content": "Deleting a schema field is an irreversible process.\n\nAssuming a valid `202 Accepted` response is received, any associated field data on associated records will immediately be unavailable to the user. There may be a small delay if record requests are in the midst of processing when the field delete request is issued.\n\nThe deleted field id will *not* be immediately recycled for reuse. Users are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute.\n\nThe field delete operation is only permitted for admin users.\nField deletion is not permitted on public or child schemas (private schemas only).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customObjects",
+                "schemas",
+                ":schemaId",
+                "fields",
+                ":fieldId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "showFields",
+                  "value": "all",
+                  "description": "Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schemaId",
+                  "description": "(Required) Schema ID of the field to be deleted"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fieldId",
+                  "description": "(Required) Field ID of the field to be deleted"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "964e2eeb-697b-4456-ba8a-0e4e8b989f8e",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas",
+                    ":schemaId",
+                    "fields",
+                    ":fieldId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "showFields",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) Schema ID of the field to be deleted"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fieldId",
+                      "description": "(Required) Field ID of the field to be deleted"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"schema\\\": {\\n        \\\"id\\\": \\\"82ec659f-8283-4e88-9df3-26f4585fec02\\\",\\n        \\\"slug\\\": \\\"my-object\\\",\\n        \\\"visibility\\\": \\\"private\\\",\\n        \\\"labels\\\": {\\n            \\\"singular\\\": \\\"My Object\\\",\\n            \\\"plural\\\": \\\"My Objects\\\"\\n        },\\n        \\\"description\\\": \\\"Sample Schema\\\",\\n        \\\"createdTimestamp\\\": \\\"2021-10-04T20:08:09.574382410Z\\\",\\n        \\\"updatedTimestamp\\\": \\\"2022-06-10T14:19:06.834158129Z\\\",\\n        \\\"fields\\\": [\\n            {\\n                \\\"id\\\": \\\"my-number-field\\\",\\n                \\\"labels\\\": {\\n                    \\\"singular\\\": \\\"Number\\\",\\n                    \\\"plural\\\": \\\"Numbers\\\"\\n                },\\n                \\\"type\\\": \\\"number\\\",\\n                \\\"required\\\": false,\\n                \\\"scale\\\": 0,\\n                \\\"inherited\\\": false\\n            },\\n            {\\n                \\\"id\\\": \\\"multiselect\\\",\\n                \\\"labels\\\": {\\n                    \\\"singular\\\": \\\"Multiselect\\\",\\n                    \\\"plural\\\": \\\"Multiselect\\\"\\n                },\\n                \\\"type\\\": \\\"multiselect\\\",\\n                \\\"required\\\": false,\\n                \\\"options\\\": [\\n                    {\\n                        \\\"id\\\": \\\"c56d7f15-d61d-46a6-9b7e-edec21192cd5\\\",\\n                        \\\"value\\\": \\\"Option 4\\\"\\n                    },\\n                    {\\n                        \\\"id\\\": \\\"91fa9499-c08d-4b24-97c7-04a7fcf5d0dc\\\",\\n                        \\\"value\\\": \\\"Option 5\\\"\\n                    },\\n                    {\\n                        \\\"id\\\": \\\"42bc2e29-eab5-40ff-85cb-b703c7bc9fd9\\\",\\n                        \\\"value\\\": \\\"Option 6\\\"\\n                    }\\n                ],\\n                \\\"inherited\\\": false,\\n                \\\"status\\\": \\\"marked_for_deletion\\\"\\n            },\\n            {\\n                \\\"id\\\": \\\"test-field-1\\\",\\n                \\\"labels\\\": {\\n                    \\\"singular\\\": \\\"test field\\\",\\n                    \\\"plural\\\": \\\"test field\\\"\\n                },\\n                \\\"type\\\": \\\"text\\\",\\n                \\\"required\\\": false,\\n                \\\"inherited\\\": false,\\n                \\\"status\\\": \\\"marked_for_deletion\\\"\\n            },\\n            {\\n                \\\"id\\\": \\\"test-field\\\",\\n                \\\"labels\\\": {\\n                    \\\"singular\\\": \\\"test field\\\",\\n                    \\\"plural\\\": \\\"test field\\\"\\n                },\\n                \\\"type\\\": \\\"text\\\",\\n                \\\"required\\\": false,\\n                \\\"inherited\\\": false,\\n                \\\"status\\\": \\\"marked_for_deletion\\\"\\n            },\\n            {\\n                \\\"id\\\": \\\"dropdown\\\",\\n                \\\"labels\\\": {\\n                    \\\"singular\\\": \\\"Dropdown\\\",\\n                    \\\"plural\\\": \\\"Dropdown\\\"\\n                },\\n                \\\"type\\\": \\\"dropdown\\\",\\n                \\\"required\\\": false,\\n                \\\"options\\\": [\\n                    {\\n                        \\\"id\\\": \\\"81529d6b-b5f5-4b13-a3d7-f00b62f1072f\\\",\\n                        \\\"value\\\": \\\"Option 1\\\"\\n                    },\\n                    {\\n                        \\\"id\\\": \\\"0a9d10a0-a3ea-4247-a2ef-0ed990e2d908\\\",\\n                        \\\"value\\\": \\\"Option 2\\\"\\n                    },\\n                    {\\n                        \\\"id\\\": \\\"d60f84cf-cca5-4284-97fd-fdc833caa82b\\\",\\n                        \\\"value\\\": \\\"Option 3\\\"\\n                    }\\n                ],\\n                \\\"inherited\\\": false,\\n                \\\"status\\\": \\\"marked_for_deletion\\\"\\n            }\\n        ],\\n        \\\"icons\\\": {\\n            \\\"default\\\": \\\"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\\\"\\n        },\\n        \\\"relationships\\\": [\\n            {\\n                \\\"id\\\": \\\"primary-contact\\\",\\n                \\\"labels\\\": {\\n                    \\\"singular\\\": \\\"Primary Contact\\\",\\n                    \\\"plural\\\": \\\"Primary Contacts\\\"\\n                },\\n                \\\"description\\\": \\\"Primary contact to this object\\\",\\n                \\\"namespace\\\": \\\"contacts\\\",\\n                \\\"hasMany\\\": false,\\n                \\\"inherited\\\": false\\n            }\\n        ]\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d83492fa-cc05-4d03-a6d4-2306ae6933e1",
+          "name": "ActiveCampaign Create a Public Schema",
+          "request": {
+            "name": "ActiveCampaign Create a Public Schema",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customObjects",
+                "schemas",
+                "public"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schema\": {\n    \"slug\": \"<string>\",\n    \"appId\": \"<string>\",\n    \"labels\": {\n      \"singular\": \"<string>\",\n      \"plural\": \"<string>\"\n    },\n    \"description\": \"<string>\",\n    \"fields\": [\n      {\n        \"id\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"labels\": {\n          \"singular\": \"<string>\",\n          \"plural\": \"<string>\"\n        },\n        \"type\": \"<string>\",\n        \"scale\": \"<integer>\",\n        \"isRequired\": \"<boolean>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"labels\": {\n          \"singular\": \"<string>\",\n          \"plural\": \"<string>\"\n        },\n        \"type\": \"<string>\",\n        \"scale\": \"<integer>\",\n        \"isRequired\": \"<boolean>\"\n      }\n    ],\n    \"relationships\": [\n      {\n        \"id\": \"<string>\",\n        \"labels\": {\n          \"singular\": \"<string>\",\n          \"plural\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"hasMany\": \"<boolean>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"labels\": {\n          \"singular\": \"<string>\",\n          \"plural\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"hasMany\": \"<boolean>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "768ef487-ce99-48cb-999b-982d987d2e8a",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas",
+                    "public"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema\": {\n    \"slug\": \"event-tickets\",\n    \"appId\": \"cxapp-studio-app-id\",\n    \"labels\": {\n      \"singular\": \"Event Ticket\",\n      \"plural\": \"Event Tickets\"\n    },\n    \"description\": \"Event Tickets\",\n    \"fields\": [\n      {\n        \"id\": \"name\",\n        \"labels\": {\n          \"singular\": \"Name\",\n          \"plural\": \"Names\"\n        },\n        \"type\": \"textarea\"\n      }\n    ],\n    \"relationships\": [\n      {\n        \"id\": \"primary-contact\",\n        \"labels\": {\n          \"singular\": \"Primary Contact\",\n          \"plural\": \"Primary Contacts\"\n        },\n        \"description\": \"Primary contact that owns a ticket\",\n        \"namespace\": \"contacts\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"schema\\\": {\\n    \\\"id\\\": \\\"230f6065-a8e5-4df2-a70a-f6832d004d8d\\\",\\n    \\\"slug\\\": \\\"app-230f6065-a8e5-4df2-a70a-f6832d004d8d-event-tickets\\\",\\n    \\\"visibility\\\": \\\"public\\\",\\n    \\\"labels\\\": {\\\"singular\\\": \\\"Event Ticket\\\", \\\"plural\\\": \\\"Event Tickets\\\"},\\n    \\\"description\\\": \\\"Event Tickets\\\",\\n    \\\"appId\\\": \\\"cxapp-studio-app-id\\\",\\n    \\\"fields\\\": [\\n        {\\n            \\\"id\\\": \\\"name\\\",\\n            \\\"labels\\\": {\\\"singular\\\": \\\"Name\\\", \\\"plural\\\": \\\"Names\\\"},\\n            \\\"type\\\": \\\"textarea\\\"\\n        }\\n    ],\\n    \\\"relationships\\\": [\\n      {\\n        \\\"id\\\": \\\"primary-contact\\\",\\n        \\\"labels\\\": {\\n          \\\"singular\\\": \\\"Primary Contact\\\",\\n          \\\"plural\\\": \\\"Primary Contacts\\\"\\n        },\\n        \\\"description\\\": \\\"Primary contact that owns a ticket\\\",\\n        \\\"namespace\\\": \\\"contacts\\\",\\n        \\\"hasMany\\\": false,\\n        \\\"inherited\\\": false\\n      }\\n    ],\\n    \\\"icons\\\": {\\n        \\\"default\\\": \\\"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\\\"\\n    }\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1b2a466-9f29-4a8d-84e0-bd14e9fe7f31",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas",
+                    "public"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema\": {\n    \"slug\": \"event-tickets\",\n    \"appId\": \"cxapp-studio-app-id\",\n    \"labels\": {\n      \"singular\": \"Event Ticket\",\n      \"plural\": \"Event Tickets\"\n    },\n    \"description\": \"Event Tickets\",\n    \"fields\": [\n      {\n        \"id\": \"name\",\n        \"labels\": {\n          \"singular\": \"Name\",\n          \"plural\": \"Names\"\n        },\n        \"type\": \"textarea\"\n      }\n    ],\n    \"relationships\": [\n      {\n        \"id\": \"primary-contact\",\n        \"labels\": {\n          \"singular\": \"Primary Contact\",\n          \"plural\": \"Primary Contacts\"\n        },\n        \"description\": \"Primary contact that owns a ticket\",\n        \"namespace\": \"contacts\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91ddf9d5-f29c-4dcc-b355-2bab726645c9",
+          "name": "ActiveCampaign Create a Child Schema",
+          "request": {
+            "name": "ActiveCampaign Create a Child Schema",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customObjects",
+                "schemas",
+                ":id",
+                "child"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the parent schema the new child schema will extend"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93533646-7291-4ff8-adba-81ee94ec3b3c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas",
+                    ":id",
+                    "child"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the parent schema the new child schema will extend"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"schema\\\": {\\n    \\\"id\\\": \\\"475c4ea7-65cc-4d59-a690-6ac232633fca\\\",\\n    \\\"parentId\\\": \\\"230f6065-a8e5-4df2-a70a-f6832d004d8d\\\",\\n    \\\"slug\\\": \\\"app-cxapp-studio-app-id-event-tickets\\\",\\n    \\\"appId\\\": \\\"cxapp-studio-app-id\\\",\\n    \\\"visibility\\\": \\\"private\\\",\\n    \\\"labels\\\": {\\\"singular\\\": \\\"Event Ticket\\\", \\\"plural\\\": \\\"Event Tickets\\\"},\\n    \\\"description\\\": \\\"Event Tickets\\\",\\n    \\\"fields\\\": [\\n        {\\n            \\\"id\\\": \\\"name\\\",\\n            \\\"labels\\\": {\\\"singular\\\": \\\"Name\\\", \\\"plural\\\": \\\"Names\\\"},\\n            \\\"type\\\": \\\"textarea\\\",\\n            \\\"inherited\\\": true\\n        }\\n    ],\\n    \\\"relationships\\\": [\\n      {\\n        \\\"id\\\": \\\"primary-contact\\\",\\n        \\\"labels\\\": {\\n          \\\"singular\\\": \\\"Primary Contact\\\",\\n          \\\"plural\\\": \\\"Primary Contacts\\\"\\n        },\\n        \\\"description\\\": \\\"Primary contact that owns a ticket\\\",\\n        \\\"namespace\\\": \\\"contacts\\\",\\n        \\\"inherited\\\": true\\n      }\\n    ],\\n    \\\"icons\\\": {\\n        \\\"default\\\": \\\"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\\\"\\n    }\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0bf1aa7-1488-47e1-b7af-e1bdd3acb538",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "schemas",
+                    ":id",
+                    "child"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the parent schema the new child schema will extend"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "217bbeb5-2cd7-4ec9-ac46-bef9ba52bab0",
+          "name": "ActiveCampaign List Records by Schema",
+          "request": {
+            "name": "ActiveCampaign List Records by Schema",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customObjects",
+                "records",
+                ":schemaId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The number of records to return for each call. Maximum value is 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset index of records to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "filters",
+                  "value": "<string>",
+                  "description": "Use ?filters[relationships.{your-contact-relationship}][eq]={contactId} to filter records to a specific contact."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters",
+                  "value": "<string>",
+                  "description": "Use ?filters[relationships.{your-contact-relationship}][eq]={contactId} to filter records to a specific contact."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schemaId",
+                  "description": "(Required) ID of schema"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d8d86e7-0cc9-4d8c-9713-d3b371911e71",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "records",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"records\\\": [\\n    {\\n      \\\"id\\\": \\\"1fba439a-208e-48e6-bd23-f6c97c3e0519\\\",\\n      \\\"externalId\\\": \\\"test-obj-1\\\",\\n      \\\"schemaId\\\": \\\"6449c3f3-b68d-46d1-850b-c8aea998ce1b\\\",\\n      \\\"fields\\\": [\\n        {\\n          \\\"id\\\": \\\"my-number-field\\\",\\n          \\\"value\\\": 100\\n        }\\n      ],\\n      \\\"relationships\\\": {\\n        \\\"primary-contact\\\": [\\n          \\\"14\\\"\\n        ]\\n      },\\n      \\\"createdTimestamp\\\": \\\"2021-04-16T16:12:22.222685095Z\\\",\\n      \\\"updatedTimestamp\\\": \\\"2021-04-16T16:13:12.022671090Z\\\"\\n    }\\n  ],\\n  \\\"meta\\\": {\\n    \\\"total\\\": 1,\\n    \\\"count\\\": 1,\\n    \\\"limit\\\": 20,\\n    \\\"offset\\\": 0\\n  }\\n}\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b3e5d1c-a330-478e-8fa9-cc62d2cf8abd",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "records",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"errors\\\": [\\n    {\\n      \\\"status\\\":400,\\n      \\\"title\\\":\\\"Bad Request\\\"\\n    }\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94499810-12f9-427b-87e2-3e164a6b7d14",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "records",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"message\": \"Not Found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "676a8a68-aea7-4d6c-9b60-a86f0aac8107",
+          "name": "ActiveCampaign Create or Update Record",
+          "request": {
+            "name": "ActiveCampaign Create or Update Record",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customObjects",
+                "records",
+                ":schemaId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schemaId",
+                  "description": "(Required) ID of schema"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"record\": {\n    \"id\": \"<string>\",\n    \"externalId\": \"<string>\",\n    \"fields\": [\n      {\n        \"id\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a5b00332-4cb5-470d-9afe-4a73bc7dc88c",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "records",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"record\": {\n    \"schemaId\": \"6449c3f3-b68d-46d1-850b-c8aea998ce1b\",\n    \"id\": \"test-obj-1\",\n    \"externalId\": \"test-obj-1\",\n    \"fields\": [\n      {\n        \"id\": \"my-number-field\",\n        \"value\": 100\n      }\n    ],\n    \"relationships\": {\n      \"primary-contact\": [\n        14\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"record\\\": {\\n    \\t\\\"id\\\": \\\"test-obj-1\\\",\\n    \\t\\\"externalId\\\": \\\"test-obj-1\\\",\\n        \\\"schemaId\\\": \\\"6449c3f3-b68d-46d1-850b-c8aea998ce1b\\\",\\n        \\\"fields\\\": [\\n            {\\n                \\\"id\\\": \\\"my-number-field\\\",\\n                \\\"value\\\": 100\\n            }\\n        ],\\n        \\\"relationships\\\": {\\n            \\\"account\\\": [123]\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fcec1e4b-8a04-430c-8839-12b332d80c74",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "records",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"record\": {\n    \"schemaId\": \"6449c3f3-b68d-46d1-850b-c8aea998ce1b\",\n    \"id\": \"test-obj-1\",\n    \"externalId\": \"test-obj-1\",\n    \"fields\": [\n      {\n        \"id\": \"my-number-field\",\n        \"value\": 100\n      }\n    ],\n    \"relationships\": {\n      \"primary-contact\": [\n        14\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\\"errors\\\":[{\\\"status\\\":400,\\\"title\\\":\\\"Bad Request\\\"}]}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2362b566-a8b4-4067-9a23-82f4483ee1c3",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "records",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"record\": {\n    \"schemaId\": \"6449c3f3-b68d-46d1-850b-c8aea998ce1b\",\n    \"id\": \"test-obj-1\",\n    \"externalId\": \"test-obj-1\",\n    \"fields\": [\n      {\n        \"id\": \"my-number-field\",\n        \"value\": 100\n      }\n    ],\n    \"relationships\": {\n      \"primary-contact\": [\n        14\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Invalid value for field \\\"{field_name}\\\"\",\n      \"detail\": \"{field_name} cannot accept a value that is not defined in the schema.\",\n      \"source\": {\n        \"type\": \"pointer\",\n        \"value\": \"/data/attributes/{field_name}\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e07d16dd-035e-4cb4-8215-a9473a619978",
+          "name": "ActiveCampaign Get a Record by Id",
+          "request": {
+            "name": "ActiveCampaign Get a Record by Id",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customObjects",
+                "records",
+                ":schemaId",
+                ":recordId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schemaId",
+                  "description": "(Required) ID of schema"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordId",
+                  "description": "(Required) ID of record"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82babe9d-6e59-4d33-a9bd-43830587ad18",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "records",
+                    ":schemaId",
+                    ":recordId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) ID of record"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"record\\\": {\\n        \\\"id\\\": \\\"1fba439a-208e-48e6-bd23-f6c97c3e0519\\\",\\n        \\\"externalId\\\": \\\"test-obj-1\\\",\\n        \\\"schemaId\\\": \\\"6449c3f3-b68d-46d1-850b-c8aea998ce1b\\\",\\n        \\\"fields\\\": [\\n            {\\n                \\\"id\\\": \\\"my-number-field\\\",\\n                \\\"value\\\": 100\\n            }\\n        ],\\n        \\\"relationships\\\": {\\n            \\\"primary-contact\\\": [\\n                \\\"14\\\"\\n            ]\\n        },\\n        \\\"createdTimestamp\\\": \\\"2021-04-16T16:12:22.222685095Z\\\",\\n        \\\"updatedTimestamp\\\": \\\"2021-04-16T16:13:12.022671090Z\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9219aa4a-8cf0-4ad3-ba33-99bbd0f4b1d8",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "records",
+                    ":schemaId",
+                    ":recordId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) ID of record"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"errors\\\": [\\n    {\\n      \\\"status\\\":400,\\n      \\\"title\\\":\\\"Bad Request\\\"\\n    }\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0eba606a-e51e-4189-9655-0cc8daa577a9",
+          "name": "ActiveCampaign Delete a Record by Id",
+          "request": {
+            "name": "ActiveCampaign Delete a Record by Id",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customObjects",
+                "records",
+                ":schemaId",
+                ":recordId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schemaId",
+                  "description": "(Required) ID of schema"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordId",
+                  "description": "(Required) ID of record"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65c4f505-4e30-4ea9-8288-3b1d49c6f8f2",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "records",
+                    ":schemaId",
+                    ":recordId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) ID of record"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3459ed1-d4ef-405c-9217-bb356a227427",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "records",
+                    ":schemaId",
+                    ":recordId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) ID of record"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"errors\\\": [\\n    {\\n      \\\"status\\\":400,\\n      \\\"title\\\":\\\"Bad Request\\\"\\n    }\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27bf1757-1fc5-4f24-a266-d985cc383394",
+          "name": "ActiveCampaign Delete a Record by External ID",
+          "request": {
+            "name": "ActiveCampaign Delete a Record by External ID",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customObjects",
+                "records",
+                ":schemaId",
+                "external",
+                ":externalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schemaId",
+                  "description": "(Required) ID of schema"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalId",
+                  "description": "(Required) External ID of record"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a90035a-647c-4601-bf6a-bde52c9b91bb",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "records",
+                    ":schemaId",
+                    "external",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) External ID of record"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4abb065-cdd1-43f0-bfa1-18ce5adf1aba",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customObjects",
+                    "records",
+                    ":schemaId",
+                    "external",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) External ID of record"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"errors\\\": [\\n    {\\n      \\\"status\\\":400,\\n      \\\"title\\\":\\\"Bad Request\\\"\\n    }\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "440fa572-b82e-46ea-9dc9-5c3998689906",
+    "name": "ActiveCampaign SMS Broadcast Accounts Custom Objects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

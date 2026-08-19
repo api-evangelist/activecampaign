@@ -1,0 +1,355 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Ecommerce API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ecommerce",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomCustomers",
+            "params": [
+              {
+                "name": "filters[email]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the email address of a customer."
+              },
+              {
+                "name": "filters[externalid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the id of the customer in the external service."
+              },
+              {
+                "name": "filters[connectionid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the id of the connection object for the service where the customer originates."
+              }
+            ]
+          },
+          "docs": "List all e-commerce customer resources."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomCustomers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new e-commerce customer resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomCustomers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing e-commerce customer resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomCustomers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing e-commerce customer resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomCustomers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer to delete."
+              }
+            ]
+          },
+          "docs": "Delete an existing e-commerce customer resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrders",
+            "params": [
+              {
+                "name": "filters[connectionid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the connection id. Must be greater than 0."
+              },
+              {
+                "name": "filters[externalid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the external id of the order."
+              },
+              {
+                "name": "filters[externalcheckoutid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the external checkout id"
+              },
+              {
+                "name": "filters[email]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the customer email address."
+              },
+              {
+                "name": "filters[state]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the state of the order. 0 = Pending, 1 = Completed, 2 = Abandoned, 3 = Recovered, 4 = Waiting (Customer checked out but payment is not yet completed)"
+              },
+              {
+                "name": "filters[customerid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the customer id"
+              },
+              {
+                "name": "filters[external_created_date]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the external created date"
+              },
+              {
+                "name": "orders[connectionid]",
+                "value": "",
+                "type": "query",
+                "description": "Order by connection ID. Accepted values are ASC or DESC."
+              },
+              {
+                "name": "orders[externalid]",
+                "value": "",
+                "type": "query",
+                "description": "Order by external ID. Accepted values are ASC or DESC."
+              },
+              {
+                "name": "orders[externalcheckoutid]",
+                "value": "",
+                "type": "query",
+                "description": "Order by external checkout ID. Accepted values are ASC or DESC."
+              },
+              {
+                "name": "orders[email]",
+                "value": "",
+                "type": "query",
+                "description": "Order by email. Accepted values are ASC or DESC."
+              },
+              {
+                "name": "orders[state]",
+                "value": "",
+                "type": "query",
+                "description": "Order by state. Accepted values are ASC or DESC."
+              },
+              {
+                "name": "orders[customerid]",
+                "value": "",
+                "type": "query",
+                "description": "Order by customer ID. Accepted values are ASC or DESC."
+              },
+              {
+                "name": "orders[external_created_date]",
+                "value": "",
+                "type": "query",
+                "description": "Order by external created date. Accepted values are ASC or DESC."
+              }
+            ]
+          },
+          "docs": "List all existing e-commerce order resources."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create an Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new e-commerce order resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve an Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrders/:ecomOrderId",
+            "params": [
+              {
+                "name": "ecomOrderId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the order to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieve an existing e-commerce order resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete an Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrders/:ecomOrderId",
+            "params": [
+              {
+                "name": "ecomOrderId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the order to delete."
+              }
+            ]
+          },
+          "docs": "Delete an existing e-commerce order resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update an Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing ecommerce order/cart resource."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List EcomOrderProducts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrderProducts"
+          },
+          "docs": "ActiveCampaign List EcomOrderProducts"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List EcomOrderProducts for a Specific EcomOrder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrders/:id/orderProducts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order whose products you'd like returned."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List EcomOrderProducts for a Specific EcomOrder"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve an EcomOrderProduct",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/ecomOrderProducts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product you'd like returned."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve an EcomOrderProduct"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -4,7 +4,11 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: ActiveCampaign
 providerId: activecampaign
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-08-13'
+generated: '2026-08-13'
+method: searched
+source: https://developers.activecampaign.com/reference/rate-limits
+docs: https://developers.activecampaign.com/reference/rate-limits
 tags:
   - Marketing Automation
   - Email Marketing
@@ -12,83 +16,95 @@ tags:
   - Sales Automation
   - Customer Experience
   - Rate Limiting
-  - Quotas
   - Throttling
-description: Machine-readable rate limit definitions for the ActiveCampaign API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
+description: >-
+  ActiveCampaign publishes exactly one rate limit for the v3 REST API and applies it
+  account-wide: 5 requests per second per account. This artifact replaces the
+  2026-05-04 scaffold, which asserted a fabricated 10 requests-per-minute free tier
+  and a set of per-tier limits ActiveCampaign has never published. Everything below is
+  quoted from the provider's own rate-limits page (updatedAt 2025-10-02) and its
+  GraphQL reference, which restates the same 5 rps figure for the Ecommerce GraphQL
+  API.
+limit_count: 2
+limits:
+  - id: v3-rest-account
+    name: v3 REST API — per account
+    scope: account
+    scope_note: >-
+      The limit is per ACCOUNT, not per API key. Every key issued inside an
+      ActiveCampaign account shares one 5 rps budget, so adding integrations does not
+      add throughput. This is the single most operationally important fact on the page.
+    metric: requests_per_second
+    limit: 5
+    burst: null
+    burst_note: No burst allowance is documented.
+    timeFrame: second
+    applies_to:
+      - https://developers.activecampaign.com/reference/overview
+    tier: all
+    tier_note: >-
+      ActiveCampaign documents no plan-differentiated API limits. Starter, Plus, Pro
+      and Enterprise are all documented at the same 5 rps.
+  - id: ecom-graphql-account
+    name: Ecommerce GraphQL API — per account
+    scope: account
+    metric: requests_per_second
+    limit: 5
+    burst: null
+    timeFrame: second
+    applies_to:
+      - 'https://{yourAccountName}.api-us1.com/api/3/ecom/graphql'
+    tier: all
+    note: >-
+      "The eComm GraphQL API follows the same rate limit restriction as the existing v3
+      REST API of 5 requests per second per account."
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
+  limit: RateLimit-Limit
+  remaining: RateLimit-Remaining
+  reset: null
   retryAfter: Retry-After
-  policy: RateLimit-Policy
+  policy: null
+header_notes: >-
+  The provider documents the draft-standard unprefixed forms with worked examples —
+  "RateLimit-Limit: 5", "RateLimit-Remaining: 3", "Retry-After: 30". It does NOT
+  document X-RateLimit-* headers, does NOT document a reset timestamp header, and does
+  NOT document a RateLimit-Policy header. The 2026-05-04 scaffold claimed all four
+  X-RateLimit-* forms; that claim was wrong and has been removed. Retry-After is the
+  only recovery signal an agent can rely on.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - ActiveCampaign API v3
-      - ActiveCampaign SMS Broadcast API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - ActiveCampaign API v3
-      - ActiveCampaign SMS Broadcast API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - ActiveCampaign API v3
-      - ActiveCampaign SMS Broadcast API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - ActiveCampaign API v3
-      - ActiveCampaign SMS Broadcast API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - ActiveCampaign API v3
-      - ActiveCampaign SMS Broadcast API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+  quotaExceeded: null
+  serviceUnavailable: null
+exhaustion:
+  status: 429
+  reason_phrase: Too Many Requests
+  behavior: >-
+    "When you exceed the number of requests we allow, we will respond with a 429 Too
+    Many Requests response. This response will include headers for a duration in
+    seconds (ex. Retry-After: 30) in order to pause the existing requests. Once paused,
+    you may resume sending traffic."
+  agent_guidance: >-
+    Honour Retry-After literally; it is a whole number of seconds. Because the budget
+    is per account and shared across every key, backoff must be coordinated across
+    integrations rather than per client.
+quotas:
+  documented: false
+  note: >-
+    ActiveCampaign publishes no monthly or daily API call quota. Volume limits on
+    ActiveCampaign plans are expressed in contacts and email sends (see
+    plans/activecampaign-plans-pricing.yml), not in API requests.
+related:
+  conventions: conventions/activecampaign-conventions.yml
+  plans: plans/activecampaign-plans-pricing.yml
+  errors: errors/activecampaign-problem-types.yml
+x-evidence:
+  - {url: 'https://developers.activecampaign.com/reference/rate-limits.md', http_status: 200, fetched: '2026-08-13', updated_at: '2025-10-02T20:52:58.000Z'}
+  - {url: 'https://developers.activecampaign.com/reference/about-the-graphql-api.md', http_status: 200, fetched: '2026-08-13'}
+x-supersedes:
+  file: rate-limits/activecampaign-rate-limits.yml
+  previous_method: generated
+  previous_date: '2026-05-04'
+  reason: >-
+    The prior file was a bulk-sweep scaffold. Its limits (10 rpm free / burst 20 and
+    per-tier variants) and its X-RateLimit-* header set were not published by
+    ActiveCampaign and are replaced by the provider's own figures.

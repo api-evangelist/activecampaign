@@ -1,0 +1,852 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Contacts API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List, Search, and Filter Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts by ID. Can be repeated for multiple IDs. Example: ids[]=1&ids[]=2&ids[]=42"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email address of the contact you want to get"
+              },
+              {
+                "name": "email_like",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts that contain the given value in the email address"
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Exclude from the response the contact with the given ID"
+              },
+              {
+                "name": "formid",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts associated with the given form"
+              },
+              {
+                "name": "id_greater",
+                "value": "",
+                "type": "query",
+                "description": "Only include contacts with an ID greater than the given ID"
+              },
+              {
+                "name": "id_less",
+                "value": "",
+                "type": "query",
+                "description": "Only include contacts with an ID less than the given ID"
+              },
+              {
+                "name": "listid",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts associated with the given list"
+              },
+              {
+                "name": "phone",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts where the phone number starts with the given value"
+              },
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "(Deprecated) Please use Account-Contact end points. Filter contacts associated with the given organization ID"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts that match the given value in the contact names, organization, phone or email"
+              },
+              {
+                "name": "segmentid",
+                "value": "",
+                "type": "query",
+                "description": "Return only contacts that match a list segment. The first API call within 1 hour or an API call with the param `forceQuery=1` will kick off an new segment request. When the segment results are ready, subsequent API calls without the `forceQuery` param will return contacts that match the segment - timeout 1hr)"
+              },
+              {
+                "name": "seriesid",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts associated with the given automation"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "See [available values](https://developers.activecampaign.com/reference/contact)"
+              },
+              {
+                "name": "tagid",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts associated with the given tag"
+              },
+              {
+                "name": "filters[created_before]",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts that were created prior to this date"
+              },
+              {
+                "name": "filters[created_after]",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts that were created after this date"
+              },
+              {
+                "name": "filters[updated_before]",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts that were updated before this date"
+              },
+              {
+                "name": "filters[updated_after]",
+                "value": "",
+                "type": "query",
+                "description": "Filter contacts that were updated after this date"
+              },
+              {
+                "name": "waitid",
+                "value": "",
+                "type": "query",
+                "description": "Filter by contacts in the wait queue of an automation block"
+              },
+              {
+                "name": "orders[id]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by unique ID"
+              },
+              {
+                "name": "orders[cdate]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by creation date"
+              },
+              {
+                "name": "orders[email]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by email"
+              },
+              {
+                "name": "orders[first_name]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by first name"
+              },
+              {
+                "name": "orders[last_name]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by last name"
+              },
+              {
+                "name": "orders[name]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by full name"
+              },
+              {
+                "name": "orders[score]",
+                "value": "",
+                "type": "query",
+                "description": "Order contacts by score. Must be used in conjunction with the `sortId` parameter"
+              },
+              {
+                "name": "in_group_lists",
+                "value": "",
+                "type": "query",
+                "description": "Set this to \"true\" in order to return only contacts that the current user has permissions to see."
+              },
+              {
+                "name": "forceQuery",
+                "value": "",
+                "type": "query",
+                "description": "If present and equal to 1, a new segment request is kicked off which will return an updated result set. Otherwise, a segmented API request with a consistent sorting will return the same results for 1 hour. Note that re-ordering the results will also cause an updated result set to be returned."
+              },
+              {
+                "name": "sortId",
+                "value": "",
+                "type": "query",
+                "description": "If sorting results by a score or custom field, this parameter holds the id of the score or custom field respectively"
+              }
+            ]
+          },
+          "docs": "Use this API endpoint to list all contacts, search contacts, or filter contacts by many criteria. For example, search for specific contacts by email, list, account."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Sync a Contact's Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contact/sync",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Sync a Contact's Data"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The contact id"
+              }
+            ]
+          },
+          "docs": "Delete an existing contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update List Status for a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactLists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribe a contact to a list or unsubscribe a contact from a list."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Automations the Contact is in",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/contactAutomations",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact to receive automations for"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Automations the Contact is in"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Score Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/scoreValues",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the Contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Score Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Bounce Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/bounceLogs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Bounce Logs"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/contactData",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Data"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Goals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/contactGoals",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Goals"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's List Memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/contactLists",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's List Memberships"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/contactLogs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Logs"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a List of Contact's Deals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/contactDeals",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a List of Contact's Deals"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Deals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/deals",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Deals"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contact's Field Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/fieldValues",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contact's Field Values"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts List of Geo-ips",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/geoIps",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts List of Geo-ips"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/notes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Notes"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/organization",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Organization"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Plus Append",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/plusAppend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Plus Append"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Tracking Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/trackingLogs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Tracking Logs"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Account Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/accountContacts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Account Contacts"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Contacts Automation Entry Counts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:id/automationEntryCounts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Contacts Automation Entry Counts"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Automations a Contact is in",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactAutomations"
+          },
+          "docs": "ActiveCampaign List All Automations a Contact is in"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Add a Contact to an Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactAutomations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Add a Contact to an Automation"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve an Automation a Contact is in",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactAutomations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contactAutomation to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve an Automation a Contact is in"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Remove a Contact from an Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactAutomations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the contactAutomation to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Remove a Contact from an Automation"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Add a Tag to Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactTags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a contact tag object"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Remove a Tag from a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactTags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The contactTag id"
+              }
+            ]
+          },
+          "docs": "Delete a contact tag object"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Secondary Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactDeals"
+          },
+          "docs": "Retrieve all secondary contacts"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Secondary Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactDeals",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new secondary contact for a deal"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Secondary Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactDeals/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Secondary Contact's id"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing secondary contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Secondary Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactDeals/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Secondary Contact's id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing secondary contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Secondary Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contactDeals/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Secondary Contact's id"
+              }
+            ]
+          },
+          "docs": "Delete an existing secondary contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get Contact's Tracking Logs/Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/contacts/:contactId/trackingLogs",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The Contact's ID"
+              }
+            ]
+          },
+          "docs": "Get a log of events for a Contact"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

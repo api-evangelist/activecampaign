@@ -1,0 +1,363 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Custom Objects API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of schemas to retrieve for each API call. Maximum value is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset index of items to return"
+              },
+              {
+                "name": "orders",
+                "value": "",
+                "type": "query",
+                "description": "Array of sorting criteria to fetch items"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Filters schemas by different criteria"
+              },
+              {
+                "name": "showFields",
+                "value": "",
+                "type": "query",
+                "description": "Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default."
+              }
+            ]
+          },
+          "docs": "Retrieve all schemas available within an account.\n\nUsers are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Schema"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Schema"
+              },
+              {
+                "name": "showFields",
+                "value": "",
+                "type": "query",
+                "description": "Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default."
+              }
+            ]
+          },
+          "docs": "Retrieve a specific schema by id.\n\nUsers are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of schema to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Schema"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas/:schemaId",
+            "headers": [
+              {
+                "name": "validateOnly",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "Id of Schema being updated"
+              },
+              {
+                "name": "showFields",
+                "value": "",
+                "type": "query",
+                "description": "Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Make an update to a given schema.\n\nTo delete a schema field, reference the field delete endpoint: https://developers.activecampaign.com/reference/delete-a-field-1\n\nUsers are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema fields, to ensure field id uniqueness. Fields that have been deleted will contain a `status: marked_for_deletion` attribute."
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas/:schemaId/fields/:fieldId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "Schema ID of the field to be deleted"
+              },
+              {
+                "name": "fieldId",
+                "value": "",
+                "type": "path",
+                "description": "Field ID of the field to be deleted"
+              },
+              {
+                "name": "showFields",
+                "value": "",
+                "type": "query",
+                "description": "Toggle which fields are shown in the response body of a schema (if there hidden due to e.g. recently being deleted). Omit this parameter entirely to hide fields by default."
+              }
+            ]
+          },
+          "docs": "Deleting a schema field is an irreversible process.\n\nAssuming a valid `202 Accepted` response is received, any associated field data on associated records will immediately be unavailable to the user. There may be a small delay if record requests are in the midst of processing when the field delete request is issued.\n\nThe deleted field id will *not* be immediately recycled for reuse. Users are encouraged to leverage the `?showFields=all` query parameter when programmatically creating new schema f"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Public Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas/public",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Public Schema"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Child Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/schemas/:id/child",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the parent schema the new child schema will extend"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Create a Child Schema"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List Records by Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/records/:schemaId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "ID of schema"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to return for each call. Maximum value is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset index of records to return"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Use ?filters[relationships.{your-contact-relationship}][eq]={contactId} to filter records to a specific contact."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List Records by Schema"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create or Update Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/records/:schemaId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "ID of schema"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create or Update Record"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get a Record by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/records/:schemaId/:recordId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "ID of schema"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "ID of record"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Get a Record by Id"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Record by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/records/:schemaId/:recordId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "ID of schema"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "ID of record"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Record by Id"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Record by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/customObjects/records/:schemaId/external/:externalId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "ID of schema"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path",
+                "description": "External ID of record"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Record by External ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

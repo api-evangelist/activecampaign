@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Failures API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Failures",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Get Broadcast Failure Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/metrics/:broadcastId/failures",
+            "params": [
+              {
+                "name": "broadcastId",
+                "value": "",
+                "type": "path",
+                "description": "Broadcast ID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              }
+            ]
+          },
+          "docs": "Returns grouping and counts of failures for the broadcast"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

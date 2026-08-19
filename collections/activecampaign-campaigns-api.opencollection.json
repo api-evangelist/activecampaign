@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Campaigns API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/campaigns",
+            "params": [
+              {
+                "name": "orders[sdate]",
+                "value": "",
+                "type": "query",
+                "description": "Order campaigns by send date"
+              },
+              {
+                "name": "orders[ldate]",
+                "value": "",
+                "type": "query",
+                "description": "Order campaigns by last send date"
+              },
+              {
+                "name": "filters[seriesid]",
+                "value": "",
+                "type": "query",
+                "description": "Filter to return the campaigns from the targeted automationId/seriesIds"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Campaigns"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve Links Associated to Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/campaigns/:id/links",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of campaign to retrieve Links for"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve Links Associated to Campaign"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/campaigns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of campaign to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Campaign"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Edit Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/campaigns/:id/edit",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Edit Campaign"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/campaign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create Campaign"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Duplicate Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/campaigns/:id/copy",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the source campaign"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Duplicate Campaign"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

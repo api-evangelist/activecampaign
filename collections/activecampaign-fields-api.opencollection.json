@@ -1,0 +1,277 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Fields API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List All Custom Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fields",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of fields returned per request."
+              },
+              {
+                "name": "filters[perstag]",
+                "value": "",
+                "type": "query",
+                "description": "The custom field's persistant tag to filter by (Ex: CUSTOMER_GROUP)"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Custom Fields"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fields",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Get a Custom Field by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fields/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the field to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Get a Custom Field by ID"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fields/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the field to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Custom Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fields/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the field option to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Custom Field"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Custom Field Relationship to List(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldRels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Custom Field Relationship to List(s)"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create Custom Field Options",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldOption/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create Custom Field Options"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Custom Field Relationship to List(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldRels/:fieldRelId",
+            "params": [
+              {
+                "name": "fieldRelId",
+                "value": "",
+                "type": "path",
+                "description": "Field relationship ID to be deleted"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Custom Field Relationship to List(s)"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign List All Custom Field Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldValues",
+            "params": [
+              {
+                "name": "filters[fieldid]",
+                "value": "",
+                "type": "query",
+                "description": "ID of the field the value belongs to."
+              },
+              {
+                "name": "filters[val]",
+                "value": "",
+                "type": "query",
+                "description": "Value of the custom field for a specific contact"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign List All Custom Field Values"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldValues",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldValues/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the fieldValue to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a Custom Field Value"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update a Custom Field Value for Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldValues/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the fieldValue to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update a Custom Field Value for Contact"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Custom Field Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/fieldValues/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the fieldValue to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a Custom Field Value"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

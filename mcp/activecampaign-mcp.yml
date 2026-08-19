@@ -1,0 +1,147 @@
+generated: '2026-08-13'
+method: searched
+status: published
+source: https://developers.activecampaign.com/page/mcp
+description: >-
+  ActiveCampaign ships a first-party remote MCP server. The tool roster below is the
+  provider's own published table at
+  https://developers.activecampaign.com/page/mcp-available-tools/ (page updatedAt
+  2026-07-13), captured verbatim — tool names and descriptions are ActiveCampaign's,
+  not ours. Input schemas are NOT included because the live tools/list call cannot be
+  made anonymously: the server URL is issued per account.
+deployment:
+  mode: remote
+  endpoint: null
+  endpoint_template: 'https://{yoursubdomain}.activehosted.com/api/agents/mcp/http'
+  endpoint_note: >-
+    `endpoint` is deliberately null: ActiveCampaign issues a DIFFERENT Remote MCP URL to
+    every account and publishes no shared hostname, so there is no single URL an agent
+    can be pointed at. `endpoint_template` is NOT a guess — it is the pattern
+    ActiveCampaign itself publishes in .claude-plugin/plugin.json of its own
+    activecampaign-plugin repo: "Find this in your AC account under Settings >
+    Developer > MCP. It looks like: https://yoursubdomain.activehosted.com/api/agents/
+    mcp/http". Note the host is activehosted.com (the app domain), not api-us1.com (the
+    REST domain) — the MCP server and the REST API live on different hosts. The
+    plugin's .mcp.json wires the server as {"type":"url","url":"${user_config.
+    server_url}"}, i.e. a user-supplied value.
+  install: null
+  package: null
+  auth: api-key
+  auth_note: >-
+    The provider-published agent card declares authType "api-key-in-url" — the
+    account API key is embedded in the per-account MCP URL. There is no OAuth
+    authorization server (/.well-known/oauth-authorization-server 404s on every host).
+  verified: searched
+server:
+  name: activecampaign
+  transport: http
+  documentation: https://developers.activecampaign.com/page/mcp
+  tools_index: https://developers.activecampaign.com/page/mcp-available-tools/
+  prompt_examples: https://developers.activecampaign.com/page/mcp-prompt-examples/
+  clients_documented:
+    - name: Claude
+      tutorial: https://developers.activecampaign.com/page/connect-claude
+    - name: ChatGPT
+      tutorial: https://developers.activecampaign.com/page/connect-chatgpt
+    - name: Cursor
+      tutorial: null
+tool_count: 50
+tools:
+  - {name: list_contacts, category: Contacts, description: 'Retrieve contacts with advanced filtering (segment, form, list, tag) and pagination.'}
+  - {name: get_contact, category: Contacts, description: Fetch detailed information for a specific contact by ID.}
+  - {name: create_or_update_contact, category: Contacts, description: Add or update contact data using email as a unique identifier.}
+  - {name: list_tags, category: Tags, description: Search and filter tags by name with various matching operators.}
+  - {name: get_tag, category: Tags, description: Fetch metadata for a specific tag.}
+  - {name: create_contact_tag, category: Tags, description: Create a new organizational tag.}
+  - {name: add_tag_to_contact, category: Tags, description: Apply a specific tag to a contact record.}
+  - {name: list_lists, category: Lists, description: Browse and search available contact lists.}
+  - {name: get_list, category: Lists, description: Retrieve configuration and tracking options for a list.}
+  - {name: create_list, category: Lists, description: Establish a new contact list for email or SMS.}
+  - {name: update_list, category: Lists, description: 'Update existing list settings (name, compliance URLs, reminders).'}
+  - {name: add_contact_to_list, category: Lists, description: 'Manage a contact''s subscription status (Active, Unsubscribed, Unconfirmed).'}
+  - {name: list_contact_custom_fields, category: Custom Fields, description: Retrieve definitions of all contact custom fields.}
+  - {name: get_contact_custom_field, category: Custom Fields, description: Fetch details for a specific custom field definition.}
+  - {name: create_contact_custom_field, category: Custom Fields, description: 'Create a new field (text, date, dropdown, etc.) for contacts.'}
+  - {name: create_field_options, category: Custom Fields, description: Batch create options for selection-based custom fields.}
+  - {name: create_contact_field_relationship, category: Custom Fields, description: Link a custom field to specific contact lists.}
+  - {name: list_contact_field_values, category: Field Values, description: Retrieve actual data values stored in custom fields across contacts.}
+  - {name: get_contact_field_value, category: Field Values, description: Fetch a specific data point for a contact field.}
+  - {name: create_contact_field_value, category: Field Values, description: Set or create a value for a specific contact's custom field.}
+  - {name: update_contact_field_value, category: Field Values, description: Modify an existing custom field value.}
+  - {name: list_campaigns, category: Campaigns, description: 'Retrieve campaigns with filters for status, type, and dates.'}
+  - {name: get_campaign, category: Campaigns, description: Fetch full details for a single campaign.}
+  - {name: get_campaign_links, category: Campaigns, description: Get all tracked links associated with a campaign.}
+  - {name: list_automations, category: Automations, description: List all automation workflows and their statuses.}
+  - {name: list_contact_automations, category: Automations, description: Check a contact's progress or enrollment in various automations.}
+  - {name: get_contact_automation, category: Automations, description: Details of a contact's specific journey through an automation.}
+  - {name: add_contact_to_automation, category: Automations, description: Manually trigger an automation for a contact.}
+  - {name: remove_contact_from_automation, category: Automations, description: Eject a contact from an active automation workflow.}
+  - {name: list_deals, category: Deals (CRM), description: 'Filter and list sales opportunities by stage, status, value, and owner.'}
+  - {name: get_deal, category: Deals (CRM), description: Fetch the full record for a specific sales opportunity.}
+  - {name: create_deal, category: Deals (CRM), description: Create a new deal associated with a contact or account.}
+  - {name: update_deal, category: Deals (CRM), description: 'Update deal attributes like value, title, stage, or status.'}
+  - {name: create_deal_note, category: Deals (CRM), description: Add a text note to a specific deal.}
+  - {name: update_deal_note, category: Deals (CRM), description: Edit an existing note on a deal.}
+  - {name: deal_owner_bulk_update, category: Deals (CRM), description: Reassign multiple deals to new owners in a single batch.}
+  - {name: list_deal_pipelines, category: Pipelines, description: 'View all sales pipelines (deal groups) available in the account.'}
+  - {name: get_deal_pipeline, category: Pipelines, description: Retrieve stages and configuration for a specific pipeline.}
+  - {name: create_deal_pipeline, category: Pipelines, description: Configure a new sales process with currency and assignment rules.}
+  - {name: update_deal_pipeline, category: Pipelines, description: Modify pipeline auto-assignment and access permissions.}
+  - {name: list_deal_activities, category: Activities, description: Retrieve history of actions taken on deals.}
+  - {name: list_email_activities, category: Activities, description: 'Retrieve contact engagement (opens, clicks) across campaigns.'}
+  - {name: list_groups, category: Groups, description: Retrieve user groups for list permission management.}
+  - {name: create_list_group_permission, category: Groups, description: Grant list visibility to specific user groups.}
+  - {name: list_custom_object_schemas, category: Custom Objects, description: View custom object types / list all schemas.}
+  - {name: create_custom_object_schema, category: Custom Objects, description: Define a new custom object schema.}
+  - {name: list_custom_object_records, category: Custom Objects, description: View records created from a schema.}
+  - {name: create_or_update_custom_object_record, category: Custom Objects, description: Create or update a custom object record.}
+  - {name: get_campaign_messages, category: Campaign Message Details, description: 'Retrieve a campaign''s message content, including HTML body, subject, and preheader.'}
+  - {name: update_campaign_message, category: Campaign Message Details, description: 'Update message content, including HTML, subject line, preheader, and sender info.'}
+clients:
+  first_party_plugin:
+    name: ActiveCampaign Plugin for Claude
+    repo: https://github.com/ActiveCampaign/activecampaign-plugin
+    license: MIT
+    note: >-
+      Packaged Agent Skills, slash commands and subagents layered on top of this MCP
+      server. Catalogued in skills/activecampaign-plugin-skills.yml.
+docs_vs_server_divergence:
+  documented_tools: 50
+  live_tools_claimed: 60
+  detail: >-
+    ActiveCampaign's own plugin CHANGELOG (0.2.0) says the README was "rewritten to
+    match the real server (60 tools)" — ten more than the 50 rows on the published
+    Available Tools page. At least one of the missing ten is nameable: the plugin's
+    0.2.0 "Fixed" entry corrects `list_stages` to the real tool `list_deal_stages`,
+    which appears in the reporting-analyst skill's allowed-tools list and does NOT
+    appear on the docs page. So the published tool index is stale relative to the
+    server ActiveCampaign is shipping against.
+  agent_impact: >-
+    An agent that plans from the documentation will under-use the server, and a
+    crosswalk built from the docs (ours included) is a floor, not a census. Only an
+    authenticated tools/list can settle the real roster.
+  evidence:
+    - {url: 'https://raw.githubusercontent.com/ActiveCampaign/activecampaign-plugin/main/CHANGELOG.md', via: 'GitHub contents API', fetched: '2026-08-13'}
+    - {file: 'skills/activecampaign-plugin/activecampaign-reporting-analyst.md', field: 'allowed-tools', tool: 'mcp__activecampaign__list_deal_stages'}
+limitations:
+  - >-
+    tools/list could not be called: with no anonymous endpoint there is nothing to POST
+    to, so the real per-tool inputSchema is unavailable. The crosswalk in
+    mcp/activecampaign-tool-crosswalk.yml binds each tool to a backing v3 operationId
+    instead, which is where the real input contract lives.
+  - >-
+    The tool table is a rendered HTML page, not a machine-readable manifest. It was
+    parsed, not guessed; the counts above are the rows the provider published.
+  - >-
+    The published roster is incomplete — see docs_vs_server_divergence above.
+  - >-
+    The server enforces a no-aggregates rule the tool table does not mention:
+    ActiveCampaign's own plugin changelog records that reports were rewritten to
+    "comply with the server's no-aggregate rules" and must present per-record counts
+    and top-N lists instead of computing win rate, completion rate, averages, totals or
+    conversion. An agent asking this server for a rate will not get one.
+x-evidence:
+  - {url: 'https://developers.activecampaign.com/page/mcp.md', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/page/mcp-available-tools.md', http_status: 200, fetched: '2026-08-13', updated_at: '2026-07-13T20:17:06.000Z'}
+  - {url: 'https://developers.activecampaign.com/page/connect-claude.md', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://api.github.com/repos/ActiveCampaign/activecampaign-plugin/contents/.mcp.json', http_status: 200, fetched: '2026-08-13'}

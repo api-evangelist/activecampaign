@@ -1,17 +1,118 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/activecampaign-sms.json, openapi/activecampaign-v3.json
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.activecampaign.com/reference/authentication, derived and then
+  upgraded against all nine published OpenAPI documents in openapi/
+docs: https://developers.activecampaign.com/reference/authentication
+description: >-
+  ActiveCampaign authenticates every API surface with one flat, unscoped API key sent
+  in an Api-Token header. There is no OAuth, no OIDC, no scopes, no token expiry and no
+  refresh — which is why this repo carries no scopes/ artifact. The one exception is
+  the Partners API, a separate reseller surface with its own credential model.
 summary:
-  types:
-  - apiKey
-  api_key_in:
-  - header
+  types: [apiKey, http]
+  api_key_in: [header]
+  api_key_parameters: [Api-Token, api-key]
+  oauth2_flows: []
+  oauth2: false
+  openid_connect: false
+  mutual_tls: false
+  scopes: false
+  token_expiry: none
+  refresh: none
 schemes:
-- name: ApiToken
-  type: apiKey
-  in: header
-  parameter: Api-Token
-  description: Your ActiveCampaign API token
-  sources:
-  - openapi/activecampaign-sms.json
-  - openapi/activecampaign-v3.json
+  - name: ApiToken
+    type: apiKey
+    in: header
+    parameter: Api-Token
+    description: Your ActiveCampaign API token
+    surface: v3 REST API (and the Ecommerce GraphQL API, which reuses it)
+    specs:
+      - openapi/_original/activecampaign-v3.json
+      - 'openapi/activecampaign-*-api-openapi.yml (36 refined per-tag documents)'
+      - openapi/activecampaign-whatsapp-api-openapi.yml
+    example: 'curl -H "Api-Token: REDACTED_API_TOKEN" https://123456demo.api-us1.com/api/3/users/me'
+  - name: Api_Key
+    type: apiKey
+    in: header
+    parameter: Api-Token
+    description: Same credential as ApiToken; the Segments specs name the scheme differently.
+    surface: Segments V2
+    specs:
+      - openapi/activecampaign-segments-api-openapi.json
+      - openapi/activecampaign-segment-match-one-api-openapi.json
+      - openapi/activecampaign-segment-matching-api-openapi.json
+    note: >-
+      A naming inconsistency, not a second credential. Three scheme names (ApiToken,
+      Api_Key, and the SMS spec's own) all carry the same Api-Token header.
+  - name: PartnerApiKey
+    type: apiKey
+    in: header
+    parameter: api-key
+    description: API Token Authorization from Partner Portal
+    surface: Partners API (reseller / agency partner hub)
+    specs: [openapi/activecampaign-partners-api-openapi.json]
+    note: >-
+      A genuinely different credential — different header NAME (api-key, not Api-Token)
+      and a different issuer (the Partner Portal, not a customer account's Developer
+      tab). An agent holding a customer key cannot call the Partners API.
+  - name: PartnerJwtBearerAuth
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+    description: JWT Authorization header using the Partner JWT token.
+    surface: Partners API
+    specs: [openapi/activecampaign-partners-api-openapi.json]
+    note: >-
+      The only bearer-token scheme anywhere in ActiveCampaign's published contracts,
+      and the only place a credential has an expiry.
+key_management:
+  issuance: 'Settings -> Developer tab in the ActiveCampaign application'
+  per_user: true
+  per_user_note: >-
+    "Each user in your ActiveCampaign account has their own unique API key." The key
+    therefore inherits that user's group permissions — group membership is the ONLY
+    authorization granularity on this API, and it is configured in the UI, not
+    expressed in the contract.
+  rotation_documented: false
+  expiry: none
+  revocation_documented: false
+  environment_marker: none
+  environment_note: >-
+    Sandbox and production keys are structurally identical. Nothing in a credential or
+    a response identifies the environment — see sandbox/activecampaign-sandbox.yml.
+  provider_warning: >-
+    "Remember to keep your API key secret. Do not share it and take care not to expose
+    it publicly in client-side code."
+agent_surface_auth:
+  mcp:
+    type: api-key-in-url
+    note: >-
+      The remote MCP server embeds the credential in the per-account server URL rather
+      than in a header, so the MCP endpoint string IS a secret. Any agent config,
+      log or screenshot containing the URL leaks the account key. This is the single
+      most important auth fact for an agent operator on this platform.
+    source: 'a2a/activecampaign-agent-card.json (mcpServer.authType), mcp/activecampaign-mcp.yml'
+  oauth_discovery:
+    probed:
+      - {url: 'https://www.activecampaign.com/.well-known/oauth-authorization-server', status: 404}
+      - {url: 'https://developers.activecampaign.com/.well-known/oauth-authorization-server', status: 404}
+      - {url: 'https://www.activecampaign.com/.well-known/oauth-protected-resource', status: 404}
+      - {url: 'https://developers.activecampaign.com/.well-known/oauth-protected-resource', status: 404}
+      - {url: 'https://www.activecampaign.com/.well-known/openid-configuration', status: 404}
+    result: none
+scopes_artifact:
+  emitted: false
+  reason: >-
+    scopes/ is OAuth-only. ActiveCampaign declares no oauth2 securityScheme in any of
+    the nine published specs and documents no OAuth flow, so there is no scope surface
+    to record. An empty scopes artifact would misrepresent a key-auth API.
+related:
+  conventions: conventions/activecampaign-conventions.yml
+  sandbox: sandbox/activecampaign-sandbox.yml
+  mcp: mcp/activecampaign-mcp.yml
+x-evidence:
+  - {url: 'https://developers.activecampaign.com/reference/authentication.md', http_status: 200, fetched: '2026-08-13', updated_at: '2025-06-10T20:48:36.000Z'}
+  - {url: 'https://developers.activecampaign.com/reference/url.md', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/reference/about-the-graphql-api.md', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/openapi/partners.json', http_status: 200, fetched: '2026-08-13'}

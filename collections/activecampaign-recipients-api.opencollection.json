@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Recipients API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recipients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Get Broadcast Recipients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/:broadcastId/recipients",
+            "params": [
+              {
+                "name": "broadcastId",
+                "value": "",
+                "type": "path",
+                "description": "Broadcast ID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)"
+              },
+              {
+                "name": "filters[deliverability][]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deliverability status"
+              },
+              {
+                "name": "filters[engagement][]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by engagement type"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search contacts by name or phone"
+              },
+              {
+                "name": "order[field]",
+                "value": "",
+                "type": "query",
+                "description": "Order by field"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              }
+            ]
+          },
+          "docs": "Fetch all contacts who were sent a specific broadcast"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Export Broadcast Recipients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/sms/broadcasts/:broadcastId/recipients/export",
+            "params": [
+              {
+                "name": "broadcastId",
+                "value": "",
+                "type": "path",
+                "description": "Broadcast ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export recipient data as CSV including full contact records"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

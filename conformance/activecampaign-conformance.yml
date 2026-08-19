@@ -1,0 +1,154 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/*.yml + openapi/*.json, well-known/activecampaign-well-known.yml,
+  asyncapi/activecampaign-webhooks-asyncapi.yml, security/activecampaign-trust-center.yml,
+  https://www.activecampaign.com/security
+description: >-
+  Which cross-cutting and industry standards the ActiveCampaign API actually conforms
+  to, each with the evidence that decided it. A `false` here is a measurement, not a
+  criticism — most of these standards do not apply to a marketing automation platform.
+standards:
+  - id: openapi-3
+    conforms: true
+    evidence: >-
+      Nine OpenAPI documents published and discoverable through
+      /.well-known/api-catalog. Versions in use: 3.1.0 (v3, v2, trackcmp), 3.1.1
+      (segments x3), 3.0.3 (SMS, WhatsApp, Partners).
+    detail: {documents: 9, operations: 384, versions: ['3.0.3', '3.1.0', '3.1.1']}
+  - id: rfc9727-api-catalog
+    conforms: true
+    evidence: >-
+      https://developers.activecampaign.com/.well-known/api-catalog returns 200 with
+      Content-Type application/linkset+json and nine service-desc entries. This is a
+      genuine, correctly-typed RFC 9727 catalog — rare in this catalog and the single
+      strongest discovery signal ActiveCampaign publishes.
+  - id: rfc8615-well-known
+    conforms: true
+    evidence: 'Two documents served from /.well-known/: api-catalog and (on the corporate host) agent.json.'
+  - id: a2a-agent-card
+    conforms: partial
+    evidence: >-
+      An agent card is served, but at the pre-0.3 legacy path
+      /.well-known/agent.json rather than the A2A 1.0.0 canonical
+      /.well-known/agent-card.json (which 404s). Graded near-conformant in
+      a2a/activecampaign-a2a.yml — capabilities is an object, protocolVersion is
+      present, skills is an array; preferredTransport is missing.
+  - id: mcp
+    conforms: true
+    evidence: >-
+      First-party remote MCP server with 50 published tools plus a first-party MIT
+      Claude plugin. Deployment is remote-only with a per-account endpoint; see
+      mcp/activecampaign-mcp.yml.
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      No oauth2 securityScheme in any of the nine specs; the only scheme is apiKey
+      ApiToken in the Api-Token header. /.well-known/oauth-authorization-server 404s on
+      every host.
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration 404s on every host.
+    note: >-
+      Single sign-on IS sold as an Enterprise plan feature, but it governs login to the
+      ActiveCampaign application, not API authorization. The API has no federated
+      identity path.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      No application/problem+json media type appears in any 4xx/5xx response across
+      384 operations. Errors are plain application/json with endpoint-local shapes.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset or Deprecation header is documented; no operation is marked deprecated.
+  - id: idempotency-key
+    conforms: false
+    evidence: >-
+      No Idempotency-Key header or equivalent parameter in any published operation and
+      none in the docs. Only per-resource upserts (POST /contact/sync,
+      create-or-update-record) provide retry safety.
+  - id: ratelimit-headers
+    conforms: partial
+    evidence: >-
+      ActiveCampaign documents the unprefixed draft-standard forms RateLimit-Limit and
+      RateLimit-Remaining plus Retry-After, but publishes no RateLimit-Reset or
+      RateLimit-Policy and declares 429 on no operation in any spec.
+  - id: pagination
+    conforms: true
+    evidence: >-
+      Consistent limit/offset with meta.total across the v3 surface (default 20, max
+      100), documented at /reference/pagination.
+    note: >-
+      Consistency is real but the strategy does not scale; ActiveCampaign itself
+      recommends id_greater keyset paging on /contacts, and publishes it there only.
+  - id: json-api
+    conforms: false
+    evidence: Resource-keyed envelopes, not JSON:API document structure.
+  - id: odata
+    conforms: false
+    evidence: 'No $filter/$select/$expand; ActiveCampaign uses filters[] and orders[].'
+  - id: scim2
+    conforms: false
+    evidence: No /Users or /Groups SCIM paths; user management is a proprietary /users surface.
+  - id: graphql
+    conforms: partial
+    evidence: >-
+      A real GraphQL endpoint exists but is scoped to Ecommerce (orders, products,
+      recurring payments) at /api/3/ecom/graphql, with introspection enabled and
+      account-gated. It is not a projection of the whole platform.
+  - id: asyncapi
+    conforms: false
+    evidence: >-
+      ActiveCampaign publishes no AsyncAPI document. Its webhook surface is real and
+      documented in prose; asyncapi/activecampaign-webhooks-asyncapi.yml in this repo
+      is an API Evangelist derivation of that prose, not a provider artifact.
+  - id: webhook-signatures
+    conforms: false
+    evidence: >-
+      No HMAC signature header is published for outbound webhooks. ActiveCampaign's
+      documented mitigation is HTTPS plus a hard-to-guess URL, optionally with HTTP
+      Basic credentials embedded in the configured URL.
+  - id: cloudevents
+    conforms: false
+    evidence: Webhook bodies are application/x-www-form-urlencoded with bracketed PHP-style keys.
+  - id: gdpr
+    conforms: true
+    evidence: 'Published on https://www.activecampaign.com/security: "ActiveCampaign is heavily focused on GDPR, SOC 2, and HIPAA compliance."'
+  - id: soc2
+    conforms: true
+    evidence: 'Named on https://www.activecampaign.com/security; recorded in security/activecampaign-trust-center.yml.'
+  - id: hipaa
+    conforms: true
+    evidence: 'Named on https://www.activecampaign.com/security.'
+  - id: iso27001
+    conforms: false
+    evidence: Not named anywhere on the published security page.
+  - id: pci-dss
+    conforms: false
+    evidence: Not claimed; ActiveCampaign does not process cardholder data through this API.
+  - id: fedramp
+    conforms: false
+    evidence: Not claimed.
+  - id: fhir-r4
+    conforms: false
+    evidence: Not a healthcare data API.
+  - id: psd2
+    conforms: false
+    evidence: Not a financial API.
+summary:
+  conforms: 9
+  partial: 3
+  does_not_conform: 15
+  compliance_program_published: true
+  compliance_certifications: [SOC 2, HIPAA, GDPR]
+  compliance_page: https://www.activecampaign.com/security
+  headline: >-
+    Strong on discovery (a real RFC 9727 catalog, nine OpenAPIs, an agent card, a
+    50-tool MCP server) and weak on runtime contracts (no problem+json, no idempotency,
+    no sunset headers, no webhook signatures, no OAuth). ActiveCampaign has invested in
+    being FOUND by agents far more than in being SAFE for them to write through.
+related:
+  well_known: well-known/activecampaign-well-known.yml
+  trust_center: security/activecampaign-trust-center.yml
+  conventions: conventions/activecampaign-conventions.yml
+  errors: errors/activecampaign-problem-types.yml

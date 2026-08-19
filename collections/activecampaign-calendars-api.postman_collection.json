@@ -1,0 +1,699 @@
+{
+  "item": [
+    {
+      "id": "44edd0bb-24a8-496e-b076-05590c5739cc",
+      "name": "Calendars",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6ed49214-565f-4845-b901-41432ccfd4e1",
+          "name": "ActiveCampaign Create a Calendar Feed",
+          "request": {
+            "name": "ActiveCampaign Create a Calendar Feed",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "calendars"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"calendar\": {\n    \"title\": \"<string>\",\n    \"type\": \"<string>\",\n    \"notification\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e95ba8f9-66cc-4d4c-8c5f-4304c0f96278",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calendars"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calendar\": {\n    \"title\": \"Calendar Title\",\n    \"type\": \"All\",\n    \"notification\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"calendar\\\": {\\n        \\\"title\\\": \\\"Calendar Title\\\",\\n        \\\"type\\\": \\\"All\\\",\\n        \\\"userid\\\": \\\"1\\\",\\n        \\\"notification\\\": 1,\\n        \\\"cdate\\\": \\\"2018-11-15T22:26:35-06:00\\\",\\n        \\\"mdate\\\": \\\"2018-11-15T22:26:35-06:00\\\",\\n        \\\"token\\\": \\\"5540950ac4ed4f11591db934b701aff8\\\",\\n        \\\"links\\\": {\\n            \\\"calendarRels\\\": \\\"https://:account.api-us1.com/api/:version/calendars/1/calendarRels\\\",\\n            \\\"calendarUsers\\\": \\\"https://:account.api-us1.com/api/:version/calendars/1/calendarUsers\\\"\\n        },\\n        \\\"id\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12b0a150-cb92-4eee-989b-d71a5f054085",
+          "name": "ActiveCampaign List All Calendar Feeds",
+          "request": {
+            "name": "ActiveCampaign List All Calendar Feeds",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "calendars"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21a42e5c-c594-4755-9bb3-74134902c170",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calendars"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"calendars\\\": [\\n        {\\n            \\\"userid\\\": \\\"1\\\",\\n            \\\"title\\\": \\\"Calendar Title\\\",\\n            \\\"type\\\": \\\"All\\\",\\n            \\\"token\\\": \\\"4d9af6b9d5056ef1ca4a31c12c0e105c\\\",\\n            \\\"notification\\\": \\\"0\\\",\\n            \\\"cdate\\\": \\\"2018-11-15T22:36:05-06:00\\\",\\n            \\\"mdate\\\": \\\"2018-11-15T22:36:05-06:00\\\",\\n            \\\"links\\\": {\\n                \\\"calendarRels\\\": \\\"https://:account.api-us1.com/api/:version/calendars/2/calendarRels\\\",\\n                \\\"calendarUsers\\\": \\\"https://:account.api-us1.com/api/:version/calendars/2/calendarUsers\\\"\\n            },\\n            \\\"id\\\": \\\"2\\\"\\n        }\\n    ],\\n    \\\"meta\\\": {\\n        \\\"total\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "929a65fe-ef16-466f-88b8-5860946b0c18",
+          "name": "ActiveCampaign Retrieve a Calendar Feed",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Calendar Feed",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "calendars",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the calendar feed to retrieve"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a81bd34-fc2a-4965-8d22-1a87084b02c2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calendars",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the calendar feed to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"calendar\\\": {\\n        \\\"userid\\\": \\\"1\\\",\\n        \\\"title\\\": \\\"Calendar Title\\\",\\n        \\\"type\\\": \\\"All\\\",\\n        \\\"token\\\": \\\"5540950ac4ed4f11591db934b701aff8\\\",\\n        \\\"notification\\\": \\\"1\\\",\\n        \\\"cdate\\\": \\\"2018-11-15T22:26:35-06:00\\\",\\n        \\\"mdate\\\": \\\"2018-11-15T22:26:35-06:00\\\",\\n        \\\"links\\\": {\\n            \\\"calendarRels\\\": \\\"https://:account.api-us1.com/api/:version/calendars/1/calendarRels\\\",\\n            \\\"calendarUsers\\\": \\\"https://:account.api-us1.com/api/:version/calendars/1/calendarUsers\\\"\\n        },\\n        \\\"id\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edeea672-26c0-4457-ac98-5000d0c775d2",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calendars",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the calendar feed to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"message\": \"No Result found for Calendar with id 1\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05d320b8-a317-4cdb-8914-9cd5946c2131",
+          "name": "ActiveCampaign Update a Calendar Feed",
+          "request": {
+            "name": "ActiveCampaign Update a Calendar Feed",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "calendars",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the calendar feed to update"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"calendar\": {\n    \"title\": \"<string>\",\n    \"type\": \"<string>\",\n    \"notification\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "15ea6aa5-2b2b-42dd-94be-1f49b2fcadb6",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calendars",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the calendar feed to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calendar\": {\n    \"title\": \"Calendar Title\",\n    \"type\": \"Deals\",\n    \"notification\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"calendar\\\": {\\n        \\\"userid\\\": \\\"1\\\",\\n        \\\"title\\\": \\\"Calendar Title\\\",\\n        \\\"type\\\": \\\"Deals\\\",\\n        \\\"token\\\": \\\"5540950ac4ed4f11591db934b701aff8\\\",\\n        \\\"notification\\\": 0,\\n        \\\"cdate\\\": \\\"2018-11-15T22:26:35-06:00\\\",\\n        \\\"mdate\\\": \\\"2018-11-16T02:11:40-06:00\\\",\\n        \\\"links\\\": {\\n            \\\"calendarRels\\\": \\\"https://:account.api-us1.com/api/:version/calendars/1/calendarRels\\\",\\n            \\\"calendarUsers\\\": \\\"https://:account.api-us1.com/api/:version/calendars/1/calendarUsers\\\"\\n        },\\n        \\\"id\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46e0d7f5-c938-4098-89c4-2f9c5eee8c3f",
+          "name": "ActiveCampaign Delete a Calendar Feed",
+          "request": {
+            "name": "ActiveCampaign Delete a Calendar Feed",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "calendars",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the calendar feed to delete"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c618bb37-2f5f-4d14-8c45-a0924df8b2d9",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calendars",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the calendar feed to delete"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b22b3a7a-c77f-4bbe-8c23-699dee31b179",
+    "name": "ActiveCampaign SMS Broadcast Accounts Calendars API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,178 @@
+# ActiveCampaign Documentation
+
+> Documentation for ActiveCampaign's APIs and native CX apps built with App Studio
+
+## Guides
+- [Configuration Walkthrough](https://developers.activecampaign.com/docs/configuration-walkthrough-1.md)
+- [CX App Go Live Guide](https://developers.activecampaign.com/docs/cx-app-go-live-guide.md): When you are ready to publish with your CX App, please review this guide to learn more about the review process and what steps are necessary to complete before, during, and after the app is submitted for review.
+- [Twillio SMS Outbound Example](https://developers.activecampaign.com/docs/twillio-sms-outbound-example.md)
+- [Reference](https://developers.activecampaign.com/docs/configuration-specification-v2.md)
+- [What is a CX App?](https://developers.activecampaign.com/docs/what-is-a-cx-app.md): Explaining what a CX Application is, and why you should build one
+- [auth Object](https://developers.activecampaign.com/docs/auth.md)
+- [api Object](https://developers.activecampaign.com/docs/api.md)
+- [workflows Array](https://developers.activecampaign.com/docs/workflows.md)
+- [Commands, Variables, Properties](https://developers.activecampaign.com/docs/commands-1.md)
+- [Create Your First App using Pipedream and Python: Part 1](https://developers.activecampaign.com/docs/python-create-and-test-your-first-app-using-pipedream.md): PART 1: Build your first CX App that communicates with a Python API
+
+## API Reference
+- [Authentication](https://developers.activecampaign.com/reference/authentication.md)
+- [Base URL](https://developers.activecampaign.com/reference/url.md)
+- [Pagination, Ordering, and Filtering](https://developers.activecampaign.com/reference/pagination.md)
+- [Contact Custom Fields API Guide](https://developers.activecampaign.com/reference/contact-custom-fields-api-guide.md): Using the API to add and manage Custom Fields for your Contacts
+- [Bulk delete accounts](https://developers.activecampaign.com/reference/bulk-delete-accounts.md): Delete an existing account
+- [Create a custom field](https://developers.activecampaign.com/reference/create-a-customfieldmeta.md)
+- [Retrieve a custom field](https://developers.activecampaign.com/reference/retrieve-a-custom-field-meta.md)
+- [List all custom fields](https://developers.activecampaign.com/reference/list-all-custom-fields-meta.md)
+- [Edit campaign](https://developers.activecampaign.com/reference/edit-campaign.md)
+- [Create Campaign](https://developers.activecampaign.com/reference/create-campaign.md)
+- [Duplicate Campaign](https://developers.activecampaign.com/reference/duplicate-campaign.md)
+- [Delete a campaign](https://developers.activecampaign.com/reference/delete-a-campaign.md): Delete an existing campaign. The campaign row is archived, and its folder associations, any pending approval request and any queued automation sends are removed as well. Campaigns that reference this campaign as their source are deleted too.  This endpoint reports failures in the response body rather than with an error status: a campaign that does not exist, or a user without permission to delete campaigns, both return `200` with `succeeded` set to `0`.
+- [Update a message](https://developers.activecampaign.com/reference/update-a-message.md)
+- [Variables](https://developers.activecampaign.com/reference/variables.md): Use variables when messaging specific mailing lists.
+- [List Variables](https://developers.activecampaign.com/reference/list-variables.md): Retrieve a list of personalization variables
+- [Retrieve a Variable](https://developers.activecampaign.com/reference/retrieve-variable.md): Retrieve an individual personalization variable
+- [Create a Variable](https://developers.activecampaign.com/reference/create-variable.md): Create a personalization variable
+- [Edit a Variable](https://developers.activecampaign.com/reference/edit-variable.md): Edit a personalization variable
+- [Delete a Variable](https://developers.activecampaign.com/reference/delete-variable.md): Delete a personalization variable
+- [Bulk Delete Variables](https://developers.activecampaign.com/reference/bulk-delete-variables.md): Bulk delete personalization variables
+- [/personalizations/{variableID}/lock](https://developers.activecampaign.com/reference/lock-a-variable.md)
+- [/personalizations/{variableID}/unlock](https://developers.activecampaign.com/reference/unlock-a-variable.md)
+- [Sync a contact's data](https://developers.activecampaign.com/reference/sync-a-contacts-data.md)
+- [List, search, and filter contacts](https://developers.activecampaign.com/reference/list-all-contacts.md): Use this API endpoint to list all contacts, search contacts, or filter contacts by many criteria. For example, search for specific contacts by email, list, account.
+- [Bulk import contacts](https://developers.activecampaign.com/reference/bulk-import-contacts.md)
+- [Bulk import status list](https://developers.activecampaign.com/reference/bulk-import-status-list.md)
+- [Bulk import status info](https://developers.activecampaign.com/reference/bulk-import-status-info.md)
+- [List a contact's activities](https://developers.activecampaign.com/reference/list-contact-activities.md): View your contact's recent activity. The activity is generated when a contact is retrieved via /api/3/contacts/[contactID]. This endpoint should be used after retrieving a contact to obtain the latest data. This is useful for searching for contacts that match certain criteria - such as being part of a certain list, or having a specific custom field value.
+- [Retrieve a contacts list of geo-ips](https://developers.activecampaign.com/reference/retrieve-contact-geo-ips.md)
+- [Retrieve a contacts geo IP address](https://developers.activecampaign.com/reference/retrieve-a-contacts-geo-ip-address.md)
+- [Create a custom field](https://developers.activecampaign.com/reference/create-a-contact-custom-field.md)
+- [Add Custom Field to Field Group](https://developers.activecampaign.com/reference/add-custom-field-to-field-group.md)
+- [Get a custom field by ID](https://developers.activecampaign.com/reference/retrieve-a-custom-field-contact.md)
+- [Get All Custom Field Groups](https://developers.activecampaign.com/reference/get-all-custom-field-groups.md)
+- [Get Custom Field Group by ID](https://developers.activecampaign.com/reference/get-custom-field-to-field-group.md)
+- [List all custom fields](https://developers.activecampaign.com/reference/retrieve-fields.md)
+- [Create a custom field value](https://developers.activecampaign.com/reference/create-fieldvalue.md)
+- [Update a custom field value for contact](https://developers.activecampaign.com/reference/update-a-custom-field-value-for-contact.md)
+- [Paging, Ordering, Sorting, and Filtering](https://developers.activecampaign.com/reference/paging-ordering-sorting-and-filtering.md)
+- [Create a deal](https://developers.activecampaign.com/reference/create-a-deal-new.md): Create a new deal
+- [Create a custom field meta](https://developers.activecampaign.com/reference/create-custom-deal-field-meta.md)
+- [Retrieve a custom field](https://developers.activecampaign.com/reference/retrieve-a-custom-deal-field-meta.md)
+- [List all custom fields](https://developers.activecampaign.com/reference/retrieve-all-custom-deal-field-meta.md)
+- [Create a connection](https://developers.activecampaign.com/reference/create-connection.md): Create a new connection resource.
+- [Retrieve a connection](https://developers.activecampaign.com/reference/get-connection.md): Retrieve an existing connection resource.
+- [Update a connection](https://developers.activecampaign.com/reference/update-connection.md): Update an existing connection resource.
+- [List all connections](https://developers.activecampaign.com/reference/list-all-connections.md): List all existing connection resources.
+- [Overview](https://developers.activecampaign.com/reference/graphql-overview.md)
+- [About the GraphQL API](https://developers.activecampaign.com/reference/about-the-graphql-api.md)
+- [Searches](https://developers.activecampaign.com/reference/searches.md)
+- [Orders](https://developers.activecampaign.com/reference/orders-1.md)
+- [Recurring Payments](https://developers.activecampaign.com/reference/recurring-payments.md)
+- [Shared Objects](https://developers.activecampaign.com/reference/shared-objects.md)
+- [Products](https://developers.activecampaign.com/reference/products.md)
+- [Browse Abandonment Developer Overview](https://developers.activecampaign.com/reference/browse-abandonment.md)
+- [Browse Session APIs](https://developers.activecampaign.com/reference/browse-session-apis.md)
+- [/forms/{id}](https://developers.activecampaign.com/reference/delete-a-form.md)
+- [/form/optin](https://developers.activecampaign.com/reference/set-opt-in.md)
+- [/forms](https://developers.activecampaign.com/reference/create-a-new-form.md)
+- [/forms/{id}](https://developers.activecampaign.com/reference/update-a-form.md)
+- [Create a list](https://developers.activecampaign.com/reference/create-new-list.md)
+- [Create a Match One Request](https://developers.activecampaign.com/reference/create_match_one_request.md)
+- [Check to see if a Contact matches a Segment using the given externalId](https://developers.activecampaign.com/reference/segment_match_check_by_external_id.md)
+- [Create a Match ALL Request for a new Segment](https://developers.activecampaign.com/reference/create_match_all_request.md): Find all Contact Id's that match the given Segment. The provided segment will be saved with a 24 hour TTL. A new match-all request will be initiated. If results are not ready within 4 seconds, a response that lacks a result-set will be returned. Use the returned segmentId and runId to poll and check back later to see if the result-set is ready.
+- [Create a Match ALL Request](https://developers.activecampaign.com/reference/create_match_all_request_with_segment_id.md): A new match-all request will be initiated. If results are not ready within 4 seconds, a response that lacks a result-set will be returned and the response's `is_ready` attribute will be equal to `false`. Use the returned segmentId and runId to poll and check back later to see if the result-set is ready
+- [Return the result-set for the segment's given runId](https://developers.activecampaign.com/reference/get_result_set_by_id.md): If the result-set is not ready yet, the response's `is_ready` attribute will be equal to `false`. The match-all request has errored out if the `is_ready` attribute is false and the `run_id_end` attribute contains a valid timestamp`; when this occurs please try your request again or alert the support team. If either the RunId or the SegmentId have expired or otherwise do not exist, a 404 with error details will be returned.  result-sets are cached and returned in the same `sort` order that's requested. If the `sort` param is not provided it defaults to `id`. You can specify a different `sort` order than the original request, however this will break the result's cache for this `runId` and re-kick-off a new search for results using the same `runId`
+- [Finds the Contact Id's that match a Segment and the AdditionalContext payload](https://developers.activecampaign.com/reference/find_contact_id_by_ac_playload.md)
+- [Return the result-set for the Segment's given runId](https://developers.activecampaign.com/reference/get_result_set_by_run_id.md): If the result-set is not ready yet, the response's `is_ready` attribute will be equal to `false`. The match-all request has errored out if the `is_ready` attribute is false and the `run_id_end` attribute contains a valid timestamp`; when this occurs please try your request again or alert the support team. If either the RunId or the SegmentId have expired or otherwise do not exist, a 404 with error details will be returned.  Sorting is not supported for this endpoint. This endpoint can be used to pull results from a Match All or a Match Some request. The original sort value will be preserved and there is no risk kicking off a new request
+- [Retrieve the most recent result count for the given segments that were ran without an AdditionalCriteria](https://developers.activecampaign.com/reference/get_recent_count_history.md): One result per segment will be returned. Pagination not supported. Maximum 100 segmentIds per request. SegmentIds in the request that doesn't exist, will simply be ignored
+- [Retrieve all result counts for the given segment that were ran without an AdditionalCriteria](https://developers.activecampaign.com/reference/get_count_history_by_segment_id.md): Up to 50 results will be returned at once. To get the next page, request again with the last result's timestamp formatted as an EPOCH seconds value
+- [Retrieve all result counts for the given segment that were ran without an AdditionalCriteria](https://developers.activecampaign.com/reference/get_count_history_with_timestamp.md): Up to 50 results will be returned at once. To get the next page, request again with the last result's timestamp formatted as an EPOCH seconds value
+- [Create a Segment](https://developers.activecampaign.com/reference/create_segment.md): The Segment JSON structure is extremely flexible; Only segments that are supported by the segment-builder are guaranteed to work as expected. Specific Condition types only support a subset of FieldDO and AggregateDO options. Please refer to your account's /app/segments/segment-builder page to verify what Segment JSON configurations are possible.
+- [Retrieve a Segment](https://developers.activecampaign.com/reference/retrieve_segment.md)
+- [Update a Segment](https://developers.activecampaign.com/reference/update_segment.md)
+- [Delete a Segment by SegmentId including its historic versions](https://developers.activecampaign.com/reference/delete_segment.md)
+- [Retrieve a Segment's Historic Definition](https://developers.activecampaign.com/reference/get_segment_historic.md): Retrieve a Segment as it existed at the given point in time. Only segments with non-numeric SegmentIds are supported
+- [Revert a Segment to a Historic Definition](https://developers.activecampaign.com/reference/segment_revert_to_history.md): Revert a segment to how it looked at a specific point in time. Only segments with non-numeric SegmentIds are supported
+- [List Summaries for Saved Segments](https://developers.activecampaign.com/reference/get_saved_segment_summaries.md)
+- [Retrieve a Saved Segment's Summary](https://developers.activecampaign.com/reference/get_saved_segment_summaries_by_id.md)
+- [Retrieve account information](https://developers.activecampaign.com/reference/retrieve-account-information.md): Retrieve the hosted account and plan information for the account that owns the API key. This is the v3 replacement for the v1 `account_view` action.  Authenticate with your account's API key in the `Api-Token` request header. Only users in the **Admin** group may call this endpoint; requests authenticated as any other user return `403`, as do requests with a missing or invalid `Api-Token`.  > ❗️ Not the same as `/accounts` > > This endpoint returns information about **your ActiveCampaign hosted account** (billing plan, contact limits, trial and credit status). It is unrelated to the [`/accounts`](https://developers.activecampaign.com/reference/list-all-accounts) endpoints, which manage CRM accounts (the organizations your contacts belong to).  ## Migrating from v1 `account_view`  | v1 (`account_view`) | v3 (`GET /settings/account`) | Notes | | :--- | :--- | :--- | | `account` | `account` | Unchanged. | | `email` | `email` | Unchanged. | | `fname` | `first_name` | Renamed. | | `lname` | `last_name` | Renamed. | | `cname` | `cname` | Unchanged. An empty string when no CNAME is applied. | | `status` | `status` | Unchanged. | | `subscriber_limit` | `subscriber_limit` | Now an integer instead of a string. | | — | `subscriber_total` | New. The current number of contacts in the account. | | `trial` | `trial` | Always present in v3 as a boolean. In v1 the key was omitted entirely for non-trial accounts. | | `credits` | `credits` | Always present in v3. It is an integer for credit-based plans and `null` for every other plan. In v1 the key was omitted for non credit-based plans. | | — | `branding` | New. A boolean that is `true` when ActiveCampaign branding links are shown on the account's content. | | `result_code`, `result_message`, `result_output` | — | Removed. v3 uses HTTP status codes instead of a result envelope. |  The v3 response is a flat JSON object without the v1 result envelope, and the response is never cached (`Cache-Control: private`).
+- [List all tasks](https://developers.activecampaign.com/reference/list-all-tasks.md): Retrieve a list of existing tasks
+- [Create a task reminder](https://developers.activecampaign.com/reference/create-a-task-reminder.md): Create a new task reminder
+- [List all templates](https://developers.activecampaign.com/reference/list-all-templates.md): Retrieve the email templates in the account. Results are paginated and can be filtered; `meta.total` holds the total number of templates matching the request.
+- [Delete a template](https://developers.activecampaign.com/reference/delete-a-template.md): Delete an existing message template. Associated designer instances and list associations are removed as well.
+- [Webhooks](https://developers.activecampaign.com/reference/webhooks.md)
+- [List WhatsApp Templates](https://developers.activecampaign.com/reference/list-whatsapp-templates.md): Lists WhatsApp Templates. You can search with the `name` and `status` fields using the `?seach=my-template-name` query parameter.
+- [Get WhatsApp Template](https://developers.activecampaign.com/reference/get-whatsapp-template.md): Gets a WhatsApp Template by Id.
+- [Update WhatsApp Template](https://developers.activecampaign.com/reference/channels_whatsapp_template_update.md): Update a WhatsApp Template by Id.
+- [Delete WhatsApp Template](https://developers.activecampaign.com/reference/delete-whatsapp-template.md): Deletes a WhatsApp Template by Id.
+- [Send a WhatsApp Template](https://developers.activecampaign.com/reference/send-a-whatsapp-template-message.md): Send a single WhatsApp message: select a template to use and call our endpoint with the recipient phone number and the variables the template needs. That's it!
+- [List Flow Executions](https://developers.activecampaign.com/reference/list-flow-execution.md): Lists Flow Executions.
+- [List Flow Execution Contacts](https://developers.activecampaign.com/reference/list-flow-execution-contact.md): Lists Flow Execution Contacts.
+- [Get Flow Execution Contact by Id](https://developers.activecampaign.com/reference/get-flow-execution-contact.md): Get Flow Execution Contact by Id.
+- [Get Flow Execution](https://developers.activecampaign.com/reference/get-flow-execution.md): Get Flow Execution by Id.
+- [Create a Flow Execution](https://developers.activecampaign.com/reference/create-a-flow-execution.md): Create a Flow Execution of a Flow.
+- [List Conversations](https://developers.activecampaign.com/reference/list-conversations.md): Lists Conversations.
+- [Update a conversation](https://developers.activecampaign.com/reference/update-a-conversation.md): Update a Conversation
+- [Partially Update a Conversation](https://developers.activecampaign.com/reference/partially-update-a-conversation.md): Partially update a Conversation
+- [Get all broadcast messages](https://developers.activecampaign.com/reference/listbroadcasts.md): Gets a paged list of all of a customer's broadcast messages with optional filtering
+- [Create a new broadcast message](https://developers.activecampaign.com/reference/createbroadcast.md): Creates a new SMS broadcast message
+- [Get broadcast message](https://developers.activecampaign.com/reference/getbroadcast.md): Retrieves the full details for one broadcast message
+- [Update broadcast message](https://developers.activecampaign.com/reference/updatebroadcast.md): Updates an existing broadcast message
+- [Delete broadcast message](https://developers.activecampaign.com/reference/deletebroadcast.md): Performs a soft-delete on the requested message
+- [Get all broadcast lists](https://developers.activecampaign.com/reference/listbroadcastlists.md): Gets a paged list of all broadcast lists (SMS channel)
+- [Create AI-generated broadcast](https://developers.activecampaign.com/reference/createaibroadcast.md): Creates a broadcast using AI based on prompt and tone
+- [Update broadcast with AI](https://developers.activecampaign.com/reference/updateaibroadcast.md): Updates an existing broadcast using AI
+- [Get AI broadcast request status](https://developers.activecampaign.com/reference/getaibroadcaststatus.md): Returns the current status of the AI process execution
+- [Get all broadcast metrics](https://developers.activecampaign.com/reference/getbroadcastmetrics.md): Returns metrics for specified broadcast IDs
+- [Get broadcast snapshot](https://developers.activecampaign.com/reference/getbroadcastsnapshot.md): Returns snapshot data for all broadcasts
+- [Get broadcast snapshot](https://developers.activecampaign.com/reference/getbroadcastsnapshotbyids.md): Returns snapshot for specified broadcast IDs
+- [Export broadcast metrics](https://developers.activecampaign.com/reference/exportbroadcastmetrics.md): Export broadcast performance metrics as CSV
+- [Get current sms credit use data](https://developers.activecampaign.com/reference/getsmscreditdata.md): Retrieve the current period's sms credit usage and remaining balance
+- [Get broadcast failure details](https://developers.activecampaign.com/reference/getbroadcastfailures.md): Returns grouping and counts of failures for the broadcast
+- [Get broadcast recipients](https://developers.activecampaign.com/reference/getbroadcastrecipients.md): Fetch all contacts who were sent a specific broadcast
+- [Export broadcast recipients](https://developers.activecampaign.com/reference/exportbroadcastrecipients.md): Export recipient data as CSV including full contact records
+- [Get a list of AI customization profiles](https://developers.activecampaign.com/reference/get_ai_customizations_profiles_list.md)
+- [Create a new AI customization profile](https://developers.activecampaign.com/reference/post_ai_customizations_profiles_create.md)
+- [Get profile by id](https://developers.activecampaign.com/reference/get_ai_customizations_profiles_get.md)
+- [Delete profile by id](https://developers.activecampaign.com/reference/delete_ai_customizations_profiles_delete.md)
+- [Update profile by id](https://developers.activecampaign.com/reference/patch_ai_customizations_profiles_update.md)
+- [Get the AI customization profile assigned to a child account](https://developers.activecampaign.com/reference/get_ai_customizations_profiles_get_by_child_account.md)
+- [Assign child accounts to a profile](https://developers.activecampaign.com/reference/patch_ai_customizations_profiles_assign_accounts.md)
+- [Get a list of documents for a profile](https://developers.activecampaign.com/reference/get_ai_customizations_documents_list.md)
+- [Upload a document to a profile](https://developers.activecampaign.com/reference/post_ai_customizations_documents_upload.md)
+- [Get document by id](https://developers.activecampaign.com/reference/get_ai_customizations_documents_get.md)
+- [Delete document by id](https://developers.activecampaign.com/reference/delete_ai_customizations_documents_delete.md)
+- [Update document by id](https://developers.activecampaign.com/reference/patch_ai_customizations_documents_update.md)
+- [Get a presigned download URL for a document](https://developers.activecampaign.com/reference/get_ai_customizations_documents_download.md)
+- [Get a list of custom instructions for a profile](https://developers.activecampaign.com/reference/get_ai_customizations_instructions_list.md)
+- [Create a new custom instruction](https://developers.activecampaign.com/reference/post_ai_customizations_instructions_create.md)
+- [Get custom instruction by id](https://developers.activecampaign.com/reference/get_ai_customizations_instructions_get.md)
+- [Delete custom instruction by id](https://developers.activecampaign.com/reference/delete_ai_customizations_instructions_delete.md)
+- [Update custom instruction by id](https://developers.activecampaign.com/reference/patch_ai_customizations_instructions_update.md)
+- [Get a list of account cloning statuses](https://developers.activecampaign.com/reference/get_child_account_snapshots_get_list.md)
+- [Get a list of snapshots](https://developers.activecampaign.com/reference/get_child_account_snapshots_list_snapshot_by_reseller.md)
+- [Create a new snapshot](https://developers.activecampaign.com/reference/post_child_account_snapshots_create_snapshot.md)
+- [Delete snapshot by id](https://developers.activecampaign.com/reference/delete_child_account_snapshots_delete_snapshot.md)
+- [Get a list of child accounts](https://developers.activecampaign.com/reference/get_child_accounts_get_list.md)
+- [Create a new account](https://developers.activecampaign.com/reference/post_child_accounts_create.md): For getting list of products use documentation here: https://www.activecampaign.com/partner/api/v2/example.php?call=/api/v1/products.     More detailed instructions can be found in Step 1 of this document: https://www.activecampaign.com/partner/api/v2/account_add_flow.php
+- [Get a list of accounts that can be used to create snapshots.](https://developers.activecampaign.com/reference/get_child_accounts_get_for_snapshots.md)
+- [List sync-enabled pipelines with deal counts, conversion %, revenue, and top account.](https://developers.activecampaign.com/reference/get_crm_reporting_list_pipelines.md)
+- [Aggregate summary metric cards: deal counts, revenue, conversion %, average deal revenue.](https://developers.activecampaign.com/reference/get_crm_reporting_pipelines_summary.md)
+- [Get a list of HQ pipelines with CRM sync status](https://developers.activecampaign.com/reference/get_crm_sync_list_pipelines.md)
+- [Get pipeline CRM sync configuration](https://developers.activecampaign.com/reference/get_crm_sync_get_pipeline_sync_config.md)
+- [Upsert pipeline CRM sync configuration (enable/disable and targets)](https://developers.activecampaign.com/reference/put_crm_sync_put_pipeline_sync_config.md)
+- [Get CRM sync settings](https://developers.activecampaign.com/reference/get_crm_sync_settings_get.md)
+- [Update CRM sync settings](https://developers.activecampaign.com/reference/put_crm_sync_settings_update.md)
+- [Get storage quota status](https://developers.activecampaign.com/reference/get_files_quota_status.md)
+- [Get a list of the latest insight cards](https://developers.activecampaign.com/reference/get_insight_cards_get_list_latest.md)
+- [Update insight card state](https://developers.activecampaign.com/reference/patch_insight_cards_update_state.md)
+- [Get supported language and timezone catalogs.](https://developers.activecampaign.com/reference/get_locales_get_catalogs.md): Returns the same catalogs ARC uses to validate the language and timezone fields on the child-account PUT endpoint, so dropdowns and write-side validation stay in sync.
+
+## Pages
+- [ActiveCampaign MCP + ChatGPT](https://developers.activecampaign.com/page/connect-chatgpt.md)
+- [ActiveCampaign MCP + Claude](https://developers.activecampaign.com/page/connect-claude.md)
+- [Developer Sandbox Accounts](https://developers.activecampaign.com/page/developer-sandbox-accounts.md)
+- [Get Started](https://developers.activecampaign.com/page/getting-started.md)
+- [ActiveCampaign MCP - Available Tools](https://developers.activecampaign.com/page/mcp-available-tools.md)
+- [ActiveCampaign MCP - Prompt Examples](https://developers.activecampaign.com/page/mcp-prompt-examples.md)
+- [ActiveCampaign Remote MCP Server](https://developers.activecampaign.com/page/mcp.md)
+- [Webhooks](https://developers.activecampaign.com/page/webhooks.md)

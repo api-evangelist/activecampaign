@@ -1,0 +1,1453 @@
+{
+  "item": [
+    {
+      "id": "77ac6d01-bd59-4d08-8dfb-4e49767b2429",
+      "name": "Users",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7fa8ef19-309d-43e9-9006-8c7b14d4c7df",
+          "name": "ActiveCampaign Create a User",
+          "request": {
+            "name": "ActiveCampaign Create a User",
+            "description": {
+              "content": "Create a new user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user\": {\n    \"username\": \"<string>\",\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"group\": null,\n    \"password\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "64623e3c-a34f-4e2f-8d3e-3e6fa64430c3",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user\": {\n    \"username\": \"jdoe\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"johndoe@example.com\",\n    \"password\": \"myPa$$w0rd\",\n    \"group\": 4\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"user\\\": {\\n        \\\"username\\\": \\\"jdoe\\\",\\n        \\\"email\\\": \\\"johndoe@example.com\\\",\\n        \\\"firstName\\\": \\\"John\\\",\\n        \\\"lastName\\\": \\\"Doe\\\",\\n        \\\"lang\\\": \\\"english\\\",\\n        \\\"localZoneid\\\": \\\"America/New_York\\\",\\n        \\\"cdate\\\": \\\"2022-02-02T16:01:44-06:00\\\",\\n        \\\"udate\\\": \\\"2022-02-02T16:01:44-06:00\\\",\\n        \\\"links\\\": {\\n            \\\"lists\\\": \\\"https://:account.api-us1.com/api/3/users/3/lists\\\",\\n            \\\"userGroup\\\": \\\"https://:account.api-us1.com/api/3/users/3/userGroup\\\",\\n            \\\"dealGroupTotals\\\": \\\"https://:account.api-us1.com/api/3/users/3/dealGroupTotals\\\",\\n            \\\"dealGroupUsers\\\": \\\"https://:account.api-us1.com/api/3/users/3/dealGroupUsers\\\",\\n            \\\"configs\\\": \\\"https://:account.api-us1.com/api/3/users/3/configs\\\",\\n            \\\"dealConnection\\\": \\\"https://:account.api-us1.com/api/3/users/3/dealConnection\\\",\\n            \\\"userConversationsPermission\\\": \\\"https://:account.api-us1.com/api/3/users/3/userConversationsPermission\\\",\\n            \\\"seatUser\\\": \\\"https://:account.api-us1.com/api/3/users/3/seatUser\\\"\\n        },\\n        \\\"id\\\": \\\"3\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e98d64d6-8283-45ec-9d81-b4e88a3333fe",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user\": {\n    \"username\": \"jdoe\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"johndoe@example.com\",\n    \"password\": \"myPa$$w0rd\",\n    \"group\": 4\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5bfd213-72ab-4956-8e0d-eecba01db97b",
+          "name": "ActiveCampaign List All Users",
+          "request": {
+            "name": "ActiveCampaign List All Users",
+            "description": {
+              "content": "List all existing users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ef4876e-7d83-4f84-a367-09028660d3a6",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"users\\\": [\\n    {\\n      \\\"username\\\": \\\"admin\\\",\\n      \\\"firstName\\\": \\\"John\\\",\\n      \\\"lastName\\\": \\\"Doe\\\",\\n      \\\"email\\\": \\\"johndoe@activecampaign.com\\\",\\n      \\\"phone\\\": \\\"\\\",\\n      \\\"signature\\\": null,\\n      \\\"links\\\": {\\n        \\\"lists\\\": \\\"https://:account.api-us1.com/api/3/users/1/lists\\\",\\n        \\\"userGroup\\\": \\\"https://:account.api-us1.com/api/3/users/1/userGroup\\\",\\n        \\\"dealGroupTotals\\\": \\\"https://:account.api-us1.com/api/3/users/1/dealGroupTotals\\\",\\n        \\\"dealGroupUsers\\\": \\\"https://:account.api-us1.com/api/3/users/1/dealGroupUsers\\\",\\n        \\\"configs\\\": \\\"https://:account.api-us1.com/api/3/users/1/configs\\\"\\n      },\\n      \\\"id\\\": \\\"1\\\"\\n    },\\n    {\\n      \\\"username\\\": \\\"janedoe\\\",\\n      \\\"firstName\\\": \\\"Jane\\\",\\n      \\\"lastName\\\": \\\"Doe\\\",\\n      \\\"email\\\": \\\"janedoe@activecampaign.com\\\",\\n      \\\"phone\\\": \\\"\\\",\\n      \\\"signature\\\": null,\\n      \\\"links\\\": {\\n        \\\"lists\\\": \\\"https://:account.api-us1.com/api/3/users/5/lists\\\",\\n        \\\"userGroup\\\": \\\"https://:account.api-us1.com/api/3/users/5/userGroup\\\",\\n        \\\"dealGroupTotals\\\": \\\"https://:account.api-us1.com/api/3/users/5/dealGroupTotals\\\",\\n        \\\"dealGroupUsers\\\": \\\"https://:account.api-us1.com/api/3/users/5/dealGroupUsers\\\",\\n        \\\"configs\\\": \\\"https://:account.api-us1.com/api/3/users/5/configs\\\"\\n      },\\n      \\\"id\\\": \\\"5\\\"\\n    }\\n  ],\\n  \\\"meta\\\": {\\n    \\\"total\\\": \\\"2\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "503424ec-a59d-459d-8b3e-dd7ecbdf1a48",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfa0a60b-6055-48a1-8618-6fbc8a2a65a9",
+          "name": "ActiveCampaign Retrieve a User",
+          "request": {
+            "name": "ActiveCampaign Retrieve a User",
+            "description": {
+              "content": "Retrieve an existing user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the user you want to view"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8eff68b4-3539-4d14-bc6b-459692ad4b84",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the user you want to view"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"user\\\": {\\n    \\\"username\\\": \\\"admin\\\",\\n    \\\"firstName\\\": \\\"John\\\",\\n    \\\"lastName\\\": \\\"Doe\\\",\\n    \\\"email\\\": \\\"johndoe@example.com\\\",\\n    \\\"phone\\\": \\\"\\\",\\n    \\\"signature\\\": null,\\n    \\\"links\\\": {\\n      \\\"lists\\\": \\\"https://:account.api-us1.com/api/3/users/1/lists\\\",\\n      \\\"userGroup\\\": \\\"https://:account.api-us1.com/api/3/users/1/userGroup\\\",\\n      \\\"dealGroupTotals\\\": \\\"https://:account.api-us1.com/api/3/users/1/dealGroupTotals\\\",\\n      \\\"dealGroupUsers\\\": \\\"https://:account.api-us1.com/api/3/users/1/dealGroupUsers\\\",\\n      \\\"configs\\\": \\\"https://:account.api-us1.com/api/3/users/1/configs\\\"\\n    },\\n    \\\"id\\\": \\\"1\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55ace3cf-81d2-4f97-b38c-e83b9b1e34c8",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the user you want to view"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8a5ee6b-dc8f-4149-93d2-e9b74e817b95",
+          "name": "ActiveCampaign Update a User",
+          "request": {
+            "name": "ActiveCampaign Update a User",
+            "description": {
+              "content": "Update an existing user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the user"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\",\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"group\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b8777155-b3d3-40d0-9ba2-8072ac007082",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the user"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\",\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"group\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"userGroups\\\": [\\n    {\\n      \\\"userid\\\": \\\"3\\\",\\n      \\\"groupid\\\": \\\"3\\\",\\n      \\\"links\\\": {\\n        \\\"group\\\": \\\"https://:account.api-us1.com/api/3/userGroups/3/group\\\",\\n        \\\"user\\\": \\\"https://:account.api-us1.com/api/3/userGroups/3/user\\\"\\n      },\\n      \\\"id\\\": \\\"3\\\",\\n      \\\"group\\\": \\\"3\\\",\\n      \\\"user\\\": \\\"3\\\"\\n    }\\n  ],\\n  \\\"user\\\": {\\n    \\\"username\\\": \\\"user\\\",\\n    \\\"firstName\\\": \\\"John\\\",\\n    \\\"lastName\\\": \\\"Doe\\\",\\n    \\\"email\\\": \\\"johndoe@example.com\\\",\\n    \\\"phone\\\": \\\"\\\",\\n    \\\"signature\\\": \\\"\\\",\\n    \\\"userGroup\\\": \\\"3\\\",\\n    \\\"links\\\": {\\n      \\\"lists\\\": \\\"https://:account.api-us1.com/api/3/users/3/lists\\\",\\n      \\\"userGroup\\\": \\\"https://:account.api-us1.com/api/3/users/3/userGroup\\\",\\n      \\\"dealGroupTotals\\\": \\\"https://:account.api-us1.com/api/3/users/3/dealGroupTotals\\\",\\n      \\\"dealGroupUsers\\\": \\\"https://:account.api-us1.com/api/3/users/3/dealGroupUsers\\\",\\n      \\\"configs\\\": \\\"https://:account.api-us1.com/api/3/users/3/configs\\\"\\n    },\\n    \\\"id\\\": \\\"3\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "701442a6-be5e-4e43-a0b6-2535fccb2610",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the user"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\",\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"group\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccd42408-66c2-458d-abc5-6d6108202287",
+          "name": "ActiveCampaign Delete a User",
+          "request": {
+            "name": "ActiveCampaign Delete a User",
+            "description": {
+              "content": "Delete an existing user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the user you wish to delete"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ecc7b24e-b8e4-46c4-9989-db83275a2084",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the user you wish to delete"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70f5b4f4-e5d5-4254-b52e-42d5cb34a7bd",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the user you wish to delete"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42547236-23fa-4aa2-bdee-38e985c042d0",
+          "name": "ActiveCampaign Retrieve a User by Email",
+          "request": {
+            "name": "ActiveCampaign Retrieve a User by Email",
+            "description": {
+              "content": "Retrieve an existing user by looking up their email address",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "email",
+                ":email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "email",
+                  "description": "(Required) Email address of the user you want to view"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd50441a-9f84-4d4d-9658-a8ff399e28d2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "email",
+                    ":email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "email",
+                      "description": "(Required) Email address of the user you want to view"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"user\\\": {\\n    \\\"username\\\": \\\"somebody\\\",\\n    \\\"firstName\\\": \\\"John\\\",\\n    \\\"lastName\\\": \\\"Doe\\\",\\n    \\\"email\\\": \\\"johndoe@example.com\\\",\\n    \\\"phone\\\": \\\"\\\",\\n    \\\"signature\\\": null,\\n    \\\"links\\\": {\\n      \\\"lists\\\": \\\"https://:account.api-us1.com/api/3/users/1/lists\\\",\\n      \\\"userGroup\\\": \\\"https://:account.api-us1.com/api/3/users/1/userGroup\\\",\\n      \\\"dealGroupTotals\\\": \\\"https://:account.api-us1.com/api/3/users/1/dealGroupTotals\\\",\\n      \\\"dealGroupUsers\\\": \\\"https://:account.api-us1.com/api/3/users/1/dealGroupUsers\\\",\\n      \\\"configs\\\": \\\"https://:account.api-us1.com/api/3/users/1/configs\\\"\\n    },\\n    \\\"id\\\": \\\"1\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb46cf14-173f-4f5a-9743-c615fd4788cc",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "email",
+                    ":email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "email",
+                      "description": "(Required) Email address of the user you want to view"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6bd1938a-8aaf-4a60-88d5-982864de6108",
+          "name": "ActiveCampaign Retrieve a User by Username",
+          "request": {
+            "name": "ActiveCampaign Retrieve a User by Username",
+            "description": {
+              "content": "Retrieve an existing user by looking up their username",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "username",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Username of the user you want to view"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f820895-2d45-47ba-b310-87f63add5d6b",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "username",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Username of the user you want to view"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"user\\\": {\\n    \\\"username\\\": \\\"admin\\\",\\n    \\\"firstName\\\": \\\"John\\\",\\n    \\\"lastName\\\": \\\"Doe\\\",\\n    \\\"email\\\": \\\"johndoe@example.com\\\",\\n    \\\"phone\\\": \\\"\\\",\\n    \\\"signature\\\": null,\\n    \\\"links\\\": {\\n      \\\"lists\\\": \\\"https://:account.api-us1.com/api/3/users/1/lists\\\",\\n      \\\"userGroup\\\": \\\"https://:account.api-us1.com/api/3/users/1/userGroup\\\",\\n      \\\"dealGroupTotals\\\": \\\"https://:account.api-us1.com/api/3/users/1/dealGroupTotals\\\",\\n      \\\"dealGroupUsers\\\": \\\"https://:account.api-us1.com/api/3/users/1/dealGroupUsers\\\",\\n      \\\"configs\\\": \\\"https://:account.api-us1.com/api/3/users/1/configs\\\"\\n    },\\n    \\\"id\\\": \\\"1\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "559c4e3f-62cd-46da-94b1-fcd174b5274b",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "username",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Username of the user you want to view"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "755abbd2-97b5-4fa0-8f74-4a9e797721a8",
+          "name": "ActiveCampaign Retrieve Logged-in User",
+          "request": {
+            "name": "ActiveCampaign Retrieve Logged-in User",
+            "description": {
+              "content": "Retrieve the logged-in user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f859262-5ecd-47dd-9c75-19f3c1fb5ca2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"user\\\": {\\n    \\\"username\\\": \\\"jdoe\\\",\\n    \\\"firstName\\\": \\\"John\\\",\\n    \\\"lastName\\\": \\\"Doe\\\",\\n    \\\"email\\\": \\\"johndoe@example.com\\\",\\n    \\\"phone\\\": \\\"\\\",\\n    \\\"signature\\\": null,\\n    \\\"links\\\": {\\n      \\\"lists\\\": \\\"https://:account.api-us1.com/api/3/users/1/lists\\\",\\n      \\\"userGroup\\\": \\\"https://:account.api-us1.com/api/3/users/1/userGroup\\\",\\n      \\\"dealGroupTotals\\\": \\\"https://:account.api-us1.com/api/3/users/1/dealGroupTotals\\\",\\n      \\\"dealGroupUsers\\\": \\\"https://:account.api-us1.com/api/3/users/1/dealGroupUsers\\\",\\n      \\\"configs\\\": \\\"https://:account.api-us1.com/api/3/users/1/configs\\\"\\n    },\\n    \\\"id\\\": \\\"1\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25ed46b4-1cab-4ffc-b0dd-4d82287211e3",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dd772219-ac3d-4d88-9510-3aa88b916d78",
+    "name": "ActiveCampaign SMS Broadcast Accounts Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

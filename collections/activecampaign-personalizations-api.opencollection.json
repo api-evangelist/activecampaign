@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Personalizations API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Personalizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign List Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations",
+            "params": [
+              {
+                "name": "orders[format]",
+                "value": "",
+                "type": "query",
+                "description": "Order variables by format (ASC/DESC)"
+              },
+              {
+                "name": "orders[tag]",
+                "value": "",
+                "type": "query",
+                "description": "Order variables by tag (ASC/DESC)"
+              },
+              {
+                "name": "orders[name]",
+                "value": "",
+                "type": "query",
+                "description": "Order variables by name (ASC/DESC)"
+              },
+              {
+                "name": "orders[content]",
+                "value": "",
+                "type": "query",
+                "description": "Order variables by content (ASC/DESC)"
+              },
+              {
+                "name": "filter[name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by variable name"
+              },
+              {
+                "name": "filter[tag]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by variable tag"
+              },
+              {
+                "name": "filter[listName]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name of list"
+              },
+              {
+                "name": "filter[content]",
+                "value": "",
+                "type": "query",
+                "description": "Contents of variable"
+              },
+              {
+                "name": "filter[format]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tag format (html, text)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result limit (Default: 20)"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of personalization variables"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a personalization variable"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations/:variableID",
+            "params": [
+              {
+                "name": "variableID",
+                "value": "",
+                "type": "path",
+                "description": "ID (int) of variable"
+              }
+            ]
+          },
+          "docs": "Retrieve an individual personalization variable"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Edit a Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations/:variableID",
+            "params": [
+              {
+                "name": "variableID",
+                "value": "",
+                "type": "path",
+                "description": "ID (int) of personalization/variable"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit a personalization variable"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations/:variableID",
+            "params": [
+              {
+                "name": "variableID",
+                "value": "",
+                "type": "path",
+                "description": "ID (int) of personalization/variable"
+              }
+            ]
+          },
+          "docs": "Delete a personalization variable"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Delete Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations/bulkdelete",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "List of variables to be deleted, ie: 1,2,3"
+              }
+            ]
+          },
+          "docs": "Bulk delete personalization variables"
+        },
+        {
+          "info": {
+            "name": "get_{personalizationId}lock",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations/:variableID/lock",
+            "params": [
+              {
+                "name": "variableID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "patch_new-endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/personalizations/:variableID/unlock",
+            "params": [
+              {
+                "name": "variableID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

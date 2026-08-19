@@ -1,0 +1,210 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Lists API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve All Lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists",
+            "params": [
+              {
+                "name": "filters[name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the name of the list"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of returned results"
+              },
+              {
+                "name": "filters[name][<operator>]",
+                "value": "",
+                "type": "query",
+                "description": "Filters lists by list name according to the operator specified. (See supported operators below)"
+              },
+              {
+                "name": "orders[name]",
+                "value": "",
+                "type": "query",
+                "description": "Orders filtered results by weight, ascending order, or descending order. If weight is used, exact matches are returned first, followed by matches starting with what was filtered by, followed by the rest of the results."
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve All Lists"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a List"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve a List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the lists to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve a List"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Delete a List",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the list to delete"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Delete a List"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Create a List Group Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/listGroups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Create a List Group Permission"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve an Exclusion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists/exclusions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the exclusion to retrieve"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve an Exclusion"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Update an Exclusion",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists/exclusions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Exclusion's ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Update an Exclusion"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Retrieve Exclusions List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/lists/exclusions",
+            "params": [
+              {
+                "name": "filters[matchPhrase]",
+                "value": "",
+                "type": "query",
+                "description": "Filters by the match phrase, for example `filters[matchPhrase]=.com`"
+              },
+              {
+                "name": "filters[lists]",
+                "value": "",
+                "type": "query",
+                "description": "Filters by the list ID, for example `filters[lists][]=1`. You can filter by many list IDs"
+              },
+              {
+                "name": "orders[matchPhrase]",
+                "value": "",
+                "type": "query",
+                "description": "Sort by the matchPhrase"
+              },
+              {
+                "name": "orders[lists]",
+                "value": "",
+                "type": "query",
+                "description": "Sort by lists IDs"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Retrieve Exclusions List"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

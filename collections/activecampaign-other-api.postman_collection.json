@@ -1,0 +1,3164 @@
+{
+  "item": [
+    {
+      "id": "1efdabf6-877a-416b-905b-89a6f1c3dc3b",
+      "name": "Other",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e99123a9-3fa9-490b-a9d6-d15b4fc0d11c",
+          "name": "ActiveCampaign List a Contact's Activities",
+          "request": {
+            "name": "ActiveCampaign List a Contact's Activities",
+            "description": {
+              "content": "View your contact's recent activity. The activity is generated when a contact is retrieved via /api/3/contacts/[contactID]. This endpoint should be used after retrieving a contact to obtain the latest data. This is useful for searching for contacts that match certain criteria - such as being part of a certain list, or having a specific custom field value.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "contact",
+                  "value": "<integer>",
+                  "description": "Required Contact ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<date>",
+                  "description": "Filter for activities after a specific DateTime"
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "activities to include",
+                  "description": "Activities to include: notes, notes.user, recipients, recipients.recipient, reference, reference.automation, reference.campaign, reference.campaign.campaignList, reference.campaign.campaignMessage, reference.campaignMessage, reference.contact, reference.contactList, reference.contactList.list, reference.deal, reference.deal.contact, reference.dealTasktype, reference.link, reference.list, reference.log, reference.log.campaign, reference.log.contact, reference.log.message, reference.message, reference.note, reference.sms, reference.sms.automation, user"
+                },
+                {
+                  "disabled": false,
+                  "key": "orders[tstamp]",
+                  "value": "<string>",
+                  "description": "Order activities by tstamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "emails",
+                  "value": "false",
+                  "description": "FALSE: Excludes email data fields under each activity. No specific connection to emails is mentioned in the JSON data.​ TRUE: Returns deal activities that include email data fields like \"connection_email.\" Each deal activity specifies the addition of email connection information along with timestamps and relevant metadata."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a3ad11c-b4bb-431f-a2db-065d3a42d3a3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contact",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "activities to include"
+                    },
+                    {
+                      "key": "orders[tstamp]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "emails",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n\\tcontacts: [{\\n    cdate: \\\"2018-02-13T13:25:54-06:00\\\",\\n    email: \\\"test@example.com\\\",\\n    firstName: \\\"Test\\\",\\n    lastName: \\\"Contact\\\",\\n    created_timestamp: \\\"2019-11-13 16:18:00\\\",\\n    updated_timestamp: \\\"2021-04-06 11:25:59\\\",\\n    id: \\\"4\\\"\\n  }],\\n  activityRecipients: [{\\n    reltype: \\\"Subscriber\\\",\\n    relid: \\\"4\\\",\\n    activityid: \\\"865\\\",\\n    recipient: {\\n    type: \\\"contact\\\",\\n    id: \\\"4\\\"\\n  }],\\n\\tactivities: [{\\n    tstamp: \\\"2019-01-03T12:16:19-06:00\\\",\\n    subscriberid: \\\"4\\\",\\n    reference_type: \\\"SubscriberEmail\\\",\\n    reference_id: \\\"13\\\",\\n    reference_action: \\\"\\\",\\n    jsonData: null,\\n    userid: \\\"1\\\",\\n    permission: \\\"\\\",\\n    referenceModelName: \\\"contact-email\\\",\\n    notes: [ ],\\n    recipients: [\\n\\t    \\\"1496\\\"\\n    ],\\n    reference: {\\n    type: \\\"contact-email\\\",\\n    id: \\\"13\\\"\\n    },\\n    user: \\\"1\\\",\\n    id: \\\"865\\\"\\n  }],\\n\\tmeta: {\\n\\t\\ttotal: \\\"1\\\"\\n\\t}\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4f9311c-18a9-4bf4-a2d6-3c2dd6153d3c",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contact",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "activities to include"
+                    },
+                    {
+                      "key": "orders[tstamp]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "emails",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a36d113e-e83e-454a-b70c-41d6f1afc3ca",
+          "name": "ActiveCampaign Retrieve a Contacts Geo IP Address",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Contacts Geo IP Address",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geoIps",
+                ":geoAddressID",
+                "geoAddress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "geoAddressID",
+                  "description": "(Required) ID of the contact"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f02d1c7c-7eb3-41af-ad68-bb27fcb7593d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geoIps",
+                    ":geoAddressID",
+                    "geoAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "geoAddressID",
+                      "description": "(Required) ID of the contact"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"geoAddress\\\": {\\n        \\\"ip4\\\": \\\"1234567890\\\",\\n        \\\"country2\\\": \\\"US\\\",\\n        \\\"country\\\": \\\"United States\\\",\\n        \\\"state\\\": \\\"New York\\\",\\n        \\\"city\\\": \\\"New York\\\",\\n        \\\"zip\\\": \\\"10001\\\",\\n        \\\"area\\\": \\\"0\\\",\\n        \\\"lat\\\": \\\"40.7128\\\",\\n        \\\"lon\\\": \\\"-74.0060\\\",\\n        \\\"tz\\\": \\\"America/Chicago\\\",\\n        \\\"tstamp\\\": \\\"2023-12-20T14:14:46-06:00\\\",\\n        \\\"links\\\": [],\\n        \\\"id\\\": \\\"3\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "104500d0-d242-420e-8553-124224622157",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geoIps",
+                    ":geoAddressID",
+                    "geoAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "geoAddressID",
+                      "description": "(Required) ID of the contact"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for Subscriber with id 100\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7301cdbc-3170-4e4a-a9e4-4a4dd456c83f",
+          "name": "ActiveCampaign List All Email Activities",
+          "request": {
+            "name": "ActiveCampaign List All Email Activities",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "emailActivities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filters[subscriberid]",
+                  "value": "<integer>",
+                  "description": "Set this parameter to return only email activities belonging to a given subscriber."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[dealId]",
+                  "value": "<integer>",
+                  "description": "Set this parameter to return only email activities belonging to a given deal."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82204b58-3179-4fc8-8da0-ab9c7ad27831",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailActivities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters[subscriberid]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filters[dealId]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fc2f82e-522e-4fa7-ae70-68dad283aa4a",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "emailActivities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters[subscriberid]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filters[dealId]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e4141ba-286c-4a39-bf2b-3b310e70d5cd",
+          "name": "ActiveCampaign Get a Record by External Id",
+          "request": {
+            "name": "ActiveCampaign Get a Record by External Id",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "records",
+                ":schemdId",
+                "external",
+                ":externalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schemdId",
+                  "description": "(Required) ID of schema"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalId",
+                  "description": "(Required) External ID for record"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db211687-6327-4b87-a0ba-0142158dc445",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "records",
+                    ":schemdId",
+                    "external",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemdId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) External ID for record"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"record\\\": {\\n        \\\"id\\\": \\\"1fba439a-208e-48e6-bd23-f6c97c3e0519\\\",\\n        \\\"externalId\\\": \\\"test-obj-1\\\",\\n        \\\"schemaId\\\": \\\"6449c3f3-b68d-46d1-850b-c8aea998ce1b\\\",\\n        \\\"fields\\\": [\\n            {\\n                \\\"id\\\": \\\"my-number-field\\\",\\n                \\\"value\\\": 100\\n            }\\n        ],\\n        \\\"relationships\\\": {\\n            \\\"primary-contact\\\": [\\n                \\\"14\\\"\\n            ]\\n        },\\n        \\\"createdTimestamp\\\": \\\"2021-04-16T16:12:22.222685095Z\\\",\\n        \\\"updatedTimestamp\\\": \\\"2021-04-16T16:13:12.022671090Z\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ef75938-1c17-4097-8353-463b05231e5c",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "records",
+                    ":schemdId",
+                    "external",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemdId",
+                      "description": "(Required) ID of schema"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) External ID for record"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"errors\\\": [\\n    {\\n      \\\"status\\\":400,\\n      \\\"title\\\":\\\"Bad Request\\\"\\n    }\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8669f298-98d2-40d5-99ea-fa1d62fc8695",
+          "name": "ActiveCampaign Create a Connection",
+          "request": {
+            "name": "ActiveCampaign Create a Connection",
+            "description": {
+              "content": "Create a new connection resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"connection\": {\n    \"service\": \"<string>\",\n    \"externalid\": \"<string>\",\n    \"name\": \"<string>\",\n    \"logoUrl\": \"<string>\",\n    \"linkUrl\": \"<string>\",\n    \"listId\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "771f1fea-013b-40b3-bc13-9c4962477eac",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connection\": {\n    \"service\": \"fooCommerce\",\n    \"externalid\": \"toystore123\",\n    \"name\": \"Toystore, Inc.\",\n    \"logoUrl\": \"http://example.com/i/foo.png\",\n    \"linkUrl\": \"http://example.com/foo/\",\n    \"listId\": \"1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"connection\\\": {\\n    \\\"isInternal\\\": 0,\\n    \\\"service\\\": \\\"fooCommerce\\\",\\n    \\\"externalid\\\": \\\"toystore123\\\",\\n    \\\"name\\\": \\\"Toystore, Inc.\\\",\\n    \\\"logoUrl\\\": \\\"http://example.com/i/foo.png\\\",\\n    \\\"linkUrl\\\": \\\"http://example.com/foo/\\\",\\n\\t\\t\\\"listId\\\": \\\"1\\\",\\n    \\\"cdate\\\": \\\"2017-02-02T14:56:05-06:00\\\",\\n    \\\"udate\\\": \\\"2017-02-02T14:56:05-06:00\\\",\\n    \\\"links\\\": {\\n      \\\"customers\\\": \\\"/connections/1/customers\\\"\\n    },\\n    \\\"id\\\": \\\"1\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c7cd4ca-ca06-4a65-83f6-115fa80a21df",
+          "name": "ActiveCampaign List All Connections",
+          "request": {
+            "name": "ActiveCampaign List All Connections",
+            "description": {
+              "content": "List all existing connection resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filters[service]",
+                  "value": "<string>",
+                  "description": "Filter by the external service name."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters[externalid]",
+                  "value": "<string>",
+                  "description": "Filter by the external id associated with a connection."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6087eea9-332c-4b93-88d0-24efcda9e420",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters[service]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters[externalid]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"connections\\\": [\\n    {\\n      \\\"service\\\": \\\"shopify\\\",\\n      \\\"externalid\\\": \\\"foo.myshopify.com\\\",\\n      \\\"name\\\": \\\"Foo, Inc.\\\",\\n      \\\"isInternal\\\": \\\"1\\\",\\n      \\\"status\\\": \\\"1\\\",\\n      \\\"syncStatus\\\": \\\"0\\\",\\n      \\\"lastSync\\\": \\\"2017-02-02T13:09:07-06:00\\\",\\n      \\\"logoUrl\\\": \\\"\\\",\\n      \\\"linkUrl\\\": \\\"\\\",\\n      \\\"listId\\\": \\\"0\\\",\\n      \\\"cdate\\\": \\\"2017-02-02T13:09:07-06:00\\\",\\n      \\\"udate\\\": \\\"2017-02-02T13:09:12-06:00\\\",\\n      \\\"links\\\": {\\n        \\\"customers\\\": \\\"/api/3/connections/1/customers\\\"\\n      },\\n      \\\"id\\\": \\\"1\\\"\\n    },\\n    {\\n      \\\"service\\\": \\\"fooCommerce\\\",\\n      \\\"externalid\\\": \\\"johndoe@example.com\\\",\\n      \\\"name\\\": \\\"Acme, Inc.\\\",\\n      \\\"isInternal\\\": \\\"0\\\",\\n      \\\"status\\\": \\\"1\\\",\\n      \\\"syncStatus\\\": \\\"0\\\",\\n      \\\"lastSync\\\": null,\\n      \\\"logoUrl\\\": \\\"http://example.com/i/foo.png\\\",\\n      \\\"linkUrl\\\": \\\"http://example.com/foo/\\\",\\n      \\\"listId\\\": \\\"1\\\",\\n      \\\"cdate\\\": \\\"2017-02-02T14:56:05-06:00\\\",\\n      \\\"udate\\\": \\\"2017-02-03T15:54:51-06:00\\\",\\n      \\\"links\\\": {\\n        \\\"customers\\\": \\\"/api/3/connections/2/customers\\\"\\n      },\\n      \\\"id\\\": \\\"2\\\"\\n    }\\n  ],\\n  \\\"meta\\\": {\\n    \\\"total\\\": \\\"2\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c116e9ab-9bbc-4c35-97f8-f7d6633149ea",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters[service]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters[externalid]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66b5c09d-bd3b-4f57-b211-a9ee38191b49",
+          "name": "ActiveCampaign Retrieve a Connection",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Connection",
+            "description": {
+              "content": "Retrieve an existing connection resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connections",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the connection to retrieve"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d791c64b-2372-4e90-9a40-e41829457203",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the connection to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"connection\\\": {\\n    \\\"isInternal\\\": 0,\\n    \\\"service\\\": \\\"fooCommerce\\\",\\n    \\\"externalid\\\": \\\"toystore123\\\",\\n    \\\"name\\\": \\\"Toystore, Inc.\\\",\\n    \\\"logoUrl\\\": \\\"http://example.com/i/foo.png\\\",\\n    \\\"linkUrl\\\": \\\"http://example.com/foo/\\\",\\n    \\\"listId\\\": \\\"1\\\",  \\n    \\\"cdate\\\": \\\"2017-02-02T14:56:05-06:00\\\",\\n    \\\"udate\\\": \\\"2017-02-02T14:56:05-06:00\\\",\\n    \\\"links\\\": {\\n      \\\"customers\\\": \\\"/connections/1/customers\\\"\\n    },\\n    \\\"id\\\": \\\"1\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "777f3617-ab4d-40fd-a264-822c417cd243",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the connection to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "481d1df3-e9d8-465e-8e2d-f5cce21efd9a",
+          "name": "ActiveCampaign Update a Connection",
+          "request": {
+            "name": "ActiveCampaign Update a Connection",
+            "description": {
+              "content": "Update an existing connection resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connections",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the connection to update"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"connection\": {\n    \"service\": \"<string>\",\n    \"externalid\": \"<string>\",\n    \"name\": \"<string>\",\n    \"logoUrl\": \"<string>\",\n    \"linkUrl\": \"<string>\",\n    \"status\": \"<integer>\",\n    \"syncStatus\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1b755e5f-2382-4ead-9732-16cb3c44136a",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the connection to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connection\": {\n    \"externalid\": \"johndoe@example.com\",\n    \"name\": \"Acme, Inc.\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"connection\\\": {\\n    \\\"service\\\": \\\"fooCommerce\\\",\\n    \\\"externalid\\\": \\\"johndoe@example.com\\\",\\n    \\\"name\\\": \\\"Acme, Inc.\\\",\\n    \\\"isInternal\\\": \\\"0\\\",\\n    \\\"status\\\": \\\"1\\\",\\n    \\\"syncStatus\\\": \\\"0\\\",\\n    \\\"logoUrl\\\": \\\"http://foocorp.net/i/path3523.png\\\",\\n    \\\"linkUrl\\\": \\\"http://example.com/\\\",\\n    \\\"listId\\\": \\\"1\\\",\\n    \\\"cdate\\\": \\\"2017-02-02T14:56:05-06:00\\\",\\n    \\\"udate\\\": \\\"2017-02-03T15:54:51-06:00\\\",\\n    \\\"links\\\": {\\n      \\\"customers\\\": \\\"/api/3/connections/2/customers\\\"\\n    },\\n    \\\"id\\\": \\\"2\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "faa54911-b1a3-417d-b6e8-c9513bb21250",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the connection to update"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connection\": {\n    \"externalid\": \"johndoe@example.com\",\n    \"name\": \"Acme, Inc.\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e5faad4-874f-40da-966a-895e765f284c",
+          "name": "ActiveCampaign Delete a Connection",
+          "request": {
+            "name": "ActiveCampaign Delete a Connection",
+            "description": {
+              "content": "Delete an existing connection resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connections",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the connection to delete."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7806cdf-4ee2-4ad1-b4d1-162d760c4d5a",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the connection to delete."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4351a163-e188-45ab-838a-6e7850996197",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the connection to delete."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "765ee476-bfc5-4fdf-9f97-c78e0200db4b",
+          "name": "ActiveCampaign Update Settings",
+          "request": {
+            "name": "ActiveCampaign Update Settings",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "configs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the config to edit"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "965e8834-95a2-4855-8a39-6c28a9dc28f6",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the config to edit"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"config\\\": {\\n        \\\"keyname\\\": \\\"pagination.users_index\\\",\\n        \\\"section\\\": \\\"\\\",\\n        \\\"item\\\": \\\"\\\",\\n        \\\"userid\\\": \\\"1\\\",\\n        \\\"val\\\": \\\"20\\\",\\n        \\\"cdate\\\": \\\"2018-08-08T13:38:38-05:00\\\",\\n        \\\"udate\\\": \\\"2018-09-20T14:07:07-05:00\\\",\\n        \\\"links\\\": {\\n            \\\"owner\\\": \\\"https://:account.api-us1.com/api/3/configs/6/owner\\\"\\n        },\\n        \\\"id\\\": \\\"6\\\",\\n        \\\"owner\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9762fe46-7b82-410a-a8e5-bc188c377525",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the config to edit"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for ConfigResult with id 100\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a86d4a24-00e3-4463-a46f-734f87d85582",
+          "name": "ActiveCampaign Get Contact by Event ID",
+          "request": {
+            "name": "ActiveCampaign Get Contact by Event ID",
+            "description": {
+              "content": "Get the contact that was involved in an event.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trackingLogs",
+                ":eventId",
+                "contact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventId",
+                  "description": "(Required) The Event's ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fdcfa512-e50e-433f-90af-c42f8a779d74",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trackingLogs",
+                    ":eventId",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) The Event's ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"contact\\\": {\\n        \\\"cdate\\\": \\\"2022-09-22T12:36:33-05:00\\\",\\n        \\\"email\\\": \\\"jd@example.com\\\",\\n        \\\"phone\\\": \\\"555-555-5555\\\",\\n        \\\"firstName\\\": \\\"John\\\",\\n        \\\"lastName\\\": \\\"Doe\\\",\\n        \\\"orgid\\\": \\\"0\\\",\\n        \\\"orgname\\\": \\\"\\\",\\n        \\\"segmentio_id\\\": \\\"\\\",\\n        \\\"bounced_hard\\\": \\\"0\\\",\\n        \\\"bounced_soft\\\": \\\"0\\\",\\n        \\\"bounced_date\\\": \\\"0000-00-00\\\",\\n        \\\"ip\\\": \\\"0\\\",\\n        \\\"ua\\\": \\\"\\\",\\n        \\\"hash\\\": \\\"ef73fe360240b8bf171744f7f341524f\\\",\\n        \\\"socialdata_lastcheck\\\": \\\"0000-00-00 00:00:00\\\",\\n        \\\"email_local\\\": \\\"\\\",\\n        \\\"email_domain\\\": \\\"example.com\\\",\\n        \\\"sentcnt\\\": \\\"0\\\",\\n        \\\"rating_tstamp\\\": \\\"0000-00-00\\\",\\n        \\\"gravatar\\\": \\\"0\\\",\\n        \\\"deleted\\\": \\\"0\\\",\\n        \\\"anonymized\\\": \\\"0\\\",\\n        \\\"adate\\\": \\\"2022-09-27T14:57:35-05:00\\\",\\n        \\\"udate\\\": \\\"2022-09-22T12:36:33-05:00\\\",\\n        \\\"edate\\\": \\\"2022-09-27T13:36:04-05:00\\\",\\n        \\\"deleted_at\\\": \\\"0000-00-00 00:00:00\\\",\\n        \\\"created_utc_timestamp\\\": \\\"2022-09-22 12:36:33\\\",\\n        \\\"updated_utc_timestamp\\\": \\\"2022-09-27 13:36:04\\\",\\n        \\\"created_timestamp\\\": \\\"2022-09-22 12:36:33\\\",\\n        \\\"updated_timestamp\\\": \\\"2022-09-27 13:36:04\\\",\\n        \\\"created_by\\\": \\\"0\\\",\\n        \\\"updated_by\\\": \\\"0\\\",\\n        \\\"email_empty\\\": false,\\n        \\\"mpp_tracking\\\": \\\"0\\\",\\n        \\\"links\\\": {\\n            \\\"bounceLogs\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/bounceLogs\\\",\\n            \\\"contactAutomations\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/contactAutomations?limit=1000&orders%5Blastdate%5D=DESC\\\",\\n            \\\"contactData\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/contactData\\\",\\n            \\\"contactGoals\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/contactGoals\\\",\\n            \\\"contactLists\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/contactLists\\\",\\n            \\\"contactLogs\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/contactLogs\\\",\\n            \\\"contactTags\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/contactTags\\\",\\n            \\\"contactDeals\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/contactDeals\\\",\\n            \\\"deals\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/deals\\\",\\n            \\\"fieldValues\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/fieldValues\\\",\\n            \\\"geoIps\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/geoIps\\\",\\n            \\\"notes\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/notes\\\",\\n            \\\"organization\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/organization\\\",\\n            \\\"plusAppend\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/plusAppend\\\",\\n            \\\"trackingLogs\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/trackingLogs\\\",\\n            \\\"scoreValues\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/scoreValues\\\",\\n            \\\"accountContacts\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/accountContacts\\\",\\n            \\\"automationEntryCounts\\\": \\\"https://yourAccountName.api-us1.com/api/3/contacts/112/automationEntryCounts\\\"\\n        },\\n        \\\"id\\\": \\\"112\\\",\\n        \\\"organization\\\": null\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbb7cf54-fdbc-4642-97a2-2f6d0a79642d",
+          "name": "ActiveCampaign Local Events",
+          "request": {
+            "name": "ActiveCampaign Local Events",
+            "description": {
+              "content": "Published by TrackCmp. Creates an em_local_event row in production database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "localevent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"localEvent\": {\n    \"email\": \"<string>\",\n    \"tstamp\": \"<dateTime>\",\n    \"input\": \"<json>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5440085a-9dca-464b-82a3-fb67037141f7",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "localevent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"localEvent\": {\n    \"email\": \"<string>\",\n    \"tstamp\": \"<dateTime>\",\n    \"input\": \"<json>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6fd518a-4e1b-4cab-9a33-11ea1ebf9cfe",
+              "name": "403",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "localevent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"localEvent\": {\n    \"email\": \"<string>\",\n    \"tstamp\": \"<dateTime>\",\n    \"input\": \"<json>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\\"message\\\": \\\"Email message\\\"}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c852926-d86a-4a08-bb96-d3673ae1fccf",
+          "name": "ActiveCampaign Personalization Tags",
+          "request": {
+            "name": "ActiveCampaign Personalization Tags",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stripo",
+                "personalizationTags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "(optional) Comma separated values: contacts,accounts,deals,customobjects,message,messageVariables,social,surveymonkey,dropbox,ecom"
+                },
+                {
+                  "disabled": false,
+                  "key": "campaignId",
+                  "value": "<integer>",
+                  "description": "(optional)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5101970-b2f3-474c-b8ae-8453994f46b6",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stripo",
+                    "personalizationTags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "campaignId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"[\\n    {\\n        \\\"type\\\": \\\"standard\\\",\\n        \\\"id\\\": \\\"contacts\\\",\\n        \\\"category\\\": \\\"Contactpersonen\\\",\\n        \\\"entries\\\": [\\n            {\\n                \\\"value\\\": \\\"%EMAIL%\\\",\\n                \\\"label\\\": \\\"E-mailadres\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%FULLNAME%\\\",\\n                \\\"label\\\": \\\"Volledige naam\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%FIRSTNAME%\\\",\\n                \\\"label\\\": \\\"Voornaam\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%LASTNAME%\\\",\\n                \\\"label\\\": \\\"Achternaam\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%PHONE%\\\",\\n                \\\"label\\\": \\\"Telefoonnummer\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%GEO-COUNTRY%\\\",\\n                \\\"label\\\": \\\"GEO - Country\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%GEO-REGION%\\\",\\n                \\\"label\\\": \\\"GEO - Region\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%GEO-CITY%\\\",\\n                \\\"label\\\": \\\"GEO - City\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%GEO-POSTALCODE%\\\",\\n                \\\"label\\\": \\\"GEO - ZIP/Postal Code\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%GEO-AREACODE%\\\",\\n                \\\"label\\\": \\\"GEO - Area Code\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SUBDATE%\\\",\\n                \\\"label\\\": \\\"Datum ingeschreven\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SUBTIME%\\\",\\n                \\\"label\\\": \\\"Tijd ingeschreven\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SUBSCRIBERIP%\\\",\\n                \\\"label\\\": \\\"Contact's IP Address\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%LISTNAME%\\\",\\n                \\\"label\\\": \\\"Contact's List\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SUBSCRIBERID%\\\",\\n                \\\"label\\\": \\\"ID contactpersoon\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%CONTACT_JOBTITLE%\\\",\\n                \\\"label\\\": \\\"Functie\\\"\\n            }\\n        ]\\n    },\\n    {\\n        \\\"type\\\": \\\"standard\\\",\\n        \\\"id\\\": \\\"message\\\",\\n        \\\"category\\\": \\\"Bericht\\\",\\n        \\\"entries\\\": [\\n            {\\n                \\\"value\\\": \\\"%UNSUBSCRIBELINK%\\\",\\n                \\\"label\\\": \\\"Uitschrijflink\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SENDER-INFO%\\\",\\n                \\\"label\\\": \\\"List Sender Info (multiple lines)\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SENDER-INFO-SINGLELINE%\\\",\\n                \\\"label\\\": \\\"List Sender Info (single line)\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SENDER-LIST-REMINDER%\\\",\\n                \\\"label\\\": \\\"Afzender info herinnering\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%WEBCOPY%\\\",\\n                \\\"label\\\": \\\"Web Copy\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%WEBCOPY-NOSOCIAL%\\\",\\n                \\\"label\\\": \\\"Web Copy (no social links)\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%UPDATELINK%\\\",\\n                \\\"label\\\": \\\"Update Subscription Account Link\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%FORWARD2FRIEND%\\\",\\n                \\\"label\\\": \\\"Send to Friend Link\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%UNSUBSCRIBELINK%&ALL\\\",\\n                \\\"label\\\": \\\"Unsubscribe Link (All Lists)\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%TODAY%\\\",\\n                \\\"label\\\": \\\"Today's Date\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%TODAY*%\\\",\\n                \\\"label\\\": \\\"Today's Date +/- X day(s)\\\"\\n            }\\n        ]\\n    },\\n    {\\n        \\\"type\\\": \\\"standard\\\",\\n        \\\"id\\\": \\\"messageVariables\\\",\\n        \\\"category\\\": \\\"Statische berichtvariabelen\\\",\\n        \\\"entries\\\": []\\n    },\\n    {\\n        \\\"type\\\": \\\"standard\\\",\\n        \\\"id\\\": \\\"accounts\\\",\\n        \\\"category\\\": \\\"Accounts\\\",\\n        \\\"entries\\\": [\\n            {\\n                \\\"value\\\": \\\"%ACCT_NAME%\\\",\\n                \\\"label\\\": \\\"Account: Naam\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_OWNER_FIRST_NAME%\\\",\\n                \\\"label\\\": \\\"Voornaam accounteigenaar\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_OWNER_LAST_NAME%\\\",\\n                \\\"label\\\": \\\"Achternaam accounteigenaar\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_OWNER_FULL_NAME%\\\",\\n                \\\"label\\\": \\\"Naam accounteigenaar\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_OWNER_EMAIL%\\\",\\n                \\\"label\\\": \\\"E-mailadres accounteigenaar\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_URL%\\\",\\n                \\\"label\\\": \\\"Account: URL\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_CREATED_DATE%\\\",\\n                \\\"label\\\": \\\"Account: Gemaakt op\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_UPDATED_DATE%\\\",\\n                \\\"label\\\": \\\"Account: Laatst bijgewerkt op\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_ADDRESS_1%\\\",\\n                \\\"label\\\": \\\"Account: Address 1\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_ADDRESS_2%\\\",\\n                \\\"label\\\": \\\"Account: Address 2\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_CITY%\\\",\\n                \\\"label\\\": \\\"Account: City\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_STATE_PROVINCE%\\\",\\n                \\\"label\\\": \\\"Account: State/Province\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_POSTAL_CODE%\\\",\\n                \\\"label\\\": \\\"Account: Postal Code\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_COUNTRY%\\\",\\n                \\\"label\\\": \\\"Account: Country\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_PHONE_NUMBER%\\\",\\n                \\\"label\\\": \\\"Account: Phone Number\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_DESCRIPTION%\\\",\\n                \\\"label\\\": \\\"Account: Description\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_NUMBER_OF_EMPLOYEES%\\\",\\n                \\\"label\\\": \\\"Account: Number of Employees\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_ANNUAL_REVENUE%\\\",\\n                \\\"label\\\": \\\"Account: Annual Revenue\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ACCT_INDUSTRY_VERTICAL%\\\",\\n                \\\"label\\\": \\\"Account: Industry/Vertical\\\"\\n            }\\n        ]\\n    },\\n    {\\n        \\\"type\\\": \\\"standard\\\",\\n        \\\"id\\\": \\\"social\\\",\\n        \\\"category\\\": \\\"Sociaal\\\",\\n        \\\"entries\\\": [\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE%\\\",\\n                \\\"label\\\": \\\"Social Submit Links\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIAL-FACEBOOK-LIKE%\\\",\\n                \\\"label\\\": \\\"Facebook Like Button\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-FACEBOOK%\\\",\\n                \\\"label\\\": \\\"Facebook Share Icon\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-FACEBOOK-LINK%\\\",\\n                \\\"label\\\": \\\"Facebook Share Link\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-TWITTER%\\\",\\n                \\\"label\\\": \\\"Twitter Share Icon\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-TWITTER-LINK%\\\",\\n                \\\"label\\\": \\\"Twitter Share Link\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-LINKEDIN%\\\",\\n                \\\"label\\\": \\\"LinkedIn Share Icon\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-LINKEDIN-LINK%\\\",\\n                \\\"label\\\": \\\"LinkedIn Share Link\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-REDDIT%\\\",\\n                \\\"label\\\": \\\"Reddit Share Icon\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-REDDIT-LINK%\\\",\\n                \\\"label\\\": \\\"Reddit Share Link\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-DIGG%\\\",\\n                \\\"label\\\": \\\"Digg Share Icon\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-DIGG-LINK%\\\",\\n                \\\"label\\\": \\\"Digg Share Link\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-DELICIOUS%\\\",\\n                \\\"label\\\": \\\"del.icio.us Share Icon\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-DELICIOUS-LINK%\\\",\\n                \\\"label\\\": \\\"del.icio.us Share Link\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-STUMBLEUPON%\\\",\\n                \\\"label\\\": \\\"StumbleUpon Share Icon\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%SOCIALSHARE-STUMBLEUPON-LINK%\\\",\\n                \\\"label\\\": \\\"StumbleUpon Share Link\\\"\\n            }\\n        ]\\n    },\\n    {\\n        \\\"type\\\": \\\"standard\\\",\\n        \\\"id\\\": \\\"deals\\\",\\n        \\\"category\\\": \\\"Deals\\\",\\n        \\\"entries\\\": [\\n            {\\n                \\\"value\\\": \\\"%DEAL_TITLE%\\\",\\n                \\\"label\\\": \\\"Deal: Titel\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%DEAL_DESCRIPTION%\\\",\\n                \\\"label\\\": \\\"Deal: Omschrijving\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%DEAL_OWNER_FIRST_NAME%\\\",\\n                \\\"label\\\": \\\"Dealeigenaar: Voornaam\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%DEAL_OWNER_LAST_NAME%\\\",\\n                \\\"label\\\": \\\"Dealeigenaar: Achternaam\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%DEAL_OWNER_FULL_NAME%\\\",\\n                \\\"label\\\": \\\"Dealeigenaar: volledige naam\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%DEAL_OWNER_EMAIL%\\\",\\n                \\\"label\\\": \\\"Dealeigenaar: E-mailadres\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%DEAL_OWNER_SIGNATURE%\\\",\\n                \\\"label\\\": \\\"Dealeigenaar: handtekening\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%DEAL_VALUE%\\\",\\n                \\\"label\\\": \\\"Deal: Waarde\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%DEAL_STATUS%\\\",\\n                \\\"label\\\": \\\"Deal: Status\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%DEAL_PIPELINE%\\\",\\n                \\\"label\\\": \\\"Deal: Pijplijn\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%DEAL_STAGE%\\\",\\n                \\\"label\\\": \\\"Deal: Fase\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%DEAL_CREATED_DATE%\\\",\\n                \\\"label\\\": \\\"Deal: Gemaakt op\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%DEAL_UPDATED_DATE%\\\",\\n                \\\"label\\\": \\\"Deal: Laatst bijgewerkt op\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%DEAL_FORECASTED_CLOSE_DATE%\\\",\\n                \\\"label\\\": \\\"Deal: Forecasted Close Date\\\"\\n            }\\n        ]\\n    },\\n    {\\n        \\\"type\\\": \\\"app\\\",\\n        \\\"id\\\": \\\"ecom\\\",\\n        \\\"category\\\": \\\"E-commerce\\\",\\n        \\\"entries\\\": [\\n            {\\n                \\\"value\\\": \\\"%ECOMMERCE_TOTAL_REVENUE%\\\",\\n                \\\"label\\\": \\\"eCommerce - Totale inkomsten van contact\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ECOMMERCE_TOTAL_ORDERS%\\\",\\n                \\\"label\\\": \\\"eCommerce - Totaal aantal orders van het contact\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ECOMMERCE_TOTAL_PRODUCTS%\\\",\\n                \\\"label\\\": \\\"eCommerce - Totaal aantal producten besteld\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ECOMMERCE_LAST_ORDER_PRICE%\\\",\\n                \\\"label\\\": \\\"eCommerce - Prijs van laatste bestelling\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ECOMMERCE_LAST_ORDER_CURRENCY%\\\",\\n                \\\"label\\\": \\\"eCommerce - Valuta van de laatste bestelling\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ECOMMERCE_LAST_ORDER_SHIPPING_METHOD%\\\",\\n                \\\"label\\\": \\\"eCommerce - Verzendmethode van de laatste bestelling\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ECOMMERCE_LAST_ORDER_PRODUCT_COUNT%\\\",\\n                \\\"label\\\": \\\"eCommerce - Producttelling van laatste bestelling\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ECOMMERCE_LAST_PRODUCT_ID%\\\",\\n                \\\"label\\\": \\\"eCommerce - ID van laatste product gekocht\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ECOMMERCE_LAST_PRODUCT_NAME%\\\",\\n                \\\"label\\\": \\\"eCommerce - Naam van laatste product gekocht\\\"\\n            },\\n            {\\n                \\\"value\\\": \\\"%ECOMMERCE_LAST_PRODUCT_CATEGORY%\\\",\\n                \\\"label\\\": \\\"eCommerce - Categorie van laatste product is gekocht\\\"\\n            }\\n        ]\\n    },\\n    {\\n        \\\"type\\\": \\\"app\\\",\\n        \\\"id\\\": \\\"surveymonkey\\\",\\n        \\\"category\\\": \\\"SurveyMonkey\\\",\\n        \\\"entries\\\": [\\n            {\\n                \\\"value\\\": \\\"\\\",\\n                \\\"label\\\": \\\"\\\"\\n            }\\n        ]\\n    },\\n    {\\n        \\\"type\\\": \\\"app\\\",\\n        \\\"id\\\": \\\"dropbox\\\",\\n        \\\"category\\\": \\\"Dropbox\\\",\\n        \\\"entries\\\": [\\n            {\\n                \\\"value\\\": \\\"\\\",\\n                \\\"label\\\": \\\"\\\"\\n            }\\n        ]\\n    },\\n    {\\n        \\\"type\\\": \\\"customobjects\\\",\\n        \\\"id\\\": \\\"customobjects\\\",\\n        \\\"category\\\": \\\"\\\",\\n        \\\"entries\\\": []\\n    }\\n]\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee5f3a1b-e4fb-44b8-b9d8-222349d5a1b0",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stripo",
+                    "personalizationTags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "campaignId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f8f01de-8aa7-47f1-b1be-81b305303c08",
+          "name": "ActiveCampaign Stripo Config",
+          "request": {
+            "name": "ActiveCampaign Stripo Config",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stripo",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "campaignId",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ac4424b-753a-4ae3-8868-ebe34270fee7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stripo",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "campaignId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"stripoScriptSrc\\\": \\\"https://plugins.stripo.email/static/stripo.js\\\",\\n    \\\"stripoApiBaseUrl\\\": \\\"https://plugins.stripo.email/stripo-plugin-api-gateway/api/v1\\\",\\n    \\\"localeCode\\\": \\\"en\\\",\\n    \\\"allowedScriptSourceDomains\\\": [\\n        \\\"https://plugins.stripo.email\\\",\\n        \\\"http://localhost:5000/dist/hosted-mounter.js\\\"\\n    ],\\n    \\\"contentApiUrl\\\": \\\"http://localhost:7003\\\",\\n    \\\"hostedMounterJsUrl\\\": \\\"http://localhost:5000/dist/hosted-mounter.js\\\",\\n    \\\"colorPickerBrandKits\\\": [\\n        {\\n            \\\"domain\\\": \\\"\\\",\\n            \\\"brandkitName\\\": \\\"\\\",\\n            \\\"name\\\": \\\"\\\",\\n            \\\"shortDescription\\\": \\\"\\\",\\n            \\\"longDescription\\\": \\\"\\\",\\n            \\\"employeeCountRange\\\": \\\"\\\",\\n            \\\"foundedYear\\\": 0,\\n            \\\"companyStructure\\\": \\\"\\\",\\n            \\\"companyLocation\\\": {\\n                \\\"city\\\": \\\"\\\",\\n                \\\"country\\\": \\\"\\\",\\n                \\\"countryCode\\\": \\\"\\\",\\n                \\\"region\\\": \\\"\\\",\\n                \\\"state\\\": \\\"\\\",\\n                \\\"subregion\\\": \\\"\\\"\\n            },\\n            \\\"industries\\\": [],\\n            \\\"links\\\": [],\\n            \\\"logos\\\": [],\\n            \\\"symbols\\\": [],\\n            \\\"icons\\\": [],\\n            \\\"colors\\\": {\\n                \\\"primary\\\": \\\"\\\",\\n                \\\"lightBackground\\\": \\\"\\\",\\n                \\\"darkBackground\\\": \\\"\\\",\\n                \\\"accents\\\": []\\n            },\\n            \\\"fonts\\\": {\\n                \\\"titleFont\\\": \\\"\\\",\\n                \\\"titleWeight\\\": \\\"\\\",\\n                \\\"bodyFont\\\": \\\"\\\",\\n                \\\"bodyWeight\\\": \\\"\\\"\\n            },\\n            \\\"templateIds\\\": [],\\n            \\\"isPrimary\\\": false,\\n            \\\"language\\\": \\\"english\\\"\\n        }\\n    ],\\n    \\\"brandingFooterHtmlContent\\\": \\\"\\\",\\n    \\\"allMessagesArr\\\": [\\n        {\\n            \\\"percentage\\\": \\\"100\\\",\\n            \\\"percentage300\\\": \\\"300\\\",\\n            \\\"ed_version\\\": \\\"3\\\",\\n            \\\"subject\\\": \\\"Test for counter\\\",\\n            \\\"fromname\\\": \\\"Local Dev\\\",\\n            \\\"fromemail\\\": \\\"localdev@email.localdev\\\",\\n            \\\"reply2\\\": \\\"localdev@email.localdev\\\",\\n            \\\"preheader_text\\\": \\\"\\\",\\n            \\\"id\\\": \\\"5\\\"\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "065424d2-cf4d-47fa-9adf-5fef3c7bf04b",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stripo",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "campaignId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"status\\\": 422,\\n            \\\"title\\\": \\\"Invalid attribute\\\",\\n            \\\"detail\\\": \\\"Provided campaign ID \\\\\\\"177\\\\\\\" does not exist\\\",\\n            \\\"source\\\": {\\n                \\\"pointer\\\": \\\"/data/attributes/campaignId\\\"\\n            }\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9997e4c-46c4-4155-8240-a2bdce8f1397",
+          "name": "ActiveCampaign Get Editor Markup",
+          "request": {
+            "name": "ActiveCampaign Get Editor Markup",
+            "description": {
+              "content": "Get Editor Markup",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "content",
+                "editorMarkup",
+                ":messageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "messageId",
+                  "description": "(Required) required"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c072132-d45e-4b18-9f07-c900a68e43d3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    "editorMarkup",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "messageId",
+                      "description": "(Required) required"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"html\\\": \\\"<p>Test html</p>\\\",\\n    \\\"css\\\": \\\"p { color: red; }\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47453e17-0519-4753-a67a-606b067bccb7",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    "editorMarkup",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "messageId",
+                      "description": "(Required) required"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No markup for message\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31d1d632-aaed-4ed7-b6bc-98302a3cdeb3",
+          "name": "ActiveCampaign Add Domain to Whitelist",
+          "request": {
+            "name": "ActiveCampaign Add Domain to Whitelist",
+            "description": {
+              "content": "Add a domain to the site tracking whitelist",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prism",
+                "urlWhitelistings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"whitelisted_domain\": \"example.com\",\n      \"whitelisted_page\": \"*\",\n      \"conversations_enabled\": \"false\",\n      \"wp_enabled\": \"false\",\n      \"tracking_enabled\": \"true\"\n    },\n    \"type\": \"urlWhitelistings\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "608fc501-e71b-43f8-adec-5e5af36226cb",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prism",
+                    "urlWhitelistings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteTrackingDomain\": {\n    \"name\": \"example.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"urlWhitelistings\",\n    \"id\": \"534756\",\n    \"attributes\": {\n      \"whitelisted_domain\": \"example.com\",\n      \"whitelisted_page\": \"*\",\n      \"tracking_enabled\": true,\n      \"conversations_enabled\": false,\n      \"wp_enabled\": false,\n      \"url_regex\": \"#^example\\\\.com(\\\\/.*)?$#\",\n      \"updated_at\": \"2025-07-29T05:40:11Z\",\n      \"created_at\": \"2025-07-29T05:40:11Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb1a6458-519f-4cd5-8e13-8c14e4ef681d",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prism",
+                    "urlWhitelistings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteTrackingDomain\": {\n    \"name\": \"example.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75943041-2436-43fa-880e-80bd338aef32",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prism",
+                    "urlWhitelistings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siteTrackingDomain\": {\n    \"name\": \"example.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d5eee81-5d80-4040-aa92-7f2275ccbf93",
+          "name": "ActiveCampaign List All Whitelisted Domains",
+          "request": {
+            "name": "ActiveCampaign List All Whitelisted Domains",
+            "description": {
+              "content": "List of all whitelisted site tracking domains",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prism",
+                "urlWhitelistings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32ecfd0b-3278-4c70-b4e3-d91d404429c7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prism",
+                    "urlWhitelistings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"urlWhitelistings\",\n      \"id\": \"490469\",\n      \"attributes\": {\n        \"whitelisted_domain\": \"example.com\",\n        \"whitelisted_page\": \"*\",\n        \"url_regex\": \"#^example\\\\.com(\\\\/.*)?$#\",\n        \"conversations_enabled\": 0,\n        \"tracking_enabled\": 1,\n        \"created_at\": \"2024-01-03T17:19:36Z\",\n        \"updated_at\": \"2025-04-24T19:11:32Z\",\n        \"wp_enabled\": 0\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1042f630-4c27-42b5-a3e6-83c45741138c",
+          "name": "ActiveCampaign Remove Domain from Whitelist",
+          "request": {
+            "name": "ActiveCampaign Remove Domain from Whitelist",
+            "description": {
+              "content": "Remove a domain from the site tracking whitelist",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prism",
+                "urlWhitelistings",
+                ":domain_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "domain_id",
+                  "description": "(Required) The id of the whitelisted domain. Can be retrieved using the GET /prism/urlWhitelistings endpoint"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d47e54d3-4324-4c59-898b-156136ed6355",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prism",
+                    "urlWhitelistings",
+                    ":domain_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "domain_id",
+                      "description": "(Required) The id of the whitelisted domain. Can be retrieved using the GET /prism/urlWhitelistings endpoint"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "584ee418-2e4f-48a4-ac13-73bcc05b04cb",
+    "name": "ActiveCampaign SMS Broadcast Accounts Other API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

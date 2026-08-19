@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ActiveCampaign SMS Broadcast Accounts Bulk Import API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Token",
+      "value": "{{Api-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bulk Import",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Import Status List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/import/bulk_import"
+          },
+          "docs": "ActiveCampaign Bulk Import Status List"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Import Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/import/bulk_import",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Api-Token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ActiveCampaign Bulk Import Contacts"
+        },
+        {
+          "info": {
+            "name": "ActiveCampaign Bulk Import Status Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{yourAccountName}.api-us1.com/api/3/import/info",
+            "params": [
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "ActiveCampaign Bulk Import Status Info"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

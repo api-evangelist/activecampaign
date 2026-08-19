@@ -1,0 +1,776 @@
+{
+  "item": [
+    {
+      "id": "18ab1867-5f67-450f-804d-afaa7ac880a9",
+      "name": "Forms",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8f5026e9-86f1-4524-82dd-0270de554ff0",
+          "name": "ActiveCampaign Retrieve a Form",
+          "request": {
+            "name": "ActiveCampaign Retrieve a Form",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forms",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the form to retrieve"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8cf3bd67-9dff-4d78-9361-af505e6514ba",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the form to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"form\\\": {\\n        \\\"name\\\": \\\"Test Form\\\",\\n        \\\"action\\\": \\\"\\\",\\n        \\\"actiondata\\\": {\\n            \\\"actions\\\": [\\n                {\\n                    \\\"type\\\": \\\"email-results\\\",\\n                    \\\"email\\\": \\\"johndoe@example.com\\\",\\n                    \\\"fromname\\\": \\\"John Doe\\\",\\n                    \\\"fromemail\\\": \\\"johndoe@example.com\\\",\\n                    \\\"subject\\\": \\\"Form submission results\\\"\\n                }\\n            ]\\n        },\\n        \\\"submit\\\": \\\"show-thank-you\\\",\\n        \\\"submitdata\\\": {\\n            \\\"url\\\": \\\"\\\"\\n        },\\n        \\\"url\\\": \\\"\\\",\\n        \\\"layout\\\": \\\"inline-form\\\",\\n        \\\"title\\\": \\\"\\\",\\n        \\\"body\\\": \\\"\\\",\\n        \\\"button\\\": \\\"Submit\\\",\\n        \\\"thanks\\\": \\\"Thanks for signing up!\\\",\\n        \\\"style\\\": {\\n            \\\"background\\\": \\\"FFFFFF\\\",\\n            \\\"dark\\\": true,\\n            \\\"fontcolor\\\": \\\"000000\\\",\\n            \\\"layout\\\": \\\"normal\\\",\\n            \\\"border\\\": {\\n                \\\"width\\\": 0,\\n                \\\"style\\\": \\\"solid\\\",\\n                \\\"color\\\": \\\"B0B0B0\\\",\\n                \\\"radius\\\": 0\\n            },\\n            \\\"width\\\": 500,\\n            \\\"ac_branding\\\": true,\\n            \\\"button\\\": {\\n                \\\"padding\\\": 10,\\n                \\\"background\\\": \\\"333333\\\",\\n                \\\"fontcolor\\\": \\\"FFFFFF\\\",\\n                \\\"border\\\": {\\n                    \\\"radius\\\": 4,\\n                    \\\"color\\\": \\\"333333\\\",\\n                    \\\"style\\\": \\\"solid\\\",\\n                    \\\"width\\\": 0\\n                }\\n            },\\n            \\\"customcss\\\": \\\"\\\"\\n        },\\n        \\\"options\\\": {\\n            \\\"blanks_overwrite\\\": true,\\n            \\\"confaction\\\": \\\"show-message\\\"\\n        },\\n        \\\"cfields\\\": [\\n            {\\n                \\\"type\\\": \\\"header\\\",\\n                \\\"header\\\": \\\"Contact Us\\\",\\n                \\\"class\\\": \\\"_x29498744\\\",\\n                \\\"required_options\\\": {}\\n            },\\n            {\\n                \\\"type\\\": \\\"html\\\",\\n                \\\"html\\\": \\\"<p>Please provide the information below and we'll be in touch soon.</p>\\\",\\n                \\\"class\\\": \\\"_x14271862\\\",\\n                \\\"required_options\\\": {}\\n            },\\n            {\\n                \\\"header\\\": \\\"Full Name\\\",\\n                \\\"type\\\": \\\"fullname\\\",\\n                \\\"default_text\\\": \\\"\\\",\\n                \\\"class\\\": \\\"_x13100531\\\",\\n                \\\"required_options\\\": {},\\n                \\\"required\\\": true\\n            },\\n            {\\n                \\\"header\\\": \\\"Email\\\",\\n                \\\"type\\\": \\\"email\\\",\\n                \\\"default_text\\\": \\\"\\\",\\n                \\\"required\\\": true,\\n                \\\"class\\\": \\\"_x37378733\\\",\\n                \\\"required_options\\\": {}\\n            },\\n            {\\n                \\\"type\\\": \\\"organization\\\",\\n                \\\"header\\\": \\\"Company\\\",\\n                \\\"default_text\\\": \\\"\\\",\\n                \\\"class\\\": \\\"_x16906569\\\",\\n                \\\"required_options\\\": {},\\n                \\\"required\\\": false\\n            },\\n            {\\n                \\\"id\\\": \\\"13\\\",\\n                \\\"header\\\": \\\"Role in Company\\\",\\n                \\\"required\\\": true,\\n                \\\"class\\\": \\\"_field13\\\",\\n                \\\"required_options\\\": {}\\n            },\\n            {\\n                \\\"id\\\": \\\"46\\\",\\n                \\\"header\\\": \\\"What do you need help with?\\\",\\n                \\\"required\\\": true,\\n                \\\"class\\\": \\\"_field46\\\",\\n                \\\"required_options\\\": {}\\n            }\\n        ],\\n        \\\"parentformid\\\": \\\"0\\\",\\n        \\\"userid\\\": \\\"1\\\",\\n        \\\"addressid\\\": \\\"0\\\",\\n        \\\"cdate\\\": \\\"2018-10-07T09:12:46-06:00\\\",\\n        \\\"udate\\\": \\\"2018-10-12T11:18:52-06:00\\\",\\n        \\\"entries\\\": \\\"0\\\",\\n        \\\"aid\\\": null,\\n        \\\"links\\\": {\\n            \\\"address\\\": \\\"https://:account.api-us1.com/api/3/forms/13/address\\\"\\n        },\\n        \\\"id\\\": \\\"13\\\",\\n        \\\"address\\\": null\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc17af5e-db20-42af-8bca-e4f23ffe9575",
+              "name": "403",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the form to retrieve"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No Result found for Form with id 7\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d44a1937-83ba-4c11-839a-e22e040a5977",
+          "name": "delete forms{id}",
+          "request": {
+            "name": "delete forms{id}",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forms",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "id",
+                  "description": "(Required) form id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78e2f99e-0996-4628-a236-28b5ea6b4b44",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "id",
+                      "description": "(Required) form id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "137211b2-f33f-4079-b5e3-60e8b4627a71",
+          "name": "put forms{id}",
+          "request": {
+            "name": "put forms{id}",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forms",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e246bf35-e5f8-45e9-9579-974ab7d16d50",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16cbd785-368c-4bcd-bb41-1895c8579b9c",
+          "name": "ActiveCampaign List All Forms",
+          "request": {
+            "name": "ActiveCampaign List All Forms",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd0ef53f-04a3-4638-b41b-e07f90ae205f",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"forms\\\": [\\n        {\\n            \\\"name\\\": \\\"Testing\\\",\\n            \\\"action\\\": \\\"\\\",\\n            \\\"actiondata\\\": {\\n                \\\"actions\\\": [\\n                    {\\n                        \\\"type\\\": \\\"subscribe-to-list\\\",\\n                        \\\"email\\\": \\\"johndoe@example.com\\\",\\n                        \\\"list\\\": \\\"1\\\"\\n                    }\\n                ]\\n            },\\n            \\\"submit\\\": \\\"show-thank-you\\\",\\n            \\\"submitdata\\\": {\\n                \\\"url\\\": \\\"\\\"\\n            },\\n            \\\"url\\\": \\\"\\\",\\n            \\\"layout\\\": \\\"inline-form\\\",\\n            \\\"title\\\": \\\"\\\",\\n            \\\"body\\\": \\\"\\\",\\n            \\\"button\\\": \\\"Submit\\\",\\n            \\\"thanks\\\": \\\"Thanks for signing up!\\\",\\n            \\\"style\\\": {\\n                \\\"background\\\": \\\"FFFFFF\\\",\\n                \\\"dark\\\": true,\\n                \\\"fontcolor\\\": \\\"000000\\\",\\n                \\\"layout\\\": \\\"normal\\\",\\n                \\\"border\\\": {\\n                    \\\"width\\\": 0,\\n                    \\\"style\\\": \\\"solid\\\",\\n                    \\\"color\\\": \\\"B0B0B0\\\",\\n                    \\\"radius\\\": 0\\n                },\\n                \\\"width\\\": 500,\\n                \\\"ac_branding\\\": true,\\n                \\\"button\\\": {\\n                    \\\"padding\\\": 10,\\n                    \\\"background\\\": \\\"333333\\\",\\n                    \\\"fontcolor\\\": \\\"FFFFFF\\\",\\n                    \\\"border\\\": {\\n                        \\\"radius\\\": 4,\\n                        \\\"color\\\": \\\"333333\\\",\\n                        \\\"style\\\": \\\"solid\\\",\\n                        \\\"width\\\": 0\\n                    }\\n                }\\n            },\\n            \\\"options\\\": {\\n                \\\"blanks_overwrite\\\": true,\\n                \\\"confaction\\\": \\\"show-message\\\",\\n                \\\"sendoptin\\\": true,\\n                \\\"optin_id\\\": 1,\\n                \\\"optin_created\\\": true,\\n                \\\"confform\\\": \\\"2\\\"\\n            },\\n            \\\"cfields\\\": [\\n                {\\n                    \\\"type\\\": \\\"header\\\",\\n                    \\\"header\\\": \\\"Subscribe for Email Updates\\\",\\n                    \\\"class\\\": \\\"_x41699710\\\"\\n                },\\n                {\\n                    \\\"type\\\": \\\"html\\\",\\n                    \\\"html\\\": \\\"<p>Add a descriptive message telling what your visitor is signing up for here.</p>\\\",\\n                    \\\"class\\\": \\\"_x50329289\\\"\\n                },\\n                {\\n                    \\\"header\\\": \\\"Full Name\\\",\\n                    \\\"type\\\": \\\"fullname\\\",\\n                    \\\"default_text\\\": \\\"Type your name\\\",\\n                    \\\"class\\\": \\\"_x67999677\\\"\\n                },\\n                {\\n                    \\\"header\\\": \\\"Email\\\",\\n                    \\\"type\\\": \\\"email\\\",\\n                    \\\"default_text\\\": \\\"Type your email\\\",\\n                    \\\"required\\\": true,\\n                    \\\"class\\\": \\\"_x68140262\\\"\\n                }\\n            ],\\n            \\\"parentformid\\\": \\\"0\\\",\\n            \\\"userid\\\": \\\"1\\\",\\n            \\\"addressid\\\": \\\"0\\\",\\n            \\\"cdate\\\": \\\"2018-08-17T13:47:31-05:00\\\",\\n            \\\"udate\\\": \\\"2018-08-17T13:47:38-05:00\\\",\\n            \\\"entries\\\": \\\"0\\\",\\n            \\\"aid\\\": \\\"0\\\",\\n            \\\"defaultscreenshot\\\": \\\"http://img-us1.com/default-form.gif\\\",\\n            \\\"recent\\\": [],\\n            \\\"contacts\\\": 0,\\n            \\\"deals\\\": 0,\\n            \\\"links\\\": {\\n                \\\"address\\\": \\\"https://:account.api-us1.com/api/3/forms/1/address\\\"\\n            },\\n            \\\"id\\\": \\\"1\\\",\\n            \\\"address\\\": null\\n        }\\n    ],\\n    \\\"meta\\\": {\\n        \\\"total\\\": \\\"1\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afbd13ff-fe48-4748-aa3d-6aa1497c39ec",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28abaae0-7485-4f42-b7cf-c100ddb9b897",
+          "name": "post forms",
+          "request": {
+            "name": "post forms",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b162f532-b957-4828-97f7-6163f24eeb61",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac1b73ef-992d-49c4-b417-edf78862f03b",
+          "name": "post formoptin",
+          "request": {
+            "name": "post formoptin",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "form",
+                "optin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{yourAccountName}}",
+                  "key": "yourAccountName"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8815a7a7-fbc3-4a47-8e55-429bbf1788d7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "form",
+                    "optin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{yourAccountName}}",
+                      "key": "yourAccountName"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourAccountName",
+      "key": "yourAccountName"
+    },
+    {
+      "type": "string",
+      "value": "https://{{yourAccountName}}.api-us1.com/api/3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a13c363e-d7a7-4408-afbf-93f0f9c1d512",
+    "name": "ActiveCampaign SMS Broadcast Accounts Forms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign\n\nContact Support:\n Name: ActiveCampaign Support",
+      "type": "text/plain"
+    }
+  }
+}

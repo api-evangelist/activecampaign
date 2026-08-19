@@ -1,0 +1,89 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developers.activecampaign.com/reference/url,
+  https://developers.activecampaign.com/reference/retrieve-account-information,
+  https://status.activecampaign.com/, plus derivation from openapi/*.yml and
+  openapi/*.json
+description: >-
+  Versioning, deprecation and operational-transparency posture for the ActiveCampaign
+  API. The honest headline: ActiveCampaign runs three API generations concurrently and
+  publishes a migration table, but has no written deprecation policy, no Sunset/
+  Deprecation header support, and no public SLA.
+versioning:
+  scheme: uri-path
+  current: v3
+  path_segment: /api/3
+  docs: https://developers.activecampaign.com/reference/url
+  generations:
+    - version: v3
+      status: current
+      base: 'https://{yourAccountName}.api-us1.com/api/3'
+      specs:
+        - openapi/_original/activecampaign-v3.json
+        - openapi/activecampaign-whatsapp-api-openapi.yml
+        - openapi/activecampaign-segments-api-openapi.json
+        - openapi/activecampaign-segment-matching-api-openapi.json
+        - openapi/activecampaign-segment-match-one-api-openapi.json
+    - version: v2
+      status: legacy-but-live
+      base: 'https://{youraccountname}.api-us1.com/api/2'
+      spec: openapi/activecampaign-v2-api-openapi.json
+      surviving_operations: 1
+      note: >-
+        Still advertised in ActiveCampaign's own /.well-known/api-catalog as a live
+        service description. One operation remains: GET /api/2/template/share
+        (create-shareable-campaign-template-link). No end-of-life date is published.
+    - version: v1
+      status: retired
+      note: >-
+        Retired but still addressed in the docs. The v3 account endpoint carries a
+        field-by-field v1 -> v3 migration table (account_view -> GET /settings/account,
+        fname -> first_name, result envelope removed in favour of HTTP status codes),
+        which is the only migration guidance ActiveCampaign publishes anywhere.
+      migration_guide: https://developers.activecampaign.com/reference/retrieve-account-information
+  breaking_change_notice: undocumented
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  note: >-
+    No deprecation policy page exists on the developer portal, no notice period is
+    stated, and no operation in any of the nine published specs carries
+    `deprecated: true`. v1 was retired without a published sunset date and v2 has been
+    reduced to a single operation with no announced end of life. An integrator has no
+    contractual warning of removal.
+deprecated_operations: []
+deprecated_operation_count: 0
+sla:
+  url: null
+  published: false
+  uptime_target: null
+  note: >-
+    No public SLA or uptime commitment is published for the API. Uptime is observable
+    through the status page but is not promised.
+status_page:
+  url: https://status.activecampaign.com/
+  provider: Atlassian Statuspage
+  machine_readable: https://status.activecampaign.com/api/v2/summary.json
+  subscribe: true
+  note: >-
+    Statuspage v2 API is live and anonymous, so an agent can poll component health and
+    incident history programmatically — the strongest operational-transparency signal
+    ActiveCampaign offers.
+release_notes:
+  url: https://www.activecampaign.com/whats-new
+  developer_changelog: null
+  artifact: changelog/activecampaign-changelog.yml
+support:
+  help_center: https://help.activecampaign.com
+  developer_community: https://community.activecampaign.com/c/developers
+  devrel_contact: devrel@activecampaign.com
+x-evidence:
+  - {url: 'https://developers.activecampaign.com/reference/url.md', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/.well-known/api-catalog', http_status: 200, fetched: '2026-08-13', note: 'Lists v2.json alongside v3.json as live service descriptions.'}
+  - {url: 'https://status.activecampaign.com/api/v2/summary.json', http_status: 200, fetched: '2026-08-13'}
+  - {url: 'https://developers.activecampaign.com/changelog', http_status: 404, fetched: '2026-08-13'}
+  - {url: 'https://www.activecampaign.com/roadmap', http_status: 404, fetched: '2026-08-13'}
