@@ -1534,147 +1534,307 @@ apis:
     url: examples/activecampaign-sms-recipient-example.json
   - type: Overlay
     url: overlays/activecampaign-webhooks-overlay.yaml
+- aid: activecampaign:activecampaign-ai-customization-documents-api
+  name: ActiveCampaign AI Customization Documents API
+  description: Manage documents attached to AI customization profiles.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - AI Customization Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-ai-customization-documents-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-ai-customization-instructions-api
+  name: ActiveCampaign AI Customization Instructions API
+  description: Manage custom instructions for AI customization profiles.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - AI Customization Instructions
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-ai-customization-instructions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-ai-customization-profiles-api
+  name: ActiveCampaign AI Customization Profiles API
+  description: Manage AI customization profiles.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - AI Customization Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-ai-customization-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-child-account-snapshots-api
+  name: ActiveCampaign Child Account Snapshots API
+  description: Create and manage snapshots of reseller child accounts.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Child Account Snapshots
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-child-account-snapshots-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-child-accounts-api
+  name: ActiveCampaign Child Accounts API
+  description: Manage reseller child accounts.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Child Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-child-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-conversations-api
+  name: ActiveCampaign Conversations API
+  description: The Conversations API from ActiveCampaign — 2 operation(s) for conversations.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Conversations
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-conversations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-count-history-api
+  name: ActiveCampaign Count History API
+  description: The Count History API from ActiveCampaign — 2 operation(s) for count history.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Count History
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-count-history-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-crm-reporting-api
+  name: ActiveCampaign CRM Reporting API
+  description: Read-only CRM pipeline reporting and metrics.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - CRM Reporting
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-crm-reporting-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-crm-sync-api
+  name: ActiveCampaign CRM Sync API
+  description: Configure CRM synchronization for HQ pipelines.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - CRM Sync
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-crm-sync-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-crm-sync-settings-api
+  name: ActiveCampaign CRM Sync Settings API
+  description: Manage CRM synchronization settings.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - CRM Sync Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-crm-sync-settings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-event-api
+  name: ActiveCampaign Event API
+  description: The Event API from ActiveCampaign — 1 operation(s) for event.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Event
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-event-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-files-api
+  name: ActiveCampaign Files API
+  description: Storage quota information for the partner.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-files-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-flows-api
+  name: ActiveCampaign Flows API
+  description: The Flows API from ActiveCampaign — 5 operation(s) for flows.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Flows
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-flows-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-insight-cards-api
+  name: ActiveCampaign Insight Cards API
+  description: Retrieve and update partner insight cards.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Insight Cards
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-insight-cards-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-locales-api
+  name: ActiveCampaign Locales API
+  description: Supported language and timezone catalogs.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Locales
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-locales-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-match-all-api
+  name: ActiveCampaign Match All API
+  description: Return all Contact id's that match the given Segment and provided Additional Criteria
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Match All
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-match-all-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-match-one-api
+  name: ActiveCampaign Match One API
+  description: >-
+    Evaluate Contact Id against the provided SegmentId. Returns `true` if Contact matches the given Segment
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Match One
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-match-one-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-most-recent-count-history-api
+  name: ActiveCampaign Most Recent Count History API
+  description: >-
+    The Most Recent Count History API from ActiveCampaign — 1 operation(s) for most recent count history.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Most Recent Count History
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-most-recent-count-history-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
+- aid: activecampaign:activecampaign-saved-segment-summaries-api
+  name: ActiveCampaign Saved Segment Summaries API
+  description: >-
+    Saved Segments have a name and are visible on the app/segments page. Saved Segments have Summaries
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
+  tags:
+  - Saved Segment Summaries
+  properties:
+  - type: OpenAPI
+    url: openapi/activecampaign-saved-segment-summaries-api-openapi.yml
+  - type: Documentation
+    url: https://developers.activecampaign.com/reference/overview
+  - type: Authentication
+    url: https://developers.activecampaign.com/reference/authentication
 - aid: activecampaign:activecampaign-segments-api
   name: ActiveCampaign Segments API
-  description: The Segments API from ActiveCampaign — 8 operation(s) for creating, retrieving, updating and deleting
-    segments (segmentsV2), reading a segment as it existed at a point in time, reverting a segment to a historic
-    definition, and listing saved segment summaries (audiences).
-  humanURL: https://developers.activecampaign.com/reference/create_segment
-  baseURL: https://{yourAccountName}.api-us1.com/api/3
+  description: >-
+    Segment JSON structure is extremely flexible. Only segments that are supported by the segment-builder
+    are guaranteed to work as expected. Specific Conditions types only support a subset of FieldDO and
+    AggregateDO options. Please refer to your account's /app/segments/segment-builder page to verify what
+    Segment JSON configurations are possible.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
   tags:
   - Segments
-  - Contacts
   properties:
   - type: OpenAPI
-    url: openapi/activecampaign-segments-api-openapi.json
+    url: openapi/activecampaign-segments-api-openapi.yml
   - type: Documentation
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
-  - type: Overlay
-    url: overlays/activecampaign-segments-overlay.yaml
-- aid: activecampaign:activecampaign-segment-matching-api
-  name: ActiveCampaign Segment Matching API
-  description: The Segment Matching API from ActiveCampaign — 8 operation(s) for asynchronous match-all and match-some
-    segment evaluation. A match request returns a runId; result sets are cached against that runId with a 24-hour
-    TTL and polled until is_ready is true. Also carries segment count history.
-  humanURL: https://developers.activecampaign.com/reference/create_match_all_request
-  baseURL: https://{yourAccountName}.api-us1.com
+- aid: activecampaign:activecampaign-template-api
+  name: ActiveCampaign Template API
+  description: The Template API from ActiveCampaign — 1 operation(s) for template.
+  humanURL: https://developers.activecampaign.com/reference/overview
+  baseURL: https://youraccountname.api-us1.com/api/3
   tags:
-  - Segments
-  - Contacts
+  - Template
   properties:
   - type: OpenAPI
-    url: openapi/activecampaign-segment-matching-api-openapi.json
+    url: openapi/activecampaign-template-api-openapi.yml
   - type: Documentation
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
-  - type: Overlay
-    url: overlays/activecampaign-segment-matching-overlay.yaml
-- aid: activecampaign:activecampaign-segment-match-one-api
-  name: ActiveCampaign Segment Match One API
-  description: The Segment Match One API from ActiveCampaign — 2 operation(s) that check whether a single contact
-    matches a given segment, addressed either by ActiveCampaign contact id or by the integration-supplied externalId.
-  humanURL: https://developers.activecampaign.com/reference/create_match_one_request
-  baseURL: https://{yourAccountName}.api-us1.com/api/3
-  tags:
-  - Segments
-  - Contacts
-  properties:
-  - type: OpenAPI
-    url: openapi/activecampaign-segment-match-one-api-openapi.json
-  - type: Documentation
-    url: https://developers.activecampaign.com/reference/overview
-  - type: Authentication
-    url: https://developers.activecampaign.com/reference/authentication
-  - type: Overlay
-    url: overlays/activecampaign-segment-match-one-overlay.yaml
-- aid: activecampaign:activecampaign-partners-api
-  name: ActiveCampaign Partners API
-  description: 'The Partners API from ActiveCampaign — 36 operation(s) for resellers and agency partners: child-account
-    creation and listing, account cloning snapshots, AI customization profiles, documents and custom instructions,
-    CRM reporting and sync configuration, insight cards, storage quota and locale catalogs. It is a separate credential
-    surface from the customer v3 API.'
-  humanURL: https://developers.activecampaign.com/reference/get_child_accounts_get_list
-  baseURL: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com/
-  tags:
-  - Partners
-  - Resellers
-  - Child Accounts
-  - Artificial Intelligence
-  tags_raw:
-  - Partners
-  - Resellers
-  - Child Accounts
-  - AI
-  properties:
-  - type: OpenAPI
-    url: openapi/activecampaign-partners-api-openapi.json
-  - type: Documentation
-    url: https://developers.activecampaign.com/reference/overview
-  - type: Authentication
-    url: https://developers.activecampaign.com/reference/authentication
-  - type: Overlay
-    url: overlays/activecampaign-partners-overlay.yaml
-- aid: activecampaign:activecampaign-whatsapp-api
-  name: ActiveCampaign WhatsApp API
-  description: The WhatsApp API from ActiveCampaign — 13 operation(s) for listing, retrieving, updating and deleting
-    WhatsApp message templates, sending a template message to a recipient phone number with template variables,
-    and reading conversations and flow executions on the WhatsApp channel.
-  humanURL: https://developers.activecampaign.com/reference/list-whatsapp-templates
-  baseURL: https://{youraccountname}.api-us1.com/api/3
-  tags:
-  - WhatsApp
-  - Messaging
-  - Channels
-  properties:
-  - type: OpenAPI
-    url: openapi/activecampaign-whatsapp-api-openapi.yml
-  - type: Documentation
-    url: https://developers.activecampaign.com/reference/overview
-  - type: Authentication
-    url: https://developers.activecampaign.com/reference/authentication
-  - type: Overlay
-    url: overlays/activecampaign-whatsapp-overlay.yaml
-- aid: activecampaign:activecampaign-trackcmp-api
-  name: ActiveCampaign trackcmp Event API
-  description: The trackcmp event API from ActiveCampaign — 1 operation that posts a tracked event. It is the only
-    ActiveCampaign API served from trackcmp.net rather than from the per-account api-us1.com host, and it is the
-    ingest endpoint behind site and event tracking.
-  humanURL: https://developers.activecampaign.com/reference/track-event
-  baseURL: https://trackcmp.net
-  tags:
-  - Event Tracking
-  - Site Tracking
-  properties:
-  - type: OpenAPI
-    url: openapi/activecampaign-trackcmp-api-openapi.json
-  - type: Documentation
-    url: https://developers.activecampaign.com/reference/overview
-  - type: Authentication
-    url: https://developers.activecampaign.com/reference/authentication
-  - type: Overlay
-    url: overlays/activecampaign-trackcmp-overlay.yaml
-- aid: activecampaign:activecampaign-v2-api
-  name: ActiveCampaign v2 Legacy API
-  description: The surviving v2 surface from ActiveCampaign — 1 operation, GET /api/2/template/share, which creates
-    a shareable campaign template link. ActiveCampaign still advertises v2.json in its own /.well-known/api-catalog
-    alongside v3, with no published end-of-life date.
-  humanURL: https://developers.activecampaign.com/reference/create-shareable-campaign-template-link
-  baseURL: https://{youraccountname}.api-us1.com/api/2
-  tags:
-  - Legacy
-  - Templates
-  properties:
-  - type: OpenAPI
-    url: openapi/activecampaign-v2-api-openapi.json
-  - type: Documentation
-    url: https://developers.activecampaign.com/reference/overview
-  - type: Authentication
-    url: https://developers.activecampaign.com/reference/authentication
-  - type: Overlay
-    url: overlays/activecampaign-v2-overlay.yaml
 name: ActiveCampaign
 tags:
 - Marketing Automation
@@ -1700,6 +1860,20 @@ type: Index
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+- type: Overlay
+  url: overlays/activecampaign-segments-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-segment-matching-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-segment-match-one-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-partners-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-whatsapp-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-trackcmp-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-v2-overlay.yaml
 - type: TrustCenter
   url: security/activecampaign-trust-center.yml
 - type: Website
