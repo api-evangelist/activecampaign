@@ -10,8 +10,11 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: activecampaignApi
-  url: ../openapi/activecampaign-v3.json
+- name: contactsApi
+  url: ../openapi/activecampaign-contacts-api-openapi.yml
+  type: openapi
+- name: fieldsApi
+  url: ../openapi/activecampaign-fields-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: sync-contact-set-custom-field-tag

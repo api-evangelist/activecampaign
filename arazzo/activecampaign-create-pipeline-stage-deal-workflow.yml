@@ -10,8 +10,8 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: activecampaignApi
-  url: ../openapi/activecampaign-v3.json
+- name: dealsApi
+  url: ../openapi/activecampaign-deals-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-pipeline-stage-deal

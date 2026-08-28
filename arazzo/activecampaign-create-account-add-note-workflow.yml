@@ -10,8 +10,8 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: activecampaignApi
-  url: ../openapi/activecampaign-v3.json
+- name: accountsApi
+  url: ../openapi/activecampaign-accounts-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-account-add-note

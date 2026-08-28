@@ -12,8 +12,11 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: activecampaignApi
-  url: ../openapi/activecampaign-v3.json
+- name: automationsApi
+  url: ../openapi/activecampaign-automations-api-openapi.yml
+  type: openapi
+- name: contactsApi
+  url: ../openapi/activecampaign-contacts-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: enroll-contact-in-automation-by-name

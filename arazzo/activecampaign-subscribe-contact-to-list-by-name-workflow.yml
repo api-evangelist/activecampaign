@@ -10,8 +10,11 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: activecampaignApi
-  url: ../openapi/activecampaign-v3.json
+- name: contactsApi
+  url: ../openapi/activecampaign-contacts-api-openapi.yml
+  type: openapi
+- name: listsApi
+  url: ../openapi/activecampaign-lists-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: subscribe-contact-to-list-by-name
