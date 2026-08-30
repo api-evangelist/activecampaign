@@ -1,0 +1,421 @@
+openapi: 3.2.0
+info:
+  title: Partners CRM Sync API
+  description: Partners Hub API documentation
+  version: 1.0.0
+servers:
+- url: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com/
+  description: Production
+tags:
+- name: CRM Sync
+  description: Configure CRM synchronization for HQ pipelines.
+paths:
+  /api/crm-sync/v1/pipelines:
+    get:
+      tags:
+      - CRM Sync
+      summary: Get a list of HQ pipelines with CRM sync status
+      operationId: get_crm_sync_list_pipelines
+      parameters:
+      - name: search
+        in: query
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+          default: null
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+          maximum: 1000
+          minimum: 1
+      - name: sort_by
+        in: query
+        required: false
+        schema:
+          type: string
+          default: pipeline_name
+          enum:
+          - pipeline_name
+      - name: sort_direction
+        in: query
+        required: false
+        schema:
+          type: string
+          default: asc
+          enum:
+          - asc
+          - desc
+      responses:
+        '200':
+          description: List of HQ pipelines with CRM sync state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineListResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+  /api/crm-sync/v1/pipelines/{pipeline_id}/sync:
+    get:
+      tags:
+      - CRM Sync
+      summary: Get pipeline CRM sync configuration
+      operationId: get_crm_sync_get_pipeline_sync_config
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      responses:
+        '200':
+          description: Saved CRM sync configuration for the pipeline
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineSyncConfigResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Pipeline is not in the reseller catalogue
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+    put:
+      tags:
+      - CRM Sync
+      summary: Upsert pipeline CRM sync configuration (enable/disable and targets)
+      operationId: put_crm_sync_put_pipeline_sync_config
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertPipelineSyncRequest'
+      responses:
+        '204':
+          description: Configuration saved
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Pipeline is not in the reseller catalogue
+        '422':
+          description: Validation failed
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+components:
+  schemas:
+    UpsertPipelineSyncTargetRequest:
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          default: null
+          enum:
+          - all
+          - label
+          - manual
+          - null
+        account_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+          default: null
+        label_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+          default: null
+      type: object
+      additionalProperties: false
+    PipelineListPagination:
+      required:
+      - total
+      - page
+      - limit
+      - total_pages
+      properties:
+        total:
+          type: integer
+          example: 100
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 10
+        total_pages:
+          type: integer
+          example: 10
+      type: object
+      additionalProperties: false
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
+    PipelineSyncConfigResponse:
+      required:
+      - id
+      - sync_enabled
+      - target
+      properties:
+        id:
+          type: integer
+          example: 42
+        sync_enabled:
+          type: boolean
+          example: true
+        target:
+          $ref: '#/components/schemas/PipelineSyncTargetResponse'
+      type: object
+      additionalProperties: false
+    ApiErrorResponse:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
+      type: object
+      additionalProperties: true
+    UpsertPipelineSyncRequest:
+      required:
+      - sync_enabled
+      properties:
+        sync_enabled:
+          type:
+          - boolean
+          - 'null'
+          default: null
+          example: true
+        target:
+          default: null
+          oneOf:
+          - $ref: '#/components/schemas/UpsertPipelineSyncTargetRequest'
+          type:
+          - object
+          - 'null'
+      type: object
+      additionalProperties: false
+    PipelineSyncTargetResponse:
+      required:
+      - account_ids
+      - label_ids
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          enum:
+          - all
+          - label
+          - manual
+        account_ids:
+          type: array
+          items:
+            type: integer
+        label_ids:
+          type: array
+          items:
+            type: integer
+      type: object
+      additionalProperties: false
+    PipelineListResponse:
+      required:
+      - pipelines
+      - pagination
+      properties:
+        pipelines:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/PipelineResponse'
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/PipelineResponse'
+        pagination:
+          $ref: '#/components/schemas/PipelineListPagination'
+      type: object
+      additionalProperties: false
+    PipelineResponse:
+      required:
+      - id
+      - name
+      - sync_enabled
+      - synced_accounts_count
+      - last_synced_status
+      properties:
+        id:
+          type: integer
+          example: 42
+        name:
+          type: string
+          example: Dog Bday Party
+        sync_enabled:
+          type: boolean
+          example: true
+        synced_accounts_count:
+          type: integer
+          example: 12
+        last_synced_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-16T10:20:30+00:00'
+        last_synced_status:
+          type: string
+          example: success
+        last_synced_error:
+          type:
+          - string
+          - 'null'
+          example: null
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+  securitySchemes:
+    PartnerApiKey:
+      type: apiKey
+      description: API Token Authorization from Partner Portal
+      name: api-key
+      in: header
+    PartnerJwtBearerAuth:
+      type: http
+      description: JWT Authorization header using the Partner JWT token.
+      bearerFormat: JWT
+      scheme: bearer

@@ -1,0 +1,94 @@
+openapi: 3.2.0
+info:
+  title: trackcmp Event API
+  version: '3'
+servers:
+- url: https://trackcmp.net
+security:
+- {}
+tags:
+- name: Event
+paths:
+  /event:
+    post:
+      summary: Track event
+      description: Track an event using event tracking. Event Tracking must be toggled on in your ActiveCampaign account on "Website" -> "Site Tracking" (scroll down to Event tracking) in order for this call to work.
+      operationId: track-event
+      parameters:
+      - name: Content-Type
+        in: header
+        description: Value needs to be "application/x-www-form-urlencoded"
+        required: true
+        schema:
+          type: string
+          default: application/x-www-form-urlencoded
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - event
+              - actid
+              - visit
+              properties:
+                key:
+                  type: string
+                  description: This value is unique to your ActiveCampaign account and can be found named "Event Key" on "Website" -> "Site Tracking" (scroll down to Event tracking) inside your ActiveCampaign account.
+                event:
+                  type: string
+                  description: The name of the event you wish to track. (Max of 32 Characters)
+                eventdata:
+                  type: string
+                  description: A value you wish to store for the event.
+                actid:
+                  type: string
+                  description: This value is unique to your ActiveCampaign account and can be found named "actid" on "Website" -> "Site Tracking" (scroll down to Event tracking) API.
+                visit:
+                  type: string
+                  description: The json-encoded email address of the contact you wish to track this event for. {"email":"visitor@example.com"})
+                  format: json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"success\": 1,\n    \"message\": \"Event spawned\"\n}"
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: integer
+                    example: 1
+                    default: 0
+                  message:
+                    type: string
+                    example: Event spawned
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: csharp
+          code: "curl --request POST \\\n  --url https://trackcmp.net/event \\\n  --header 'content-type: application/x-www-form-urlencoded' \\\n  --data 'actid={{actid}}&key={{key}}&event={{event}}&eventdata={{eventdata}}&visit=%7B%22email%22%3A%22{{email}}%22%7D'"
+          name: Raw body
+        samples-languages:
+        - csharp
+      tags:
+      - Event
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: true
+x-readme-fauxas: true

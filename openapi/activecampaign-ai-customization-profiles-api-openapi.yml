@@ -1,0 +1,704 @@
+openapi: 3.2.0
+info:
+  title: Partners AI Customization Profiles API
+  description: Partners Hub API documentation
+  version: 1.0.0
+servers:
+- url: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com/
+  description: Production
+tags:
+- name: AI Customization Profiles
+  description: Manage AI customization profiles.
+paths:
+  /api/ai-customizations/v1/profiles:
+    get:
+      tags:
+      - AI Customization Profiles
+      operationId: get_ai_customizations_profiles_list
+      responses:
+        '200':
+          description: Profile details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileListResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Get a list of AI customization profiles
+    post:
+      tags:
+      - AI Customization Profiles
+      operationId: post_ai_customizations_profiles_create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProfileRequest'
+      responses:
+        '201':
+          description: Profile details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateProfileResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+        '409':
+          description: Request failed due to a conflict with the current state of AI customization profiles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 409
+                detail: A profile with this name already exists
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://symfony.com/errors/validation
+                title: Validation Failed
+                status: 422
+                detail: 'assign_to_all_accounts: This value should be of type bool.'
+                violations:
+                - propertyPath: assign_to_all_accounts
+                  title: This value should be of type bool.
+                  template: This value should be of type {{ type }}.
+                  parameters:
+                    '{{ type }}': bool
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Create a new AI customization profile
+  /api/ai-customizations/v1/profiles/{id}:
+    get:
+      tags:
+      - AI Customization Profiles
+      operationId: get_ai_customizations_profiles_get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      responses:
+        '200':
+          description: Profile details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Get profile by id
+    delete:
+      tags:
+      - AI Customization Profiles
+      summary: Delete profile by id
+      operationId: delete_ai_customizations_profiles_delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      responses:
+        '204':
+          description: Profile was successfully deleted (204 No Content).
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+    patch:
+      tags:
+      - AI Customization Profiles
+      operationId: patch_ai_customizations_profiles_update
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileRequest'
+      responses:
+        '200':
+          description: Profile updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+        '409':
+          description: Request failed due to a conflict with the current state of AI customization profiles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 409
+                detail: A profile with this name already exists
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://symfony.com/errors/validation
+                title: Validation Failed
+                status: 422
+                detail: 'assign_to_all_accounts: This value should be of type bool.'
+                violations:
+                - propertyPath: assign_to_all_accounts
+                  title: This value should be of type bool.
+                  template: This value should be of type {{ type }}.
+                  parameters:
+                    '{{ type }}': bool
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Update profile by id
+  /api/ai-customizations/v1/profiles/child-accounts/{childAccountId}:
+    get:
+      tags:
+      - AI Customization Profiles
+      operationId: get_ai_customizations_profiles_get_by_child_account
+      parameters:
+      - name: childAccountId
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      responses:
+        '200':
+          description: AI customization profile assigned to the child account, or null when none is assigned (or the account does not belong to the reseller).
+          content:
+            application/json:
+              schema:
+                properties:
+                  profile:
+                    oneOf:
+                    - $ref: '#/components/schemas/ChildAccountProfileResponse'
+                    type:
+                    - object
+                    - 'null'
+                type: object
+                additionalProperties: false
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+      security:
+      - PartnerJwtBearerAuth: []
+      summary: Get the AI customization profile assigned to a child account
+  /api/ai-customizations/v1/profiles/{id}/accounts:
+    patch:
+      tags:
+      - AI Customization Profiles
+      operationId: patch_ai_customizations_profiles_assign_accounts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignAccountsToProfileRequest'
+      responses:
+        '204':
+          description: Accounts successfully assigned to profile
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '403':
+          description: One or more accounts are invalid or do not belong to this reseller
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 403
+                detail: One or more accounts are invalid or do not belong to this reseller
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://symfony.com/errors/validation
+                title: Validation Failed
+                status: 422
+                detail: 'assign_to_all_accounts: This value should be of type bool.'
+                violations:
+                - propertyPath: assign_to_all_accounts
+                  title: This value should be of type bool.
+                  template: This value should be of type {{ type }}.
+                  parameters:
+                    '{{ type }}': bool
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Assign child accounts to a profile
+components:
+  schemas:
+    UpdateProfileRequest:
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          maxLength: 255
+          minLength: 1
+          example: Gyms and fitness centers
+      type: object
+      additionalProperties: false
+    ChildAccountProfileResponse:
+      required:
+      - id
+      - reseller_id
+      - name
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        reseller_id:
+          type: integer
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
+    AssignAccountsToProfileRequest:
+      description: You cannot provide non-empty accountIds and set assignToAllAccounts to true at the same time.
+      properties:
+        account_ids:
+          description: List of account IDs to assign
+          type: array
+          items:
+            type: integer
+            maximum: 9223372036854776000
+            minimum: 1
+          default: []
+        reassign:
+          type: boolean
+          default: false
+        assign_to_all_accounts:
+          type: boolean
+          default: false
+      type: object
+      oneOf:
+      - required:
+        - account_ids
+        properties:
+          account_ids:
+            type: array
+            items:
+              type: integer
+              minimum: 1
+            minItems: 1
+          reassign:
+            type: boolean
+        additionalProperties: false
+      - required:
+        - assign_to_all_accounts
+        properties:
+          reassign:
+            type: boolean
+          assign_to_all_accounts:
+            type: boolean
+        additionalProperties: false
+      additionalProperties: false
+    ProfileResponse:
+      required:
+      - id
+      - reseller_id
+      - name
+      - created_at
+      - updated_at
+      - assigned_accounts_count
+      properties:
+        id:
+          type: integer
+        reseller_id:
+          type: integer
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        assigned_accounts_count:
+          type: integer
+        assigned_accounts:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ChildAccountData'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ChildAccountData'
+      type: object
+      additionalProperties: false
+    ChildAccountData:
+      required:
+      - id
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        reseller_id:
+          type:
+          - integer
+          - 'null'
+        account_name:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
+    ApiErrorResponse:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
+      type: object
+      additionalProperties: true
+    CreateProfileRequest:
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          maxLength: 255
+          minLength: 1
+          example: Gyms
+      type: object
+      additionalProperties: false
+    ProfileListResponse:
+      required:
+      - profiles
+      properties:
+        profiles:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProfileResponse'
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/ProfileResponse'
+      type: object
+      additionalProperties: false
+    CreateProfileResponse:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    PartnerApiKey:
+      type: apiKey
+      description: API Token Authorization from Partner Portal
+      name: api-key
+      in: header
+    PartnerJwtBearerAuth:
+      type: http
+      description: JWT Authorization header using the Partner JWT token.
+      bearerFormat: JWT
+      scheme: bearer

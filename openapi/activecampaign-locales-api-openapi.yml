@@ -1,0 +1,157 @@
+openapi: 3.2.0
+info:
+  title: Partners Locales API
+  description: Partners Hub API documentation
+  version: 1.0.0
+servers:
+- url: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com/
+  description: Production
+tags:
+- name: Locales
+  description: Supported language and timezone catalogs.
+paths:
+  /api/locales/v1/catalogs:
+    get:
+      tags:
+      - Locales
+      summary: Get supported language and timezone catalogs.
+      description: Returns the same catalogs ARC uses to validate the language and timezone fields on the child-account PUT endpoint, so dropdowns and write-side validation stay in sync.
+      operationId: get_locales_get_catalogs
+      responses:
+        '200':
+          description: Supported language and timezone catalogs for the account-edit dropdowns.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocaleCatalogsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+        '503':
+          description: ARC is unreachable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 503
+                detail: Failed to fetch locale catalogs from ARC
+      security:
+      - PartnerJwtBearerAuth: []
+components:
+  schemas:
+    ApiErrorResponse:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
+      type: object
+      additionalProperties: true
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+    LocaleCatalogsResponse:
+      required:
+      - languages
+      - timezones
+      properties:
+        languages:
+          description: Supported language catalog. Keys are the values to send back on writes (e.g. "english", "german"); values are display labels.
+          type: object
+          additionalProperties:
+            type: string
+        timezones:
+          description: Supported timezone catalog. Keys are the IANA identifiers to send back on writes (e.g. "America/Chicago"); values are display labels.
+          type: object
+          additionalProperties:
+            type: string
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    PartnerApiKey:
+      type: apiKey
+      description: API Token Authorization from Partner Portal
+      name: api-key
+      in: header
+    PartnerJwtBearerAuth:
+      type: http
+      description: JWT Authorization header using the Partner JWT token.
+      bearerFormat: JWT
+      scheme: bearer

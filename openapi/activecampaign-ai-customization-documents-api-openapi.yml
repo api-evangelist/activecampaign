@@ -1,0 +1,549 @@
+openapi: 3.2.0
+info:
+  title: Partners AI Customization Documents API
+  description: Partners Hub API documentation
+  version: 1.0.0
+servers:
+- url: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com/
+  description: Production
+tags:
+- name: AI Customization Documents
+  description: Manage documents attached to AI customization profiles.
+paths:
+  /api/ai-customizations/v1/profiles/{profile_id}/documents:
+    get:
+      tags:
+      - AI Customization Documents
+      operationId: get_ai_customizations_documents_list
+      parameters:
+      - name: profile_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 20
+          maximum: 100
+          minimum: 1
+      responses:
+        '200':
+          description: Paginated list of documents for the profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileDocumentListResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Profile not found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Get a list of documents for a profile
+    post:
+      tags:
+      - AI Customization Documents
+      operationId: post_ai_customizations_documents_upload
+      parameters:
+      - name: profile_id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: '[1-9][0-9]{0,18}'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                description:
+                  type: string
+                  maxLength: 2000
+                  example: Product knowledge base for AI context
+                tags:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - support_material
+                    - campaign_material
+                    - brand_rules
+                    - benchmark_data
+                    - product_info
+              type: object
+              additionalProperties: false
+      responses:
+        '201':
+          description: Document uploaded and revision created with extraction pending
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileDocumentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Profile not found
+        '422':
+          description: Validation failed
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Upload a document to a profile
+  /api/ai-customizations/v1/profiles/{profile_id}/documents/{document_id}:
+    get:
+      tags:
+      - AI Customization Documents
+      operationId: get_ai_customizations_documents_get
+      parameters:
+      - name: profile_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      responses:
+        '200':
+          description: Document details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileDocumentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Profile or document not found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Get document by id
+    delete:
+      tags:
+      - AI Customization Documents
+      operationId: delete_ai_customizations_documents_delete
+      parameters:
+      - name: profile_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      responses:
+        '204':
+          description: Document was successfully deleted (204 No Content).
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Profile or document not found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Delete document by id
+    patch:
+      tags:
+      - AI Customization Documents
+      operationId: patch_ai_customizations_documents_update
+      parameters:
+      - name: profile_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDocumentRequest'
+      responses:
+        '200':
+          description: Updated document details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileDocumentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Profile or document not found
+        '422':
+          description: Validation failed
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Update document by id
+  /api/ai-customizations/v1/profiles/{profile_id}/documents/{document_id}/download:
+    get:
+      tags:
+      - AI Customization Documents
+      operationId: get_ai_customizations_documents_download
+      parameters:
+      - name: profile_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      responses:
+        '200':
+          description: Presigned S3 URL for downloading the document file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDownloadUrlResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Profile, document, or revision not found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Get a presigned download URL for a document
+components:
+  schemas:
+    DocumentDownloadUrlResponse:
+      required:
+      - url
+      - expires_in
+      properties:
+        url:
+          type: string
+          format: uri
+        expires_in:
+          description: Seconds until the URL expires
+          type: integer
+      type: object
+      additionalProperties: false
+    AICustomizationsPaginationMetadata:
+      required:
+      - total
+      - page
+      - limit
+      - total_pages
+      properties:
+        total:
+          type: integer
+          example: 42
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 20
+        total_pages:
+          type: integer
+          example: 3
+      type: object
+      additionalProperties: false
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
+    ApiErrorResponse:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
+      type: object
+      additionalProperties: true
+    ProfileDocumentResponse:
+      required:
+      - id
+      - description
+      - filename
+      - file_size_bytes
+      - file_extension
+      - status
+      - created_date
+      - enabled
+      properties:
+        id:
+          type: integer
+          example: 1
+        description:
+          type: string
+          example: Product knowledge base for AI context
+        filename:
+          type: string
+          example: product-knowledge-base.pdf
+        file_size_bytes:
+          type: integer
+          example: 204800
+        file_extension:
+          type: string
+          example: pdf
+        status:
+          type: string
+          example: pending
+        created_date:
+          type: string
+          format: date-time
+          example: '2026-04-08T12:00:00+00:00'
+        enabled:
+          type: boolean
+          example: true
+        tags:
+          type: array
+          items:
+            type: string
+            enum:
+            - support_material
+            - campaign_material
+            - brand_rules
+            - benchmark_data
+            - product_info
+          default: []
+      type: object
+      additionalProperties: false
+    UpdateDocumentRequest:
+      required:
+      - is_enabled
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+          default: null
+          maxLength: 2000
+          example: Updated document description
+        is_enabled:
+          type: boolean
+          example: true
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            enum:
+            - support_material
+            - campaign_material
+            - brand_rules
+            - benchmark_data
+            - product_info
+          default: null
+      type: object
+      additionalProperties: false
+    ProfileDocumentListResponse:
+      required:
+      - data
+      - pagination
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileDocumentResponse'
+        pagination:
+          $ref: '#/components/schemas/AICustomizationsPaginationMetadata'
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+  securitySchemes:
+    PartnerApiKey:
+      type: apiKey
+      description: API Token Authorization from Partner Portal
+      name: api-key
+      in: header
+    PartnerJwtBearerAuth:
+      type: http
+      description: JWT Authorization header using the Partner JWT token.
+      bearerFormat: JWT
+      scheme: bearer

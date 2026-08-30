@@ -1,0 +1,587 @@
+openapi: 3.2.0
+info:
+  title: Partners Child Accounts API
+  description: Partners Hub API documentation
+  version: 1.0.0
+servers:
+- url: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com/
+  description: Production
+tags:
+- name: Child Accounts
+  description: Manage reseller child accounts.
+paths:
+  /api/child-accounts/v1/:
+    get:
+      tags:
+      - Child Accounts
+      operationId: get_child_accounts_get_list
+      parameters:
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+          default: null
+      - name: id
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: null
+          maximum: 9223372036854776000
+          minimum: 1
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 20
+          maximum: 1000
+          minimum: 1
+      - name: is_archived
+        in: query
+        required: false
+        schema:
+          type:
+          - boolean
+          - 'null'
+      - name: sort_by
+        in: query
+        required: false
+        schema:
+          type: string
+          default: updated_at
+          enum:
+          - account_name
+          - created_at
+          - updated_at
+      - name: sort_direction
+        in: query
+        required: false
+        schema:
+          type: string
+          default: desc
+          enum:
+          - asc
+          - desc
+      responses:
+        '200':
+          description: List of child accounts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChildAccountListResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Get a list of child accounts
+    post:
+      tags:
+      - Child Accounts
+      summary: Create a new account
+      description: "For getting list of products use documentation here: https://www.activecampaign.com/partner/api/v2/example.php?call=/api/v1/products.\n    More detailed instructions can be found in Step 1 of this document: https://www.activecampaign.com/partner/api/v2/account_add_flow.php"
+      operationId: post_child_accounts_create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountRequestDto'
+      responses:
+        '200':
+          description: Account created successfully.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://symfony.com/errors/validation
+                title: Validation Failed
+                status: 422
+                detail: 'assign_to_all_accounts: This value should be of type bool.'
+                violations:
+                - propertyPath: assign_to_all_accounts
+                  title: This value should be of type bool.
+                  template: This value should be of type {{ type }}.
+                  parameters:
+                    '{{ type }}': bool
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+  /api/child-accounts/v1/snapshots:
+    get:
+      tags:
+      - Child Accounts
+      summary: Get a list of accounts that can be used to create snapshots.
+      operationId: get_child_accounts_get_for_snapshots
+      parameters:
+      - name: sort_by
+        in: query
+        description: Field to sort by (e.g. date_time)
+        required: false
+        schema:
+          type: string
+      - name: sort_direction
+        in: query
+        description: 'Sort direction: asc or desc'
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: search
+        in: query
+        description: Filter accounts by name
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get List of Accounts for snapshots
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAccountForSnapshotResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 503
+                detail: Failed to get list of accounts for snapshots
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+components:
+  schemas:
+    ChildAccountResponse:
+      required:
+      - id
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        reseller_id:
+          type:
+          - integer
+          - 'null'
+        account_name:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
+    ProductEntitlementDto:
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        limit:
+          oneOf:
+          - $ref: '#/components/schemas/ProductEntitlementLimitDto'
+          type:
+          - object
+          - 'null'
+        pricing:
+          oneOf:
+          - $ref: '#/components/schemas/ProductEntitlementPricingDto'
+          type:
+          - object
+          - 'null'
+      type: object
+      additionalProperties: false
+    ProductEntitlementLimitDto:
+      properties:
+        included_units:
+          type: integer
+          default: 0
+        purchased_units:
+          type: integer
+          default: 0
+        period:
+          type:
+          - string
+          - 'null'
+          default: null
+      type: object
+      additionalProperties: false
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
+    ProductDto:
+      title: ChildAccountsProduct
+      required:
+      - code
+      - tier
+      - entitlements
+      properties:
+        addon:
+          type:
+          - boolean
+          - 'null'
+        code:
+          type: string
+          example: ac
+        tier:
+          type: string
+          example: basic
+        name:
+          type:
+          - string
+          - 'null'
+        version:
+          type:
+          - integer
+          - 'null'
+        entitlements:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductEntitlementDto'
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/ProductEntitlementDto'
+      type: object
+      example:
+        addon: null
+        code: ac
+        tier: basic
+        name: null
+        version: null
+        entitlements: []
+      additionalProperties: false
+    ProductEntitlementPricingDto:
+      required:
+      - recurring
+      - subtotal
+      properties:
+        recurring:
+          type: boolean
+        subtotal:
+          type: integer
+      type: object
+      additionalProperties: false
+    ListAccountForSnapshotResponse:
+      required:
+      - accounts
+      properties:
+        accounts:
+          description: List of accounts available for snapshots.
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountForSnapshotResponse'
+      type: object
+      additionalProperties: false
+    ApiErrorResponse:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
+      type: object
+      additionalProperties: true
+    CreateAccountRequestDto:
+      title: Create Account Request
+      required:
+      - account_name
+      - name
+      - email
+      - notification
+      - billing_interval
+      - products
+      - country
+      properties:
+        account_name:
+          description: Display name for the account
+          type: string
+          example: My Account
+        cname:
+          description: Custom domain (CNAME) for the account
+          type:
+          - string
+          - 'null'
+          example: subdomain.example.com
+        name:
+          description: Contact or account owner name
+          type: string
+          example: John Doe
+        email:
+          description: Primary account email
+          type: string
+          format: email
+          example: user@example.com
+        notification:
+          description: Notification email address for account-related alerts
+          type: string
+          example: notify@example.com
+        language:
+          description: Account language name (e.g. polish, dutch, english)
+          type:
+          - string
+          - 'null'
+          example: english
+        timezone:
+          description: IANA timezone identifier (e.g. Europe/Amsterdam, America/New_York)
+          type:
+          - string
+          - 'null'
+          example: Europe/Amsterdam
+        snapshot:
+          description: Deprecated. Use snapshot_id instead.
+          type:
+          - string
+          - 'null'
+        currency:
+          description: Currency code (e.g. USD, PLN, EUR)
+          type:
+          - string
+          - 'null'
+          example: USD
+        billing_interval:
+          description: Billing interval in months
+          type: integer
+          example: 1
+        products:
+          description: Product configuration. Array must be non-empty.
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductDto'
+          minItems: 1
+        profile:
+          description: Billing profile identifier. Go to update card/billing settings, copy the string_id from the URL.
+          type:
+          - string
+          - 'null'
+          example: pm_xxxxxxxxxxxx
+        country:
+          description: ISO country code (e.g. US, PL, GB)
+          type: string
+          default: US
+          example: US
+        snapshot_id:
+          description: ID of the snapshot to clone from. Obtain from GET /api/child-account-snapshots/v1/ endpoint.
+          type:
+          - integer
+          - 'null'
+          default: null
+          example: 123
+      type: object
+      additionalProperties: false
+    AccountForSnapshotResponse:
+      required:
+      - id
+      - account_name
+      - email
+      properties:
+        id:
+          type: integer
+          example: 1
+        account_name:
+          type: string
+          example: My active sandbox account
+        email:
+          type: string
+          format: email
+          example: user@example.com
+      type: object
+      additionalProperties: false
+    ChildAccountListResponse:
+      required:
+      - hosted_accounts
+      - pagination
+      properties:
+        hosted_accounts:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ChildAccountResponse'
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/ChildAccountResponse'
+        pagination:
+          $ref: '#/components/schemas/ChildAccountsPaginationMetadata'
+      type: object
+      additionalProperties: false
+    ChildAccountsPaginationMetadata:
+      required:
+      - total
+      - page
+      - limit
+      - total_pages
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+        total_pages:
+          type: integer
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+  securitySchemes:
+    PartnerApiKey:
+      type: apiKey
+      description: API Token Authorization from Partner Portal
+      name: api-key
+      in: header
+    PartnerJwtBearerAuth:
+      type: http
+      description: JWT Authorization header using the Partner JWT token.
+      bearerFormat: JWT
+      scheme: bearer

@@ -1,0 +1,272 @@
+openapi: 3.2.0
+info:
+  title: Partners Insight Cards API
+  description: Partners Hub API documentation
+  version: 1.0.0
+servers:
+- url: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com/
+  description: Production
+tags:
+- name: Insight Cards
+  description: Retrieve and update partner insight cards.
+paths:
+  /api/insight-cards/v1/insights:
+    get:
+      tags:
+      - Insight Cards
+      operationId: get_insight_cards_get_list_latest
+      responses:
+        '200':
+          description: Insight Cards list for the partner
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsightCardListResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+      security:
+      - PartnerJwtBearerAuth: []
+      summary: Get a list of the latest insight cards
+  /api/insight-cards/v1/insights/{id}:
+    patch:
+      tags:
+      - Insight Cards
+      operationId: patch_insight_cards_update_state
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStateInsightCardRequest'
+      responses:
+        '200':
+          description: Insight Card state update successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsightCardResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://symfony.com/errors/validation
+                title: Validation Failed
+                status: 422
+                detail: 'assign_to_all_accounts: This value should be of type bool.'
+                violations:
+                - propertyPath: assign_to_all_accounts
+                  title: This value should be of type bool.
+                  template: This value should be of type {{ type }}.
+                  parameters:
+                    '{{ type }}': bool
+      security:
+      - PartnerJwtBearerAuth: []
+      summary: Update insight card state
+components:
+  schemas:
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
+    ApiErrorResponse:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
+      type: object
+      additionalProperties: true
+    InsightCardListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/InsightCardResponse'
+    UpdateStateInsightCardRequest:
+      required:
+      - insight
+      - metadata
+      properties:
+        insight:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/UpdateStateMetadataInsightCardRequest'
+      type: object
+      additionalProperties: false
+    InsightCardMetadata:
+      required:
+      - prompt
+      - title
+      - summary
+      - insight_card_type
+      - insight_card_label
+      properties:
+        prompt:
+          type: string
+        title:
+          type: string
+        summary:
+          type: string
+        used:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        insight_card_type:
+          type: string
+        insight_card_label:
+          type: string
+      type: object
+      additionalProperties: false
+    UpdateStateMetadataInsightCardRequest:
+      required:
+      - conversation_id
+      properties:
+        conversation_id:
+          type: string
+          format: uuid
+      type: object
+      additionalProperties: false
+    InsightCardResponse:
+      required:
+      - reseller_id
+      - resource_id
+      - insight
+      - run_timestamp
+      - metadata
+      properties:
+        reseller_id:
+          type: integer
+        resource_id:
+          type: string
+          format: uuid
+        insight:
+          type: string
+        run_timestamp:
+          type: string
+          format: date-time
+        metadata:
+          $ref: '#/components/schemas/InsightCardMetadata'
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+  securitySchemes:
+    PartnerApiKey:
+      type: apiKey
+      description: API Token Authorization from Partner Portal
+      name: api-key
+      in: header
+    PartnerJwtBearerAuth:
+      type: http
+      description: JWT Authorization header using the Partner JWT token.
+      bearerFormat: JWT
+      scheme: bearer

@@ -1,0 +1,521 @@
+openapi: 3.2.0
+info:
+  title: Partners AI Customization Instructions API
+  description: Partners Hub API documentation
+  version: 1.0.0
+servers:
+- url: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com/
+  description: Production
+tags:
+- name: AI Customization Instructions
+  description: Manage custom instructions for AI customization profiles.
+paths:
+  /api/ai-customizations/v1/profiles/{profile_id}/instructions:
+    get:
+      tags:
+      - AI Customization Instructions
+      operationId: get_ai_customizations_instructions_list
+      parameters:
+      - name: profile_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      responses:
+        '200':
+          description: List of custom instructions for the profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomInstructionListResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Get a list of custom instructions for a profile
+    post:
+      tags:
+      - AI Customization Instructions
+      operationId: post_ai_customizations_instructions_create
+      parameters:
+      - name: profile_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+        example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomInstructionRequest'
+      responses:
+        '201':
+          description: Custom instruction created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCustomInstructionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://symfony.com/errors/validation
+                title: Validation Failed
+                status: 422
+                detail: 'assign_to_all_accounts: This value should be of type bool.'
+                violations:
+                - propertyPath: assign_to_all_accounts
+                  title: This value should be of type bool.
+                  template: This value should be of type {{ type }}.
+                  parameters:
+                    '{{ type }}': bool
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Create a new custom instruction
+  /api/ai-customizations/v1/profiles/{profile_id}/instructions/{instruction_id}:
+    get:
+      tags:
+      - AI Customization Instructions
+      operationId: get_ai_customizations_instructions_get
+      parameters:
+      - name: profile_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      - name: instruction_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      responses:
+        '200':
+          description: Custom instruction details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomInstructionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Get custom instruction by id
+    delete:
+      tags:
+      - AI Customization Instructions
+      operationId: delete_ai_customizations_instructions_delete
+      parameters:
+      - name: profile_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      - name: instruction_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      responses:
+        '204':
+          description: Custom Instruction was successfully deleted (204 No Content).
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Delete custom instruction by id
+    patch:
+      tags:
+      - AI Customization Instructions
+      operationId: patch_ai_customizations_instructions_update
+      parameters:
+      - name: profile_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      - name: instruction_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 9223372036854776000
+          minimum: 1
+          pattern: '[1-9][0-9]{0,18}'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCustomInstructionRequest'
+      responses:
+        '200':
+          description: Profile details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomInstructionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://symfony.com/errors/validation
+                title: Validation Failed
+                status: 422
+                detail: 'assign_to_all_accounts: This value should be of type bool.'
+                violations:
+                - propertyPath: assign_to_all_accounts
+                  title: This value should be of type bool.
+                  template: This value should be of type {{ type }}.
+                  parameters:
+                    '{{ type }}': bool
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+      summary: Update custom instruction by id
+components:
+  schemas:
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
+    ApiErrorResponse:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
+      type: object
+      additionalProperties: true
+    CreateCustomInstructionResponse:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+      additionalProperties: false
+    UpdateCustomInstructionRequest:
+      description: At least one of custom_instruction or is_enabled must be provided.
+      properties:
+        custom_instruction:
+          description: Custom instruction to be used for AI responses. It is validated to ensure it is safe for AI use.
+          type:
+          - string
+          - 'null'
+          default: null
+          maxLength: 65535
+          minLength: 1
+          example: Always respond in a professional and concise tone.
+        is_enabled:
+          type:
+          - boolean
+          - 'null'
+      type: object
+      oneOf:
+      - required:
+        - custom_instruction
+        properties:
+          custom_instruction:
+            type: string
+            maxLength: 65535
+            minLength: 1
+        additionalProperties: false
+      - required:
+        - is_enabled
+        properties:
+          is_enabled:
+            type: boolean
+        additionalProperties: false
+      - required:
+        - custom_instruction
+        - is_enabled
+        properties:
+          custom_instruction:
+            type: string
+            maxLength: 65535
+            minLength: 1
+          is_enabled:
+            type: boolean
+        additionalProperties: false
+      additionalProperties: false
+    CustomInstructionResponse:
+      required:
+      - id
+      - profile_id
+      - custom_instruction
+      - is_enabled
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        profile_id:
+          type: integer
+        custom_instruction:
+          type: string
+        is_enabled:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
+    CustomInstructionListResponse:
+      required:
+      - data
+      properties:
+        data:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/CustomInstructionResponse'
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/CustomInstructionResponse'
+      type: object
+      additionalProperties: false
+    CreateCustomInstructionRequest:
+      required:
+      - custom_instruction
+      properties:
+        custom_instruction:
+          description: Custom instruction to be used for AI responses. It is validated to ensure it is safe for AI use.
+          type: string
+          maxLength: 65535
+          minLength: 1
+          example: Always respond in a professional and concise tone.
+        is_enabled:
+          type:
+          - boolean
+          - 'null'
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+  securitySchemes:
+    PartnerApiKey:
+      type: apiKey
+      description: API Token Authorization from Partner Portal
+      name: api-key
+      in: header
+    PartnerJwtBearerAuth:
+      type: http
+      description: JWT Authorization header using the Partner JWT token.
+      bearerFormat: JWT
+      scheme: bearer

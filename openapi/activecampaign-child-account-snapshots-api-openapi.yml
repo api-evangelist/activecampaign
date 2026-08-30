@@ -1,0 +1,514 @@
+openapi: 3.2.0
+info:
+  title: Partners Child Account Snapshots API
+  description: Partners Hub API documentation
+  version: 1.0.0
+servers:
+- url: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com/
+  description: Production
+tags:
+- name: Child Account Snapshots
+  description: Create and manage snapshots of reseller child accounts.
+paths:
+  /api/child-account-snapshots/v1/status:
+    get:
+      tags:
+      - Child Account Snapshots
+      summary: Get a list of account cloning statuses
+      operationId: get_child_account_snapshots_get_list
+      parameters:
+      - name: status
+        in: query
+        description: Filter by status. Supports multiple comma-separated values (e.g., in_progress,success)
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+          default: null
+          example: in_progress,success
+      - name: page
+        in: query
+        description: Page number
+        required: false
+        schema:
+          type: integer
+          default: 1
+          maximum: 1000000000
+          minimum: 1
+      - name: per_page
+        in: query
+        description: Items per page
+        required: false
+        schema:
+          type: integer
+          default: 20
+          maximum: 1000
+          minimum: 1
+      responses:
+        '200':
+          description: List of account cloning statuses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountCloningStatusListResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+  /api/child-account-snapshots/v1/:
+    get:
+      tags:
+      - Child Account Snapshots
+      summary: Get a list of snapshots
+      operationId: get_child_account_snapshots_list_snapshot_by_reseller
+      parameters:
+      - name: next_cursor
+        in: query
+        description: Pagination cursor token for the next page of results. Use the value from the previous response's next_cursor.
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: limit
+        in: query
+        description: Number of snapshots per page.
+        required: false
+        schema:
+          type: integer
+          default: 25
+          maximum: 100
+          minimum: 1
+      - name: name
+        in: query
+        description: Filter snapshots by name.
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+          default: null
+      responses:
+        '200':
+          description: List all snapshots of reseller accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AM2GetSnapshotsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+    post:
+      tags:
+      - Child Account Snapshots
+      summary: Create a new snapshot
+      operationId: post_child_account_snapshots_create_snapshot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AM2CreateSnapshotRequest'
+      responses:
+        '201':
+          description: Snapshot was created successfully.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://symfony.com/errors/validation
+                title: Validation Failed
+                status: 422
+                detail: 'assign_to_all_accounts: This value should be of type bool.'
+                violations:
+                - propertyPath: assign_to_all_accounts
+                  title: This value should be of type bool.
+                  template: This value should be of type {{ type }}.
+                  parameters:
+                    '{{ type }}': bool
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+  /api/child-account-snapshots/v1/{snapshotId}:
+    delete:
+      tags:
+      - Child Account Snapshots
+      summary: Delete snapshot by id
+      operationId: delete_child_account_snapshots_delete_snapshot
+      parameters:
+      - name: snapshotId
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: '[1-9][0-9]{0,18}'
+      responses:
+        '200':
+          description: Snapshot was successfully deleted.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 400
+                detail: Bad Request
+        '401':
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                type: https://tools.ietf.org/html/rfc2616#section-10
+                title: An error occurred
+                status: 404
+                detail: Not Found
+      security:
+      - PartnerApiKey: []
+      - PartnerJwtBearerAuth: []
+components:
+  schemas:
+    AccountCloningStatusListResponse:
+      required:
+      - items
+      - pagination
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountCloningStatusResponse'
+        pagination:
+          $ref: '#/components/schemas/AccountCloningStatusListPagination'
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
+    AM2CreateSnapshotRequest:
+      required:
+      - account_id
+      - name
+      properties:
+        account_id:
+          type: integer
+        name:
+          type: string
+      type: object
+      additionalProperties: false
+    ApiErrorResponse:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
+      type: object
+      additionalProperties: true
+    AccountCloningStatusResponse:
+      required:
+      - id
+      - workflow_id
+      - reseller_id
+      - target_account
+      - source_account
+      - target_account_id
+      - source_account_id
+      - started_at
+      - updated_at
+      - status
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 01934e8a-1234-7890-abcd-ef1234567890
+        workflow_id:
+          type: string
+          example: workflow-123
+        reseller_id:
+          type: integer
+          example: 123
+        target_account:
+          type: string
+          example: new-account
+        source_account:
+          type: string
+          example: source-account
+        target_account_id:
+          type: integer
+          example: 456
+        source_account_id:
+          type: integer
+          example: 789
+        started_at:
+          type: string
+          format: date-time
+          example: '2024-01-01T00:00:00+00:00'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2024-01-01T00:00:00+00:00'
+        status:
+          type: string
+          enum:
+          - failed
+          - success
+          - cancelled
+          - in_progress
+          example: in_progress
+        error_message:
+          type:
+          - string
+          - 'null'
+          example: null
+        snapshot_id:
+          type:
+          - integer
+          - 'null'
+          example: 5
+      type: object
+      additionalProperties: false
+    AccountCloningStatusListPagination:
+      required:
+      - total
+      - page
+      - per_page
+      - total_pages
+      properties:
+        total:
+          type: integer
+          example: 100
+        page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 20
+        total_pages:
+          type: integer
+          example: 5
+      type: object
+      additionalProperties: false
+    AM2SnapshotResponse:
+      required:
+      - id
+      - source_account_id
+      - status
+      - name
+      - created_at
+      properties:
+        id:
+          type: integer
+          example: 1
+        source_account_id:
+          type: integer
+          example: 123
+        status:
+          description: Snapshot status from the external AM2 system.
+          type: string
+          enum:
+          - failed
+          - success
+          - cancelled
+          - in_progress
+          example: in_progress
+        creation_status:
+          description: Internal snapshot creation status stored in our system. Possible values from CreateSnapshotStatusEnum. Fallbacks to "unknown" when no status is found.
+          type:
+          - string
+          - 'null'
+          enum:
+          - failed
+          - success
+          - cancelled
+          - in_progress
+          - initialized
+          - unknown
+          example: in_progress
+        name:
+          type: string
+          example: Backup before migration
+        created_at:
+          description: When the snapshot was created. ISO 8601 date-time format (e.g. 2024-01-01T00:00:00+00:00).
+          type: string
+          format: date-time
+          example: '2024-01-01T00:00:00+00:00'
+        completed_at:
+          description: When the snapshot was completed. ISO 8601 date-time format (e.g. 2024-01-01T00:00:00+00:00). Null when not yet completed.
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2024-01-01T12:00:00+00:00'
+      type: object
+      additionalProperties: false
+    AM2GetSnapshotsResponse:
+      required:
+      - next_cursor
+      properties:
+        snapshots:
+          description: List of account snapshots for the reseller.
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AM2SnapshotResponse'
+        next_cursor:
+          description: Next cursor token. Use it as query parameter as ?next_cursor=<cursor>.
+          type: string
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    PartnerApiKey:
+      type: apiKey
+      description: API Token Authorization from Partner Portal
+      name: api-key
+      in: header
+    PartnerJwtBearerAuth:
+      type: http
+      description: JWT Authorization header using the Partner JWT token.
+      bearerFormat: JWT
+      scheme: bearer
