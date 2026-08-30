@@ -1694,6 +1694,8 @@ apis:
   humanURL: https://developers.activecampaign.com/reference/overview
   baseURL: https://youraccountname.api-us1.com/api/3
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
