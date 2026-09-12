@@ -6,9 +6,7 @@
       "feed_url": "https://www.activecampaign.com/blog",
       "title": "",
       "saved": 0,
-      "method": "none",
-      "nature": "vendor-blog",
-      "nature_basis": "path_blog"
+      "method": "none"
     },
     {
       "source": "https://developers.activecampaign.com/llms.txt",
@@ -18,7 +16,7 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-08-30T22:33:40Z",
+  "fetched": "2026-09-06T19:17:18Z",
   "post_count": 15,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
