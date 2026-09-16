@@ -637,50 +637,6 @@ apis:
     url: examples/activecampaign-sms-recipient-example.json
   - type: Overlay
     url: overlays/activecampaign-event-tracking-overlay.yaml
-- aid: activecampaign:activecampaign-exports-api
-  name: ActiveCampaign Exports API
-  description: The Exports API from ActiveCampaign — 2 operation(s) for exports.
-  humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
-  tags:
-  - Export
-  tags_raw:
-  - Exports
-  properties:
-  - type: OpenAPI
-    url: openapi/activecampaign-exports-api-openapi.yml
-  - type: Documentation
-    url: https://developers.activecampaign.com/reference/overview
-  - type: Authentication
-    url: https://developers.activecampaign.com/reference/authentication
-  - type: AsyncAPI
-    url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-broadcast-message-schema.json
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-recipient-schema.json
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-credits-response-schema.json
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
-  - type: JSONStructure
-    url: json-structure/activecampaign-sms-broadcast-message-structure.json
-  - type: JSONStructure
-    url: json-structure/activecampaign-sms-recipient-structure.json
-  - type: Examples
-    url: examples/activecampaign-sms-broadcast-message-example.json
-  - type: Examples
-    url: examples/activecampaign-sms-recipient-example.json
-  - type: Overlay
-    url: overlays/activecampaign-exports-overlay.yaml
 - aid: activecampaign:activecampaign-failures-api
   name: ActiveCampaign Failures API
   description: The Failures API from ActiveCampaign — 1 operation(s) for failures.
@@ -1276,48 +1232,6 @@ apis:
     url: examples/activecampaign-sms-recipient-example.json
   - type: Overlay
     url: overlays/activecampaign-site-tracking-overlay.yaml
-- aid: activecampaign:activecampaign-snapshots-api
-  name: ActiveCampaign Snapshots API
-  description: The Snapshots API from ActiveCampaign — 1 operation(s) for snapshots.
-  humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
-  tags:
-  - Snapshots
-  properties:
-  - type: OpenAPI
-    url: openapi/activecampaign-snapshots-api-openapi.yml
-  - type: Documentation
-    url: https://developers.activecampaign.com/reference/overview
-  - type: Authentication
-    url: https://developers.activecampaign.com/reference/authentication
-  - type: AsyncAPI
-    url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-broadcast-message-schema.json
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-broadcast-create-request-schema.json
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-broadcast-update-request-schema.json
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-broadcast-metrics-schema.json
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-recipient-schema.json
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-credits-response-schema.json
-  - type: JSONSchema
-    url: json-schema/activecampaign-sms-ai-broadcast-request-schema.json
-  - type: JSONStructure
-    url: json-structure/activecampaign-sms-broadcast-message-structure.json
-  - type: JSONStructure
-    url: json-structure/activecampaign-sms-recipient-structure.json
-  - type: Examples
-    url: examples/activecampaign-sms-broadcast-message-example.json
-  - type: Examples
-    url: examples/activecampaign-sms-recipient-example.json
-  - type: Overlay
-    url: overlays/activecampaign-snapshots-overlay.yaml
 - aid: activecampaign:activecampaign-tags-api
   name: ActiveCampaign Tags API
   description: The Tags API from ActiveCampaign — 2 operation(s) for tags.
@@ -1890,6 +1804,10 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+- type: Overlay
+  url: overlays/activecampaign-exports-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-snapshots-overlay.yaml
 - type: Overlay
   url: overlays/activecampaign-segments-overlay.yaml
 - type: Overlay
