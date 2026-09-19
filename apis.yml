@@ -1,5 +1,8 @@
 aid: activecampaign
 url: https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/apis.yml
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-09-17
 apis:
 - aid: activecampaign:activecampaign-accounts-api
   name: ActiveCampaign Accounts API
@@ -137,6 +140,8 @@ apis:
   humanURL: https://developers.activecampaign.com/reference/overview
   baseURL: https://youraccountname.api-us1.com/api/3
   tags:
+  - Automation
+  tags_raw:
   - Automations
   properties:
   - type: OpenAPI
@@ -221,6 +226,8 @@ apis:
   humanURL: https://developers.activecampaign.com/reference/overview
   baseURL: https://youraccountname.api-us1.com/api/3
   tags:
+  - Broadcast
+  tags_raw:
   - Broadcasts
   properties:
   - type: OpenAPI
@@ -305,6 +312,8 @@ apis:
   humanURL: https://developers.activecampaign.com/reference/overview
   baseURL: https://youraccountname.api-us1.com/api/3
   tags:
+  - Calendar
+  tags_raw:
   - Calendars
   properties:
   - type: OpenAPI
@@ -431,6 +440,8 @@ apis:
   humanURL: https://developers.activecampaign.com/reference/overview
   baseURL: https://youraccountname.api-us1.com/api/3
   tags:
+  - Credit
+  tags_raw:
   - Credits
   properties:
   - type: OpenAPI
@@ -1624,6 +1635,8 @@ apis:
   humanURL: https://developers.activecampaign.com/reference/overview
   baseURL: https://youraccountname.api-us1.com/api/3
   tags:
+  - Flow
+  tags_raw:
   - Flows
   properties:
   - type: OpenAPI
@@ -1743,6 +1756,8 @@ apis:
   humanURL: https://developers.activecampaign.com/reference/overview
   baseURL: https://youraccountname.api-us1.com/api/3
   tags:
+  - Templates
+  tags_raw:
   - Template
   properties:
   - type: OpenAPI
