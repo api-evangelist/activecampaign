@@ -126,38 +126,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    ErrorSourceDO:
-      title: ErrorSourceDO
-      type: object
-      properties:
-        pointer:
-          type: string
-    SegmentSummaryErrorRootDO:
-      title: Segment Summary RootDO
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetailDO'
-    SegmentSummaryCountsDO:
-      title: Segment summary counts object containing all counts
-      type: object
-      properties:
-        last_total:
-          $ref: '#/components/schemas/SegmentSummaryCountDO'
-        last_active_total:
-          $ref: '#/components/schemas/SegmentSummaryCountDO'
-    SegmentSummaryDataDO:
-      title: Segment Summary DataDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SegmentSummaryDO'
-        id:
-          type: string
-        type:
-          type: string
     SegmentSummarySuccessRootDO:
       title: Segment Summary RootDO
       type: object
@@ -166,6 +134,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SegmentSummaryDataDO'
+    ErrorSourceDO:
+      title: ErrorSourceDO
+      type: object
+      properties:
+        pointer:
+          type: string
     SegmentSummaryDO:
       title: Segment SummaryDO
       type: object
@@ -214,6 +188,16 @@ components:
           type: string
         title:
           type: string
+    SegmentSummaryDataDO:
+      title: Segment Summary DataDO
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SegmentSummaryDO'
+        id:
+          type: string
+        type:
+          type: string
     SegmentSummaryCountDO:
       title: Segment counts totals object
       type: object
@@ -244,6 +228,22 @@ components:
           description: Time that this end time of the last run in UTC
           format: date-time
           example: '2024-01-30T15:56:04.952Z'
+    SegmentSummaryCountsDO:
+      title: Segment summary counts object containing all counts
+      type: object
+      properties:
+        last_total:
+          $ref: '#/components/schemas/SegmentSummaryCountDO'
+        last_active_total:
+          $ref: '#/components/schemas/SegmentSummaryCountDO'
+    SegmentSummaryErrorRootDO:
+      title: Segment Summary RootDO
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetailDO'
   securitySchemes:
     Api_Key:
       type: apiKey

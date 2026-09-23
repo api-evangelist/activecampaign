@@ -128,6 +128,36 @@ paths:
       summary: Update insight card state
 components:
   schemas:
+    InsightCardMetadata:
+      required:
+      - prompt
+      - title
+      - summary
+      - insight_card_type
+      - insight_card_label
+      properties:
+        prompt:
+          type: string
+        title:
+          type: string
+        summary:
+          type: string
+        used:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        insight_card_type:
+          type: string
+        insight_card_label:
+          type: string
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
     ApiViolation:
       required:
       - propertyPath
@@ -153,6 +183,19 @@ components:
               type: string
       type: object
       additionalProperties: true
+    UpdateStateMetadataInsightCardRequest:
+      required:
+      - conversation_id
+      properties:
+        conversation_id:
+          type: string
+          format: uuid
+      type: object
+      additionalProperties: false
+    InsightCardListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/InsightCardResponse'
     ApiErrorResponse:
       required:
       - type
@@ -183,10 +226,6 @@ components:
               $ref: '#/components/schemas/ApiViolation'
       type: object
       additionalProperties: true
-    InsightCardListResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/InsightCardResponse'
     UpdateStateInsightCardRequest:
       required:
       - insight
@@ -196,40 +235,6 @@ components:
           type: string
         metadata:
           $ref: '#/components/schemas/UpdateStateMetadataInsightCardRequest'
-      type: object
-      additionalProperties: false
-    InsightCardMetadata:
-      required:
-      - prompt
-      - title
-      - summary
-      - insight_card_type
-      - insight_card_label
-      properties:
-        prompt:
-          type: string
-        title:
-          type: string
-        summary:
-          type: string
-        used:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        insight_card_type:
-          type: string
-        insight_card_label:
-          type: string
-      type: object
-      additionalProperties: false
-    UpdateStateMetadataInsightCardRequest:
-      required:
-      - conversation_id
-      properties:
-        conversation_id:
-          type: string
-          format: uuid
       type: object
       additionalProperties: false
     InsightCardResponse:
@@ -254,11 +259,6 @@ components:
           $ref: '#/components/schemas/InsightCardMetadata'
       type: object
       additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
   securitySchemes:
     PartnerApiKey:
       type: apiKey

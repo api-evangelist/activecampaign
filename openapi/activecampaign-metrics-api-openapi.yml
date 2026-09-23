@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ActiveCampaign SMS Broadcast Accounts Metrics API
+  title: ActiveCampaign SMS Broadcast Metrics API
   description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
   version: 3.0.0
   contact:
@@ -116,42 +116,6 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
-  /sms/broadcasts/metrics/{broadcastId}/failures:
-    get:
-      tags:
-      - Metrics
-      summary: ActiveCampaign Get Broadcast Failure Details
-      description: Returns grouping and counts of failures for the broadcast
-      operationId: getBroadcastFailures
-      parameters:
-      - name: broadcastId
-        in: path
-        required: true
-        description: Broadcast ID
-        schema:
-          type: integer
-      - name: start_date
-        in: query
-        description: Start date (YYYY-MM-DD)
-        schema:
-          type: string
-          format: date
-      - name: end_date
-        in: query
-        description: End date (YYYY-MM-DD)
-        schema:
-          type: string
-          format: date
-      responses:
-        '200':
-          description: Failure details retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FailureDetailsResponse'
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /sms/broadcasts/export:
     post:
       tags:
@@ -180,83 +144,25 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
-  /sms/broadcasts/{broadcastId}/recipients/export:
-    post:
-      tags:
-      - Metrics
-      summary: ActiveCampaign Export Broadcast Recipients
-      description: Export recipient data as CSV including full contact records
-      operationId: exportBroadcastRecipients
-      parameters:
-      - name: broadcastId
-        in: path
-        required: true
-        description: Broadcast ID
-        schema:
-          type: integer
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                start_date:
-                  type: string
-                  format: date
-                end_date:
-                  type: string
-                  format: date
-                engagement:
-                  type: array
-                  items:
-                    type: string
-                deliverability:
-                  type: array
-                  items:
-                    type: string
-                search:
-                  type: string
-                order:
-                  type: object
-      responses:
-        '200':
-          description: Export generated successfully
-          content:
-            text/csv:
-              schema:
-                type: string
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
 components:
   schemas:
-    FailureDetail:
+    BroadcastMetrics:
       type: object
       properties:
-        errorCode:
-          type: string
-        errorSource:
-          type: string
-          enum:
-          - ac
-          - twilio
-        count:
+        id:
           type: integer
-    BroadcastMetricsResponse:
-      type: object
-      properties:
-        metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/BroadcastMetrics'
-    FailureDetailsResponse:
-      type: object
-      properties:
+        sends:
+          type: integer
+        deliveries:
+          type: integer
+        replies:
+          type: integer
         failures:
-          type: array
-          items:
-            $ref: '#/components/schemas/FailureDetail'
+          type: integer
+        optOuts:
+          type: integer
+        clicks:
+          type: integer
     SnapshotResponse:
       type: object
       properties:
@@ -277,23 +183,13 @@ components:
               type: integer
             optOuts:
               type: integer
-    BroadcastMetrics:
+    BroadcastMetricsResponse:
       type: object
       properties:
-        id:
-          type: integer
-        sends:
-          type: integer
-        deliveries:
-          type: integer
-        replies:
-          type: integer
-        failures:
-          type: integer
-        optOuts:
-          type: integer
-        clicks:
-          type: integer
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/BroadcastMetrics'
   securitySchemes:
     ApiToken:
       type: apiKey

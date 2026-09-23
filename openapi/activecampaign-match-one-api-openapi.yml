@@ -118,6 +118,20 @@ paths:
       deprecated: false
 components:
   schemas:
+    ErrorDetail404:
+      type: object
+      properties:
+        status:
+          type: string
+          example: 404 NOT_FOUND
+        title:
+          type: string
+          example: Segment 1ab85f0e-3b5c-4a35-bc07-242c68a7d000 not found
+        detail:
+          type: string
+        code:
+          type: string
+      title: ErrorDetail
     ErrorDetail400:
       type: object
       properties:
@@ -132,22 +146,6 @@ components:
         code:
           type: string
       title: ErrorDetail
-    MatchResponseRootDO:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MatchDataDO'
-      title: MatchResponseRootDO
-    ErrorResponse400RootDO:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail400'
-      title: ErrorResponse400RootDO
     MatchAttributeDO:
       type: object
       properties:
@@ -171,26 +169,22 @@ components:
           format: date-time
           example: '2025-04-12T23:20:50.523Z'
       title: MatchAttributeDO
-    ErrorDetail:
-      type: object
-      properties:
-        status:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
-        code:
-          type: string
-      title: ErrorDetail
-    ErrorResponse404RootDO:
+    ErrorResponseRootDO:
       type: object
       properties:
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/ErrorDetail404'
-      title: ErrorResponse404RootDO
+            $ref: '#/components/schemas/ErrorDetail'
+      title: ErrorResponseRootDO
+    MatchResponseRootDO:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchDataDO'
+      title: MatchResponseRootDO
     MatchDataDO:
       type: object
       properties:
@@ -205,23 +199,29 @@ components:
           enum:
           - match
       title: MatchDataDO
-    ErrorResponseRootDO:
+    ErrorResponse400RootDO:
       type: object
       properties:
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/ErrorDetail'
-      title: ErrorResponseRootDO
-    ErrorDetail404:
+            $ref: '#/components/schemas/ErrorDetail400'
+      title: ErrorResponse400RootDO
+    ErrorResponse404RootDO:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail404'
+      title: ErrorResponse404RootDO
+    ErrorDetail:
       type: object
       properties:
         status:
           type: string
-          example: 404 NOT_FOUND
         title:
           type: string
-          example: Segment 1ab85f0e-3b5c-4a35-bc07-242c68a7d000 not found
         detail:
           type: string
         code:

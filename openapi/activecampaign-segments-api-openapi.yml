@@ -238,14 +238,20 @@ paths:
       deprecated: false
 components:
   schemas:
-    RootSuccessDO:
-      title: RootSuccessDO
+    SegmentDataDO:
+      title: SegmentDataDO
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SegmentDataDO'
+        attributes:
+          $ref: '#/components/schemas/SegmentDO'
+        id:
+          type: string
+          example: 1ab85f0e-3b5c-4a35-bc07-242c68a7d195
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+          example: Segment.v2
     AggregateDO:
       title: AggregateDO
       description: (Optional) AggregateDO allows for requiring a count of discrete matches against the simple (non-aggregate part of a) condition before the entire condition is considered satisfied.
@@ -309,179 +315,6 @@ components:
       properties:
         pointer:
           type: string
-    ConditionGroupDO:
-      title: ConditionGroupDO
-      type: object
-      properties:
-        id:
-          type: string
-          description: id's should be numeric strings
-          example: '1'
-        operator:
-          type: string
-          description: The operator that applies to the conditions in this group
-          enum:
-          - and
-          - or
-          example: and
-        values:
-          type: array
-          description: A list of conditions in the group. All items in the "values" array must have the same "type"
-          items:
-            $ref: '#/components/schemas/ConditionGroupFieldDO'
-    AggFieldDO:
-      description: Required if the aggregate objects is using the "most_recent" operator. This AggFieldDO defines the query logic that the most recent object must satisfy. When this field is present, the ConditionDO.fields attribute is used to specify the requirements prior to selecting the most recent record.
-      title: AggFieldDO
-      required:
-      - data_type
-      - name
-      - operator
-      - value
-      type: object
-      properties:
-        value:
-          type: string
-          description: Value the `name` field's value should be evaluated against. Sometimes optional based on `operator`
-        data_type:
-          type: string
-          enum:
-          - string
-          - number
-          - decimal
-          - date
-          - datetime
-          - list
-          - ''
-        name:
-          type: string
-          description: Field whose value will be evaluated
-        operator:
-          type: string
-          enum:
-          - '='
-          - <
-          - '>'
-          - <=
-          - '>='
-          - '!='
-          - contains
-          - does not contain
-          - is
-          - is not
-          - not empty
-          - empty
-          - wildcard match
-          - aggregate of
-          - ''
-    RootErrorDO:
-      title: RootErrorDO
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetailDO'
-    FieldDO:
-      title: FieldDO
-      required:
-      - data_type
-      - name
-      - operator
-      - value
-      type: object
-      properties:
-        value:
-          type: string
-          description: Value the `name` field's value should be evaluated against. Sometimes optional based on `operator`
-          example: '14'
-        data_type:
-          type: string
-          enum:
-          - string
-          - number
-          - decimal
-          - date
-          - datetime
-          - list
-          - ''
-          example: string
-        name:
-          type: string
-          description: Field whose value will be evaluated
-          example: tagid
-        operator:
-          type: string
-          description: All possible operators for evaluating the field's value against the `value` field
-          enum:
-          - '='
-          - <
-          - '>'
-          - <=
-          - '>='
-          - '!='
-          - starts with
-          - does not start with
-          - contains
-          - does not contain
-          - is
-          - is not
-          - is in any
-          - missing at least one
-          - empty
-          - not empty
-          - empty|=
-          - empty|<
-          - empty|<=
-          - wildcard match
-          - any
-          - not_previous
-          - between
-          - not between
-          - all
-          - none
-          - ''
-          example: '='
-        external:
-          type: boolean
-          description: '(Optional. Default False) If `external` is present and true, then the value of this FieldDO''s "value" attribute is ignored and the externalId passed at-query time is used as the value of this FieldDO''s "value" attribute. Segments with an `"external": true` value will not evaluate without and external-id defined at request time. This attribute is commonly used to ensure the same pre-determined object satisfies multiple conditions'
-          default: false
-    ConditionDO:
-      title: ConditionDO
-      required:
-      - object_type
-      - source_system
-      - fields
-      type: object
-      properties:
-        field_aggregate:
-          $ref: '#/components/schemas/AggregateDO'
-        fields:
-          type: array
-          description: Defines the fields, values, types, and their operators. These act as search criteria for the Segment's condition.
-          items:
-            $ref: '#/components/schemas/FieldDO'
-        hash:
-          type: string
-          description: Sha1 Hash of the Condition's simple logic and its aggregation logic
-          readOnly: true
-        hash_simple:
-          type: string
-          description: Sha1 Hash of the Condition's simple logic
-          readOnly: true
-        id:
-          type: string
-          description: Numeric unique identifier for the Condition
-          example: '1'
-        object_type:
-          type: string
-          description: Name of the Object being evaluated
-          enum:
-          - tag
-        source_system:
-          type: string
-          description: Namespace of Object being evaluated
-          enum:
-          - activecampaign
     ErrorDetailDO:
       title: ErrorDetailDO
       type: object
@@ -549,6 +382,142 @@ components:
           enum:
           - AUDIENCE
           readOnly: true
+    FieldDO:
+      title: FieldDO
+      required:
+      - data_type
+      - name
+      - operator
+      - value
+      type: object
+      properties:
+        value:
+          type: string
+          description: Value the `name` field's value should be evaluated against. Sometimes optional based on `operator`
+          example: '14'
+        data_type:
+          type: string
+          enum:
+          - string
+          - number
+          - decimal
+          - date
+          - datetime
+          - list
+          - ''
+          example: string
+        name:
+          type: string
+          description: Field whose value will be evaluated
+          example: tagid
+        operator:
+          type: string
+          description: All possible operators for evaluating the field's value against the `value` field
+          enum:
+          - '='
+          - <
+          - '>'
+          - <=
+          - '>='
+          - '!='
+          - starts with
+          - does not start with
+          - contains
+          - does not contain
+          - is
+          - is not
+          - is in any
+          - missing at least one
+          - empty
+          - not empty
+          - empty|=
+          - empty|<
+          - empty|<=
+          - wildcard match
+          - any
+          - not_previous
+          - between
+          - not between
+          - all
+          - none
+          - ''
+          example: '='
+        external:
+          type: boolean
+          description: '(Optional. Default False) If `external` is present and true, then the value of this FieldDO''s "value" attribute is ignored and the externalId passed at-query time is used as the value of this FieldDO''s "value" attribute. Segments with an `"external": true` value will not evaluate without and external-id defined at request time. This attribute is commonly used to ensure the same pre-determined object satisfies multiple conditions'
+          default: false
+    RootSuccessDO:
+      title: RootSuccessDO
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentDataDO'
+    ConditionGroupDO:
+      title: ConditionGroupDO
+      type: object
+      properties:
+        id:
+          type: string
+          description: id's should be numeric strings
+          example: '1'
+        operator:
+          type: string
+          description: The operator that applies to the conditions in this group
+          enum:
+          - and
+          - or
+          example: and
+        values:
+          type: array
+          description: A list of conditions in the group. All items in the "values" array must have the same "type"
+          items:
+            $ref: '#/components/schemas/ConditionGroupFieldDO'
+    AggFieldDO:
+      description: Required if the aggregate objects is using the "most_recent" operator. This AggFieldDO defines the query logic that the most recent object must satisfy. When this field is present, the ConditionDO.fields attribute is used to specify the requirements prior to selecting the most recent record.
+      title: AggFieldDO
+      required:
+      - data_type
+      - name
+      - operator
+      - value
+      type: object
+      properties:
+        value:
+          type: string
+          description: Value the `name` field's value should be evaluated against. Sometimes optional based on `operator`
+        data_type:
+          type: string
+          enum:
+          - string
+          - number
+          - decimal
+          - date
+          - datetime
+          - list
+          - ''
+        name:
+          type: string
+          description: Field whose value will be evaluated
+        operator:
+          type: string
+          enum:
+          - '='
+          - <
+          - '>'
+          - <=
+          - '>='
+          - '!='
+          - contains
+          - does not contain
+          - is
+          - is not
+          - not empty
+          - empty
+          - wildcard match
+          - aggregate of
+          - ''
     ConditionGroupFieldDO:
       title: ConditionGroupFieldDO
       required:
@@ -564,20 +533,51 @@ components:
           description: Required. Type of "condition" indicates that the "id" attribute is a condition id.
           enum:
           - condition
-    SegmentDataDO:
-      title: SegmentDataDO
+    RootErrorDO:
+      title: RootErrorDO
       type: object
       properties:
-        attributes:
-          $ref: '#/components/schemas/SegmentDO'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetailDO'
+    ConditionDO:
+      title: ConditionDO
+      required:
+      - object_type
+      - source_system
+      - fields
+      type: object
+      properties:
+        field_aggregate:
+          $ref: '#/components/schemas/AggregateDO'
+        fields:
+          type: array
+          description: Defines the fields, values, types, and their operators. These act as search criteria for the Segment's condition.
+          items:
+            $ref: '#/components/schemas/FieldDO'
+        hash:
+          type: string
+          description: Sha1 Hash of the Condition's simple logic and its aggregation logic
+          readOnly: true
+        hash_simple:
+          type: string
+          description: Sha1 Hash of the Condition's simple logic
+          readOnly: true
         id:
           type: string
-          example: 1ab85f0e-3b5c-4a35-bc07-242c68a7d195
-          readOnly: true
-        type:
+          description: Numeric unique identifier for the Condition
+          example: '1'
+        object_type:
           type: string
-          readOnly: true
-          example: Segment.v2
+          description: Name of the Object being evaluated
+          enum:
+          - tag
+        source_system:
+          type: string
+          description: Namespace of Object being evaluated
+          enum:
+          - activecampaign
   requestBodies:
     RootDO:
       description: Segment Request Document Object

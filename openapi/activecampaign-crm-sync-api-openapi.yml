@@ -216,157 +216,6 @@ components:
           default: null
       type: object
       additionalProperties: false
-    PipelineListPagination:
-      required:
-      - total
-      - page
-      - limit
-      - total_pages
-      properties:
-        total:
-          type: integer
-          example: 100
-        page:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 10
-        total_pages:
-          type: integer
-          example: 10
-      type: object
-      additionalProperties: false
-    ApiViolation:
-      required:
-      - propertyPath
-      - title
-      - template
-      - parameters
-      properties:
-        propertyPath:
-          type: string
-        title:
-          type: string
-        template:
-          type: string
-        parameters:
-          oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
-          - type: object
-            additionalProperties:
-              type: string
-      type: object
-      additionalProperties: true
-    PipelineSyncConfigResponse:
-      required:
-      - id
-      - sync_enabled
-      - target
-      properties:
-        id:
-          type: integer
-          example: 42
-        sync_enabled:
-          type: boolean
-          example: true
-        target:
-          $ref: '#/components/schemas/PipelineSyncTargetResponse'
-      type: object
-      additionalProperties: false
-    ApiErrorResponse:
-      required:
-      - type
-      - title
-      - status
-      - detail
-      properties:
-        type:
-          type: string
-        title:
-          type: string
-        status:
-          type: integer
-        detail:
-          type: string
-        violations:
-          default: null
-          oneOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/ApiViolation'
-          - type:
-            - object
-            - 'null'
-            additionalProperties:
-              $ref: '#/components/schemas/ApiViolation'
-      type: object
-      additionalProperties: true
-    UpsertPipelineSyncRequest:
-      required:
-      - sync_enabled
-      properties:
-        sync_enabled:
-          type:
-          - boolean
-          - 'null'
-          default: null
-          example: true
-        target:
-          default: null
-          oneOf:
-          - $ref: '#/components/schemas/UpsertPipelineSyncTargetRequest'
-          type:
-          - object
-          - 'null'
-      type: object
-      additionalProperties: false
-    PipelineSyncTargetResponse:
-      required:
-      - account_ids
-      - label_ids
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-          enum:
-          - all
-          - label
-          - manual
-        account_ids:
-          type: array
-          items:
-            type: integer
-        label_ids:
-          type: array
-          items:
-            type: integer
-      type: object
-      additionalProperties: false
-    PipelineListResponse:
-      required:
-      - pipelines
-      - pagination
-      properties:
-        pipelines:
-          oneOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/PipelineResponse'
-          - type: object
-            additionalProperties:
-              $ref: '#/components/schemas/PipelineResponse'
-        pagination:
-          $ref: '#/components/schemas/PipelineListPagination'
-      type: object
-      additionalProperties: false
     PipelineResponse:
       required:
       - id
@@ -408,6 +257,157 @@ components:
       example:
         error: Unauthorized
         message: Invalid credentials
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
+    PipelineSyncConfigResponse:
+      required:
+      - id
+      - sync_enabled
+      - target
+      properties:
+        id:
+          type: integer
+          example: 42
+        sync_enabled:
+          type: boolean
+          example: true
+        target:
+          $ref: '#/components/schemas/PipelineSyncTargetResponse'
+      type: object
+      additionalProperties: false
+    PipelineSyncTargetResponse:
+      required:
+      - account_ids
+      - label_ids
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          enum:
+          - all
+          - label
+          - manual
+        account_ids:
+          type: array
+          items:
+            type: integer
+        label_ids:
+          type: array
+          items:
+            type: integer
+      type: object
+      additionalProperties: false
+    PipelineListPagination:
+      required:
+      - total
+      - page
+      - limit
+      - total_pages
+      properties:
+        total:
+          type: integer
+          example: 100
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 10
+        total_pages:
+          type: integer
+          example: 10
+      type: object
+      additionalProperties: false
+    UpsertPipelineSyncRequest:
+      required:
+      - sync_enabled
+      properties:
+        sync_enabled:
+          type:
+          - boolean
+          - 'null'
+          default: null
+          example: true
+        target:
+          default: null
+          oneOf:
+          - $ref: '#/components/schemas/UpsertPipelineSyncTargetRequest'
+          type:
+          - object
+          - 'null'
+      type: object
+      additionalProperties: false
+    PipelineListResponse:
+      required:
+      - pipelines
+      - pagination
+      properties:
+        pipelines:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/PipelineResponse'
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/PipelineResponse'
+        pagination:
+          $ref: '#/components/schemas/PipelineListPagination'
+      type: object
+      additionalProperties: false
+    ApiErrorResponse:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
+      type: object
+      additionalProperties: true
   securitySchemes:
     PartnerApiKey:
       type: apiKey

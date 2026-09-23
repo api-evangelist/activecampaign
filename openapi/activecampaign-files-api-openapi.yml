@@ -55,6 +55,36 @@ paths:
       summary: Get storage quota status
 components:
   schemas:
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
     ApiErrorResponse:
       required:
       - type
@@ -102,36 +132,6 @@ components:
           example: 3221225472
       type: object
       additionalProperties: false
-    ApiViolation:
-      required:
-      - propertyPath
-      - title
-      - template
-      - parameters
-      properties:
-        propertyPath:
-          type: string
-        title:
-          type: string
-        template:
-          type: string
-        parameters:
-          oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
-          - type: object
-            additionalProperties:
-              type: string
-      type: object
-      additionalProperties: true
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
   securitySchemes:
     PartnerApiKey:
       type: apiKey

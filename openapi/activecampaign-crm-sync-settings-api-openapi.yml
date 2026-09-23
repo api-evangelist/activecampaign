@@ -114,6 +114,11 @@ paths:
       summary: Update CRM sync settings
 components:
   schemas:
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
     ApiViolation:
       required:
       - propertyPath
@@ -139,6 +144,32 @@ components:
               type: string
       type: object
       additionalProperties: true
+    SettingsResponse:
+      required:
+      - sync_every
+      properties:
+        sync_every:
+          type: string
+          enum:
+          - never
+          - hour
+          - day
+          example: hour
+      type: object
+      additionalProperties: false
+    UpdateSettingsRequest:
+      required:
+      - sync_every
+      properties:
+        sync_every:
+          type: string
+          enum:
+          - never
+          - hour
+          - day
+          example: hour
+      type: object
+      additionalProperties: false
     ApiErrorResponse:
       required:
       - type
@@ -169,37 +200,6 @@ components:
               $ref: '#/components/schemas/ApiViolation'
       type: object
       additionalProperties: true
-    SettingsResponse:
-      required:
-      - sync_every
-      properties:
-        sync_every:
-          type: string
-          enum:
-          - never
-          - hour
-          - day
-          example: hour
-      type: object
-      additionalProperties: false
-    UpdateSettingsRequest:
-      required:
-      - sync_every
-      properties:
-        sync_every:
-          type: string
-          enum:
-          - never
-          - hour
-          - day
-          example: hour
-      type: object
-      additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
   securitySchemes:
     PartnerApiKey:
       type: apiKey

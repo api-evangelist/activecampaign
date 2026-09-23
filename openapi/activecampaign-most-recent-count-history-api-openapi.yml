@@ -22,7 +22,7 @@ paths:
       operationId: get_recent_count_history
       tags:
       - Most Recent Count History
-      summary: Retrieve the most recent result count for the given segments that were ran without an AdditionalCriteria
+      summary: Retrieve the most recent result count for the given segments that were ran…
       description: One result per segment will be returned. Pagination not supported. Maximum 100 segmentIds per request. SegmentIds in the request that doesn't exist, will simply be ignored
       parameters:
       - name: segmentIds
@@ -50,37 +50,20 @@ paths:
           description: Forbidden
 components:
   schemas:
+    ErrorResponseRootDO:
+      title: ErrorResponseRootDO
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetailDO'
     ErrorSourceDO:
       title: ErrorSourceDO
       type: object
       properties:
         pointer:
           type: string
-    SegmentCountHistoryResponseRootDO:
-      title: SegmentCountHistoryResponseRootDO
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SegmentCountHistoryDataDO'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetailDO'
-    SegmentCountHistoryDataDO:
-      title: SegmentCountHistoryDataDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SegmentCountHistoryAttributeDO'
-        id:
-          type: string
-          description: Epoch timestamp the count was recorded at
-        type:
-          type: string
-          enum:
-          - SegmentCountHistory
     SegmentCountHistoryAttributeDO:
       title: SegmentCountHistoryAttributeDO
       required:
@@ -132,11 +115,28 @@ components:
           type: string
         title:
           type: string
-    ErrorResponseRootDO:
-      title: ErrorResponseRootDO
+    SegmentCountHistoryResponseRootDO:
+      title: SegmentCountHistoryResponseRootDO
       type: object
       properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentCountHistoryDataDO'
         errors:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetailDO'
+    SegmentCountHistoryDataDO:
+      title: SegmentCountHistoryDataDO
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SegmentCountHistoryAttributeDO'
+        id:
+          type: string
+          description: Epoch timestamp the count was recorded at
+        type:
+          type: string
+          enum:
+          - SegmentCountHistory

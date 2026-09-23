@@ -14,7 +14,7 @@ paths:
     get:
       tags:
       - Locales
-      summary: Get supported language and timezone catalogs.
+      summary: Get supported language and timezone catalogs
       description: Returns the same catalogs ARC uses to validate the language and timezone fields on the child-account PUT endpoint, so dropdowns and write-side validation stay in sync.
       operationId: get_locales_get_catalogs
       responses:
@@ -67,36 +67,23 @@ paths:
       - PartnerJwtBearerAuth: []
 components:
   schemas:
-    ApiErrorResponse:
+    LocaleCatalogsResponse:
       required:
-      - type
-      - title
-      - status
-      - detail
+      - languages
+      - timezones
       properties:
-        type:
-          type: string
-        title:
-          type: string
-        status:
-          type: integer
-        detail:
-          type: string
-        violations:
-          default: null
-          oneOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/ApiViolation'
-          - type:
-            - object
-            - 'null'
-            additionalProperties:
-              $ref: '#/components/schemas/ApiViolation'
+        languages:
+          description: Supported language catalog. Keys are the values to send back on writes (e.g. "english", "german"); values are display labels.
+          type: object
+          additionalProperties:
+            type: string
+        timezones:
+          description: Supported timezone catalog. Keys are the IANA identifiers to send back on writes (e.g. "America/Chicago"); values are display labels.
+          type: object
+          additionalProperties:
+            type: string
       type: object
-      additionalProperties: true
+      additionalProperties: false
     ApiViolation:
       required:
       - propertyPath
@@ -127,23 +114,36 @@ components:
       example:
         error: Unauthorized
         message: Invalid credentials
-    LocaleCatalogsResponse:
+    ApiErrorResponse:
       required:
-      - languages
-      - timezones
+      - type
+      - title
+      - status
+      - detail
       properties:
-        languages:
-          description: Supported language catalog. Keys are the values to send back on writes (e.g. "english", "german"); values are display labels.
-          type: object
-          additionalProperties:
-            type: string
-        timezones:
-          description: Supported timezone catalog. Keys are the IANA identifiers to send back on writes (e.g. "America/Chicago"); values are display labels.
-          type: object
-          additionalProperties:
-            type: string
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
       type: object
-      additionalProperties: false
+      additionalProperties: true
   securitySchemes:
     PartnerApiKey:
       type: apiKey

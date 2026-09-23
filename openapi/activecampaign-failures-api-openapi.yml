@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ActiveCampaign SMS Broadcast Accounts Failures API
+  title: ActiveCampaign SMS Broadcast Failures API
   description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
   version: 3.0.0
   contact:
@@ -56,6 +56,13 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    FailureDetailsResponse:
+      type: object
+      properties:
+        failures:
+          type: array
+          items:
+            $ref: '#/components/schemas/FailureDetail'
     FailureDetail:
       type: object
       properties:
@@ -68,13 +75,6 @@ components:
           - twilio
         count:
           type: integer
-    FailureDetailsResponse:
-      type: object
-      properties:
-        failures:
-          type: array
-          items:
-            $ref: '#/components/schemas/FailureDetail'
   securitySchemes:
     ApiToken:
       type: apiKey

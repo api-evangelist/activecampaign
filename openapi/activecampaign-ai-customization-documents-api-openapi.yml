@@ -364,27 +364,11 @@ components:
           type: integer
       type: object
       additionalProperties: false
-    AICustomizationsPaginationMetadata:
-      required:
-      - total
-      - page
-      - limit
-      - total_pages
-      properties:
-        total:
-          type: integer
-          example: 42
-        page:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 20
-        total_pages:
-          type: integer
-          example: 3
-      type: object
-      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
     ApiViolation:
       required:
       - propertyPath
@@ -408,36 +392,6 @@ components:
           - type: object
             additionalProperties:
               type: string
-      type: object
-      additionalProperties: true
-    ApiErrorResponse:
-      required:
-      - type
-      - title
-      - status
-      - detail
-      properties:
-        type:
-          type: string
-        title:
-          type: string
-        status:
-          type: integer
-        detail:
-          type: string
-        violations:
-          default: null
-          oneOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/ApiViolation'
-          - type:
-            - object
-            - 'null'
-            additionalProperties:
-              $ref: '#/components/schemas/ApiViolation'
       type: object
       additionalProperties: true
     ProfileDocumentResponse:
@@ -489,6 +443,40 @@ components:
           default: []
       type: object
       additionalProperties: false
+    ProfileDocumentListResponse:
+      required:
+      - data
+      - pagination
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileDocumentResponse'
+        pagination:
+          $ref: '#/components/schemas/AICustomizationsPaginationMetadata'
+      type: object
+      additionalProperties: false
+    AICustomizationsPaginationMetadata:
+      required:
+      - total
+      - page
+      - limit
+      - total_pages
+      properties:
+        total:
+          type: integer
+          example: 42
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 20
+        total_pages:
+          type: integer
+          example: 3
+      type: object
+      additionalProperties: false
     UpdateDocumentRequest:
       required:
       - is_enabled
@@ -518,24 +506,36 @@ components:
           default: null
       type: object
       additionalProperties: false
-    ProfileDocumentListResponse:
+    ApiErrorResponse:
       required:
-      - data
-      - pagination
+      - type
+      - title
+      - status
+      - detail
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProfileDocumentResponse'
-        pagination:
-          $ref: '#/components/schemas/AICustomizationsPaginationMetadata'
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
       type: object
-      additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
+      additionalProperties: true
   securitySchemes:
     PartnerApiKey:
       type: apiKey

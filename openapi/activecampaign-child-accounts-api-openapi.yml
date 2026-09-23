@@ -114,7 +114,9 @@ paths:
       tags:
       - Child Accounts
       summary: Create a new account
-      description: "For getting list of products use documentation here: https://www.activecampaign.com/partner/api/v2/example.php?call=/api/v1/products.\n    More detailed instructions can be found in Step 1 of this document: https://www.activecampaign.com/partner/api/v2/account_add_flow.php"
+      description: 'For getting list of products use documentation here: https://www.activecampaign.com/partner/api/v2/example.php?call=/api/v1/products.
+
+        More detailed instructions can be found in Step 1 of this document: https://www.activecampaign.com/partner/api/v2/account_add_flow.php'
       operationId: post_child_accounts_create
       requestBody:
         required: true
@@ -177,7 +179,7 @@ paths:
     get:
       tags:
       - Child Accounts
-      summary: Get a list of accounts that can be used to create snapshots.
+      summary: Get a list of accounts that can be used to create snapshots
       operationId: get_child_accounts_get_for_snapshots
       parameters:
       - name: sort_by
@@ -252,90 +254,24 @@ paths:
       - PartnerJwtBearerAuth: []
 components:
   schemas:
-    ChildAccountResponse:
+    AccountForSnapshotResponse:
       required:
       - id
-      - created_at
-      - updated_at
+      - account_name
+      - email
       properties:
         id:
           type: integer
-        reseller_id:
-          type:
-          - integer
-          - 'null'
+          example: 1
         account_name:
-          type:
-          - string
-          - 'null'
-        created_at:
           type: string
-          format: date-time
-        updated_at:
+          example: My active sandbox account
+        email:
           type: string
-          format: date-time
+          format: email
+          example: user@example.com
       type: object
       additionalProperties: false
-    ProductEntitlementDto:
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-        limit:
-          oneOf:
-          - $ref: '#/components/schemas/ProductEntitlementLimitDto'
-          type:
-          - object
-          - 'null'
-        pricing:
-          oneOf:
-          - $ref: '#/components/schemas/ProductEntitlementPricingDto'
-          type:
-          - object
-          - 'null'
-      type: object
-      additionalProperties: false
-    ProductEntitlementLimitDto:
-      properties:
-        included_units:
-          type: integer
-          default: 0
-        purchased_units:
-          type: integer
-          default: 0
-        period:
-          type:
-          - string
-          - 'null'
-          default: null
-      type: object
-      additionalProperties: false
-    ApiViolation:
-      required:
-      - propertyPath
-      - title
-      - template
-      - parameters
-      properties:
-        propertyPath:
-          type: string
-        title:
-          type: string
-        template:
-          type: string
-        parameters:
-          oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
-          - type: object
-            additionalProperties:
-              type: string
-      type: object
-      additionalProperties: true
     ProductDto:
       title: ChildAccountsProduct
       required:
@@ -378,15 +314,21 @@ components:
         version: null
         entitlements: []
       additionalProperties: false
-    ProductEntitlementPricingDto:
+    ChildAccountListResponse:
       required:
-      - recurring
-      - subtotal
+      - hosted_accounts
+      - pagination
       properties:
-        recurring:
-          type: boolean
-        subtotal:
-          type: integer
+        hosted_accounts:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ChildAccountResponse'
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/ChildAccountResponse'
+        pagination:
+          $ref: '#/components/schemas/ChildAccountsPaginationMetadata'
       type: object
       additionalProperties: false
     ListAccountForSnapshotResponse:
@@ -400,36 +342,108 @@ components:
             $ref: '#/components/schemas/AccountForSnapshotResponse'
       type: object
       additionalProperties: false
-    ApiErrorResponse:
+    ProductEntitlementPricingDto:
       required:
-      - type
-      - title
-      - status
-      - detail
+      - recurring
+      - subtotal
       properties:
-        type:
+        recurring:
+          type: boolean
+        subtotal:
+          type: integer
+      type: object
+      additionalProperties: false
+    ChildAccountsPaginationMetadata:
+      required:
+      - total
+      - page
+      - limit
+      - total_pages
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+        total_pages:
+          type: integer
+      type: object
+      additionalProperties: false
+    ChildAccountResponse:
+      required:
+      - id
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        reseller_id:
+          type:
+          - integer
+          - 'null'
+        account_name:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
           type: string
         title:
           type: string
-        status:
-          type: integer
-        detail:
+        template:
           type: string
-        violations:
-          default: null
+        parameters:
           oneOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/ApiViolation'
-          - type:
-            - object
-            - 'null'
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
             additionalProperties:
-              $ref: '#/components/schemas/ApiViolation'
+              type: string
       type: object
       additionalProperties: true
+    ProductEntitlementDto:
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        limit:
+          oneOf:
+          - $ref: '#/components/schemas/ProductEntitlementLimitDto'
+          type:
+          - object
+          - 'null'
+        pricing:
+          oneOf:
+          - $ref: '#/components/schemas/ProductEntitlementPricingDto'
+          type:
+          - object
+          - 'null'
+      type: object
+      additionalProperties: false
     CreateAccountRequestDto:
       title: Create Account Request
       required:
@@ -517,63 +531,51 @@ components:
           example: 123
       type: object
       additionalProperties: false
-    AccountForSnapshotResponse:
-      required:
-      - id
-      - account_name
-      - email
+    ProductEntitlementLimitDto:
       properties:
-        id:
+        included_units:
           type: integer
-          example: 1
-        account_name:
-          type: string
-          example: My active sandbox account
-        email:
-          type: string
-          format: email
-          example: user@example.com
+          default: 0
+        purchased_units:
+          type: integer
+          default: 0
+        period:
+          type:
+          - string
+          - 'null'
+          default: null
       type: object
       additionalProperties: false
-    ChildAccountListResponse:
+    ApiErrorResponse:
       required:
-      - hosted_accounts
-      - pagination
+      - type
+      - title
+      - status
+      - detail
       properties:
-        hosted_accounts:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
           oneOf:
-          - type: array
+          - type:
+            - array
+            - 'null'
             items:
-              $ref: '#/components/schemas/ChildAccountResponse'
-          - type: object
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
             additionalProperties:
-              $ref: '#/components/schemas/ChildAccountResponse'
-        pagination:
-          $ref: '#/components/schemas/ChildAccountsPaginationMetadata'
+              $ref: '#/components/schemas/ApiViolation'
       type: object
-      additionalProperties: false
-    ChildAccountsPaginationMetadata:
-      required:
-      - total
-      - page
-      - limit
-      - total_pages
-      properties:
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
-        total_pages:
-          type: integer
-      type: object
-      additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
+      additionalProperties: true
   securitySchemes:
     PartnerApiKey:
       type: apiKey

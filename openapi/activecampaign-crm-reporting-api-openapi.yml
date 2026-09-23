@@ -14,7 +14,7 @@ paths:
     get:
       tags:
       - CRM Reporting
-      summary: List sync-enabled pipelines with deal counts, conversion %, revenue, and top account.
+      summary: List sync-enabled pipelines with deal counts, conversion %, revenue, and top…
       operationId: get_crm_reporting_list_pipelines
       parameters:
       - name: start_date
@@ -106,7 +106,7 @@ paths:
     get:
       tags:
       - CRM Reporting
-      summary: 'Aggregate summary metric cards: deal counts, revenue, conversion %, average deal revenue.'
+      summary: 'Aggregate summary metric cards: deal counts, revenue, conversion %, average…'
       operationId: get_crm_reporting_pipelines_summary
       parameters:
       - name: start_date
@@ -181,6 +181,81 @@ paths:
       - PartnerJwtBearerAuth: []
 components:
   schemas:
+    DealsBucket:
+      required:
+      - count
+      - revenue_cents
+      properties:
+        count:
+          type: integer
+          example: 40
+        revenue_cents:
+          type: integer
+          example: 20340000
+      type: object
+      additionalProperties: false
+    PipelinesSummaryResponse:
+      required:
+      - range
+      - currency
+      - summary
+      properties:
+        range:
+          $ref: '#/components/schemas/RangeInfo'
+        currency:
+          type: string
+          example: USD
+        summary:
+          $ref: '#/components/schemas/PipelinesSummary'
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+    PipelinesSummary:
+      required:
+      - average_deal_revenue_cents
+      - deals_open
+      - deals_won
+      - deals_lost
+      - conversion_rate_percent
+      properties:
+        average_deal_revenue_cents:
+          type: integer
+          example: 423500
+        deals_open:
+          $ref: '#/components/schemas/DealsBucket'
+        deals_won:
+          $ref: '#/components/schemas/DealsBucket'
+        deals_lost:
+          $ref: '#/components/schemas/DealsBucket'
+        conversion_rate_percent:
+          type: number
+          format: float
+          example: 60
+      type: object
+      additionalProperties: false
+    RangeInfo:
+      required:
+      - start_date
+      - end_date
+      - timezone
+      properties:
+        start_date:
+          type: string
+          format: date
+          example: '2026-03-01'
+        end_date:
+          type: string
+          format: date
+          example: '2026-03-31'
+        timezone:
+          type: string
+          example: America/New_York
+      type: object
+      additionalProperties: false
     ApiViolation:
       required:
       - propertyPath
@@ -206,68 +281,6 @@ components:
               type: string
       type: object
       additionalProperties: true
-    ApiErrorResponse:
-      required:
-      - type
-      - title
-      - status
-      - detail
-      properties:
-        type:
-          type: string
-        title:
-          type: string
-        status:
-          type: integer
-        detail:
-          type: string
-        violations:
-          default: null
-          oneOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/ApiViolation'
-          - type:
-            - object
-            - 'null'
-            additionalProperties:
-              $ref: '#/components/schemas/ApiViolation'
-      type: object
-      additionalProperties: true
-    RangeInfo:
-      required:
-      - start_date
-      - end_date
-      - timezone
-      properties:
-        start_date:
-          type: string
-          format: date
-          example: '2026-03-01'
-        end_date:
-          type: string
-          format: date
-          example: '2026-03-31'
-        timezone:
-          type: string
-          example: America/New_York
-      type: object
-      additionalProperties: false
-    DealsBucket:
-      required:
-      - count
-      - revenue_cents
-      properties:
-        count:
-          type: integer
-          example: 40
-        revenue_cents:
-          type: integer
-          example: 20340000
-      type: object
-      additionalProperties: false
     TopAccount:
       required:
       - id
@@ -281,25 +294,24 @@ components:
           example: Labor Finders - Chicago
       type: object
       additionalProperties: false
-    Pagination:
+    PipelinesListResponse:
       required:
-      - total
-      - page
-      - limit
-      - total_pages
+      - range
+      - currency
+      - pipelines
+      - pagination
       properties:
-        total:
-          type: integer
-          example: 42
-        page:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 10
-        total_pages:
-          type: integer
-          example: 5
+        range:
+          $ref: '#/components/schemas/RangeInfo'
+        currency:
+          type: string
+          example: USD
+        pipelines:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineSummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
       type: object
       additionalProperties: false
     PipelineSummary:
@@ -342,69 +354,57 @@ components:
           - 'null'
       type: object
       additionalProperties: false
-    PipelinesSummary:
+    Pagination:
       required:
-      - average_deal_revenue_cents
-      - deals_open
-      - deals_won
-      - deals_lost
-      - conversion_rate_percent
+      - total
+      - page
+      - limit
+      - total_pages
       properties:
-        average_deal_revenue_cents:
+        total:
           type: integer
-          example: 423500
-        deals_open:
-          $ref: '#/components/schemas/DealsBucket'
-        deals_won:
-          $ref: '#/components/schemas/DealsBucket'
-        deals_lost:
-          $ref: '#/components/schemas/DealsBucket'
-        conversion_rate_percent:
-          type: number
-          format: float
-          example: 60
+          example: 42
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 10
+        total_pages:
+          type: integer
+          example: 5
       type: object
       additionalProperties: false
-    PipelinesSummaryResponse:
+    ApiErrorResponse:
       required:
-      - range
-      - currency
-      - summary
+      - type
+      - title
+      - status
+      - detail
       properties:
-        range:
-          $ref: '#/components/schemas/RangeInfo'
-        currency:
+        type:
           type: string
-          example: USD
-        summary:
-          $ref: '#/components/schemas/PipelinesSummary'
-      type: object
-      additionalProperties: false
-    PipelinesListResponse:
-      required:
-      - range
-      - currency
-      - pipelines
-      - pagination
-      properties:
-        range:
-          $ref: '#/components/schemas/RangeInfo'
-        currency:
+        title:
           type: string
-          example: USD
-        pipelines:
-          type: array
-          items:
-            $ref: '#/components/schemas/PipelineSummary'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
       type: object
-      additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
+      additionalProperties: true
   securitySchemes:
     PartnerApiKey:
       type: apiKey

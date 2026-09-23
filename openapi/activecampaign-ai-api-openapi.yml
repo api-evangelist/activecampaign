@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ActiveCampaign SMS Broadcast Accounts AI API
+  title: ActiveCampaign SMS Broadcast AI API
   description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
   version: 3.0.0
   contact:
@@ -105,8 +105,28 @@ components:
           - error
           - success
         broadcastId:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
+    AIBroadcastRequest:
+      type: object
+      required:
+      - source
+      - prompt
+      - tone
+      properties:
+        source:
+          type: string
+          enum:
+          - ai_index
+          - sms_index
+          - ai_builder
+        prompt:
+          type: string
+          description: User prompt for AI generation
+        tone:
+          type: string
+          description: Desired tone for the message
     AIBroadcastUpdateRequest:
       type: object
       required:
@@ -127,25 +147,6 @@ components:
           type: string
         broadcastId:
           type: integer
-    AIBroadcastRequest:
-      type: object
-      required:
-      - source
-      - prompt
-      - tone
-      properties:
-        source:
-          type: string
-          enum:
-          - ai_index
-          - sms_index
-          - ai_builder
-        prompt:
-          type: string
-          description: User prompt for AI generation
-        tone:
-          type: string
-          description: Desired tone for the message
     AIBroadcastResponse:
       type: object
       properties:

@@ -341,6 +341,52 @@ paths:
       summary: Update custom instruction by id
 components:
   schemas:
+    CreateCustomInstructionRequest:
+      required:
+      - custom_instruction
+      properties:
+        custom_instruction:
+          description: Custom instruction to be used for AI responses. It is validated to ensure it is safe for AI use.
+          type: string
+          maxLength: 65535
+          minLength: 1
+          example: Always respond in a professional and concise tone.
+        is_enabled:
+          type:
+          - boolean
+          - 'null'
+      type: object
+      additionalProperties: false
+    CustomInstructionResponse:
+      required:
+      - id
+      - profile_id
+      - custom_instruction
+      - is_enabled
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        profile_id:
+          type: integer
+        custom_instruction:
+          type: string
+        is_enabled:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
     ApiViolation:
       required:
       - propertyPath
@@ -366,44 +412,6 @@ components:
               type: string
       type: object
       additionalProperties: true
-    ApiErrorResponse:
-      required:
-      - type
-      - title
-      - status
-      - detail
-      properties:
-        type:
-          type: string
-        title:
-          type: string
-        status:
-          type: integer
-        detail:
-          type: string
-        violations:
-          default: null
-          oneOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/ApiViolation'
-          - type:
-            - object
-            - 'null'
-            additionalProperties:
-              $ref: '#/components/schemas/ApiViolation'
-      type: object
-      additionalProperties: true
-    CreateCustomInstructionResponse:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-      type: object
-      additionalProperties: false
     UpdateCustomInstructionRequest:
       description: At least one of custom_instruction or is_enabled must be provided.
       properties:
@@ -448,31 +456,6 @@ components:
             type: boolean
         additionalProperties: false
       additionalProperties: false
-    CustomInstructionResponse:
-      required:
-      - id
-      - profile_id
-      - custom_instruction
-      - is_enabled
-      - created_at
-      - updated_at
-      properties:
-        id:
-          type: integer
-        profile_id:
-          type: integer
-        custom_instruction:
-          type: string
-        is_enabled:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      type: object
-      additionalProperties: false
     CustomInstructionListResponse:
       required:
       - data
@@ -487,27 +470,44 @@ components:
               $ref: '#/components/schemas/CustomInstructionResponse'
       type: object
       additionalProperties: false
-    CreateCustomInstructionRequest:
+    ApiErrorResponse:
       required:
-      - custom_instruction
+      - type
+      - title
+      - status
+      - detail
       properties:
-        custom_instruction:
-          description: Custom instruction to be used for AI responses. It is validated to ensure it is safe for AI use.
+        type:
           type: string
-          maxLength: 65535
-          minLength: 1
-          example: Always respond in a professional and concise tone.
-        is_enabled:
-          type:
-          - boolean
-          - 'null'
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
+      type: object
+      additionalProperties: true
+    CreateCustomInstructionResponse:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
       type: object
       additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
   securitySchemes:
     PartnerApiKey:
       type: apiKey

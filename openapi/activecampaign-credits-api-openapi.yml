@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ActiveCampaign SMS Broadcast Accounts Credits API
+  title: ActiveCampaign SMS Broadcast Credits API
   description: API for managing SMS broadcasts, lists, metrics, and AI-powered content generation in ActiveCampaign
   version: 3.0.0
   contact:

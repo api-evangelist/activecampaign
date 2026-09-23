@@ -463,7 +463,21 @@ paths:
       summary: Assign child accounts to a profile
 components:
   schemas:
-    UpdateProfileRequest:
+    ProfileListResponse:
+      required:
+      - profiles
+      properties:
+        profiles:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProfileResponse'
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/ProfileResponse'
+      type: object
+      additionalProperties: false
+    CreateProfileRequest:
       required:
       - name
       properties:
@@ -471,61 +485,9 @@ components:
           type: string
           maxLength: 255
           minLength: 1
-          example: Gyms and fitness centers
+          example: Gyms
       type: object
       additionalProperties: false
-    ChildAccountProfileResponse:
-      required:
-      - id
-      - reseller_id
-      - name
-      - created_at
-      - updated_at
-      properties:
-        id:
-          type: integer
-        reseller_id:
-          type: integer
-        name:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      type: object
-      additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
-    ApiViolation:
-      required:
-      - propertyPath
-      - title
-      - template
-      - parameters
-      properties:
-        propertyPath:
-          type: string
-        title:
-          type: string
-        template:
-          type: string
-        parameters:
-          oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
-          - type: object
-            additionalProperties:
-              type: string
-      type: object
-      additionalProperties: true
     AssignAccountsToProfileRequest:
       description: You cannot provide non-empty accountIds and set assignToAllAccounts to true at the same time.
       properties:
@@ -566,6 +528,131 @@ components:
             type: boolean
         additionalProperties: false
       additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
+    UpdateProfileRequest:
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          maxLength: 255
+          minLength: 1
+          example: Gyms and fitness centers
+      type: object
+      additionalProperties: false
+    ChildAccountProfileResponse:
+      required:
+      - id
+      - reseller_id
+      - name
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        reseller_id:
+          type: integer
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
+    ChildAccountData:
+      required:
+      - id
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        reseller_id:
+          type:
+          - integer
+          - 'null'
+        account_name:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
+    CreateProfileResponse:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+      additionalProperties: false
+    ApiErrorResponse:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
+      type: object
+      additionalProperties: true
     ProfileResponse:
       required:
       - id
@@ -602,93 +689,6 @@ components:
             - 'null'
             additionalProperties:
               $ref: '#/components/schemas/ChildAccountData'
-      type: object
-      additionalProperties: false
-    ChildAccountData:
-      required:
-      - id
-      - created_at
-      - updated_at
-      properties:
-        id:
-          type: integer
-        reseller_id:
-          type:
-          - integer
-          - 'null'
-        account_name:
-          type:
-          - string
-          - 'null'
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      type: object
-      additionalProperties: false
-    ApiErrorResponse:
-      required:
-      - type
-      - title
-      - status
-      - detail
-      properties:
-        type:
-          type: string
-        title:
-          type: string
-        status:
-          type: integer
-        detail:
-          type: string
-        violations:
-          default: null
-          oneOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/ApiViolation'
-          - type:
-            - object
-            - 'null'
-            additionalProperties:
-              $ref: '#/components/schemas/ApiViolation'
-      type: object
-      additionalProperties: true
-    CreateProfileRequest:
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          maxLength: 255
-          minLength: 1
-          example: Gyms
-      type: object
-      additionalProperties: false
-    ProfileListResponse:
-      required:
-      - profiles
-      properties:
-        profiles:
-          oneOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/ProfileResponse'
-          - type: object
-            additionalProperties:
-              $ref: '#/components/schemas/ProfileResponse'
-      type: object
-      additionalProperties: false
-    CreateProfileResponse:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
       type: object
       additionalProperties: false
   securitySchemes:
