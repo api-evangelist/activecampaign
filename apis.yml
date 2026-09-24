@@ -22,8 +22,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -64,8 +62,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -108,8 +104,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -152,8 +146,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -194,8 +186,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -238,8 +228,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -280,8 +268,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -324,8 +310,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -366,8 +350,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -408,8 +390,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -452,8 +432,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -494,8 +472,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -536,8 +512,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -580,8 +554,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -622,8 +594,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -664,8 +634,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -706,8 +674,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -748,8 +714,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -792,8 +756,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -836,8 +798,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -880,8 +840,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -922,8 +880,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -964,8 +920,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -1007,8 +961,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -1049,8 +1001,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -1091,8 +1041,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -1133,8 +1081,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -1175,8 +1121,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -1217,8 +1161,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -1259,8 +1201,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -1303,8 +1243,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -1345,8 +1283,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -1389,8 +1325,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -1433,8 +1367,6 @@ apis:
     url: https://developers.activecampaign.com/reference/authentication
   - type: AsyncAPI
     url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/activecampaign-graphql.md
   - type: JSONSchema
     url: json-schema/activecampaign-sms-broadcast-message-schema.json
   - type: JSONSchema
@@ -1777,6 +1709,8 @@ tags:
 - E-Commerce
 - Segmentation
 - Webhook
+- A2A
+- Email
 tags_raw:
 - Marketing Automation
 - Email Marketing
@@ -1787,6 +1721,7 @@ tags_raw:
 - Ecommerce
 - Segmentation
 - Webhooks
+- A2A
 type: Index
 deliveryModel:
   model: saas
