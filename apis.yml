@@ -1722,6 +1722,7 @@ tags_raw:
 - Segmentation
 - Webhooks
 - A2A
+- Email
 type: Index
 deliveryModel:
   model: saas
@@ -2075,3 +2076,10 @@ x-enrichment:
   status: enriched
   artifacts_added: 81
   pass: local-v1
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://activecampaign.com/.well-known/agent.json"
+  grade: "near-conformant"
+  protocol_version: "1.0"
+  control: 404

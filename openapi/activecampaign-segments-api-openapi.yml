@@ -237,21 +237,15 @@ paths:
           description: Segment was Not Found at the timestamp provided
       deprecated: false
 components:
+  requestBodies:
+    RootDO:
+      description: Segment Request Document Object
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RootSuccessDO'
+      required: true
   schemas:
-    SegmentDataDO:
-      title: SegmentDataDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SegmentDO'
-        id:
-          type: string
-          example: 1ab85f0e-3b5c-4a35-bc07-242c68a7d195
-          readOnly: true
-        type:
-          type: string
-          readOnly: true
-          example: Segment.v2
     AggregateDO:
       title: AggregateDO
       description: (Optional) AggregateDO allows for requiring a count of discrete matches against the simple (non-aggregate part of a) condition before the entire condition is considered satisfied.
@@ -309,26 +303,6 @@ components:
             * months - 3'
         aggregate_most_recent_field:
           $ref: '#/components/schemas/AggFieldDO'
-    ErrorSourceDO:
-      title: ErrorSourceDO
-      type: object
-      properties:
-        pointer:
-          type: string
-    ErrorDetailDO:
-      title: ErrorDetailDO
-      type: object
-      properties:
-        code:
-          type: string
-        detail:
-          type: string
-        source:
-          $ref: '#/components/schemas/ErrorSourceDO'
-        status:
-          type: string
-        title:
-          type: string
     SegmentDO:
       title: SegmentDO
       type: object
@@ -382,6 +356,73 @@ components:
           enum:
           - AUDIENCE
           readOnly: true
+    AggFieldDO:
+      description: Required if the aggregate objects is using the "most_recent" operator. This AggFieldDO defines the query logic that the most recent object must satisfy. When this field is present, the ConditionDO.fields attribute is used to specify the requirements prior to selecting the most recent record.
+      title: AggFieldDO
+      required:
+      - data_type
+      - name
+      - operator
+      - value
+      type: object
+      properties:
+        value:
+          type: string
+          description: Value the `name` field's value should be evaluated against. Sometimes optional based on `operator`
+        data_type:
+          type: string
+          enum:
+          - string
+          - number
+          - decimal
+          - date
+          - datetime
+          - list
+          - ''
+        name:
+          type: string
+          description: Field whose value will be evaluated
+        operator:
+          type: string
+          enum:
+          - '='
+          - <
+          - '>'
+          - <=
+          - '>='
+          - '!='
+          - contains
+          - does not contain
+          - is
+          - is not
+          - not empty
+          - empty
+          - wildcard match
+          - aggregate of
+          - ''
+    RootErrorDO:
+      title: RootErrorDO
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetailDO'
+    ConditionGroupFieldDO:
+      title: ConditionGroupFieldDO
+      required:
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id of the Condition that belongs to this Condition Group. Conditions must not be in more than one group
+          example: '1'
+        type:
+          type: string
+          description: Required. Type of "condition" indicates that the "id" attribute is a condition id.
+          enum:
+          - condition
     FieldDO:
       title: FieldDO
       required:
@@ -454,93 +495,40 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SegmentDataDO'
-    ConditionGroupDO:
-      title: ConditionGroupDO
+    ErrorDetailDO:
+      title: ErrorDetailDO
       type: object
       properties:
+        code:
+          type: string
+        detail:
+          type: string
+        source:
+          $ref: '#/components/schemas/ErrorSourceDO'
+        status:
+          type: string
+        title:
+          type: string
+    ErrorSourceDO:
+      title: ErrorSourceDO
+      type: object
+      properties:
+        pointer:
+          type: string
+    SegmentDataDO:
+      title: SegmentDataDO
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SegmentDO'
         id:
           type: string
-          description: id's should be numeric strings
-          example: '1'
-        operator:
-          type: string
-          description: The operator that applies to the conditions in this group
-          enum:
-          - and
-          - or
-          example: and
-        values:
-          type: array
-          description: A list of conditions in the group. All items in the "values" array must have the same "type"
-          items:
-            $ref: '#/components/schemas/ConditionGroupFieldDO'
-    AggFieldDO:
-      description: Required if the aggregate objects is using the "most_recent" operator. This AggFieldDO defines the query logic that the most recent object must satisfy. When this field is present, the ConditionDO.fields attribute is used to specify the requirements prior to selecting the most recent record.
-      title: AggFieldDO
-      required:
-      - data_type
-      - name
-      - operator
-      - value
-      type: object
-      properties:
-        value:
-          type: string
-          description: Value the `name` field's value should be evaluated against. Sometimes optional based on `operator`
-        data_type:
-          type: string
-          enum:
-          - string
-          - number
-          - decimal
-          - date
-          - datetime
-          - list
-          - ''
-        name:
-          type: string
-          description: Field whose value will be evaluated
-        operator:
-          type: string
-          enum:
-          - '='
-          - <
-          - '>'
-          - <=
-          - '>='
-          - '!='
-          - contains
-          - does not contain
-          - is
-          - is not
-          - not empty
-          - empty
-          - wildcard match
-          - aggregate of
-          - ''
-    ConditionGroupFieldDO:
-      title: ConditionGroupFieldDO
-      required:
-      - type
-      type: object
-      properties:
-        id:
-          type: string
-          description: Id of the Condition that belongs to this Condition Group. Conditions must not be in more than one group
-          example: '1'
+          example: 1ab85f0e-3b5c-4a35-bc07-242c68a7d195
+          readOnly: true
         type:
           type: string
-          description: Required. Type of "condition" indicates that the "id" attribute is a condition id.
-          enum:
-          - condition
-    RootErrorDO:
-      title: RootErrorDO
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetailDO'
+          readOnly: true
+          example: Segment.v2
     ConditionDO:
       title: ConditionDO
       required:
@@ -578,14 +566,26 @@ components:
           description: Namespace of Object being evaluated
           enum:
           - activecampaign
-  requestBodies:
-    RootDO:
-      description: Segment Request Document Object
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RootSuccessDO'
-      required: true
+    ConditionGroupDO:
+      title: ConditionGroupDO
+      type: object
+      properties:
+        id:
+          type: string
+          description: id's should be numeric strings
+          example: '1'
+        operator:
+          type: string
+          description: The operator that applies to the conditions in this group
+          enum:
+          - and
+          - or
+          example: and
+        values:
+          type: array
+          description: A list of conditions in the group. All items in the "values" array must have the same "type"
+          items:
+            $ref: '#/components/schemas/ConditionGroupFieldDO'
   securitySchemes:
     Api_Key:
       type: apiKey

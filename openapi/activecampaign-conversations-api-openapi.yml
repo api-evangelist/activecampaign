@@ -20,7 +20,7 @@ tags:
 paths:
   /channel/whatsapp/inbox/conversation:
     get:
-      operationId: List Conversations
+      operationId: ListConversations
       description: Lists Conversations.
       summary: List Conversations
       parameters:
@@ -63,9 +63,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedConversationReadSimpleList'
           description: ''
+      x-operation-id-source: normalized
+      x-operation-id-original: List Conversations
   /channel/whatsapp/inbox/conversation/{id}/update:
     put:
-      operationId: Update a Conversation
+      operationId: UpdateAConversation
       description: Update a Conversation
       summary: Update a conversation
       parameters:
@@ -98,8 +100,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConversationEdit'
           description: ''
+      x-operation-id-source: normalized
+      x-operation-id-original: Update a Conversation
     patch:
-      operationId: Partially update a Conversation
+      operationId: PartiallyUpdateAConversation
       description: Partially update a Conversation
       summary: Partially Update a Conversation
       parameters:
@@ -131,48 +135,91 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConversationEdit'
           description: ''
+      x-operation-id-source: normalized
+      x-operation-id-original: Partially update a Conversation
 components:
   schemas:
-    MessageSourceEnum:
+    MessageStatusEnum:
       enum:
-      - INBOUND
-      - INBOX
-      - AUTO_RESPONSE
-      - API
-      - BROADCAST
-      - FLOW
+      - new
+      - retry
+      - accepted
+      - sending
+      - sent
+      - receiving
+      - received
+      - delivered
+      - undelivered
+      - failed
+      - read
+      - deleted
       type: string
-      description: '* `INBOUND` - Inbound
+      description: '* `new` - New
 
-        * `INBOX` - Inbox
+        * `retry` - Retry
 
-        * `AUTO_RESPONSE` - Auto Response
+        * `accepted` - Accepted
 
-        * `API` - Api
+        * `sending` - Sending
 
-        * `BROADCAST` - Broadcast
+        * `sent` - Sent
 
-        * `FLOW` - Flow'
-    ConversationStatusEnum:
-      enum:
-      - CREATED
-      - FLOW
-      - NEW
-      - IN_PROGRESS
-      - RESOLVED
-      - CLOSED
-      type: string
-      description: '* `CREATED` - Created
+        * `receiving` - Receiving
 
-        * `FLOW` - Flow
+        * `received` - Received
 
-        * `NEW` - New
+        * `delivered` - Delivered
 
-        * `IN_PROGRESS` - In Progress
+        * `undelivered` - Undelivered
 
-        * `RESOLVED` - Resolved
+        * `failed` - Failed
 
-        * `CLOSED` - Closed'
+        * `read` - Read
+
+        * `deleted` - Deleted'
+    ConversationEdit:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The UUID of the Conversation.
+        contact:
+          type: string
+          format: uuid
+        status:
+          $ref: '#/components/schemas/ConversationStatusEnum'
+        assigned:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserBasicEdit'
+          description: The Users assigned to the Conversation.
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationTag'
+          description: The Tags assigned to the Conversation.
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Creado el
+        source:
+          allOf:
+          - $ref: '#/components/schemas/ConversationSourceEnum'
+          readOnly: true
+        assigned_team:
+          type: integer
+          description: The ID of the Team assigned to the Conversation.
+        channel:
+          type:
+          - integer
+          - 'null'
+      required:
+      - assigned
+      - contact
+      - created_on
+      - id
+      - source
     PaginatedConversationReadSimpleList:
       type: object
       required:
@@ -198,6 +245,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ConversationReadSimple'
+    MessageSourceEnum:
+      enum:
+      - INBOUND
+      - INBOX
+      - AUTO_RESPONSE
+      - API
+      - BROADCAST
+      - FLOW
+      type: string
+      description: '* `INBOUND` - Inbound
+
+        * `INBOX` - Inbox
+
+        * `AUTO_RESPONSE` - Auto Response
+
+        * `API` - Api
+
+        * `BROADCAST` - Broadcast
+
+        * `FLOW` - Flow'
     UserBasicEdit:
       type: object
       properties:
@@ -205,6 +272,57 @@ components:
           type: integer
       required:
       - id
+    ConversationReadSimple:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The UUID of the Conversation.
+        contact:
+          type: string
+          format: uuid
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ConversationStatusEnum'
+          readOnly: true
+        first_message:
+          allOf:
+          - $ref: '#/components/schemas/WhatsAppMessageSimple'
+          description: The first Message of the Conversation.
+        assigned:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserSimple'
+          description: The Users assigned to the Conversation.
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationTag'
+          description: The Tags assigned to the Conversation.
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Creado el
+        source:
+          allOf:
+          - $ref: '#/components/schemas/ConversationSourceEnum'
+          readOnly: true
+        assigned_team:
+          type: integer
+          description: The ID of the Team assigned to the Conversation.
+        channel:
+          type:
+          - integer
+          - 'null'
+      required:
+      - assigned
+      - contact
+      - created_on
+      - first_message
+      - id
+      - source
+      - status
     ConversationTag:
       type: object
       properties:
@@ -254,6 +372,26 @@ components:
           type:
           - integer
           - 'null'
+    ConversationStatusEnum:
+      enum:
+      - CREATED
+      - FLOW
+      - NEW
+      - IN_PROGRESS
+      - RESOLVED
+      - CLOSED
+      type: string
+      description: '* `CREATED` - Created
+
+        * `FLOW` - Flow
+
+        * `NEW` - New
+
+        * `IN_PROGRESS` - In Progress
+
+        * `RESOLVED` - Resolved
+
+        * `CLOSED` - Closed'
     UserSimple:
       type: object
       properties:
@@ -292,34 +430,6 @@ components:
       - id
       - last_name
       - profile_image
-    SimpleUser:
-      type: object
-      properties:
-        first_name:
-          type: string
-          maxLength: 150
-        last_name:
-          type: string
-          maxLength: 150
-        email:
-          type: string
-          format: email
-          maxLength: 254
-        id:
-          type: integer
-          readOnly: true
-        profile_image:
-          type:
-          - string
-          - 'null'
-          format: uri
-        role:
-          type:
-          - integer
-          - 'null'
-      required:
-      - email
-      - id
     WhatsAppMessageSimple:
       type: object
       properties:
@@ -455,138 +565,6 @@ components:
       - timestamp
       - to_number
       - whatsapp_template
-    ConversationReadSimple:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The UUID of the Conversation.
-        contact:
-          type: string
-          format: uuid
-        status:
-          allOf:
-          - $ref: '#/components/schemas/ConversationStatusEnum'
-          readOnly: true
-        first_message:
-          allOf:
-          - $ref: '#/components/schemas/WhatsAppMessageSimple'
-          description: The first Message of the Conversation.
-        assigned:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserSimple'
-          description: The Users assigned to the Conversation.
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationTag'
-          description: The Tags assigned to the Conversation.
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          title: Creado el
-        source:
-          allOf:
-          - $ref: '#/components/schemas/ConversationSourceEnum'
-          readOnly: true
-        assigned_team:
-          type: integer
-          description: The ID of the Team assigned to the Conversation.
-        channel:
-          type:
-          - integer
-          - 'null'
-      required:
-      - assigned
-      - contact
-      - created_on
-      - first_message
-      - id
-      - source
-      - status
-    ConversationEdit:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The UUID of the Conversation.
-        contact:
-          type: string
-          format: uuid
-        status:
-          $ref: '#/components/schemas/ConversationStatusEnum'
-        assigned:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserBasicEdit'
-          description: The Users assigned to the Conversation.
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationTag'
-          description: The Tags assigned to the Conversation.
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          title: Creado el
-        source:
-          allOf:
-          - $ref: '#/components/schemas/ConversationSourceEnum'
-          readOnly: true
-        assigned_team:
-          type: integer
-          description: The ID of the Team assigned to the Conversation.
-        channel:
-          type:
-          - integer
-          - 'null'
-      required:
-      - assigned
-      - contact
-      - created_on
-      - id
-      - source
-    MessageStatusEnum:
-      enum:
-      - new
-      - retry
-      - accepted
-      - sending
-      - sent
-      - receiving
-      - received
-      - delivered
-      - undelivered
-      - failed
-      - read
-      - deleted
-      type: string
-      description: '* `new` - New
-
-        * `retry` - Retry
-
-        * `accepted` - Accepted
-
-        * `sending` - Sending
-
-        * `sent` - Sent
-
-        * `receiving` - Receiving
-
-        * `received` - Received
-
-        * `delivered` - Delivered
-
-        * `undelivered` - Undelivered
-
-        * `failed` - Failed
-
-        * `read` - Read
-
-        * `deleted` - Deleted'
     MessageTypeEnum:
       enum:
       - audio
@@ -646,6 +624,34 @@ components:
         * `ephemeral` - Ephemeral
 
         * `request_welcome` - Request Welcome'
+    SimpleUser:
+      type: object
+      properties:
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        id:
+          type: integer
+          readOnly: true
+        profile_image:
+          type:
+          - string
+          - 'null'
+          format: uri
+        role:
+          type:
+          - integer
+          - 'null'
+      required:
+      - email
+      - id
     ConversationSourceEnum:
       enum:
       - INBOX

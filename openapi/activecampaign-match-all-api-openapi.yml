@@ -540,6 +540,132 @@ paths:
       deprecated: false
 components:
   schemas:
+    AggregateDO:
+      title: AggregateDO
+      description: (Optional) AggregateDO allows for requiring a count of discrete matches against the simple (non-aggregate part of a) condition before the entire condition is considered satisfied.
+      type: object
+      example: {}
+      properties:
+        aggregate_field_operator:
+          type: string
+          description: "Compares the aggregate count of occurrences to the value of the `aggregate_field_value` field. \nDescription of Values:\n* \"\" - Entire AggregateDO object will be ignored\n* \"between\" - Aggregate must be between `aggregate_field_start_value` and `aggregate_field_end_value`\n* \"most_recent\" - Only the most recent record of the given SourceObject type will be looked at.\n* \"all\" - All records of the given SourceObject type will considered.\n* \"\" - aggregation is ignored \"aggregate_most_recent_field\" is required if \"most_recent\" is used. \n* All other values relate directly to only the aggregate_field_value field"
+          default: ''
+          enum:
+          - '='
+          - '!='
+          - <
+          - '>'
+          - <=
+          - '>='
+          - between
+          - most_recent
+          - all
+          - ''
+        aggregate_field_start_value:
+          type: string
+          example: '4'
+        aggregate_field_end_value:
+          type: string
+          example: '8'
+        aggregate_field_value:
+          type: string
+          example: '2'
+        aggregate_field_time_within_unit:
+          type: string
+          description: 'Look for aggregations within the aggregate_field_time_within_value with units equal to this value.
+
+            Not required if `aggregate_field_operator` is empty. If empty when `aggregate_field_operator` is not empty, "days" will be assumed.'
+          default: days
+          enum:
+          - hours
+          - days
+          - weeks
+          - months
+          - ''
+        aggregate_field_time_within_value:
+          maximum: 2160
+          type: integer
+          example: 90
+          description: 'Number of aggregate_field_time_within_unit to look for aggregations within. Not required if `aggregate_field_operator` is empty. When `aggregate_field_operator` is not empty, value must be greater than 0 and less than or equal to the maximum value for the unit specified, which are as follows:
+
+            * hours - 2160
+
+            * days - 90
+
+            * weeks - 13
+
+            * months - 3'
+        aggregate_most_recent_field:
+          $ref: '#/components/schemas/AggFieldDO'
+    MatchAllResponseRootDO:
+      title: MatchAllResponseRootDO
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchAllDataDO'
+    MatchAllAttributeDO:
+      title: MatchAllAttributeDO
+      required:
+      - is_ready
+      - run_id
+      - run_id_start
+      - segment_id
+      type: object
+      properties:
+        run_id:
+          type: string
+          description: The runId of the match-all request. Use this value to poll for results or lookup results at a later point in time. RunId results can be viewed for 90 days
+        run_id_start:
+          type: string
+          description: ISO 8601 datetime representing when the match-all request was made
+          format: date-time
+          example: '2020-04-12T23:20:50.523Z'
+        run_id_end:
+          type: string
+          description: ISO 8601 datetime representing when the match-all result-set was ready. If this date-time is present and `is_ready` is `false`, then the match-all request has ran into an error and will not finish; please try making a new match-all request or contacting support.
+          format: date-time
+          example: '2020-04-12T23:20:50.523Z'
+        is_ready:
+          type: boolean
+          description: True if the result-set is ready. False otherwise
+        matches:
+          maxItems: 10000
+          type: array
+          description: One page of the result-set of Contact Id's
+          items:
+            type: integer
+        segment_id:
+          type: string
+        segment_timestamp:
+          type: string
+          description: ISO 8601 datetime representing when segment was last created or modified. This timestamp can be used to look up the definition of the Segment at the time of the match-all request
+          format: date-time
+          example: '2020-04-12T23:20:50.523Z'
+        page:
+          $ref: '#/components/schemas/PageDO'
+      description: Object representing the status and result of the match all request. Note that page number and total count information refer to the results in the "matches" attribute.
+    ConditionGroupDO:
+      title: ConditionGroupDO
+      type: object
+      properties:
+        id:
+          type: string
+          default: id's should be numeric strings
+          example: '1'
+        operator:
+          type: string
+          description: The operator that applies to the conditions in this group
+          enum:
+          - and
+          - or
+          example: and
+        values:
+          type: array
+          description: A list of conditions in the group. All items in the "values" array must have the same "type"
+          items:
+            $ref: '#/components/schemas/ConditionGroupFieldDO'
     ErrorResponseRootDO:
       title: ErrorResponseRootDO
       type: object
@@ -548,12 +674,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetailDO'
-    ErrorSourceDO:
-      title: ErrorSourceDO
-      type: object
-      properties:
-        pointer:
-          type: string
     SegmentDO:
       title: SegmentDO
       type: object
@@ -605,26 +725,75 @@ components:
           enum:
           - AUDIENCE
           readOnly: true
-    ConditionGroupDO:
-      title: ConditionGroupDO
+    AggFieldDO:
+      description: Required if the aggregate objects is using the "most_recent" operator. This AggFieldDO defines the query logic that the most recent object must satisfy. When this field is present, the ConditionDO.fields attribute is used to specify the requirements prior to selecting the most recent record.
+      title: AggFieldDO
+      required:
+      - data_type
+      - name
+      - operator
+      - value
+      type: object
+      properties:
+        value:
+          type: string
+          description: Value the `name` field's value should be evaluated against. Sometimes optional based on `operator`
+        data_type:
+          type: string
+          enum:
+          - string
+          - number
+          - decimal
+          - date
+          - datetime
+          - list
+          - ''
+        name:
+          type: string
+          description: Field whose value will be evaluated
+        operator:
+          type: string
+          enum:
+          - '='
+          - <
+          - '>'
+          - <=
+          - '>='
+          - '!='
+          - contains
+          - does not contain
+          - is
+          - is not
+          - not empty
+          - empty
+          - wildcard match
+          - aggregate of
+          - ''
+    ConditionGroupFieldDO:
+      title: ConditionGroupFieldDO
+      required:
+      - type
       type: object
       properties:
         id:
           type: string
-          default: id's should be numeric strings
+          description: Id of the Condition that belongs to this Condition Group. Conditions must not be in more than one group
           example: '1'
-        operator:
+        type:
           type: string
-          description: The operator that applies to the conditions in this group
+          description: Required. Type of "condition" indicates that the "id" attribute is a condition id.
           enum:
-          - and
-          - or
-          example: and
-        values:
-          type: array
-          description: A list of conditions in the group. All items in the "values" array must have the same "type"
-          items:
-            $ref: '#/components/schemas/ConditionGroupFieldDO'
+          - condition
+    AdditionalCriteriaElementDO:
+      title: AdditionalCriteriaElementDO
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AdditionalCriteriaDO'
+        type:
+          type: string
+          enum:
+          - additionalCriteria
     ErrorDetailDO:
       title: ErrorDetailDO
       type: object
@@ -639,6 +808,31 @@ components:
           type: string
         title:
           type: string
+    AdditionalCriteriaRootDO:
+      title: AdditionalCriteriaRootDO
+      type: object
+      properties:
+        data:
+          type: object
+          $ref: '#/components/schemas/AdditionalCriteriaElementDO'
+    PageDO:
+      title: PageDO
+      type: object
+      properties:
+        current_page:
+          type: integer
+          format: int32
+        last_page:
+          type: integer
+          description: Last page of results
+          format: int32
+        per_page:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          description: The total number of matches
+          format: int32
     FieldDO:
       title: FieldDO
       required:
@@ -702,121 +896,38 @@ components:
         external:
           type: boolean
           description: (Optional. Default False) If `external` is present and True, then the value of this FieldDO's "value" attribute is ignored and the externalId passed at-query time is used as the value of this FieldDO's "value" attribute. This attribute is commonly used to ensure the same pre-determined object satisfies multiple conditions
-    AdditionalCriteriaRootDO:
-      title: AdditionalCriteriaRootDO
-      type: object
-      properties:
-        data:
-          type: object
-          $ref: '#/components/schemas/AdditionalCriteriaElementDO'
-    AggFieldDO:
-      description: Required if the aggregate objects is using the "most_recent" operator. This AggFieldDO defines the query logic that the most recent object must satisfy. When this field is present, the ConditionDO.fields attribute is used to specify the requirements prior to selecting the most recent record.
-      title: AggFieldDO
-      required:
-      - data_type
-      - name
-      - operator
-      - value
-      type: object
-      properties:
-        value:
-          type: string
-          description: Value the `name` field's value should be evaluated against. Sometimes optional based on `operator`
-        data_type:
-          type: string
-          enum:
-          - string
-          - number
-          - decimal
-          - date
-          - datetime
-          - list
-          - ''
-        name:
-          type: string
-          description: Field whose value will be evaluated
-        operator:
-          type: string
-          enum:
-          - '='
-          - <
-          - '>'
-          - <=
-          - '>='
-          - '!='
-          - contains
-          - does not contain
-          - is
-          - is not
-          - not empty
-          - empty
-          - wildcard match
-          - aggregate of
-          - ''
-    MatchAllAttributeDO:
-      title: MatchAllAttributeDO
-      required:
-      - is_ready
-      - run_id
-      - run_id_start
-      - segment_id
-      type: object
-      properties:
-        run_id:
-          type: string
-          description: The runId of the match-all request. Use this value to poll for results or lookup results at a later point in time. RunId results can be viewed for 90 days
-        run_id_start:
-          type: string
-          description: ISO 8601 datetime representing when the match-all request was made
-          format: date-time
-          example: '2020-04-12T23:20:50.523Z'
-        run_id_end:
-          type: string
-          description: ISO 8601 datetime representing when the match-all result-set was ready. If this date-time is present and `is_ready` is `false`, then the match-all request has ran into an error and will not finish; please try making a new match-all request or contacting support.
-          format: date-time
-          example: '2020-04-12T23:20:50.523Z'
-        is_ready:
-          type: boolean
-          description: True if the result-set is ready. False otherwise
-        matches:
-          maxItems: 10000
-          type: array
-          description: One page of the result-set of Contact Id's
-          items:
-            type: integer
-        segment_id:
-          type: string
-        segment_timestamp:
-          type: string
-          description: ISO 8601 datetime representing when segment was last created or modified. This timestamp can be used to look up the definition of the Segment at the time of the match-all request
-          format: date-time
-          example: '2020-04-12T23:20:50.523Z'
-        page:
-          $ref: '#/components/schemas/PageDO'
-      description: Object representing the status and result of the match all request. Note that page number and total count information refer to the results in the "matches" attribute.
-    MatchAllResponseRootDO:
-      title: MatchAllResponseRootDO
+    RootDO:
+      title: RootDO
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/MatchAllDataDO'
-    ConditionGroupFieldDO:
-      title: ConditionGroupFieldDO
-      required:
-      - type
+            $ref: '#/components/schemas/SegmentDataDO'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetailDO'
+    ErrorSourceDO:
+      title: ErrorSourceDO
       type: object
       properties:
+        pointer:
+          type: string
+    SegmentDataDO:
+      title: SegmentDataDO
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SegmentDO'
         id:
           type: string
-          description: Id of the Condition that belongs to this Condition Group. Conditions must not be in more than one group
-          example: '1'
+          example: 1ab85f0e-3b5c-4a35-bc07-242c68a7d195
+          readOnly: true
         type:
           type: string
-          description: Required. Type of "condition" indicates that the "id" attribute is a condition id.
-          enum:
-          - condition
+          readOnly: true
+          example: Segment.v2
     AdditionalCriteriaDO:
       title: AdditionalCriteriaDO
       type: object
@@ -847,6 +958,19 @@ components:
           enum:
           - and
           - or
+    MatchAllDataDO:
+      title: MatchAllDataDO
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/MatchAllAttributeDO'
+        id:
+          type: string
+          description: ID of the specific request
+        type:
+          type: string
+          enum:
+          - matchAll
     ConditionDO:
       title: ConditionDO
       required:
@@ -884,127 +1008,3 @@ components:
           description: Namespace of Object being evaluated
           enum:
           - activecampaign
-    SegmentDataDO:
-      title: SegmentDataDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SegmentDO'
-        id:
-          type: string
-          example: 1ab85f0e-3b5c-4a35-bc07-242c68a7d195
-          readOnly: true
-        type:
-          type: string
-          readOnly: true
-          example: Segment.v2
-    PageDO:
-      title: PageDO
-      type: object
-      properties:
-        current_page:
-          type: integer
-          format: int32
-        last_page:
-          type: integer
-          description: Last page of results
-          format: int32
-        per_page:
-          type: integer
-          format: int32
-        total:
-          type: integer
-          description: The total number of matches
-          format: int32
-    AggregateDO:
-      title: AggregateDO
-      description: (Optional) AggregateDO allows for requiring a count of discrete matches against the simple (non-aggregate part of a) condition before the entire condition is considered satisfied.
-      type: object
-      example: {}
-      properties:
-        aggregate_field_operator:
-          type: string
-          description: "Compares the aggregate count of occurrences to the value of the `aggregate_field_value` field. \nDescription of Values:\n* \"\" - Entire AggregateDO object will be ignored\n* \"between\" - Aggregate must be between `aggregate_field_start_value` and `aggregate_field_end_value`\n* \"most_recent\" - Only the most recent record of the given SourceObject type will be looked at.\n* \"all\" - All records of the given SourceObject type will considered.\n* \"\" - aggregation is ignored \"aggregate_most_recent_field\" is required if \"most_recent\" is used. \n* All other values relate directly to only the aggregate_field_value field"
-          default: ''
-          enum:
-          - '='
-          - '!='
-          - <
-          - '>'
-          - <=
-          - '>='
-          - between
-          - most_recent
-          - all
-          - ''
-        aggregate_field_start_value:
-          type: string
-          example: '4'
-        aggregate_field_end_value:
-          type: string
-          example: '8'
-        aggregate_field_value:
-          type: string
-          example: '2'
-        aggregate_field_time_within_unit:
-          type: string
-          description: 'Look for aggregations within the aggregate_field_time_within_value with units equal to this value.
-
-            Not required if `aggregate_field_operator` is empty. If empty when `aggregate_field_operator` is not empty, "days" will be assumed.'
-          default: days
-          enum:
-          - hours
-          - days
-          - weeks
-          - months
-          - ''
-        aggregate_field_time_within_value:
-          maximum: 2160
-          type: integer
-          example: 90
-          description: 'Number of aggregate_field_time_within_unit to look for aggregations within. Not required if `aggregate_field_operator` is empty. When `aggregate_field_operator` is not empty, value must be greater than 0 and less than or equal to the maximum value for the unit specified, which are as follows:
-
-            * hours - 2160
-
-            * days - 90
-
-            * weeks - 13
-
-            * months - 3'
-        aggregate_most_recent_field:
-          $ref: '#/components/schemas/AggFieldDO'
-    MatchAllDataDO:
-      title: MatchAllDataDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/MatchAllAttributeDO'
-        id:
-          type: string
-          description: ID of the specific request
-        type:
-          type: string
-          enum:
-          - matchAll
-    AdditionalCriteriaElementDO:
-      title: AdditionalCriteriaElementDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AdditionalCriteriaDO'
-        type:
-          type: string
-          enum:
-          - additionalCriteria
-    RootDO:
-      title: RootDO
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SegmentDataDO'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetailDO'

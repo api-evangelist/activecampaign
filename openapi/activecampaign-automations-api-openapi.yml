@@ -272,7 +272,7 @@ paths:
     get:
       summary: ActiveCampaign Copy of List All Automations
       description: ''
-      operationId: get_automations-1
+      operationId: getAutomationsById
       responses:
         '200':
           description: '200'
@@ -428,6 +428,8 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      x-operation-id-source: normalized
+      x-operation-id-original: get_automations-1
 components:
   securitySchemes:
     sec0:

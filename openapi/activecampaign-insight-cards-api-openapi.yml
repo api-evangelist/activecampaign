@@ -128,6 +128,11 @@ paths:
       summary: Update insight card state
 components:
   schemas:
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
     InsightCardMetadata:
       required:
       - prompt
@@ -153,49 +158,6 @@ components:
           type: string
       type: object
       additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
-    ApiViolation:
-      required:
-      - propertyPath
-      - title
-      - template
-      - parameters
-      properties:
-        propertyPath:
-          type: string
-        title:
-          type: string
-        template:
-          type: string
-        parameters:
-          oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
-          - type: object
-            additionalProperties:
-              type: string
-      type: object
-      additionalProperties: true
-    UpdateStateMetadataInsightCardRequest:
-      required:
-      - conversation_id
-      properties:
-        conversation_id:
-          type: string
-          format: uuid
-      type: object
-      additionalProperties: false
-    InsightCardListResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/InsightCardResponse'
     ApiErrorResponse:
       required:
       - type
@@ -237,6 +199,44 @@ components:
           $ref: '#/components/schemas/UpdateStateMetadataInsightCardRequest'
       type: object
       additionalProperties: false
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
+    UpdateStateMetadataInsightCardRequest:
+      required:
+      - conversation_id
+      properties:
+        conversation_id:
+          type: string
+          format: uuid
+      type: object
+      additionalProperties: false
+    InsightCardListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/InsightCardResponse'
     InsightCardResponse:
       required:
       - reseller_id

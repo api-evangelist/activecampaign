@@ -463,6 +463,41 @@ paths:
       summary: Assign child accounts to a profile
 components:
   schemas:
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+    ApiErrorResponse:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
+      type: object
+      additionalProperties: true
     ProfileListResponse:
       required:
       - profiles
@@ -475,6 +510,123 @@ components:
           - type: object
             additionalProperties:
               $ref: '#/components/schemas/ProfileResponse'
+      type: object
+      additionalProperties: false
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
+    CreateProfileResponse:
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+      type: object
+      additionalProperties: false
+    ChildAccountProfileResponse:
+      required:
+      - id
+      - reseller_id
+      - name
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        reseller_id:
+          type: integer
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
+    ProfileResponse:
+      required:
+      - id
+      - reseller_id
+      - name
+      - created_at
+      - updated_at
+      - assigned_accounts_count
+      properties:
+        id:
+          type: integer
+        reseller_id:
+          type: integer
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        assigned_accounts_count:
+          type: integer
+        assigned_accounts:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ChildAccountData'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ChildAccountData'
+      type: object
+      additionalProperties: false
+    ChildAccountData:
+      required:
+      - id
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        reseller_id:
+          type:
+          - integer
+          - 'null'
+        account_name:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
       type: object
       additionalProperties: false
     CreateProfileRequest:
@@ -528,36 +680,6 @@ components:
             type: boolean
         additionalProperties: false
       additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
-    ApiViolation:
-      required:
-      - propertyPath
-      - title
-      - template
-      - parameters
-      properties:
-        propertyPath:
-          type: string
-        title:
-          type: string
-        template:
-          type: string
-        parameters:
-          oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
-          - type: object
-            additionalProperties:
-              type: string
-      type: object
-      additionalProperties: true
     UpdateProfileRequest:
       required:
       - name
@@ -567,128 +689,6 @@ components:
           maxLength: 255
           minLength: 1
           example: Gyms and fitness centers
-      type: object
-      additionalProperties: false
-    ChildAccountProfileResponse:
-      required:
-      - id
-      - reseller_id
-      - name
-      - created_at
-      - updated_at
-      properties:
-        id:
-          type: integer
-        reseller_id:
-          type: integer
-        name:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      type: object
-      additionalProperties: false
-    ChildAccountData:
-      required:
-      - id
-      - created_at
-      - updated_at
-      properties:
-        id:
-          type: integer
-        reseller_id:
-          type:
-          - integer
-          - 'null'
-        account_name:
-          type:
-          - string
-          - 'null'
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      type: object
-      additionalProperties: false
-    CreateProfileResponse:
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-      type: object
-      additionalProperties: false
-    ApiErrorResponse:
-      required:
-      - type
-      - title
-      - status
-      - detail
-      properties:
-        type:
-          type: string
-        title:
-          type: string
-        status:
-          type: integer
-        detail:
-          type: string
-        violations:
-          default: null
-          oneOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/ApiViolation'
-          - type:
-            - object
-            - 'null'
-            additionalProperties:
-              $ref: '#/components/schemas/ApiViolation'
-      type: object
-      additionalProperties: true
-    ProfileResponse:
-      required:
-      - id
-      - reseller_id
-      - name
-      - created_at
-      - updated_at
-      - assigned_accounts_count
-      properties:
-        id:
-          type: integer
-        reseller_id:
-          type: integer
-        name:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        assigned_accounts_count:
-          type: integer
-        assigned_accounts:
-          default: null
-          oneOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/ChildAccountData'
-          - type:
-            - object
-            - 'null'
-            additionalProperties:
-              $ref: '#/components/schemas/ChildAccountData'
       type: object
       additionalProperties: false
   securitySchemes:

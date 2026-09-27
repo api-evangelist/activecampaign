@@ -55,36 +55,28 @@ paths:
       summary: Get storage quota status
 components:
   schemas:
-    ApiViolation:
-      required:
-      - propertyPath
-      - title
-      - template
-      - parameters
-      properties:
-        propertyPath:
-          type: string
-        title:
-          type: string
-        template:
-          type: string
-        parameters:
-          oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
-          - type: object
-            additionalProperties:
-              type: string
-      type: object
-      additionalProperties: true
     UnauthorizedResponse:
       description: Unauthorized
       example:
         error: Unauthorized
         message: Invalid credentials
+    QuotaStatusResponse:
+      required:
+      - quota_limit_bytes
+      - current_usage_bytes
+      - available_bytes
+      properties:
+        quota_limit_bytes:
+          type: integer
+          example: 4294967296
+        current_usage_bytes:
+          type: integer
+          example: 1073741824
+        available_bytes:
+          type: integer
+          example: 3221225472
+      type: object
+      additionalProperties: false
     ApiErrorResponse:
       required:
       - type
@@ -115,23 +107,31 @@ components:
               $ref: '#/components/schemas/ApiViolation'
       type: object
       additionalProperties: true
-    QuotaStatusResponse:
+    ApiViolation:
       required:
-      - quota_limit_bytes
-      - current_usage_bytes
-      - available_bytes
+      - propertyPath
+      - title
+      - template
+      - parameters
       properties:
-        quota_limit_bytes:
-          type: integer
-          example: 4294967296
-        current_usage_bytes:
-          type: integer
-          example: 1073741824
-        available_bytes:
-          type: integer
-          example: 3221225472
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
       type: object
-      additionalProperties: false
+      additionalProperties: true
   securitySchemes:
     PartnerApiKey:
       type: apiKey

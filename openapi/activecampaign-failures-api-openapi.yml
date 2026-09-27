@@ -56,13 +56,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    FailureDetailsResponse:
-      type: object
-      properties:
-        failures:
-          type: array
-          items:
-            $ref: '#/components/schemas/FailureDetail'
     FailureDetail:
       type: object
       properties:
@@ -75,6 +68,13 @@ components:
           - twilio
         count:
           type: integer
+    FailureDetailsResponse:
+      type: object
+      properties:
+        failures:
+          type: array
+          items:
+            $ref: '#/components/schemas/FailureDetail'
   securitySchemes:
     ApiToken:
       type: apiKey

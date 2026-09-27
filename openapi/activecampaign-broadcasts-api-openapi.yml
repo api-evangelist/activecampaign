@@ -242,6 +242,15 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    BroadcastList:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        subscriber_count:
+          type: integer
     BroadcastListsResponse:
       type: object
       properties:
@@ -374,15 +383,6 @@ components:
           type: array
           items:
             type: integer
-    BroadcastList:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        subscriber_count:
-          type: integer
     BroadcastMessage:
       type: object
       properties:

@@ -264,6 +264,35 @@ paths:
       - PartnerJwtBearerAuth: []
 components:
   schemas:
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+    AM2CreateSnapshotRequest:
+      required:
+      - account_id
+      - name
+      properties:
+        account_id:
+          type: integer
+        name:
+          type: string
+      type: object
+      additionalProperties: false
+    AccountCloningStatusListResponse:
+      required:
+      - items
+      - pagination
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountCloningStatusResponse'
+        pagination:
+          $ref: '#/components/schemas/AccountCloningStatusListPagination'
+      type: object
+      additionalProperties: false
     AccountCloningStatusResponse:
       required:
       - id
@@ -327,6 +356,36 @@ components:
           example: 5
       type: object
       additionalProperties: false
+    ApiErrorResponse:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        violations:
+          default: null
+          oneOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              $ref: '#/components/schemas/ApiViolation'
+      type: object
+      additionalProperties: true
     AM2GetSnapshotsResponse:
       required:
       - next_cursor
@@ -343,11 +402,6 @@ components:
           type: string
       type: object
       additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
     ApiViolation:
       required:
       - propertyPath
@@ -373,38 +427,6 @@ components:
               type: string
       type: object
       additionalProperties: true
-    AM2CreateSnapshotRequest:
-      required:
-      - account_id
-      - name
-      properties:
-        account_id:
-          type: integer
-        name:
-          type: string
-      type: object
-      additionalProperties: false
-    AccountCloningStatusListPagination:
-      required:
-      - total
-      - page
-      - per_page
-      - total_pages
-      properties:
-        total:
-          type: integer
-          example: 100
-        page:
-          type: integer
-          example: 1
-        per_page:
-          type: integer
-          example: 20
-        total_pages:
-          type: integer
-          example: 5
-      type: object
-      additionalProperties: false
     AM2SnapshotResponse:
       required:
       - id
@@ -458,47 +480,25 @@ components:
           example: '2024-01-01T12:00:00+00:00'
       type: object
       additionalProperties: false
-    ApiErrorResponse:
+    AccountCloningStatusListPagination:
       required:
-      - type
-      - title
-      - status
-      - detail
+      - total
+      - page
+      - per_page
+      - total_pages
       properties:
-        type:
-          type: string
-        title:
-          type: string
-        status:
+        total:
           type: integer
-        detail:
-          type: string
-        violations:
-          default: null
-          oneOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/ApiViolation'
-          - type:
-            - object
-            - 'null'
-            additionalProperties:
-              $ref: '#/components/schemas/ApiViolation'
-      type: object
-      additionalProperties: true
-    AccountCloningStatusListResponse:
-      required:
-      - items
-      - pagination
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountCloningStatusResponse'
-        pagination:
-          $ref: '#/components/schemas/AccountCloningStatusListPagination'
+          example: 100
+        page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 20
+        total_pages:
+          type: integer
+          example: 5
       type: object
       additionalProperties: false
   securitySchemes:
