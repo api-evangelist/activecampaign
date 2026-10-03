@@ -242,6 +242,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    BroadcastListResponse:
+      type: object
+      properties:
+        broadcasts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BroadcastMessage'
+        meta:
+          type: object
+          properties:
+            total:
+              type: integer
+              description: Total number of broadcasts
     BroadcastList:
       type: object
       properties:
@@ -251,6 +264,60 @@ components:
           type: string
         subscriber_count:
           type: integer
+    BroadcastUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        address_id:
+          type:
+          - integer
+          - 'null'
+        body:
+          type: string
+        media_urls:
+          type: array
+          items:
+            type: string
+            format: uri
+        preview_url:
+          type: string
+          format: uri
+        shorten_track_links_enabled:
+          type: boolean
+        status:
+          type: string
+          description: Status of the broadcast. pending_review starts kicks off the broadcast to be sent
+          enum:
+          - draft
+          - pending_review
+        scheduled_date:
+          type: string
+          format: date-time
+        sent_to_count:
+          type: integer
+        list_ids:
+          type: array
+          items:
+            type: integer
+        segment_id:
+          type: string
+        custom_run_id:
+          type:
+          - string
+          - 'null'
+          description: custom run id generated from segmentMatchSome endpoint and passing a valid segment id
+          format: uuid
+        custom_segment_id:
+          type:
+          - string
+          - 'null'
+          description: custom segment id generated from segmentsV2 endpoint and passing in a valid audience
+          format: uuid
+        label_ids:
+          type: array
+          items:
+            type: integer
     BroadcastListsResponse:
       type: object
       properties:
@@ -306,73 +373,6 @@ components:
             type: integer
         segment_id:
           type: string
-        custom_segment_id:
-          type:
-          - string
-          - 'null'
-          description: custom segment id generated from segmentsV2 endpoint and passing in a valid audience
-          format: uuid
-        label_ids:
-          type: array
-          items:
-            type: integer
-    BroadcastListResponse:
-      type: object
-      properties:
-        broadcasts:
-          type: array
-          items:
-            $ref: '#/components/schemas/BroadcastMessage'
-        meta:
-          type: object
-          properties:
-            total:
-              type: integer
-              description: Total number of broadcasts
-    BroadcastUpdateRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        address_id:
-          type:
-          - integer
-          - 'null'
-        body:
-          type: string
-        media_urls:
-          type: array
-          items:
-            type: string
-            format: uri
-        preview_url:
-          type: string
-          format: uri
-        shorten_track_links_enabled:
-          type: boolean
-        status:
-          type: string
-          description: Status of the broadcast. pending_review starts kicks off the broadcast to be sent
-          enum:
-          - draft
-          - pending_review
-        scheduled_date:
-          type: string
-          format: date-time
-        sent_to_count:
-          type: integer
-        list_ids:
-          type: array
-          items:
-            type: integer
-        segment_id:
-          type: string
-        custom_run_id:
-          type:
-          - string
-          - 'null'
-          description: custom run id generated from segmentMatchSome endpoint and passing a valid segment id
-          format: uuid
         custom_segment_id:
           type:
           - string

@@ -341,11 +341,20 @@ paths:
       summary: Update custom instruction by id
 components:
   schemas:
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
+    CustomInstructionListResponse:
+      required:
+      - data
+      properties:
+        data:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/CustomInstructionResponse'
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/CustomInstructionResponse'
+      type: object
+      additionalProperties: false
     ApiErrorResponse:
       required:
       - type
@@ -376,92 +385,12 @@ components:
               $ref: '#/components/schemas/ApiViolation'
       type: object
       additionalProperties: true
-    ApiViolation:
-      required:
-      - propertyPath
-      - title
-      - template
-      - parameters
-      properties:
-        propertyPath:
-          type: string
-        title:
-          type: string
-        template:
-          type: string
-        parameters:
-          oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
-          - type: object
-            additionalProperties:
-              type: string
-      type: object
-      additionalProperties: true
     CreateCustomInstructionResponse:
       required:
       - id
       properties:
         id:
           type: integer
-      type: object
-      additionalProperties: false
-    CreateCustomInstructionRequest:
-      required:
-      - custom_instruction
-      properties:
-        custom_instruction:
-          description: Custom instruction to be used for AI responses. It is validated to ensure it is safe for AI use.
-          type: string
-          maxLength: 65535
-          minLength: 1
-          example: Always respond in a professional and concise tone.
-        is_enabled:
-          type:
-          - boolean
-          - 'null'
-      type: object
-      additionalProperties: false
-    CustomInstructionListResponse:
-      required:
-      - data
-      properties:
-        data:
-          oneOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/CustomInstructionResponse'
-          - type: object
-            additionalProperties:
-              $ref: '#/components/schemas/CustomInstructionResponse'
-      type: object
-      additionalProperties: false
-    CustomInstructionResponse:
-      required:
-      - id
-      - profile_id
-      - custom_instruction
-      - is_enabled
-      - created_at
-      - updated_at
-      properties:
-        id:
-          type: integer
-        profile_id:
-          type: integer
-        custom_instruction:
-          type: string
-        is_enabled:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
       type: object
       additionalProperties: false
     UpdateCustomInstructionRequest:
@@ -508,6 +437,77 @@ components:
             type: boolean
         additionalProperties: false
       additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+    CustomInstructionResponse:
+      required:
+      - id
+      - profile_id
+      - custom_instruction
+      - is_enabled
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        profile_id:
+          type: integer
+        custom_instruction:
+          type: string
+        is_enabled:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
+    CreateCustomInstructionRequest:
+      required:
+      - custom_instruction
+      properties:
+        custom_instruction:
+          description: Custom instruction to be used for AI responses. It is validated to ensure it is safe for AI use.
+          type: string
+          maxLength: 65535
+          minLength: 1
+          example: Always respond in a professional and concise tone.
+        is_enabled:
+          type:
+          - boolean
+          - 'null'
+      type: object
+      additionalProperties: false
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
   securitySchemes:
     PartnerApiKey:
       type: apiKey

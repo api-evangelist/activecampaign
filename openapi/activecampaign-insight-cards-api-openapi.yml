@@ -128,36 +128,6 @@ paths:
       summary: Update insight card state
 components:
   schemas:
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
-    InsightCardMetadata:
-      required:
-      - prompt
-      - title
-      - summary
-      - insight_card_type
-      - insight_card_label
-      properties:
-        prompt:
-          type: string
-        title:
-          type: string
-        summary:
-          type: string
-        used:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        insight_card_type:
-          type: string
-        insight_card_label:
-          type: string
-      type: object
-      additionalProperties: false
     ApiErrorResponse:
       required:
       - type
@@ -188,6 +158,71 @@ components:
               $ref: '#/components/schemas/ApiViolation'
       type: object
       additionalProperties: true
+    InsightCardMetadata:
+      required:
+      - prompt
+      - title
+      - summary
+      - insight_card_type
+      - insight_card_label
+      properties:
+        prompt:
+          type: string
+        title:
+          type: string
+        summary:
+          type: string
+        used:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        insight_card_type:
+          type: string
+        insight_card_label:
+          type: string
+      type: object
+      additionalProperties: false
+    InsightCardResponse:
+      required:
+      - reseller_id
+      - resource_id
+      - insight
+      - run_timestamp
+      - metadata
+      properties:
+        reseller_id:
+          type: integer
+        resource_id:
+          type: string
+          format: uuid
+        insight:
+          type: string
+        run_timestamp:
+          type: string
+          format: date-time
+        metadata:
+          $ref: '#/components/schemas/InsightCardMetadata'
+      type: object
+      additionalProperties: false
+    InsightCardListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/InsightCardResponse'
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+    UpdateStateMetadataInsightCardRequest:
+      required:
+      - conversation_id
+      properties:
+        conversation_id:
+          type: string
+          format: uuid
+      type: object
+      additionalProperties: false
     UpdateStateInsightCardRequest:
       required:
       - insight
@@ -224,41 +259,6 @@ components:
               type: string
       type: object
       additionalProperties: true
-    UpdateStateMetadataInsightCardRequest:
-      required:
-      - conversation_id
-      properties:
-        conversation_id:
-          type: string
-          format: uuid
-      type: object
-      additionalProperties: false
-    InsightCardListResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/InsightCardResponse'
-    InsightCardResponse:
-      required:
-      - reseller_id
-      - resource_id
-      - insight
-      - run_timestamp
-      - metadata
-      properties:
-        reseller_id:
-          type: integer
-        resource_id:
-          type: string
-          format: uuid
-        insight:
-          type: string
-        run_timestamp:
-          type: string
-          format: date-time
-        metadata:
-          $ref: '#/components/schemas/InsightCardMetadata'
-      type: object
-      additionalProperties: false
   securitySchemes:
     PartnerApiKey:
       type: apiKey

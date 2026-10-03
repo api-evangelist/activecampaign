@@ -540,71 +540,43 @@ paths:
       deprecated: false
 components:
   schemas:
-    AggregateDO:
-      title: AggregateDO
-      description: (Optional) AggregateDO allows for requiring a count of discrete matches against the simple (non-aggregate part of a) condition before the entire condition is considered satisfied.
+    ErrorSourceDO:
+      title: ErrorSourceDO
       type: object
-      example: {}
       properties:
-        aggregate_field_operator:
+        pointer:
           type: string
-          description: "Compares the aggregate count of occurrences to the value of the `aggregate_field_value` field. \nDescription of Values:\n* \"\" - Entire AggregateDO object will be ignored\n* \"between\" - Aggregate must be between `aggregate_field_start_value` and `aggregate_field_end_value`\n* \"most_recent\" - Only the most recent record of the given SourceObject type will be looked at.\n* \"all\" - All records of the given SourceObject type will considered.\n* \"\" - aggregation is ignored \"aggregate_most_recent_field\" is required if \"most_recent\" is used. \n* All other values relate directly to only the aggregate_field_value field"
-          default: ''
-          enum:
-          - '='
-          - '!='
-          - <
-          - '>'
-          - <=
-          - '>='
-          - between
-          - most_recent
-          - all
-          - ''
-        aggregate_field_start_value:
-          type: string
-          example: '4'
-        aggregate_field_end_value:
-          type: string
-          example: '8'
-        aggregate_field_value:
-          type: string
-          example: '2'
-        aggregate_field_time_within_unit:
-          type: string
-          description: 'Look for aggregations within the aggregate_field_time_within_value with units equal to this value.
-
-            Not required if `aggregate_field_operator` is empty. If empty when `aggregate_field_operator` is not empty, "days" will be assumed.'
-          default: days
-          enum:
-          - hours
-          - days
-          - weeks
-          - months
-          - ''
-        aggregate_field_time_within_value:
-          maximum: 2160
+    PageDO:
+      title: PageDO
+      type: object
+      properties:
+        current_page:
           type: integer
-          example: 90
-          description: 'Number of aggregate_field_time_within_unit to look for aggregations within. Not required if `aggregate_field_operator` is empty. When `aggregate_field_operator` is not empty, value must be greater than 0 and less than or equal to the maximum value for the unit specified, which are as follows:
-
-            * hours - 2160
-
-            * days - 90
-
-            * weeks - 13
-
-            * months - 3'
-        aggregate_most_recent_field:
-          $ref: '#/components/schemas/AggFieldDO'
-    MatchAllResponseRootDO:
-      title: MatchAllResponseRootDO
+          format: int32
+        last_page:
+          type: integer
+          description: Last page of results
+          format: int32
+        per_page:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          description: The total number of matches
+          format: int32
+    MatchAllDataDO:
+      title: MatchAllDataDO
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MatchAllDataDO'
+        attributes:
+          $ref: '#/components/schemas/MatchAllAttributeDO'
+        id:
+          type: string
+          description: ID of the specific request
+        type:
+          type: string
+          enum:
+          - matchAll
     MatchAllAttributeDO:
       title: MatchAllAttributeDO
       required:
@@ -666,14 +638,184 @@ components:
           description: A list of conditions in the group. All items in the "values" array must have the same "type"
           items:
             $ref: '#/components/schemas/ConditionGroupFieldDO'
-    ErrorResponseRootDO:
-      title: ErrorResponseRootDO
+    ConditionDO:
+      title: ConditionDO
+      required:
+      - object_type
+      - source_system
+      - fields
       type: object
       properties:
+        field_aggregate:
+          $ref: '#/components/schemas/AggregateDO'
+        fields:
+          type: array
+          description: Defines the fields, values, types, and their operators. These act as search criteria for the Segment's condition.
+          items:
+            $ref: '#/components/schemas/FieldDO'
+        hash:
+          type: string
+          description: Sha1 Hash of the Condition's simple logic and its aggregation logic
+          readOnly: true
+        hash_simple:
+          type: string
+          description: Sha1 Hash of the Condition's simple logic
+          readOnly: true
+        id:
+          type: string
+          description: Numeric unique identifier for the Condition
+          example: '1'
+        object_type:
+          type: string
+          description: Name of the Object being evaluated
+          enum:
+          - tag
+        source_system:
+          type: string
+          description: Namespace of Object being evaluated
+          enum:
+          - activecampaign
+    ErrorDetailDO:
+      title: ErrorDetailDO
+      type: object
+      properties:
+        code:
+          type: string
+        detail:
+          type: string
+        source:
+          $ref: '#/components/schemas/ErrorSourceDO'
+        status:
+          type: string
+        title:
+          type: string
+    SegmentDataDO:
+      title: SegmentDataDO
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SegmentDO'
+        id:
+          type: string
+          example: 1ab85f0e-3b5c-4a35-bc07-242c68a7d195
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+          example: Segment.v2
+    RootDO:
+      title: RootDO
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentDataDO'
         errors:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetailDO'
+    AggFieldDO:
+      description: Required if the aggregate objects is using the "most_recent" operator. This AggFieldDO defines the query logic that the most recent object must satisfy. When this field is present, the ConditionDO.fields attribute is used to specify the requirements prior to selecting the most recent record.
+      title: AggFieldDO
+      required:
+      - data_type
+      - name
+      - operator
+      - value
+      type: object
+      properties:
+        value:
+          type: string
+          description: Value the `name` field's value should be evaluated against. Sometimes optional based on `operator`
+        data_type:
+          type: string
+          enum:
+          - string
+          - number
+          - decimal
+          - date
+          - datetime
+          - list
+          - ''
+        name:
+          type: string
+          description: Field whose value will be evaluated
+        operator:
+          type: string
+          enum:
+          - '='
+          - <
+          - '>'
+          - <=
+          - '>='
+          - '!='
+          - contains
+          - does not contain
+          - is
+          - is not
+          - not empty
+          - empty
+          - wildcard match
+          - aggregate of
+          - ''
+    AggregateDO:
+      title: AggregateDO
+      description: (Optional) AggregateDO allows for requiring a count of discrete matches against the simple (non-aggregate part of a) condition before the entire condition is considered satisfied.
+      type: object
+      example: {}
+      properties:
+        aggregate_field_operator:
+          type: string
+          description: "Compares the aggregate count of occurrences to the value of the `aggregate_field_value` field. \nDescription of Values:\n* \"\" - Entire AggregateDO object will be ignored\n* \"between\" - Aggregate must be between `aggregate_field_start_value` and `aggregate_field_end_value`\n* \"most_recent\" - Only the most recent record of the given SourceObject type will be looked at.\n* \"all\" - All records of the given SourceObject type will considered.\n* \"\" - aggregation is ignored \"aggregate_most_recent_field\" is required if \"most_recent\" is used. \n* All other values relate directly to only the aggregate_field_value field"
+          default: ''
+          enum:
+          - '='
+          - '!='
+          - <
+          - '>'
+          - <=
+          - '>='
+          - between
+          - most_recent
+          - all
+          - ''
+        aggregate_field_start_value:
+          type: string
+          example: '4'
+        aggregate_field_end_value:
+          type: string
+          example: '8'
+        aggregate_field_value:
+          type: string
+          example: '2'
+        aggregate_field_time_within_unit:
+          type: string
+          description: 'Look for aggregations within the aggregate_field_time_within_value with units equal to this value.
+
+            Not required if `aggregate_field_operator` is empty. If empty when `aggregate_field_operator` is not empty, "days" will be assumed.'
+          default: days
+          enum:
+          - hours
+          - days
+          - weeks
+          - months
+          - ''
+        aggregate_field_time_within_value:
+          maximum: 2160
+          type: integer
+          example: 90
+          description: 'Number of aggregate_field_time_within_unit to look for aggregations within. Not required if `aggregate_field_operator` is empty. When `aggregate_field_operator` is not empty, value must be greater than 0 and less than or equal to the maximum value for the unit specified, which are as follows:
+
+            * hours - 2160
+
+            * days - 90
+
+            * weeks - 13
+
+            * months - 3'
+        aggregate_most_recent_field:
+          $ref: '#/components/schemas/AggFieldDO'
     SegmentDO:
       title: SegmentDO
       type: object
@@ -725,50 +867,62 @@ components:
           enum:
           - AUDIENCE
           readOnly: true
-    AggFieldDO:
-      description: Required if the aggregate objects is using the "most_recent" operator. This AggFieldDO defines the query logic that the most recent object must satisfy. When this field is present, the ConditionDO.fields attribute is used to specify the requirements prior to selecting the most recent record.
-      title: AggFieldDO
-      required:
-      - data_type
-      - name
-      - operator
-      - value
+    ErrorResponseRootDO:
+      title: ErrorResponseRootDO
       type: object
       properties:
-        value:
-          type: string
-          description: Value the `name` field's value should be evaluated against. Sometimes optional based on `operator`
-        data_type:
-          type: string
-          enum:
-          - string
-          - number
-          - decimal
-          - date
-          - datetime
-          - list
-          - ''
-        name:
-          type: string
-          description: Field whose value will be evaluated
-        operator:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetailDO'
+    AdditionalCriteriaElementDO:
+      title: AdditionalCriteriaElementDO
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AdditionalCriteriaDO'
+        type:
           type: string
           enum:
-          - '='
-          - <
-          - '>'
-          - <=
-          - '>='
-          - '!='
-          - contains
-          - does not contain
-          - is
-          - is not
-          - not empty
-          - empty
-          - wildcard match
-          - aggregate of
-          - ''
+          - additionalCriteria
+    AdditionalCriteriaDO:
+      title: AdditionalCriteriaDO
+      type: object
+      required:
+      - conditions
+      - group_operator
+      properties:
+        external_id:
+          type: string
+          description: Value to inject for any FieldDO's that have external set to `True`
+          example: '1504'
+        limit:
+          type: integer
+          description: Maximum number of matches in the result-set
+          minimum: 1
+          maximum: 10000
+        segment_relationship:
+          description: 'Used to determine how the conditions should be conjoined with the segment conditions. Only required when OR''ing such that: `thisAdditionalCriteriaCondition or theSegmentConditions'
+          type: string
+          enum:
+          - or
+        conditions:
+          $ref: '#/components/schemas/ConditionDO'
+        condition_groups:
+          $ref: '#/components/schemas/ConditionGroupDO'
+        group_operator:
+          type: string
+          enum:
+          - and
+          - or
+    MatchAllResponseRootDO:
+      title: MatchAllResponseRootDO
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchAllDataDO'
     ConditionGroupFieldDO:
       title: ConditionGroupFieldDO
       required:
@@ -784,30 +938,6 @@ components:
           description: Required. Type of "condition" indicates that the "id" attribute is a condition id.
           enum:
           - condition
-    AdditionalCriteriaElementDO:
-      title: AdditionalCriteriaElementDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AdditionalCriteriaDO'
-        type:
-          type: string
-          enum:
-          - additionalCriteria
-    ErrorDetailDO:
-      title: ErrorDetailDO
-      type: object
-      properties:
-        code:
-          type: string
-        detail:
-          type: string
-        source:
-          $ref: '#/components/schemas/ErrorSourceDO'
-        status:
-          type: string
-        title:
-          type: string
     AdditionalCriteriaRootDO:
       title: AdditionalCriteriaRootDO
       type: object
@@ -815,24 +945,6 @@ components:
         data:
           type: object
           $ref: '#/components/schemas/AdditionalCriteriaElementDO'
-    PageDO:
-      title: PageDO
-      type: object
-      properties:
-        current_page:
-          type: integer
-          format: int32
-        last_page:
-          type: integer
-          description: Last page of results
-          format: int32
-        per_page:
-          type: integer
-          format: int32
-        total:
-          type: integer
-          description: The total number of matches
-          format: int32
     FieldDO:
       title: FieldDO
       required:
@@ -896,115 +1008,3 @@ components:
         external:
           type: boolean
           description: (Optional. Default False) If `external` is present and True, then the value of this FieldDO's "value" attribute is ignored and the externalId passed at-query time is used as the value of this FieldDO's "value" attribute. This attribute is commonly used to ensure the same pre-determined object satisfies multiple conditions
-    RootDO:
-      title: RootDO
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SegmentDataDO'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetailDO'
-    ErrorSourceDO:
-      title: ErrorSourceDO
-      type: object
-      properties:
-        pointer:
-          type: string
-    SegmentDataDO:
-      title: SegmentDataDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SegmentDO'
-        id:
-          type: string
-          example: 1ab85f0e-3b5c-4a35-bc07-242c68a7d195
-          readOnly: true
-        type:
-          type: string
-          readOnly: true
-          example: Segment.v2
-    AdditionalCriteriaDO:
-      title: AdditionalCriteriaDO
-      type: object
-      required:
-      - conditions
-      - group_operator
-      properties:
-        external_id:
-          type: string
-          description: Value to inject for any FieldDO's that have external set to `True`
-          example: '1504'
-        limit:
-          type: integer
-          description: Maximum number of matches in the result-set
-          minimum: 1
-          maximum: 10000
-        segment_relationship:
-          description: 'Used to determine how the conditions should be conjoined with the segment conditions. Only required when OR''ing such that: `thisAdditionalCriteriaCondition or theSegmentConditions'
-          type: string
-          enum:
-          - or
-        conditions:
-          $ref: '#/components/schemas/ConditionDO'
-        condition_groups:
-          $ref: '#/components/schemas/ConditionGroupDO'
-        group_operator:
-          type: string
-          enum:
-          - and
-          - or
-    MatchAllDataDO:
-      title: MatchAllDataDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/MatchAllAttributeDO'
-        id:
-          type: string
-          description: ID of the specific request
-        type:
-          type: string
-          enum:
-          - matchAll
-    ConditionDO:
-      title: ConditionDO
-      required:
-      - object_type
-      - source_system
-      - fields
-      type: object
-      properties:
-        field_aggregate:
-          $ref: '#/components/schemas/AggregateDO'
-        fields:
-          type: array
-          description: Defines the fields, values, types, and their operators. These act as search criteria for the Segment's condition.
-          items:
-            $ref: '#/components/schemas/FieldDO'
-        hash:
-          type: string
-          description: Sha1 Hash of the Condition's simple logic and its aggregation logic
-          readOnly: true
-        hash_simple:
-          type: string
-          description: Sha1 Hash of the Condition's simple logic
-          readOnly: true
-        id:
-          type: string
-          description: Numeric unique identifier for the Condition
-          example: '1'
-        object_type:
-          type: string
-          description: Name of the Object being evaluated
-          enum:
-          - tag
-        source_system:
-          type: string
-          description: Namespace of Object being evaluated
-          enum:
-          - activecampaign

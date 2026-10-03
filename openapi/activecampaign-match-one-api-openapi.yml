@@ -118,6 +118,48 @@ paths:
       deprecated: false
 components:
   schemas:
+    ErrorDetail:
+      type: object
+      properties:
+        status:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+        code:
+          type: string
+      title: ErrorDetail
+    ErrorResponse404RootDO:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail404'
+      title: ErrorResponse404RootDO
+    ErrorResponse400RootDO:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail400'
+      title: ErrorResponse400RootDO
+    ErrorDetail404:
+      type: object
+      properties:
+        status:
+          type: string
+          example: 404 NOT_FOUND
+        title:
+          type: string
+          example: Segment 1ab85f0e-3b5c-4a35-bc07-242c68a7d000 not found
+        detail:
+          type: string
+        code:
+          type: string
+      title: ErrorDetail
     MatchAttributeDO:
       type: object
       properties:
@@ -141,44 +183,6 @@ components:
           format: date-time
           example: '2025-04-12T23:20:50.523Z'
       title: MatchAttributeDO
-    MatchDataDO:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/MatchAttributeDO'
-        id:
-          type: string
-          description: Id that identifies the request. Consists of SegmentId + ContactId
-          example: 1ab85f0e-3b5c-4a35-bc07-242c68a7d195132
-        type:
-          type: string
-          enum:
-          - match
-      title: MatchDataDO
-    ErrorResponseRootDO:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-      title: ErrorResponseRootDO
-    ErrorResponse400RootDO:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail400'
-      title: ErrorResponse400RootDO
-    MatchResponseRootDO:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MatchDataDO'
-      title: MatchResponseRootDO
     ErrorDetail400:
       type: object
       properties:
@@ -193,40 +197,36 @@ components:
         code:
           type: string
       title: ErrorDetail
-    ErrorDetail404:
+    MatchResponseRootDO:
       type: object
       properties:
-        status:
-          type: string
-          example: 404 NOT_FOUND
-        title:
-          type: string
-          example: Segment 1ab85f0e-3b5c-4a35-bc07-242c68a7d000 not found
-        detail:
-          type: string
-        code:
-          type: string
-      title: ErrorDetail
-    ErrorDetail:
-      type: object
-      properties:
-        status:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
-        code:
-          type: string
-      title: ErrorDetail
-    ErrorResponse404RootDO:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchDataDO'
+      title: MatchResponseRootDO
+    ErrorResponseRootDO:
       type: object
       properties:
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/ErrorDetail404'
-      title: ErrorResponse404RootDO
+            $ref: '#/components/schemas/ErrorDetail'
+      title: ErrorResponseRootDO
+    MatchDataDO:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/MatchAttributeDO'
+        id:
+          type: string
+          description: Id that identifies the request. Consists of SegmentId + ContactId
+          example: 1ab85f0e-3b5c-4a35-bc07-242c68a7d195132
+        type:
+          type: string
+          enum:
+          - match
+      title: MatchDataDO
   securitySchemes:
     Api_Key:
       type: apiKey

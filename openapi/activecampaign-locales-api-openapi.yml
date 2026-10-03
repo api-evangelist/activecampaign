@@ -67,11 +67,23 @@ paths:
       - PartnerJwtBearerAuth: []
 components:
   schemas:
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
+    LocaleCatalogsResponse:
+      required:
+      - languages
+      - timezones
+      properties:
+        languages:
+          description: Supported language catalog. Keys are the values to send back on writes (e.g. "english", "german"); values are display labels.
+          type: object
+          additionalProperties:
+            type: string
+        timezones:
+          description: Supported timezone catalog. Keys are the IANA identifiers to send back on writes (e.g. "America/Chicago"); values are display labels.
+          type: object
+          additionalProperties:
+            type: string
+      type: object
+      additionalProperties: false
     ApiErrorResponse:
       required:
       - type
@@ -102,23 +114,11 @@ components:
               $ref: '#/components/schemas/ApiViolation'
       type: object
       additionalProperties: true
-    LocaleCatalogsResponse:
-      required:
-      - languages
-      - timezones
-      properties:
-        languages:
-          description: Supported language catalog. Keys are the values to send back on writes (e.g. "english", "german"); values are display labels.
-          type: object
-          additionalProperties:
-            type: string
-        timezones:
-          description: Supported timezone catalog. Keys are the IANA identifiers to send back on writes (e.g. "America/Chicago"); values are display labels.
-          type: object
-          additionalProperties:
-            type: string
-      type: object
-      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
     ApiViolation:
       required:
       - propertyPath

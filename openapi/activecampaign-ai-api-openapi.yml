@@ -89,6 +89,25 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    AIBroadcastStatus:
+      type: object
+      properties:
+        source:
+          type: string
+          enum:
+          - ai_index
+          - sms_index
+          - ai_builder
+        status:
+          type: string
+          enum:
+          - in_progress
+          - error
+          - success
+        broadcastId:
+          type:
+          - integer
+          - 'null'
     AIBroadcastRequest:
       type: object
       required:
@@ -108,6 +127,12 @@ components:
         tone:
           type: string
           description: Desired tone for the message
+    AIBroadcastResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: External identifier to track the request
     AIBroadcastUpdateRequest:
       type: object
       required:
@@ -128,31 +153,6 @@ components:
           type: string
         broadcastId:
           type: integer
-    AIBroadcastStatus:
-      type: object
-      properties:
-        source:
-          type: string
-          enum:
-          - ai_index
-          - sms_index
-          - ai_builder
-        status:
-          type: string
-          enum:
-          - in_progress
-          - error
-          - success
-        broadcastId:
-          type:
-          - integer
-          - 'null'
-    AIBroadcastResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-          description: External identifier to track the request
   securitySchemes:
     ApiToken:
       type: apiKey

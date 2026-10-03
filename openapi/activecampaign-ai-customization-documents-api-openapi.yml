@@ -351,11 +351,6 @@ paths:
       summary: Get a presigned download URL for a document
 components:
   schemas:
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
     ApiErrorResponse:
       required:
       - type
@@ -386,42 +381,33 @@ components:
               $ref: '#/components/schemas/ApiViolation'
       type: object
       additionalProperties: true
-    ApiViolation:
+    UpdateDocumentRequest:
       required:
-      - propertyPath
-      - title
-      - template
-      - parameters
+      - is_enabled
       properties:
-        propertyPath:
-          type: string
-        title:
-          type: string
-        template:
-          type: string
-        parameters:
-          oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
-          - type: object
-            additionalProperties:
-              type: string
-      type: object
-      additionalProperties: true
-    DocumentDownloadUrlResponse:
-      required:
-      - url
-      - expires_in
-      properties:
-        url:
-          type: string
-          format: uri
-        expires_in:
-          description: Seconds until the URL expires
-          type: integer
+        description:
+          type:
+          - string
+          - 'null'
+          default: null
+          maxLength: 2000
+          example: Updated document description
+        is_enabled:
+          type: boolean
+          example: true
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            enum:
+            - support_material
+            - campaign_material
+            - brand_rules
+            - benchmark_data
+            - product_info
+          default: null
       type: object
       additionalProperties: false
     ProfileDocumentListResponse:
@@ -435,6 +421,24 @@ components:
             $ref: '#/components/schemas/ProfileDocumentResponse'
         pagination:
           $ref: '#/components/schemas/AICustomizationsPaginationMetadata'
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+    DocumentDownloadUrlResponse:
+      required:
+      - url
+      - expires_in
+      properties:
+        url:
+          type: string
+          format: uri
+        expires_in:
+          description: Seconds until the URL expires
+          type: integer
       type: object
       additionalProperties: false
     AICustomizationsPaginationMetadata:
@@ -507,35 +511,31 @@ components:
           default: []
       type: object
       additionalProperties: false
-    UpdateDocumentRequest:
+    ApiViolation:
       required:
-      - is_enabled
+      - propertyPath
+      - title
+      - template
+      - parameters
       properties:
-        description:
-          type:
-          - string
-          - 'null'
-          default: null
-          maxLength: 2000
-          example: Updated document description
-        is_enabled:
-          type: boolean
-          example: true
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            enum:
-            - support_material
-            - campaign_material
-            - brand_rules
-            - benchmark_data
-            - product_info
-          default: null
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
       type: object
-      additionalProperties: false
+      additionalProperties: true
   securitySchemes:
     PartnerApiKey:
       type: apiKey
