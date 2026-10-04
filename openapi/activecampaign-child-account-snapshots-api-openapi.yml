@@ -264,6 +264,22 @@ paths:
       - PartnerJwtBearerAuth: []
 components:
   schemas:
+    AM2CreateSnapshotRequest:
+      required:
+      - account_id
+      - name
+      properties:
+        account_id:
+          type: integer
+        name:
+          type: string
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
     AM2GetSnapshotsResponse:
       required:
       - next_cursor
@@ -363,17 +379,65 @@ components:
           example: '2024-01-01T12:00:00+00:00'
       type: object
       additionalProperties: false
-    AM2CreateSnapshotRequest:
+    AccountCloningStatusListPagination:
       required:
-      - account_id
-      - name
+      - total
+      - page
+      - per_page
+      - total_pages
       properties:
-        account_id:
+        total:
           type: integer
-        name:
-          type: string
+          example: 100
+        page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 20
+        total_pages:
+          type: integer
+          example: 5
       type: object
       additionalProperties: false
+    AccountCloningStatusListResponse:
+      required:
+      - items
+      - pagination
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountCloningStatusResponse'
+        pagination:
+          $ref: '#/components/schemas/AccountCloningStatusListPagination'
+      type: object
+      additionalProperties: false
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
     AccountCloningStatusResponse:
       required:
       - id
@@ -437,70 +501,6 @@ components:
           example: 5
       type: object
       additionalProperties: false
-    AccountCloningStatusListPagination:
-      required:
-      - total
-      - page
-      - per_page
-      - total_pages
-      properties:
-        total:
-          type: integer
-          example: 100
-        page:
-          type: integer
-          example: 1
-        per_page:
-          type: integer
-          example: 20
-        total_pages:
-          type: integer
-          example: 5
-      type: object
-      additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
-    AccountCloningStatusListResponse:
-      required:
-      - items
-      - pagination
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountCloningStatusResponse'
-        pagination:
-          $ref: '#/components/schemas/AccountCloningStatusListPagination'
-      type: object
-      additionalProperties: false
-    ApiViolation:
-      required:
-      - propertyPath
-      - title
-      - template
-      - parameters
-      properties:
-        propertyPath:
-          type: string
-        title:
-          type: string
-        template:
-          type: string
-        parameters:
-          oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
-          - type: object
-            additionalProperties:
-              type: string
-      type: object
-      additionalProperties: true
   securitySchemes:
     PartnerApiKey:
       type: apiKey

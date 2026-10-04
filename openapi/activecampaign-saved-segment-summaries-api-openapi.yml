@@ -126,14 +126,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    SegmentSummaryErrorRootDO:
-      title: Segment Summary RootDO
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetailDO'
     ErrorSourceDO:
       title: ErrorSourceDO
       type: object
@@ -178,16 +170,6 @@ components:
           $ref: '#/components/schemas/SegmentSummaryCountDO'
         last_active_total:
           $ref: '#/components/schemas/SegmentSummaryCountDO'
-    SegmentSummaryDataDO:
-      title: Segment Summary DataDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SegmentSummaryDO'
-        id:
-          type: string
-        type:
-          type: string
     SegmentSummarySuccessRootDO:
       title: Segment Summary RootDO
       type: object
@@ -196,6 +178,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SegmentSummaryDataDO'
+    SegmentSummaryErrorRootDO:
+      title: Segment Summary RootDO
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetailDO'
+    ErrorDetailDO:
+      title: ErrorDetailDO
+      type: object
+      properties:
+        code:
+          type: string
+        detail:
+          type: string
+        source:
+          $ref: '#/components/schemas/ErrorSourceDO'
+        status:
+          type: string
+        title:
+          type: string
     SegmentSummaryDO:
       title: Segment SummaryDO
       type: object
@@ -230,19 +234,15 @@ components:
           readOnly: true
           format: date-time
           example: '2025-07-13T14:56:02.952Z'
-    ErrorDetailDO:
-      title: ErrorDetailDO
+    SegmentSummaryDataDO:
+      title: Segment Summary DataDO
       type: object
       properties:
-        code:
+        attributes:
+          $ref: '#/components/schemas/SegmentSummaryDO'
+        id:
           type: string
-        detail:
-          type: string
-        source:
-          $ref: '#/components/schemas/ErrorSourceDO'
-        status:
-          type: string
-        title:
+        type:
           type: string
   securitySchemes:
     Api_Key:

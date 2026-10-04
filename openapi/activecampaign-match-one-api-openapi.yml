@@ -118,48 +118,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    ErrorDetail:
-      type: object
-      properties:
-        status:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
-        code:
-          type: string
-      title: ErrorDetail
-    ErrorResponse404RootDO:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail404'
-      title: ErrorResponse404RootDO
-    ErrorResponse400RootDO:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail400'
-      title: ErrorResponse400RootDO
-    ErrorDetail404:
-      type: object
-      properties:
-        status:
-          type: string
-          example: 404 NOT_FOUND
-        title:
-          type: string
-          example: Segment 1ab85f0e-3b5c-4a35-bc07-242c68a7d000 not found
-        detail:
-          type: string
-        code:
-          type: string
-      title: ErrorDetail
     MatchAttributeDO:
       type: object
       properties:
@@ -183,36 +141,14 @@ components:
           format: date-time
           example: '2025-04-12T23:20:50.523Z'
       title: MatchAttributeDO
-    ErrorDetail400:
-      type: object
-      properties:
-        status:
-          type: string
-          example: 400 BAD_REQUEST
-        title:
-          type: string
-          example: Segment 1ab85f0e-3b5c-4a35-bc07-242c68a7d000 is invalid
-        detail:
-          type: string
-        code:
-          type: string
-      title: ErrorDetail
-    MatchResponseRootDO:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MatchDataDO'
-      title: MatchResponseRootDO
-    ErrorResponseRootDO:
+    ErrorResponse404RootDO:
       type: object
       properties:
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/ErrorDetail'
-      title: ErrorResponseRootDO
+            $ref: '#/components/schemas/ErrorDetail404'
+      title: ErrorResponse404RootDO
     MatchDataDO:
       type: object
       properties:
@@ -227,6 +163,70 @@ components:
           enum:
           - match
       title: MatchDataDO
+    MatchResponseRootDO:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchDataDO'
+      title: MatchResponseRootDO
+    ErrorResponse400RootDO:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail400'
+      title: ErrorResponse400RootDO
+    ErrorDetail400:
+      type: object
+      properties:
+        status:
+          type: string
+          example: 400 BAD_REQUEST
+        title:
+          type: string
+          example: Segment 1ab85f0e-3b5c-4a35-bc07-242c68a7d000 is invalid
+        detail:
+          type: string
+        code:
+          type: string
+      title: ErrorDetail
+    ErrorResponseRootDO:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+      title: ErrorResponseRootDO
+    ErrorDetail:
+      type: object
+      properties:
+        status:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+        code:
+          type: string
+      title: ErrorDetail
+    ErrorDetail404:
+      type: object
+      properties:
+        status:
+          type: string
+          example: 404 NOT_FOUND
+        title:
+          type: string
+          example: Segment 1ab85f0e-3b5c-4a35-bc07-242c68a7d000 not found
+        detail:
+          type: string
+        code:
+          type: string
+      title: ErrorDetail
   securitySchemes:
     Api_Key:
       type: apiKey

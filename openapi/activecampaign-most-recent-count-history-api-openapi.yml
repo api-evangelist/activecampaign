@@ -56,6 +56,53 @@ components:
       properties:
         pointer:
           type: string
+    SegmentCountHistoryResponseRootDO:
+      title: SegmentCountHistoryResponseRootDO
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentCountHistoryDataDO'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetailDO'
+    SegmentCountHistoryDataDO:
+      title: SegmentCountHistoryDataDO
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SegmentCountHistoryAttributeDO'
+        id:
+          type: string
+          description: Epoch timestamp the count was recorded at
+        type:
+          type: string
+          enum:
+          - SegmentCountHistory
+    ErrorResponseRootDO:
+      title: ErrorResponseRootDO
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetailDO'
+    ErrorDetailDO:
+      title: ErrorDetailDO
+      type: object
+      properties:
+        code:
+          type: string
+        detail:
+          type: string
+        source:
+          $ref: '#/components/schemas/ErrorSourceDO'
+        status:
+          type: string
+        title:
+          type: string
     SegmentCountHistoryAttributeDO:
       title: SegmentCountHistoryAttributeDO
       required:
@@ -93,50 +140,3 @@ components:
           description: if the current count is being updated, this is the runid that update is waiting on
           example: 52701258-d47e-4e5a-81e5-cff878c69bf8
       description: Object that summarises the results of a segment's evaluation request
-    SegmentCountHistoryResponseRootDO:
-      title: SegmentCountHistoryResponseRootDO
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SegmentCountHistoryDataDO'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetailDO'
-    ErrorDetailDO:
-      title: ErrorDetailDO
-      type: object
-      properties:
-        code:
-          type: string
-        detail:
-          type: string
-        source:
-          $ref: '#/components/schemas/ErrorSourceDO'
-        status:
-          type: string
-        title:
-          type: string
-    SegmentCountHistoryDataDO:
-      title: SegmentCountHistoryDataDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SegmentCountHistoryAttributeDO'
-        id:
-          type: string
-          description: Epoch timestamp the count was recorded at
-        type:
-          type: string
-          enum:
-          - SegmentCountHistory
-    ErrorResponseRootDO:
-      title: ErrorResponseRootDO
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetailDO'

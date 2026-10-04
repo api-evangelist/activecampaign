@@ -254,6 +254,54 @@ paths:
       - PartnerJwtBearerAuth: []
 components:
   schemas:
+    ChildAccountsPaginationMetadata:
+      required:
+      - total
+      - page
+      - limit
+      - total_pages
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+        total_pages:
+          type: integer
+      type: object
+      additionalProperties: false
+    ProductEntitlementLimitDto:
+      properties:
+        included_units:
+          type: integer
+          default: 0
+        purchased_units:
+          type: integer
+          default: 0
+        period:
+          type:
+          - string
+          - 'null'
+          default: null
+      type: object
+      additionalProperties: false
+    ListAccountForSnapshotResponse:
+      required:
+      - accounts
+      properties:
+        accounts:
+          description: List of accounts available for snapshots.
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountForSnapshotResponse'
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
     ApiErrorResponse:
       required:
       - type
@@ -371,60 +419,22 @@ components:
           example: 123
       type: object
       additionalProperties: false
-    ProductEntitlementLimitDto:
-      properties:
-        included_units:
-          type: integer
-          default: 0
-        purchased_units:
-          type: integer
-          default: 0
-        period:
-          type:
-          - string
-          - 'null'
-          default: null
-      type: object
-      additionalProperties: false
-    ChildAccountResponse:
+    AccountForSnapshotResponse:
       required:
       - id
-      - created_at
-      - updated_at
+      - account_name
+      - email
       properties:
         id:
           type: integer
-        reseller_id:
-          type:
-          - integer
-          - 'null'
+          example: 1
         account_name:
-          type:
-          - string
-          - 'null'
-        created_at:
           type: string
-          format: date-time
-        updated_at:
+          example: My active sandbox account
+        email:
           type: string
-          format: date-time
-      type: object
-      additionalProperties: false
-    ChildAccountsPaginationMetadata:
-      required:
-      - total
-      - page
-      - limit
-      - total_pages
-      properties:
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
-        total_pages:
-          type: integer
+          format: email
+          example: user@example.com
       type: object
       additionalProperties: false
     ProductDto:
@@ -468,68 +478,6 @@ components:
         name: null
         version: null
         entitlements: []
-      additionalProperties: false
-    ListAccountForSnapshotResponse:
-      required:
-      - accounts
-      properties:
-        accounts:
-          description: List of accounts available for snapshots.
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountForSnapshotResponse'
-      type: object
-      additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
-    ChildAccountListResponse:
-      required:
-      - hosted_accounts
-      - pagination
-      properties:
-        hosted_accounts:
-          oneOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/ChildAccountResponse'
-          - type: object
-            additionalProperties:
-              $ref: '#/components/schemas/ChildAccountResponse'
-        pagination:
-          $ref: '#/components/schemas/ChildAccountsPaginationMetadata'
-      type: object
-      additionalProperties: false
-    AccountForSnapshotResponse:
-      required:
-      - id
-      - account_name
-      - email
-      properties:
-        id:
-          type: integer
-          example: 1
-        account_name:
-          type: string
-          example: My active sandbox account
-        email:
-          type: string
-          format: email
-          example: user@example.com
-      type: object
-      additionalProperties: false
-    ProductEntitlementPricingDto:
-      required:
-      - recurring
-      - subtotal
-      properties:
-        recurring:
-          type: boolean
-        subtotal:
-          type: integer
-      type: object
       additionalProperties: false
     ProductEntitlementDto:
       properties:
@@ -576,6 +524,58 @@ components:
               type: string
       type: object
       additionalProperties: true
+    ChildAccountListResponse:
+      required:
+      - hosted_accounts
+      - pagination
+      properties:
+        hosted_accounts:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ChildAccountResponse'
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/ChildAccountResponse'
+        pagination:
+          $ref: '#/components/schemas/ChildAccountsPaginationMetadata'
+      type: object
+      additionalProperties: false
+    ProductEntitlementPricingDto:
+      required:
+      - recurring
+      - subtotal
+      properties:
+        recurring:
+          type: boolean
+        subtotal:
+          type: integer
+      type: object
+      additionalProperties: false
+    ChildAccountResponse:
+      required:
+      - id
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        reseller_id:
+          type:
+          - integer
+          - 'null'
+        account_name:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
   securitySchemes:
     PartnerApiKey:
       type: apiKey

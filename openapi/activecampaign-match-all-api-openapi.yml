@@ -540,12 +540,57 @@ paths:
       deprecated: false
 components:
   schemas:
-    ErrorSourceDO:
-      title: ErrorSourceDO
+    SegmentDO:
+      title: SegmentDO
       type: object
+      required:
+      - segment_conditions
+      - segment_condition_groups
+      - segment_condition_group_operator
       properties:
-        pointer:
+        created_date:
           type: string
+        meta:
+          type: object
+          additionalProperties:
+            type: string
+        segment_condition_group_operator:
+          type: string
+          description: The operator that combines the condition groups
+          enum:
+          - and
+          - or
+          example: and
+        segment_condition_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionGroupDO'
+        segment_conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionDO'
+        segment_hash:
+          type: string
+          readOnly: true
+        segment_id:
+          type: string
+          readOnly: true
+        user_id:
+          type: string
+          description: The user that created this version of the segment
+          readOnly: true
+        name:
+          type: string
+          description: Optional. Segments with this attribute are Saved Segments and will show up on the /app/audiences page. Value must be unique. Can be defined at creation time, but cannot be added to a Segment during an update operation
+        description:
+          type: string
+          maxLength: 1000
+          description: Optional for Saved Segments
+        category:
+          type: string
+          enum:
+          - AUDIENCE
+          readOnly: true
     PageDO:
       title: PageDO
       type: object
@@ -564,131 +609,6 @@ components:
           type: integer
           description: The total number of matches
           format: int32
-    MatchAllDataDO:
-      title: MatchAllDataDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/MatchAllAttributeDO'
-        id:
-          type: string
-          description: ID of the specific request
-        type:
-          type: string
-          enum:
-          - matchAll
-    MatchAllAttributeDO:
-      title: MatchAllAttributeDO
-      required:
-      - is_ready
-      - run_id
-      - run_id_start
-      - segment_id
-      type: object
-      properties:
-        run_id:
-          type: string
-          description: The runId of the match-all request. Use this value to poll for results or lookup results at a later point in time. RunId results can be viewed for 90 days
-        run_id_start:
-          type: string
-          description: ISO 8601 datetime representing when the match-all request was made
-          format: date-time
-          example: '2020-04-12T23:20:50.523Z'
-        run_id_end:
-          type: string
-          description: ISO 8601 datetime representing when the match-all result-set was ready. If this date-time is present and `is_ready` is `false`, then the match-all request has ran into an error and will not finish; please try making a new match-all request or contacting support.
-          format: date-time
-          example: '2020-04-12T23:20:50.523Z'
-        is_ready:
-          type: boolean
-          description: True if the result-set is ready. False otherwise
-        matches:
-          maxItems: 10000
-          type: array
-          description: One page of the result-set of Contact Id's
-          items:
-            type: integer
-        segment_id:
-          type: string
-        segment_timestamp:
-          type: string
-          description: ISO 8601 datetime representing when segment was last created or modified. This timestamp can be used to look up the definition of the Segment at the time of the match-all request
-          format: date-time
-          example: '2020-04-12T23:20:50.523Z'
-        page:
-          $ref: '#/components/schemas/PageDO'
-      description: Object representing the status and result of the match all request. Note that page number and total count information refer to the results in the "matches" attribute.
-    ConditionGroupDO:
-      title: ConditionGroupDO
-      type: object
-      properties:
-        id:
-          type: string
-          default: id's should be numeric strings
-          example: '1'
-        operator:
-          type: string
-          description: The operator that applies to the conditions in this group
-          enum:
-          - and
-          - or
-          example: and
-        values:
-          type: array
-          description: A list of conditions in the group. All items in the "values" array must have the same "type"
-          items:
-            $ref: '#/components/schemas/ConditionGroupFieldDO'
-    ConditionDO:
-      title: ConditionDO
-      required:
-      - object_type
-      - source_system
-      - fields
-      type: object
-      properties:
-        field_aggregate:
-          $ref: '#/components/schemas/AggregateDO'
-        fields:
-          type: array
-          description: Defines the fields, values, types, and their operators. These act as search criteria for the Segment's condition.
-          items:
-            $ref: '#/components/schemas/FieldDO'
-        hash:
-          type: string
-          description: Sha1 Hash of the Condition's simple logic and its aggregation logic
-          readOnly: true
-        hash_simple:
-          type: string
-          description: Sha1 Hash of the Condition's simple logic
-          readOnly: true
-        id:
-          type: string
-          description: Numeric unique identifier for the Condition
-          example: '1'
-        object_type:
-          type: string
-          description: Name of the Object being evaluated
-          enum:
-          - tag
-        source_system:
-          type: string
-          description: Namespace of Object being evaluated
-          enum:
-          - activecampaign
-    ErrorDetailDO:
-      title: ErrorDetailDO
-      type: object
-      properties:
-        code:
-          type: string
-        detail:
-          type: string
-        source:
-          $ref: '#/components/schemas/ErrorSourceDO'
-        status:
-          type: string
-        title:
-          type: string
     SegmentDataDO:
       title: SegmentDataDO
       type: object
@@ -703,18 +623,6 @@ components:
           type: string
           readOnly: true
           example: Segment.v2
-    RootDO:
-      title: RootDO
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SegmentDataDO'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetailDO'
     AggFieldDO:
       description: Required if the aggregate objects is using the "most_recent" operator. This AggFieldDO defines the query logic that the most recent object must satisfy. When this field is present, the ConditionDO.fields attribute is used to specify the requirements prior to selecting the most recent record.
       title: AggFieldDO
@@ -759,6 +667,31 @@ components:
           - wildcard match
           - aggregate of
           - ''
+    RootDO:
+      title: RootDO
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentDataDO'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetailDO'
+    MatchAllDataDO:
+      title: MatchAllDataDO
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/MatchAllAttributeDO'
+        id:
+          type: string
+          description: ID of the specific request
+        type:
+          type: string
+          enum:
+          - matchAll
     AggregateDO:
       title: AggregateDO
       description: (Optional) AggregateDO allows for requiring a count of discrete matches against the simple (non-aggregate part of a) condition before the entire condition is considered satisfied.
@@ -816,128 +749,6 @@ components:
             * months - 3'
         aggregate_most_recent_field:
           $ref: '#/components/schemas/AggFieldDO'
-    SegmentDO:
-      title: SegmentDO
-      type: object
-      required:
-      - segment_conditions
-      - segment_condition_groups
-      - segment_condition_group_operator
-      properties:
-        created_date:
-          type: string
-        meta:
-          type: object
-          additionalProperties:
-            type: string
-        segment_condition_group_operator:
-          type: string
-          description: The operator that combines the condition groups
-          enum:
-          - and
-          - or
-          example: and
-        segment_condition_groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConditionGroupDO'
-        segment_conditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConditionDO'
-        segment_hash:
-          type: string
-          readOnly: true
-        segment_id:
-          type: string
-          readOnly: true
-        user_id:
-          type: string
-          description: The user that created this version of the segment
-          readOnly: true
-        name:
-          type: string
-          description: Optional. Segments with this attribute are Saved Segments and will show up on the /app/audiences page. Value must be unique. Can be defined at creation time, but cannot be added to a Segment during an update operation
-        description:
-          type: string
-          maxLength: 1000
-          description: Optional for Saved Segments
-        category:
-          type: string
-          enum:
-          - AUDIENCE
-          readOnly: true
-    ErrorResponseRootDO:
-      title: ErrorResponseRootDO
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetailDO'
-    AdditionalCriteriaElementDO:
-      title: AdditionalCriteriaElementDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AdditionalCriteriaDO'
-        type:
-          type: string
-          enum:
-          - additionalCriteria
-    AdditionalCriteriaDO:
-      title: AdditionalCriteriaDO
-      type: object
-      required:
-      - conditions
-      - group_operator
-      properties:
-        external_id:
-          type: string
-          description: Value to inject for any FieldDO's that have external set to `True`
-          example: '1504'
-        limit:
-          type: integer
-          description: Maximum number of matches in the result-set
-          minimum: 1
-          maximum: 10000
-        segment_relationship:
-          description: 'Used to determine how the conditions should be conjoined with the segment conditions. Only required when OR''ing such that: `thisAdditionalCriteriaCondition or theSegmentConditions'
-          type: string
-          enum:
-          - or
-        conditions:
-          $ref: '#/components/schemas/ConditionDO'
-        condition_groups:
-          $ref: '#/components/schemas/ConditionGroupDO'
-        group_operator:
-          type: string
-          enum:
-          - and
-          - or
-    MatchAllResponseRootDO:
-      title: MatchAllResponseRootDO
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MatchAllDataDO'
-    ConditionGroupFieldDO:
-      title: ConditionGroupFieldDO
-      required:
-      - type
-      type: object
-      properties:
-        id:
-          type: string
-          description: Id of the Condition that belongs to this Condition Group. Conditions must not be in more than one group
-          example: '1'
-        type:
-          type: string
-          description: Required. Type of "condition" indicates that the "id" attribute is a condition id.
-          enum:
-          - condition
     AdditionalCriteriaRootDO:
       title: AdditionalCriteriaRootDO
       type: object
@@ -1008,3 +819,192 @@ components:
         external:
           type: boolean
           description: (Optional. Default False) If `external` is present and True, then the value of this FieldDO's "value" attribute is ignored and the externalId passed at-query time is used as the value of this FieldDO's "value" attribute. This attribute is commonly used to ensure the same pre-determined object satisfies multiple conditions
+    ErrorSourceDO:
+      title: ErrorSourceDO
+      type: object
+      properties:
+        pointer:
+          type: string
+    ConditionDO:
+      title: ConditionDO
+      required:
+      - object_type
+      - source_system
+      - fields
+      type: object
+      properties:
+        field_aggregate:
+          $ref: '#/components/schemas/AggregateDO'
+        fields:
+          type: array
+          description: Defines the fields, values, types, and their operators. These act as search criteria for the Segment's condition.
+          items:
+            $ref: '#/components/schemas/FieldDO'
+        hash:
+          type: string
+          description: Sha1 Hash of the Condition's simple logic and its aggregation logic
+          readOnly: true
+        hash_simple:
+          type: string
+          description: Sha1 Hash of the Condition's simple logic
+          readOnly: true
+        id:
+          type: string
+          description: Numeric unique identifier for the Condition
+          example: '1'
+        object_type:
+          type: string
+          description: Name of the Object being evaluated
+          enum:
+          - tag
+        source_system:
+          type: string
+          description: Namespace of Object being evaluated
+          enum:
+          - activecampaign
+    MatchAllResponseRootDO:
+      title: MatchAllResponseRootDO
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchAllDataDO'
+    ErrorDetailDO:
+      title: ErrorDetailDO
+      type: object
+      properties:
+        code:
+          type: string
+        detail:
+          type: string
+        source:
+          $ref: '#/components/schemas/ErrorSourceDO'
+        status:
+          type: string
+        title:
+          type: string
+    MatchAllAttributeDO:
+      title: MatchAllAttributeDO
+      required:
+      - is_ready
+      - run_id
+      - run_id_start
+      - segment_id
+      type: object
+      properties:
+        run_id:
+          type: string
+          description: The runId of the match-all request. Use this value to poll for results or lookup results at a later point in time. RunId results can be viewed for 90 days
+        run_id_start:
+          type: string
+          description: ISO 8601 datetime representing when the match-all request was made
+          format: date-time
+          example: '2020-04-12T23:20:50.523Z'
+        run_id_end:
+          type: string
+          description: ISO 8601 datetime representing when the match-all result-set was ready. If this date-time is present and `is_ready` is `false`, then the match-all request has ran into an error and will not finish; please try making a new match-all request or contacting support.
+          format: date-time
+          example: '2020-04-12T23:20:50.523Z'
+        is_ready:
+          type: boolean
+          description: True if the result-set is ready. False otherwise
+        matches:
+          maxItems: 10000
+          type: array
+          description: One page of the result-set of Contact Id's
+          items:
+            type: integer
+        segment_id:
+          type: string
+        segment_timestamp:
+          type: string
+          description: ISO 8601 datetime representing when segment was last created or modified. This timestamp can be used to look up the definition of the Segment at the time of the match-all request
+          format: date-time
+          example: '2020-04-12T23:20:50.523Z'
+        page:
+          $ref: '#/components/schemas/PageDO'
+      description: Object representing the status and result of the match all request. Note that page number and total count information refer to the results in the "matches" attribute.
+    ConditionGroupFieldDO:
+      title: ConditionGroupFieldDO
+      required:
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id of the Condition that belongs to this Condition Group. Conditions must not be in more than one group
+          example: '1'
+        type:
+          type: string
+          description: Required. Type of "condition" indicates that the "id" attribute is a condition id.
+          enum:
+          - condition
+    AdditionalCriteriaElementDO:
+      title: AdditionalCriteriaElementDO
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AdditionalCriteriaDO'
+        type:
+          type: string
+          enum:
+          - additionalCriteria
+    ConditionGroupDO:
+      title: ConditionGroupDO
+      type: object
+      properties:
+        id:
+          type: string
+          default: id's should be numeric strings
+          example: '1'
+        operator:
+          type: string
+          description: The operator that applies to the conditions in this group
+          enum:
+          - and
+          - or
+          example: and
+        values:
+          type: array
+          description: A list of conditions in the group. All items in the "values" array must have the same "type"
+          items:
+            $ref: '#/components/schemas/ConditionGroupFieldDO'
+    ErrorResponseRootDO:
+      title: ErrorResponseRootDO
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetailDO'
+    AdditionalCriteriaDO:
+      title: AdditionalCriteriaDO
+      type: object
+      required:
+      - conditions
+      - group_operator
+      properties:
+        external_id:
+          type: string
+          description: Value to inject for any FieldDO's that have external set to `True`
+          example: '1504'
+        limit:
+          type: integer
+          description: Maximum number of matches in the result-set
+          minimum: 1
+          maximum: 10000
+        segment_relationship:
+          description: 'Used to determine how the conditions should be conjoined with the segment conditions. Only required when OR''ing such that: `thisAdditionalCriteriaCondition or theSegmentConditions'
+          type: string
+          enum:
+          - or
+        conditions:
+          $ref: '#/components/schemas/ConditionDO'
+        condition_groups:
+          $ref: '#/components/schemas/ConditionGroupDO'
+        group_operator:
+          type: string
+          enum:
+          - and
+          - or

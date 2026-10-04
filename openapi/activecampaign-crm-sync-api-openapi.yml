@@ -204,55 +204,6 @@ components:
           $ref: '#/components/schemas/PipelineSyncTargetResponse'
       type: object
       additionalProperties: false
-    ApiErrorResponse:
-      required:
-      - type
-      - title
-      - status
-      - detail
-      properties:
-        type:
-          type: string
-        title:
-          type: string
-        status:
-          type: integer
-        detail:
-          type: string
-        violations:
-          default: null
-          oneOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/ApiViolation'
-          - type:
-            - object
-            - 'null'
-            additionalProperties:
-              $ref: '#/components/schemas/ApiViolation'
-      type: object
-      additionalProperties: true
-    UpsertPipelineSyncRequest:
-      required:
-      - sync_enabled
-      properties:
-        sync_enabled:
-          type:
-          - boolean
-          - 'null'
-          default: null
-          example: true
-        target:
-          default: null
-          oneOf:
-          - $ref: '#/components/schemas/UpsertPipelineSyncTargetRequest'
-          type:
-          - object
-          - 'null'
-      type: object
-      additionalProperties: false
     UpsertPipelineSyncTargetRequest:
       properties:
         type:
@@ -281,27 +232,47 @@ components:
           default: null
       type: object
       additionalProperties: false
-    PipelineListPagination:
+    PipelineListResponse:
       required:
-      - total
-      - page
-      - limit
-      - total_pages
+      - pipelines
+      - pagination
       properties:
-        total:
-          type: integer
-          example: 100
-        page:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 10
-        total_pages:
-          type: integer
-          example: 10
+        pipelines:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/PipelineResponse'
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/PipelineResponse'
+        pagination:
+          $ref: '#/components/schemas/PipelineListPagination'
       type: object
       additionalProperties: false
+    UpsertPipelineSyncRequest:
+      required:
+      - sync_enabled
+      properties:
+        sync_enabled:
+          type:
+          - boolean
+          - 'null'
+          default: null
+          example: true
+        target:
+          default: null
+          oneOf:
+          - $ref: '#/components/schemas/UpsertPipelineSyncTargetRequest'
+          type:
+          - object
+          - 'null'
+      type: object
+      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
     PipelineSyncTargetResponse:
       required:
       - account_ids
@@ -325,28 +296,31 @@ components:
             type: integer
       type: object
       additionalProperties: false
-    PipelineListResponse:
+    ApiViolation:
       required:
-      - pipelines
-      - pagination
+      - propertyPath
+      - title
+      - template
+      - parameters
       properties:
-        pipelines:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
           oneOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/PipelineResponse'
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
           - type: object
             additionalProperties:
-              $ref: '#/components/schemas/PipelineResponse'
-        pagination:
-          $ref: '#/components/schemas/PipelineListPagination'
+              type: string
       type: object
-      additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
+      additionalProperties: true
     PipelineResponse:
       required:
       - id
@@ -383,29 +357,55 @@ components:
           example: null
       type: object
       additionalProperties: false
-    ApiViolation:
+    PipelineListPagination:
       required:
-      - propertyPath
-      - title
-      - template
-      - parameters
+      - total
+      - page
+      - limit
+      - total_pages
       properties:
-        propertyPath:
+        total:
+          type: integer
+          example: 100
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 10
+        total_pages:
+          type: integer
+          example: 10
+      type: object
+      additionalProperties: false
+    ApiErrorResponse:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      properties:
+        type:
           type: string
         title:
           type: string
-        template:
+        status:
+          type: integer
+        detail:
           type: string
-        parameters:
+        violations:
+          default: null
           oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
-          - type: object
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ApiViolation'
+          - type:
+            - object
+            - 'null'
             additionalProperties:
-              type: string
+              $ref: '#/components/schemas/ApiViolation'
       type: object
       additionalProperties: true
   securitySchemes:
