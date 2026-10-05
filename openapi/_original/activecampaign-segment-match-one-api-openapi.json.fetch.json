@@ -1,0 +1,12 @@
+{
+ "url": "https://developers.activecampaign.com/openapi/segment_match_one.json",
+ "requested_url": "https://developers.activecampaign.com/openapi/segment_match_one.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 5154,
+ "sha256": "be25828b39bb45b6d035a36ad2a45478146a98c4e0c5cdee39029fe66401f856",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
