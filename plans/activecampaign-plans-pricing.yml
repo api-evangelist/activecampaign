@@ -151,3 +151,43 @@ x-supersedes:
     The prior file was a bulk-sweep scaffold asserting a free tier with a 1,000
     request/month API quota. ActiveCampaign publishes no free tier and no API request
     quota; all scaffold values are replaced by the provider's published plan data.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units:
+  - seat
+  plans:
+  - name: Starter
+    access: paid
+    model: free
+    model_how: derived
+    units:
+    - other
+    - seat
+    periods: []
+  - name: Plus
+    access: paid
+    model: free
+    model_how: derived
+    units:
+    - other
+    - seat
+    periods: []
+  - name: Pro
+    access: paid
+    model: free
+    model_how: derived
+    units:
+    - other
+    - seat
+    periods: []
+  - name: Enterprise
+    access: paid
+    model: free
+    model_how: derived
+    units:
+    - other
+    - seat
+    periods: []
