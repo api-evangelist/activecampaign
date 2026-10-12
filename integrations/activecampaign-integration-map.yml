@@ -1,0 +1,326 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: activecampaign
+workflows:
+- file: activecampaign-acuity-scheduling-new-appointment-contact-sync.yml
+  title: ActiveCampaign Acuity Scheduling new appointment contact sync
+  partner: acuity-scheduling
+  template: https://zapier.com/apps/activecampaign/integrations/acuity-scheduling/2045/add-or-update-activecampaign-contacts-for-new-acuity-scheduling-appointments
+  repos:
+  - acuity-scheduling
+  - activecampaign
+  steps:
+  - step: list-appointments
+    repo: acuity-scheduling
+    spec_file: acuity-scheduling-appointments-api-openapi.yml
+    operationId: getAppointments
+    tag: Appointments
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: sync-contact
+    repo: activecampaign
+    spec_file: activecampaign-contacts-api-openapi.yml
+    operationId: sync-a-contacts-data
+    tag: Contacts
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Create or update a contact by email
+    effect: write
+    unmapped: no capability edge for this spec file
+  - step: subscribe-to-list
+    repo: activecampaign
+    spec_file: activecampaign-contacts-api-openapi.yml
+    operationId: update-list-status-for-contact
+    tag: Contacts
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Subscribe or unsubscribe a contact from a list
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    acuity-scheduling:
+      capabilities: []
+      tags:
+      - Appointments
+    activecampaign:
+      capabilities: []
+      tags:
+      - Contacts
+  intents:
+  - Create or update a contact by email
+  - Subscribe or unsubscribe a contact from a list
+- file: activecampaign-calendly-new-invitee-contact-sync.yml
+  title: ActiveCampaign Calendly new invitee contact sync
+  partner: calendly
+  template: https://zapier.com/apps/activecampaign/integrations/calendly/10120/add-or-update-activecampaign-contacts-for-new-calendly-invitees
+  repos:
+  - calendly
+  - activecampaign
+  steps:
+  - step: get-invitee
+    repo: calendly
+    spec_file: calendly-invitees-api-openapi.yml
+    operationId: getEventInvitee
+    tag: Invitees
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: sync-contact
+    repo: activecampaign
+    spec_file: activecampaign-contacts-api-openapi.yml
+    operationId: sync-a-contacts-data
+    tag: Contacts
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Create or update a contact by email
+    effect: write
+    unmapped: no capability edge for this spec file
+  - step: subscribe-to-list
+    repo: activecampaign
+    spec_file: activecampaign-contacts-api-openapi.yml
+    operationId: update-list-status-for-contact
+    tag: Contacts
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Subscribe or unsubscribe a contact from a list
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    calendly:
+      capabilities: []
+      tags:
+      - Invitees
+    activecampaign:
+      capabilities: []
+      tags:
+      - Contacts
+  intents:
+  - Create or update a contact by email
+  - Subscribe or unsubscribe a contact from a list
+- file: activecampaign-facebook-lead-ads-new-lead-contact-sync.yml
+  title: ActiveCampaign Facebook Lead Ads new lead contact sync
+  partner: facebook-lead-ads
+  template: https://zapier.com/apps/activecampaign/integrations/facebook-lead-ads/10148/add-or-update-activecampaign-contacts-with-new-facebook-lead-ads-leads
+  repos:
+  - facebook-lead-ads
+  - activecampaign
+  steps:
+  - step: list-leads
+    repo: facebook-lead-ads
+    spec_file: facebook-lead-ads-leads-api-openapi.yml
+    operationId: listLeadsForForm
+    tag: Leads
+    capability_id: BC-400.40
+    capability: Demand Generation Management
+    capability_l1: BC-400
+    intent: null
+    effect: null
+    unmapped: null
+  - step: sync-contact
+    repo: activecampaign
+    spec_file: activecampaign-contacts-api-openapi.yml
+    operationId: sync-a-contacts-data
+    tag: Contacts
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Create or update a contact by email
+    effect: write
+    unmapped: no capability edge for this spec file
+  - step: subscribe-to-list
+    repo: activecampaign
+    spec_file: activecampaign-contacts-api-openapi.yml
+    operationId: update-list-status-for-contact
+    tag: Contacts
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Subscribe or unsubscribe a contact from a list
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    facebook-lead-ads:
+      capabilities:
+      - BC-400.40
+      tags:
+      - Leads
+    activecampaign:
+      capabilities: []
+      tags:
+      - Contacts
+  intents:
+  - Create or update a contact by email
+  - Subscribe or unsubscribe a contact from a list
+- file: activecampaign-kajabi-new-customer-contact.yml
+  title: ActiveCampaign Kajabi new customer contact
+  partner: kajabi
+  template: https://zapier.com/apps/activecampaign/integrations/kajabi/12905/add-new-kajabi-customers-to-activecampaign
+  repos:
+  - kajabi
+  - activecampaign
+  steps:
+  - step: get-customer
+    repo: kajabi
+    spec_file: kajabi-customers-api-openapi.yml
+    operationId: getV1CustomersById
+    tag: Customers
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: sync-contact
+    repo: activecampaign
+    spec_file: activecampaign-contacts-api-openapi.yml
+    operationId: sync-a-contacts-data
+    tag: Contacts
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Create or update a contact by email
+    effect: write
+    unmapped: no capability edge for this spec file
+  - step: subscribe-to-list
+    repo: activecampaign
+    spec_file: activecampaign-contacts-api-openapi.yml
+    operationId: update-list-status-for-contact
+    tag: Contacts
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Subscribe or unsubscribe a contact from a list
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    kajabi:
+      capabilities: []
+      tags:
+      - Customers
+    activecampaign:
+      capabilities: []
+      tags:
+      - Contacts
+  intents:
+  - Create or update a contact by email
+  - Subscribe or unsubscribe a contact from a list
+- file: activecampaign-teachable-new-student-contact.yml
+  title: ActiveCampaign Teachable new student contact
+  partner: teachable
+  template: https://zapier.com/apps/activecampaign/integrations/teachable/13085/add-new-teachable-students-to-activecampaign
+  repos:
+  - teachable
+  - activecampaign
+  steps:
+  - step: get-user
+    repo: teachable
+    spec_file: teachable-users-api-openapi.yml
+    operationId: getUser
+    tag: Users
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: sync-contact
+    repo: activecampaign
+    spec_file: activecampaign-contacts-api-openapi.yml
+    operationId: sync-a-contacts-data
+    tag: Contacts
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Create or update a contact by email
+    effect: write
+    unmapped: no capability edge for this spec file
+  - step: subscribe-to-list
+    repo: activecampaign
+    spec_file: activecampaign-contacts-api-openapi.yml
+    operationId: update-list-status-for-contact
+    tag: Contacts
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Subscribe or unsubscribe a contact from a list
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    teachable:
+      capabilities: []
+      tags:
+      - Users
+    activecampaign:
+      capabilities: []
+      tags:
+      - Contacts
+  intents:
+  - Create or update a contact by email
+  - Subscribe or unsubscribe a contact from a list
+- file: activecampaign-unbounce-new-submission-subscriber.yml
+  title: ActiveCampaign Unbounce new submission subscriber
+  partner: unbounce
+  template: https://zapier.com/apps/activecampaign/integrations/unbounce/51/add-subscribers-to-activecampaign-from-new-unbounce-submissions
+  repos:
+  - unbounce
+  - activecampaign
+  steps:
+  - step: get-lead
+    repo: unbounce
+    spec_file: unbounce-leads-api-openapi.yml
+    operationId: getLead
+    tag: Leads
+    capability_id: BC-400.40
+    capability: Demand Generation Management
+    capability_l1: BC-400
+    intent: Get a lead by its ID
+    effect: read
+    unmapped: null
+  - step: sync-contact
+    repo: activecampaign
+    spec_file: activecampaign-contacts-api-openapi.yml
+    operationId: sync-a-contacts-data
+    tag: Contacts
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Create or update a contact by email
+    effect: write
+    unmapped: no capability edge for this spec file
+  - step: subscribe-to-list
+    repo: activecampaign
+    spec_file: activecampaign-contacts-api-openapi.yml
+    operationId: update-list-status-for-contact
+    tag: Contacts
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Subscribe or unsubscribe a contact from a list
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    unbounce:
+      capabilities:
+      - BC-400.40
+      tags:
+      - Leads
+    activecampaign:
+      capabilities: []
+      tags:
+      - Contacts
+  intents:
+  - Get a lead by its ID
+  - Create or update a contact by email
+  - Subscribe or unsubscribe a contact from a list
