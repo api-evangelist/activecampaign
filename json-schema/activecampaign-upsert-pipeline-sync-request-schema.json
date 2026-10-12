@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-upsert-pipeline-sync-request-schema.json",
+  "title": "UpsertPipelineSyncRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-crm-sync-api-openapi.yml#/components/schemas/UpsertPipelineSyncRequest",
+  "required": [
+    "sync_enabled"
+  ],
+  "properties": {
+    "sync_enabled": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "default": null
+    },
+    "target": {
+      "default": null,
+      "oneOf": [
+        {
+          "$ref": "#/$defs/UpsertPipelineSyncTargetRequest"
+        }
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "UpsertPipelineSyncTargetRequest": {
+      "properties": {
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "enum": [
+            "all",
+            "label",
+            "manual",
+            null
+          ]
+        },
+        "account_ids": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "integer"
+          },
+          "default": null
+        },
+        "label_ids": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "integer"
+          },
+          "default": null
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    }
+  }
+}

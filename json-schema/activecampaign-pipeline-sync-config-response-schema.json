@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-pipeline-sync-config-response-schema.json",
+  "title": "PipelineSyncConfigResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-crm-sync-api-openapi.yml#/components/schemas/PipelineSyncConfigResponse",
+  "required": [
+    "id",
+    "sync_enabled",
+    "target"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "sync_enabled": {
+      "type": "boolean"
+    },
+    "target": {
+      "$ref": "#/$defs/PipelineSyncTargetResponse"
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "PipelineSyncTargetResponse": {
+      "required": [
+        "account_ids",
+        "label_ids"
+      ],
+      "properties": {
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "all",
+            "label",
+            "manual"
+          ]
+        },
+        "account_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "label_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    }
+  }
+}

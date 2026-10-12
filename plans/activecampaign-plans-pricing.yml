@@ -1,39 +1,32 @@
+name: ActiveCampaign API Plans
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
 provider: ActiveCampaign
 providerId: activecampaign
 created: '2026-05-04'
-modified: '2026-08-13'
-generated: '2026-08-13'
+modified: '2026-10-12'
+generated: '2026-10-12'
 method: searched
 source: https://www.activecampaign.com/pricing
 docs: https://www.activecampaign.com/pricing
 tags:
-  - Marketing Automation
-  - Email Marketing
-  - CRM
-  - Sales Automation
-  - Customer Experience
-description: >-
-  ActiveCampaign's four published plan tiers, read from its own pricing page. This
-  replaces the 2026-05-04 scaffold, which invented an "activecampaign-free" tier with a
-  1,000 request/month API quota — ActiveCampaign has no free tier and meters nothing in
-  API requests. Its real billing dimension is CONTACTS: you choose a contact volume and
-  every quota on the plan is expressed as a multiple of that number. API access is
-  included on every paid tier and is not itself a priced line item.
+- Marketing Automation
+- Email Marketing
+- CRM
+- Sales Automation
+- Customer Experience
+description: 'ActiveCampaign''s four published plan tiers, read from its own pricing page. This replaces the 2026-05-04 scaffold, which invented an "activecampaign-free" tier with a 1,000 request/month
+  API quota — ActiveCampaign has no free tier and meters nothing in API requests. Its real billing dimension is CONTACTS: you choose a contact volume and every quota on the plan is expressed as a multiple
+  of that number. API access is included on every paid tier and is not itself a priced line item.'
 billing_model:
   primary_metric: contacts
   secondary_metric: users
-  note: >-
-    Price is a function of the contact count chosen on the pricing slider, so a single
-    numeric price per tier does not exist. Email send allowances are stated as
-    multiples of the contact limit rather than as absolute numbers.
+  note: Price is a function of the contact count chosen on the pricing slider, so a single numeric price per tier does not exist. Email send allowances are stated as multiples of the contact limit rather
+    than as absolute numbers.
   api_metered: false
-  api_note: >-
-    The v3 REST API, the Ecommerce GraphQL API and the remote MCP server are included
-    with the platform subscription. No plan prices API calls, and no plan differentiates
-    the rate limit — every tier is documented at the same 5 requests/second/account.
+  api_note: The v3 REST API, the Ecommerce GraphQL API and the remote MCP server are included with the platform subscription. No plan prices API calls, and no plan differentiates the rate limit — every
+    tier is documented at the same 5 requests/second/account.
   free_tier: false
   trial:
     available: true
@@ -42,115 +35,275 @@ billing_model:
     source: https://www.activecampaign.com/pricing
 plan_count: 4
 plans:
-  - id: activecampaign-starter
-    name: Starter
-    type: paid
-    order: 1
-    description: Get started with personalized email marketing campaigns.
-    price: null
-    currency: USD
-    price_note: >-
-      Published as "Starts at —" and rendered client-side from the contact-count
-      slider; no static price is present in the page source. Recorded as null rather
-      than guessed.
-    billing_period: [monthly, annual]
-    billing_note: The displayed rate is the annually-billed rate; monthly billing is offered at a higher rate.
-    entries:
-      - {label: Users, name: users, type: quota, metric: users, limit: 1}
-      - {label: Email sends, name: email_sends, type: quota, metric: multiple_of_contact_limit, limit: 10, unit: x contact limit}
-      - {label: Automation actions, name: automation_actions, type: quota, metric: actions_per_automation, limit: 5}
-      - {label: Active business goals, name: business_goals, type: quota, metric: active_goals, limit: 15}
-      - {label: AI brand kits, name: ai_brand_kits, type: quota, metric: brand_kits, limit: 1}
-      - {label: Segmentation, name: segmentation, type: feature, value: Limited}
-      - {label: Active Intelligence, name: active_intelligence, type: feature, value: Limited access}
-      - {label: Inbox preview & testing, name: inbox_preview, type: quota, metric: previews_per_month, limit: null, note: Not included on Starter}
-  - id: activecampaign-plus
-    name: Plus
-    type: paid
-    order: 2
-    description: Personalized email marketing with automation and customer insights.
-    price: null
-    currency: USD
-    price_note: Rendered client-side from the contact-count slider; no static price in page source.
-    billing_period: [monthly, annual]
-    entries:
-      - {label: Users, name: users, type: quota, metric: users, limit: 1}
-      - {label: Email sends, name: email_sends, type: quota, metric: multiple_of_contact_limit, limit: 10, unit: x contact limit}
-      - {label: Automation actions, name: automation_actions, type: quota, metric: actions_per_automation, limit: null, value: Unlimited}
-      - {label: Active business goals, name: business_goals, type: quota, metric: active_goals, limit: 25}
-      - {label: AI brand kits, name: ai_brand_kits, type: quota, metric: brand_kits, limit: 5}
-      - {label: Segmentation, name: segmentation, type: feature, value: Standard}
-      - {label: Active Intelligence, name: active_intelligence, type: feature, value: Limited access}
-      - {label: Inbox preview & testing, name: inbox_preview, type: quota, metric: previews_per_month, limit: 5}
-  - id: activecampaign-pro
-    name: Pro
-    type: paid
-    order: 3
-    description: Advanced automation, cross-channel marketing and premium AI.
-    price: null
-    currency: USD
-    price_note: Rendered client-side from the contact-count slider; no static price in page source.
-    billing_period: [monthly, annual]
-    entries:
-      - {label: Users, name: users, type: quota, metric: users, limit: 3}
-      - {label: Email sends, name: email_sends, type: quota, metric: multiple_of_contact_limit, limit: 12, unit: x contact limit}
-      - {label: Automation actions, name: automation_actions, type: quota, metric: actions_per_automation, limit: null, value: Unlimited}
-      - {label: Active business goals, name: business_goals, type: quota, metric: active_goals, limit: 200}
-      - {label: AI brand kits, name: ai_brand_kits, type: quota, metric: brand_kits, limit: 5}
-      - {label: Segmentation, name: segmentation, type: feature, value: Advanced}
-      - {label: Active Intelligence, name: active_intelligence, type: feature, value: Unlimited access}
-      - {label: Inbox preview & testing, name: inbox_preview, type: quota, metric: previews_per_month, limit: null, value: Unlimited}
-      - {label: Predictive sending, name: predictive_sending, type: feature, value: included}
-  - id: activecampaign-enterprise
-    name: Enterprise
-    type: paid
-    order: 4
-    description: Premium segmentation, SSO and the full Active Intelligence surface.
-    price: null
-    currency: USD
-    price_note: >-
-      Contact-volume based like the other tiers; ActiveCampaign also offers a "Request
-      Pricing" path at https://www.activecampaign.com/pricing/contact.
-    billing_period: [monthly, annual]
-    entries:
-      - {label: Users, name: users, type: quota, metric: users, limit: 5}
-      - {label: Email sends, name: email_sends, type: quota, metric: multiple_of_contact_limit, limit: 15, unit: x contact limit}
-      - {label: Automation actions, name: automation_actions, type: quota, metric: actions_per_automation, limit: null, value: Unlimited}
-      - {label: Active business goals, name: business_goals, type: quota, metric: active_goals, limit: 200}
-      - {label: AI brand kits, name: ai_brand_kits, type: quota, metric: brand_kits, limit: 5}
-      - {label: Segmentation, name: segmentation, type: feature, value: Premium}
-      - {label: Active Intelligence, name: active_intelligence, type: feature, value: Unlimited access}
-      - {label: Single sign-on (SSO), name: sso, type: feature, value: included}
+- id: activecampaign-starter
+  name: Starter
+  type: paid
+  order: 1
+  description: Get started with personalized email marketing campaigns.
+  price: 15.0
+  currency: USD
+  price_note: Starts at; varies with contact count
+  billing_period: month, billed annually
+  billing_note: The displayed rate is the annually-billed rate; monthly billing is offered at a higher rate.
+  entries:
+  - label: Users
+    name: users
+    type: quota
+    metric: users
+    limit: 1
+  - label: Email sends
+    name: email_sends
+    type: quota
+    metric: multiple_of_contact_limit
+    limit: 10
+    unit: x contact limit
+  - label: Automation actions
+    name: automation_actions
+    type: quota
+    metric: actions_per_automation
+    limit: 5
+  - label: Active business goals
+    name: business_goals
+    type: quota
+    metric: active_goals
+    limit: 15
+  - label: AI brand kits
+    name: ai_brand_kits
+    type: quota
+    metric: brand_kits
+    limit: 1
+  - label: Segmentation
+    name: segmentation
+    type: feature
+    value: Limited
+  - label: Active Intelligence
+    name: active_intelligence
+    type: feature
+    value: Limited access
+  - label: Inbox preview & testing
+    name: inbox_preview
+    type: quota
+    metric: previews_per_month
+    limit: null
+    note: Not included on Starter
+  price_text: $15
+- id: activecampaign-plus
+  name: Plus
+  type: paid
+  order: 2
+  description: Personalized email marketing with automation and customer insights.
+  price: 49.0
+  currency: USD
+  price_note: Starts at; varies with contact count
+  billing_period: month, billed annually
+  entries:
+  - label: Users
+    name: users
+    type: quota
+    metric: users
+    limit: 1
+  - label: Email sends
+    name: email_sends
+    type: quota
+    metric: multiple_of_contact_limit
+    limit: 10
+    unit: x contact limit
+  - label: Automation actions
+    name: automation_actions
+    type: quota
+    metric: actions_per_automation
+    limit: null
+    value: Unlimited
+  - label: Active business goals
+    name: business_goals
+    type: quota
+    metric: active_goals
+    limit: 25
+  - label: AI brand kits
+    name: ai_brand_kits
+    type: quota
+    metric: brand_kits
+    limit: 5
+  - label: Segmentation
+    name: segmentation
+    type: feature
+    value: Standard
+  - label: Active Intelligence
+    name: active_intelligence
+    type: feature
+    value: Limited access
+  - label: Inbox preview & testing
+    name: inbox_preview
+    type: quota
+    metric: previews_per_month
+    limit: 5
+  price_text: $49
+- id: activecampaign-pro
+  name: Pro
+  type: paid
+  order: 3
+  description: Advanced automation, cross-channel marketing and premium AI.
+  price: 79.0
+  currency: USD
+  price_note: Starts at; varies with contact count
+  billing_period: month, billed annually
+  entries:
+  - label: Users
+    name: users
+    type: quota
+    metric: users
+    limit: 3
+  - label: Email sends
+    name: email_sends
+    type: quota
+    metric: multiple_of_contact_limit
+    limit: 12
+    unit: x contact limit
+  - label: Automation actions
+    name: automation_actions
+    type: quota
+    metric: actions_per_automation
+    limit: null
+    value: Unlimited
+  - label: Active business goals
+    name: business_goals
+    type: quota
+    metric: active_goals
+    limit: 200
+  - label: AI brand kits
+    name: ai_brand_kits
+    type: quota
+    metric: brand_kits
+    limit: 5
+  - label: Segmentation
+    name: segmentation
+    type: feature
+    value: Advanced
+  - label: Active Intelligence
+    name: active_intelligence
+    type: feature
+    value: Unlimited access
+  - label: Inbox preview & testing
+    name: inbox_preview
+    type: quota
+    metric: previews_per_month
+    limit: null
+    value: Unlimited
+  - label: Predictive sending
+    name: predictive_sending
+    type: feature
+    value: included
+  price_text: $79
+- id: activecampaign-enterprise
+  name: Enterprise
+  type: paid
+  order: 4
+  description: Premium segmentation, SSO and the full Active Intelligence surface.
+  price: 145.0
+  currency: USD
+  price_note: Starts at; varies with contact count
+  billing_period: month, billed annually
+  entries:
+  - label: Users
+    name: users
+    type: quota
+    metric: users
+    limit: 5
+  - label: Email sends
+    name: email_sends
+    type: quota
+    metric: multiple_of_contact_limit
+    limit: 15
+    unit: x contact limit
+  - label: Automation actions
+    name: automation_actions
+    type: quota
+    metric: actions_per_automation
+    limit: null
+    value: Unlimited
+  - label: Active business goals
+    name: business_goals
+    type: quota
+    metric: active_goals
+    limit: 200
+  - label: AI brand kits
+    name: ai_brand_kits
+    type: quota
+    metric: brand_kits
+    limit: 5
+  - label: Segmentation
+    name: segmentation
+    type: feature
+    value: Premium
+  - label: Active Intelligence
+    name: active_intelligence
+    type: feature
+    value: Unlimited access
+  - label: Single sign-on (SSO)
+    name: sso
+    type: feature
+    value: included
+  price_text: $145
 add_ons:
-  - {name: SMS, description: 'SMS marketing automation, 2-way inbox, broadcast campaigns (US/UK/AU; MMS US/AU only). Backs the SMS Broadcast API.', tiers: [Plus, Pro, Enterprise], price: null}
-  - {name: Enhanced CRM — Pipelines, description: 'Adds lead scoring and pipeline capability behind the deals/pipelines API surface.', tiers: [Plus, Pro, Enterprise], price: null}
-  - {name: Enhanced CRM — Sales Engagement, description: 'Adds win probability and sales engagement.', tiers: [Plus, Pro, Enterprise], price: null}
-  - {name: AI Activities, description: 'AI translations and AI actions.', tiers: [Starter, Plus, Pro, Enterprise], price: null}
+- name: SMS
+  description: SMS marketing automation, 2-way inbox, broadcast campaigns (US/UK/AU; MMS US/AU only). Backs the SMS Broadcast API.
+  tiers:
+  - Plus
+  - Pro
+  - Enterprise
+  price: null
+- name: Enhanced CRM — Pipelines
+  description: Adds lead scoring and pipeline capability behind the deals/pipelines API surface.
+  tiers:
+  - Plus
+  - Pro
+  - Enterprise
+  price: null
+- name: Enhanced CRM — Sales Engagement
+  description: Adds win probability and sales engagement.
+  tiers:
+  - Plus
+  - Pro
+  - Enterprise
+  price: null
+- name: AI Activities
+  description: AI translations and AI actions.
+  tiers:
+  - Starter
+  - Plus
+  - Pro
+  - Enterprise
+  price: null
 developer_access:
   sandbox:
     name: Developer Sandbox Account
     price: '0.00'
     currency: USD
-    limits: {contacts: 1000, email_sends: 100, users: 5, sms_credits_for_automations: 0}
+    limits:
+      contacts: 1000
+      email_sends: 100
+      users: 5
+      sms_credits_for_automations: 0
     custom_objects: true
     expires_after_years: 2
     renewal_contact: devrel@activecampaign.com
     request_form: https://acresearch.activehosted.com/f/13
     docs: https://developers.activecampaign.com/page/developer-sandbox-accounts
-    note: >-
-      Free but gated behind a request form and a manual approval — it is not
-      self-service. Captured in full in sandbox/activecampaign-sandbox.yml.
+    note: Free but gated behind a request form and a manual approval — it is not self-service. Captured in full in sandbox/activecampaign-sandbox.yml.
 x-evidence:
-  - {url: 'https://www.activecampaign.com/pricing', http_status: 200, fetched: '2026-08-13', note: 'Tier names, user counts, send multiples, goal counts and brand-kit counts read from the rendered comparison table; per-tier dollar prices are injected client-side and are absent from the source.'}
-  - {url: 'https://developers.activecampaign.com/page/developer-sandbox-accounts.md', http_status: 200, fetched: '2026-08-13'}
+- url: https://www.activecampaign.com/pricing
+  http_status: 200
+  fetched: '2026-08-13'
+  note: Tier names, user counts, send multiples, goal counts and brand-kit counts read from the rendered comparison table; per-tier dollar prices are injected client-side and are absent from the source.
+- url: https://developers.activecampaign.com/page/developer-sandbox-accounts.md
+  http_status: 200
+  fetched: '2026-08-13'
 x-supersedes:
   file: plans/activecampaign-plans-pricing.yml
   previous_method: generated
   previous_date: '2026-05-04'
-  reason: >-
-    The prior file was a bulk-sweep scaffold asserting a free tier with a 1,000
-    request/month API quota. ActiveCampaign publishes no free tier and no API request
-    quota; all scaffold values are replaced by the provider's published plan data.
+  reason: The prior file was a bulk-sweep scaffold asserting a free tier with a 1,000 request/month API quota. ActiveCampaign publishes no free tier and no API request quota; all scaffold values are replaced
+    by the provider's published plan data.
 x-canonical:
   generated: '2026-10-08'
   vocabulary: all/0-working/economics/plans-canonical.yml
@@ -191,3 +344,10 @@ x-canonical:
     - other
     - seat
     periods: []
+audience: business-product
+pricing_basis: tiered-subscription
+published: true
+delivery:
+  delivery: managed
+note: 'Prices are injected by JavaScript: a plain GET shows "Starts at -- / mo"; the rendered page (fetch-url.py --render, 2026-10-12, HTTP 200) reads "Starts at $15 /mo Billed annually" (Starter), $49
+  (Plus), $79 (Pro), $145 (Enterprise). A plain-fetch verbatim check cannot see these quotes.'

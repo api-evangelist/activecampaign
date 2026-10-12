@@ -1,0 +1,85 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Calendly new invitee contact sync
+  summary: Add or update ActiveCampaign contacts for new Calendly invitees
+  description: Add or update ActiveCampaign contacts for new Calendly invitees. Reads the record from Calendly, creates or updates the contact in ActiveCampaign with contact sync, then subscribes it to
+    a list. Recreated from the Zapier template linked in x-integration.
+  version: 1.0.0
+sourceDescriptions:
+- name: calendlyInvitees
+  url: https://raw.githubusercontent.com/api-evangelist/calendly/refs/heads/main/openapi/calendly-invitees-api-openapi.yml
+  type: openapi
+- name: activecampaignContacts
+  url: https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/openapi/activecampaign-contacts-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: calendly-new-invitee-contact-sync
+  summary: Add or update ActiveCampaign contacts for new Calendly invitees
+  description: Add or update ActiveCampaign contacts for new Calendly invitees.
+  inputs:
+    type: object
+    properties:
+      eventUuid:
+        type: string
+      inviteeUuid:
+        type: string
+      listId:
+        type: string
+        description: ActiveCampaign list to subscribe the contact to
+  steps:
+  - stepId: get-invitee
+    description: Read the new Calendly record.
+    operationId: $sourceDescriptions.calendlyInvitees.getEventInvitee
+    parameters:
+    - name: event_uuid
+      in: path
+      value: $inputs.eventUuid
+    - name: invitee_uuid
+      in: path
+      value: $inputs.inviteeUuid
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/resource/email
+      firstName: $response.body#/resource/first_name
+      lastName: $response.body#/resource/last_name
+  - stepId: sync-contact
+    description: Create or update the ActiveCampaign contact by email.
+    operationId: $sourceDescriptions.activecampaignContacts.sync-a-contacts-data
+    requestBody:
+      contentType: application/json
+      payload:
+        contact:
+          email: $steps.get-invitee.outputs.email
+          firstName: $steps.get-invitee.outputs.firstName
+          lastName: $steps.get-invitee.outputs.lastName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/contact/id
+  - stepId: subscribe-to-list
+    description: Subscribe the synced contact to the list.
+    operationId: $sourceDescriptions.activecampaignContacts.update-list-status-for-contact
+    requestBody:
+      contentType: application/json
+      payload:
+        contactList:
+          list: $inputs.listId
+          contact: $steps.sync-contact.outputs.contactId
+          status: '1'
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    contactId: $steps.sync-contact.outputs.contactId
+x-integration:
+  partner: calendly
+  template: https://zapier.com/apps/activecampaign/integrations/calendly/10120/add-or-update-activecampaign-contacts-for-new-calendly-invitees
+  edge_evidence: https://zapier.com/apps/activecampaign/integrations/calendly/10120/add-or-update-activecampaign-contacts-for-new-calendly-invitees
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5.5 enrichment local-v5
+  guessed_steps:
+  - step: sync-contact
+    cause: provider-contract
+    why: the sync-a-contacts-data 201 response schema lists contact fields but no contact.id, so the output path /contact/id is not settled by the spec

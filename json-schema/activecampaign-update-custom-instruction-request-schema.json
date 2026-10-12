@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-update-custom-instruction-request-schema.json",
+  "title": "UpdateCustomInstructionRequest",
+  "description": "At least one of custom_instruction or is_enabled must be provided.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-ai-customization-instructions-api-openapi.yml#/components/schemas/UpdateCustomInstructionRequest",
+  "properties": {
+    "custom_instruction": {
+      "description": "Custom instruction to be used for AI responses. It is validated to ensure it is safe for AI use.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": null,
+      "maxLength": 65535,
+      "minLength": 1
+    },
+    "is_enabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "oneOf": [
+    {
+      "required": [
+        "custom_instruction"
+      ],
+      "properties": {
+        "custom_instruction": {
+          "type": "string",
+          "maxLength": 65535,
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "required": [
+        "is_enabled"
+      ],
+      "properties": {
+        "is_enabled": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "required": [
+        "custom_instruction",
+        "is_enabled"
+      ],
+      "properties": {
+        "custom_instruction": {
+          "type": "string",
+          "maxLength": 65535,
+          "minLength": 1
+        },
+        "is_enabled": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  ],
+  "additionalProperties": false
+}

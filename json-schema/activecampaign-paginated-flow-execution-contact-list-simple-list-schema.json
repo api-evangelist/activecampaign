@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-paginated-flow-execution-contact-list-simple-list-schema.json",
+  "title": "PaginatedFlowExecutionContactListSimpleList",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-flows-api-openapi.yml#/components/schemas/PaginatedFlowExecutionContactListSimpleList",
+  "type": "object",
+  "required": [
+    "count",
+    "results"
+  ],
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "next": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "previous": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FlowExecutionContactListSimple"
+      }
+    }
+  },
+  "$defs": {
+    "ContactReadSimple": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 100
+        },
+        "last_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 100
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "email",
+          "maxLength": 254
+        },
+        "meta": {},
+        "canonical_phone": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 30
+        },
+        "is_deleted": {
+          "type": "boolean"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "created_on": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Creado el"
+        },
+        "last_updated_on": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true,
+          "title": "Última actualización el"
+        },
+        "source": {
+          "type": "string",
+          "maxLength": 255
+        },
+        "external_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri",
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "last_updated_on",
+        "phone",
+        "source"
+      ]
+    },
+    "FlowExecutionContactListSimple": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "contact": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ContactReadSimple"
+            }
+          ],
+          "description": "The Contact that the Flow Execution Contact is for."
+        },
+        "status": {
+          "$ref": "#/$defs/FlowExecutionContactStatusEnum"
+        },
+        "created_on": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Creado el"
+        },
+        "status_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "readOnly": true
+        },
+        "is_test": {
+          "type": "boolean"
+        },
+        "flow_version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "flow": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "flow_name": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The name of the Flow that the Flow Execution Contact is for."
+        }
+      },
+      "required": [
+        "contact",
+        "flow_name",
+        "id",
+        "status_reason"
+      ]
+    },
+    "FlowExecutionContactStatusEnum": {
+      "enum": [
+        "READY",
+        "RUNNING",
+        "COMPLETED",
+        "CANCELED",
+        "EXPIRED",
+        "FAILED"
+      ],
+      "type": "string",
+      "description": "* `READY` - Ready\n* `RUNNING` - Running\n* `COMPLETED` - Completed\n* `CANCELED` - Canceled\n* `EXPIRED` - Expired\n* `FAILED` - Failed"
+    }
+  }
+}

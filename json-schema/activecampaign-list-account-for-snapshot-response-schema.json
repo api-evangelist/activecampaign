@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-list-account-for-snapshot-response-schema.json",
+  "title": "ListAccountForSnapshotResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-child-accounts-api-openapi.yml#/components/schemas/ListAccountForSnapshotResponse",
+  "required": [
+    "accounts"
+  ],
+  "properties": {
+    "accounts": {
+      "description": "List of accounts available for snapshots.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/AccountForSnapshotResponse"
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "AccountForSnapshotResponse": {
+      "required": [
+        "id",
+        "account_name",
+        "email"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "account_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    }
+  }
+}

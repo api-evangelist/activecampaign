@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-am2-create-snapshot-request-schema.json",
+  "title": "AM2CreateSnapshotRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-child-account-snapshots-api-openapi.yml#/components/schemas/AM2CreateSnapshotRequest",
+  "required": [
+    "account_id",
+    "name"
+  ],
+  "properties": {
+    "account_id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "additionalProperties": false
+}

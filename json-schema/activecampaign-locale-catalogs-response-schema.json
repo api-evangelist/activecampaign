@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-locale-catalogs-response-schema.json",
+  "title": "LocaleCatalogsResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-locales-api-openapi.yml#/components/schemas/LocaleCatalogsResponse",
+  "required": [
+    "languages",
+    "timezones"
+  ],
+  "properties": {
+    "languages": {
+      "description": "Supported language catalog. Keys are the values to send back on writes (e.g. \"english\", \"german\"); values are display labels.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "timezones": {
+      "description": "Supported timezone catalog. Keys are the IANA identifiers to send back on writes (e.g. \"America/Chicago\"); values are display labels.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false
+}

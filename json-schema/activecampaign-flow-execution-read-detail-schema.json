@@ -1,0 +1,502 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-flow-execution-read-detail-schema.json",
+  "title": "FlowExecutionReadDetail",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-flows-api-openapi.yml#/components/schemas/FlowExecutionReadDetail",
+  "type": "object",
+  "properties": {
+    "status": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/FlowExecutionStatusEnum"
+        }
+      ],
+      "readOnly": true,
+      "description": "The status of the Flow Execution.\n\n* `PROCESSING` - Processing\n* `READY` - Ready\n* `AWAITING_CONFIRMATION` - Awaiting Confirmation\n* `CONFIRMED` - Confirmed\n* `STARTING` - Starting\n* `RUNNING` - Running\n* `COMPLETED` - Completed\n* `CANCELED` - Canceled"
+    },
+    "execute_for": {
+      "$ref": "#/$defs/FlowExecutionExecuteForEnum"
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "has_priority": {
+      "type": "boolean"
+    },
+    "flow_execution_variables": {},
+    "start_on": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "num_contacts": {
+      "type": "integer",
+      "maximum": 2147483647,
+      "minimum": 0
+    },
+    "expired": {
+      "type": "integer",
+      "maximum": 2147483647,
+      "minimum": 0
+    },
+    "running": {
+      "type": "integer",
+      "maximum": 2147483647,
+      "minimum": 0
+    },
+    "completed": {
+      "type": "integer",
+      "maximum": 2147483647,
+      "minimum": 0
+    },
+    "canceled": {
+      "type": "integer",
+      "maximum": 2147483647,
+      "minimum": 0
+    },
+    "failed": {
+      "type": "integer",
+      "maximum": 2147483647,
+      "minimum": 0
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Creado el"
+    },
+    "avg_completion_time": {
+      "type": "string"
+    },
+    "status_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "readOnly": true
+    },
+    "status_triggered_by": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/SimpleUser"
+        }
+      ],
+      "readOnly": true
+    },
+    "status_last_change_on": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "readOnly": true
+    },
+    "created_by": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/SimpleUser"
+        }
+      ],
+      "description": "The User that created the Flow Execution."
+    },
+    "contact_filters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FlowExecutionContactFilterEdit"
+      },
+      "description": "The filters to use to get the Contacts that the Flow Execution will run for. This field isn't required if executing the flow for a Contact List"
+    },
+    "contact_import": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "flow": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/FlowSimpleRead"
+        }
+      ],
+      "description": "The Flow that the Flow Execution is running."
+    },
+    "flow_version": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/FlowVersionSimpleRead"
+        }
+      ],
+      "description": "The Flow Version that the Flow Execution is running."
+    },
+    "last_run_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "The last time that the Flow Execution was run."
+    }
+  },
+  "required": [
+    "created_by",
+    "execute_for",
+    "flow",
+    "flow_version",
+    "last_run_on",
+    "status",
+    "status_last_change_on",
+    "status_reason",
+    "status_triggered_by"
+  ],
+  "$defs": {
+    "ChannelProviderEnum": {
+      "enum": [
+        "META_CLOUD_API",
+        "TECH_PROVIDER_CLOUD_API",
+        "D360_CLOUD_API",
+        "360DIALOG"
+      ],
+      "type": "string",
+      "description": "* `META_CLOUD_API` - Meta Cloud Api\n* `TECH_PROVIDER_CLOUD_API` - Tech Provider Cloud Api\n* `D360_CLOUD_API` - D360 Cloud Api\n* `360DIALOG` - Dialog360"
+    },
+    "ChannelStatusEnum": {
+      "enum": [
+        "NEW",
+        "ACTIVE",
+        "INACTIVE"
+      ],
+      "type": "string",
+      "description": "* `NEW` - New\n* `ACTIVE` - Active\n* `INACTIVE` - Inactive"
+    },
+    "ChannelTypeEnum": {
+      "enum": [
+        "WHATSAPP",
+        "EMAIL",
+        "INSTAGRAM",
+        "FB_MESSENGER",
+        "TELEGRAM",
+        "SMS",
+        "VOICE"
+      ],
+      "type": "string",
+      "description": "* `WHATSAPP` - Whatsapp\n* `EMAIL` - Email\n* `INSTAGRAM` - Instagram\n* `FB_MESSENGER` - Fb Messenger\n* `TELEGRAM` - Telegram\n* `SMS` - Sms\n* `VOICE` - Voice"
+    },
+    "ComparisonEnum": {
+      "enum": [
+        "exact",
+        "!exact",
+        "gte",
+        "gt",
+        "lte",
+        "lt",
+        "isnull",
+        "!isnull",
+        "icontains",
+        "!icontains"
+      ],
+      "type": "string",
+      "description": "* `exact` - Exact\n* `!exact` - Different\n* `gte` - Gte\n* `gt` - Gt\n* `lte` - Lte\n* `lt` - Lt\n* `isnull` - Is Null\n* `!isnull` - Not Null\n* `icontains` - Contains\n* `!icontains` - Not Contains"
+    },
+    "FlowExecutionContactFilterEdit": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "comparison": {
+          "$ref": "#/$defs/ComparisonEnum"
+        },
+        "value": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "comparison",
+        "field",
+        "value"
+      ]
+    },
+    "FlowExecutionExecuteForEnum": {
+      "enum": [
+        "FILTERS",
+        "LIST",
+        "ALL"
+      ],
+      "type": "string",
+      "description": "* `FILTERS` - Filters\n* `LIST` - List\n* `ALL` - All"
+    },
+    "FlowExecutionStatusEnum": {
+      "enum": [
+        "PROCESSING",
+        "READY",
+        "AWAITING_CONFIRMATION",
+        "CONFIRMED",
+        "STARTING",
+        "RUNNING",
+        "COMPLETED",
+        "CANCELED"
+      ],
+      "type": "string",
+      "description": "* `PROCESSING` - Processing\n* `READY` - Ready\n* `AWAITING_CONFIRMATION` - Awaiting Confirmation\n* `CONFIRMED` - Confirmed\n* `STARTING` - Starting\n* `RUNNING` - Running\n* `COMPLETED` - Completed\n* `CANCELED` - Canceled"
+    },
+    "FlowSimpleRead": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "created_by": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/SimpleUser"
+            }
+          ],
+          "readOnly": true
+        },
+        "created_on": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Creado el"
+        },
+        "is_active": {
+          "type": "boolean"
+        },
+        "status": {
+          "$ref": "#/$defs/FlowStatusEnum"
+        },
+        "is_legacy": {
+          "type": "boolean"
+        },
+        "channel": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/SimpleChannel"
+            }
+          ],
+          "readOnly": true
+        },
+        "flow_execution_variables": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "trigger_type": {
+          "$ref": "#/$defs/TriggerTypeEnum"
+        },
+        "trigger_config": {}
+      },
+      "required": [
+        "channel",
+        "created_by",
+        "id",
+        "name",
+        "trigger_type"
+      ]
+    },
+    "FlowStatusEnum": {
+      "enum": [
+        "DRAFT",
+        "PUBLISHED"
+      ],
+      "type": "string",
+      "description": "* `DRAFT` - Draft\n* `PUBLISHED` - Published"
+    },
+    "FlowVersionSimpleRead": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "flow": {
+          "$ref": "#/$defs/FlowSimpleRead"
+        },
+        "is_current_version": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "version_name": {
+          "type": "string",
+          "maxLength": 255
+        },
+        "version_description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "published_by": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/SimpleUser"
+            }
+          ],
+          "readOnly": true
+        },
+        "created_on": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Creado el"
+        },
+        "last_updated_on": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true,
+          "title": "Última actualización el"
+        },
+        "num_contacts": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "completed": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "expired": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "running": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "canceled": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "failed": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "avg_completion_time": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "flow",
+        "is_current_version",
+        "last_updated_on",
+        "published_by"
+      ]
+    },
+    "SimpleChannel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "channel_type": {
+          "$ref": "#/$defs/ChannelTypeEnum"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "channel_id": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "status": {
+          "$ref": "#/$defs/ChannelStatusEnum"
+        },
+        "created_on": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Creado el"
+        },
+        "channel_provider": {
+          "$ref": "#/$defs/ChannelProviderEnum"
+        },
+        "is_sandbox": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "channel_id",
+        "id"
+      ]
+    },
+    "SimpleUser": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "last_name": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        },
+        "id": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "profile_image": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "role": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "email",
+        "id"
+      ]
+    },
+    "TriggerTypeEnum": {
+      "enum": [
+        "INBOUND_ANY_MESSAGE",
+        "INBOUND_SPECIFIC_MESSAGE",
+        "OUTBOUND_CAMPAIGN_API",
+        "OUTBOUND_CAMPAIGN_CSV",
+        "OUTBOUND_CAMPAIGN_SEGMENT",
+        "OUTBOUND_ANY",
+        "META_C2WA",
+        "INTEGRATIONS_HUBSPOT",
+        "INTEGRATIONS_ZAPIER",
+        "FROM_FLOW",
+        "CSAT",
+        "OTHER"
+      ],
+      "type": "string",
+      "description": "* `INBOUND_ANY_MESSAGE` - Inbound Any Message\n* `INBOUND_SPECIFIC_MESSAGE` - Inbound Specific Message\n* `OUTBOUND_CAMPAIGN_API` - Outbound Campaign Api\n* `OUTBOUND_CAMPAIGN_CSV` - Outbound Campaign Csv\n* `OUTBOUND_CAMPAIGN_SEGMENT` - Outbound Campaign Segment\n* `OUTBOUND_ANY` - Outbound Any\n* `META_C2WA` - Meta C2Wa\n* `INTEGRATIONS_HUBSPOT` - Integrations Hubspot\n* `INTEGRATIONS_ZAPIER` - Integrations Zapier\n* `FROM_FLOW` - From Flow\n* `CSAT` - Csat\n* `OTHER` - Other"
+    }
+  }
+}

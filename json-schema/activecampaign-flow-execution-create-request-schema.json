@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-flow-execution-create-request-schema.json",
+  "title": "FlowExecutionCreateRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-flows-api-openapi.yml#/components/schemas/FlowExecutionCreateRequest",
+  "type": "object",
+  "properties": {
+    "execute_for": {
+      "$ref": "#/$defs/FlowExecutionCreateRequestExecuteForEnum"
+    },
+    "has_priority": {
+      "type": "boolean",
+      "default": false,
+      "description": "Specify as True if you want this execution to                 close any other running flows or conversations."
+    },
+    "contact_list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/PatchedContactEdit"
+      }
+    }
+  },
+  "required": [
+    "contact_list",
+    "execute_for"
+  ],
+  "$defs": {
+    "ContactNote": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "notes": {
+          "type": "string"
+        },
+        "contact": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "created_on": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true,
+          "title": "Creado el"
+        },
+        "created_by": {
+          "$ref": "#/$defs/SimpleUser"
+        }
+      },
+      "required": [
+        "contact",
+        "created_on",
+        "id",
+        "notes"
+      ]
+    },
+    "ContactTag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 100
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "FlowExecutionCreateRequestExecuteForEnum": {
+      "enum": [
+        "LIST"
+      ],
+      "type": "string",
+      "description": "* `LIST` - LIST"
+    },
+    "PatchedContactEdit": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "first_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 100
+        },
+        "last_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 100
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "email",
+          "maxLength": 254
+        },
+        "meta": {},
+        "external_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri",
+          "maxLength": 200
+        },
+        "is_deleted": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "source": {
+          "type": "string",
+          "default": "website"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ContactNote"
+          },
+          "readOnly": true
+        },
+        "created_on": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Creado el"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ContactTag"
+          }
+        },
+        "external_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "native_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "default_assignees": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "contact_import": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "default_channel": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "wa_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "overwrite_tags": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, the `tags` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false."
+        },
+        "overwrite_default_assignees": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, the `default_assignees` will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false."
+        },
+        "overwrite_meta": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, the `meta` field will be overwritten with the new value. If false, the new value will be merged with the existing value. Default is false."
+        }
+      }
+    },
+    "SimpleUser": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "last_name": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        },
+        "id": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "profile_image": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "role": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "email",
+        "id"
+      ]
+    }
+  }
+}

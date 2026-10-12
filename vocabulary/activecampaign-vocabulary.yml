@@ -1,0 +1,429 @@
+generated: '2026-10-12'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/activecampaign-accounts-api-openapi.yml
+- openapi/activecampaign-addresses-api-openapi.yml
+- openapi/activecampaign-ai-api-openapi.yml
+- openapi/activecampaign-ai-customization-documents-api-openapi.yml
+- openapi/activecampaign-ai-customization-instructions-api-openapi.yml
+vocabulary:
+  name: ActiveCampaign Domain Vocabulary
+  description: 'Terms declared by ActiveCampaign''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-12'
+  terms:
+  - term: AI Customization Documents
+    definition: Manage documents attached to AI customization profiles.
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-ai-customization-documents-api-openapi.yml
+  - term: AI Customization Instructions
+    definition: Manage custom instructions for AI customization profiles.
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-ai-customization-instructions-api-openapi.yml
+  - term: AI Customization Profiles
+    definition: Manage AI customization profiles.
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-ai-customization-profiles-api-openapi.yml
+  - term: Child Account Snapshots
+    definition: Create and manage snapshots of reseller child accounts.
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-child-account-snapshots-api-openapi.yml
+  - term: Child Accounts
+    definition: Manage reseller child accounts.
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-child-accounts-api-openapi.yml
+  - term: CRM Reporting
+    definition: Read-only CRM pipeline reporting and metrics.
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-crm-reporting-api-openapi.yml
+  - term: CRM Sync
+    definition: Configure CRM synchronization for HQ pipelines.
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-crm-sync-api-openapi.yml
+  - term: CRM Sync Settings
+    definition: Manage CRM synchronization settings.
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-crm-sync-settings-api-openapi.yml
+  - term: Files
+    definition: Storage quota information for the partner.
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-files-api-openapi.yml
+  - term: Insight Cards
+    definition: Retrieve and update partner insight cards.
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-insight-cards-api-openapi.yml
+  - term: Locales
+    definition: Supported language and timezone catalogs.
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-locales-api-openapi.yml
+  - term: Match All
+    definition: Return all Contact id's that match the given Segment and provided Additional Criteria
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-match-all-api-openapi.yml
+  - term: Match One
+    definition: Evaluate Contact Id against the provided SegmentId. Returns `true` if Contact matches the given Segment
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-match-one-api-openapi.yml
+  - term: Saved Segment Summaries
+    definition: Saved Segments have a name and are visible on the app/segments page. Saved Segments have Summaries
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-saved-segment-summaries-api-openapi.yml
+  - term: Segments
+    definition: Segment JSON structure is extremely flexible. Only segments that are supported by the segment-builder are guaranteed to work as
+      expected. Specific Conditions types only support a subset of FieldDO and AggregateDO options. Please refer to your account's /app/segments/segment-builder
+      page to verify what Segment JSON configurations are possible.
+    tags:
+    - Resource Group
+    source: openapi/activecampaign-segments-api-openapi.yml
+  - term: AIBroadcastStatus
+    definition: 'Object declared by the contract with fields: source, status, broadcastId.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-api-openapi.yml#/components/schemas/AIBroadcastStatus
+  - term: AIBroadcastUpdateRequest
+    definition: 'Object declared by the contract with fields: source, prompt, tone, broadcastId.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-api-openapi.yml#/components/schemas/AIBroadcastUpdateRequest
+  - term: AIBroadcastResponse
+    definition: 'Object declared by the contract with fields: requestId.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-api-openapi.yml#/components/schemas/AIBroadcastResponse
+  - term: AIBroadcastRequest
+    definition: 'Object declared by the contract with fields: source, prompt, tone.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-api-openapi.yml#/components/schemas/AIBroadcastRequest
+  - term: AICustomizationsPaginationMetadata
+    definition: 'Object declared by the contract with fields: total, page, limit, total_pages.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-documents-api-openapi.yml#/components/schemas/AICustomizationsPaginationMetadata
+  - term: ProfileDocumentResponse
+    definition: 'Object declared by the contract with fields: id, description, filename, file_size_bytes, file_extension, status, created_date,
+      enabled, tags.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-documents-api-openapi.yml#/components/schemas/ProfileDocumentResponse
+  - term: UnauthorizedResponse
+    definition: Unauthorized
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-documents-api-openapi.yml#/components/schemas/UnauthorizedResponse
+  - term: ProfileDocumentListResponse
+    definition: 'Object declared by the contract with fields: data, pagination.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-documents-api-openapi.yml#/components/schemas/ProfileDocumentListResponse
+  - term: UpdateDocumentRequest
+    definition: 'Object declared by the contract with fields: description, is_enabled, tags.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-documents-api-openapi.yml#/components/schemas/UpdateDocumentRequest
+  - term: ApiViolation
+    definition: 'Object declared by the contract with fields: propertyPath, title, template, parameters.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-documents-api-openapi.yml#/components/schemas/ApiViolation
+  - term: DocumentDownloadUrlResponse
+    definition: 'Object declared by the contract with fields: url, expires_in.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-documents-api-openapi.yml#/components/schemas/DocumentDownloadUrlResponse
+  - term: ApiErrorResponse
+    definition: 'Object declared by the contract with fields: type, title, status, detail, violations.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-documents-api-openapi.yml#/components/schemas/ApiErrorResponse
+  - term: CustomInstructionResponse
+    definition: 'Object declared by the contract with fields: id, profile_id, custom_instruction, is_enabled, created_at, updated_at.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-instructions-api-openapi.yml#/components/schemas/CustomInstructionResponse
+  - term: CreateCustomInstructionRequest
+    definition: 'Object declared by the contract with fields: custom_instruction, is_enabled.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-instructions-api-openapi.yml#/components/schemas/CreateCustomInstructionRequest
+  - term: CreateCustomInstructionResponse
+    definition: 'Object declared by the contract with fields: id.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-instructions-api-openapi.yml#/components/schemas/CreateCustomInstructionResponse
+  - term: CustomInstructionListResponse
+    definition: 'Object declared by the contract with fields: data.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-instructions-api-openapi.yml#/components/schemas/CustomInstructionListResponse
+  - term: UpdateCustomInstructionRequest
+    definition: At least one of custom_instruction or is_enabled must be provided.
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-instructions-api-openapi.yml#/components/schemas/UpdateCustomInstructionRequest
+  - term: ChildAccountProfileResponse
+    definition: 'Object declared by the contract with fields: id, reseller_id, name, created_at, updated_at.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-profiles-api-openapi.yml#/components/schemas/ChildAccountProfileResponse
+  - term: ChildAccountData
+    definition: 'Object declared by the contract with fields: id, reseller_id, account_name, created_at, updated_at.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-profiles-api-openapi.yml#/components/schemas/ChildAccountData
+  - term: UpdateProfileRequest
+    definition: 'Object declared by the contract with fields: name.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-profiles-api-openapi.yml#/components/schemas/UpdateProfileRequest
+  - term: ProfileListResponse
+    definition: 'Object declared by the contract with fields: profiles.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-profiles-api-openapi.yml#/components/schemas/ProfileListResponse
+  - term: AssignAccountsToProfileRequest
+    definition: You cannot provide non-empty accountIds and set assignToAllAccounts to true at the same time.
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-profiles-api-openapi.yml#/components/schemas/AssignAccountsToProfileRequest
+  - term: ProfileResponse
+    definition: 'Object declared by the contract with fields: id, reseller_id, name, created_at, updated_at, assigned_accounts_count, assigned_accounts.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-profiles-api-openapi.yml#/components/schemas/ProfileResponse
+  - term: CreateProfileResponse
+    definition: 'Object declared by the contract with fields: id.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-profiles-api-openapi.yml#/components/schemas/CreateProfileResponse
+  - term: CreateProfileRequest
+    definition: 'Object declared by the contract with fields: name.'
+    tags:
+    - Object
+    source: openapi/activecampaign-ai-customization-profiles-api-openapi.yml#/components/schemas/CreateProfileRequest
+  - term: BroadcastUpdateRequest
+    definition: 'Object declared by the contract with fields: name, address_id, body, media_urls, preview_url, shorten_track_links_enabled, status,
+      scheduled_date, sent_to_count, list_ids, segment_id, custom_run_id. (2 more)'
+    tags:
+    - Object
+    source: openapi/activecampaign-broadcasts-api-openapi.yml#/components/schemas/BroadcastUpdateRequest
+  - term: BroadcastMessage
+    definition: 'Object declared by the contract with fields: id, name, address_id, body, media_urls, preview_url, shorten_track_links_enabled,
+      status, sent_date, scheduled_date, custom_run_id, custom_segment_id. (13 more)'
+    tags:
+    - Object
+    source: openapi/activecampaign-broadcasts-api-openapi.yml#/components/schemas/BroadcastMessage
+  - term: BroadcastList
+    definition: 'Object declared by the contract with fields: id, name, subscriber_count.'
+    tags:
+    - Object
+    source: openapi/activecampaign-broadcasts-api-openapi.yml#/components/schemas/BroadcastList
+  - term: BroadcastListsResponse
+    definition: 'Object declared by the contract with fields: lists, meta.'
+    tags:
+    - Object
+    source: openapi/activecampaign-broadcasts-api-openapi.yml#/components/schemas/BroadcastListsResponse
+  - term: BroadcastListResponse
+    definition: 'Object declared by the contract with fields: broadcasts, meta.'
+    tags:
+    - Object
+    source: openapi/activecampaign-broadcasts-api-openapi.yml#/components/schemas/BroadcastListResponse
+  - term: BroadcastCreateRequest
+    definition: 'Object declared by the contract with fields: name, address_id, body, media_urls, preview_url, shorten_track_links_enabled, status,
+      scheduled_date, sent_to_count, list_ids, segment_id, custom_segment_id. (1 more)'
+    tags:
+    - Object
+    source: openapi/activecampaign-broadcasts-api-openapi.yml#/components/schemas/BroadcastCreateRequest
+  - term: AM2CreateSnapshotRequest
+    definition: 'Object declared by the contract with fields: account_id, name.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-account-snapshots-api-openapi.yml#/components/schemas/AM2CreateSnapshotRequest
+  - term: AM2GetSnapshotsResponse
+    definition: 'Object declared by the contract with fields: snapshots, next_cursor.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-account-snapshots-api-openapi.yml#/components/schemas/AM2GetSnapshotsResponse
+  - term: AM2SnapshotResponse
+    definition: 'Object declared by the contract with fields: id, source_account_id, status, creation_status, name, created_at, completed_at.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-account-snapshots-api-openapi.yml#/components/schemas/AM2SnapshotResponse
+  - term: AccountCloningStatusListPagination
+    definition: 'Object declared by the contract with fields: total, page, per_page, total_pages.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-account-snapshots-api-openapi.yml#/components/schemas/AccountCloningStatusListPagination
+  - term: AccountCloningStatusListResponse
+    definition: 'Object declared by the contract with fields: items, pagination.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-account-snapshots-api-openapi.yml#/components/schemas/AccountCloningStatusListResponse
+  - term: AccountCloningStatusResponse
+    definition: 'Object declared by the contract with fields: id, workflow_id, reseller_id, target_account, source_account, target_account_id,
+      source_account_id, started_at, updated_at, status, error_message, snapshot_id.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-account-snapshots-api-openapi.yml#/components/schemas/AccountCloningStatusResponse
+  - term: ChildAccountsPaginationMetadata
+    definition: 'Object declared by the contract with fields: total, page, limit, total_pages.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-accounts-api-openapi.yml#/components/schemas/ChildAccountsPaginationMetadata
+  - term: ProductEntitlementLimitDto
+    definition: 'Object declared by the contract with fields: included_units, purchased_units, period.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-accounts-api-openapi.yml#/components/schemas/ProductEntitlementLimitDto
+  - term: ListAccountForSnapshotResponse
+    definition: 'Object declared by the contract with fields: accounts.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-accounts-api-openapi.yml#/components/schemas/ListAccountForSnapshotResponse
+  - term: Create Account Request
+    definition: 'Object declared by the contract with fields: account_name, cname, name, email, notification, language, timezone, snapshot, currency,
+      billing_interval, products, profile. (2 more)'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-accounts-api-openapi.yml#/components/schemas/CreateAccountRequestDto
+  - term: AccountForSnapshotResponse
+    definition: 'Object declared by the contract with fields: id, account_name, email.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-accounts-api-openapi.yml#/components/schemas/AccountForSnapshotResponse
+  - term: ChildAccountsProduct
+    definition: 'Object declared by the contract with fields: addon, code, tier, name, version, entitlements.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-accounts-api-openapi.yml#/components/schemas/ProductDto
+  - term: ProductEntitlementDto
+    definition: 'Object declared by the contract with fields: code, limit, pricing.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-accounts-api-openapi.yml#/components/schemas/ProductEntitlementDto
+  - term: ChildAccountListResponse
+    definition: 'Object declared by the contract with fields: hosted_accounts, pagination.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-accounts-api-openapi.yml#/components/schemas/ChildAccountListResponse
+  - term: ProductEntitlementPricingDto
+    definition: 'Object declared by the contract with fields: recurring, subtotal.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-accounts-api-openapi.yml#/components/schemas/ProductEntitlementPricingDto
+  - term: ChildAccountResponse
+    definition: 'Object declared by the contract with fields: id, reseller_id, account_name, created_at, updated_at.'
+    tags:
+    - Object
+    source: openapi/activecampaign-child-accounts-api-openapi.yml#/components/schemas/ChildAccountResponse
+  - term: ConversationStatusEnum
+    definition: '* `CREATED` - Created * `FLOW` - Flow * `NEW` - New * `IN_PROGRESS` - In Progress * `RESOLVED` - Resolved * `CLOSED` - Closed'
+    tags:
+    - Enumeration
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/ConversationStatusEnum
+  - term: ConversationReadSimple
+    definition: 'Object declared by the contract with fields: id, contact, status, first_message, assigned, tags, created_on, source, assigned_team,
+      channel.'
+    tags:
+    - Object
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/ConversationReadSimple
+  - term: UserSimple
+    definition: 'Object declared by the contract with fields: id, first_name, last_name, email, account, profile_image, date_joined.'
+    tags:
+    - Object
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/UserSimple
+  - term: UserBasicEdit
+    definition: 'Object declared by the contract with fields: id.'
+    tags:
+    - Object
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/UserBasicEdit
+  - term: PatchedConversationEdit
+    definition: 'Object declared by the contract with fields: id, contact, status, assigned, tags, created_on, source, assigned_team, channel.'
+    tags:
+    - Object
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/PatchedConversationEdit
+  - term: ConversationTag
+    definition: 'Object declared by the contract with fields: id, name.'
+    tags:
+    - Object
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/ConversationTag
+  - term: SimpleUser
+    definition: 'Object declared by the contract with fields: first_name, last_name, email, id, profile_image, role.'
+    tags:
+    - Object
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/SimpleUser
+  - term: MessageSourceEnum
+    definition: '* `INBOUND` - Inbound * `INBOX` - Inbox * `AUTO_RESPONSE` - Auto Response * `API` - Api * `BROADCAST` - Broadcast * `FLOW` -
+      Flow'
+    tags:
+    - Enumeration
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/MessageSourceEnum
+  - term: WhatsAppMessageSimple
+    definition: 'Object declared by the contract with fields: id, to_number, from_number, body, direction, timestamp, contact, status, queued_on,
+      accepted_on, sent_on, delivered_on. (14 more)'
+    tags:
+    - Object
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/WhatsAppMessageSimple
+  - term: MessageTypeEnum
+    definition: '* `audio` - Audio * `voice` - Voice * `button` - Button * `document` - Document * `text` - Text * `image` - Image * `interactive`
+      - Interactive * `order` - Order * `sticker` - Sticker * `system` - System * `unknown` - Unknown * `video` - Video * `unsupported` - Unsupported
+      * `location` - Location * `contacts` - Contacts * `template` - Template * `reaction` - Reaction * `ephemeral` - Ephemeral * `r'
+    tags:
+    - Enumeration
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/MessageTypeEnum
+  - term: PaginatedConversationReadSimpleList
+    definition: 'Object declared by the contract with fields: count, next, previous, results.'
+    tags:
+    - Object
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/PaginatedConversationReadSimpleList
+  - term: MessageStatusEnum
+    definition: '* `new` - New * `retry` - Retry * `accepted` - Accepted * `sending` - Sending * `sent` - Sent * `receiving` - Receiving * `received`
+      - Received * `delivered` - Delivered * `undelivered` - Undelivered * `failed` - Failed * `read` - Read * `deleted` - Deleted'
+    tags:
+    - Enumeration
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/MessageStatusEnum
+  - term: ConversationEdit
+    definition: 'Object declared by the contract with fields: id, contact, status, assigned, tags, created_on, source, assigned_team, channel.'
+    tags:
+    - Object
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/ConversationEdit
+  - term: ConversationSourceEnum
+    definition: '* `INBOX` - Inbox * `AUTO_RESPONSE` - Auto Response * `API` - Api * `BROADCAST` - Broadcast * `FLOW` - Flow * `UNKNOWN` - Unknown'
+    tags:
+    - Enumeration
+    source: openapi/activecampaign-conversations-api-openapi.yml#/components/schemas/ConversationSourceEnum
+  - term: ErrorSourceDO
+    definition: 'Object declared by the contract with fields: pointer.'
+    tags:
+    - Object
+    source: openapi/activecampaign-count-history-api-openapi.yml#/components/schemas/ErrorSourceDO
+  - term: SegmentCountHistoryResponseRootDO
+    definition: 'Object declared by the contract with fields: data, errors.'
+    tags:
+    - Object
+    source: openapi/activecampaign-count-history-api-openapi.yml#/components/schemas/SegmentCountHistoryResponseRootDO
+  - term: SegmentCountHistoryDataDO
+    definition: 'Object declared by the contract with fields: attributes, id, type.'
+    tags:
+    - Object
+    source: openapi/activecampaign-count-history-api-openapi.yml#/components/schemas/SegmentCountHistoryDataDO
+  - term: ErrorResponseRootDO
+    definition: 'Object declared by the contract with fields: errors.'
+    tags:
+    - Object
+    source: openapi/activecampaign-count-history-api-openapi.yml#/components/schemas/ErrorResponseRootDO

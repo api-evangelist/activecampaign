@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-account-cloning-status-list-response-schema.json",
+  "title": "AccountCloningStatusListResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-child-account-snapshots-api-openapi.yml#/components/schemas/AccountCloningStatusListResponse",
+  "required": [
+    "items",
+    "pagination"
+  ],
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/AccountCloningStatusResponse"
+      }
+    },
+    "pagination": {
+      "$ref": "#/$defs/AccountCloningStatusListPagination"
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "AccountCloningStatusListPagination": {
+      "required": [
+        "total",
+        "page",
+        "per_page",
+        "total_pages"
+      ],
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "total_pages": {
+          "type": "integer"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    },
+    "AccountCloningStatusResponse": {
+      "required": [
+        "id",
+        "workflow_id",
+        "reseller_id",
+        "target_account",
+        "source_account",
+        "target_account_id",
+        "source_account_id",
+        "started_at",
+        "updated_at",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "workflow_id": {
+          "type": "string"
+        },
+        "reseller_id": {
+          "type": "integer"
+        },
+        "target_account": {
+          "type": "string"
+        },
+        "source_account": {
+          "type": "string"
+        },
+        "target_account_id": {
+          "type": "integer"
+        },
+        "source_account_id": {
+          "type": "integer"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "failed",
+            "success",
+            "cancelled",
+            "in_progress"
+          ]
+        },
+        "error_message": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "snapshot_id": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    }
+  }
+}

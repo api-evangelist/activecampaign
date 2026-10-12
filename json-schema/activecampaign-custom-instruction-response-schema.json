@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-custom-instruction-response-schema.json",
+  "title": "CustomInstructionResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-ai-customization-instructions-api-openapi.yml#/components/schemas/CustomInstructionResponse",
+  "required": [
+    "id",
+    "profile_id",
+    "custom_instruction",
+    "is_enabled",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "profile_id": {
+      "type": "integer"
+    },
+    "custom_instruction": {
+      "type": "string"
+    },
+    "is_enabled": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "type": "object",
+  "additionalProperties": false
+}

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-segment-summary-success-root-do-schema.json",
+  "title": "Segment Summary RootDO",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-saved-segment-summaries-api-openapi.yml#/components/schemas/SegmentSummarySuccessRootDO",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SegmentSummaryDataDO"
+      }
+    }
+  },
+  "$defs": {
+    "SegmentSummaryCountDO": {
+      "title": "Segment counts totals object",
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "number",
+          "readOnly": false
+        },
+        "last_total_updated": {
+          "type": "string",
+          "readOnly": false,
+          "description": "Time that this last total count was requested to be updated",
+          "format": "date-time"
+        },
+        "run_id": {
+          "type": "string",
+          "readOnly": false
+        },
+        "run_id_start": {
+          "type": "string",
+          "readOnly": false,
+          "description": "Time that this start time of the last run in UTC",
+          "format": "date-time"
+        },
+        "run_id_end": {
+          "type": "string",
+          "readOnly": false,
+          "description": "Time that this end time of the last run in UTC",
+          "format": "date-time"
+        }
+      }
+    },
+    "SegmentSummaryCountsDO": {
+      "title": "Segment summary counts object containing all counts",
+      "type": "object",
+      "properties": {
+        "last_total": {
+          "$ref": "#/$defs/SegmentSummaryCountDO"
+        },
+        "last_active_total": {
+          "$ref": "#/$defs/SegmentSummaryCountDO"
+        }
+      }
+    },
+    "SegmentSummaryDO": {
+      "title": "Segment SummaryDO",
+      "type": "object",
+      "properties": {
+        "segment_id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "audience"
+          ],
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the audience segment",
+          "readOnly": true
+        },
+        "counts": {
+          "$ref": "#/$defs/SegmentSummaryCountsDO"
+        },
+        "created_date": {
+          "type": "string",
+          "readOnly": true,
+          "format": "date-time"
+        },
+        "updated_date": {
+          "type": "string",
+          "readOnly": true,
+          "format": "date-time"
+        },
+        "last_used_date": {
+          "type": "string",
+          "readOnly": true,
+          "format": "date-time"
+        }
+      }
+    },
+    "SegmentSummaryDataDO": {
+      "title": "Segment Summary DataDO",
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "$ref": "#/$defs/SegmentSummaryDO"
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

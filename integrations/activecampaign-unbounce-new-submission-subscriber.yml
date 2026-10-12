@@ -1,0 +1,83 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Unbounce new submission subscriber
+  summary: Add subscribers to ActiveCampaign from new Unbounce submissions
+  description: Add subscribers to ActiveCampaign from new Unbounce submissions. Reads the record from Unbounce, creates or updates the contact in ActiveCampaign with contact sync, then subscribes it to
+    a list. Recreated from the Zapier template linked in x-integration.
+  version: 1.0.0
+sourceDescriptions:
+- name: unbounceLeads
+  url: https://raw.githubusercontent.com/api-evangelist/unbounce/refs/heads/main/openapi/unbounce-leads-api-openapi.yml
+  type: openapi
+- name: activecampaignContacts
+  url: https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/openapi/activecampaign-contacts-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: unbounce-new-submission-subscriber
+  summary: Add subscribers to ActiveCampaign from new Unbounce submissions
+  description: Add subscribers to ActiveCampaign from new Unbounce submissions.
+  inputs:
+    type: object
+    properties:
+      leadId:
+        type: string
+      listId:
+        type: string
+        description: ActiveCampaign list to subscribe the contact to
+  steps:
+  - stepId: get-lead
+    description: Read the new Unbounce record.
+    operationId: $sourceDescriptions.unbounceLeads.getLead
+    parameters:
+    - name: lead_id
+      in: path
+      value: $inputs.leadId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/form_data/email
+      firstName: $response.body#/form_data/first_name
+      lastName: $response.body#/form_data/last_name
+  - stepId: sync-contact
+    description: Create or update the ActiveCampaign contact by email.
+    operationId: $sourceDescriptions.activecampaignContacts.sync-a-contacts-data
+    requestBody:
+      contentType: application/json
+      payload:
+        contact:
+          email: $steps.get-lead.outputs.email
+          firstName: $steps.get-lead.outputs.firstName
+          lastName: $steps.get-lead.outputs.lastName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/contact/id
+  - stepId: subscribe-to-list
+    description: Subscribe the synced contact to the list.
+    operationId: $sourceDescriptions.activecampaignContacts.update-list-status-for-contact
+    requestBody:
+      contentType: application/json
+      payload:
+        contactList:
+          list: $inputs.listId
+          contact: $steps.sync-contact.outputs.contactId
+          status: '1'
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    contactId: $steps.sync-contact.outputs.contactId
+x-integration:
+  partner: unbounce
+  template: https://zapier.com/apps/activecampaign/integrations/unbounce/51/add-subscribers-to-activecampaign-from-new-unbounce-submissions
+  edge_evidence: https://zapier.com/apps/activecampaign/integrations/unbounce/51/add-subscribers-to-activecampaign-from-new-unbounce-submissions
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5.5 enrichment local-v5
+  guessed_steps:
+  - step: get-lead
+    cause: partner-contract
+    why: the Lead schema types form_data without properties, so the email/name keys inside it depend on the page form
+  - step: sync-contact
+    cause: provider-contract
+    why: the sync-a-contacts-data 201 response schema lists contact fields but no contact.id, so the output path /contact/id is not settled by the spec

@@ -1,0 +1,77 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Acuity Scheduling new appointment contact sync
+  summary: Add or update ActiveCampaign contacts for new Acuity Scheduling appointments
+  description: Add or update ActiveCampaign contacts for new Acuity Scheduling appointments. Reads the record from Acuity Scheduling, creates or updates the contact in ActiveCampaign with contact sync,
+    then subscribes it to a list. Recreated from the Zapier template linked in x-integration.
+  version: 1.0.0
+sourceDescriptions:
+- name: acuityAppointments
+  url: https://raw.githubusercontent.com/api-evangelist/acuity-scheduling/refs/heads/main/openapi/acuity-scheduling-appointments-api-openapi.yml
+  type: openapi
+- name: activecampaignContacts
+  url: https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/openapi/activecampaign-contacts-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: acuity-scheduling-new-appointment-contact-sync
+  summary: Add or update ActiveCampaign contacts for new Acuity Scheduling appointments
+  description: Add or update ActiveCampaign contacts for new Acuity Scheduling appointments.
+  inputs:
+    type: object
+    properties:
+      listId:
+        type: string
+        description: ActiveCampaign list to subscribe the contact to
+  steps:
+  - stepId: list-appointments
+    description: Read the new Acuity Scheduling record.
+    operationId: $sourceDescriptions.acuityAppointments.getAppointments
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/0/email
+      firstName: $response.body#/0/firstName
+      lastName: $response.body#/0/lastName
+  - stepId: sync-contact
+    description: Create or update the ActiveCampaign contact by email.
+    operationId: $sourceDescriptions.activecampaignContacts.sync-a-contacts-data
+    requestBody:
+      contentType: application/json
+      payload:
+        contact:
+          email: $steps.list-appointments.outputs.email
+          firstName: $steps.list-appointments.outputs.firstName
+          lastName: $steps.list-appointments.outputs.lastName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/contact/id
+  - stepId: subscribe-to-list
+    description: Subscribe the synced contact to the list.
+    operationId: $sourceDescriptions.activecampaignContacts.update-list-status-for-contact
+    requestBody:
+      contentType: application/json
+      payload:
+        contactList:
+          list: $inputs.listId
+          contact: $steps.sync-contact.outputs.contactId
+          status: '1'
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    contactId: $steps.sync-contact.outputs.contactId
+x-integration:
+  partner: acuity-scheduling
+  template: https://zapier.com/apps/activecampaign/integrations/acuity-scheduling/2045/add-or-update-activecampaign-contacts-for-new-acuity-scheduling-appointments
+  edge_evidence: https://zapier.com/apps/activecampaign/integrations/acuity-scheduling/2045/add-or-update-activecampaign-contacts-for-new-acuity-scheduling-appointments
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5.5 enrichment local-v5
+  guessed_steps:
+  - step: list-appointments
+    cause: partner-contract
+    why: getAppointments declares no responses, so the 200 code and the email/firstName/lastName paths are not settled by the spec
+  - step: sync-contact
+    cause: provider-contract
+    why: the sync-a-contacts-data 201 response schema lists contact fields but no contact.id, so the output path /contact/id is not settled by the spec

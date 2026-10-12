@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-document-download-url-response-schema.json",
+  "title": "DocumentDownloadUrlResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-ai-customization-documents-api-openapi.yml#/components/schemas/DocumentDownloadUrlResponse",
+  "required": [
+    "url",
+    "expires_in"
+  ],
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "expires_in": {
+      "description": "Seconds until the URL expires",
+      "type": "integer"
+    }
+  },
+  "type": "object",
+  "additionalProperties": false
+}

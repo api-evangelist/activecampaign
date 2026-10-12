@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-profile-document-response-schema.json",
+  "title": "ProfileDocumentResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-ai-customization-documents-api-openapi.yml#/components/schemas/ProfileDocumentResponse",
+  "required": [
+    "id",
+    "description",
+    "filename",
+    "file_size_bytes",
+    "file_extension",
+    "status",
+    "created_date",
+    "enabled"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "filename": {
+      "type": "string"
+    },
+    "file_size_bytes": {
+      "type": "integer"
+    },
+    "file_extension": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "created_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "support_material",
+          "campaign_material",
+          "brand_rules",
+          "benchmark_data",
+          "product_info"
+        ]
+      },
+      "default": []
+    }
+  },
+  "type": "object",
+  "additionalProperties": false
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-update-state-insight-card-request-schema.json",
+  "title": "UpdateStateInsightCardRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-insight-cards-api-openapi.yml#/components/schemas/UpdateStateInsightCardRequest",
+  "required": [
+    "insight",
+    "metadata"
+  ],
+  "properties": {
+    "insight": {
+      "type": "string"
+    },
+    "metadata": {
+      "$ref": "#/$defs/UpdateStateMetadataInsightCardRequest"
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "UpdateStateMetadataInsightCardRequest": {
+      "required": [
+        "conversation_id"
+      ],
+      "properties": {
+        "conversation_id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    }
+  }
+}

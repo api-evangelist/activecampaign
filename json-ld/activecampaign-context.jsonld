@@ -1,0 +1,1346 @@
+{
+  "@context": {
+    "@vocab": "https://activecampaign.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "activecampaign": "https://activecampaign.com/schema#",
+    "AIBroadcastStatus": "activecampaign:AIBroadcastStatus",
+    "source": {
+      "@id": "activecampaign:source",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "activecampaign:status",
+      "@type": "xsd:string"
+    },
+    "broadcastId": {
+      "@id": "activecampaign:broadcastId",
+      "@type": "xsd:integer"
+    },
+    "AIBroadcastUpdateRequest": "activecampaign:AIBroadcastUpdateRequest",
+    "prompt": {
+      "@id": "activecampaign:prompt",
+      "@type": "xsd:string"
+    },
+    "tone": {
+      "@id": "activecampaign:tone",
+      "@type": "xsd:string"
+    },
+    "AIBroadcastResponse": "activecampaign:AIBroadcastResponse",
+    "requestId": {
+      "@id": "activecampaign:requestId",
+      "@type": "xsd:string"
+    },
+    "AIBroadcastRequest": "activecampaign:AIBroadcastRequest",
+    "AICustomizationsPaginationMetadata": "activecampaign:AICustomizationsPaginationMetadata",
+    "total": {
+      "@id": "activecampaign:total",
+      "@type": "xsd:integer"
+    },
+    "page": {
+      "@id": "activecampaign:page",
+      "@type": "xsd:integer"
+    },
+    "limit": {
+      "@id": "activecampaign:limit",
+      "@type": "xsd:integer"
+    },
+    "total_pages": {
+      "@id": "activecampaign:total_pages",
+      "@type": "xsd:integer"
+    },
+    "ProfileDocumentResponse": "activecampaign:ProfileDocumentResponse",
+    "id": {
+      "@id": "activecampaign:id",
+      "@type": "xsd:integer"
+    },
+    "description": {
+      "@id": "activecampaign:description",
+      "@type": "xsd:string"
+    },
+    "filename": {
+      "@id": "activecampaign:filename",
+      "@type": "xsd:string"
+    },
+    "file_size_bytes": {
+      "@id": "activecampaign:file_size_bytes",
+      "@type": "xsd:integer"
+    },
+    "file_extension": {
+      "@id": "activecampaign:file_extension",
+      "@type": "xsd:string"
+    },
+    "created_date": {
+      "@id": "activecampaign:created_date",
+      "@type": "xsd:dateTime"
+    },
+    "enabled": {
+      "@id": "activecampaign:enabled",
+      "@type": "xsd:boolean"
+    },
+    "tags": {
+      "@id": "activecampaign:tags",
+      "@container": "@list"
+    },
+    "ProfileDocumentListResponse": "activecampaign:ProfileDocumentListResponse",
+    "data": {
+      "@id": "activecampaign:data",
+      "@container": "@list"
+    },
+    "pagination": {
+      "@id": "activecampaign:pagination",
+      "@type": "@id"
+    },
+    "UpdateDocumentRequest": "activecampaign:UpdateDocumentRequest",
+    "is_enabled": {
+      "@id": "activecampaign:is_enabled",
+      "@type": "xsd:boolean"
+    },
+    "ApiViolation": "activecampaign:ApiViolation",
+    "propertyPath": {
+      "@id": "activecampaign:propertyPath",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "activecampaign:title",
+      "@type": "xsd:string"
+    },
+    "template": {
+      "@id": "activecampaign:template",
+      "@type": "xsd:string"
+    },
+    "parameters": {
+      "@id": "activecampaign:parameters"
+    },
+    "DocumentDownloadUrlResponse": "activecampaign:DocumentDownloadUrlResponse",
+    "url": {
+      "@id": "activecampaign:url",
+      "@type": "@id"
+    },
+    "expires_in": {
+      "@id": "activecampaign:expires_in",
+      "@type": "xsd:integer"
+    },
+    "ApiErrorResponse": "activecampaign:ApiErrorResponse",
+    "type": {
+      "@id": "activecampaign:type",
+      "@type": "xsd:string"
+    },
+    "detail": {
+      "@id": "activecampaign:detail",
+      "@type": "xsd:string"
+    },
+    "violations": {
+      "@id": "activecampaign:violations"
+    },
+    "CustomInstructionResponse": "activecampaign:CustomInstructionResponse",
+    "profile_id": {
+      "@id": "activecampaign:profile_id",
+      "@type": "xsd:integer"
+    },
+    "custom_instruction": {
+      "@id": "activecampaign:custom_instruction",
+      "@type": "xsd:string"
+    },
+    "created_at": {
+      "@id": "activecampaign:created_at",
+      "@type": "xsd:dateTime"
+    },
+    "updated_at": {
+      "@id": "activecampaign:updated_at",
+      "@type": "xsd:dateTime"
+    },
+    "CreateCustomInstructionRequest": "activecampaign:CreateCustomInstructionRequest",
+    "CreateCustomInstructionResponse": "activecampaign:CreateCustomInstructionResponse",
+    "CustomInstructionListResponse": "activecampaign:CustomInstructionListResponse",
+    "UpdateCustomInstructionRequest": "activecampaign:UpdateCustomInstructionRequest",
+    "ChildAccountProfileResponse": "activecampaign:ChildAccountProfileResponse",
+    "reseller_id": {
+      "@id": "activecampaign:reseller_id",
+      "@type": "xsd:integer"
+    },
+    "name": {
+      "@id": "activecampaign:name",
+      "@type": "xsd:string"
+    },
+    "ChildAccountData": "activecampaign:ChildAccountData",
+    "account_name": {
+      "@id": "activecampaign:account_name",
+      "@type": "xsd:string"
+    },
+    "UpdateProfileRequest": "activecampaign:UpdateProfileRequest",
+    "ProfileListResponse": "activecampaign:ProfileListResponse",
+    "profiles": {
+      "@id": "activecampaign:profiles"
+    },
+    "AssignAccountsToProfileRequest": "activecampaign:AssignAccountsToProfileRequest",
+    "account_ids": {
+      "@id": "activecampaign:account_ids",
+      "@container": "@list"
+    },
+    "reassign": {
+      "@id": "activecampaign:reassign",
+      "@type": "xsd:boolean"
+    },
+    "assign_to_all_accounts": {
+      "@id": "activecampaign:assign_to_all_accounts",
+      "@type": "xsd:boolean"
+    },
+    "ProfileResponse": "activecampaign:ProfileResponse",
+    "assigned_accounts_count": {
+      "@id": "activecampaign:assigned_accounts_count",
+      "@type": "xsd:integer"
+    },
+    "assigned_accounts": {
+      "@id": "activecampaign:assigned_accounts"
+    },
+    "CreateProfileResponse": "activecampaign:CreateProfileResponse",
+    "CreateProfileRequest": "activecampaign:CreateProfileRequest",
+    "BroadcastUpdateRequest": "activecampaign:BroadcastUpdateRequest",
+    "address_id": {
+      "@id": "activecampaign:address_id",
+      "@type": "xsd:integer"
+    },
+    "body": {
+      "@id": "activecampaign:body",
+      "@type": "xsd:string"
+    },
+    "media_urls": {
+      "@id": "activecampaign:media_urls",
+      "@container": "@list"
+    },
+    "preview_url": {
+      "@id": "activecampaign:preview_url",
+      "@type": "@id"
+    },
+    "shorten_track_links_enabled": {
+      "@id": "activecampaign:shorten_track_links_enabled",
+      "@type": "xsd:boolean"
+    },
+    "scheduled_date": {
+      "@id": "activecampaign:scheduled_date",
+      "@type": "xsd:dateTime"
+    },
+    "sent_to_count": {
+      "@id": "activecampaign:sent_to_count",
+      "@type": "xsd:integer"
+    },
+    "list_ids": {
+      "@id": "activecampaign:list_ids",
+      "@container": "@list"
+    },
+    "segment_id": {
+      "@id": "activecampaign:segment_id",
+      "@type": "xsd:string"
+    },
+    "custom_run_id": {
+      "@id": "activecampaign:custom_run_id",
+      "@type": "xsd:string"
+    },
+    "custom_segment_id": {
+      "@id": "activecampaign:custom_segment_id",
+      "@type": "xsd:string"
+    },
+    "label_ids": {
+      "@id": "activecampaign:label_ids",
+      "@container": "@list"
+    },
+    "BroadcastMessage": "activecampaign:BroadcastMessage",
+    "sent_date": {
+      "@id": "activecampaign:sent_date",
+      "@type": "xsd:dateTime"
+    },
+    "scheduled_by": {
+      "@id": "activecampaign:scheduled_by",
+      "@type": "xsd:integer"
+    },
+    "created_by": {
+      "@id": "activecampaign:created_by",
+      "@type": "xsd:integer"
+    },
+    "updated_by": {
+      "@id": "activecampaign:updated_by",
+      "@type": "xsd:integer"
+    },
+    "deleted_at": {
+      "@id": "activecampaign:deleted_at",
+      "@type": "xsd:dateTime"
+    },
+    "sift_approved": {
+      "@id": "activecampaign:sift_approved",
+      "@type": "xsd:integer"
+    },
+    "arc_approved": {
+      "@id": "activecampaign:arc_approved",
+      "@type": "xsd:integer"
+    },
+    "quiet_hours_enabled": {
+      "@id": "activecampaign:quiet_hours_enabled",
+      "@type": "xsd:integer"
+    },
+    "BroadcastList": "activecampaign:BroadcastList",
+    "subscriber_count": {
+      "@id": "activecampaign:subscriber_count",
+      "@type": "xsd:integer"
+    },
+    "BroadcastListsResponse": "activecampaign:BroadcastListsResponse",
+    "lists": {
+      "@id": "activecampaign:lists",
+      "@container": "@list"
+    },
+    "meta": {
+      "@id": "activecampaign:meta"
+    },
+    "BroadcastListResponse": "activecampaign:BroadcastListResponse",
+    "broadcasts": {
+      "@id": "activecampaign:broadcasts",
+      "@container": "@list"
+    },
+    "BroadcastCreateRequest": "activecampaign:BroadcastCreateRequest",
+    "AM2CreateSnapshotRequest": "activecampaign:AM2CreateSnapshotRequest",
+    "account_id": {
+      "@id": "activecampaign:account_id",
+      "@type": "xsd:integer"
+    },
+    "AM2GetSnapshotsResponse": "activecampaign:AM2GetSnapshotsResponse",
+    "snapshots": {
+      "@id": "activecampaign:snapshots",
+      "@container": "@list"
+    },
+    "next_cursor": {
+      "@id": "activecampaign:next_cursor",
+      "@type": "xsd:string"
+    },
+    "AM2SnapshotResponse": "activecampaign:AM2SnapshotResponse",
+    "source_account_id": {
+      "@id": "activecampaign:source_account_id",
+      "@type": "xsd:integer"
+    },
+    "creation_status": {
+      "@id": "activecampaign:creation_status",
+      "@type": "xsd:string"
+    },
+    "completed_at": {
+      "@id": "activecampaign:completed_at",
+      "@type": "xsd:dateTime"
+    },
+    "AccountCloningStatusListPagination": "activecampaign:AccountCloningStatusListPagination",
+    "per_page": {
+      "@id": "activecampaign:per_page",
+      "@type": "xsd:integer"
+    },
+    "AccountCloningStatusListResponse": "activecampaign:AccountCloningStatusListResponse",
+    "items": {
+      "@id": "activecampaign:items",
+      "@container": "@list"
+    },
+    "AccountCloningStatusResponse": "activecampaign:AccountCloningStatusResponse",
+    "workflow_id": {
+      "@id": "activecampaign:workflow_id",
+      "@type": "xsd:string"
+    },
+    "target_account": {
+      "@id": "activecampaign:target_account",
+      "@type": "xsd:string"
+    },
+    "source_account": {
+      "@id": "activecampaign:source_account",
+      "@type": "xsd:string"
+    },
+    "target_account_id": {
+      "@id": "activecampaign:target_account_id",
+      "@type": "xsd:integer"
+    },
+    "started_at": {
+      "@id": "activecampaign:started_at",
+      "@type": "xsd:dateTime"
+    },
+    "error_message": {
+      "@id": "activecampaign:error_message",
+      "@type": "xsd:string"
+    },
+    "snapshot_id": {
+      "@id": "activecampaign:snapshot_id",
+      "@type": "xsd:integer"
+    },
+    "ChildAccountsPaginationMetadata": "activecampaign:ChildAccountsPaginationMetadata",
+    "ProductEntitlementLimitDto": "activecampaign:ProductEntitlementLimitDto",
+    "included_units": {
+      "@id": "activecampaign:included_units",
+      "@type": "xsd:integer"
+    },
+    "purchased_units": {
+      "@id": "activecampaign:purchased_units",
+      "@type": "xsd:integer"
+    },
+    "period": {
+      "@id": "activecampaign:period",
+      "@type": "xsd:string"
+    },
+    "ListAccountForSnapshotResponse": "activecampaign:ListAccountForSnapshotResponse",
+    "accounts": {
+      "@id": "activecampaign:accounts",
+      "@container": "@list"
+    },
+    "CreateAccountRequestDto": "activecampaign:CreateAccountRequestDto",
+    "cname": {
+      "@id": "activecampaign:cname",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "activecampaign:email",
+      "@type": "xsd:string"
+    },
+    "notification": {
+      "@id": "activecampaign:notification",
+      "@type": "xsd:string"
+    },
+    "language": {
+      "@id": "activecampaign:language",
+      "@type": "xsd:string"
+    },
+    "timezone": {
+      "@id": "activecampaign:timezone",
+      "@type": "xsd:string"
+    },
+    "snapshot": {
+      "@id": "activecampaign:snapshot",
+      "@type": "xsd:string"
+    },
+    "currency": {
+      "@id": "activecampaign:currency",
+      "@type": "xsd:string"
+    },
+    "billing_interval": {
+      "@id": "activecampaign:billing_interval",
+      "@type": "xsd:integer"
+    },
+    "products": {
+      "@id": "activecampaign:products",
+      "@container": "@list"
+    },
+    "profile": {
+      "@id": "activecampaign:profile",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "activecampaign:country",
+      "@type": "xsd:string"
+    },
+    "AccountForSnapshotResponse": "activecampaign:AccountForSnapshotResponse",
+    "ProductDto": "activecampaign:ProductDto",
+    "addon": {
+      "@id": "activecampaign:addon",
+      "@type": "xsd:boolean"
+    },
+    "code": {
+      "@id": "activecampaign:code",
+      "@type": "xsd:string"
+    },
+    "tier": {
+      "@id": "activecampaign:tier",
+      "@type": "xsd:string"
+    },
+    "version": {
+      "@id": "activecampaign:version",
+      "@type": "xsd:integer"
+    },
+    "entitlements": {
+      "@id": "activecampaign:entitlements"
+    },
+    "ProductEntitlementDto": "activecampaign:ProductEntitlementDto",
+    "pricing": {
+      "@id": "activecampaign:pricing"
+    },
+    "ChildAccountListResponse": "activecampaign:ChildAccountListResponse",
+    "hosted_accounts": {
+      "@id": "activecampaign:hosted_accounts"
+    },
+    "ProductEntitlementPricingDto": "activecampaign:ProductEntitlementPricingDto",
+    "recurring": {
+      "@id": "activecampaign:recurring",
+      "@type": "xsd:boolean"
+    },
+    "subtotal": {
+      "@id": "activecampaign:subtotal",
+      "@type": "xsd:integer"
+    },
+    "ChildAccountResponse": "activecampaign:ChildAccountResponse",
+    "ConversationStatusEnum": "activecampaign:ConversationStatusEnum",
+    "ConversationReadSimple": "activecampaign:ConversationReadSimple",
+    "contact": {
+      "@id": "activecampaign:contact",
+      "@type": "xsd:string"
+    },
+    "first_message": {
+      "@id": "activecampaign:first_message"
+    },
+    "assigned": {
+      "@id": "activecampaign:assigned",
+      "@container": "@list"
+    },
+    "created_on": {
+      "@id": "activecampaign:created_on",
+      "@type": "xsd:dateTime"
+    },
+    "assigned_team": {
+      "@id": "activecampaign:assigned_team",
+      "@type": "xsd:integer"
+    },
+    "channel": {
+      "@id": "activecampaign:channel",
+      "@type": "xsd:integer"
+    },
+    "UserSimple": "activecampaign:UserSimple",
+    "first_name": {
+      "@id": "activecampaign:first_name",
+      "@type": "xsd:string"
+    },
+    "last_name": {
+      "@id": "activecampaign:last_name",
+      "@type": "xsd:string"
+    },
+    "account": {
+      "@id": "activecampaign:account",
+      "@type": "xsd:integer"
+    },
+    "profile_image": {
+      "@id": "activecampaign:profile_image",
+      "@type": "@id"
+    },
+    "date_joined": {
+      "@id": "activecampaign:date_joined",
+      "@type": "xsd:dateTime"
+    },
+    "UserBasicEdit": "activecampaign:UserBasicEdit",
+    "PatchedConversationEdit": "activecampaign:PatchedConversationEdit",
+    "ConversationTag": "activecampaign:ConversationTag",
+    "SimpleUser": "activecampaign:SimpleUser",
+    "role": {
+      "@id": "activecampaign:role",
+      "@type": "xsd:integer"
+    },
+    "MessageSourceEnum": "activecampaign:MessageSourceEnum",
+    "WhatsAppMessageSimple": "activecampaign:WhatsAppMessageSimple",
+    "to_number": {
+      "@id": "activecampaign:to_number",
+      "@type": "xsd:string"
+    },
+    "from_number": {
+      "@id": "activecampaign:from_number",
+      "@type": "xsd:string"
+    },
+    "direction": {
+      "@id": "activecampaign:direction",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "activecampaign:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "queued_on": {
+      "@id": "activecampaign:queued_on",
+      "@type": "xsd:dateTime"
+    },
+    "accepted_on": {
+      "@id": "activecampaign:accepted_on",
+      "@type": "xsd:dateTime"
+    },
+    "sent_on": {
+      "@id": "activecampaign:sent_on",
+      "@type": "xsd:dateTime"
+    },
+    "delivered_on": {
+      "@id": "activecampaign:delivered_on",
+      "@type": "xsd:dateTime"
+    },
+    "read_on": {
+      "@id": "activecampaign:read_on",
+      "@type": "xsd:dateTime"
+    },
+    "failed_on": {
+      "@id": "activecampaign:failed_on",
+      "@type": "xsd:dateTime"
+    },
+    "provider_id": {
+      "@id": "activecampaign:provider_id",
+      "@type": "xsd:string"
+    },
+    "provider_error_code": {
+      "@id": "activecampaign:provider_error_code",
+      "@type": "xsd:string"
+    },
+    "provider_error_message": {
+      "@id": "activecampaign:provider_error_message",
+      "@type": "xsd:string"
+    },
+    "sent_by": {
+      "@id": "activecampaign:sent_by",
+      "@type": "@id"
+    },
+    "is_deleted": {
+      "@id": "activecampaign:is_deleted",
+      "@type": "xsd:boolean"
+    },
+    "content": {
+      "@id": "activecampaign:content"
+    },
+    "whatsapp_template": {
+      "@id": "activecampaign:whatsapp_template",
+      "@type": "xsd:string"
+    },
+    "content_type": {
+      "@id": "activecampaign:content_type",
+      "@type": "xsd:string"
+    },
+    "content_url": {
+      "@id": "activecampaign:content_url",
+      "@type": "@id"
+    },
+    "msg_type": {
+      "@id": "activecampaign:msg_type",
+      "@type": "@id"
+    },
+    "failed_attempts": {
+      "@id": "activecampaign:failed_attempts",
+      "@type": "xsd:integer"
+    },
+    "MessageTypeEnum": "activecampaign:MessageTypeEnum",
+    "PaginatedConversationReadSimpleList": "activecampaign:PaginatedConversationReadSimpleList",
+    "count": {
+      "@id": "activecampaign:count",
+      "@type": "xsd:integer"
+    },
+    "next": {
+      "@id": "activecampaign:next",
+      "@type": "@id"
+    },
+    "previous": {
+      "@id": "activecampaign:previous",
+      "@type": "@id"
+    },
+    "results": {
+      "@id": "activecampaign:results",
+      "@container": "@list"
+    },
+    "MessageStatusEnum": "activecampaign:MessageStatusEnum",
+    "ConversationEdit": "activecampaign:ConversationEdit",
+    "ConversationSourceEnum": "activecampaign:ConversationSourceEnum",
+    "ErrorSourceDO": "activecampaign:ErrorSourceDO",
+    "pointer": {
+      "@id": "activecampaign:pointer",
+      "@type": "xsd:string"
+    },
+    "SegmentCountHistoryResponseRootDO": "activecampaign:SegmentCountHistoryResponseRootDO",
+    "errors": {
+      "@id": "activecampaign:errors",
+      "@container": "@list"
+    },
+    "SegmentCountHistoryDataDO": "activecampaign:SegmentCountHistoryDataDO",
+    "attributes": {
+      "@id": "activecampaign:attributes",
+      "@type": "@id"
+    },
+    "ErrorResponseRootDO": "activecampaign:ErrorResponseRootDO",
+    "ErrorDetailDO": "activecampaign:ErrorDetailDO",
+    "SegmentCountHistoryAttributeDO": "activecampaign:SegmentCountHistoryAttributeDO",
+    "segment_hash": {
+      "@id": "activecampaign:segment_hash",
+      "@type": "xsd:string"
+    },
+    "run_id": {
+      "@id": "activecampaign:run_id",
+      "@type": "xsd:string"
+    },
+    "result_count": {
+      "@id": "activecampaign:result_count",
+      "@type": "xsd:decimal"
+    },
+    "active_result_count": {
+      "@id": "activecampaign:active_result_count",
+      "@type": "xsd:decimal"
+    },
+    "count_updating_with_runid": {
+      "@id": "activecampaign:count_updating_with_runid",
+      "@type": "xsd:string"
+    },
+    "CreditsResponse": "activecampaign:CreditsResponse",
+    "smsCredits": {
+      "@id": "activecampaign:smsCredits"
+    },
+    "Pagination": "activecampaign:Pagination",
+    "DealsBucket": "activecampaign:DealsBucket",
+    "revenue_cents": {
+      "@id": "activecampaign:revenue_cents",
+      "@type": "xsd:integer"
+    },
+    "PipelineSummary": "activecampaign:PipelineSummary",
+    "deals_open": {
+      "@id": "activecampaign:deals_open",
+      "@type": "xsd:integer"
+    },
+    "deals_won": {
+      "@id": "activecampaign:deals_won",
+      "@type": "xsd:integer"
+    },
+    "deals_lost": {
+      "@id": "activecampaign:deals_lost",
+      "@type": "xsd:integer"
+    },
+    "conversion_rate_percent": {
+      "@id": "activecampaign:conversion_rate_percent",
+      "@type": "xsd:decimal"
+    },
+    "total_revenue_cents": {
+      "@id": "activecampaign:total_revenue_cents",
+      "@type": "xsd:integer"
+    },
+    "top_account": {
+      "@id": "activecampaign:top_account"
+    },
+    "PipelinesSummaryResponse": "activecampaign:PipelinesSummaryResponse",
+    "range": {
+      "@id": "activecampaign:range",
+      "@type": "@id"
+    },
+    "summary": {
+      "@id": "activecampaign:summary",
+      "@type": "@id"
+    },
+    "RangeInfo": "activecampaign:RangeInfo",
+    "start_date": {
+      "@id": "activecampaign:start_date",
+      "@type": "xsd:date"
+    },
+    "end_date": {
+      "@id": "activecampaign:end_date",
+      "@type": "xsd:date"
+    },
+    "TopAccount": "activecampaign:TopAccount",
+    "PipelinesSummary": "activecampaign:PipelinesSummary",
+    "average_deal_revenue_cents": {
+      "@id": "activecampaign:average_deal_revenue_cents",
+      "@type": "xsd:integer"
+    },
+    "PipelinesListResponse": "activecampaign:PipelinesListResponse",
+    "pipelines": {
+      "@id": "activecampaign:pipelines",
+      "@container": "@list"
+    },
+    "PipelineSyncConfigResponse": "activecampaign:PipelineSyncConfigResponse",
+    "sync_enabled": {
+      "@id": "activecampaign:sync_enabled",
+      "@type": "xsd:boolean"
+    },
+    "target": {
+      "@id": "activecampaign:target",
+      "@type": "@id"
+    },
+    "UpsertPipelineSyncTargetRequest": "activecampaign:UpsertPipelineSyncTargetRequest",
+    "PipelineListResponse": "activecampaign:PipelineListResponse",
+    "UpsertPipelineSyncRequest": "activecampaign:UpsertPipelineSyncRequest",
+    "PipelineSyncTargetResponse": "activecampaign:PipelineSyncTargetResponse",
+    "PipelineResponse": "activecampaign:PipelineResponse",
+    "synced_accounts_count": {
+      "@id": "activecampaign:synced_accounts_count",
+      "@type": "xsd:integer"
+    },
+    "last_synced_at": {
+      "@id": "activecampaign:last_synced_at",
+      "@type": "xsd:dateTime"
+    },
+    "last_synced_status": {
+      "@id": "activecampaign:last_synced_status",
+      "@type": "xsd:string"
+    },
+    "last_synced_error": {
+      "@id": "activecampaign:last_synced_error",
+      "@type": "xsd:string"
+    },
+    "PipelineListPagination": "activecampaign:PipelineListPagination",
+    "SettingsResponse": "activecampaign:SettingsResponse",
+    "sync_every": {
+      "@id": "activecampaign:sync_every",
+      "@type": "xsd:string"
+    },
+    "UpdateSettingsRequest": "activecampaign:UpdateSettingsRequest",
+    "FailureDetail": "activecampaign:FailureDetail",
+    "errorCode": {
+      "@id": "activecampaign:errorCode",
+      "@type": "xsd:string"
+    },
+    "errorSource": {
+      "@id": "activecampaign:errorSource",
+      "@type": "xsd:string"
+    },
+    "FailureDetailsResponse": "activecampaign:FailureDetailsResponse",
+    "failures": {
+      "@id": "activecampaign:failures",
+      "@container": "@list"
+    },
+    "QuotaStatusResponse": "activecampaign:QuotaStatusResponse",
+    "quota_limit_bytes": {
+      "@id": "activecampaign:quota_limit_bytes",
+      "@type": "xsd:integer"
+    },
+    "current_usage_bytes": {
+      "@id": "activecampaign:current_usage_bytes",
+      "@type": "xsd:integer"
+    },
+    "available_bytes": {
+      "@id": "activecampaign:available_bytes",
+      "@type": "xsd:integer"
+    },
+    "WhatsAppTemplateSimpleRead": "activecampaign:WhatsAppTemplateSimpleRead",
+    "components": {
+      "@id": "activecampaign:components"
+    },
+    "category": {
+      "@id": "activecampaign:category",
+      "@type": "@id"
+    },
+    "rejected_reason": {
+      "@id": "activecampaign:rejected_reason",
+      "@type": "xsd:string"
+    },
+    "show_in_sandbox": {
+      "@id": "activecampaign:show_in_sandbox",
+      "@type": "xsd:boolean"
+    },
+    "FlowExecutionStepReadDetail": "activecampaign:FlowExecutionStepReadDetail",
+    "step": {
+      "@id": "activecampaign:step"
+    },
+    "status_reason": {
+      "@id": "activecampaign:status_reason",
+      "@type": "xsd:string"
+    },
+    "has_error": {
+      "@id": "activecampaign:has_error",
+      "@type": "xsd:boolean"
+    },
+    "expire_on": {
+      "@id": "activecampaign:expire_on",
+      "@type": "xsd:dateTime"
+    },
+    "validation_failed_attempts": {
+      "@id": "activecampaign:validation_failed_attempts",
+      "@type": "xsd:integer"
+    },
+    "execution_result": {
+      "@id": "activecampaign:execution_result"
+    },
+    "request_data": {
+      "@id": "activecampaign:request_data"
+    },
+    "messages": {
+      "@id": "activecampaign:messages",
+      "@container": "@list"
+    },
+    "status_triggered_by": {
+      "@id": "activecampaign:status_triggered_by",
+      "@type": "xsd:integer"
+    },
+    "status_last_change_on": {
+      "@id": "activecampaign:status_last_change_on",
+      "@type": "xsd:dateTime"
+    },
+    "FlowExecutionStepReadDetailStatusEnum": "activecampaign:FlowExecutionStepReadDetailStatusEnum",
+    "ChannelProviderEnum": "activecampaign:ChannelProviderEnum",
+    "AnswerTypeEnum": "activecampaign:AnswerTypeEnum",
+    "FlowStepTimeWindow": "activecampaign:FlowStepTimeWindow",
+    "weekday": {
+      "@id": "activecampaign:weekday"
+    },
+    "is_available": {
+      "@id": "activecampaign:is_available",
+      "@type": "xsd:boolean"
+    },
+    "start_at": {
+      "@id": "activecampaign:start_at",
+      "@type": "xsd:string"
+    },
+    "end_at": {
+      "@id": "activecampaign:end_at",
+      "@type": "xsd:string"
+    },
+    "FlowListRead": "activecampaign:FlowListRead",
+    "is_active": {
+      "@id": "activecampaign:is_active",
+      "@type": "xsd:boolean"
+    },
+    "is_legacy": {
+      "@id": "activecampaign:is_legacy",
+      "@type": "xsd:boolean"
+    },
+    "num_contacts": {
+      "@id": "activecampaign:num_contacts",
+      "@type": "xsd:integer"
+    },
+    "expired": {
+      "@id": "activecampaign:expired",
+      "@type": "xsd:integer"
+    },
+    "running": {
+      "@id": "activecampaign:running",
+      "@type": "xsd:integer"
+    },
+    "completed": {
+      "@id": "activecampaign:completed",
+      "@type": "xsd:integer"
+    },
+    "canceled": {
+      "@id": "activecampaign:canceled",
+      "@type": "xsd:integer"
+    },
+    "failed": {
+      "@id": "activecampaign:failed",
+      "@type": "xsd:integer"
+    },
+    "needs_update": {
+      "@id": "activecampaign:needs_update",
+      "@type": "xsd:boolean"
+    },
+    "avg_completion_time": {
+      "@id": "activecampaign:avg_completion_time",
+      "@type": "xsd:string"
+    },
+    "current_version": {
+      "@id": "activecampaign:current_version",
+      "@type": "xsd:string"
+    },
+    "is_template": {
+      "@id": "activecampaign:is_template",
+      "@type": "xsd:boolean"
+    },
+    "trigger_type": {
+      "@id": "activecampaign:trigger_type",
+      "@type": "@id"
+    },
+    "trigger_config": {
+      "@id": "activecampaign:trigger_config"
+    },
+    "test_version": {
+      "@id": "activecampaign:test_version",
+      "@type": "xsd:string"
+    },
+    "upgrade_version": {
+      "@id": "activecampaign:upgrade_version",
+      "@type": "xsd:string"
+    },
+    "legacy_version": {
+      "@id": "activecampaign:legacy_version",
+      "@type": "xsd:string"
+    },
+    "FlowVersionSimpleRead": "activecampaign:FlowVersionSimpleRead",
+    "flow": {
+      "@id": "activecampaign:flow",
+      "@type": "@id"
+    },
+    "is_current_version": {
+      "@id": "activecampaign:is_current_version",
+      "@type": "xsd:boolean"
+    },
+    "version_name": {
+      "@id": "activecampaign:version_name",
+      "@type": "xsd:string"
+    },
+    "version_description": {
+      "@id": "activecampaign:version_description",
+      "@type": "xsd:string"
+    },
+    "published_by": {
+      "@id": "activecampaign:published_by"
+    },
+    "last_updated_on": {
+      "@id": "activecampaign:last_updated_on",
+      "@type": "xsd:dateTime"
+    },
+    "FlowStatusEnum": "activecampaign:FlowStatusEnum",
+    "WhatsAppMessage": "activecampaign:WhatsAppMessage",
+    "location": {
+      "@id": "activecampaign:location",
+      "@type": "@id"
+    },
+    "contacts": {
+      "@id": "activecampaign:contacts",
+      "@container": "@list"
+    },
+    "context_message": {
+      "@id": "activecampaign:context_message"
+    },
+    "FlowExecutionEditSourceEnum": "activecampaign:FlowExecutionEditSourceEnum",
+    "BlankEnum": "activecampaign:BlankEnum",
+    "ActionRequestMethodEnum": "activecampaign:ActionRequestMethodEnum",
+    "SimpleChannel": "activecampaign:SimpleChannel",
+    "channel_type": {
+      "@id": "activecampaign:channel_type",
+      "@type": "@id"
+    },
+    "channel_id": {
+      "@id": "activecampaign:channel_id",
+      "@type": "xsd:string"
+    },
+    "channel_provider": {
+      "@id": "activecampaign:channel_provider",
+      "@type": "@id"
+    },
+    "is_sandbox": {
+      "@id": "activecampaign:is_sandbox",
+      "@type": "xsd:boolean"
+    },
+    "ContactNote": "activecampaign:ContactNote",
+    "notes": {
+      "@id": "activecampaign:notes",
+      "@type": "xsd:string"
+    },
+    "NextActionEnum": "activecampaign:NextActionEnum",
+    "FlowSimpleRead": "activecampaign:FlowSimpleRead",
+    "flow_execution_variables": {
+      "@id": "activecampaign:flow_execution_variables",
+      "@container": "@list"
+    },
+    "ComparisonEnum": "activecampaign:ComparisonEnum",
+    "LanguageEnum": "activecampaign:LanguageEnum",
+    "FlowExecutionCreateRequest": "activecampaign:FlowExecutionCreateRequest",
+    "execute_for": {
+      "@id": "activecampaign:execute_for",
+      "@type": "@id"
+    },
+    "has_priority": {
+      "@id": "activecampaign:has_priority",
+      "@type": "xsd:boolean"
+    },
+    "contact_list": {
+      "@id": "activecampaign:contact_list",
+      "@container": "@list"
+    },
+    "FlowExecutionStepWhatsAppMessage": "activecampaign:FlowExecutionStepWhatsAppMessage",
+    "message": {
+      "@id": "activecampaign:message",
+      "@type": "@id"
+    },
+    "WeekdayEnum": "activecampaign:WeekdayEnum",
+    "FlowExecutionList": "activecampaign:FlowExecutionList",
+    "start_on": {
+      "@id": "activecampaign:start_on",
+      "@type": "xsd:dateTime"
+    },
+    "flow_version": {
+      "@id": "activecampaign:flow_version",
+      "@type": "xsd:string"
+    },
+    "FlowVersionSimpleListRead": "activecampaign:FlowVersionSimpleListRead",
+    "WhatsAppMessageWithoutContext": "activecampaign:WhatsAppMessageWithoutContext",
+    "FlowStepEdit": "activecampaign:FlowStepEdit",
+    "step_type": {
+      "@id": "activecampaign:step_type",
+      "@type": "xsd:string"
+    },
+    "next_step_default_idx": {
+      "@id": "activecampaign:next_step_default_idx",
+      "@type": "xsd:integer"
+    },
+    "next_step_default": {
+      "@id": "activecampaign:next_step_default",
+      "@type": "xsd:string"
+    },
+    "next_step_alternate": {
+      "@id": "activecampaign:next_step_alternate",
+      "@type": "xsd:string"
+    },
+    "answer_failed_next_step": {
+      "@id": "activecampaign:answer_failed_next_step",
+      "@type": "xsd:string"
+    },
+    "next_steps_for_options": {
+      "@id": "activecampaign:next_steps_for_options",
+      "@container": "@list"
+    },
+    "answer_type": {
+      "@id": "activecampaign:answer_type"
+    },
+    "body_type": {
+      "@id": "activecampaign:body_type"
+    },
+    "body_file_url": {
+      "@id": "activecampaign:body_file_url",
+      "@type": "@id"
+    },
+    "body_file_type": {
+      "@id": "activecampaign:body_file_type"
+    },
+    "body_file": {
+      "@id": "activecampaign:body_file"
+    },
+    "answer_validation_message": {
+      "@id": "activecampaign:answer_validation_message",
+      "@type": "xsd:string"
+    },
+    "answer_instructions": {
+      "@id": "activecampaign:answer_instructions",
+      "@type": "xsd:string"
+    },
+    "answer_options": {
+      "@id": "activecampaign:answer_options",
+      "@container": "@list"
+    },
+    "answer_phone_default_country": {
+      "@id": "activecampaign:answer_phone_default_country"
+    },
+    "next_step_alternate_idx": {
+      "@id": "activecampaign:next_step_alternate_idx",
+      "@type": "xsd:integer"
+    },
+    "conditions": {
+      "@id": "activecampaign:conditions",
+      "@container": "@list"
+    },
+    "delay_type": {
+      "@id": "activecampaign:delay_type",
+      "@type": "xsd:string"
+    },
+    "delay_until": {
+      "@id": "activecampaign:delay_until",
+      "@type": "xsd:dateTime"
+    },
+    "action_request_method": {
+      "@id": "activecampaign:action_request_method"
+    },
+    "action_request_url": {
+      "@id": "activecampaign:action_request_url",
+      "@type": "@id"
+    },
+    "action_request_headers": {
+      "@id": "activecampaign:action_request_headers"
+    },
+    "action_request_params": {
+      "@id": "activecampaign:action_request_params"
+    },
+    "action_request_body": {
+      "@id": "activecampaign:action_request_body",
+      "@type": "xsd:string"
+    },
+    "action_test_response_data": {
+      "@id": "activecampaign:action_test_response_data",
+      "@type": "xsd:string"
+    },
+    "answer_allow_decimals": {
+      "@id": "activecampaign:answer_allow_decimals",
+      "@type": "xsd:boolean"
+    },
+    "answer_range_min": {
+      "@id": "activecampaign:answer_range_min",
+      "@type": "xsd:string"
+    },
+    "answer_range_max": {
+      "@id": "activecampaign:answer_range_max",
+      "@type": "xsd:string"
+    },
+    "answer_has_range": {
+      "@id": "activecampaign:answer_has_range",
+      "@type": "xsd:boolean"
+    },
+    "assign_to_users": {
+      "@id": "activecampaign:assign_to_users",
+      "@container": "@list"
+    },
+    "ordering_idx": {
+      "@id": "activecampaign:ordering_idx",
+      "@type": "xsd:integer"
+    },
+    "has_options_from_variable": {
+      "@id": "activecampaign:has_options_from_variable",
+      "@type": "xsd:boolean"
+    },
+    "option_from_variable_value": {
+      "@id": "activecampaign:option_from_variable_value",
+      "@type": "xsd:string"
+    },
+    "options_from_variable": {
+      "@id": "activecampaign:options_from_variable",
+      "@type": "xsd:string"
+    },
+    "option_from_variable_title": {
+      "@id": "activecampaign:option_from_variable_title",
+      "@type": "xsd:string"
+    },
+    "option_from_variable_description": {
+      "@id": "activecampaign:option_from_variable_description",
+      "@type": "xsd:string"
+    },
+    "missing_options_message": {
+      "@id": "activecampaign:missing_options_message",
+      "@type": "xsd:string"
+    },
+    "answer_options_render": {
+      "@id": "activecampaign:answer_options_render",
+      "@type": "@id"
+    },
+    "answer_options_render_list_button_title": {
+      "@id": "activecampaign:answer_options_render_list_button_title",
+      "@type": "xsd:string"
+    },
+    "answer_option_descriptions": {
+      "@id": "activecampaign:answer_option_descriptions",
+      "@container": "@list"
+    },
+    "next_steps_for_options_idx": {
+      "@id": "activecampaign:next_steps_for_options_idx",
+      "@container": "@list"
+    },
+    "contact_tags": {
+      "@id": "activecampaign:contact_tags",
+      "@container": "@list"
+    },
+    "conversation_tags": {
+      "@id": "activecampaign:conversation_tags",
+      "@container": "@list"
+    },
+    "append_tags": {
+      "@id": "activecampaign:append_tags",
+      "@type": "xsd:boolean"
+    },
+    "max_wait_time_amount": {
+      "@id": "activecampaign:max_wait_time_amount",
+      "@type": "xsd:integer"
+    },
+    "max_wait_time_unit": {
+      "@id": "activecampaign:max_wait_time_unit",
+      "@type": "@id"
+    },
+    "time_windows": {
+      "@id": "activecampaign:time_windows",
+      "@container": "@list"
+    },
+    "has_max_wait_time": {
+      "@id": "activecampaign:has_max_wait_time",
+      "@type": "xsd:boolean"
+    },
+    "set_time_window": {
+      "@id": "activecampaign:set_time_window",
+      "@type": "xsd:boolean"
+    },
+    "assign_to_teams": {
+      "@id": "activecampaign:assign_to_teams",
+      "@container": "@list"
+    },
+    "time_window_type": {
+      "@id": "activecampaign:time_window_type"
+    },
+    "has_max_answer_attempts": {
+      "@id": "activecampaign:has_max_answer_attempts",
+      "@type": "xsd:boolean"
+    },
+    "max_answer_attempts": {
+      "@id": "activecampaign:max_answer_attempts",
+      "@type": "xsd:integer"
+    },
+    "answer_failed_next_step_idx": {
+      "@id": "activecampaign:answer_failed_next_step_idx",
+      "@type": "xsd:integer"
+    },
+    "whatsapp_template_variables": {
+      "@id": "activecampaign:whatsapp_template_variables"
+    },
+    "save_contact_answer": {
+      "@id": "activecampaign:save_contact_answer",
+      "@type": "xsd:boolean"
+    },
+    "validate_answer_with_buttons": {
+      "@id": "activecampaign:validate_answer_with_buttons",
+      "@type": "xsd:boolean"
+    },
+    "contact_custom_properties": {
+      "@id": "activecampaign:contact_custom_properties",
+      "@container": "@list"
+    },
+    "contact_first_name": {
+      "@id": "activecampaign:contact_first_name",
+      "@type": "xsd:string"
+    },
+    "contact_last_name": {
+      "@id": "activecampaign:contact_last_name",
+      "@type": "xsd:string"
+    },
+    "contact_email": {
+      "@id": "activecampaign:contact_email",
+      "@type": "xsd:string"
+    },
+    "contact_external_url": {
+      "@id": "activecampaign:contact_external_url",
+      "@type": "xsd:string"
+    },
+    "next_flow": {
+      "@id": "activecampaign:next_flow",
+      "@type": "xsd:string"
+    },
+    "paths": {
+      "@id": "activecampaign:paths",
+      "@container": "@list"
+    },
+    "firstname": {
+      "@id": "activecampaign:firstname",
+      "@type": "xsd:string"
+    },
+    "lastname": {
+      "@id": "activecampaign:lastname",
+      "@type": "xsd:string"
+    },
+    "custom_properties": {
+      "@id": "activecampaign:custom_properties",
+      "@container": "@list"
+    },
+    "next_action": {
+      "@id": "activecampaign:next_action",
+      "@type": "@id"
+    },
+    "FlowExecutionReadDetail": "activecampaign:FlowExecutionReadDetail",
+    "contact_filters": {
+      "@id": "activecampaign:contact_filters",
+      "@container": "@list"
+    },
+    "contact_import": {
+      "@id": "activecampaign:contact_import",
+      "@type": "xsd:string"
+    },
+    "last_run_on": {
+      "@id": "activecampaign:last_run_on",
+      "@type": "xsd:dateTime"
+    },
+    "AnswerOptionsRenderEnum": "activecampaign:AnswerOptionsRenderEnum",
+    "TimeWindowTypeEnum": "activecampaign:TimeWindowTypeEnum",
+    "FlowStepContactUpdateCustomProperty": "activecampaign:FlowStepContactUpdateCustomProperty",
+    "key": {
+      "@id": "activecampaign:key",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "activecampaign:value",
+      "@type": "xsd:string"
+    },
+    "FlowExecutionContactStatusEnum": "activecampaign:FlowExecutionContactStatusEnum",
+    "FlowExecutionContactFilterEdit": "activecampaign:FlowExecutionContactFilterEdit",
+    "field": {
+      "@id": "activecampaign:field",
+      "@type": "xsd:string"
+    },
+    "comparison": {
+      "@id": "activecampaign:comparison",
+      "@type": "@id"
+    },
+    "BodyFileTypeEnum": "activecampaign:BodyFileTypeEnum"
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "ActiveCampaign API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects ActiveCampaign's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-12) from openapi/activecampaign-accounts-api-openapi.yml, openapi/activecampaign-addresses-api-openapi.yml, openapi/activecampaign-ai-api-openapi.yml.",
+  "dcterms:created": "2026-10-12",
+  "dcterms:source": [
+    "openapi/activecampaign-accounts-api-openapi.yml",
+    "openapi/activecampaign-addresses-api-openapi.yml",
+    "openapi/activecampaign-ai-api-openapi.yml",
+    "openapi/activecampaign-ai-customization-documents-api-openapi.yml",
+    "openapi/activecampaign-ai-customization-instructions-api-openapi.yml"
+  ]
+}

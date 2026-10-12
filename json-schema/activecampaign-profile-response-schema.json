@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-profile-response-schema.json",
+  "title": "ProfileResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-ai-customization-profiles-api-openapi.yml#/components/schemas/ProfileResponse",
+  "required": [
+    "id",
+    "reseller_id",
+    "name",
+    "created_at",
+    "updated_at",
+    "assigned_accounts_count"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "reseller_id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "assigned_accounts_count": {
+      "type": "integer"
+    },
+    "assigned_accounts": {
+      "default": null,
+      "oneOf": [
+        {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/ChildAccountData"
+          }
+        },
+        {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/ChildAccountData"
+          }
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "ChildAccountData": {
+      "required": [
+        "id",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "reseller_id": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "account_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    }
+  }
+}

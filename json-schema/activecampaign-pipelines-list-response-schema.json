@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-pipelines-list-response-schema.json",
+  "title": "PipelinesListResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-crm-reporting-api-openapi.yml#/components/schemas/PipelinesListResponse",
+  "required": [
+    "range",
+    "currency",
+    "pipelines",
+    "pagination"
+  ],
+  "properties": {
+    "range": {
+      "$ref": "#/$defs/RangeInfo"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "pipelines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/PipelineSummary"
+      }
+    },
+    "pagination": {
+      "$ref": "#/$defs/Pagination"
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "Pagination": {
+      "required": [
+        "total",
+        "page",
+        "limit",
+        "total_pages"
+      ],
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "total_pages": {
+          "type": "integer"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    },
+    "PipelineSummary": {
+      "required": [
+        "id",
+        "name",
+        "deals_open",
+        "deals_won",
+        "deals_lost",
+        "conversion_rate_percent",
+        "total_revenue_cents"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "deals_open": {
+          "type": "integer"
+        },
+        "deals_won": {
+          "type": "integer"
+        },
+        "deals_lost": {
+          "type": "integer"
+        },
+        "conversion_rate_percent": {
+          "type": "number",
+          "format": "float"
+        },
+        "total_revenue_cents": {
+          "type": "integer"
+        },
+        "top_account": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/TopAccount"
+            }
+          ],
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    },
+    "RangeInfo": {
+      "required": [
+        "start_date",
+        "end_date",
+        "timezone"
+      ],
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "timezone": {
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    },
+    "TopAccount": {
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    }
+  }
+}

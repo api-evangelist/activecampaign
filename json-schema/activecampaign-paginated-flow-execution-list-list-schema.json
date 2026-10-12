@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-paginated-flow-execution-list-list-schema.json",
+  "title": "PaginatedFlowExecutionListList",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-flows-api-openapi.yml#/components/schemas/PaginatedFlowExecutionListList",
+  "type": "object",
+  "required": [
+    "count",
+    "results"
+  ],
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "next": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "previous": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FlowExecutionList"
+      }
+    }
+  },
+  "$defs": {
+    "FlowExecutionExecuteForEnum": {
+      "enum": [
+        "FILTERS",
+        "LIST",
+        "ALL"
+      ],
+      "type": "string",
+      "description": "* `FILTERS` - Filters\n* `LIST` - List\n* `ALL` - All"
+    },
+    "FlowExecutionList": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/FlowExecutionStatusEnum"
+        },
+        "execute_for": {
+          "$ref": "#/$defs/FlowExecutionExecuteForEnum"
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "has_priority": {
+          "type": "boolean"
+        },
+        "flow_execution_variables": {},
+        "start_on": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "num_contacts": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "expired": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "running": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "completed": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "canceled": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "failed": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "created_on": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Creado el"
+        },
+        "avg_completion_time": {
+          "type": "string"
+        },
+        "status_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status_triggered_by": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "status_last_change_on": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "created_by": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/SimpleUser"
+            }
+          ],
+          "description": "The User that created the Flow Execution."
+        },
+        "flow_version": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "created_by",
+        "execute_for",
+        "flow_version"
+      ]
+    },
+    "FlowExecutionStatusEnum": {
+      "enum": [
+        "PROCESSING",
+        "READY",
+        "AWAITING_CONFIRMATION",
+        "CONFIRMED",
+        "STARTING",
+        "RUNNING",
+        "COMPLETED",
+        "CANCELED"
+      ],
+      "type": "string",
+      "description": "* `PROCESSING` - Processing\n* `READY` - Ready\n* `AWAITING_CONFIRMATION` - Awaiting Confirmation\n* `CONFIRMED` - Confirmed\n* `STARTING` - Starting\n* `RUNNING` - Running\n* `COMPLETED` - Completed\n* `CANCELED` - Canceled"
+    },
+    "SimpleUser": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "last_name": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        },
+        "id": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "profile_image": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "role": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "email",
+        "id"
+      ]
+    }
+  }
+}

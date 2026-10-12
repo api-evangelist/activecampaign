@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-match-response-root-do-schema.json",
+  "title": "MatchResponseRootDO",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-match-one-api-openapi.yml#/components/schemas/MatchResponseRootDO",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/MatchDataDO"
+      }
+    }
+  },
+  "$defs": {
+    "MatchAttributeDO": {
+      "type": "object",
+      "properties": {
+        "created_timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "The ContactId that was evaluated against the Segment"
+        },
+        "match": {
+          "type": "boolean",
+          "description": "True if the Contact matches the Segment. False otherwise"
+        },
+        "segment_id": {
+          "type": "string",
+          "description": "The SegmentId that the Contact was evaluated against"
+        },
+        "segment_timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "title": "MatchAttributeDO"
+    },
+    "MatchDataDO": {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "$ref": "#/$defs/MatchAttributeDO"
+        },
+        "id": {
+          "type": "string",
+          "description": "Id that identifies the request. Consists of SegmentId + ContactId"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "match"
+          ]
+        }
+      },
+      "title": "MatchDataDO"
+    }
+  }
+}

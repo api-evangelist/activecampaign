@@ -2,13 +2,12 @@ overlay: 1.0.0
 info:
   title: API Evangelist enhancements for trackcmp
   version: 1.0.0
-extends: openapi/activecampaign-trackcmp-api-openapi.json
+extends: openapi/activecampaign-event-api-openapi.yml
 x-generated: '2026-08-13'
 x-method: generated
 x-source: apis.yml + conventions/, rate-limits/, errors/, authentication/, lifecycle/ in this repo
-x-note: Captures API Evangelist findings as an Overlay so the harvested contract is never mutated. Every
-  value below is sourced from an ActiveCampaign-published page or from this repo's probed artifacts; nothing
-  is invented.
+x-note: Captures API Evangelist findings as an Overlay so the harvested contract is never mutated. Every value below is sourced from an ActiveCampaign-published
+  page or from this repo's probed artifacts; nothing is invented.
 actions:
 - target: $.info
   update:

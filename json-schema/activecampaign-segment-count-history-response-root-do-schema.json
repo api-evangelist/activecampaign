@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-segment-count-history-response-root-do-schema.json",
+  "title": "SegmentCountHistoryResponseRootDO",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-count-history-api-openapi.yml#/components/schemas/SegmentCountHistoryResponseRootDO",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SegmentCountHistoryDataDO"
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ErrorDetailDO"
+      }
+    }
+  },
+  "$defs": {
+    "ErrorDetailDO": {
+      "title": "ErrorDetailDO",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/ErrorSourceDO"
+        },
+        "status": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "ErrorSourceDO": {
+      "title": "ErrorSourceDO",
+      "type": "object",
+      "properties": {
+        "pointer": {
+          "type": "string"
+        }
+      }
+    },
+    "SegmentCountHistoryAttributeDO": {
+      "title": "SegmentCountHistoryAttributeDO",
+      "required": [
+        "timestamp",
+        "segment_id",
+        "segment_hash",
+        "run_id",
+        "result_count"
+      ],
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "description": "ISO 8601 datetime representing when the when the result count wos recorded",
+          "format": "date-time"
+        },
+        "segment_id": {
+          "type": "string"
+        },
+        "segment_hash": {
+          "type": "string",
+          "description": "A hash of the segment's logic. A changes in the hash over time indicate when the segment was modified",
+          "format": "string"
+        },
+        "run_id": {
+          "type": "string",
+          "description": "A unique value that identifies a segment's evaluation request"
+        },
+        "result_count": {
+          "type": "number",
+          "description": "The number of matches found for this segment's evaluation request"
+        },
+        "active_result_count": {
+          "type": "number",
+          "description": "The number of matches found for this segment's evaluation request AND are subscribed to at least one list"
+        },
+        "count_updating_with_runid": {
+          "type": "string",
+          "description": "if the current count is being updated, this is the runid that update is waiting on"
+        }
+      },
+      "description": "Object that summarises the results of a segment's evaluation request"
+    },
+    "SegmentCountHistoryDataDO": {
+      "title": "SegmentCountHistoryDataDO",
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "$ref": "#/$defs/SegmentCountHistoryAttributeDO"
+        },
+        "id": {
+          "type": "string",
+          "description": "Epoch timestamp the count was recorded at"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "SegmentCountHistory"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-am2-get-snapshots-response-schema.json",
+  "title": "AM2GetSnapshotsResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-child-account-snapshots-api-openapi.yml#/components/schemas/AM2GetSnapshotsResponse",
+  "required": [
+    "next_cursor"
+  ],
+  "properties": {
+    "snapshots": {
+      "description": "List of account snapshots for the reseller.",
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/AM2SnapshotResponse"
+      }
+    },
+    "next_cursor": {
+      "description": "Next cursor token. Use it as query parameter as ?next_cursor=<cursor>.",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "AM2SnapshotResponse": {
+      "required": [
+        "id",
+        "source_account_id",
+        "status",
+        "name",
+        "created_at"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "source_account_id": {
+          "type": "integer"
+        },
+        "status": {
+          "description": "Snapshot status from the external AM2 system.",
+          "type": "string",
+          "enum": [
+            "failed",
+            "success",
+            "cancelled",
+            "in_progress"
+          ]
+        },
+        "creation_status": {
+          "description": "Internal snapshot creation status stored in our system. Possible values from CreateSnapshotStatusEnum. Fallbacks to \"unknown\" when no status is found.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "failed",
+            "success",
+            "cancelled",
+            "in_progress",
+            "initialized",
+            "unknown"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When the snapshot was created. ISO 8601 date-time format (e.g. 2024-01-01T00:00:00+00:00).",
+          "type": "string",
+          "format": "date-time"
+        },
+        "completed_at": {
+          "description": "When the snapshot was completed. ISO 8601 date-time format (e.g. 2024-01-01T00:00:00+00:00). Null when not yet completed.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    }
+  }
+}

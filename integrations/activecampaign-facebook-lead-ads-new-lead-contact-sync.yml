@@ -1,0 +1,79 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Facebook Lead Ads new lead contact sync
+  summary: Add or update ActiveCampaign contacts with new Facebook Lead Ads leads
+  description: Add or update ActiveCampaign contacts with new Facebook Lead Ads leads. Reads the record from Facebook Lead Ads, creates or updates the contact in ActiveCampaign with contact sync, then subscribes
+    it to a list. Recreated from the Zapier template linked in x-integration.
+  version: 1.0.0
+sourceDescriptions:
+- name: facebookLeads
+  url: https://raw.githubusercontent.com/api-evangelist/facebook-lead-ads/refs/heads/main/openapi/facebook-lead-ads-leads-api-openapi.yml
+  type: openapi
+- name: activecampaignContacts
+  url: https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/openapi/activecampaign-contacts-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: facebook-lead-ads-new-lead-contact-sync
+  summary: Add or update ActiveCampaign contacts with new Facebook Lead Ads leads
+  description: Add or update ActiveCampaign contacts with new Facebook Lead Ads leads.
+  inputs:
+    type: object
+    properties:
+      formId:
+        type: string
+      listId:
+        type: string
+        description: ActiveCampaign list to subscribe the contact to
+  steps:
+  - stepId: list-leads
+    description: Read the new Facebook Lead Ads record.
+    operationId: $sourceDescriptions.facebookLeads.listLeadsForForm
+    parameters:
+    - name: form-id
+      in: path
+      value: $inputs.formId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/data/0/field_data/0/values/0
+  - stepId: sync-contact
+    description: Create or update the ActiveCampaign contact by email.
+    operationId: $sourceDescriptions.activecampaignContacts.sync-a-contacts-data
+    requestBody:
+      contentType: application/json
+      payload:
+        contact:
+          email: $steps.list-leads.outputs.email
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/contact/id
+  - stepId: subscribe-to-list
+    description: Subscribe the synced contact to the list.
+    operationId: $sourceDescriptions.activecampaignContacts.update-list-status-for-contact
+    requestBody:
+      contentType: application/json
+      payload:
+        contactList:
+          list: $inputs.listId
+          contact: $steps.sync-contact.outputs.contactId
+          status: '1'
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    contactId: $steps.sync-contact.outputs.contactId
+x-integration:
+  partner: facebook-lead-ads
+  template: https://zapier.com/apps/activecampaign/integrations/facebook-lead-ads/10148/add-or-update-activecampaign-contacts-with-new-facebook-lead-ads-leads
+  edge_evidence: https://zapier.com/apps/activecampaign/integrations/facebook-lead-ads/10148/add-or-update-activecampaign-contacts-with-new-facebook-lead-ads-leads
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5.5 enrichment local-v5
+  guessed_steps:
+  - step: list-leads
+    cause: partner-contract
+    why: data[] items are untyped in the spec; the field_data position of the email answer is the Graph API convention, not settled by the contract
+  - step: sync-contact
+    cause: provider-contract
+    why: the sync-a-contacts-data 201 response schema lists contact fields but no contact.id, so the output path /contact/id is not settled by the spec

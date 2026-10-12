@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-assign-accounts-to-profile-request-schema.json",
+  "title": "AssignAccountsToProfileRequest",
+  "description": "You cannot provide non-empty accountIds and set assignToAllAccounts to true at the same time.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-ai-customization-profiles-api-openapi.yml#/components/schemas/AssignAccountsToProfileRequest",
+  "properties": {
+    "account_ids": {
+      "description": "List of account IDs to assign",
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "maximum": 9223372036854776000,
+        "minimum": 1
+      },
+      "default": []
+    },
+    "reassign": {
+      "type": "boolean",
+      "default": false
+    },
+    "assign_to_all_accounts": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "type": "object",
+  "oneOf": [
+    {
+      "required": [
+        "account_ids"
+      ],
+      "properties": {
+        "account_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "minItems": 1
+        },
+        "reassign": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "required": [
+        "assign_to_all_accounts"
+      ],
+      "properties": {
+        "reassign": {
+          "type": "boolean"
+        },
+        "assign_to_all_accounts": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-update-document-request-schema.json",
+  "title": "UpdateDocumentRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-ai-customization-documents-api-openapi.yml#/components/schemas/UpdateDocumentRequest",
+  "required": [
+    "is_enabled"
+  ],
+  "properties": {
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": null,
+      "maxLength": 2000
+    },
+    "is_enabled": {
+      "type": "boolean"
+    },
+    "tags": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "enum": [
+          "support_material",
+          "campaign_material",
+          "brand_rules",
+          "benchmark_data",
+          "product_info"
+        ]
+      },
+      "default": null
+    }
+  },
+  "type": "object",
+  "additionalProperties": false
+}

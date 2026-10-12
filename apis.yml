@@ -1,8 +1,404 @@
 aid: activecampaign
+
 url: https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/apis.yml
+
 x-docs-platform: readme
+
 x-docs-platform-confidence: high
+
 x-docs-platform-checked: 2026-09-17
+
+name: ActiveCampaign
+
+tags:
+- Marketing Automation
+- Email Marketing
+- CRM
+- Sales Automation
+- Customer Experience
+- SMS Marketing
+- E-Commerce
+- Segmentation
+- Webhook
+- A2A
+- Email
+
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
+
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  - rate-limits
+  - security
+  - sandbox
+  generated: '2026-09-02'
+  method: derived
+
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+
+access: 3rd-Party
+
+created: '2025-02-17'
+
+modified: '2026-08-13'
+
+position: Consuming
+
+description: 'ActiveCampaign is a marketing automation and customer experience platform used by more than 180,000 businesses for email marketing,
+  marketing automation, CRM and sales automation. Its developer surface is unusually broad: nine published OpenAPI documents discoverable through
+  a real RFC 9727 /.well-known/api-catalog, covering the v3 REST API, SMS Broadcast, WhatsApp messaging, Segments V2 and asynchronous segment
+  matching, a reseller Partners API, trackcmp event ingest and a surviving v2 operation. It also ships an Ecommerce GraphQL API, an outbound webhook
+  surface, a first-party remote MCP server with a published tool index, an A2A agent card, and an MIT-licensed Claude plugin of first-party Agent
+  Skills. Authentication is a single unscoped Api-Token header; the base URL is per account.'
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
+specificationVersion: '0.23'
+
+common:
+- type: Spectral
+  url: rules/activecampaign-spectral-rules.yml
+- type: Spectral
+  url: rules/activecampaign-rules.yml
+- type: Spectral
+  url: rules/activecampaign-jsonschema-spectral-rules.yml
+- type: Spectral
+  url: rules/activecampaign-asyncapi-spectral-rules.yml
+- type: JSONLD
+  url: json-ld/activecampaign-context.jsonld
+- type: Vocabulary
+  url: vocabulary/activecampaign-vocabulary.yml
+- type: Hosts
+  url: hosts/activecampaign-hosts.yml
+- type: IntegrationEdges
+  url: integrations/activecampaign-integration-edges.yml
+- type: Vendors
+  url: vendors/activecampaign-vendors.yml
+- type: Newsroom
+  url: https://www.activecampaign.com/news
+- type: Overlay
+  url: overlays/activecampaign-exports-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-snapshots-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-segments-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-segment-matching-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-segment-match-one-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-partners-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-whatsapp-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-trackcmp-overlay.yaml
+- type: Overlay
+  url: overlays/activecampaign-v2-overlay.yaml
+- type: TrustCenter
+  url: security/activecampaign-trust-center.yml
+- type: Website
+  url: https://www.activecampaign.com
+- type: Documentation
+  url: https://developers.activecampaign.com
+- type: Support
+  url: https://help.activecampaign.com
+- type: SignUp
+  url: https://www.activecampaign.com/signup/
+- type: AgentCard
+  url: a2a/activecampaign-a2a.yml
+  name: A2A Agent Card
+  description: Agent Card served at /.well-known/agent.json (near-conformant against A2A 1.0.0).
+- type: AgenticAccess
+  url: agentic-access/activecampaign-agentic-access.yml
+- type: DomainSecurity
+  url: security/activecampaign-domain-security.yml
+- type: Authentication
+  url: authentication/activecampaign-authentication.yml
+- type: Arazzo
+  url: arazzo/activecampaign-create-account-add-contact-workflow.yml
+  name: ActiveCampaign Create Account and Associate a Contact
+- type: Arazzo
+  url: arazzo/activecampaign-create-account-add-note-workflow.yml
+  name: ActiveCampaign Create Account and Add a Note
+- type: Arazzo
+  url: arazzo/activecampaign-create-contact-add-to-automation-workflow.yml
+  name: ActiveCampaign Create Contact and Enroll in Automation
+- type: Arazzo
+  url: arazzo/activecampaign-create-contact-add-to-list-tag-workflow.yml
+  name: ActiveCampaign Create Contact, Subscribe to List, and Tag
+- type: Arazzo
+  url: arazzo/activecampaign-create-contact-associate-account-by-name-workflow.yml
+  name: ActiveCampaign Create Contact and Associate to an Account by Name
+- type: Arazzo
+  url: arazzo/activecampaign-create-contact-set-custom-field-workflow.yml
+  name: ActiveCampaign Create Contact and Set Custom Field Value
+- type: Arazzo
+  url: arazzo/activecampaign-create-custom-field-set-on-contact-workflow.yml
+  name: ActiveCampaign Create Contact Custom Field and Set Its Value
+- type: Arazzo
+  url: arazzo/activecampaign-create-deal-add-note-workflow.yml
+  name: ActiveCampaign Create Deal and Add a Note
+- type: Arazzo
+  url: arazzo/activecampaign-create-deal-add-task-workflow.yml
+  name: ActiveCampaign Create Deal and Schedule a Task
+- type: Arazzo
+  url: arazzo/activecampaign-create-deal-for-contact-by-email-workflow.yml
+  name: ActiveCampaign Find Contact by Email and Create a Deal
+- type: Arazzo
+  url: arazzo/activecampaign-create-deal-set-custom-field-workflow.yml
+  name: ActiveCampaign Create Deal and Set Custom Field Value
+- type: Arazzo
+  url: arazzo/activecampaign-create-list-add-contact-workflow.yml
+  name: ActiveCampaign Create List and Subscribe a Contact
+- type: Arazzo
+  url: arazzo/activecampaign-create-pipeline-stage-deal-workflow.yml
+  name: ActiveCampaign Create Pipeline, Stage, and First Deal
+- type: Arazzo
+  url: arazzo/activecampaign-enroll-contact-in-automation-by-name-workflow.yml
+  name: ActiveCampaign Resolve Automation by Name and Enroll Contact
+- type: Arazzo
+  url: arazzo/activecampaign-find-deal-add-note-workflow.yml
+  name: ActiveCampaign Find a Deal by Title and Add a Note
+- type: Arazzo
+  url: arazzo/activecampaign-find-or-create-contact-tag-workflow.yml
+  name: ActiveCampaign Find or Create Contact, Then Tag
+- type: Arazzo
+  url: arazzo/activecampaign-find-or-create-tag-and-apply-workflow.yml
+  name: ActiveCampaign Find or Create Tag, Then Apply to Contact
+- type: Arazzo
+  url: arazzo/activecampaign-subscribe-contact-to-list-by-name-workflow.yml
+  name: ActiveCampaign Subscribe Contact to a List Resolved by Name
+- type: Arazzo
+  url: arazzo/activecampaign-sync-contact-add-to-list-workflow.yml
+  name: ActiveCampaign Sync Contact and Subscribe to List
+- type: Arazzo
+  url: arazzo/activecampaign-sync-contact-set-custom-field-tag-workflow.yml
+  name: ActiveCampaign Sync Contact, Set Custom Field, and Tag
+- type: Arazzo
+  url: arazzo/activecampaign-tag-contact-and-enroll-automation-workflow.yml
+  name: ActiveCampaign Tag a Contact and Enroll in Automation
+- type: LinkedIn
+  url: https://www.linkedin.com/company/activecampaign
+- url: https://developers.activecampaign.com/
+  type: Portal
+- url: https://help.activecampaign.com/hc/en-us/articles/207317590-Getting-started-with-the-API
+  type: GettingStarted
+- url: https://developers.activecampaign.com/reference/authentication
+  type: Authentication
+- url: https://www.activecampaign.com/pricing
+  type: Pricing
+- url: https://www.activecampaign.com/blog
+  type: Blog
+- url: https://www.activecampaign.com/about/faq
+  type: FAQ
+- url: https://community.activecampaign.com/latest
+  type: Forums
+- url: https://status.activecampaign.com/
+  type: StatusPage
+- url: https://www.postman.com/acdevrel/activecampaign-developer-relations/overview
+  type: PostmanWorkspace
+- url: https://github.com/ActiveCampaign
+  type: GitHubOrganization
+- url: https://github.com/ActiveCampaign/activecampaign-api-php
+  type: SDKs
+  title: PHP SDK
+- url: https://github.com/ActiveCampaign/activecampaign-api-nodejs
+  type: SDKs
+  title: Node.js SDK
+- url: rules/activecampaign-spectral-rules.yml
+  type: SpectralRules
+- url: vocabulary/activecampaign-vocabulary.yaml
+  type: Vocabulary
+- url: json-ld/activecampaign-sms-context.jsonld
+  type: JSONLD
+  title: SMS API Context
+- type: Features
+  data:
+  - name: Email Marketing
+    description: Create and send conversion-focused email campaigns with personalization and segmentation.
+  - name: Marketing Automation
+    description: Build automated customer journeys and workflows triggered by contact behavior and events.
+  - name: CRM
+    description: Built-in sales CRM for managing deals, pipelines, tasks, and customer relationships.
+  - name: SMS Marketing
+    description: Reach contacts via SMS broadcast campaigns with AI-powered content generation.
+  - name: WhatsApp Messaging
+    description: Automate growth and customer engagement through WhatsApp communications.
+  - name: Transactional Email
+    description: Automate transactional alerts, password resets, and notifications via Postmark integration.
+  - name: Custom Objects
+    description: Create custom data schemas to activate complex data for segmentation and personalized automation.
+  - name: Contact Event Tracking
+    description: Track contact behaviors and activities across web properties and integrations.
+  - name: Webhooks
+    description: Receive real-time event notifications for contact, campaign, automation, and custom object activities.
+  - name: Landing Pages
+    description: Deploy conversion-ready landing pages for lead capture and campaigns.
+  - name: Active Intelligence
+    description: AI-powered orchestration and autonomous marketing agents for campaign suggestions and personalization.
+  - name: MCP Server
+    description: Connect AI applications to ActiveCampaign using the Model Context Protocol server.
+- type: UseCases
+  data:
+  - name: Lead Nurturing
+    description: Automate email sequences to nurture leads through the sales funnel based on behavior.
+  - name: E-Commerce Automation
+    description: Trigger post-purchase emails, abandoned cart recovery, and personalized product recommendations.
+  - name: Customer Onboarding
+    description: Automate onboarding sequences for SaaS products to improve activation and retention.
+  - name: Contact Segmentation
+    description: Segment contacts using tags, custom fields, and custom objects for targeted campaigns.
+  - name: Sales Pipeline Management
+    description: Manage deals, tasks, and pipeline stages with CRM and automation integration.
+  - name: SMS Broadcast Campaigns
+    description: Send targeted SMS campaigns to subscriber lists with engagement tracking.
+  - name: Webhook-Driven Integrations
+    description: Build real-time integrations using webhooks for contact and campaign activity events.
+- type: Integrations
+  data:
+  - name: Salesforce
+    description: Sync contact and deal data between ActiveCampaign and Salesforce CRM.
+  - name: Zapier
+    description: Connect ActiveCampaign to 1000+ apps via Zapier automation workflows.
+  - name: Slack
+    description: Send notifications and trigger automations from Slack using OAuth2 integration.
+  - name: Calendly
+    description: Sync scheduling data and trigger automations with custom objects via OAuth2.
+  - name: Twilio
+    description: Integrate SMS workflows using Twilio with Basic Auth for outbound messaging.
+  - name: Shopify
+    description: Sync ecommerce customers, orders, and products for automated campaigns.
+  - name: WordPress
+    description: Embed forms and capture leads from WordPress sites.
+  - name: Wix
+    description: Connect Wix websites for lead capture and customer journey automation.
+- type: Solutions
+  data:
+  - name: Starter
+    description: Entry-level plan with marketing automation, up to 5 automation actions, and 1 user.
+  - name: Plus
+    description: Mid-tier plan with unlimited automation actions, landing pages, and standard segmentation.
+  - name: Pro
+    description: Advanced plan with predictive content, advanced segmentation, and 3 users.
+  - name: Enterprise
+    description: Full-featured plan with custom objects, dedicated account team, and premium segmentation.
+- name: ActiveCampaign Remote MCP Server
+  url: mcp/activecampaign-mcp.yml
+  type: MCPServer
+- name: ActiveCampaign Plugin for Claude
+  url: https://github.com/ActiveCampaign/activecampaign-plugin
+  type: AgentSkills
+- type: LlmsText
+  url: https://developers.activecampaign.com/llms.txt
+- type: WellKnown
+  url: well-known/activecampaign-well-known.yml
+  name: Well-Known Discovery Probe
+- type: APICatalog
+  url: https://developers.activecampaign.com/.well-known/api-catalog
+  name: RFC 9727 API Catalog
+- type: ToolCrosswalk
+  url: mcp/activecampaign-tool-crosswalk.yml
+  name: MCP Tool to REST Operation Crosswalk
+- type: LLMsTxt
+  url: llms/activecampaign-llms.txt
+  name: llms.txt
+- type: Packages
+  url: packages/activecampaign-packages.yml
+  name: Client Libraries
+- type: SDKs
+  url: packages/activecampaign-packages.yml
+  name: SDKs
+- type: Conformance
+  url: conformance/activecampaign-conformance.yml
+  name: Standards Conformance
+- type: Compliance
+  url: https://www.activecampaign.com/security
+  name: Security and Compliance
+- type: TrustCenter
+  url: https://www.activecampaign.com/security
+  name: Security Page
+- type: ErrorCatalog
+  url: errors/activecampaign-problem-types.yml
+  name: Error Catalog
+- type: Lifecycle
+  url: lifecycle/activecampaign-lifecycle.yml
+  name: API Lifecycle
+- type: Sandbox
+  url: sandbox/activecampaign-sandbox.yml
+  name: Developer Sandbox
+- type: Conventions
+  url: conventions/activecampaign-conventions.yml
+  name: API Conventions
+- type: ChangeLog
+  url: changelog/activecampaign-changelog.yml
+  name: Release Notes
+- type: DataModel
+  url: data-model/activecampaign-data-model.yml
+  name: Data Model
+- type: Plans
+  url: plans/activecampaign-plans-pricing.yml
+  name: Plans and Pricing
+- type: RateLimits
+  url: rate-limits/activecampaign-rate-limits.yml
+  name: Rate Limits
+- type: FinOps
+  url: finops/activecampaign-finops.yml
+  name: FinOps
+- type: AgentSkill
+  url: skills/_index.yml
+  name: Agent Skills
+- type: VulnerabilityDisclosure
+  url: security/activecampaign-vulnerability-disclosure.yml
+  name: Vulnerability Disclosure
+- type: Security
+  url: https://hackerone.com/activecampaign
+  name: Security Disclosure Program
+- type: Webhooks
+  url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  name: Webhooks
+- type: AsyncAPI
+  url: asyncapi/activecampaign-webhooks-asyncapi.yml
+  name: Webhooks AsyncAPI
+- type: TermsOfService
+  url: https://www.activecampaign.com/legal/terms-of-service
+  name: Terms of Service
+- type: PrivacyPolicy
+  url: https://www.activecampaign.com/privacy-policy
+  name: Privacy Policy
+- type: APIReference
+  url: https://developers.activecampaign.com/reference/overview
+  name: API Reference
+- type: DeveloperPortal
+  url: https://developers.activecampaign.com/
+  name: Developer Portal
+- type: Postman
+  url: https://www.postman.com/acdevrel/activecampaign-developer-relations/overview
+  name: Postman Workspace
+- type: Documentation
+  url: https://developers.activecampaign.com/reference/overview
+  name: API Documentation
+
 apis:
 - aid: activecampaign:activecampaign-accounts-api
   name: ActiveCampaign Accounts API
@@ -1395,7 +1791,7 @@ apis:
   name: ActiveCampaign AI Customization Documents API
   description: Manage documents attached to AI customization profiles.
   humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
+  baseURL: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com
   tags:
   - AI Customization Documents
   properties:
@@ -1405,11 +1801,19 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-profile-document-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-update-document-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-profile-document-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-document-download-url-response-schema.json
 - aid: activecampaign:activecampaign-ai-customization-instructions-api
   name: ActiveCampaign AI Customization Instructions API
   description: Manage custom instructions for AI customization profiles.
   humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
+  baseURL: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com
   tags:
   - AI Customization Instructions
   properties:
@@ -1419,11 +1823,21 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-update-custom-instruction-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-custom-instruction-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-create-custom-instruction-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-custom-instruction-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-create-custom-instruction-response-schema.json
 - aid: activecampaign:activecampaign-ai-customization-profiles-api
   name: ActiveCampaign AI Customization Profiles API
   description: Manage AI customization profiles.
   humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
+  baseURL: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com
   tags:
   - AI Customization Profiles
   properties:
@@ -1433,11 +1847,23 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-assign-accounts-to-profile-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-profile-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-child-account-profile-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-profile-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-update-profile-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-create-profile-request-schema.json
 - aid: activecampaign:activecampaign-child-account-snapshots-api
   name: ActiveCampaign Child Account Snapshots API
   description: Create and manage snapshots of reseller child accounts.
   humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
+  baseURL: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com
   tags:
   - Child Account Snapshots
   properties:
@@ -1447,11 +1873,17 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-am2-get-snapshots-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-account-cloning-status-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-am2-create-snapshot-request-schema.json
 - aid: activecampaign:activecampaign-child-accounts-api
   name: ActiveCampaign Child Accounts API
   description: Manage reseller child accounts.
   humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
+  baseURL: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com
   tags:
   - Child Accounts
   properties:
@@ -1461,6 +1893,12 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-create-account-request-dto-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-child-account-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-list-account-for-snapshot-response-schema.json
 - aid: activecampaign:activecampaign-conversations-api
   name: ActiveCampaign Conversations API
   description: The Conversations API from ActiveCampaign — 2 operation(s) for conversations.
@@ -1475,6 +1913,12 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-conversation-edit-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-patched-conversation-edit-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-paginated-conversation-read-simple-list-schema.json
 - aid: activecampaign:activecampaign-count-history-api
   name: ActiveCampaign Count History API
   description: The Count History API from ActiveCampaign — 2 operation(s) for count history.
@@ -1489,11 +1933,13 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-segment-count-history-response-root-do-schema.json
 - aid: activecampaign:activecampaign-crm-reporting-api
   name: ActiveCampaign CRM Reporting API
   description: Read-only CRM pipeline reporting and metrics.
   humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
+  baseURL: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com
   tags:
   - CRM Reporting
   properties:
@@ -1503,11 +1949,15 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-pipelines-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-pipelines-summary-response-schema.json
 - aid: activecampaign:activecampaign-crm-sync-api
   name: ActiveCampaign CRM Sync API
   description: Configure CRM synchronization for HQ pipelines.
   humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
+  baseURL: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com
   tags:
   - CRM Sync
   properties:
@@ -1517,11 +1967,17 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-pipeline-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-upsert-pipeline-sync-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-pipeline-sync-config-response-schema.json
 - aid: activecampaign:activecampaign-crm-sync-settings-api
   name: ActiveCampaign CRM Sync Settings API
   description: Manage CRM synchronization settings.
   humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
+  baseURL: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com
   tags:
   - CRM Sync Settings
   properties:
@@ -1531,6 +1987,10 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-settings-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-update-settings-request-schema.json
 - aid: activecampaign:activecampaign-event-api
   name: ActiveCampaign Event API
   description: The Event API from ActiveCampaign — 1 operation(s) for event.
@@ -1549,7 +2009,7 @@ apis:
   name: ActiveCampaign Files API
   description: Storage quota information for the partner.
   humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
+  baseURL: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com
   tags:
   - File
   tags_raw:
@@ -1561,6 +2021,8 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-quota-status-response-schema.json
 - aid: activecampaign:activecampaign-flows-api
   name: ActiveCampaign Flows API
   description: The Flows API from ActiveCampaign — 5 operation(s) for flows.
@@ -1577,11 +2039,23 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-flow-execution-read-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-flow-execution-edit-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-flow-execution-contact-read-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-flow-execution-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-paginated-flow-execution-contact-list-simple-list-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-paginated-flow-execution-list-list-schema.json
 - aid: activecampaign:activecampaign-insight-cards-api
   name: ActiveCampaign Insight Cards API
   description: Retrieve and update partner insight cards.
   humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
+  baseURL: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com
   tags:
   - Insight Cards
   properties:
@@ -1591,11 +2065,17 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-insight-card-response-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-update-state-insight-card-request-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-insight-card-list-response-schema.json
 - aid: activecampaign:activecampaign-locales-api
   name: ActiveCampaign Locales API
   description: Supported language and timezone catalogs.
   humanURL: https://developers.activecampaign.com/reference/overview
-  baseURL: https://youraccountname.api-us1.com/api/3
+  baseURL: https://agency-partner-hub-web.global-aws-use1-p.app-us1.com
   tags:
   - Locales
   properties:
@@ -1605,6 +2085,8 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-locale-catalogs-response-schema.json
 - aid: activecampaign:activecampaign-match-all-api
   name: ActiveCampaign Match All API
   description: Return all Contact id's that match the given Segment and provided Additional Criteria
@@ -1619,10 +2101,15 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-root-do-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-additional-criteria-root-do-schema.json
+  - type: JSONSchema
+    url: json-schema/activecampaign-match-all-response-root-do-schema.json
 - aid: activecampaign:activecampaign-match-one-api
   name: ActiveCampaign Match One API
-  description: >-
-    Evaluate Contact Id against the provided SegmentId. Returns `true` if Contact matches the given Segment
+  description: Evaluate Contact Id against the provided SegmentId. Returns `true` if Contact matches the given Segment
   humanURL: https://developers.activecampaign.com/reference/overview
   baseURL: https://youraccountname.api-us1.com/api/3
   tags:
@@ -1634,10 +2121,11 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-match-response-root-do-schema.json
 - aid: activecampaign:activecampaign-most-recent-count-history-api
   name: ActiveCampaign Most Recent Count History API
-  description: >-
-    The Most Recent Count History API from ActiveCampaign — 1 operation(s) for most recent count history.
+  description: The Most Recent Count History API from ActiveCampaign — 1 operation(s) for most recent count history.
   humanURL: https://developers.activecampaign.com/reference/overview
   baseURL: https://youraccountname.api-us1.com/api/3
   tags:
@@ -1649,10 +2137,11 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-segment-count-history-response-root-do-schema.json
 - aid: activecampaign:activecampaign-saved-segment-summaries-api
   name: ActiveCampaign Saved Segment Summaries API
-  description: >-
-    Saved Segments have a name and are visible on the app/segments page. Saved Segments have Summaries
+  description: Saved Segments have a name and are visible on the app/segments page. Saved Segments have Summaries
   humanURL: https://developers.activecampaign.com/reference/overview
   baseURL: https://youraccountname.api-us1.com/api/3
   tags:
@@ -1664,13 +2153,13 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-segment-summary-success-root-do-schema.json
 - aid: activecampaign:activecampaign-segments-api
   name: ActiveCampaign Segments API
-  description: >-
-    Segment JSON structure is extremely flexible. Only segments that are supported by the segment-builder
-    are guaranteed to work as expected. Specific Conditions types only support a subset of FieldDO and
-    AggregateDO options. Please refer to your account's /app/segments/segment-builder page to verify what
-    Segment JSON configurations are possible.
+  description: Segment JSON structure is extremely flexible. Only segments that are supported by the segment-builder are guaranteed to work as
+    expected. Specific Conditions types only support a subset of FieldDO and AggregateDO options. Please refer to your account's /app/segments/segment-builder
+    page to verify what Segment JSON configurations are possible.
   humanURL: https://developers.activecampaign.com/reference/overview
   baseURL: https://youraccountname.api-us1.com/api/3
   tags:
@@ -1682,6 +2171,8 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
+  - type: JSONSchema
+    url: json-schema/activecampaign-root-success-do-schema.json
 - aid: activecampaign:activecampaign-template-api
   name: ActiveCampaign Template API
   description: The Template API from ActiveCampaign — 1 operation(s) for template.
@@ -1698,19 +2189,7 @@ apis:
     url: https://developers.activecampaign.com/reference/overview
   - type: Authentication
     url: https://developers.activecampaign.com/reference/authentication
-name: ActiveCampaign
-tags:
-- Marketing Automation
-- Email Marketing
-- CRM
-- Sales Automation
-- Customer Experience
-- SMS Marketing
-- E-Commerce
-- Segmentation
-- Webhook
-- A2A
-- Email
+
 tags_raw:
 - Marketing Automation
 - Email Marketing
@@ -1723,363 +2202,10 @@ tags_raw:
 - Webhooks
 - A2A
 - Email
+
 type: Index
-deliveryModel:
-  model: saas
-  open_source: false
-  commercial: true
-  callable_host: true
-  label: Hosted service · you call their endpoint
-  confidence: high
-  source:
-  - openapi
-  - pricing
-  generated: '2026-08-28'
-  method: derived
-accessModel:
-  pricing: paid
-  onboarding: self-serve
-  trial: false
-  try_now: false
-  public: false
-  label: Paid · Self-serve signup
-  confidence: high
-  source:
-  - plans
-  - authentication
-  - rate-limits
-  - security
-  - sandbox
-  generated: '2026-09-02'
-  method: derived
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-access: 3rd-Party
-common:
-- type: Overlay
-  url: overlays/activecampaign-exports-overlay.yaml
-- type: Overlay
-  url: overlays/activecampaign-snapshots-overlay.yaml
-- type: Overlay
-  url: overlays/activecampaign-segments-overlay.yaml
-- type: Overlay
-  url: overlays/activecampaign-segment-matching-overlay.yaml
-- type: Overlay
-  url: overlays/activecampaign-segment-match-one-overlay.yaml
-- type: Overlay
-  url: overlays/activecampaign-partners-overlay.yaml
-- type: Overlay
-  url: overlays/activecampaign-whatsapp-overlay.yaml
-- type: Overlay
-  url: overlays/activecampaign-trackcmp-overlay.yaml
-- type: Overlay
-  url: overlays/activecampaign-v2-overlay.yaml
-- type: TrustCenter
-  url: security/activecampaign-trust-center.yml
-- type: Website
-  url: https://www.activecampaign.com
-- type: Documentation
-  url: https://developers.activecampaign.com
-- type: Support
-  url: https://help.activecampaign.com
-- type: SignUp
-  url: https://www.activecampaign.com/signup/
-- type: AgentCard
-  url: a2a/activecampaign-a2a.yml
-  name: A2A Agent Card
-  description: Agent Card served at /.well-known/agent.json (near-conformant against A2A 1.0.0).
-- type: AgenticAccess
-  url: agentic-access/activecampaign-agentic-access.yml
-- type: DomainSecurity
-  url: security/activecampaign-domain-security.yml
-- type: Authentication
-  url: authentication/activecampaign-authentication.yml
-- type: Arazzo
-  url: arazzo/activecampaign-create-account-add-contact-workflow.yml
-  name: ActiveCampaign Create Account and Associate a Contact
-- type: Arazzo
-  url: arazzo/activecampaign-create-account-add-note-workflow.yml
-  name: ActiveCampaign Create Account and Add a Note
-- type: Arazzo
-  url: arazzo/activecampaign-create-contact-add-to-automation-workflow.yml
-  name: ActiveCampaign Create Contact and Enroll in Automation
-- type: Arazzo
-  url: arazzo/activecampaign-create-contact-add-to-list-tag-workflow.yml
-  name: ActiveCampaign Create Contact, Subscribe to List, and Tag
-- type: Arazzo
-  url: arazzo/activecampaign-create-contact-associate-account-by-name-workflow.yml
-  name: ActiveCampaign Create Contact and Associate to an Account by Name
-- type: Arazzo
-  url: arazzo/activecampaign-create-contact-set-custom-field-workflow.yml
-  name: ActiveCampaign Create Contact and Set Custom Field Value
-- type: Arazzo
-  url: arazzo/activecampaign-create-custom-field-set-on-contact-workflow.yml
-  name: ActiveCampaign Create Contact Custom Field and Set Its Value
-- type: Arazzo
-  url: arazzo/activecampaign-create-deal-add-note-workflow.yml
-  name: ActiveCampaign Create Deal and Add a Note
-- type: Arazzo
-  url: arazzo/activecampaign-create-deal-add-task-workflow.yml
-  name: ActiveCampaign Create Deal and Schedule a Task
-- type: Arazzo
-  url: arazzo/activecampaign-create-deal-for-contact-by-email-workflow.yml
-  name: ActiveCampaign Find Contact by Email and Create a Deal
-- type: Arazzo
-  url: arazzo/activecampaign-create-deal-set-custom-field-workflow.yml
-  name: ActiveCampaign Create Deal and Set Custom Field Value
-- type: Arazzo
-  url: arazzo/activecampaign-create-list-add-contact-workflow.yml
-  name: ActiveCampaign Create List and Subscribe a Contact
-- type: Arazzo
-  url: arazzo/activecampaign-create-pipeline-stage-deal-workflow.yml
-  name: ActiveCampaign Create Pipeline, Stage, and First Deal
-- type: Arazzo
-  url: arazzo/activecampaign-enroll-contact-in-automation-by-name-workflow.yml
-  name: ActiveCampaign Resolve Automation by Name and Enroll Contact
-- type: Arazzo
-  url: arazzo/activecampaign-find-deal-add-note-workflow.yml
-  name: ActiveCampaign Find a Deal by Title and Add a Note
-- type: Arazzo
-  url: arazzo/activecampaign-find-or-create-contact-tag-workflow.yml
-  name: ActiveCampaign Find or Create Contact, Then Tag
-- type: Arazzo
-  url: arazzo/activecampaign-find-or-create-tag-and-apply-workflow.yml
-  name: ActiveCampaign Find or Create Tag, Then Apply to Contact
-- type: Arazzo
-  url: arazzo/activecampaign-subscribe-contact-to-list-by-name-workflow.yml
-  name: ActiveCampaign Subscribe Contact to a List Resolved by Name
-- type: Arazzo
-  url: arazzo/activecampaign-sync-contact-add-to-list-workflow.yml
-  name: ActiveCampaign Sync Contact and Subscribe to List
-- type: Arazzo
-  url: arazzo/activecampaign-sync-contact-set-custom-field-tag-workflow.yml
-  name: ActiveCampaign Sync Contact, Set Custom Field, and Tag
-- type: Arazzo
-  url: arazzo/activecampaign-tag-contact-and-enroll-automation-workflow.yml
-  name: ActiveCampaign Tag a Contact and Enroll in Automation
-- type: LinkedIn
-  url: https://www.linkedin.com/company/activecampaign
-- url: https://developers.activecampaign.com/
-  type: Portal
-- url: https://help.activecampaign.com/hc/en-us/articles/207317590-Getting-started-with-the-API
-  type: GettingStarted
-- url: https://developers.activecampaign.com/reference/authentication
-  type: Authentication
-- url: https://www.activecampaign.com/pricing
-  type: Pricing
-- url: https://www.activecampaign.com/blog
-  type: Blog
-- url: https://www.activecampaign.com/about/faq
-  type: FAQ
-- url: https://community.activecampaign.com/latest
-  type: Forums
-- url: https://status.activecampaign.com/
-  type: StatusPage
-- url: https://www.postman.com/acdevrel/activecampaign-developer-relations/overview
-  type: PostmanWorkspace
-- url: https://github.com/ActiveCampaign
-  type: GitHubOrganization
-- url: https://github.com/ActiveCampaign/activecampaign-api-php
-  type: SDKs
-  title: PHP SDK
-- url: https://github.com/ActiveCampaign/activecampaign-api-nodejs
-  type: SDKs
-  title: Node.js SDK
-- url: rules/activecampaign-spectral-rules.yml
-  type: SpectralRules
-- url: vocabulary/activecampaign-vocabulary.yaml
-  type: Vocabulary
-- url: json-ld/activecampaign-sms-context.jsonld
-  type: JSONLD
-  title: SMS API Context
-- type: Features
-  data:
-  - name: Email Marketing
-    description: Create and send conversion-focused email campaigns with personalization and segmentation.
-  - name: Marketing Automation
-    description: Build automated customer journeys and workflows triggered by contact behavior and events.
-  - name: CRM
-    description: Built-in sales CRM for managing deals, pipelines, tasks, and customer relationships.
-  - name: SMS Marketing
-    description: Reach contacts via SMS broadcast campaigns with AI-powered content generation.
-  - name: WhatsApp Messaging
-    description: Automate growth and customer engagement through WhatsApp communications.
-  - name: Transactional Email
-    description: Automate transactional alerts, password resets, and notifications via Postmark integration.
-  - name: Custom Objects
-    description: Create custom data schemas to activate complex data for segmentation and personalized automation.
-  - name: Contact Event Tracking
-    description: Track contact behaviors and activities across web properties and integrations.
-  - name: Webhooks
-    description: Receive real-time event notifications for contact, campaign, automation, and custom object activities.
-  - name: Landing Pages
-    description: Deploy conversion-ready landing pages for lead capture and campaigns.
-  - name: Active Intelligence
-    description: AI-powered orchestration and autonomous marketing agents for campaign suggestions and personalization.
-  - name: MCP Server
-    description: Connect AI applications to ActiveCampaign using the Model Context Protocol server.
-- type: UseCases
-  data:
-  - name: Lead Nurturing
-    description: Automate email sequences to nurture leads through the sales funnel based on behavior.
-  - name: E-Commerce Automation
-    description: Trigger post-purchase emails, abandoned cart recovery, and personalized product recommendations.
-  - name: Customer Onboarding
-    description: Automate onboarding sequences for SaaS products to improve activation and retention.
-  - name: Contact Segmentation
-    description: Segment contacts using tags, custom fields, and custom objects for targeted campaigns.
-  - name: Sales Pipeline Management
-    description: Manage deals, tasks, and pipeline stages with CRM and automation integration.
-  - name: SMS Broadcast Campaigns
-    description: Send targeted SMS campaigns to subscriber lists with engagement tracking.
-  - name: Webhook-Driven Integrations
-    description: Build real-time integrations using webhooks for contact and campaign activity events.
-- type: Integrations
-  data:
-  - name: Salesforce
-    description: Sync contact and deal data between ActiveCampaign and Salesforce CRM.
-  - name: Zapier
-    description: Connect ActiveCampaign to 1000+ apps via Zapier automation workflows.
-  - name: Slack
-    description: Send notifications and trigger automations from Slack using OAuth2 integration.
-  - name: Calendly
-    description: Sync scheduling data and trigger automations with custom objects via OAuth2.
-  - name: Twilio
-    description: Integrate SMS workflows using Twilio with Basic Auth for outbound messaging.
-  - name: Shopify
-    description: Sync ecommerce customers, orders, and products for automated campaigns.
-  - name: WordPress
-    description: Embed forms and capture leads from WordPress sites.
-  - name: Wix
-    description: Connect Wix websites for lead capture and customer journey automation.
-- type: Solutions
-  data:
-  - name: Starter
-    description: Entry-level plan with marketing automation, up to 5 automation actions, and 1 user.
-  - name: Plus
-    description: Mid-tier plan with unlimited automation actions, landing pages, and standard segmentation.
-  - name: Pro
-    description: Advanced plan with predictive content, advanced segmentation, and 3 users.
-  - name: Enterprise
-    description: Full-featured plan with custom objects, dedicated account team, and premium segmentation.
-- name: ActiveCampaign Remote MCP Server
-  url: mcp/activecampaign-mcp.yml
-  type: MCPServer
-- name: ActiveCampaign Plugin for Claude
-  url: https://github.com/ActiveCampaign/activecampaign-plugin
-  type: AgentSkills
-- type: LlmsText
-  url: https://developers.activecampaign.com/llms.txt
-- type: WellKnown
-  url: well-known/activecampaign-well-known.yml
-  name: Well-Known Discovery Probe
-- type: APICatalog
-  url: https://developers.activecampaign.com/.well-known/api-catalog
-  name: RFC 9727 API Catalog
-- type: ToolCrosswalk
-  url: mcp/activecampaign-tool-crosswalk.yml
-  name: MCP Tool to REST Operation Crosswalk
-- type: LLMsTxt
-  url: llms/activecampaign-llms.txt
-  name: llms.txt
-- type: Packages
-  url: packages/activecampaign-packages.yml
-  name: Client Libraries
-- type: SDKs
-  url: packages/activecampaign-packages.yml
-  name: SDKs
-- type: Conformance
-  url: conformance/activecampaign-conformance.yml
-  name: Standards Conformance
-- type: Compliance
-  url: https://www.activecampaign.com/security
-  name: Security and Compliance
-- type: TrustCenter
-  url: https://www.activecampaign.com/security
-  name: Security Page
-- type: ErrorCatalog
-  url: errors/activecampaign-problem-types.yml
-  name: Error Catalog
-- type: Lifecycle
-  url: lifecycle/activecampaign-lifecycle.yml
-  name: API Lifecycle
-- type: Sandbox
-  url: sandbox/activecampaign-sandbox.yml
-  name: Developer Sandbox
-- type: Conventions
-  url: conventions/activecampaign-conventions.yml
-  name: API Conventions
-- type: ChangeLog
-  url: changelog/activecampaign-changelog.yml
-  name: Release Notes
-- type: DataModel
-  url: data-model/activecampaign-data-model.yml
-  name: Data Model
-- type: Plans
-  url: plans/activecampaign-plans-pricing.yml
-  name: Plans and Pricing
-- type: RateLimits
-  url: rate-limits/activecampaign-rate-limits.yml
-  name: Rate Limits
-- type: FinOps
-  url: finops/activecampaign-finops.yml
-  name: FinOps
-- type: AgentSkill
-  url: skills/_index.yml
-  name: Agent Skills
-- type: VulnerabilityDisclosure
-  url: security/activecampaign-vulnerability-disclosure.yml
-  name: Vulnerability Disclosure
-- type: Security
-  url: https://hackerone.com/activecampaign
-  name: Security Disclosure Program
-- type: Webhooks
-  url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  name: Webhooks
-- type: AsyncAPI
-  url: asyncapi/activecampaign-webhooks-asyncapi.yml
-  name: Webhooks AsyncAPI
-- type: TermsOfService
-  url: https://www.activecampaign.com/legal/terms-of-service
-  name: Terms of Service
-- type: PrivacyPolicy
-  url: https://www.activecampaign.com/privacy-policy
-  name: Privacy Policy
-- type: APIReference
-  url: https://developers.activecampaign.com/reference/overview
-  name: API Reference
-- type: DeveloperPortal
-  url: https://developers.activecampaign.com/
-  name: Developer Portal
-- type: Postman
-  url: https://www.postman.com/acdevrel/activecampaign-developer-relations/overview
-  name: Postman Workspace
-- type: Documentation
-  url: https://developers.activecampaign.com/reference/overview
-  name: API Documentation
-created: '2025-02-17'
-modified: '2026-08-13'
-position: Consuming
-description: 'ActiveCampaign is a marketing automation and customer experience platform used by more than 180,000
-  businesses for email marketing, marketing automation, CRM and sales automation. Its developer surface is unusually
-  broad: nine published OpenAPI documents discoverable through a real RFC 9727 /.well-known/api-catalog, covering
-  the v3 REST API, SMS Broadcast, WhatsApp messaging, Segments V2 and asynchronous segment matching, a reseller
-  Partners API, trackcmp event ingest and a surviving v2 operation. It also ships an Ecommerce GraphQL API, an outbound
-  webhook surface, a first-party remote MCP server with a published tool index, an A2A agent card, and an MIT-licensed
-  Claude plugin of first-party Agent Skills. Authentication is a single unscoped Api-Token header; the base URL
-  is per account.'
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-specificationVersion: '0.23'
 x-enrichment:
-  date: '2026-08-13'
+  date: '2026-10-12'
   status: enriched
-  artifacts_added: 81
-  pass: local-v1
-x-a2a:
-  verified: true
-  probed: '2026-09-26'
-  url: "https://activecampaign.com/.well-known/agent.json"
-  grade: "near-conformant"
-  protocol_version: "1.0"
-  control: 404
+  artifacts_added: 8
+  pass: local-v5

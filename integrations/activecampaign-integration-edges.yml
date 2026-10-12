@@ -1,0 +1,1291 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/activecampaign/integrations
+- https://n8n.io/integrations/activecampaign/
+checked:
+- https://composio.dev/toolkits/activecampaign
+- https://monid.ai/tools/activecampaign
+- https://n8n.io/integrations/activecampaign/
+- https://zapier.com/apps/activecampaign/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: activecampaign
+  url: https://zapier.com/apps/activecampaign/integrations
+  external_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+  partner_tier: PLATINUM
+  triggers:
+  - key: custom_object_create_update
+    label: New or Updated Custom Object Record
+  - key: custom_object_delete
+    label: Custom Object Record Deleted
+  - key: deal_task_completed
+    label: Deal Task Completed
+  - key: flow_execution_contact_completed
+    label: Contact Completed WhatsApp Messaging Flow
+  - key: flow_execution_contact_running_inbound
+    label: Contact Joined Inbound WhatsApp Messaging Flow
+  - key: new_account_upsert
+    label: New or Updated Account
+  - key: new_automation_webhook
+    label: New Automation Webhook
+  - key: new_campaign_bounce
+    label: New Campaign Bounce
+  - key: new_campaign_click
+    label: New Campaign Link Click
+  - key: new_campaign_open
+    label: New Campaign Open
+  - key: new_campaign_sent
+    label: New Campaign Starts Sending
+  - key: new_campaign_unsubscribe
+    label: New Campaign Unsubscribe
+  - key: new_contact_note
+    label: New Contact Note
+  - key: new_contact_task
+    label: New Contact Task
+  - key: new_deal_note
+    label: New Deal Note
+  - key: new_deal_task
+    label: New Deal Task
+  - key: new_deal_upsert
+    label: New Deal Added or Updated
+  - key: new_subscriber
+    label: New Contact
+  - key: new_subscriber_add
+    label: Contact Added to List
+  - key: new_subscriber_update
+    label: Updated Contact
+  - key: new_subscriber_upsert
+    label: New or Updated Contact
+  - key: new_tag_update
+    label: Tag Added or Removed From Contact
+  actions:
+  - key: account_add
+    label: Create Account
+  - key: account_update
+    label: Update Account
+  - key: account_upsert
+    label: Create or Update Account
+  - key: action_4
+    label: Create or Update Contact
+  - key: action_deal_create
+    label: Create Deal (Deprecated)
+  - key: automation_contact_add
+    label: Add Existing Contact to Automation
+  - key: automation_contact_delete
+    label: Remove Contact From Automation
+  - key: campaign_create
+    label: Create Campaign
+  - key: contact_account_add
+    label: Add Contact to Account
+  - key: contact_note_add
+    label: Add Contact Note
+  - key: contact_tag
+    label: Add/Remove Tag From Contact
+  - key: contact_task
+    label: Create or Update Contact Task
+  - key: custom_object
+    label: Create or Update a Custom Object Record
+  - key: deal_contact
+    label: Add Secondary Contact to Deal
+  - key: deal_create_v3
+    label: Create Deal
+  - key: deal_note_add
+    label: Add Note to Deal
+  - key: deal_task
+    label: Create or Update Deal Task
+  - key: deal_update
+    label: Update Deal
+  - key: flowExecutionContact
+    label: Start a WhatsApp Messaging Flow for a Phone Number
+  - key: list_subscription
+    label: Subscribe or Unsubscribe Contact From List
+  - key: track_event
+    label: Create Tracked Event
+  - key: whatsappMessage
+    label: Send a WhatsApp Template
+  - key: _zap_raw_request
+    label: API Request (Beta)
+  searches:
+  - key: find_account
+    label: Find Account
+  - key: find_contact
+    label: Find Contact
+  - key: find_contact_task
+    label: Find Contact Task
+  - key: find_deal
+    label: Find Deal
+  - key: find_deals_by_filter
+    label: Find Deals by Filter
+  - key: find_deals_by_secondary_contact
+    label: Find Deals by Secondary Contact
+  - key: find_deal_owner
+    label: Find Deal Owner
+  - key: find_deal_task
+    label: Find Deal Task
+  - key: find_user
+    label: Find User
+  - key: whatsappTemplateSearch
+    label: WhatsApp Template
+- marketplace: n8n
+  channel: open-source-node
+  app: activecampaign
+  url: https://n8n.io/integrations/activecampaign/
+  identity: title
+  pair_pages: 760
+  pairs:
+  - adalo
+  - adobe
+  - adroll
+  - affinity
+  - agile-crm
+  - airbrake
+  - airnow
+  - airtable
+  - airtop
+  - aitableai
+  - alchemy
+  - alerty
+  - alienvault
+  - alphamoon
+  - alttextai
+  - amazon
+  - amilia
+  - amqp-sender
+  - announcekit
+  - apiary
+  - apiflash
+  - apitemplateio
+  - apptivegrid
+  - asana
+  - auth0-management-api
+  - autom
+  - automizy
+  - autopilot
+  - aws-certificate-manager
+  - aws-cognito
+  - aws-comprehend
+  - aws-dynamodb
+  - aws-elb
+  - aws-iam
+  - aws-lambda
+  - aws-rekognition
+  - aws-s3
+  - aws-ses
+  - aws-sns
+  - aws-sqs
+  - aws-textract
+  - aws-transcribe
+  - azure-cosmos-db
+  - azure-storage
+  - badger-maps
+  - bamboohr
+  - bandwidth
+  - bannerbear
+  - baserow
+  - beeminder
+  - benchmark-email
+  - better-proposals
+  - big-cartel
+  - big-data-cloud
+  - bigml
+  - bitly
+  - bitrix24
+  - bitwarden
+  - blaze
+  - blockchain-exchange
+  - bloock
+  - bot9
+  - botbaba
+  - botifier
+  - botium-box
+  - botsonic
+  - botstar
+  - box
+  - brain-pod-ai
+  - brandblast
+  - brandfetch
+  - brandmentions
+  - breezy-hr
+  - brevo
+  - brex
+  - browse-ai
+  - browserstack
+  - bubble
+  - bugbug
+  - bugfender
+  - bugherd
+  - bugpilot
+  - bugreplay
+  - bugshot
+  - buildkite
+  - bunnycdn
+  - calendarhero
+  - calendly
+  - canvas
+  - capsule
+  - carbon-black
+  - chaindesk
+  - chargebee
+  - chargeover
+  - chargify
+  - chatbase
+  - chatling
+  - chatmasters
+  - chatrace
+  - chatsonic
+  - check-credential-status
+  - chekhub
+  - circleci
+  - cisco-meraki
+  - cisco-secure-endpoint
+  - cisco-umbrella
+  - cisco-webex
+  - citrix-adc
+  - clappia
+  - clarifai
+  - claude
+  - clearbit
+  - cleverreach
+  - clickup
+  - clockify
+  - cloozo
+  - cloud-66
+  - cloudboost
+  - cloudflare
+  - cloudlayer
+  - cloudshare
+  - cloze
+  - cockpit
+  - coda
+  - code-climate
+  - codefresh
+  - cody
+  - coingecko
+  - college-football-data
+  - configcat
+  - confluence
+  - confluent
+  - contentful
+  - convertapi
+  - convertkit
+  - convi
+  - copper
+  - copyai
+  - corsizio
+  - cortex
+  - craftdraft
+  - cratedb
+  - crisp
+  - cronly
+  - crossmint
+  - crowddev
+  - crowdin
+  - crowdpower
+  - crowdstrike
+  - cryptolens
+  - currents
+  - customer-datastore-n8n-training
+  - customer-messenger-n8n-training
+  - customerio
+  - customeriq
+  - daffy
+  - dante-ai
+  - darksky-api
+  - dasha
+  - data-soap
+  - databox
+  - databricks
+  - datadog
+  - datarobot
+  - datumbox
+  - dayschedule
+  - deepgram
+  - deepl
+  - deepseek-chat-model
+  - demio
+  - descript
+  - detrack
+  - devcycle
+  - dhl
+  - dialzara
+  - diddo-ai
+  - diffy
+  - digicert
+  - discord
+  - discourse
+  - disqus
+  - dock-certs
+  - docparser
+  - docsbot-ai
+  - docupilot
+  - docuwriter
+  - dokan
+  - domo
+  - draftable
+  - drift
+  - dropbox
+  - dropcontact
+  - droxy
+  - dynatrace
+  - e-goi
+  - easyship
+  - echowin
+  - ecwid
+  - elastic-security
+  - elasticsearch
+  - elmah
+  - embedai
+  - emelia
+  - empsing
+  - engati
+  - enormail
+  - enterpret
+  - envoy
+  - erpnext
+  - esendex
+  - evervault
+  - evolphin-zoom
+  - f5-big-ip
+  - facebook-graph-api
+  - faraday
+  - faros
+  - fastbots
+  - fathom
+  - filemaker
+  - filescan
+  - firmao
+  - fitbit
+  - flagship
+  - float
+  - flotiq
+  - flow
+  - fluent-support
+  - focuster
+  - formcarry
+  - formdesk
+  - forms-on-fire
+  - formsite
+  - formstack-documents
+  - fortinet-fortigate
+  - foursquare
+  - free-dictionary
+  - freshdesk
+  - freshping
+  - freshservice
+  - freshworks-crm
+  - fullcontact
+  - fusioo
+  - gali
+  - gatekeeper
+  - gender-api
+  - getresponse
+  - getscreenshot
+  - ghost
+  - giphy
+  - gitea
+  - github
+  - gitlab
+  - gleap
+  - gmail
+  - gocanvas
+  - godaddy
+  - gong
+  - google-ads
+  - google-ai-studio-gemini
+  - google-analytics
+  - google-bigquery
+  - google-books
+  - google-business-profile
+  - google-calendar
+  - google-chat
+  - google-cloud
+  - google-cloud-firestore
+  - google-cloud-natural-language
+  - google-cloud-realtime-database
+  - google-cloud-storage
+  - google-contacts
+  - google-docs
+  - google-drive
+  - google-forms
+  - google-gemini-chat-model
+  - google-perspective
+  - google-sheets
+  - google-slides
+  - google-tables
+  - google-tasks
+  - google-translate
+  - google-vertex-ai
+  - google-workspace-admin
+  - gotify
+  - gotowebinar
+  - gptea
+  - grafana
+  - grain
+  - graphql
+  - gravity-forms
+  - grid
+  - grist
+  - growbots
+  - gumroad
+  - gupshup
+  - guru
+  - hacker-news
+  - halopsa
+  - handwrytten
+  - hansei
+  - harry-potter-api
+  - harvest
+  - headless-testing
+  - helcim
+  - helpscout
+  - heysummit
+  - highlevel
+  - home-assistant
+  - http-request
+  - hub-planner
+  - hubspot
+  - hugging-face
+  - humantic-ai
+  - hunter
+  - hybrid-analysis
+  - iauditor-by-safetyculture
+  - idealpostcodes
+  - idealspot
+  - ideta
+  - imgbb
+  - imgur
+  - imperva-waf
+  - impira
+  - industryselect
+  - influxdb-cloud
+  - infolobby
+  - instabot
+  - instabug
+  - intakeq
+  - intercom
+  - invoice-ninja
+  - invoiced
+  - ip2location
+  - ipinfo
+  - ipregistry
+  - iris-dfir
+  - isn
+  - iterable
+  - jama
+  - jasper
+  - jenkins
+  - jina-ai
+  - jira-software
+  - jwt
+  - kadoa
+  - kafka
+  - kaggle
+  - kanban-tool
+  - karbon
+  - keap
+  - keygen
+  - keyzy
+  - kibana
+  - kitemaker
+  - klaviyo
+  - klazify
+  - knack
+  - knowbe4
+  - kobotoolbox
+  - kraftful
+  - lagrowthmachine
+  - lambdatest
+  - landbot
+  - laposta
+  - launch27
+  - launchdarkly
+  - ldap
+  - leadboxer
+  - leadpops
+  - lemlist
+  - lets-enhance
+  - libraria
+  - lighthouse
+  - lime-go
+  - line
+  - linear
+  - lingvanex
+  - linkedin
+  - linkish
+  - linode
+  - liveagent
+  - localazy
+  - loginradius
+  - lokalise
+  - lonescale
+  - lucidchart
+  - magento-2
+  - mailcheck
+  - mailchimp
+  - mailerlite
+  - mailersend
+  - mailgun
+  - mailify
+  - mailjet
+  - mailmodo
+  - malcore
+  - mandrill
+  - marcom-robot
+  - marketing-master-io
+  - marketplacer
+  - marketstack
+  - mastodon
+  - matrix
+  - mattermost
+  - mautic
+  - mav
+  - maverick
+  - medium
+  - mem
+  - messagebird
+  - metabase
+  - metatextai-inference-api
+  - mews
+  - microsoft-azure-monitor
+  - microsoft-dynamics-365-business-central-api
+  - microsoft-dynamics-crm
+  - microsoft-entra-id
+  - microsoft-entra-id-azure-active-directory
+  - microsoft-excel
+  - microsoft-graph-security
+  - microsoft-onedrive
+  - microsoft-outlook
+  - microsoft-sharepoint
+  - microsoft-sql
+  - microsoft-teams
+  - microsoft-teams-admin
+  - microsoft-to-do
+  - miestro
+  - mindee
+  - miro
+  - misp
+  - missive
+  - mist
+  - mistral-ai
+  - mixpanel
+  - mocean
+  - mondaycom
+  - mongodb
+  - monica-crm
+  - moonclerk
+  - moonmail
+  - morph
+  - mqtt
+  - msg91
+  - mux
+  - mx-toolbox
+  - my-askai
+  - myphoner
+  - mysql
+  - nanonets-ocr
+  - nasa
+  - ncscale
+  - netlify
+  - nextcloud
+  - nightfallai
+  - ninox
+  - nmkr
+  - nocodb
+  - notion
+  - nozbe-teams
+  - npm
+  - nuclia
+  - nusii-proposals
+  - nyckel
+  - nyota
+  - occasion
+  - ocrspace
+  - odoo
+  - offalerts
+  - okta
+  - omeda
+  - omniconvert
+  - omnimind
+  - on2air
+  - one-ai
+  - one-simple-api
+  - onfleet
+  - openai
+  - opencti
+  - openthesaurus
+  - openweathermap
+  - opn-formerly-omise
+  - oracle-database
+  - orbit
+  - order-desk
+  - ortto
+  - oura
+  - paddle
+  - pagerduty
+  - paperform
+  - papyrs
+  - parsehub
+  - parseprompt
+  - passcreator
+  - passslot
+  - patreon
+  - paymo
+  - paypal
+  - peekalink
+  - perplexity
+  - persio
+  - personal-ai
+  - phantombuster
+  - philips-hue
+  - phrase
+  - pinata
+  - pinboard
+  - pinterest
+  - pipedrive
+  - pipefy
+  - pirate-weather
+  - pitchly
+  - pivotal-tracker
+  - planview-leankit
+  - planyo-online-booking
+  - platformly
+  - plecto
+  - plivo
+  - postbin
+  - postgres
+  - posthog
+  - practitest
+  - predisai
+  - prodia
+  - product-hunt
+  - profitwell
+  - project-bubble-proprofs-project
+  - prompthub
+  - prospe-ai
+  - pushbullet
+  - pushcut
+  - pusher
+  - pushover
+  - qradar
+  - qualaroo
+  - qualys
+  - quentn
+  - questdb
+  - quick-base
+  - quickbooks-online
+  - quickchart
+  - quintadb
+  - rabbitmq
+  - radar
+  - raindrop
+  - rapid7-insightvm
+  - raven-tools
+  - rawg-video-games-database
+  - read-ai
+  - realphonevalidation
+  - recharge
+  - recorded-future
+  - redash
+  - reddit
+  - redis
+  - relevance-ai
+  - relink-url-shortener
+  - relysia
+  - replyio
+  - retable
+  - reverse-contact
+  - rewardful
+  - ritekit
+  - roboflow
+  - robolytix
+  - roboresponseai
+  - rocketchat
+  - rollbar
+  - rootly
+  - route4me
+  - rundeck
+  - s3
+  - sales-simplify
+  - salesforce
+  - salesmaa
+  - salesmate
+  - salesmsg
+  - salesrocks
+  - samsung-smartthings
+  - scrape-itcloud
+  - scrapeninja
+  - seamless-ai
+  - search-and-save
+  - seatable
+  - securityscorecard
+  - segment
+  - sekoia
+  - sellix
+  - sembly-ai
+  - sendgrid
+  - sendy
+  - sentryio
+  - servicenow
+  - sharly-ai
+  - shiphero
+  - shipstation
+  - shopify
+  - shortio
+  - shuffler
+  - sierra-interactive
+  - sifter
+  - signaturit
+  - signl4
+  - signrequest
+  - simpleem
+  - simplehash
+  - simplekpi
+  - simplelocalize
+  - simplero
+  - simpletexting
+  - sitecreatorio
+  - sitespeakai
+  - slack
+  - smaily
+  - smartreach
+  - smartsuite
+  - sms-it
+  - sms-magic
+  - sms77
+  - snapdocs
+  - snatchbot
+  - snipcart
+  - snowflake
+  - solve-data
+  - specter
+  - splunk
+  - spondyr
+  - spontit
+  - sportsdata
+  - spotify
+  - spydra
+  - sslmate-cert-spotter-api
+  - stackby
+  - stammerai
+  - starton
+  - statuscake
+  - storyblok
+  - strapi
+  - strava
+  - stripe
+  - studio-by-ai21-labs
+  - suitedash
+  - supabase
+  - supernormal
+  - superpowered
+  - supportivekoala
+  - survicate
+  - swagup
+  - switchboard
+  - syncly
+  - syncromsp
+  - synthesia
+  - taiga
+  - talentlms
+  - talknotes
+  - tapfiliate
+  - td-ameritrade
+  - teachable
+  - team-up
+  - teamdeck
+  - teamgate
+  - teknoir
+  - telegram
+  - testmonitor
+  - textcortex-ai
+  - textgain
+  - textkit
+  - textmagic
+  - thankster
+  - the-customer-factor
+  - the-leap
+  - thehive
+  - thehive-5
+  - thoughtfulgpt
+  - thrivecart
+  - tidb-cloud
+  - tierion
+  - tilda
+  - timescaledb
+  - timetonic
+  - tinyurl
+  - tisane-labs
+  - todoist
+  - token-metrics
+  - toket
+  - totango
+  - trackvia
+  - transifex
+  - travisci
+  - trellix-epo
+  - trello
+  - trengo
+  - trevorio
+  - turbohire
+  - tuskr
+  - tuulio
+  - twake
+  - twilio
+  - twist
+  - twitter
+  - unbounce
+  - unisender
+  - unleashed-software
+  - upkeep
+  - uplead
+  - uproc
+  - uptimerobot
+  - uptimetoolbox
+  - urlscanio
+  - uservoice
+  - venafi-tls-protect-cloud
+  - venafi-tls-protect-datacenter
+  - venly
+  - verifalia
+  - vero
+  - vimeo
+  - virustotal
+  - vivifyscrum
+  - voicit
+  - vonage
+  - vowel
+  - watchsignals
+  - waveline-extract
+  - webex-by-cisco
+  - webflow
+  - webscraperio
+  - wekan
+  - whal3s
+  - whatconverts
+  - whatsapp-business-cloud
+  - wise
+  - wizychat
+  - wonderchat
+  - wondercraft
+  - woocommerce
+  - woodpeckerco
+  - wordpress
+  - workast
+  - workboard
+  - woxo
+  - writesonic
+  - wubook-ratechecker
+  - xero
+  - xtractly
+  - ybug
+  - ycode
+  - yodiz
+  - yourls
+  - youtube
+  - zabbix
+  - zammad
+  - zendesk
+  - zenrows
+  - zoho-books
+  - zoho-crm
+  - zoho-desk
+  - zonka-feedback
+  - zoom
+  - zscaler-zia
+  - zulip
+edges:
+- partner_name: ClickFunnels Classic
+  partner: clickfunnels
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/clickfunnels-classic
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.clickfunnels.com/
+- partner_name: Typeform
+  partner: typeform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/typeform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.typeform.com/signup?utm_medium=referral&utm_source=zapier&utm_campaign=zapier_integration&utm_content=marketplace
+- partner_name: Acuity Scheduling
+  partner: acuity-scheduling
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/acuity-scheduling
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://acuityscheduling.com/?utm_source=zapier.com&utm_medium=referral&utm_campaign=integration-page
+- partner_name: OnceHub
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/oncehub
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://www.oncehub.com/scheduleonce/home
+- partner_name: Zoom
+  partner: zoom
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/zoom
+  direction: third-party
+  category: Video Conferencing
+  partner_url: https://www.zoom.us/
+- partner_name: Manychat
+  partner: manychat
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/manychat
+  direction: third-party
+  category: Social Media Marketing
+  partner_url: https://manychat.com/
+- partner_name: Unbounce
+  partner: unbounce
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/unbounce
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://unbounce.com/
+- partner_name: WooCommerce
+  partner: woocommerce
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/woocommerce
+  direction: third-party
+  category: eCommerce
+  partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
+- partner_name: Squarespace Forms
+  partner: squarespace
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/squarespace-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.squarespace.com/
+- partner_name: Kajabi
+  partner: kajabi
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/kajabi
+  direction: third-party
+  category: eCommerce
+  partner_url: http://kajabi.com/
+- partner_name: Eventbrite
+  partner: eventbrite
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/eventbrite
+  direction: third-party
+  category: Event Management
+  partner_url: https://eventbrite.com/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Teachable
+  partner: teachable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/teachable
+  direction: third-party
+  category: Online Courses
+  partner_url: https://teachable.com/
+- partner_name: Calendly
+  partner: calendly
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/calendly
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://calendly.com/?utm_medium=partner&utm_source=zapier&utm_campaign=main_partner_page&utm_content=main_inbound_link
+- partner_name: Pipedrive
+  partner: pipedrive
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/pipedrive
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://pipedrive.com/
+- partner_name: Google Forms
+  partner: google-forms
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/google-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: Wix
+  partner: wix
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/wix
+  direction: third-party
+  category: Website Builders
+  partner_url: https://www.wix.com/
+- partner_name: Google Ads
+  partner: google-ads
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/google-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://ads.google.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/facebook-lead-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.facebook.com/business/ads/lead-ads
+- partner_name: Gravity Forms
+  partner: gravity-forms
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/gravity-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.gravityforms.com/?utm_campaign=partners&utm_source=zapier-listing-learn-more&utm_medium=free-placement
+- partner_name: systeme.io
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/systemeio
+  direction: third-party
+  category: Marketing
+  partner_url: https://systeme.io/
+- partner_name: Facebook Conversions
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/facebook-conversions
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://developers.facebook.com/docs/marketing-api/server-side-api/guides/zapier-integration
+- partner_name: Wufoo
+  partner: wufoo
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/wufoo
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.wufoo.com/
+- partner_name: Trello
+  partner: trello
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/trello
+  direction: third-party
+  category: Project Management
+  partner_url: https://trello.com/
+- partner_name: LearnDash
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/learndash
+  direction: third-party
+  category: Online Courses
+  partner_url: https://www.learndash.com/
+- partner_name: Google Calendar
+  partner: google-calendar
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/google-calendar
+  direction: third-party
+  category: Calendar
+  partner_url: https://calendar.google.com/
+- partner_name: monday.com
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/monday
+  direction: third-party
+  category: Project Management
+  partner_url: https://monday.com/
+- partner_name: Twilio
+  partner: twilio
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/twilio
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://www.twilio.com/
+templates:
+- title: Add or update ActiveCampaign contacts for new Acuity Scheduling appointments
+  url: https://zapier.com/apps/activecampaign/integrations/acuity-scheduling/2045/add-or-update-activecampaign-contacts-for-new-acuity-scheduling-appointments
+  apps:
+  - acuity-scheduling
+  - activecampaign
+- title: Add or update ActiveCampaign contacts from new activity in ClickFunnels Classic contacts
+  url: https://zapier.com/apps/activecampaign/integrations/clickfunnels-classic/16341/add-or-update-activecampaign-contacts-from-new-activity-in-clickfunnels-classic-contacts
+  apps:
+  - clickfunnels-classic
+  - activecampaign
+- title: Add subscribers to ActiveCampaign from new Unbounce submissions
+  url: https://zapier.com/apps/activecampaign/integrations/unbounce/51/add-subscribers-to-activecampaign-from-new-unbounce-submissions
+  apps:
+  - unbounce
+  - activecampaign
+- title: Save new contacts added to ActiveCampaign lists to Google Ads customer lists
+  url: https://zapier.com/apps/activecampaign/integrations/google-ads/77984/save-new-contacts-added-to-activecampaign-lists-to-google-ads-customer-lists
+  apps:
+  - activecampaign
+  - google-ads
+- title: Add or update ActiveCampaign contacts with new Facebook Lead Ads leads
+  url: https://zapier.com/apps/activecampaign/integrations/facebook-lead-ads/10148/add-or-update-activecampaign-contacts-with-new-facebook-lead-ads-leads
+  apps:
+  - facebook-lead-ads
+  - activecampaign
+- title: Add or update ActiveCampaign contacts with new Stripe payments
+  url: https://zapier.com/apps/activecampaign/integrations/stripe/11561/add-or-update-activecampaign-contacts-with-new-stripe-payments
+  apps:
+  - stripe
+  - activecampaign
+- title: Add or update contacts on ActiveCampaign for new submissions to Webflow
+  url: https://zapier.com/apps/activecampaign/integrations/webflow/7052/add-or-update-contacts-on-activecampaign-for-new-submissions-to-webflow
+  apps:
+  - webflow
+  - activecampaign
+- title: Add new Teachable students to ActiveCampaign
+  url: https://zapier.com/apps/activecampaign/integrations/teachable/13085/add-new-teachable-students-to-activecampaign
+  apps:
+  - teachable
+  - activecampaign
+- title: Add or update ActiveCampaign contacts for new Calendly invitees
+  url: https://zapier.com/apps/activecampaign/integrations/calendly/10120/add-or-update-activecampaign-contacts-for-new-calendly-invitees
+  apps:
+  - calendly
+  - activecampaign
+- title: Add or update ActiveCampaign contacts from new Squarespace Forms form submissions
+  url: https://zapier.com/apps/activecampaign/integrations/squarespace-forms/21528/add-or-update-activecampaign-contacts-from-new-squarespace-forms-form-submissions
+  apps:
+  - squarespace-forms
+  - activecampaign
+- title: Create ActiveCampaign subscribers from new OnceHub bookings
+  url: https://zapier.com/apps/activecampaign/integrations/oncehub/10891/create-activecampaign-subscribers-from-new-oncehub-bookings
+  apps:
+  - oncehub
+  - activecampaign
+- title: Add new Kajabi customers to ActiveCampaign
+  url: https://zapier.com/apps/activecampaign/integrations/kajabi/12905/add-new-kajabi-customers-to-activecampaign
+  apps:
+  - kajabi
+  - activecampaign
+template_total: 7982

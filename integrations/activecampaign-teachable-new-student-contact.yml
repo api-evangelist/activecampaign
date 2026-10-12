@@ -1,0 +1,81 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Teachable new student contact
+  summary: Add new Teachable students to ActiveCampaign
+  description: Add new Teachable students to ActiveCampaign. Reads the record from Teachable, creates or updates the contact in ActiveCampaign with contact sync, then subscribes it to a list. Recreated
+    from the Zapier template linked in x-integration.
+  version: 1.0.0
+sourceDescriptions:
+- name: teachableUsers
+  url: https://raw.githubusercontent.com/api-evangelist/teachable/refs/heads/main/openapi/teachable-users-api-openapi.yml
+  type: openapi
+- name: activecampaignContacts
+  url: https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/openapi/activecampaign-contacts-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: teachable-new-student-contact
+  summary: Add new Teachable students to ActiveCampaign
+  description: Add new Teachable students to ActiveCampaign.
+  inputs:
+    type: object
+    properties:
+      userId:
+        type: string
+      listId:
+        type: string
+        description: ActiveCampaign list to subscribe the contact to
+  steps:
+  - stepId: get-user
+    description: Read the new Teachable record.
+    operationId: $sourceDescriptions.teachableUsers.getUser
+    parameters:
+    - name: user_id
+      in: path
+      value: $inputs.userId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/user/email
+      firstName: $response.body#/user/name
+  - stepId: sync-contact
+    description: Create or update the ActiveCampaign contact by email.
+    operationId: $sourceDescriptions.activecampaignContacts.sync-a-contacts-data
+    requestBody:
+      contentType: application/json
+      payload:
+        contact:
+          email: $steps.get-user.outputs.email
+          firstName: $steps.get-user.outputs.firstName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/contact/id
+  - stepId: subscribe-to-list
+    description: Subscribe the synced contact to the list.
+    operationId: $sourceDescriptions.activecampaignContacts.update-list-status-for-contact
+    requestBody:
+      contentType: application/json
+      payload:
+        contactList:
+          list: $inputs.listId
+          contact: $steps.sync-contact.outputs.contactId
+          status: '1'
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    contactId: $steps.sync-contact.outputs.contactId
+x-integration:
+  partner: teachable
+  template: https://zapier.com/apps/activecampaign/integrations/teachable/13085/add-new-teachable-students-to-activecampaign
+  edge_evidence: https://zapier.com/apps/activecampaign/integrations/teachable/13085/add-new-teachable-students-to-activecampaign
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5.5 enrichment local-v5
+  guessed_steps:
+  - step: get-user
+    cause: partner-contract
+    why: the user object is untyped in the getUser response schema, so /user/email and /user/name are not settled
+  - step: sync-contact
+    cause: provider-contract
+    why: the sync-a-contacts-data 201 response schema lists contact fields but no contact.id, so the output path /contact/id is not settled by the spec

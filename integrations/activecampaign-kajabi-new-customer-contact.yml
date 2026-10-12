@@ -1,0 +1,81 @@
+arazzo: 1.0.1
+info:
+  title: ActiveCampaign Kajabi new customer contact
+  summary: Add new Kajabi customers to ActiveCampaign
+  description: Add new Kajabi customers to ActiveCampaign. Reads the record from Kajabi, creates or updates the contact in ActiveCampaign with contact sync, then subscribes it to a list. Recreated from
+    the Zapier template linked in x-integration.
+  version: 1.0.0
+sourceDescriptions:
+- name: kajabiCustomers
+  url: https://raw.githubusercontent.com/api-evangelist/kajabi/refs/heads/main/openapi/kajabi-customers-api-openapi.yml
+  type: openapi
+- name: activecampaignContacts
+  url: https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/openapi/activecampaign-contacts-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: kajabi-new-customer-contact
+  summary: Add new Kajabi customers to ActiveCampaign
+  description: Add new Kajabi customers to ActiveCampaign.
+  inputs:
+    type: object
+    properties:
+      customerId:
+        type: string
+      listId:
+        type: string
+        description: ActiveCampaign list to subscribe the contact to
+  steps:
+  - stepId: get-customer
+    description: Read the new Kajabi record.
+    operationId: $sourceDescriptions.kajabiCustomers.getV1CustomersById
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.customerId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/data/attributes/email
+      firstName: $response.body#/data/attributes/name
+  - stepId: sync-contact
+    description: Create or update the ActiveCampaign contact by email.
+    operationId: $sourceDescriptions.activecampaignContacts.sync-a-contacts-data
+    requestBody:
+      contentType: application/json
+      payload:
+        contact:
+          email: $steps.get-customer.outputs.email
+          firstName: $steps.get-customer.outputs.firstName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/contact/id
+  - stepId: subscribe-to-list
+    description: Subscribe the synced contact to the list.
+    operationId: $sourceDescriptions.activecampaignContacts.update-list-status-for-contact
+    requestBody:
+      contentType: application/json
+      payload:
+        contactList:
+          list: $inputs.listId
+          contact: $steps.sync-contact.outputs.contactId
+          status: '1'
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    contactId: $steps.sync-contact.outputs.contactId
+x-integration:
+  partner: kajabi
+  template: https://zapier.com/apps/activecampaign/integrations/kajabi/12905/add-new-kajabi-customers-to-activecampaign
+  edge_evidence: https://zapier.com/apps/activecampaign/integrations/kajabi/12905/add-new-kajabi-customers-to-activecampaign
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5.5 enrichment local-v5
+  guessed_steps:
+  - step: get-customer
+    cause: partner-contract
+    why: getV1CustomersById declares a 200 with no response properties; the JSON:API data.attributes.email path is not settled by the spec
+  - step: sync-contact
+    cause: provider-contract
+    why: the sync-a-contacts-data 201 response schema lists contact fields but no contact.id, so the output path /contact/id is not settled by the spec

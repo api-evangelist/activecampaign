@@ -1,0 +1,71 @@
+generated: '2026-10-12'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: postman
+  name: Postman
+  area: api-collections
+  host: www.postman.com
+  evidence: https://www.postman.com/acdevrel/activecampaign-developer-relations/overview
+  signal: url:postman.com
+  confidence: high
+  kin_score:
+  - postman_collection
+- vendor: cloudflare
+  name: Cloudflare
+  area: cdn
+  host: www.activecampaign.com
+  evidence: header:cf-ray
+  signal: header
+  confidence: high
+  kin_score:
+  - https_enforced
+  - hsts
+- vendor: zendesk
+  name: Zendesk
+  area: support
+  host: help.activecampaign.com
+  evidence: cname:zendesk.com
+  signal: cname
+  confidence: high
+  kin_score:
+  - support_channel
+reliance:
+  areas_vendor_served:
+  - api-collections
+  - cdn
+  - support
+  vendor_count: 3
+  areas_observed: 12
+  share_of_observable_areas: 0.25
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: not probed'
+- www.activecampaign.com (Website)
+- developers.activecampaign.com (Documentation)
+- help.activecampaign.com (Support)
+- www.activecampaign.com (SignUp)
+- developers.activecampaign.com (Portal)
+- help.activecampaign.com (GettingStarted)
+- status.activecampaign.com (StatusPage)
+- developers.activecampaign.com (APIReference)
+- developers.activecampaign.com (DeveloperPortal)
+- www.postman.com (Postman)
+- youraccountname.api-us1.com (baseURL)
+- agency-partner-hub-web.global-aws-use1-p.app-us1.com (baseURL)
+- '{yoursubdomain}.activehosted.com (mcp)'

@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/activecampaign/main/json-schema/activecampaign-create-account-request-dto-schema.json",
+  "title": "Create Account Request",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/activecampaign-child-accounts-api-openapi.yml#/components/schemas/CreateAccountRequestDto",
+  "required": [
+    "account_name",
+    "name",
+    "email",
+    "notification",
+    "billing_interval",
+    "products",
+    "country"
+  ],
+  "properties": {
+    "account_name": {
+      "description": "Display name for the account",
+      "type": "string"
+    },
+    "cname": {
+      "description": "Custom domain (CNAME) for the account",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name": {
+      "description": "Contact or account owner name",
+      "type": "string"
+    },
+    "email": {
+      "description": "Primary account email",
+      "type": "string",
+      "format": "email"
+    },
+    "notification": {
+      "description": "Notification email address for account-related alerts",
+      "type": "string"
+    },
+    "language": {
+      "description": "Account language name (e.g. polish, dutch, english)",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "timezone": {
+      "description": "IANA timezone identifier (e.g. Europe/Amsterdam, America/New_York)",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "snapshot": {
+      "description": "Deprecated. Use snapshot_id instead.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "currency": {
+      "description": "Currency code (e.g. USD, PLN, EUR)",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "billing_interval": {
+      "description": "Billing interval in months",
+      "type": "integer"
+    },
+    "products": {
+      "description": "Product configuration. Array must be non-empty.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ProductDto"
+      },
+      "minItems": 1
+    },
+    "profile": {
+      "description": "Billing profile identifier. Go to update card/billing settings, copy the string_id from the URL.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "country": {
+      "description": "ISO country code (e.g. US, PL, GB)",
+      "type": "string",
+      "default": "US"
+    },
+    "snapshot_id": {
+      "description": "ID of the snapshot to clone from. Obtain from GET /api/child-account-snapshots/v1/ endpoint.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "default": null
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "ProductDto": {
+      "title": "ChildAccountsProduct",
+      "required": [
+        "code",
+        "tier",
+        "entitlements"
+      ],
+      "properties": {
+        "addon": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "code": {
+          "type": "string"
+        },
+        "tier": {
+          "type": "string"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "version": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "entitlements": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ProductEntitlementDto"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/ProductEntitlementDto"
+              }
+            }
+          ]
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    },
+    "ProductEntitlementDto": {
+      "properties": {
+        "code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "limit": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ProductEntitlementLimitDto"
+            }
+          ],
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "pricing": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ProductEntitlementPricingDto"
+            }
+          ],
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    },
+    "ProductEntitlementLimitDto": {
+      "properties": {
+        "included_units": {
+          "type": "integer",
+          "default": 0
+        },
+        "purchased_units": {
+          "type": "integer",
+          "default": 0
+        },
+        "period": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    },
+    "ProductEntitlementPricingDto": {
+      "required": [
+        "recurring",
+        "subtotal"
+      ],
+      "properties": {
+        "recurring": {
+          "type": "boolean"
+        },
+        "subtotal": {
+          "type": "integer"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    }
+  }
+}
