@@ -5,8 +5,11 @@ source:
 - https://n8n.io/integrations/activecampaign/
 checked:
 - https://composio.dev/toolkits/activecampaign
+- https://fivetran.com/docs/activations/destinations/available-destinations/activecampaign
+- https://hightouch.com/docs/destinations/active-campaign
 - https://monid.ai/tools/activecampaign
 - https://n8n.io/integrations/activecampaign/
+- https://www.twilio.com/docs/segment/connections/destinations/catalog/activecampaign
 - https://zapier.com/apps/activecampaign/integrations
 summary: null
 marketplace_apps:
@@ -1242,6 +1245,79 @@ edges:
     property: schemas.integration.provider
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
+- partner_name: Twilio Segment
+  partner: segment
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/activecampaign
+  coverage_role:
+  - destination
+  - source
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - activecampaign
+      status: PUBLIC
+      partner_owned: false
+      connection_modes:
+      - cloud:mobile
+      - cloud:server
+      - cloud:web
+      accepted_methods:
+      - Identify
+      - Page
+      - Track
+    source:
+      catalog_entries:
+      - activecampaign
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Hightouch
+  partner: hightouch
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://hightouch.com/docs/destinations/active-campaign
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - active-campaign
+      status: released
+      sync_types:
+      - Contacts
+      sync_modes:
+      - upsert
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Census
+  partner: getcensus
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://fivetran.com/docs/activations/destinations/available-destinations/activecampaign
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - activecampaign
+      sync_behaviours:
+      - update only
+      - update or create
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
 templates:
 - title: Add or update ActiveCampaign contacts for new Acuity Scheduling appointments
   url: https://zapier.com/apps/activecampaign/integrations/acuity-scheduling/2045/add-or-update-activecampaign-contacts-for-new-acuity-scheduling-appointments
