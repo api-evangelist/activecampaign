@@ -11,6 +11,7 @@ checked:
 - https://n8n.io/integrations/activecampaign/
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/activecampaign
 - https://zapier.com/apps/activecampaign/integrations
+- shopify/integrations/shopify-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1318,6 +1319,22 @@ edges:
       - update or create
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/activecampaign
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - ActiveCampaign Marketing
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
 templates:
 - title: Add or update ActiveCampaign contacts for new Acuity Scheduling appointments
   url: https://zapier.com/apps/activecampaign/integrations/acuity-scheduling/2045/add-or-update-activecampaign-contacts-for-new-acuity-scheduling-appointments
