@@ -4,6 +4,7 @@ source:
 - https://zapier.com/apps/activecampaign/integrations
 - https://n8n.io/integrations/activecampaign/
 checked:
+- https://a2aregistry.org/api/agents
 - https://composio.dev/toolkits/activecampaign
 - https://fivetran.com/docs/activations/destinations/available-destinations/activecampaign
 - https://hightouch.com/docs/destinations/active-campaign
@@ -1335,6 +1336,38 @@ edges:
   listing_count: 1
   detected: '2026-10-15'
   detected_by: mirror-platform-listings.py
+- partner_name: A2A protocol (own Agent Card)
+  partner: null
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: A2A agent
+  evidence: https://activecampaign.com/.well-known/agent.json
+  channel: provider-built
+  relationship: compatible
+  shape: a2a
+  evidence_kind: own-wellknown
+  degree: near-conformant
+  report_only: true
+  a2a_card:
+    grade: near-conformant
+    verdict: live
+    protocol_version: '1.0'
+    deviations: []
+    card_subject: unknown
+  contract_reference:
+    register: provider's own /.well-known/agent-card.json
+    spec_file: null
+    standard: A2A
+    role: a2a-agent-card
+    registered_name: ActiveCampaign
+    organization: ActiveCampaign, LLC
+    matched_domain: activecampaign.com
+    matched_by: own-domain
+    detected_by: sweep-ai-agents.py
+    detected: '2026-10-15'
+  detected_by: sweep-ai-agents.py
+  first_seen: '2026-10-15'
 templates:
 - title: Add or update ActiveCampaign contacts for new Acuity Scheduling appointments
   url: https://zapier.com/apps/activecampaign/integrations/acuity-scheduling/2045/add-or-update-activecampaign-contacts-for-new-acuity-scheduling-appointments
