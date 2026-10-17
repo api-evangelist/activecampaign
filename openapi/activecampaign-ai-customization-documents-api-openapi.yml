@@ -351,76 +351,6 @@ paths:
       summary: Get a presigned download URL for a document
 components:
   schemas:
-    AICustomizationsPaginationMetadata:
-      required:
-      - total
-      - page
-      - limit
-      - total_pages
-      properties:
-        total:
-          type: integer
-          example: 42
-        page:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 20
-        total_pages:
-          type: integer
-          example: 3
-      type: object
-      additionalProperties: false
-    ProfileDocumentResponse:
-      required:
-      - id
-      - description
-      - filename
-      - file_size_bytes
-      - file_extension
-      - status
-      - created_date
-      - enabled
-      properties:
-        id:
-          type: integer
-          example: 1
-        description:
-          type: string
-          example: Product knowledge base for AI context
-        filename:
-          type: string
-          example: product-knowledge-base.pdf
-        file_size_bytes:
-          type: integer
-          example: 204800
-        file_extension:
-          type: string
-          example: pdf
-        status:
-          type: string
-          example: pending
-        created_date:
-          type: string
-          format: date-time
-          example: '2026-04-08T12:00:00+00:00'
-        enabled:
-          type: boolean
-          example: true
-        tags:
-          type: array
-          items:
-            type: string
-            enum:
-            - support_material
-            - campaign_material
-            - brand_rules
-            - benchmark_data
-            - product_info
-          default: []
-      type: object
-      additionalProperties: false
     UnauthorizedResponse:
       description: Unauthorized
       example:
@@ -437,6 +367,19 @@ components:
             $ref: '#/components/schemas/ProfileDocumentResponse'
         pagination:
           $ref: '#/components/schemas/AICustomizationsPaginationMetadata'
+      type: object
+      additionalProperties: false
+    DocumentDownloadUrlResponse:
+      required:
+      - url
+      - expires_in
+      properties:
+        url:
+          type: string
+          format: uri
+        expires_in:
+          description: Seconds until the URL expires
+          type: integer
       type: object
       additionalProperties: false
     UpdateDocumentRequest:
@@ -493,19 +436,6 @@ components:
               type: string
       type: object
       additionalProperties: true
-    DocumentDownloadUrlResponse:
-      required:
-      - url
-      - expires_in
-      properties:
-        url:
-          type: string
-          format: uri
-        expires_in:
-          description: Seconds until the URL expires
-          type: integer
-      type: object
-      additionalProperties: false
     ApiErrorResponse:
       required:
       - type
@@ -536,6 +466,76 @@ components:
               $ref: '#/components/schemas/ApiViolation'
       type: object
       additionalProperties: true
+    ProfileDocumentResponse:
+      required:
+      - id
+      - description
+      - filename
+      - file_size_bytes
+      - file_extension
+      - status
+      - created_date
+      - enabled
+      properties:
+        id:
+          type: integer
+          example: 1
+        description:
+          type: string
+          example: Product knowledge base for AI context
+        filename:
+          type: string
+          example: product-knowledge-base.pdf
+        file_size_bytes:
+          type: integer
+          example: 204800
+        file_extension:
+          type: string
+          example: pdf
+        status:
+          type: string
+          example: pending
+        created_date:
+          type: string
+          format: date-time
+          example: '2026-04-08T12:00:00+00:00'
+        enabled:
+          type: boolean
+          example: true
+        tags:
+          type: array
+          items:
+            type: string
+            enum:
+            - support_material
+            - campaign_material
+            - brand_rules
+            - benchmark_data
+            - product_info
+          default: []
+      type: object
+      additionalProperties: false
+    AICustomizationsPaginationMetadata:
+      required:
+      - total
+      - page
+      - limit
+      - total_pages
+      properties:
+        total:
+          type: integer
+          example: 42
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 20
+        total_pages:
+          type: integer
+          example: 3
+      type: object
+      additionalProperties: false
   securitySchemes:
     PartnerApiKey:
       type: apiKey

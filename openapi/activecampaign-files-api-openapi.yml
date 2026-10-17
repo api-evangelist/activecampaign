@@ -55,11 +55,6 @@ paths:
       summary: Get storage quota status
 components:
   schemas:
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
     ApiViolation:
       required:
       - propertyPath
@@ -132,6 +127,11 @@ components:
           example: 3221225472
       type: object
       additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
   securitySchemes:
     PartnerApiKey:
       type: apiKey

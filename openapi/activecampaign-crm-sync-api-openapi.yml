@@ -204,6 +204,47 @@ components:
           $ref: '#/components/schemas/PipelineSyncTargetResponse'
       type: object
       additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
+    PipelineResponse:
+      required:
+      - id
+      - name
+      - sync_enabled
+      - synced_accounts_count
+      - last_synced_status
+      properties:
+        id:
+          type: integer
+          example: 42
+        name:
+          type: string
+          example: Dog Bday Party
+        sync_enabled:
+          type: boolean
+          example: true
+        synced_accounts_count:
+          type: integer
+          example: 12
+        last_synced_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-16T10:20:30+00:00'
+        last_synced_status:
+          type: string
+          example: success
+        last_synced_error:
+          type:
+          - string
+          - 'null'
+          example: null
+      type: object
+      additionalProperties: false
     UpsertPipelineSyncTargetRequest:
       properties:
         type:
@@ -249,30 +290,6 @@ components:
           $ref: '#/components/schemas/PipelineListPagination'
       type: object
       additionalProperties: false
-    UpsertPipelineSyncRequest:
-      required:
-      - sync_enabled
-      properties:
-        sync_enabled:
-          type:
-          - boolean
-          - 'null'
-          default: null
-          example: true
-        target:
-          default: null
-          oneOf:
-          - $ref: '#/components/schemas/UpsertPipelineSyncTargetRequest'
-          type:
-          - object
-          - 'null'
-      type: object
-      additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
     PipelineSyncTargetResponse:
       required:
       - account_ids
@@ -321,63 +338,6 @@ components:
               type: string
       type: object
       additionalProperties: true
-    PipelineResponse:
-      required:
-      - id
-      - name
-      - sync_enabled
-      - synced_accounts_count
-      - last_synced_status
-      properties:
-        id:
-          type: integer
-          example: 42
-        name:
-          type: string
-          example: Dog Bday Party
-        sync_enabled:
-          type: boolean
-          example: true
-        synced_accounts_count:
-          type: integer
-          example: 12
-        last_synced_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-16T10:20:30+00:00'
-        last_synced_status:
-          type: string
-          example: success
-        last_synced_error:
-          type:
-          - string
-          - 'null'
-          example: null
-      type: object
-      additionalProperties: false
-    PipelineListPagination:
-      required:
-      - total
-      - page
-      - limit
-      - total_pages
-      properties:
-        total:
-          type: integer
-          example: 100
-        page:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 10
-        total_pages:
-          type: integer
-          example: 10
-      type: object
-      additionalProperties: false
     ApiErrorResponse:
       required:
       - type
@@ -408,6 +368,46 @@ components:
               $ref: '#/components/schemas/ApiViolation'
       type: object
       additionalProperties: true
+    UpsertPipelineSyncRequest:
+      required:
+      - sync_enabled
+      properties:
+        sync_enabled:
+          type:
+          - boolean
+          - 'null'
+          default: null
+          example: true
+        target:
+          default: null
+          oneOf:
+          - $ref: '#/components/schemas/UpsertPipelineSyncTargetRequest'
+          type:
+          - object
+          - 'null'
+      type: object
+      additionalProperties: false
+    PipelineListPagination:
+      required:
+      - total
+      - page
+      - limit
+      - total_pages
+      properties:
+        total:
+          type: integer
+          example: 100
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 10
+        total_pages:
+          type: integer
+          example: 10
+      type: object
+      additionalProperties: false
   securitySchemes:
     PartnerApiKey:
       type: apiKey

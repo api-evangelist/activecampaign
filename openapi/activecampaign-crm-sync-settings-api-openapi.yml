@@ -114,6 +114,19 @@ paths:
       summary: Update CRM sync settings
 components:
   schemas:
+    UpdateSettingsRequest:
+      required:
+      - sync_every
+      properties:
+        sync_every:
+          type: string
+          enum:
+          - never
+          - hour
+          - day
+          example: hour
+      type: object
+      additionalProperties: false
     SettingsResponse:
       required:
       - sync_every
@@ -132,19 +145,6 @@ components:
       example:
         error: Unauthorized
         message: Invalid credentials
-    UpdateSettingsRequest:
-      required:
-      - sync_every
-      properties:
-        sync_every:
-          type: string
-          enum:
-          - never
-          - hour
-          - day
-          example: hour
-      type: object
-      additionalProperties: false
     ApiViolation:
       required:
       - propertyPath

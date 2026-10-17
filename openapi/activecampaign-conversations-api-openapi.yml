@@ -139,27 +139,176 @@ paths:
       x-operation-id-original: Partially update a Conversation
 components:
   schemas:
-    ConversationStatusEnum:
+    PaginatedConversationReadSimpleList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationReadSimple'
+    ConversationTag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+      required:
+      - id
+      - name
+    UserBasicEdit:
+      type: object
+      properties:
+        id:
+          type: integer
+      required:
+      - id
+    SimpleUser:
+      type: object
+      properties:
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        id:
+          type: integer
+          readOnly: true
+        profile_image:
+          type:
+          - string
+          - 'null'
+          format: uri
+        role:
+          type:
+          - integer
+          - 'null'
+      required:
+      - email
+      - id
+    MessageTypeEnum:
       enum:
-      - CREATED
-      - FLOW
-      - NEW
-      - IN_PROGRESS
-      - RESOLVED
-      - CLOSED
+      - audio
+      - voice
+      - button
+      - document
+      - text
+      - image
+      - interactive
+      - order
+      - sticker
+      - system
+      - unknown
+      - video
+      - unsupported
+      - location
+      - contacts
+      - template
+      - reaction
+      - ephemeral
+      - request_welcome
       type: string
-      description: '* `CREATED` - Created
+      description: '* `audio` - Audio
 
-        * `FLOW` - Flow
+        * `voice` - Voice
 
-        * `NEW` - New
+        * `button` - Button
 
-        * `IN_PROGRESS` - In Progress
+        * `document` - Document
 
-        * `RESOLVED` - Resolved
+        * `text` - Text
 
-        * `CLOSED` - Closed'
-    ConversationReadSimple:
+        * `image` - Image
+
+        * `interactive` - Interactive
+
+        * `order` - Order
+
+        * `sticker` - Sticker
+
+        * `system` - System
+
+        * `unknown` - Unknown
+
+        * `video` - Video
+
+        * `unsupported` - Unsupported
+
+        * `location` - Location
+
+        * `contacts` - Contacts
+
+        * `template` - Template
+
+        * `reaction` - Reaction
+
+        * `ephemeral` - Ephemeral
+
+        * `request_welcome` - Request Welcome'
+    MessageStatusEnum:
+      enum:
+      - new
+      - retry
+      - accepted
+      - sending
+      - sent
+      - receiving
+      - received
+      - delivered
+      - undelivered
+      - failed
+      - read
+      - deleted
+      type: string
+      description: '* `new` - New
+
+        * `retry` - Retry
+
+        * `accepted` - Accepted
+
+        * `sending` - Sending
+
+        * `sent` - Sent
+
+        * `receiving` - Receiving
+
+        * `received` - Received
+
+        * `delivered` - Delivered
+
+        * `undelivered` - Undelivered
+
+        * `failed` - Failed
+
+        * `read` - Read
+
+        * `deleted` - Deleted'
+    ConversationEdit:
       type: object
       properties:
         id:
@@ -169,17 +318,11 @@ components:
           type: string
           format: uuid
         status:
-          allOf:
-          - $ref: '#/components/schemas/ConversationStatusEnum'
-          readOnly: true
-        first_message:
-          allOf:
-          - $ref: '#/components/schemas/WhatsAppMessageSimple'
-          description: The first Message of the Conversation.
+          $ref: '#/components/schemas/ConversationStatusEnum'
         assigned:
           type: array
           items:
-            $ref: '#/components/schemas/UserSimple'
+            $ref: '#/components/schemas/UserBasicEdit'
           description: The Users assigned to the Conversation.
         tags:
           type: array
@@ -206,55 +349,28 @@ components:
       - assigned
       - contact
       - created_on
-      - first_message
       - id
       - source
-      - status
-    UserSimple:
-      type: object
-      properties:
-        id:
-          type: integer
-        first_name:
-          type: string
-          readOnly: true
-        last_name:
-          type: string
-          readOnly: true
-        email:
-          type: string
-          format: email
-          readOnly: true
-        account:
-          type:
-          - integer
-          - 'null'
-          readOnly: true
-        profile_image:
-          type:
-          - string
-          - 'null'
-          format: uri
-          readOnly: true
-        date_joined:
-          type: string
-          format: date-time
-          readOnly: true
-      required:
-      - account
-      - date_joined
-      - email
-      - first_name
-      - id
-      - last_name
-      - profile_image
-    UserBasicEdit:
-      type: object
-      properties:
-        id:
-          type: integer
-      required:
-      - id
+    ConversationSourceEnum:
+      enum:
+      - INBOX
+      - AUTO_RESPONSE
+      - API
+      - BROADCAST
+      - FLOW
+      - UNKNOWN
+      type: string
+      description: '* `INBOX` - Inbox
+
+        * `AUTO_RESPONSE` - Auto Response
+
+        * `API` - Api
+
+        * `BROADCAST` - Broadcast
+
+        * `FLOW` - Flow
+
+        * `UNKNOWN` - Unknown'
     PatchedConversationEdit:
       type: object
       properties:
@@ -292,66 +408,6 @@ components:
           type:
           - integer
           - 'null'
-    ConversationTag:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 100
-      required:
-      - id
-      - name
-    SimpleUser:
-      type: object
-      properties:
-        first_name:
-          type: string
-          maxLength: 150
-        last_name:
-          type: string
-          maxLength: 150
-        email:
-          type: string
-          format: email
-          maxLength: 254
-        id:
-          type: integer
-          readOnly: true
-        profile_image:
-          type:
-          - string
-          - 'null'
-          format: uri
-        role:
-          type:
-          - integer
-          - 'null'
-      required:
-      - email
-      - id
-    MessageSourceEnum:
-      enum:
-      - INBOUND
-      - INBOX
-      - AUTO_RESPONSE
-      - API
-      - BROADCAST
-      - FLOW
-      type: string
-      description: '* `INBOUND` - Inbound
-
-        * `INBOX` - Inbox
-
-        * `AUTO_RESPONSE` - Auto Response
-
-        * `API` - Api
-
-        * `BROADCAST` - Broadcast
-
-        * `FLOW` - Flow'
     WhatsAppMessageSimple:
       type: object
       properties:
@@ -487,129 +543,47 @@ components:
       - timestamp
       - to_number
       - whatsapp_template
-    MessageTypeEnum:
+    MessageSourceEnum:
       enum:
-      - audio
-      - voice
-      - button
-      - document
-      - text
-      - image
-      - interactive
-      - order
-      - sticker
-      - system
-      - unknown
-      - video
-      - unsupported
-      - location
-      - contacts
-      - template
-      - reaction
-      - ephemeral
-      - request_welcome
+      - INBOUND
+      - INBOX
+      - AUTO_RESPONSE
+      - API
+      - BROADCAST
+      - FLOW
       type: string
-      description: '* `audio` - Audio
+      description: '* `INBOUND` - Inbound
 
-        * `voice` - Voice
+        * `INBOX` - Inbox
 
-        * `button` - Button
+        * `AUTO_RESPONSE` - Auto Response
 
-        * `document` - Document
+        * `API` - Api
 
-        * `text` - Text
+        * `BROADCAST` - Broadcast
 
-        * `image` - Image
-
-        * `interactive` - Interactive
-
-        * `order` - Order
-
-        * `sticker` - Sticker
-
-        * `system` - System
-
-        * `unknown` - Unknown
-
-        * `video` - Video
-
-        * `unsupported` - Unsupported
-
-        * `location` - Location
-
-        * `contacts` - Contacts
-
-        * `template` - Template
-
-        * `reaction` - Reaction
-
-        * `ephemeral` - Ephemeral
-
-        * `request_welcome` - Request Welcome'
-    PaginatedConversationReadSimpleList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationReadSimple'
-    MessageStatusEnum:
+        * `FLOW` - Flow'
+    ConversationStatusEnum:
       enum:
-      - new
-      - retry
-      - accepted
-      - sending
-      - sent
-      - receiving
-      - received
-      - delivered
-      - undelivered
-      - failed
-      - read
-      - deleted
+      - CREATED
+      - FLOW
+      - NEW
+      - IN_PROGRESS
+      - RESOLVED
+      - CLOSED
       type: string
-      description: '* `new` - New
+      description: '* `CREATED` - Created
 
-        * `retry` - Retry
+        * `FLOW` - Flow
 
-        * `accepted` - Accepted
+        * `NEW` - New
 
-        * `sending` - Sending
+        * `IN_PROGRESS` - In Progress
 
-        * `sent` - Sent
+        * `RESOLVED` - Resolved
 
-        * `receiving` - Receiving
-
-        * `received` - Received
-
-        * `delivered` - Delivered
-
-        * `undelivered` - Undelivered
-
-        * `failed` - Failed
-
-        * `read` - Read
-
-        * `deleted` - Deleted'
-    ConversationEdit:
+        * `CLOSED` - Closed'
+    ConversationReadSimple:
       type: object
       properties:
         id:
@@ -619,11 +593,17 @@ components:
           type: string
           format: uuid
         status:
-          $ref: '#/components/schemas/ConversationStatusEnum'
+          allOf:
+          - $ref: '#/components/schemas/ConversationStatusEnum'
+          readOnly: true
+        first_message:
+          allOf:
+          - $ref: '#/components/schemas/WhatsAppMessageSimple'
+          description: The first Message of the Conversation.
         assigned:
           type: array
           items:
-            $ref: '#/components/schemas/UserBasicEdit'
+            $ref: '#/components/schemas/UserSimple'
           description: The Users assigned to the Conversation.
         tags:
           type: array
@@ -650,28 +630,48 @@ components:
       - assigned
       - contact
       - created_on
+      - first_message
       - id
       - source
-    ConversationSourceEnum:
-      enum:
-      - INBOX
-      - AUTO_RESPONSE
-      - API
-      - BROADCAST
-      - FLOW
-      - UNKNOWN
-      type: string
-      description: '* `INBOX` - Inbox
-
-        * `AUTO_RESPONSE` - Auto Response
-
-        * `API` - Api
-
-        * `BROADCAST` - Broadcast
-
-        * `FLOW` - Flow
-
-        * `UNKNOWN` - Unknown'
+      - status
+    UserSimple:
+      type: object
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+          readOnly: true
+        last_name:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+          readOnly: true
+        account:
+          type:
+          - integer
+          - 'null'
+          readOnly: true
+        profile_image:
+          type:
+          - string
+          - 'null'
+          format: uri
+          readOnly: true
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - account
+      - date_joined
+      - email
+      - first_name
+      - id
+      - last_name
+      - profile_image
   securitySchemes:
     tokenAuth:
       type: apiKey

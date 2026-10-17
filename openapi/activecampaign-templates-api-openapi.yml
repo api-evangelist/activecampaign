@@ -4,117 +4,19 @@ info:
   x-refined-note:
   - x-generated-from differs across the merged source definitions and was not carried
   version: '1.0'
-  description: 'Operations tagged Templates across 2 of this provider''s published API definitions: activecampaign-v3.json, activecampaign-whatsapp-api-openapi.yml. Each path carries the servers of the definition it was published in.'
+  description: 'Operations tagged Templates across 2 of this provider''s published API definitions: activecampaign-whatsapp-api-openapi.yml, activecampaign-v3.json. Each path carries the servers of the definition it was published in.'
 servers:
+- url: https://{youraccountname}.api-us1.com/api/3
+  description: Production Server
 - url: https://{yourAccountName}.api-us1.com/api/3
   description: ActiveCampaign API server (account-specific)
   variables:
     yourAccountName:
       default: yourAccountName
       description: Your ActiveCampaign account name
-- url: https://{youraccountname}.api-us1.com/api/3
-  description: Production Server
 tags:
 - name: Templates
 paths:
-  /templates/{id}:
-    get:
-      summary: ActiveCampaign Retrieve a Template
-      description: ''
-      operationId: retrieve-a-template
-      parameters:
-      - name: id
-        in: path
-        description: ID of the template to retrieve
-        schema:
-          type: integer
-          format: int32
-        required: true
-      responses:
-        '200':
-          description: '200'
-          content:
-            application/json:
-              examples:
-                Result:
-                  value: "{\n    \"template\": {\n        \"userid\": \"1\",\n        \"ed_instanceid\": \"0\",\n        \"ed_version\": \"0\",\n        \"name\": \"Test 2\",\n        \"subject\": null,\n        \"content\": \"sdsf\",\n        \"categoryid\": \"1\",\n        \"used\": \"1\",\n        \"waitpreview\": \"1\",\n        \"importnum\": \"0\",\n        \"mdate\": \"2018-08-28 11:54:54\",\n        \"preview_content\": null,\n        \"modified\": \"1\",\n        \"hidden\": \"0\",\n        \"links\": [],\n        \"id\": \"2\"\n    }\n}"
-              schema:
-                type: object
-                properties:
-                  template:
-                    type: object
-                    properties:
-                      userid:
-                        type: string
-                        example: '1'
-                      ed_instanceid:
-                        type: string
-                        example: '0'
-                      ed_version:
-                        type: string
-                        example: '0'
-                      name:
-                        type: string
-                        example: Test 2
-                      subject: {}
-                      content:
-                        type: string
-                        example: sdsf
-                      categoryid:
-                        type: string
-                        example: '1'
-                      used:
-                        type: string
-                        example: '1'
-                      waitpreview:
-                        type: string
-                        example: '1'
-                      importnum:
-                        type: string
-                        example: '0'
-                      mdate:
-                        type: string
-                        example: '2018-08-28 11:54:54'
-                      preview_content: {}
-                      modified:
-                        type: string
-                        example: '1'
-                      hidden:
-                        type: string
-                        example: '0'
-                      links:
-                        type: array
-                      id:
-                        type: string
-                        example: '2'
-        '404':
-          description: '404'
-          content:
-            application/json:
-              examples:
-                Result:
-                  value: "{\n    \"message\": \"No Result found for Template with id 10\"\n}"
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: No Result found for Template with id 10
-      deprecated: false
-      tags:
-      - Templates
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
-      security:
-      - ApiToken: []
-    servers:
-    - url: https://{yourAccountName}.api-us1.com/api/3
-      description: ActiveCampaign API server (account-specific)
-      variables:
-        yourAccountName:
-          default: yourAccountName
-          description: Your ActiveCampaign account name
   /channel/whatsapp/channels/whatsapp/template:
     get:
       operationId: ListWhatsAppTemplates
@@ -408,110 +310,106 @@ paths:
     servers:
     - url: https://{youraccountname}.api-us1.com/api/3
       description: Production Server
+  /templates/{id}:
+    get:
+      summary: ActiveCampaign Retrieve a Template
+      description: ''
+      operationId: retrieve-a-template
+      parameters:
+      - name: id
+        in: path
+        description: ID of the template to retrieve
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"template\": {\n        \"userid\": \"1\",\n        \"ed_instanceid\": \"0\",\n        \"ed_version\": \"0\",\n        \"name\": \"Test 2\",\n        \"subject\": null,\n        \"content\": \"sdsf\",\n        \"categoryid\": \"1\",\n        \"used\": \"1\",\n        \"waitpreview\": \"1\",\n        \"importnum\": \"0\",\n        \"mdate\": \"2018-08-28 11:54:54\",\n        \"preview_content\": null,\n        \"modified\": \"1\",\n        \"hidden\": \"0\",\n        \"links\": [],\n        \"id\": \"2\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  template:
+                    type: object
+                    properties:
+                      userid:
+                        type: string
+                        example: '1'
+                      ed_instanceid:
+                        type: string
+                        example: '0'
+                      ed_version:
+                        type: string
+                        example: '0'
+                      name:
+                        type: string
+                        example: Test 2
+                      subject: {}
+                      content:
+                        type: string
+                        example: sdsf
+                      categoryid:
+                        type: string
+                        example: '1'
+                      used:
+                        type: string
+                        example: '1'
+                      waitpreview:
+                        type: string
+                        example: '1'
+                      importnum:
+                        type: string
+                        example: '0'
+                      mdate:
+                        type: string
+                        example: '2018-08-28 11:54:54'
+                      preview_content: {}
+                      modified:
+                        type: string
+                        example: '1'
+                      hidden:
+                        type: string
+                        example: '0'
+                      links:
+                        type: array
+                      id:
+                        type: string
+                        example: '2'
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No Result found for Template with id 10\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No Result found for Template with id 10
+      deprecated: false
+      tags:
+      - Templates
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      security:
+      - ApiToken: []
+    servers:
+    - url: https://{yourAccountName}.api-us1.com/api/3
+      description: ActiveCampaign API server (account-specific)
+      variables:
+        yourAccountName:
+          default: yourAccountName
+          description: Your ActiveCampaign account name
 components:
   schemas:
-    SimpleChannel:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        channel_type:
-          $ref: '#/components/schemas/ChannelTypeEnum'
-        name:
-          type: string
-          maxLength: 100
-        channel_id:
-          type: string
-          maxLength: 100
-        status:
-          $ref: '#/components/schemas/ChannelStatusEnum'
-        created_on:
-          type: string
-          format: date-time
-          title: Creado el
-        channel_provider:
-          $ref: '#/components/schemas/ChannelProviderEnum'
-        is_sandbox:
-          type: boolean
-      required:
-      - channel_id
-      - id
-    CategoryEnum:
-      enum:
-      - ACCOUNT_UPDATE
-      - PAYMENT_UPDATE
-      - PERSONAL_FINANCE_UPDATE
-      - SHIPPING_UPDATE
-      - RESERVATION_UPDATE
-      - ISSUE_RESOLUTION
-      - APPOINTMENT_UPDATE
-      - TRANSPORTATION_UPDATE
-      - TICKET_UPDATE
-      - ALERT_UPDATE
-      - AUTO_REPLY
-      - TRANSACTIONAL
-      - MARKETING
-      - OTP
-      - AUTHENTICATION
-      - UTILITY
-      type: string
-      description: '* `ACCOUNT_UPDATE` - Account Update
-
-        * `PAYMENT_UPDATE` - Payment Update
-
-        * `PERSONAL_FINANCE_UPDATE` - Personal Finance Update
-
-        * `SHIPPING_UPDATE` - Shipping Update
-
-        * `RESERVATION_UPDATE` - Reservation Update
-
-        * `ISSUE_RESOLUTION` - Issue Resolution
-
-        * `APPOINTMENT_UPDATE` - Appointment Update
-
-        * `TRANSPORTATION_UPDATE` - Transportation Update
-
-        * `TICKET_UPDATE` - Ticket Update
-
-        * `ALERT_UPDATE` - Alert Update
-
-        * `AUTO_REPLY` - Auto Reply
-
-        * `TRANSACTIONAL` - Transactional
-
-        * `MARKETING` - Marketing
-
-        * `OTP` - Otp
-
-        * `AUTHENTICATION` - Authentication
-
-        * `UTILITY` - Utility'
-    PaginatedWhatsAppTemplateSimpleReadList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/WhatsAppTemplateSimpleRead'
     WhatsAppTemplateSimpleRead:
       type: object
       properties:
@@ -548,34 +446,138 @@ components:
       - id
       - language
       - name
-    WhatsAppTemplateSendPublicResponse:
+    SimpleChannel:
       type: object
       properties:
         id:
+          type: integer
+          readOnly: true
+        channel_type:
+          $ref: '#/components/schemas/ChannelTypeEnum'
+        name:
           type: string
-          format: uuid
-          description: Message Id
-        conversation:
+          maxLength: 100
+        channel_id:
           type: string
-          format: uuid
-          description: Message Conversation Id
+          maxLength: 100
+        status:
+          $ref: '#/components/schemas/ChannelStatusEnum'
+        created_on:
+          type: string
+          format: date-time
+          title: Creado el
+        channel_provider:
+          $ref: '#/components/schemas/ChannelProviderEnum'
+        is_sandbox:
+          type: boolean
       required:
-      - conversation
+      - channel_id
       - id
-    ChannelProviderEnum:
+    ChannelTypeEnum:
       enum:
-      - META_CLOUD_API
-      - TECH_PROVIDER_CLOUD_API
-      - D360_CLOUD_API
-      - 360DIALOG
+      - WHATSAPP
+      - EMAIL
+      - INSTAGRAM
+      - FB_MESSENGER
+      - TELEGRAM
+      - SMS
+      - VOICE
       type: string
-      description: '* `META_CLOUD_API` - Meta Cloud Api
+      description: '* `WHATSAPP` - Whatsapp
 
-        * `TECH_PROVIDER_CLOUD_API` - Tech Provider Cloud Api
+        * `EMAIL` - Email
 
-        * `D360_CLOUD_API` - D360 Cloud Api
+        * `INSTAGRAM` - Instagram
 
-        * `360DIALOG` - Dialog360'
+        * `FB_MESSENGER` - Fb Messenger
+
+        * `TELEGRAM` - Telegram
+
+        * `SMS` - Sms
+
+        * `VOICE` - Voice'
+    WhatsAppTemplateRead:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 120
+        language:
+          $ref: '#/components/schemas/LanguageEnum'
+        components: {}
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          description: The UUID of the WhatsApp Template to be sent.
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        status:
+          $ref: '#/components/schemas/WhatsAppTemplateStatusEnum'
+        rejected_reason:
+          type:
+          - string
+          - 'null'
+        is_deleted:
+          type: boolean
+        channel:
+          allOf:
+          - $ref: '#/components/schemas/SimpleChannel'
+          readOnly: true
+          description: The ID of the WhatsApp Channel that the WhatsApp Template is for.
+        is_sample:
+          type: boolean
+        show_in_sandbox:
+          type: boolean
+      required:
+      - category
+      - channel
+      - id
+      - language
+      - name
+    WhatsAppTemplateSend:
+      type: object
+      properties:
+        variables:
+          type: array
+          items:
+            type: string
+          description: An array of variables to be used in the WhatsApp Template. Variables are taken in order HEADER, BODY and BUTTONs. (e.g. position 0 corresponds to the HEADER (if it exists) or variable {{1}}, position 1 to variable {{2}} and so on.
+        phone:
+          type: string
+          description: The phone number to send the WhatsApp Template to.
+          maxLength: 20
+      required:
+      - phone
+    WhatsAppTemplateStatusEnum:
+      enum:
+      - draft
+      - approved
+      - in_appeal
+      - pending
+      - rejected
+      - pending_deletion
+      - deleted
+      - disabled
+      - submitted
+      type: string
+      description: '* `draft` - Draft
+
+        * `approved` - Approved
+
+        * `in_appeal` - In Appeal
+
+        * `pending` - Pending
+
+        * `rejected` - Rejected
+
+        * `pending_deletion` - Pending Deletion
+
+        * `deleted` - Deleted
+
+        * `disabled` - Disabled
+
+        * `submitted` - Submitted'
     ChannelStatusEnum:
       enum:
       - NEW
@@ -802,112 +804,115 @@ components:
         * `vi` - Vietnamese
 
         * `zu` - Zulu'
-    WhatsAppTemplateStatusEnum:
+    CategoryEnum:
       enum:
-      - draft
-      - approved
-      - in_appeal
-      - pending
-      - rejected
-      - pending_deletion
-      - deleted
-      - disabled
-      - submitted
+      - ACCOUNT_UPDATE
+      - PAYMENT_UPDATE
+      - PERSONAL_FINANCE_UPDATE
+      - SHIPPING_UPDATE
+      - RESERVATION_UPDATE
+      - ISSUE_RESOLUTION
+      - APPOINTMENT_UPDATE
+      - TRANSPORTATION_UPDATE
+      - TICKET_UPDATE
+      - ALERT_UPDATE
+      - AUTO_REPLY
+      - TRANSACTIONAL
+      - MARKETING
+      - OTP
+      - AUTHENTICATION
+      - UTILITY
       type: string
-      description: '* `draft` - Draft
+      description: '* `ACCOUNT_UPDATE` - Account Update
 
-        * `approved` - Approved
+        * `PAYMENT_UPDATE` - Payment Update
 
-        * `in_appeal` - In Appeal
+        * `PERSONAL_FINANCE_UPDATE` - Personal Finance Update
 
-        * `pending` - Pending
+        * `SHIPPING_UPDATE` - Shipping Update
 
-        * `rejected` - Rejected
+        * `RESERVATION_UPDATE` - Reservation Update
 
-        * `pending_deletion` - Pending Deletion
+        * `ISSUE_RESOLUTION` - Issue Resolution
 
-        * `deleted` - Deleted
+        * `APPOINTMENT_UPDATE` - Appointment Update
 
-        * `disabled` - Disabled
+        * `TRANSPORTATION_UPDATE` - Transportation Update
 
-        * `submitted` - Submitted'
-    ChannelTypeEnum:
-      enum:
-      - WHATSAPP
-      - EMAIL
-      - INSTAGRAM
-      - FB_MESSENGER
-      - TELEGRAM
-      - SMS
-      - VOICE
-      type: string
-      description: '* `WHATSAPP` - Whatsapp
+        * `TICKET_UPDATE` - Ticket Update
 
-        * `EMAIL` - Email
+        * `ALERT_UPDATE` - Alert Update
 
-        * `INSTAGRAM` - Instagram
+        * `AUTO_REPLY` - Auto Reply
 
-        * `FB_MESSENGER` - Fb Messenger
+        * `TRANSACTIONAL` - Transactional
 
-        * `TELEGRAM` - Telegram
+        * `MARKETING` - Marketing
 
-        * `SMS` - Sms
+        * `OTP` - Otp
 
-        * `VOICE` - Voice'
-    WhatsAppTemplateRead:
+        * `AUTHENTICATION` - Authentication
+
+        * `UTILITY` - Utility'
+    WhatsAppTemplateSendPublicResponse:
       type: object
       properties:
-        name:
-          type: string
-          maxLength: 120
-        language:
-          $ref: '#/components/schemas/LanguageEnum'
-        components: {}
         id:
           type: string
           format: uuid
-          readOnly: true
-          description: The UUID of the WhatsApp Template to be sent.
-        category:
-          $ref: '#/components/schemas/CategoryEnum'
-        status:
-          $ref: '#/components/schemas/WhatsAppTemplateStatusEnum'
-        rejected_reason:
+          description: Message Id
+        conversation:
+          type: string
+          format: uuid
+          description: Message Conversation Id
+      required:
+      - conversation
+      - id
+    ChannelProviderEnum:
+      enum:
+      - META_CLOUD_API
+      - TECH_PROVIDER_CLOUD_API
+      - D360_CLOUD_API
+      - 360DIALOG
+      type: string
+      description: '* `META_CLOUD_API` - Meta Cloud Api
+
+        * `TECH_PROVIDER_CLOUD_API` - Tech Provider Cloud Api
+
+        * `D360_CLOUD_API` - D360 Cloud Api
+
+        * `360DIALOG` - Dialog360'
+    PaginatedWhatsAppTemplateSimpleReadList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
           type:
           - string
           - 'null'
-        is_deleted:
-          type: boolean
-        channel:
-          allOf:
-          - $ref: '#/components/schemas/SimpleChannel'
-          readOnly: true
-          description: The ID of the WhatsApp Channel that the WhatsApp Template is for.
-        is_sample:
-          type: boolean
-        show_in_sandbox:
-          type: boolean
-      required:
-      - category
-      - channel
-      - id
-      - language
-      - name
-    WhatsAppTemplateSend:
-      type: object
-      properties:
-        variables:
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
           type: array
           items:
-            type: string
-          description: An array of variables to be used in the WhatsApp Template. Variables are taken in order HEADER, BODY and BUTTONs. (e.g. position 0 corresponds to the HEADER (if it exists) or variable {{1}}, position 1 to variable {{2}} and so on.
-        phone:
-          type: string
-          description: The phone number to send the WhatsApp Template to.
-          maxLength: 20
-      required:
-      - phone
+            $ref: '#/components/schemas/WhatsAppTemplateSimpleRead'
   securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Token
+      description: Token-based authentication with required prefix "Token"
     sec0:
       type: apiKey
       name: Api-Token
@@ -918,11 +923,6 @@ components:
       in: header
       name: Api-Token
       description: Your ActiveCampaign API token found in account settings under Developer tab
-    tokenAuth:
-      type: apiKey
-      in: header
-      name: Token
-      description: Token-based authentication with required prefix "Token"
 x-refined-from:
-- activecampaign-v3.json
 - activecampaign-whatsapp-api-openapi.yml
+- activecampaign-v3.json

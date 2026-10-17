@@ -271,21 +271,73 @@ components:
           type: integer
       type: object
       additionalProperties: false
-    ProductEntitlementLimitDto:
+    ProductDto:
+      title: ChildAccountsProduct
+      required:
+      - code
+      - tier
+      - entitlements
       properties:
-        included_units:
-          type: integer
-          default: 0
-        purchased_units:
-          type: integer
-          default: 0
-        period:
+        addon:
+          type:
+          - boolean
+          - 'null'
+        code:
+          type: string
+          example: ac
+        tier:
+          type: string
+          example: basic
+        name:
           type:
           - string
           - 'null'
-          default: null
+        version:
+          type:
+          - integer
+          - 'null'
+        entitlements:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductEntitlementDto'
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/ProductEntitlementDto'
+      type: object
+      example:
+        addon: null
+        code: ac
+        tier: basic
+        name: null
+        version: null
+        entitlements: []
+      additionalProperties: false
+    ProductEntitlementDto:
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        limit:
+          oneOf:
+          - $ref: '#/components/schemas/ProductEntitlementLimitDto'
+          type:
+          - object
+          - 'null'
+        pricing:
+          oneOf:
+          - $ref: '#/components/schemas/ProductEntitlementPricingDto'
+          type:
+          - object
+          - 'null'
       type: object
       additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
     ListAccountForSnapshotResponse:
       required:
       - accounts
@@ -297,11 +349,59 @@ components:
             $ref: '#/components/schemas/AccountForSnapshotResponse'
       type: object
       additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
+    ProductEntitlementPricingDto:
+      required:
+      - recurring
+      - subtotal
+      properties:
+        recurring:
+          type: boolean
+        subtotal:
+          type: integer
+      type: object
+      additionalProperties: false
+    ChildAccountListResponse:
+      required:
+      - hosted_accounts
+      - pagination
+      properties:
+        hosted_accounts:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ChildAccountResponse'
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/ChildAccountResponse'
+        pagination:
+          $ref: '#/components/schemas/ChildAccountsPaginationMetadata'
+      type: object
+      additionalProperties: false
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
     ApiErrorResponse:
       required:
       - type
@@ -332,6 +432,63 @@ components:
               $ref: '#/components/schemas/ApiViolation'
       type: object
       additionalProperties: true
+    ChildAccountResponse:
+      required:
+      - id
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        reseller_id:
+          type:
+          - integer
+          - 'null'
+        account_name:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
+    AccountForSnapshotResponse:
+      required:
+      - id
+      - account_name
+      - email
+      properties:
+        id:
+          type: integer
+          example: 1
+        account_name:
+          type: string
+          example: My active sandbox account
+        email:
+          type: string
+          format: email
+          example: user@example.com
+      type: object
+      additionalProperties: false
+    ProductEntitlementLimitDto:
+      properties:
+        included_units:
+          type: integer
+          default: 0
+        purchased_units:
+          type: integer
+          default: 0
+        period:
+          type:
+          - string
+          - 'null'
+          default: null
+      type: object
+      additionalProperties: false
     CreateAccountRequestDto:
       title: Create Account Request
       required:
@@ -417,163 +574,6 @@ components:
           - 'null'
           default: null
           example: 123
-      type: object
-      additionalProperties: false
-    AccountForSnapshotResponse:
-      required:
-      - id
-      - account_name
-      - email
-      properties:
-        id:
-          type: integer
-          example: 1
-        account_name:
-          type: string
-          example: My active sandbox account
-        email:
-          type: string
-          format: email
-          example: user@example.com
-      type: object
-      additionalProperties: false
-    ProductDto:
-      title: ChildAccountsProduct
-      required:
-      - code
-      - tier
-      - entitlements
-      properties:
-        addon:
-          type:
-          - boolean
-          - 'null'
-        code:
-          type: string
-          example: ac
-        tier:
-          type: string
-          example: basic
-        name:
-          type:
-          - string
-          - 'null'
-        version:
-          type:
-          - integer
-          - 'null'
-        entitlements:
-          oneOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/ProductEntitlementDto'
-          - type: object
-            additionalProperties:
-              $ref: '#/components/schemas/ProductEntitlementDto'
-      type: object
-      example:
-        addon: null
-        code: ac
-        tier: basic
-        name: null
-        version: null
-        entitlements: []
-      additionalProperties: false
-    ProductEntitlementDto:
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-        limit:
-          oneOf:
-          - $ref: '#/components/schemas/ProductEntitlementLimitDto'
-          type:
-          - object
-          - 'null'
-        pricing:
-          oneOf:
-          - $ref: '#/components/schemas/ProductEntitlementPricingDto'
-          type:
-          - object
-          - 'null'
-      type: object
-      additionalProperties: false
-    ApiViolation:
-      required:
-      - propertyPath
-      - title
-      - template
-      - parameters
-      properties:
-        propertyPath:
-          type: string
-        title:
-          type: string
-        template:
-          type: string
-        parameters:
-          oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
-          - type: object
-            additionalProperties:
-              type: string
-      type: object
-      additionalProperties: true
-    ChildAccountListResponse:
-      required:
-      - hosted_accounts
-      - pagination
-      properties:
-        hosted_accounts:
-          oneOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/ChildAccountResponse'
-          - type: object
-            additionalProperties:
-              $ref: '#/components/schemas/ChildAccountResponse'
-        pagination:
-          $ref: '#/components/schemas/ChildAccountsPaginationMetadata'
-      type: object
-      additionalProperties: false
-    ProductEntitlementPricingDto:
-      required:
-      - recurring
-      - subtotal
-      properties:
-        recurring:
-          type: boolean
-        subtotal:
-          type: integer
-      type: object
-      additionalProperties: false
-    ChildAccountResponse:
-      required:
-      - id
-      - created_at
-      - updated_at
-      properties:
-        id:
-          type: integer
-        reseller_id:
-          type:
-          - integer
-          - 'null'
-        account_name:
-          type:
-          - string
-          - 'null'
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
       type: object
       additionalProperties: false
   securitySchemes:

@@ -242,6 +242,18 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    BroadcastListsResponse:
+      type: object
+      properties:
+        lists:
+          type: array
+          items:
+            $ref: '#/components/schemas/BroadcastList'
+        meta:
+          type: object
+          properties:
+            total:
+              type: integer
     BroadcastUpdateRequest:
       type: object
       properties:
@@ -417,40 +429,6 @@ components:
           items:
             type: integer
           description: Associated label IDs
-    BroadcastList:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        subscriber_count:
-          type: integer
-    BroadcastListsResponse:
-      type: object
-      properties:
-        lists:
-          type: array
-          items:
-            $ref: '#/components/schemas/BroadcastList'
-        meta:
-          type: object
-          properties:
-            total:
-              type: integer
-    BroadcastListResponse:
-      type: object
-      properties:
-        broadcasts:
-          type: array
-          items:
-            $ref: '#/components/schemas/BroadcastMessage'
-        meta:
-          type: object
-          properties:
-            total:
-              type: integer
-              description: Total number of broadcasts
     BroadcastCreateRequest:
       type: object
       required:
@@ -504,6 +482,28 @@ components:
           type: array
           items:
             type: integer
+    BroadcastList:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        subscriber_count:
+          type: integer
+    BroadcastListResponse:
+      type: object
+      properties:
+        broadcasts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BroadcastMessage'
+        meta:
+          type: object
+          properties:
+            total:
+              type: integer
+              description: Total number of broadcasts
   securitySchemes:
     ApiToken:
       type: apiKey

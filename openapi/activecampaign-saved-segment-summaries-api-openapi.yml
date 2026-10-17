@@ -126,58 +126,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    ErrorSourceDO:
-      title: ErrorSourceDO
-      type: object
-      properties:
-        pointer:
-          type: string
-    SegmentSummaryCountDO:
-      title: Segment counts totals object
-      type: object
-      properties:
-        count:
-          type: number
-          readOnly: false
-          example: 1500
-        last_total_updated:
-          type: string
-          readOnly: false
-          description: Time that this last total count was requested to be updated
-          format: date-time
-          example: '2024-01-30T14:56:02.952Z'
-        run_id:
-          type: string
-          readOnly: false
-          example: 744390a5-208e-4c3d-b709-b3c3ea6e5948
-        run_id_start:
-          type: string
-          readOnly: false
-          description: Time that this start time of the last run in UTC
-          format: date-time
-          example: '2024-01-30T15:56:02.952Z'
-        run_id_end:
-          type: string
-          readOnly: false
-          description: Time that this end time of the last run in UTC
-          format: date-time
-          example: '2024-01-30T15:56:04.952Z'
-    SegmentSummaryCountsDO:
-      title: Segment summary counts object containing all counts
-      type: object
-      properties:
-        last_total:
-          $ref: '#/components/schemas/SegmentSummaryCountDO'
-        last_active_total:
-          $ref: '#/components/schemas/SegmentSummaryCountDO'
-    SegmentSummarySuccessRootDO:
-      title: Segment Summary RootDO
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SegmentSummaryDataDO'
     SegmentSummaryErrorRootDO:
       title: Segment Summary RootDO
       type: object
@@ -199,6 +147,30 @@ components:
         status:
           type: string
         title:
+          type: string
+    SegmentSummaryDataDO:
+      title: Segment Summary DataDO
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SegmentSummaryDO'
+        id:
+          type: string
+        type:
+          type: string
+    SegmentSummaryCountsDO:
+      title: Segment summary counts object containing all counts
+      type: object
+      properties:
+        last_total:
+          $ref: '#/components/schemas/SegmentSummaryCountDO'
+        last_active_total:
+          $ref: '#/components/schemas/SegmentSummaryCountDO'
+    ErrorSourceDO:
+      title: ErrorSourceDO
+      type: object
+      properties:
+        pointer:
           type: string
     SegmentSummaryDO:
       title: Segment SummaryDO
@@ -234,16 +206,44 @@ components:
           readOnly: true
           format: date-time
           example: '2025-07-13T14:56:02.952Z'
-    SegmentSummaryDataDO:
-      title: Segment Summary DataDO
+    SegmentSummaryCountDO:
+      title: Segment counts totals object
       type: object
       properties:
-        attributes:
-          $ref: '#/components/schemas/SegmentSummaryDO'
-        id:
+        count:
+          type: number
+          readOnly: false
+          example: 1500
+        last_total_updated:
           type: string
-        type:
+          readOnly: false
+          description: Time that this last total count was requested to be updated
+          format: date-time
+          example: '2024-01-30T14:56:02.952Z'
+        run_id:
           type: string
+          readOnly: false
+          example: 744390a5-208e-4c3d-b709-b3c3ea6e5948
+        run_id_start:
+          type: string
+          readOnly: false
+          description: Time that this start time of the last run in UTC
+          format: date-time
+          example: '2024-01-30T15:56:02.952Z'
+        run_id_end:
+          type: string
+          readOnly: false
+          description: Time that this end time of the last run in UTC
+          format: date-time
+          example: '2024-01-30T15:56:04.952Z'
+    SegmentSummarySuccessRootDO:
+      title: Segment Summary RootDO
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentSummaryDataDO'
   securitySchemes:
     Api_Key:
       type: apiKey

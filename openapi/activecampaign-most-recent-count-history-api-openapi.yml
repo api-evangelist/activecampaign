@@ -50,12 +50,6 @@ paths:
           description: Forbidden
 components:
   schemas:
-    ErrorSourceDO:
-      title: ErrorSourceDO
-      type: object
-      properties:
-        pointer:
-          type: string
     SegmentCountHistoryResponseRootDO:
       title: SegmentCountHistoryResponseRootDO
       type: object
@@ -64,27 +58,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SegmentCountHistoryDataDO'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetailDO'
-    SegmentCountHistoryDataDO:
-      title: SegmentCountHistoryDataDO
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/SegmentCountHistoryAttributeDO'
-        id:
-          type: string
-          description: Epoch timestamp the count was recorded at
-        type:
-          type: string
-          enum:
-          - SegmentCountHistory
-    ErrorResponseRootDO:
-      title: ErrorResponseRootDO
-      type: object
-      properties:
         errors:
           type: array
           items:
@@ -103,6 +76,33 @@ components:
           type: string
         title:
           type: string
+    ErrorResponseRootDO:
+      title: ErrorResponseRootDO
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetailDO'
+    ErrorSourceDO:
+      title: ErrorSourceDO
+      type: object
+      properties:
+        pointer:
+          type: string
+    SegmentCountHistoryDataDO:
+      title: SegmentCountHistoryDataDO
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SegmentCountHistoryAttributeDO'
+        id:
+          type: string
+          description: Epoch timestamp the count was recorded at
+        type:
+          type: string
+          enum:
+          - SegmentCountHistory
     SegmentCountHistoryAttributeDO:
       title: SegmentCountHistoryAttributeDO
       required:

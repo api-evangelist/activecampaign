@@ -118,6 +118,78 @@ paths:
       deprecated: false
 components:
   schemas:
+    MatchDataDO:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/MatchAttributeDO'
+        id:
+          type: string
+          description: Id that identifies the request. Consists of SegmentId + ContactId
+          example: 1ab85f0e-3b5c-4a35-bc07-242c68a7d195132
+        type:
+          type: string
+          enum:
+          - match
+      title: MatchDataDO
+    ErrorDetail400:
+      type: object
+      properties:
+        status:
+          type: string
+          example: 400 BAD_REQUEST
+        title:
+          type: string
+          example: Segment 1ab85f0e-3b5c-4a35-bc07-242c68a7d000 is invalid
+        detail:
+          type: string
+        code:
+          type: string
+      title: ErrorDetail
+    ErrorDetail:
+      type: object
+      properties:
+        status:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+        code:
+          type: string
+      title: ErrorDetail
+    ErrorResponse400RootDO:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail400'
+      title: ErrorResponse400RootDO
+    ErrorResponse404RootDO:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail404'
+      title: ErrorResponse404RootDO
+    ErrorResponseRootDO:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+      title: ErrorResponseRootDO
+    MatchResponseRootDO:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchDataDO'
+      title: MatchResponseRootDO
     MatchAttributeDO:
       type: object
       properties:
@@ -141,78 +213,6 @@ components:
           format: date-time
           example: '2025-04-12T23:20:50.523Z'
       title: MatchAttributeDO
-    ErrorResponse404RootDO:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail404'
-      title: ErrorResponse404RootDO
-    MatchDataDO:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/MatchAttributeDO'
-        id:
-          type: string
-          description: Id that identifies the request. Consists of SegmentId + ContactId
-          example: 1ab85f0e-3b5c-4a35-bc07-242c68a7d195132
-        type:
-          type: string
-          enum:
-          - match
-      title: MatchDataDO
-    MatchResponseRootDO:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MatchDataDO'
-      title: MatchResponseRootDO
-    ErrorResponse400RootDO:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail400'
-      title: ErrorResponse400RootDO
-    ErrorDetail400:
-      type: object
-      properties:
-        status:
-          type: string
-          example: 400 BAD_REQUEST
-        title:
-          type: string
-          example: Segment 1ab85f0e-3b5c-4a35-bc07-242c68a7d000 is invalid
-        detail:
-          type: string
-        code:
-          type: string
-      title: ErrorDetail
-    ErrorResponseRootDO:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-      title: ErrorResponseRootDO
-    ErrorDetail:
-      type: object
-      properties:
-        status:
-          type: string
-        title:
-          type: string
-        detail:
-          type: string
-        code:
-          type: string
-      title: ErrorDetail
     ErrorDetail404:
       type: object
       properties:

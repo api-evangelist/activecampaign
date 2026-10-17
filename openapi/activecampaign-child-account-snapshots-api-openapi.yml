@@ -264,15 +264,38 @@ paths:
       - PartnerJwtBearerAuth: []
 components:
   schemas:
-    AM2CreateSnapshotRequest:
+    AccountCloningStatusListResponse:
       required:
-      - account_id
-      - name
+      - items
+      - pagination
       properties:
-        account_id:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountCloningStatusResponse'
+        pagination:
+          $ref: '#/components/schemas/AccountCloningStatusListPagination'
+      type: object
+      additionalProperties: false
+    AccountCloningStatusListPagination:
+      required:
+      - total
+      - page
+      - per_page
+      - total_pages
+      properties:
+        total:
           type: integer
-        name:
-          type: string
+          example: 100
+        page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 20
+        total_pages:
+          type: integer
+          example: 5
       type: object
       additionalProperties: false
     UnauthorizedResponse:
@@ -296,6 +319,31 @@ components:
           type: string
       type: object
       additionalProperties: false
+    ApiViolation:
+      required:
+      - propertyPath
+      - title
+      - template
+      - parameters
+      properties:
+        propertyPath:
+          type: string
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
+      type: object
+      additionalProperties: true
     ApiErrorResponse:
       required:
       - type
@@ -324,118 +372,6 @@ components:
             - 'null'
             additionalProperties:
               $ref: '#/components/schemas/ApiViolation'
-      type: object
-      additionalProperties: true
-    AM2SnapshotResponse:
-      required:
-      - id
-      - source_account_id
-      - status
-      - name
-      - created_at
-      properties:
-        id:
-          type: integer
-          example: 1
-        source_account_id:
-          type: integer
-          example: 123
-        status:
-          description: Snapshot status from the external AM2 system.
-          type: string
-          enum:
-          - failed
-          - success
-          - cancelled
-          - in_progress
-          example: in_progress
-        creation_status:
-          description: Internal snapshot creation status stored in our system. Possible values from CreateSnapshotStatusEnum. Fallbacks to "unknown" when no status is found.
-          type:
-          - string
-          - 'null'
-          enum:
-          - failed
-          - success
-          - cancelled
-          - in_progress
-          - initialized
-          - unknown
-          example: in_progress
-        name:
-          type: string
-          example: Backup before migration
-        created_at:
-          description: When the snapshot was created. ISO 8601 date-time format (e.g. 2024-01-01T00:00:00+00:00).
-          type: string
-          format: date-time
-          example: '2024-01-01T00:00:00+00:00'
-        completed_at:
-          description: When the snapshot was completed. ISO 8601 date-time format (e.g. 2024-01-01T00:00:00+00:00). Null when not yet completed.
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2024-01-01T12:00:00+00:00'
-      type: object
-      additionalProperties: false
-    AccountCloningStatusListPagination:
-      required:
-      - total
-      - page
-      - per_page
-      - total_pages
-      properties:
-        total:
-          type: integer
-          example: 100
-        page:
-          type: integer
-          example: 1
-        per_page:
-          type: integer
-          example: 20
-        total_pages:
-          type: integer
-          example: 5
-      type: object
-      additionalProperties: false
-    AccountCloningStatusListResponse:
-      required:
-      - items
-      - pagination
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountCloningStatusResponse'
-        pagination:
-          $ref: '#/components/schemas/AccountCloningStatusListPagination'
-      type: object
-      additionalProperties: false
-    ApiViolation:
-      required:
-      - propertyPath
-      - title
-      - template
-      - parameters
-      properties:
-        propertyPath:
-          type: string
-        title:
-          type: string
-        template:
-          type: string
-        parameters:
-          oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
-          - type: object
-            additionalProperties:
-              type: string
       type: object
       additionalProperties: true
     AccountCloningStatusResponse:
@@ -499,6 +435,70 @@ components:
           - integer
           - 'null'
           example: 5
+      type: object
+      additionalProperties: false
+    AM2SnapshotResponse:
+      required:
+      - id
+      - source_account_id
+      - status
+      - name
+      - created_at
+      properties:
+        id:
+          type: integer
+          example: 1
+        source_account_id:
+          type: integer
+          example: 123
+        status:
+          description: Snapshot status from the external AM2 system.
+          type: string
+          enum:
+          - failed
+          - success
+          - cancelled
+          - in_progress
+          example: in_progress
+        creation_status:
+          description: Internal snapshot creation status stored in our system. Possible values from CreateSnapshotStatusEnum. Fallbacks to "unknown" when no status is found.
+          type:
+          - string
+          - 'null'
+          enum:
+          - failed
+          - success
+          - cancelled
+          - in_progress
+          - initialized
+          - unknown
+          example: in_progress
+        name:
+          type: string
+          example: Backup before migration
+        created_at:
+          description: When the snapshot was created. ISO 8601 date-time format (e.g. 2024-01-01T00:00:00+00:00).
+          type: string
+          format: date-time
+          example: '2024-01-01T00:00:00+00:00'
+        completed_at:
+          description: When the snapshot was completed. ISO 8601 date-time format (e.g. 2024-01-01T00:00:00+00:00). Null when not yet completed.
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2024-01-01T12:00:00+00:00'
+      type: object
+      additionalProperties: false
+    AM2CreateSnapshotRequest:
+      required:
+      - account_id
+      - name
+      properties:
+        account_id:
+          type: integer
+        name:
+          type: string
       type: object
       additionalProperties: false
   securitySchemes:

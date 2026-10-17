@@ -156,6 +156,22 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    RecipientsResponse:
+      type: object
+      properties:
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipient'
+        meta:
+          type: object
+          properties:
+            total:
+              type: integer
+            limit:
+              type: integer
+            offset:
+              type: integer
     Recipient:
       type: object
       properties:
@@ -203,22 +219,6 @@ components:
               enum:
               - ac
               - twilio
-    RecipientsResponse:
-      type: object
-      properties:
-        recipients:
-          type: array
-          items:
-            $ref: '#/components/schemas/Recipient'
-        meta:
-          type: object
-          properties:
-            total:
-              type: integer
-            limit:
-              type: integer
-            offset:
-              type: integer
   securitySchemes:
     ApiToken:
       type: apiKey

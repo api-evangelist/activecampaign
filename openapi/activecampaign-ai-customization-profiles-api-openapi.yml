@@ -463,26 +463,23 @@ paths:
       summary: Assign child accounts to a profile
 components:
   schemas:
-    ChildAccountProfileResponse:
+    CreateProfileResponse:
       required:
       - id
-      - reseller_id
-      - name
-      - created_at
-      - updated_at
       properties:
         id:
           type: integer
-        reseller_id:
-          type: integer
+      type: object
+      additionalProperties: false
+    CreateProfileRequest:
+      required:
+      - name
+      properties:
         name:
           type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
+          maxLength: 255
+          minLength: 1
+          example: Gyms
       type: object
       additionalProperties: false
     ChildAccountData:
@@ -509,11 +506,28 @@ components:
           format: date-time
       type: object
       additionalProperties: false
-    UnauthorizedResponse:
-      description: Unauthorized
-      example:
-        error: Unauthorized
-        message: Invalid credentials
+    ChildAccountProfileResponse:
+      required:
+      - id
+      - reseller_id
+      - name
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+        reseller_id:
+          type: integer
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
     UpdateProfileRequest:
       required:
       - name
@@ -525,20 +539,11 @@ components:
           example: Gyms and fitness centers
       type: object
       additionalProperties: false
-    ProfileListResponse:
-      required:
-      - profiles
-      properties:
-        profiles:
-          oneOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/ProfileResponse'
-          - type: object
-            additionalProperties:
-              $ref: '#/components/schemas/ProfileResponse'
-      type: object
-      additionalProperties: false
+    UnauthorizedResponse:
+      description: Unauthorized
+      example:
+        error: Unauthorized
+        message: Invalid credentials
     AssignAccountsToProfileRequest:
       description: You cannot provide non-empty accountIds and set assignToAllAccounts to true at the same time.
       properties:
@@ -579,31 +584,20 @@ components:
             type: boolean
         additionalProperties: false
       additionalProperties: false
-    ApiViolation:
+    ProfileListResponse:
       required:
-      - propertyPath
-      - title
-      - template
-      - parameters
+      - profiles
       properties:
-        propertyPath:
-          type: string
-        title:
-          type: string
-        template:
-          type: string
-        parameters:
+        profiles:
           oneOf:
-          - oneOf:
-            - type: array
-              items: {}
-            - type: object
-              additionalProperties: {}
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProfileResponse'
           - type: object
             additionalProperties:
-              type: string
+              $ref: '#/components/schemas/ProfileResponse'
       type: object
-      additionalProperties: true
+      additionalProperties: false
     ProfileResponse:
       required:
       - id
@@ -642,25 +636,31 @@ components:
               $ref: '#/components/schemas/ChildAccountData'
       type: object
       additionalProperties: false
-    CreateProfileResponse:
+    ApiViolation:
       required:
-      - id
+      - propertyPath
+      - title
+      - template
+      - parameters
       properties:
-        id:
-          type: integer
-      type: object
-      additionalProperties: false
-    CreateProfileRequest:
-      required:
-      - name
-      properties:
-        name:
+        propertyPath:
           type: string
-          maxLength: 255
-          minLength: 1
-          example: Gyms
+        title:
+          type: string
+        template:
+          type: string
+        parameters:
+          oneOf:
+          - oneOf:
+            - type: array
+              items: {}
+            - type: object
+              additionalProperties: {}
+          - type: object
+            additionalProperties:
+              type: string
       type: object
-      additionalProperties: false
+      additionalProperties: true
     ApiErrorResponse:
       required:
       - type
