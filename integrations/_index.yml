@@ -554,7 +554,7 @@
     - connectors/applications/activecampaign
     vendor_link: https://www.activecampaign.com/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: activecampaign-meltano
   label: Meltano
@@ -589,7 +589,7 @@
     - silver
     - unknown
     builder: 'community (Meltano Hub variant maintainers: airbyte, bytecodeio, singer-io)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
 - slug: activecampaign-slack-own
   label: Slack (own)
