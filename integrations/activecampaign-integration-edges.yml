@@ -5,7 +5,9 @@ source:
 - https://n8n.io/integrations/activecampaign/
 checked:
 - https://a2aregistry.org/api/agents
+- https://api.nuget.org/v3
 - https://composio.dev/toolkits/activecampaign
+- https://crates.io/api/v1
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/activations/destinations/available-destinations/activecampaign
 - https://fivetran.com/docs/connectors/partner-built-program
@@ -14,6 +16,11 @@ checked:
 - https://hightouch.com/docs/destinations/active-campaign
 - https://monid.ai/tools/activecampaign
 - https://n8n.io/integrations/activecampaign/
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/activecampaign
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/activecampaign/integrations
@@ -1521,6 +1528,36 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Slack app
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/activecampaign
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: activecampaign
+      version: 1.2.5
+      released: '2026-07-14'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/activecampaign
+      repo_leg: shared-github-org:activecampaign
+      publisher_leg: email:activecampaign.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 templates:
 - title: Add or update ActiveCampaign contacts for new Acuity Scheduling appointments
   url: https://zapier.com/apps/activecampaign/integrations/acuity-scheduling/2045/add-or-update-activecampaign-contacts-for-new-acuity-scheduling-appointments
