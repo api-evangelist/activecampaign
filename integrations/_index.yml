@@ -15,6 +15,7 @@
   evidence: https://zapier.com/apps/activecampaign/integrations/acuity-scheduling/2045/add-or-update-activecampaign-contacts-for-new-acuity-scheduling-appointments
   template: https://zapier.com/apps/activecampaign/integrations/acuity-scheduling/2045/add-or-update-activecampaign-contacts-for-new-acuity-scheduling-appointments
   source: template
+  relationship: ipaas-bridge
   arazzo: activecampaign-acuity-scheduling-new-appointment-contact-sync.yml
   status: arazzo
 - slug: activecampaign-add-or-update-activecampaign-contacts-from-new-activity-in-clickfunnels-cla
@@ -29,6 +30,7 @@
   evidence: https://zapier.com/apps/activecampaign/integrations/clickfunnels-classic/16341/add-or-update-activecampaign-contacts-from-new-activity-in-clickfunnels-classic-contacts
   template: https://zapier.com/apps/activecampaign/integrations/clickfunnels-classic/16341/add-or-update-activecampaign-contacts-from-new-activity-in-clickfunnels-classic-contacts
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: activecampaign-add-subscribers-to-activecampaign-from-new-unbounce-submissions
@@ -43,6 +45,7 @@
   evidence: https://zapier.com/apps/activecampaign/integrations/unbounce/51/add-subscribers-to-activecampaign-from-new-unbounce-submissions
   template: https://zapier.com/apps/activecampaign/integrations/unbounce/51/add-subscribers-to-activecampaign-from-new-unbounce-submissions
   source: template
+  relationship: ipaas-bridge
   arazzo: activecampaign-unbounce-new-submission-subscriber.yml
   status: arazzo
 - slug: activecampaign-save-new-contacts-added-to-activecampaign-lists-to-google-ads-customer-list
@@ -57,6 +60,7 @@
   evidence: https://zapier.com/apps/activecampaign/integrations/google-ads/77984/save-new-contacts-added-to-activecampaign-lists-to-google-ads-customer-lists
   template: https://zapier.com/apps/activecampaign/integrations/google-ads/77984/save-new-contacts-added-to-activecampaign-lists-to-google-ads-customer-lists
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: activecampaign-add-or-update-activecampaign-contacts-with-new-facebook-lead-ads-leads
@@ -71,6 +75,7 @@
   evidence: https://zapier.com/apps/activecampaign/integrations/facebook-lead-ads/10148/add-or-update-activecampaign-contacts-with-new-facebook-lead-ads-leads
   template: https://zapier.com/apps/activecampaign/integrations/facebook-lead-ads/10148/add-or-update-activecampaign-contacts-with-new-facebook-lead-ads-leads
   source: template
+  relationship: ipaas-bridge
   arazzo: activecampaign-facebook-lead-ads-new-lead-contact-sync.yml
   status: arazzo
 - slug: activecampaign-add-new-teachable-students-to-activecampaign
@@ -85,6 +90,7 @@
   evidence: https://zapier.com/apps/activecampaign/integrations/teachable/13085/add-new-teachable-students-to-activecampaign
   template: https://zapier.com/apps/activecampaign/integrations/teachable/13085/add-new-teachable-students-to-activecampaign
   source: template
+  relationship: ipaas-bridge
   arazzo: activecampaign-teachable-new-student-contact.yml
   status: arazzo
 - slug: activecampaign-add-or-update-activecampaign-contacts-for-new-calendly-invitees
@@ -99,8 +105,10 @@
   evidence: https://zapier.com/apps/activecampaign/integrations/calendly/10120/add-or-update-activecampaign-contacts-for-new-calendly-invitees
   template: https://zapier.com/apps/activecampaign/integrations/calendly/10120/add-or-update-activecampaign-contacts-for-new-calendly-invitees
   source: template
+  relationship: ipaas-bridge
   arazzo: activecampaign-calendly-new-invitee-contact-sync.yml
-  status: arazzo
+  status: arazzo-broken
+  broken_reason: 'source url->missing local spec: https://raw.githubusercontent.com/api-evangelist/calendly/refs/heads/main/openapi/calendly-invitees-api-openapi.yml'
 - slug: activecampaign-add-or-update-activecampaign-contacts-from-new-squarespace-forms-form-submi
   label: Add or update ActiveCampaign contacts from new Squarespace Forms form submissions
   partner: squarespace
@@ -113,6 +121,7 @@
   evidence: https://zapier.com/apps/activecampaign/integrations/squarespace-forms/21528/add-or-update-activecampaign-contacts-from-new-squarespace-forms-form-submissions
   template: https://zapier.com/apps/activecampaign/integrations/squarespace-forms/21528/add-or-update-activecampaign-contacts-from-new-squarespace-forms-form-submissions
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: activecampaign-create-activecampaign-subscribers-from-new-oncehub-bookings
@@ -126,6 +135,7 @@
   evidence: https://zapier.com/apps/activecampaign/integrations/oncehub/10891/create-activecampaign-subscribers-from-new-oncehub-bookings
   template: https://zapier.com/apps/activecampaign/integrations/oncehub/10891/create-activecampaign-subscribers-from-new-oncehub-bookings
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: activecampaign-add-new-kajabi-customers-to-activecampaign
@@ -140,244 +150,9 @@
   evidence: https://zapier.com/apps/activecampaign/integrations/kajabi/12905/add-new-kajabi-customers-to-activecampaign
   template: https://zapier.com/apps/activecampaign/integrations/kajabi/12905/add-new-kajabi-customers-to-activecampaign
   source: template
+  relationship: ipaas-bridge
   arazzo: activecampaign-kajabi-new-customer-contact.yml
   status: arazzo
-- slug: activecampaign-typeform
-  label: Typeform
-  partner: typeform
-  partner_name: Typeform
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/typeform
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-zoom
-  label: Zoom
-  partner: zoom
-  partner_name: Zoom
-  category: Video Conferencing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/zoom
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-manychat
-  label: Manychat
-  partner: manychat
-  partner_name: Manychat
-  category: Social Media Marketing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/manychat
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-woocommerce
-  label: WooCommerce
-  partner: woocommerce
-  partner_name: WooCommerce
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/woocommerce
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-eventbrite
-  label: Eventbrite
-  partner: eventbrite
-  partner_name: Eventbrite
-  category: Event Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/eventbrite
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-hubspot
-  label: HubSpot
-  partner: hubspot
-  partner_name: HubSpot
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/hubspot
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-pipedrive
-  label: Pipedrive
-  partner: pipedrive
-  partner_name: Pipedrive
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/pipedrive
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-google-forms
-  label: Google Forms
-  partner: google-forms
-  partner_name: Google Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/google-forms
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-mailchimp
-  label: Mailchimp
-  partner: mailchimp
-  partner_name: Mailchimp
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/mailchimp
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-wix
-  label: Wix
-  partner: wix
-  partner_name: Wix
-  category: Website Builders
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/wix
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-airtable
-  label: Airtable
-  partner: airtable
-  partner_name: Airtable
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/airtable
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-gravity-forms
-  label: Gravity Forms
-  partner: gravity-forms
-  partner_name: Gravity Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/gravity-forms
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-systeme-io
-  label: systeme.io
-  partner_name: systeme.io
-  category: Marketing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/systemeio
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: activecampaign-facebook-conversions
-  label: Facebook Conversions
-  partner_name: Facebook Conversions
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/facebook-conversions
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: activecampaign-wufoo
-  label: Wufoo
-  partner: wufoo
-  partner_name: Wufoo
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/wufoo
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-trello
-  label: Trello
-  partner: trello
-  partner_name: Trello
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/trello
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-learndash
-  label: LearnDash
-  partner_name: LearnDash
-  category: Online Courses
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/learndash
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: activecampaign-google-calendar
-  label: Google Calendar
-  partner: google-calendar
-  partner_name: Google Calendar
-  category: Calendar
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/google-calendar
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: activecampaign-monday-com
-  label: monday.com
-  partner_name: monday.com
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/monday
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: activecampaign-twilio
-  label: Twilio
-  partner: twilio
-  partner_name: Twilio
-  category: Phone & SMS
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/activecampaign/integrations/twilio
-  source: edge
-  status: pending-generation
-  arazzo: null
 - slug: activecampaign-bonjoro
   label: bonjoro
   partner: bonjoro
@@ -394,6 +169,110 @@
     property: schemas.integration.provider
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
+  status: not-a-workflow
+  arazzo: null
+- slug: activecampaign-shopify-own
+  label: Shopify (own)
+  partner: shopify
+  partner_name: Shopify (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.shopify.com/activecampaign
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: activecampaign-wordpress-own
+  label: WordPress (own)
+  partner: wordpress
+  partner_name: WordPress (own)
+  category: WordPress plugin
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://wordpress.org/plugins/activecampaign-subscription-forms/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: activecampaign-slack-own
+  label: Slack (own)
+  partner: slack
+  partner_name: Slack (own)
+  category: Slack app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://slack.com/marketplace/A03AZSSSNM6-activecampaign-bot
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: activecampaign-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/activecampaign
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: activecampaign
+      version: 1.2.5
+      released: '2026-07-14'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/activecampaign
+      repo_leg: shared-github-org:activecampaign
+      publisher_leg: email:activecampaign.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: activecampaign-zendesk-own
+  label: Zendesk (own)
+  partner: zendesk
+  partner_name: Zendesk (own)
+  category: CRM and Marketing
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.zendesk.com/marketplace/apps/support/1417/activecampaign-for-support/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: activecampaign-a2a-protocol-own-agent-card
+  label: A2A protocol (own Agent Card)
+  partner_name: A2A protocol (own Agent Card)
+  category: A2A agent
+  type: register
+  channel: provider-built
+  evidence: https://activecampaign.com/.well-known/agent.json
+  source: edge
+  relationship: compatible
+  contract_reference:
+    register: provider's own /.well-known/agent-card.json
+    spec_file: null
+    standard: A2A
+    role: a2a-agent-card
+    registered_name: ActiveCampaign
+    organization: ActiveCampaign, LLC
+    matched_domain: activecampaign.com
+    matched_by: own-domain
+    detected_by: sweep-ai-agents.py
+    detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
 - slug: activecampaign-twilio-segment
@@ -430,104 +309,6 @@
   evidence: https://fivetran.com/docs/activations/destinations/available-destinations/activecampaign
   source: edge
   relationship: connector-coverage
-  status: not-a-workflow
-  arazzo: null
-- slug: activecampaign-shopify-own
-  label: Shopify (own)
-  partner: shopify
-  partner_name: Shopify (own)
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://apps.shopify.com/activecampaign
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: activecampaign-a2a-protocol-own-agent-card
-  label: A2A protocol (own Agent Card)
-  partner_name: A2A protocol (own Agent Card)
-  category: A2A agent
-  type: register
-  channel: provider-built
-  evidence: https://activecampaign.com/.well-known/agent.json
-  source: edge
-  relationship: compatible
-  contract_reference:
-    register: provider's own /.well-known/agent-card.json
-    spec_file: null
-    standard: A2A
-    role: a2a-agent-card
-    registered_name: ActiveCampaign
-    organization: ActiveCampaign, LLC
-    matched_domain: activecampaign.com
-    matched_by: own-domain
-    detected_by: sweep-ai-agents.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
-- slug: activecampaign-zapier
-  label: Zapier
-  partner: zapier
-  partner_name: Zapier
-  type: marketplace
-  marketplace: zapier-directory
-  channel: ipaas-listing
-  evidence: https://zapier.com/apps/activecampaign/integrations
-  source: edge
-  relationship: ipaas-bridge
-  contract_reference:
-    register: Zapier app directory (zapier.com/api/v4/apps)
-    spec_file: null
-    role: ipaas-connector:zapier
-    registered_name: ActiveCampaign
-    matched_domain: activecampaign.com
-    matched_by: domain
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: activecampaign
-    beta: false
-    builder: unknown (not in the directory record)
-  status: not-a-workflow
-  arazzo: null
-- slug: activecampaign-pipedream
-  label: Pipedream
-  partner: pipedream
-  partner_name: Pipedream
-  type: marketplace
-  marketplace: pipedream-components
-  channel: open-source-node
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/activecampaign
-  source: edge
-  relationship: ipaas-bridge
-  contract_reference:
-    register: Pipedream components (PipedreamHQ/pipedream components/)
-    spec_file: null
-    role: ipaas-connector:pipedream
-    registered_name: activecampaign
-    matched_domain: activecampaign.com
-    matched_by: domain
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: activecampaign
-    actions: true
-    sources: true
-    builder: Pipedream repo (component)
-  status: not-a-workflow
-  arazzo: null
-- slug: activecampaign-wordpress-own
-  label: WordPress (own)
-  partner: wordpress
-  partner_name: WordPress (own)
-  category: WordPress plugin
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://wordpress.org/plugins/activecampaign-subscription-forms/
-  source: edge
-  relationship: platform-app
   status: not-a-workflow
   arazzo: null
 - slug: activecampaign-fivetran
@@ -591,60 +372,312 @@
     builder: 'community (Meltano Hub variant maintainers: airbyte, bytecodeio, singer-io)'
   status: not-a-workflow
   arazzo: null
-- slug: activecampaign-slack-own
-  label: Slack (own)
-  partner: slack
-  partner_name: Slack (own)
-  category: Slack app
+- slug: activecampaign-typeform
+  label: Typeform
+  partner: typeform
+  partner_name: Typeform
+  category: Forms & Surveys
   type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://slack.com/marketplace/A03AZSSSNM6-activecampaign-bot
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/typeform
   source: edge
-  relationship: platform-app
-  status: not-a-workflow
+  relationship: ipaas-bridge
+  status: pending-generation
   arazzo: null
-- slug: activecampaign-npm-registry
-  label: npm registry
-  partner: npm
-  partner_name: npm registry
-  category: official SDK (JavaScript/TypeScript)
-  type: register
-  channel: package-registry
-  evidence: https://www.npmjs.com/package/activecampaign
+- slug: activecampaign-zoom
+  label: Zoom
+  partner: zoom
+  partner_name: Zoom
+  category: Video Conferencing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/zoom
   source: edge
-  relationship: distribution-channel
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-manychat
+  label: Manychat
+  partner: manychat
+  partner_name: Manychat
+  category: Social Media Marketing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/manychat
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-woocommerce
+  label: WooCommerce
+  partner: woocommerce
+  partner_name: WooCommerce
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/woocommerce
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-eventbrite
+  label: Eventbrite
+  partner: eventbrite
+  partner_name: Eventbrite
+  category: Event Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/eventbrite
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-hubspot
+  label: HubSpot
+  partner: hubspot
+  partner_name: HubSpot
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/hubspot
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-pipedrive
+  label: Pipedrive
+  partner: pipedrive
+  partner_name: Pipedrive
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/pipedrive
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-google-forms
+  label: Google Forms
+  partner: google-forms
+  partner_name: Google Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/google-forms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-mailchimp
+  label: Mailchimp
+  partner: mailchimp
+  partner_name: Mailchimp
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/mailchimp
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-wix
+  label: Wix
+  partner: wix
+  partner_name: Wix
+  category: Website Builders
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/wix
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-airtable
+  label: Airtable
+  partner: airtable
+  partner_name: Airtable
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/airtable
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-gravity-forms
+  label: Gravity Forms
+  partner: gravity-forms
+  partner_name: Gravity Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/gravity-forms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-facebook-conversions
+  label: Facebook Conversions
+  partner: facebook
+  partner_name: Facebook Conversions
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/facebook-conversions
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-systeme-io
+  label: systeme.io
+  partner_name: systeme.io
+  category: Marketing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/systemeio
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: activecampaign-wufoo
+  label: Wufoo
+  partner: wufoo
+  partner_name: Wufoo
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/wufoo
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-trello
+  label: Trello
+  partner: trello
+  partner_name: Trello
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/trello
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-google-calendar
+  label: Google Calendar
+  partner: google-calendar
+  partner_name: Google Calendar
+  category: Calendar
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/google-calendar
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-learndash
+  label: LearnDash
+  partner_name: LearnDash
+  category: Online Courses
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/learndash
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: activecampaign-monday-com
+  label: monday.com
+  partner: monday-com
+  partner_name: monday.com
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/monday
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-twilio
+  label: Twilio
+  partner: twilio
+  partner_name: Twilio
+  category: Phone & SMS
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/activecampaign/integrations/twilio
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: activecampaign-zapier
+  label: Zapier
+  partner: zapier
+  partner_name: Zapier
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  evidence: https://zapier.com/apps/activecampaign/integrations
+  source: edge
+  relationship: ipaas-bridge
   contract_reference:
-    register: npm registry (public registry JSON)
+    register: Zapier app directory (zapier.com/api/v4/apps)
     spec_file: null
-    language: JavaScript/TypeScript
-    packages:
-    - name: activecampaign
-      version: 1.2.5
-      released: '2026-07-14'
-      released_field: modified
-      lapsed: false
-      page: https://www.npmjs.com/package/activecampaign
-      repo_leg: shared-github-org:activecampaign
-      publisher_leg: email:activecampaign.com
-      matched_by: domain
-    current: true
-    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
-      24 months'
-    detected_by: sweep-official-sdks.py
-    detected: '2026-10-18'
+    role: ipaas-connector:zapier
+    registered_name: ActiveCampaign
+    matched_domain: activecampaign.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: activecampaign
+    beta: false
+    builder: unknown (not in the directory record)
   status: not-a-workflow
   arazzo: null
-- slug: activecampaign-zendesk-own
-  label: Zendesk (own)
-  partner: zendesk
-  partner_name: Zendesk (own)
-  category: CRM and Marketing
+- slug: activecampaign-pipedream
+  label: Pipedream
+  partner: pipedream
+  partner_name: Pipedream
   type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://www.zendesk.com/marketplace/apps/support/1417/activecampaign-for-support/
+  marketplace: pipedream-components
+  channel: open-source-node
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/activecampaign
   source: edge
-  relationship: platform-app
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Pipedream components (PipedreamHQ/pipedream components/)
+    spec_file: null
+    role: ipaas-connector:pipedream
+    registered_name: activecampaign
+    matched_domain: activecampaign.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: activecampaign
+    actions: true
+    sources: true
+    builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
