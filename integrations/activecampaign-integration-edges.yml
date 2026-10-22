@@ -42,6 +42,7 @@ checked:
 - https://developer.salesforce.com/docs/atlas.en-us.packagingGuide.meta/packagingGuide/security_review_overview.htm
 - https://slack.com/marketplace
 - salesforce/integrations/salesforce-integration-edges.yml
+- adobe-commerce/integrations/adobe-commerce-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -997,6 +998,23 @@ edges:
   detected: '2026-10-21'
   detected_by: mirror-platform-listings.py
   category: marketing
+- partner_name: Adobe Commerce (own)
+  partner: adobe-commerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://commercemarketplace.adobe.com/activecampaign-module-integration.html
+  mirror_of: adobe-commerce/integrations/adobe-commerce-integration-edges.yml
+  apps:
+  - ActiveCampaign
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Commerce Marketplace extension
 templates:
 - title: Add or update ActiveCampaign contacts for new Acuity Scheduling appointments
   url: https://zapier.com/apps/activecampaign/integrations/acuity-scheduling/2045/add-or-update-activecampaign-contacts-for-new-acuity-scheduling-appointments
