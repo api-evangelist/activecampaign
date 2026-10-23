@@ -13,68 +13,68 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   arazzo/activecampaign-create-account-add-contact-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-create-account-add-note-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-create-contact-add-to-automation-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-create-contact-add-to-list-tag-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-create-contact-associate-account-by-name-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-create-contact-set-custom-field-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-create-custom-field-set-on-contact-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-create-deal-add-note-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-create-deal-add-task-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-create-deal-for-contact-by-email-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-create-deal-set-custom-field-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-create-list-add-contact-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-create-pipeline-stage-deal-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-enroll-contact-in-automation-by-name-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-find-deal-add-note-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-find-or-create-contact-tag-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-find-or-create-tag-and-apply-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-subscribe-contact-to-list-by-name-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-sync-contact-add-to-list-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-sync-contact-set-custom-field-tag-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/activecampaign-tag-contact-and-enroll-automation-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   asyncapi/activecampaign-webhooks-asyncapi.yml:
     method: unknown
     evidence: no authorship recorded
@@ -390,7 +390,190 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/activecampaign-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/_index.yml:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  integrations/activecampaign-acuity-scheduling-new-appointment-contact-sync-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  integrations/activecampaign-acuity-scheduling-new-appointment-contact-sync.yml:
+    method: generated
+    evidence: declared in the artifact
+  integrations/activecampaign-bonjoro-integration-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/activecampaign-calendly-new-invitee-contact-sync-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  integrations/activecampaign-calendly-new-invitee-contact-sync.yml:
+    method: generated
+    evidence: declared in the artifact
+  integrations/activecampaign-facebook-lead-ads-new-lead-contact-sync-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  integrations/activecampaign-facebook-lead-ads-new-lead-contact-sync.yml:
+    method: generated
+    evidence: declared in the artifact
+  integrations/activecampaign-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
+  integrations/activecampaign-integration-map.yml:
+    method: unknown
+    evidence: no authorship recorded
+  integrations/activecampaign-kajabi-new-customer-contact-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  integrations/activecampaign-kajabi-new-customer-contact.yml:
+    method: generated
+    evidence: declared in the artifact
+  integrations/activecampaign-teachable-new-student-contact-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  integrations/activecampaign-teachable-new-student-contact.yml:
+    method: generated
+    evidence: declared in the artifact
+  integrations/activecampaign-unbounce-new-submission-subscriber-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  integrations/activecampaign-unbounce-new-submission-subscriber.yml:
+    method: generated
+    evidence: declared in the artifact
+  json-ld/activecampaign-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
   json-ld/activecampaign-sms-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-account-cloning-status-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-additional-criteria-root-do-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-am2-create-snapshot-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-am2-get-snapshots-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-assign-accounts-to-profile-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-child-account-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-child-account-profile-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-conversation-edit-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-create-account-request-dto-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-create-custom-instruction-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-create-custom-instruction-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-create-profile-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-custom-instruction-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-custom-instruction-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-document-download-url-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-flow-execution-contact-read-detail-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-flow-execution-create-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-flow-execution-edit-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-flow-execution-read-detail-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-insight-card-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-insight-card-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-list-account-for-snapshot-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-locale-catalogs-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-match-all-response-root-do-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-match-response-root-do-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-paginated-conversation-read-simple-list-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-paginated-flow-execution-contact-list-simple-list-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-paginated-flow-execution-list-list-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-patched-conversation-edit-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-pipeline-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-pipeline-sync-config-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-pipelines-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-pipelines-summary-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-profile-document-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-profile-document-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-profile-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-profile-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-quota-status-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-root-do-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-root-success-do-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-segment-count-history-response-root-do-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-segment-summary-success-root-do-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-settings-response-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/activecampaign-sms-ai-broadcast-request-schema.json:
@@ -447,6 +630,24 @@ artifacts:
   json-schema/activecampaign-sms-snapshot-response-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/activecampaign-update-custom-instruction-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-update-document-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-update-profile-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-update-settings-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-update-state-insight-card-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-upsert-pipeline-sync-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-structure/activecampaign-sms-ai-broadcast-request-structure.json:
     method: unknown
     evidence: no authorship recorded
@@ -501,127 +702,7 @@ artifacts:
   json-structure/activecampaign-sms-snapshot-response-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -705,9 +786,27 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/activecampaign-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
+  llms/activecampaign-llms-provenance.yml:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
   llms/activecampaign-llms.txt:
     method: searched
     evidence: 'derive-llms-provenance.py: harvested'
@@ -723,20 +822,16 @@ artifacts:
       to the provider's source is unverified
   openapi/_original/activecampaign-segment-match-one-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developers.activecampaign.com/openapi/segment_match_one.json (sha256
+      be25828b39bb, fetched 2026-10-04)
   openapi/_original/activecampaign-segment-matching-api-openapi.json:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
       to the provider's source is unverified
   openapi/_original/activecampaign-segments-api-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/activecampaign-sms.json:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: the same operations as https://developers.activecampaign.com/openapi/openapi_public.json
+      (sha256 8c4a50072b17, fetched 2026-10-04)
   openapi/_original/activecampaign-trackcmp-api-openapi.json:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
@@ -745,23 +840,19 @@ artifacts:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
       to the provider's source is unverified
-  openapi/_original/activecampaign-v3.json:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
   openapi/_original/activecampaign-whatsapp-api-openapi.yml:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
       to the provider's source is unverified
   openapi/activecampaign-accounts-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-addresses-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-ai-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-ai-customization-documents-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -772,23 +863,23 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/activecampaign-automations-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-branding-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-broadcasts-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-bulk-import-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-calendars-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-campaigns-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-child-account-snapshots-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -796,8 +887,8 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/activecampaign-contacts-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-conversations-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -805,8 +896,8 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/activecampaign-credits-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-crm-reporting-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -817,26 +908,26 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/activecampaign-custom-objects-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-deals-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-ecommerce-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-event-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/activecampaign-event-tracking-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-failures-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-fields-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-files-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -844,17 +935,17 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/activecampaign-forms-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-groups-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-insight-cards-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/activecampaign-lists-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-locales-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -865,188 +956,353 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/activecampaign-messages-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-metrics-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-most-recent-count-history-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/activecampaign-notes-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-other-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-personalizations-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-recipients-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-saved-responses-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-saved-segment-summaries-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/activecampaign-scores-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-segments-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/activecampaign-site-tracking-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-tags-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-tasks-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-template-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/activecampaign-templates-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-users-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/activecampaign-webhooks-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  overlays/activecampaign-accounts-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/activecampaign-accounts-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-addresses-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-addresses-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-ai-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-ai-customization-documents-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-ai-customization-instructions-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-ai-customization-profiles-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-ai-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-automations-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-automations-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-branding-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-branding-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-broadcasts-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-broadcasts-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-bulk-import-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-bulk-import-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-calendars-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-calendars-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-campaigns-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-campaigns-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-child-account-snapshots-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-child-accounts-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-contacts-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-contacts-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-conversations-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-count-history-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-credits-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-credits-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-crm-reporting-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-crm-sync-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-crm-sync-settings-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-custom-objects-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-custom-objects-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-deals-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-deals-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-ecommerce-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-ecommerce-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-event-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-event-tracking-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-event-tracking-overlay.yaml:
-    method: generated
-    evidence: declared in the artifact
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/activecampaign-exports-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-failures-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-failures-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-fields-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-fields-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-files-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-flows-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-forms-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-forms-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-groups-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-groups-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-insight-cards-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-lists-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-lists-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-locales-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-match-all-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-match-one-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-messages-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-messages-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-metrics-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-metrics-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-most-recent-count-history-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-notes-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-notes-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-other-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-other-overlay.yaml:
-    method: generated
-    evidence: declared in the artifact
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/activecampaign-partners-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-personalizations-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-personalizations-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-recipients-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-recipients-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-saved-responses-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-saved-responses-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-saved-segment-summaries-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-scores-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-scores-overlay.yaml:
-    method: generated
-    evidence: declared in the artifact
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/activecampaign-segment-match-one-overlay.yaml:
-    method: generated
-    evidence: declared in the artifact
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/activecampaign-segment-matching-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-segments-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-segments-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-site-tracking-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-site-tracking-overlay.yaml:
-    method: generated
-    evidence: declared in the artifact
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/activecampaign-snapshots-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-tags-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-tags-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-tasks-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-tasks-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-template-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/activecampaign-templates-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-templates-overlay.yaml:
-    method: generated
-    evidence: declared in the artifact
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/activecampaign-trackcmp-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-users-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-users-overlay.yaml:
-    method: generated
-    evidence: declared in the artifact
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/activecampaign-v2-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/activecampaign-webhooks-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/activecampaign-webhooks-overlay.yaml:
-    method: generated
-    evidence: declared in the artifact
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/activecampaign-whatsapp-overlay.yaml:
-    method: generated
-    evidence: declared in the artifact
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   packages/activecampaign-packages.yml:
     method: searched
     evidence: declared in the artifact
@@ -1068,6 +1324,9 @@ artifacts:
   rules/activecampaign-jsonschema-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
+  rules/activecampaign-rules.yml:
+    method: generated
+    evidence: declared in the artifact
   rules/activecampaign-spectral-rules.yml:
     method: unknown
     evidence: no authorship recorded
@@ -1086,9 +1345,15 @@ artifacts:
   skills/_index.yml:
     method: searched
     evidence: declared in the artifact
+  vendors/activecampaign-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
   vocabulary/activecampaign-vocabulary.yaml:
     method: unknown
     evidence: no authorship recorded
+  vocabulary/activecampaign-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
   well-known/activecampaign-api-catalog.json:
     method: unknown
     evidence: no authorship recorded
