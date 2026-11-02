@@ -312,7 +312,7 @@ delivery:
 note: 'Prices are injected by JavaScript: a plain GET shows "Starts at -- / mo"; the rendered page (fetch-url.py --render, 2026-10-12, HTTP 200) reads "Starts at $15 /mo Billed annually" (Starter), $49
   (Plus), $79 (Pro), $145 (Enterprise). A plain-fetch verbatim check cannot see these quotes.'
 x-canonical:
-  generated: '2026-11-01'
+  generated: '2026-11-02'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - free
