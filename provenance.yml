@@ -11,6 +11,9 @@ artifacts:
   agentic-access/activecampaign-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  ai-preferences/activecampaign-ai-preferences.yml:
+    method: harvested
+    evidence: declared in the artifact
   arazzo/activecampaign-create-account-add-contact-workflow.yml:
     method: derived
     evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
@@ -80,6 +83,12 @@ artifacts:
   authentication/activecampaign-authentication.yml:
     method: searched
     evidence: declared in the artifact
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   changelog/activecampaign-changelog.yml:
     method: searched
     evidence: declared in the artifact
@@ -317,14 +326,23 @@ artifacts:
   collections/activecampaign-whatsapp-api.postman_collection.json:
     method: unknown
     evidence: no authorship recorded
+  compliance/activecampaign-compliance.yml:
+    method: harvested
+    evidence: declared in the artifact
   conformance/activecampaign-conformance.yml:
     method: derived
     evidence: declared in the artifact
   conventions/activecampaign-conventions.yml:
     method: searched
     evidence: declared in the artifact
+  data-license/activecampaign-data-license.yml:
+    method: harvested
+    evidence: declared in the artifact
   data-model/activecampaign-data-model.yml:
     method: derived
+    evidence: declared in the artifact
+  eligibility/activecampaign-eligibility.yml:
+    method: harvested
     evidence: declared in the artifact
   errors/activecampaign-problem-types.yml:
     method: derived
@@ -390,6 +408,12 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   heartbeat/2026-11-02.yml:
+    method: unknown
+    evidence: no authorship recorded
+  heartbeat/2026-11-06.yml:
+    method: unknown
+    evidence: no authorship recorded
+  heartbeat/2026-11-13.yml:
     method: unknown
     evidence: no authorship recorded
   hosts/activecampaign-hosts.yml:
@@ -494,6 +518,9 @@ artifacts:
   json-schema/activecampaign-document-download-url-response-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/activecampaign-failure-details-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/activecampaign-flow-execution-contact-read-detail-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -531,6 +558,9 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   json-schema/activecampaign-paginated-flow-execution-list-list-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-paginated-whats-app-template-simple-read-list-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/activecampaign-patched-conversation-edit-schema.json:
@@ -650,6 +680,15 @@ artifacts:
   json-schema/activecampaign-upsert-pipeline-sync-request-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/activecampaign-whats-app-template-read-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-whats-app-template-send-public-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/activecampaign-whats-app-template-send-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-structure/activecampaign-sms-ai-broadcast-request-structure.json:
     method: unknown
     evidence: no authorship recorded
@@ -707,7 +746,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -774,6 +813,9 @@ artifacts:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-11-02T082323.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   lifecycle/activecampaign-lifecycle.yml:
@@ -1293,6 +1335,9 @@ artifacts:
   postman/activecampaign-v3.postman_collection.json:
     method: unknown
     evidence: no authorship recorded
+  privacy/activecampaign-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/activecampaign-rate-limits.yml:
     method: searched
     evidence: declared in the artifact
@@ -1325,6 +1370,9 @@ artifacts:
     evidence: declared in the artifact
   sla/activecampaign-sla.yml:
     method: generated
+    evidence: declared in the artifact
+  terms/activecampaign-terms-of-service.yml:
+    method: harvested
     evidence: declared in the artifact
   vendors/activecampaign-vendors.yml:
     method: unknown
